@@ -1,0 +1,166 @@
+# -*- coding: UTF-8 -*-
+#
+# copyright: 2020-2021, Frederico Martins
+# author: Frederico Martins <http://github.com/fscm>
+# license: SPDX-License-Identifier: MIT
+
+"""Tests for the Peso Uruguayo representation."""
+
+from decimal import Context
+from pytest import raises
+from multicurrency import Currency, PesoUruguayo
+from multicurrency import (
+    CurrencyMismatchException,
+    CurrencyTypeException)
+
+
+CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
+
+
+def test_peso_uruguayo():
+    """test_peso_uruguayo."""
+    amount = CONTEXT.create_decimal(1) / CONTEXT.create_decimal(7)
+    peso_uruguayo = PesoUruguayo(amount=amount)
+    decimal = CONTEXT.create_decimal(amount)
+    assert peso_uruguayo.amount == decimal
+    assert peso_uruguayo.code == '858'
+    assert peso_uruguayo.currency == 'UYU'
+    assert peso_uruguayo.decimal_places == 2
+    assert peso_uruguayo.decimal_sign == ','
+    assert peso_uruguayo.grouping_sign == '.'
+    assert not peso_uruguayo.international
+    assert peso_uruguayo.symbol == '$'
+    assert peso_uruguayo.__hash__() == hash((decimal, 'UYU', '858'))
+    assert peso_uruguayo.__repr__() == (
+        'PesoUruguayo(amount: 0.1428571428571428571428571429, '
+        'currency: "UYU", '
+        'symbol: "$", '
+        'code: "858", '
+        'decimal_places: "2", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
+        'international: False)')
+    assert peso_uruguayo.__str__() == '$0,14'
+
+
+def test_peso_uruguayo_negative():
+    """test_peso_uruguayo_negative."""
+    amount = -100
+    peso_uruguayo = PesoUruguayo(amount=amount)
+    decimal = CONTEXT.create_decimal(amount)
+    assert peso_uruguayo.code == '858'
+    assert peso_uruguayo.currency == 'UYU'
+    assert peso_uruguayo.decimal_places == 2
+    assert peso_uruguayo.decimal_sign == ','
+    assert peso_uruguayo.grouping_sign == '.'
+    assert not peso_uruguayo.international
+    assert peso_uruguayo.symbol == '$'
+    assert peso_uruguayo.__hash__() == hash((decimal, 'UYU', '858'))
+    assert peso_uruguayo.__repr__() == (
+        'PesoUruguayo(amount: -100, '
+        'currency: "UYU", '
+        'symbol: "$", '
+        'code: "858", '
+        'decimal_places: "2", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
+        'international: False)')
+    assert peso_uruguayo.__str__() == '$-100,00'
+
+
+def test_peso_uruguayo_custom():
+    """test_peso_uruguayo_custom."""
+    amount = 1000
+    peso_uruguayo = PesoUruguayo(
+        amount=amount,
+        decimal_places=5,
+        decimal_sign='.',
+        grouping_sign=',',
+        international=True)
+    decimal = CONTEXT.create_decimal(amount)
+    assert peso_uruguayo.amount == decimal
+    assert peso_uruguayo.code == '858'
+    assert peso_uruguayo.currency == 'UYU'
+    assert peso_uruguayo.decimal_places == 5
+    assert peso_uruguayo.decimal_sign == '.'
+    assert peso_uruguayo.grouping_sign == ','
+    assert peso_uruguayo.international
+    assert peso_uruguayo.symbol == '$'
+    assert peso_uruguayo.__hash__() == hash((decimal, 'UYU', '858'))
+    assert peso_uruguayo.__repr__() == (
+        'PesoUruguayo(amount: 1000, '
+        'currency: "UYU", '
+        'symbol: "$", '
+        'code: "858", '
+        'decimal_places: "5", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
+        'international: True)')
+    assert peso_uruguayo.__str__() == 'UYU 1,000.00000'
+
+
+def test_peso_uruguayo_changed():
+    """test_cpeso_uruguayo_changed."""
+    peso_uruguayo = PesoUruguayo(amount=1000)
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        peso_uruguayo.amount = 999
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        peso_uruguayo.currency = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        peso_uruguayo.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        peso_uruguayo.code = '978'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        peso_uruguayo.decimal_places = 3
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        peso_uruguayo.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        peso_uruguayo.grouping_sign = '.'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        peso_uruguayo.international = True
+
+
+def test_peso_uruguayo_math_add():
+    """test_peso_uruguayo_math_add."""
+    peso_uruguayo_one = PesoUruguayo(amount=1)
+    peso_uruguayo_two = PesoUruguayo(amount=2)
+    peso_uruguayo_three = PesoUruguayo(amount=3)
+    currency = Currency(amount=1, currency='OTHER')
+    with raises(
+            CurrencyMismatchException,
+            match='unsupported operation between currency UYU and OTHER.'):
+        _ = peso_uruguayo_one + currency
+    with raises(
+            CurrencyTypeException,
+            match=('unsupported operation between <class \'multicurrency.'
+                   'peso_uruguayo.PesoUruguayo\'> '
+                   'and <class \'str\'>.')):
+        _ = peso_uruguayo_one.__add__('1.00')
+    assert (peso_uruguayo_one + peso_uruguayo_two) == peso_uruguayo_three
+
+
+def test_currency_slots():
+    """test_currency_slots."""
+    euro = PesoUruguayo(amount=1000)
+    with raises(
+            AttributeError,
+            match=(
+                '\'PesoUruguayo\' '
+                'object has no attribute \'new_variable\'')):
+        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot

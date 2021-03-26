@@ -1,0 +1,69 @@
+#!/usr/bin/env python3
+# -*- coding: UTF-8 -*-
+#
+# copyright: 2020-2021, Frederico Martins
+# author: Frederico Martins <http://github.com/fscm>
+# license: SPDX-License-Identifier: MIT
+
+"""Profiler.
+
+Simple usage example:
+
+    ./profiler
+"""
+
+from cProfile import Profile
+from io import StringIO
+from pstats import Stats
+from multicurrency import Currency
+
+
+def profile(sortargs=['cumulative'], printargs=[10]):
+    profiler = Profile()
+    def decorator(fn):
+        def inner(*args, **kwargs):
+            results = None
+            try:
+                results = profiler.runcall(fn, *args, **kwargs)
+            finally:
+                string_io = StringIO()
+                stats = Stats(profiler, stream=string_io)
+                #stats.sort_stats(*sortargs).print_stats(*printargs)
+                stats.strip_dirs().sort_stats(*sortargs).print_stats(*printargs)
+                print(string_io.getvalue())
+            return results
+        return inner
+    return decorator
+
+
+@profile()
+def create_currency():
+    for value in range(10000):
+        _ = Currency(
+            amount=value,
+            code='978',
+            currency='EUR',
+            symbol='€',
+            decimal_places=2,
+            decimal_sign=',',
+            grouping_sign='.',
+            international=False)
+
+
+@profile(printargs=[20])
+def create_currency_string():
+    currency = Currency(
+        amount=0.00000001 - 10000000,
+        code='978',
+        currency='EUR',
+        symbol='€',
+        decimal_places=2,
+        decimal_sign=',',
+        grouping_sign='.',
+        international=False)
+    for value in range(10000):
+        _ = currency.__str__()
+
+
+create_currency()
+create_currency_string()

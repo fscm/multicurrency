@@ -1,0 +1,168 @@
+# -*- coding: UTF-8 -*-
+#
+# copyright: 2020-2021, Frederico Martins
+# author: Frederico Martins <http://github.com/fscm>
+# license: SPDX-License-Identifier: MIT
+
+"""Tests for the North Korean Won representation."""
+
+from decimal import Context
+from pytest import raises
+from multicurrency import Currency, NorthKoreanWon
+from multicurrency import (
+    CurrencyMismatchException,
+    CurrencyTypeException)
+
+
+CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
+
+
+def test_north_korean_won():
+    """test_north_korean_won."""
+    amount = CONTEXT.create_decimal(1) / CONTEXT.create_decimal(7)
+    north_korean_won = NorthKoreanWon(amount=amount)
+    decimal = CONTEXT.create_decimal(amount)
+    assert north_korean_won.amount == decimal
+    assert north_korean_won.code == '408'
+    assert north_korean_won.currency == 'KPW'
+    assert north_korean_won.decimal_places == 2
+    assert north_korean_won.decimal_sign == ','
+    assert north_korean_won.grouping_sign == '.'
+    assert not north_korean_won.international
+    assert north_korean_won.symbol == '₩'
+    assert north_korean_won.__hash__() == hash((decimal, 'KPW', '408'))
+    assert north_korean_won.__repr__() == (
+        'NorthKoreanWon(amount: 0.1428571428571428571428571429, '
+        'currency: "KPW", '
+        'symbol: "₩", '
+        'code: "408", '
+        'decimal_places: "2", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
+        'international: False)')
+    assert north_korean_won.__str__() == '₩0,14'
+
+
+def test_north_korean_won_negative():
+    """test_north_korean_won_negative."""
+    amount = -100
+    north_korean_won = NorthKoreanWon(amount=amount)
+    decimal = CONTEXT.create_decimal(amount)
+    assert north_korean_won.code == '408'
+    assert north_korean_won.currency == 'KPW'
+    assert north_korean_won.decimal_places == 2
+    assert north_korean_won.decimal_sign == ','
+    assert north_korean_won.grouping_sign == '.'
+    assert not north_korean_won.international
+    assert north_korean_won.symbol == '₩'
+    assert north_korean_won.__hash__() == hash((decimal, 'KPW', '408'))
+    assert north_korean_won.__repr__() == (
+        'NorthKoreanWon(amount: -100, '
+        'currency: "KPW", '
+        'symbol: "₩", '
+        'code: "408", '
+        'decimal_places: "2", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
+        'international: False)')
+    assert north_korean_won.__str__() == '₩-100,00'
+
+
+def test_north_korean_won_custom():
+    """test_north_korean_won_custom."""
+    amount = 1000
+    north_korean_won = NorthKoreanWon(
+        amount=amount,
+        decimal_places=5,
+        decimal_sign='.',
+        grouping_sign=',',
+        international=True)
+    decimal = CONTEXT.create_decimal(amount)
+    assert north_korean_won.amount == decimal
+    assert north_korean_won.code == '408'
+    assert north_korean_won.currency == 'KPW'
+    assert north_korean_won.decimal_places == 5
+    assert north_korean_won.decimal_sign == '.'
+    assert north_korean_won.grouping_sign == ','
+    assert north_korean_won.international
+    assert north_korean_won.symbol == '₩'
+    assert north_korean_won.__hash__() == hash((decimal, 'KPW', '408'))
+    assert north_korean_won.__repr__() == (
+        'NorthKoreanWon(amount: 1000, '
+        'currency: "KPW", '
+        'symbol: "₩", '
+        'code: "408", '
+        'decimal_places: "5", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
+        'international: True)')
+    assert north_korean_won.__str__() == 'KPW 1,000.00000'
+
+
+def test_north_korean_won_changed():
+    """test_cnorth_korean_won_changed."""
+    north_korean_won = NorthKoreanWon(amount=1000)
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        north_korean_won.amount = 999
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        north_korean_won.currency = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        north_korean_won.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        north_korean_won.code = '978'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        north_korean_won.decimal_places = 3
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        north_korean_won.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        north_korean_won.grouping_sign = '.'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        north_korean_won.international = True
+
+
+def test_north_korean_won_math_add():
+    """test_north_korean_won_math_add."""
+    north_korean_won_one = NorthKoreanWon(amount=1)
+    north_korean_won_two = NorthKoreanWon(amount=2)
+    north_korean_won_three = NorthKoreanWon(amount=3)
+    currency = Currency(amount=1, currency='OTHER')
+    with raises(
+            CurrencyMismatchException,
+            match='unsupported operation between currency KPW and OTHER.'):
+        _ = north_korean_won_one + currency
+    with raises(
+            CurrencyTypeException,
+            match=('unsupported operation between <class \'multicurrency.'
+                   'north_korean_won.NorthKoreanWon\'> '
+                   'and <class \'str\'>.')):
+        _ = north_korean_won_one.__add__('1.00')
+    assert (
+        north_korean_won_one +
+        north_korean_won_two) == north_korean_won_three
+
+
+def test_currency_slots():
+    """test_currency_slots."""
+    euro = NorthKoreanWon(amount=1000)
+    with raises(
+            AttributeError,
+            match=(
+                '\'NorthKoreanWon\' '
+                'object has no attribute \'new_variable\'')):
+        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot

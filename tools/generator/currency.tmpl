@@ -1,0 +1,62 @@
+# -*- coding: UTF-8 -*-
+#
+# copyright: 2020-2021, Frederico Martins
+# author: Frederico Martins <http://github.com/fscm>
+# license: SPDX-License-Identifier: MIT
+
+"""[CURRENCY_NAME] currency representation.
+
+Simple usage example:
+
+    >>> from multicurrency import [CURRENCY_CLASS]
+    >>> [CURRENCY_VARIABLE] = [CURRENCY_CLASS](amount=1)
+    >>> print([CURRENCY_VARIABLE])
+    [SYMBOL]1[DECIMAL_PART]
+
+For more details see `multicurrency.currency.Currency` .
+"""
+
+from decimal import Decimal
+from typing import Optional, Union
+from .currency import Currency
+
+
+class [CURRENCY_CLASS](Currency):
+    """[CURRENCY_NAME] currency representation.
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to [DECIMAL_PLACES],
+        decimal_sign (str, optional): Decimal symbol. Defaults to '[DECIMAL_SIGN]'.
+        grouping_sign (str, optional): Grouping symbol. Defaults to '[GROUPING_SIGN]'.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+    """
+
+    __slots__ = []
+
+    def __new__( # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: int = [DECIMAL_PLACES],
+            decimal_sign: Optional[str] = '[DECIMAL_SIGN]',
+            grouping_sign: Optional[str] = '[GROUPING_SIGN_ALT]',
+            international: bool = False,
+            **other) -> '[CURRENCY_CLASS]':
+        """Class creator.
+
+        Returns:
+            [CURRENCY_CLASS]: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            currency='[CURRENCY]',
+            symbol='[SYMBOL]',
+            code='[CODE]',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_sign=grouping_sign,
+            international=international)
