@@ -1,6 +1,6 @@
 # Project
-generator/monetary/*
-generator/tests/*
+tools/generator/_multicurrency/*
+tools/generator/_tests/*
 venv/*
 !.gitkeep
 
