@@ -4,17 +4,7 @@
 # author: Frederico Martins <http://github.com/fscm>
 # license: SPDX-License-Identifier: MIT
 
-"""Rupiah currency representation.
-
-Simple usage example:
-
-    >>> from multicurrency import Rupiah
-    >>> rupiah = Rupiah(amount=1)
-    >>> print(rupiah)
-    Rp1,00
-
-For more details see `multicurrency.currency.Currency` .
-"""
+"""Rupiah currency representation(s)."""
 
 from decimal import Decimal
 from typing import Optional, Union
@@ -23,6 +13,15 @@ from .currency import Currency
 
 class Rupiah(Currency):
     """Rupiah currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import Rupiah
+        >>> rupiah = Rupiah(amount=1)
+        >>> print(rupiah)
+        Rp1,00
+
+    For more details see `multicurrency.currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

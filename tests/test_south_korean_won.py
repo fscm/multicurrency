@@ -149,7 +149,7 @@ def test_south_korean_won_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'south_korean_won.SouthKoreanWon\'> '
+                   'won.SouthKoreanWon\'> '
                    'and <class \'str\'>.')):
         _ = south_korean_won_one.__add__('1.00')
     assert (

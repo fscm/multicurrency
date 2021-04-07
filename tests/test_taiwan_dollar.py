@@ -149,7 +149,7 @@ def test_taiwan_dollar_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'taiwan_dollar.TaiwanDollar\'> '
+                   'dollar.TaiwanDollar\'> '
                    'and <class \'str\'>.')):
         _ = taiwan_dollar_one.__add__('1.00')
     assert (taiwan_dollar_one + taiwan_dollar_two) == taiwan_dollar_three

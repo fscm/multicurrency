@@ -4,17 +4,7 @@
 # author: Frederico Martins <http://github.com/fscm>
 # license: SPDX-License-Identifier: MIT
 
-"""Balboa currency representation.
-
-Simple usage example:
-
-    >>> from multicurrency import Balboa
-    >>> balboa = Balboa(amount=1)
-    >>> print(balboa)
-    B/.1,00
-
-For more details see `multicurrency.currency.Currency` .
-"""
+"""Balboa currency representation(s)."""
 
 from decimal import Decimal
 from typing import Optional, Union
@@ -23,6 +13,15 @@ from .currency import Currency
 
 class Balboa(Currency):
     """Balboa currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import Balboa
+        >>> balboa = Balboa(amount=1)
+        >>> print(balboa)
+        B/.1,00
+
+    For more details see `multicurrency.currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

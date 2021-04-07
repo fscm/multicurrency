@@ -149,7 +149,7 @@ def test_uzbekistan_sum_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'uzbekistan_sum.UzbekistanSum\'> '
+                   'sum.UzbekistanSum\'> '
                    'and <class \'str\'>.')):
         _ = uzbekistan_sum_one.__add__('1.00')
     assert (uzbekistan_sum_one + uzbekistan_sum_two) == uzbekistan_sum_three

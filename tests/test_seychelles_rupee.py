@@ -149,7 +149,7 @@ def test_seychelles_rupee_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'seychelles_rupee.SeychellesRupee\'> '
+                   'rupee.SeychellesRupee\'> '
                    'and <class \'str\'>.')):
         _ = seychelles_rupee_one.__add__('1.00')
     assert (

@@ -149,7 +149,7 @@ def test_cfp_franc_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'cfp_franc.CFPFranc\'> '
+                   'franc.CFPFranc\'> '
                    'and <class \'str\'>.')):
         _ = cfp_franc_one.__add__('1.00')
     assert (cfp_franc_one + cfp_franc_two) == cfp_franc_three

@@ -149,7 +149,7 @@ def test_bermudian_dollar_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'bermudian_dollar.BermudianDollar\'> '
+                   'dollar.BermudianDollar\'> '
                    'and <class \'str\'>.')):
         _ = bermudian_dollar_one.__add__('1.00')
     assert (

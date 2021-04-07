@@ -149,7 +149,7 @@ def test_belize_dollar_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'belize_dollar.BelizeDollar\'> '
+                   'dollar.BelizeDollar\'> '
                    'and <class \'str\'>.')):
         _ = belize_dollar_one.__add__('1.00')
     assert (belize_dollar_one + belize_dollar_two) == belize_dollar_three

@@ -149,7 +149,7 @@ def test_cfa_franc_bceao_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'cfa_franc_bceao.CFAFrancBCEAO\'> '
+                   'franc.CFAFrancBCEAO\'> '
                    'and <class \'str\'>.')):
         _ = cfa_franc_bceao_one.__add__('1.00')
     assert (cfa_franc_bceao_one + cfa_franc_bceao_two) == cfa_franc_bceao_three

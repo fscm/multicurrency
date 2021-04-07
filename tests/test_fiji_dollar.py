@@ -149,7 +149,7 @@ def test_fiji_dollar_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'fiji_dollar.FijiDollar\'> '
+                   'dollar.FijiDollar\'> '
                    'and <class \'str\'>.')):
         _ = fiji_dollar_one.__add__('1.00')
     assert (fiji_dollar_one + fiji_dollar_two) == fiji_dollar_three

@@ -149,7 +149,7 @@ def test_namibia_dollar_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'namibia_dollar.NamibiaDollar\'> '
+                   'dollar.NamibiaDollar\'> '
                    'and <class \'str\'>.')):
         _ = namibia_dollar_one.__add__('1.00')
     assert (namibia_dollar_one + namibia_dollar_two) == namibia_dollar_three

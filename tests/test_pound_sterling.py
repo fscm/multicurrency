@@ -149,7 +149,7 @@ def test_pound_sterling_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'pound_sterling.PoundSterling\'> '
+                   'pound.PoundSterling\'> '
                    'and <class \'str\'>.')):
         _ = pound_sterling_one.__add__('1.00')
     assert (pound_sterling_one + pound_sterling_two) == pound_sterling_three

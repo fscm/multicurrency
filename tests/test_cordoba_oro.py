@@ -149,7 +149,7 @@ def test_cordoba_oro_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'cordoba_oro.CordobaOro\'> '
+                   'oro.CordobaOro\'> '
                    'and <class \'str\'>.')):
         _ = cordoba_oro_one.__add__('1.00')
     assert (cordoba_oro_one + cordoba_oro_two) == cordoba_oro_three

@@ -149,7 +149,7 @@ def test_somali_shilling_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'somali_shilling.SomaliShilling\'> '
+                   'shilling.SomaliShilling\'> '
                    'and <class \'str\'>.')):
         _ = somali_shilling_one.__add__('1.00')
     assert (somali_shilling_one + somali_shilling_two) == somali_shilling_three

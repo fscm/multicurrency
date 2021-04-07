@@ -149,7 +149,7 @@ def test_guyana_dollar_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'guyana_dollar.GuyanaDollar\'> '
+                   'dollar.GuyanaDollar\'> '
                    'and <class \'str\'>.')):
         _ = guyana_dollar_one.__add__('1.00')
     assert (guyana_dollar_one + guyana_dollar_two) == guyana_dollar_three

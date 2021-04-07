@@ -4,17 +4,7 @@
 # author: Frederico Martins <http://github.com/fscm>
 # license: SPDX-License-Identifier: MIT
 
-"""Denar currency representation.
-
-Simple usage example:
-
-    >>> from multicurrency import Denar
-    >>> denar = Denar(amount=1)
-    >>> print(denar)
-    ден1.00
-
-For more details see `multicurrency.currency.Currency` .
-"""
+"""Denar currency representation(s)."""
 
 from decimal import Decimal
 from typing import Optional, Union
@@ -23,6 +13,15 @@ from .currency import Currency
 
 class Denar(Currency):
     """Denar currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import Denar
+        >>> denar = Denar(amount=1)
+        >>> print(denar)
+        ден1.00
+
+    For more details see `multicurrency.currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

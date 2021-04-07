@@ -149,7 +149,7 @@ def test_konvertibilna_marka_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'konvertibilna_marka.KonvertibilnaMarka\'> '
+                   'marka.KonvertibilnaMarka\'> '
                    'and <class \'str\'>.')):
         _ = konvertibilna_marka_one.__add__('1.00')
     assert (

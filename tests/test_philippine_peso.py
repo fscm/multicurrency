@@ -149,7 +149,7 @@ def test_philippine_peso_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'philippine_peso.PhilippinePeso\'> '
+                   'peso.PhilippinePeso\'> '
                    'and <class \'str\'>.')):
         _ = philippine_peso_one.__add__('1.00')
     assert (philippine_peso_one + philippine_peso_two) == philippine_peso_three

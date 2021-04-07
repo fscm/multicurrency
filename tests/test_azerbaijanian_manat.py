@@ -149,7 +149,7 @@ def test_azerbaijanian_manat_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'azerbaijanian_manat.AzerbaijanianManat\'> '
+                   'manat.AzerbaijanianManat\'> '
                    'and <class \'str\'>.')):
         _ = azerbaijanian_manat_one.__add__('1.00')
     assert (

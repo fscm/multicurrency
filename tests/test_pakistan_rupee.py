@@ -149,7 +149,7 @@ def test_pakistan_rupee_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'pakistan_rupee.PakistanRupee\'> '
+                   'rupee.PakistanRupee\'> '
                    'and <class \'str\'>.')):
         _ = pakistan_rupee_one.__add__('1.00')
     assert (pakistan_rupee_one + pakistan_rupee_two) == pakistan_rupee_three

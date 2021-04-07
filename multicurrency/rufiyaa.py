@@ -4,17 +4,7 @@
 # author: Frederico Martins <http://github.com/fscm>
 # license: SPDX-License-Identifier: MIT
 
-"""Rufiyaa currency representation.
-
-Simple usage example:
-
-    >>> from multicurrency import Rufiyaa
-    >>> rufiyaa = Rufiyaa(amount=1)
-    >>> print(rufiyaa)
-    ރ.1,00
-
-For more details see `multicurrency.currency.Currency` .
-"""
+"""Rufiyaa currency representation(s)."""
 
 from decimal import Decimal
 from typing import Optional, Union
@@ -23,6 +13,15 @@ from .currency import Currency
 
 class Rufiyaa(Currency):
     """Rufiyaa currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import Rufiyaa
+        >>> rufiyaa = Rufiyaa(amount=1)
+        >>> print(rufiyaa)
+        ރ.1,00
+
+    For more details see `multicurrency.currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

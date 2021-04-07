@@ -4,17 +4,7 @@
 # author: Frederico Martins <http://github.com/fscm>
 # license: SPDX-License-Identifier: MIT
 
-"""Afghani currency representation.
-
-Simple usage example:
-
-    >>> from multicurrency import Afghani
-    >>> afghani = Afghani(amount=1)
-    >>> print(afghani)
-    Af1,00
-
-For more details see `multicurrency.currency.Currency` .
-"""
+"""Afghani currency representation(s)."""
 
 from decimal import Decimal
 from typing import Optional, Union
@@ -23,6 +13,15 @@ from .currency import Currency
 
 class Afghani(Currency):
     """Afghani currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import Afghani
+        >>> afghani = Afghani(amount=1)
+        >>> print(afghani)
+        Af1,00
+
+    For more details see `multicurrency.currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

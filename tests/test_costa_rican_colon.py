@@ -149,7 +149,7 @@ def test_costa_rican_colon_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'costa_rican_colon.CostaRicanColon\'> '
+                   'colon.CostaRicanColon\'> '
                    'and <class \'str\'>.')):
         _ = costa_rican_colon_one.__add__('1.00')
     assert (

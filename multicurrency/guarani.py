@@ -4,17 +4,7 @@
 # author: Frederico Martins <http://github.com/fscm>
 # license: SPDX-License-Identifier: MIT
 
-"""Guarani currency representation.
-
-Simple usage example:
-
-    >>> from multicurrency import Guarani
-    >>> guarani = Guarani(amount=1)
-    >>> print(guarani)
-    ₲1
-
-For more details see `multicurrency.currency.Currency` .
-"""
+"""Guarani currency representation(s)."""
 
 from decimal import Decimal
 from typing import Optional, Union
@@ -23,6 +13,15 @@ from .currency import Currency
 
 class Guarani(Currency):
     """Guarani currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import Guarani
+        >>> guarani = Guarani(amount=1)
+        >>> print(guarani)
+        ₲1
+
+    For more details see `multicurrency.currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

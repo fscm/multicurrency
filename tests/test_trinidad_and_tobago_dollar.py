@@ -149,7 +149,7 @@ def test_trinidad_and_tobago_dollar_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'trinidad_and_tobago_dollar.TrinidadandTobagoDollar\'> '
+                   'dollar.TrinidadandTobagoDollar\'> '
                    'and <class \'str\'>.')):
         _ = trinidad_and_tobago_dollar_one.__add__('1.00')
     assert (trinidad_and_tobago_dollar_one +

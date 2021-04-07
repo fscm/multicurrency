@@ -14,7 +14,7 @@ from multicurrency import (
 if __name__ == '__main__':
     setup(
         author=__author__,
-        author_email=__author_email__,
+        #author_email=__author_email__,
         classifiers=[
             'Development Status :: 4 - Beta',
             'Intended Audience :: Developers',

@@ -149,7 +149,7 @@ def test_mexican_peso_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'mexican_peso.MexicanPeso\'> '
+                   'peso.MexicanPeso\'> '
                    'and <class \'str\'>.')):
         _ = mexican_peso_one.__add__('1.00')
     assert (mexican_peso_one + mexican_peso_two) == mexican_peso_three

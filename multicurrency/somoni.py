@@ -4,17 +4,7 @@
 # author: Frederico Martins <http://github.com/fscm>
 # license: SPDX-License-Identifier: MIT
 
-"""Somoni currency representation.
-
-Simple usage example:
-
-    >>> from multicurrency import Somoni
-    >>> somoni = Somoni(amount=1)
-    >>> print(somoni)
-    ЅМ1,00
-
-For more details see `multicurrency.currency.Currency` .
-"""
+"""Somoni currency representation(s)."""
 
 from decimal import Decimal
 from typing import Optional, Union
@@ -23,6 +13,15 @@ from .currency import Currency
 
 class Somoni(Currency):
     """Somoni currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import Somoni
+        >>> somoni = Somoni(amount=1)
+        >>> print(somoni)
+        ЅМ1,00
+
+    For more details see `multicurrency.currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

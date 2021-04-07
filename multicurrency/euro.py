@@ -4,17 +4,7 @@
 # author: Frederico Martins <http://github.com/fscm>
 # license: SPDX-License-Identifier: MIT
 
-"""Euro currency representation.
-
-Simple usage example:
-
-    >>> from multicurrency import Euro
-    >>> euro = Euro(amount=1)
-    >>> print(euro)
-    €1,00
-
-For more details see `multicurrency.currency.Currency` .
-"""
+"""Euro currency representation(s)."""
 
 from decimal import Decimal
 from typing import Optional, Union
@@ -23,6 +13,15 @@ from .currency import Currency
 
 class Euro(Currency):
     """Euro currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import Euro
+        >>> euro = Euro(amount=1)
+        >>> print(euro)
+        €1,00
+
+    For more details see `multicurrency.currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

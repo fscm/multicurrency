@@ -149,7 +149,7 @@ def test_algerian_dinar_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'algerian_dinar.AlgerianDinar\'> '
+                   'dinar.AlgerianDinar\'> '
                    'and <class \'str\'>.')):
         _ = algerian_dinar_one.__add__('1.00')
     assert (algerian_dinar_one + algerian_dinar_two) == algerian_dinar_three

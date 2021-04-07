@@ -149,7 +149,7 @@ def test_solomon_islands_dollar_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'solomon_islands_dollar.SolomonIslandsDollar\'> '
+                   'dollar.SolomonIslandsDollar\'> '
                    'and <class \'str\'>.')):
         _ = solomon_islands_dollar_one.__add__('1.00')
     assert (

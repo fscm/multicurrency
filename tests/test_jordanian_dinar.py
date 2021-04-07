@@ -149,7 +149,7 @@ def test_jordanian_dinar_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'jordanian_dinar.JordanianDinar\'> '
+                   'dinar.JordanianDinar\'> '
                    'and <class \'str\'>.')):
         _ = jordanian_dinar_one.__add__('1.00')
     assert (jordanian_dinar_one + jordanian_dinar_two) == jordanian_dinar_three

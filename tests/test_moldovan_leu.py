@@ -149,7 +149,7 @@ def test_moldovan_leu_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'moldovan_leu.MoldovanLeu\'> '
+                   'leu.MoldovanLeu\'> '
                    'and <class \'str\'>.')):
         _ = moldovan_leu_one.__add__('1.00')
     assert (moldovan_leu_one + moldovan_leu_two) == moldovan_leu_three

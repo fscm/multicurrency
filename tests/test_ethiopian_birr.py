@@ -149,7 +149,7 @@ def test_ethiopian_birr_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'ethiopian_birr.EthiopianBirr\'> '
+                   'birr.EthiopianBirr\'> '
                    'and <class \'str\'>.')):
         _ = ethiopian_birr_one.__add__('1.00')
     assert (ethiopian_birr_one + ethiopian_birr_two) == ethiopian_birr_three

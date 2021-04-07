@@ -149,7 +149,7 @@ def test_qatari_rial_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'qatari_rial.QatariRial\'> '
+                   'rial.QatariRial\'> '
                    'and <class \'str\'>.')):
         _ = qatari_rial_one.__add__('1.00')
     assert (qatari_rial_one + qatari_rial_two) == qatari_rial_three

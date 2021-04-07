@@ -149,7 +149,7 @@ def test_suriname_dollar_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'suriname_dollar.SurinameDollar\'> '
+                   'dollar.SurinameDollar\'> '
                    'and <class \'str\'>.')):
         _ = suriname_dollar_one.__add__('1.00')
     assert (suriname_dollar_one + suriname_dollar_two) == suriname_dollar_three

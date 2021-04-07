@@ -149,7 +149,7 @@ def test_singapore_dollar_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'singapore_dollar.SingaporeDollar\'> '
+                   'dollar.SingaporeDollar\'> '
                    'and <class \'str\'>.')):
         _ = singapore_dollar_one.__add__('1.00')
     assert (

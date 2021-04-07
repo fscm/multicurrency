@@ -4,17 +4,7 @@
 # author: Frederico Martins <http://github.com/fscm>
 # license: SPDX-License-Identifier: MIT
 
-"""Forint currency representation.
-
-Simple usage example:
-
-    >>> from multicurrency import Forint
-    >>> forint = Forint(amount=1)
-    >>> print(forint)
-    Ft1
-
-For more details see `multicurrency.currency.Currency` .
-"""
+"""Forint currency representation(s)."""
 
 from decimal import Decimal
 from typing import Optional, Union
@@ -23,6 +13,15 @@ from .currency import Currency
 
 class Forint(Currency):
     """Forint currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import Forint
+        >>> forint = Forint(amount=1)
+        >>> print(forint)
+        Ft1
+
+    For more details see `multicurrency.currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

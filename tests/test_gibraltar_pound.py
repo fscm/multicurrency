@@ -149,7 +149,7 @@ def test_gibraltar_pound_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'gibraltar_pound.GibraltarPound\'> '
+                   'pound.GibraltarPound\'> '
                    'and <class \'str\'>.')):
         _ = gibraltar_pound_one.__add__('1.00')
     assert (gibraltar_pound_one + gibraltar_pound_two) == gibraltar_pound_three

@@ -149,7 +149,7 @@ def test_bulgarian_lev_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'bulgarian_lev.BulgarianLev\'> '
+                   'lev.BulgarianLev\'> '
                    'and <class \'str\'>.')):
         _ = bulgarian_lev_one.__add__('1.00')
     assert (bulgarian_lev_one + bulgarian_lev_two) == bulgarian_lev_three

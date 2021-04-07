@@ -149,7 +149,7 @@ def test_us_dollar_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'us_dollar.USDollar\'> '
+                   'dollar.USDollar\'> '
                    'and <class \'str\'>.')):
         _ = us_dollar_one.__add__('1.00')
     assert (us_dollar_one + us_dollar_two) == us_dollar_three

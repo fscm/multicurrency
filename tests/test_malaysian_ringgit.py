@@ -149,7 +149,7 @@ def test_malaysian_ringgit_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'malaysian_ringgit.MalaysianRinggit\'> '
+                   'ringgit.MalaysianRinggit\'> '
                    'and <class \'str\'>.')):
         _ = malaysian_ringgit_one.__add__('1.00')
     assert (

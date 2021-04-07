@@ -149,7 +149,7 @@ def test_serbian_dinar_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'serbian_dinar.SerbianDinar\'> '
+                   'dinar.SerbianDinar\'> '
                    'and <class \'str\'>.')):
         _ = serbian_dinar_one.__add__('1.00')
     assert (serbian_dinar_one + serbian_dinar_two) == serbian_dinar_three

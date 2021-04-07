@@ -149,7 +149,7 @@ def test_croatian_kuna_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'croatian_kuna.CroatianKuna\'> '
+                   'kuna.CroatianKuna\'> '
                    'and <class \'str\'>.')):
         _ = croatian_kuna_one.__add__('1.00')
     assert (croatian_kuna_one + croatian_kuna_two) == croatian_kuna_three

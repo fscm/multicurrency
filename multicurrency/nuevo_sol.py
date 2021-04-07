@@ -4,17 +4,7 @@
 # author: Frederico Martins <http://github.com/fscm>
 # license: SPDX-License-Identifier: MIT
 
-"""Nuevo Sol currency representation.
-
-Simple usage example:
-
-    >>> from multicurrency import NuevoSol
-    >>> nuevo_sol = NuevoSol(amount=1)
-    >>> print(nuevo_sol)
-    S/.1.00
-
-For more details see `multicurrency.currency.Currency` .
-"""
+"""Nuevo Sol currency representation(s)."""
 
 from decimal import Decimal
 from typing import Optional, Union
@@ -23,6 +13,15 @@ from .currency import Currency
 
 class NuevoSol(Currency):
     """Nuevo Sol currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import NuevoSol
+        >>> nuevo_sol = NuevoSol(amount=1)
+        >>> print(nuevo_sol)
+        S/.1.00
+
+    For more details see `multicurrency.currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

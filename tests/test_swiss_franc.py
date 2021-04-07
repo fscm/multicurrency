@@ -149,7 +149,7 @@ def test_swiss_franc_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'swiss_franc.SwissFranc\'> '
+                   'franc.SwissFranc\'> '
                    'and <class \'str\'>.')):
         _ = swiss_franc_one.__add__('1.00')
     assert (swiss_franc_one + swiss_franc_two) == swiss_franc_three

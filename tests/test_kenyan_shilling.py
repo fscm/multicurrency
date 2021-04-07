@@ -149,7 +149,7 @@ def test_kenyan_shilling_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'kenyan_shilling.KenyanShilling\'> '
+                   'shilling.KenyanShilling\'> '
                    'and <class \'str\'>.')):
         _ = kenyan_shilling_one.__add__('1.00')
     assert (kenyan_shilling_one + kenyan_shilling_two) == kenyan_shilling_three

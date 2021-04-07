@@ -4,17 +4,7 @@
 # author: Frederico Martins <http://github.com/fscm>
 # license: SPDX-License-Identifier: MIT
 
-"""Metical currency representation.
-
-Simple usage example:
-
-    >>> from multicurrency import Metical
-    >>> metical = Metical(amount=1)
-    >>> print(metical)
-    MTn1
-
-For more details see `multicurrency.currency.Currency` .
-"""
+"""Metical currency representation(s)."""
 
 from decimal import Decimal
 from typing import Optional, Union
@@ -23,6 +13,15 @@ from .currency import Currency
 
 class Metical(Currency):
     """Metical currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import Metical
+        >>> metical = Metical(amount=1)
+        >>> print(metical)
+        MTn1
+
+    For more details see `multicurrency.currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

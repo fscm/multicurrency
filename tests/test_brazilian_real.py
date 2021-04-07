@@ -149,7 +149,7 @@ def test_brazilian_real_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'brazilian_real.BrazilianReal\'> '
+                   'real.BrazilianReal\'> '
                    'and <class \'str\'>.')):
         _ = brazilian_real_one.__add__('1.00')
     assert (brazilian_real_one + brazilian_real_two) == brazilian_real_three

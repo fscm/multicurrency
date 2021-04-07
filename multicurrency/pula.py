@@ -4,17 +4,7 @@
 # author: Frederico Martins <http://github.com/fscm>
 # license: SPDX-License-Identifier: MIT
 
-"""Pula currency representation.
-
-Simple usage example:
-
-    >>> from multicurrency import Pula
-    >>> pula = Pula(amount=1)
-    >>> print(pula)
-    P1,00
-
-For more details see `multicurrency.currency.Currency` .
-"""
+"""Pula currency representation(s)."""
 
 from decimal import Decimal
 from typing import Optional, Union
@@ -23,6 +13,15 @@ from .currency import Currency
 
 class Pula(Currency):
     """Pula currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import Pula
+        >>> pula = Pula(amount=1)
+        >>> print(pula)
+        P1,00
+
+    For more details see `multicurrency.currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

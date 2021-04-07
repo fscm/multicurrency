@@ -149,7 +149,7 @@ def test_zambian_kwacha_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'zambian_kwacha.ZambianKwacha\'> '
+                   'kwacha.ZambianKwacha\'> '
                    'and <class \'str\'>.')):
         _ = zambian_kwacha_one.__add__('1.00')
     assert (zambian_kwacha_one + zambian_kwacha_two) == zambian_kwacha_three

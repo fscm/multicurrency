@@ -149,7 +149,7 @@ def test_bolivar_fuerte_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'bolivar_fuerte.BolivarFuerte\'> '
+                   'fuerte.BolivarFuerte\'> '
                    'and <class \'str\'>.')):
         _ = bolivar_fuerte_one.__add__('1.00')
     assert (bolivar_fuerte_one + bolivar_fuerte_two) == bolivar_fuerte_three

@@ -4,17 +4,7 @@
 # author: Frederico Martins <http://github.com/fscm>
 # license: SPDX-License-Identifier: MIT
 
-"""Lek currency representation.
-
-Simple usage example:
-
-    >>> from multicurrency import Lek
-    >>> lek = Lek(amount=1)
-    >>> print(lek)
-    L1,00
-
-For more details see `multicurrency.currency.Currency` .
-"""
+"""Lek currency representation(s)."""
 
 from decimal import Decimal
 from typing import Optional, Union
@@ -23,6 +13,15 @@ from .currency import Currency
 
 class Lek(Currency):
     """Lek currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import Lek
+        >>> lek = Lek(amount=1)
+        >>> print(lek)
+        L1,00
+
+    For more details see `multicurrency.currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

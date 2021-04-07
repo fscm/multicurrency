@@ -149,7 +149,7 @@ def test_tanzanian_shilling_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'tanzanian_shilling.TanzanianShilling\'> '
+                   'shilling.TanzanianShilling\'> '
                    'and <class \'str\'>.')):
         _ = tanzanian_shilling_one.__add__('1.00')
     assert (

@@ -149,7 +149,7 @@ def test_saudi_riyal_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'saudi_riyal.SaudiRiyal\'> '
+                   'riyal.SaudiRiyal\'> '
                    'and <class \'str\'>.')):
         _ = saudi_riyal_one.__add__('1.00')
     assert (saudi_riyal_one + saudi_riyal_two) == saudi_riyal_three

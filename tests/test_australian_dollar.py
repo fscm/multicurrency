@@ -149,7 +149,7 @@ def test_australian_dollar_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'australian_dollar.AustralianDollar\'> '
+                   'dollar.AustralianDollar\'> '
                    'and <class \'str\'>.')):
         _ = australian_dollar_one.__add__('1.00')
     assert (

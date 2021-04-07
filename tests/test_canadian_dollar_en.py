@@ -149,7 +149,7 @@ def test_canadian_dollar_en_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'canadian_dollar_en.CanadianDollarEN\'> '
+                   'dollar.CanadianDollarEN\'> '
                    'and <class \'str\'>.')):
         _ = canadian_dollar_en_one.__add__('1.00')
     assert (

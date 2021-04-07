@@ -4,17 +4,7 @@
 # author: Frederico Martins <http://github.com/fscm>
 # license: SPDX-License-Identifier: MIT
 
-"""Gourde currency representation.
-
-Simple usage example:
-
-    >>> from multicurrency import Gourde
-    >>> gourde = Gourde(amount=1)
-    >>> print(gourde)
-    G1,00
-
-For more details see `multicurrency.currency.Currency` .
-"""
+"""Gourde currency representation(s)."""
 
 from decimal import Decimal
 from typing import Optional, Union
@@ -23,6 +13,15 @@ from .currency import Currency
 
 class Gourde(Currency):
     """Gourde currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import Gourde
+        >>> gourde = Gourde(amount=1)
+        >>> print(gourde)
+        G1,00
+
+    For more details see `multicurrency.currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

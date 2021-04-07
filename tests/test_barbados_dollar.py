@@ -149,7 +149,7 @@ def test_barbados_dollar_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'barbados_dollar.BarbadosDollar\'> '
+                   'dollar.BarbadosDollar\'> '
                    'and <class \'str\'>.')):
         _ = barbados_dollar_one.__add__('1.00')
     assert (barbados_dollar_one + barbados_dollar_two) == barbados_dollar_three

@@ -4,17 +4,7 @@
 # author: Frederico Martins <http://github.com/fscm>
 # license: SPDX-License-Identifier: MIT
 
-"""Nakfa currency representation.
-
-Simple usage example:
-
-    >>> from multicurrency import Nakfa
-    >>> nakfa = Nakfa(amount=1)
-    >>> print(nakfa)
-    Nfk1,00
-
-For more details see `multicurrency.currency.Currency` .
-"""
+"""Nakfa currency representation(s)."""
 
 from decimal import Decimal
 from typing import Optional, Union
@@ -23,6 +13,15 @@ from .currency import Currency
 
 class Nakfa(Currency):
     """Nakfa currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import Nakfa
+        >>> nakfa = Nakfa(amount=1)
+        >>> print(nakfa)
+        Nfk1,00
+
+    For more details see `multicurrency.currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

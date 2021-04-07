@@ -149,7 +149,7 @@ def test_cape_verde_escudo_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'cape_verde_escudo.CapeVerdeEscudo\'> '
+                   'escudo.CapeVerdeEscudo\'> '
                    'and <class \'str\'>.')):
         _ = cape_verde_escudo_one.__add__('1.00')
     assert (

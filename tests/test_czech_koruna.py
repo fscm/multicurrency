@@ -149,7 +149,7 @@ def test_czech_koruna_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'czech_koruna.CzechKoruna\'> '
+                   'koruna.CzechKoruna\'> '
                    'and <class \'str\'>.')):
         _ = czech_koruna_one.__add__('1.00')
     assert (czech_koruna_one + czech_koruna_two) == czech_koruna_three

@@ -149,7 +149,7 @@ def test_iceland_krona_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'iceland_krona.IcelandKrona\'> '
+                   'krona.IcelandKrona\'> '
                    'and <class \'str\'>.')):
         _ = iceland_krona_one.__add__('1.00')
     assert (iceland_krona_one + iceland_krona_two) == iceland_krona_three

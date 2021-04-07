@@ -31,158 +31,158 @@ The currencies supported by this module were created with information
 List of supported currencies (and default format):
 
 `multicurrency.afghani.Afghani` (Af1.000,00),
-`multicurrency.algerian_dinar.AlgerianDinar` (د.ج1.000,00),
-`multicurrency.argentine_peso.ArgentinePeso` ($1.000,00),
-`multicurrency.armenian_dram.ArmenianDram` (Դ1,000.00),
-`multicurrency.aruban_florin.ArubanFlorin` (ƒ1,000.00),
-`multicurrency.australian_dollar.AustralianDollar` ($1,000.00),
-`multicurrency.azerbaijanian_manat.AzerbaijanianManat` (ман1.000,00),
-`multicurrency.bahamian_dollar.BahamianDollar` ($1,000.00),
-`multicurrency.bahraini_dinar.BahrainiDinar` (ب.د1,000.000),
+`multicurrency.dinar.AlgerianDinar` (د.ج1.000,00),
+`multicurrency.peso.ArgentinePeso` ($1.000,00),
+`multicurrency.dram.ArmenianDram` (Դ1,000.00),
+`multicurrency.florin.ArubanFlorin` (ƒ1,000.00),
+`multicurrency.dollar.AustralianDollar` ($1,000.00),
+`multicurrency.manat.AzerbaijanianManat` (ман1.000,00),
+`multicurrency.dollar.BahamianDollar` ($1,000.00),
+`multicurrency.dinar.BahrainiDinar` (ب.د1,000.000),
 `multicurrency.baht.Baht` (฿1,000.00),
 `multicurrency.balboa.Balboa` (B/.1.000,00),
-`multicurrency.barbados_dollar.BarbadosDollar` ($1.000,00),
-`multicurrency.belarusian_ruble.BelarusianRuble` (Br1.000,00),
-`multicurrency.belize_dollar.BelizeDollar` ($1,000.00),
-`multicurrency.bermudian_dollar.BermudianDollar` ($1,000.00),
-`multicurrency.bolivar_fuerte.BolivarFuerte` (Bs F1.000,00),
+`multicurrency.dollar.BarbadosDollar` ($1.000,00),
+`multicurrency.ruble.BelarusianRuble` (Br1.000,00),
+`multicurrency.dollar.BelizeDollar` ($1,000.00),
+`multicurrency.dollar.BermudianDollar` ($1,000.00),
+`multicurrency.fuerte.BolivarFuerte` (Bs F1.000,00),
 `multicurrency.boliviano.Boliviano` (Bs.1,000.00),
-`multicurrency.brazilian_real.BrazilianReal` (R$1.000,00),
-`multicurrency.brunei_dollar.BruneiDollar` ($1,000.00),
-`multicurrency.bulgarian_lev.BulgarianLev` (лв1.000,00),
-`multicurrency.burundi_franc.BurundiFranc` (₣1.000),
-`multicurrency.cfa_franc_bceao.CFAFrancBCEAO` (₣1.000),
-`multicurrency.cfa_franc_beac.CFAFrancBEAC` (₣1.000),
-`multicurrency.cfp_franc.CFPFranc` (₣1.000),
-`multicurrency.canadian_dollar_en.CanadianDollarEN` ($1,000.00),
-`multicurrency.canadian_dollar_fr.CanadianDollarFR` ($1.000,00),
-`multicurrency.cape_verde_escudo.CapeVerdeEscudo` ($1.000,00),
-`multicurrency.cayman_islands_dollar.CaymanIslandsDollar` ($1,000.00),
+`multicurrency.real.BrazilianReal` (R$1.000,00),
+`multicurrency.dollar.BruneiDollar` ($1,000.00),
+`multicurrency.lev.BulgarianLev` (лв1.000,00),
+`multicurrency.franc.BurundiFranc` (₣1.000),
+`multicurrency.franc.CFAFrancBCEAO` (₣1.000),
+`multicurrency.franc.CFAFrancBEAC` (₣1.000),
+`multicurrency.franc.CFPFranc` (₣1.000),
+`multicurrency.dollar.CanadianDollarEN` ($1,000.00),
+`multicurrency.dollar.CanadianDollarFR` ($1.000,00),
+`multicurrency.escudo.CapeVerdeEscudo` ($1.000,00),
+`multicurrency.dollar.CaymanIslandsDollar` ($1,000.00),
 `multicurrency.cedi.Cedi` (₵1.000,00),
-`multicurrency.chilean_peso.ChileanPeso` ($1.000),
-`multicurrency.colombian_peso.ColombianPeso` ($1.000,00),
-`multicurrency.congolese_franc.CongoleseFranc` (₣1.000,00),
-`multicurrency.cordoba_oro.CordobaOro` (C$1.000,00),
-`multicurrency.costa_rican_colon.CostaRicanColon` (₡1.000,00),
-`multicurrency.croatian_kuna.CroatianKuna` (Kn1.000,00),
-`multicurrency.cuban_peso.CubanPeso` ($1,000.00),
-`multicurrency.czech_koruna.CzechKoruna` (Kč1.000,00),
+`multicurrency.peso.ChileanPeso` ($1.000),
+`multicurrency.peso.ColombianPeso` ($1.000,00),
+`multicurrency.franc.CongoleseFranc` (₣1.000,00),
+`multicurrency.oro.CordobaOro` (C$1.000,00),
+`multicurrency.colon.CostaRicanColon` (₡1.000,00),
+`multicurrency.kuna.CroatianKuna` (Kn1.000,00),
+`multicurrency.peso.CubanPeso` ($1,000.00),
+`multicurrency.koruna.CzechKoruna` (Kč1.000,00),
 `multicurrency.dalasi.Dalasi` (D1.000,00),
-`multicurrency.danish_krone.DanishKrone` (kr1.000,00),
+`multicurrency.krone.DanishKrone` (kr1.000,00),
 `multicurrency.denar.Denar` (ден1,000.00),
-`multicurrency.djibouti_franc.DjiboutiFranc` (₣1.000),
+`multicurrency.franc.DjiboutiFranc` (₣1.000),
 `multicurrency.dobra.Dobra` (Db1.000,00),
-`multicurrency.dominican_peso.DominicanPeso` ($1,000.00),
+`multicurrency.peso.DominicanPeso` ($1,000.00),
 `multicurrency.dong.Dong` (₫1.000),
-`multicurrency.east_caribbean_dollar.EastCaribbeanDollar` ($1,000.00),
-`multicurrency.egyptian_pound.EgyptianPound` (£1,000.00),
-`multicurrency.ethiopian_birr.EthiopianBirr` (1.000,00),
+`multicurrency.dollar.EastCaribbeanDollar` ($1,000.00),
+`multicurrency.pound.EgyptianPound` (£1,000.00),
+`multicurrency.birr.EthiopianBirr` (1.000,00),
 `multicurrency.euro.Euro` (€1.000,00),
-`multicurrency.falkland_islands_pound.FalklandIslandsPound` (£1.000,00),
-`multicurrency.fiji_dollar.FijiDollar` ($1.000,00),
+`multicurrency.pound.FalklandIslandsPound` (£1.000,00),
+`multicurrency.dollar.FijiDollar` ($1.000,00),
 `multicurrency.forint.Forint` (Ft1.000),
-`multicurrency.gibraltar_pound.GibraltarPound` (£1.000,00),
+`multicurrency.pound.GibraltarPound` (£1.000,00),
 `multicurrency.gourde.Gourde` (G1.000,00),
 `multicurrency.guarani.Guarani` (₲1.000),
-`multicurrency.guinea_franc.GuineaFranc` (₣1.000),
-`multicurrency.guyana_dollar.GuyanaDollar` ($1.000,00),
-`multicurrency.hong_kong_dollar.HongKongDollar` ($1,000.00),
+`multicurrency.franc.GuineaFranc` (₣1.000),
+`multicurrency.dollar.GuyanaDollar` ($1.000,00),
+`multicurrency.dollar.HongKongDollar` ($1,000.00),
 `multicurrency.hryvnia.Hryvnia` (₴1.000,00),
-`multicurrency.iceland_krona.IcelandKrona` (Kr1.000),
-`multicurrency.indian_rupee.IndianRupee` (₹1,000.00),
-`multicurrency.iranian_rial.IranianRial` (﷼1,000.00),
-`multicurrency.iraqi_dinar.IraqiDinar` (ع.د1.000,000),
-`multicurrency.jamaican_dollar.JamaicanDollar` ($1,000.00),
-`multicurrency.jordanian_dinar.JordanianDinar` (د.ا1,000.000),
-`multicurrency.kenyan_shilling.KenyanShilling` (Sh1,000.00),
+`multicurrency.krona.IcelandKrona` (Kr1.000),
+`multicurrency.rupee.IndianRupee` (₹1,000.00),
+`multicurrency.rial.IranianRial` (﷼1,000.00),
+`multicurrency.dinar.IraqiDinar` (ع.د1.000,000),
+`multicurrency.dollar.JamaicanDollar` ($1,000.00),
+`multicurrency.dinar.JordanianDinar` (د.ا1,000.000),
+`multicurrency.shilling.KenyanShilling` (Sh1,000.00),
 `multicurrency.kina.Kina` (K1.000,00),
 `multicurrency.kip.Kip` (₭1.000,00),
-`multicurrency.konvertibilna_marka.KonvertibilnaMarka` (КМ1,000.00),
-`multicurrency.kuwaiti_dinar.KuwaitiDinar` (د.ك1,000.000),
+`multicurrency.marka.KonvertibilnaMarka` (КМ1,000.00),
+`multicurrency.dinar.KuwaitiDinar` (د.ك1,000.000),
 `multicurrency.kwacha.Kwacha` (MK1.000,00),
 `multicurrency.kwanza.Kwanza` (Kz1.000,00),
 `multicurrency.kyat.Kyat` (K1.000,00),
 `multicurrency.lari.Lari` (ლ1.000,00),
-`multicurrency.lebanese_pound.LebanesePound` (ل.ل1 000),
+`multicurrency.pound.LebanesePound` (ل.ل1 000),
 `multicurrency.lek.Lek` (L1.000,00),
 `multicurrency.lempira.Lempira` (L1,000.00),
 `multicurrency.leone.Leone` (Le1.000,00),
 `multicurrency.leu.Leu` (L1.000,00),
-`multicurrency.liberian_dollar.LiberianDollar` ($1.000,00),
-`multicurrency.libyan_dinar.LibyanDinar` (ل.د1.000,000),
+`multicurrency.dollar.LiberianDollar` ($1.000,00),
+`multicurrency.dinar.LibyanDinar` (ل.د1.000,000),
 `multicurrency.lilangeni.Lilangeni` (L1,000.00),
 `multicurrency.loti.Loti` (L1.000,00),
-`multicurrency.malagasy_ariary.MalagasyAriary` (1.000),
-`multicurrency.malaysian_ringgit.MalaysianRinggit` (RM1,000.00),
+`multicurrency.ariary.MalagasyAriary` (1.000),
+`multicurrency.ringgit.MalaysianRinggit` (RM1,000.00),
 `multicurrency.manat.Manat` (m1.000,00),
-`multicurrency.mauritius_rupee.MauritiusRupee` (₨1,000.00),
+`multicurrency.rupee.MauritiusRupee` (₨1,000.00),
 `multicurrency.metical.Metical` (MTn1.000),
-`multicurrency.mexican_peso.MexicanPeso` ($1,000.00),
-`multicurrency.moldovan_leu.MoldovanLeu` (L1.000,00),
-`multicurrency.moroccan_dirham.MoroccanDirham` (د.م.1.000,00),
+`multicurrency.peso.MexicanPeso` ($1,000.00),
+`multicurrency.leu.MoldovanLeu` (L1.000,00),
+`multicurrency.dirham.MoroccanDirham` (د.م.1.000,00),
 `multicurrency.naira.Naira` (₦1.000,00),
 `multicurrency.nakfa.Nakfa` (Nfk1.000,00),
-`multicurrency.namibia_dollar.NamibiaDollar` ($1.000,00),
-`multicurrency.nepalese_rupee.NepaleseRupee` (₨1,000.00),
-`multicurrency.new_israeli_shekel.NewIsraeliShekel` (₪1,000.00),
-`multicurrency.new_zealand_dollar.NewZealandDollar` ($1,000.00),
+`multicurrency.dollar.NamibiaDollar` ($1.000,00),
+`multicurrency.rupee.NepaleseRupee` (₨1,000.00),
+`multicurrency.shekel.NewIsraeliShekel` (₪1,000.00),
+`multicurrency.dollar.NewZealandDollar` ($1,000.00),
 `multicurrency.ngultrum.Ngultrum` (1.000,00),
-`multicurrency.north_korean_won.NorthKoreanWon` (₩1.000,00),
-`multicurrency.norwegian_krone.NorwegianKrone` (kr1.000,00),
+`multicurrency.won.NorthKoreanWon` (₩1.000,00),
+`multicurrency.krone.NorwegianKrone` (kr1.000,00),
 `multicurrency.nuevo_sol.NuevoSol` (S/.1,000.00),
 `multicurrency.ouguiya.Ouguiya` (UM1.000,00),
 `multicurrency.pzloty.PZloty` (zł1.000,00),
-`multicurrency.pakistan_rupee.PakistanRupee` (₨1,000.00),
-`multicurrency.pataca.Pataca` (P1.000,00),
 `multicurrency.paanga.Paanga` (T$1,000.00),
-`multicurrency.peso_uruguayo.PesoUruguayo` ($1.000,00),
-`multicurrency.philippine_peso.PhilippinePeso` (₱1,000.00),
-`multicurrency.pound_sterling.PoundSterling` (£1,000.00),
+`multicurrency.rupee.PakistanRupee` (₨1,000.00),
+`multicurrency.pataca.Pataca` (P1.000,00),
+`multicurrency.peso.PesoUruguayo` ($1.000,00),
+`multicurrency.peso.PhilippinePeso` (₱1,000.00),
+`multicurrency.pound.PoundSterling` (£1,000.00),
 `multicurrency.pula.Pula` (P1.000,00),
-`multicurrency.qatari_rial.QatariRial` (ر.ق1.000,00),
+`multicurrency.rial.QatariRial` (ر.ق1.000,00),
 `multicurrency.quetzal.Quetzal` (Q1.000,00),
 `multicurrency.rand.Rand` (R1 000.00),
-`multicurrency.rial_omani.RialOmani` (ر.ع.1,000.000),
+`multicurrency.rial.RialOmani` (ر.ع.1,000.000),
 `multicurrency.riel.Riel` (៛1.000,00),
 `multicurrency.rufiyaa.Rufiyaa` (ރ.1.000,00),
 `multicurrency.rupiah.Rupiah` (Rp1.000,00),
-`multicurrency.russian_ruble.RussianRuble` (р.1.000,00),
-`multicurrency.rwanda_franc.RwandaFranc` (₣1.000),
-`multicurrency.saint_helena_pound.SaintHelenaPound` (£1.000,00),
-`multicurrency.saudi_riyal.SaudiRiyal` (ر.س1,000.00),
-`multicurrency.serbian_dinar.SerbianDinar` (din1.000,00),
-`multicurrency.seychelles_rupee.SeychellesRupee` (₨1.000,00),
-`multicurrency.singapore_dollar.SingaporeDollar` ($1,000.00),
-`multicurrency.solomon_islands_dollar.SolomonIslandsDollar` ($1.000,00),
+`multicurrency.ruble.RussianRuble` (р.1.000,00),
+`multicurrency.franc.RwandaFranc` (₣1.000),
+`multicurrency.pound.SaintHelenaPound` (£1.000,00),
+`multicurrency.riyal.SaudiRiyal` (ر.س1,000.00),
+`multicurrency.dinar.SerbianDinar` (din1.000,00),
+`multicurrency.rupee.SeychellesRupee` (₨1.000,00),
+`multicurrency.dollar.SingaporeDollar` ($1,000.00),
+`multicurrency.dollar.SolomonIslandsDollar` ($1.000,00),
 `multicurrency.som.Som` (1.000,00),
-`multicurrency.somali_shilling.SomaliShilling` (Sh1.000,00),
+`multicurrency.shilling.SomaliShilling` (Sh1.000,00),
 `multicurrency.somoni.Somoni` (ЅМ1.000,00),
-`multicurrency.south_korean_won.SouthKoreanWon` (₩1,000),
-`multicurrency.sri_lanka_rupee.SriLankaRupee` (Rs1.000,00),
-`multicurrency.sudanese_pound.SudanesePound` (£1.000,00),
-`multicurrency.suriname_dollar.SurinameDollar` ($1.000,00),
-`multicurrency.swedish_krona.SwedishKrona` (kr1.000,00),
-`multicurrency.swiss_franc.SwissFranc` (₣1'000.00),
-`multicurrency.syrian_pound.SyrianPound` (ل.س1.000,00),
-`multicurrency.taiwan_dollar.TaiwanDollar` ($1.000,00),
+`multicurrency.won.SouthKoreanWon` (₩1,000),
+`multicurrency.rupee.SriLankaRupee` (Rs1.000,00),
+`multicurrency.pound.SudanesePound` (£1.000,00),
+`multicurrency.dollar.SurinameDollar` ($1.000,00),
+`multicurrency.krona.SwedishKrona` (kr1.000,00),
+`multicurrency.franc.SwissFranc` (₣1'000.00),
+`multicurrency.pound.SyrianPound` (ل.س1.000,00),
+`multicurrency.dollar.TaiwanDollar` ($1.000,00),
 `multicurrency.taka.Taka` (৳1,000.00),
 `multicurrency.tala.Tala` (T1.000,00),
-`multicurrency.tanzanian_shilling.TanzanianShilling` (Sh1,000.00),
+`multicurrency.shilling.TanzanianShilling` (Sh1,000.00),
 `multicurrency.tenge.Tenge` (〒1.000,00),
-`multicurrency.trinidad_and_tobago_dollar.TrinidadandTobagoDollar` ($1.000,00),
+`multicurrency.dollar.TrinidadandTobagoDollar` ($1.000,00),
 `multicurrency.tugrik.Tugrik` (₮1.000,00),
-`multicurrency.tunisian_dinar.TunisianDinar` (د.ت1.000,000),
-`multicurrency.turkish_lira.TurkishLira` (₤1,000.00),
-`multicurrency.uae_dirham.UAEDirham` (د.إ1,000.00),
-`multicurrency.us_dollar.USDollar` ($1,000.00),
-`multicurrency.uganda_shilling.UgandaShilling` (Sh1.000),
-`multicurrency.uzbekistan_sum.UzbekistanSum` (1.000,00),
+`multicurrency.dinar.TunisianDinar` (د.ت1.000,000),
+`multicurrency.lira.TurkishLira` (₤1,000.00),
+`multicurrency.dirham.UAEDirham` (د.إ1,000.00),
+`multicurrency.dollar.USDollar` ($1,000.00),
+`multicurrency.shilling.UgandaShilling` (Sh1.000),
+`multicurrency.sum.UzbekistanSum` (1.000,00),
 `multicurrency.vatu.Vatu` (Vt1,000),
-`multicurrency.yemeni_rial.YemeniRial` (﷼1.000,00),
+`multicurrency.rial.YemeniRial` (﷼1.000,00),
 `multicurrency.yen.Yen` (¥1,000),
 `multicurrency.yuan.Yuan` (¥1,000.00),
-`multicurrency.zambian_kwacha.ZambianKwacha` (ZK1.000,00),
-`multicurrency.zimbabwe_dollar.ZimbabweDollar` ($1.000,00)
+`multicurrency.kwacha.ZambianKwacha` (ZK1.000,00),
+`multicurrency.dollar.ZimbabweDollar` ($1.000,00)
 
 ## Usage
 
@@ -452,158 +452,174 @@ from .exceptions import (
     CurrencyMismatchException,
     CurrencyTypeException)
 from .afghani import Afghani
-from .algerian_dinar import AlgerianDinar
-from .argentine_peso import ArgentinePeso
-from .armenian_dram import ArmenianDram
-from .aruban_florin import ArubanFlorin
-from .australian_dollar import AustralianDollar
-from .azerbaijanian_manat import AzerbaijanianManat
-from .bahamian_dollar import BahamianDollar
-from .bahraini_dinar import BahrainiDinar
+from .ariary import MalagasyAriary
 from .baht import Baht
 from .balboa import Balboa
-from .barbados_dollar import BarbadosDollar
-from .belarusian_ruble import BelarusianRuble
-from .belize_dollar import BelizeDollar
-from .bermudian_dollar import BermudianDollar
-from .bolivar_fuerte import BolivarFuerte
+from .birr import EthiopianBirr
 from .boliviano import Boliviano
-from .brazilian_real import BrazilianReal
-from .brunei_dollar import BruneiDollar
-from .bulgarian_lev import BulgarianLev
-from .burundi_franc import BurundiFranc
-from .cfa_franc_bceao import CFAFrancBCEAO
-from .cfa_franc_beac import CFAFrancBEAC
-from .cfp_franc import CFPFranc
-from .canadian_dollar_en import CanadianDollarEN
-from .canadian_dollar_fr import CanadianDollarFR
-from .cape_verde_escudo import CapeVerdeEscudo
-from .cayman_islands_dollar import CaymanIslandsDollar
 from .cedi import Cedi
-from .chilean_peso import ChileanPeso
-from .colombian_peso import ColombianPeso
-from .congolese_franc import CongoleseFranc
-from .cordoba_oro import CordobaOro
-from .costa_rican_colon import CostaRicanColon
-from .croatian_kuna import CroatianKuna
-from .cuban_peso import CubanPeso
-from .czech_koruna import CzechKoruna
+from .colon import CostaRicanColon
 from .dalasi import Dalasi
-from .danish_krone import DanishKrone
 from .denar import Denar
-from .djibouti_franc import DjiboutiFranc
+from .dinar import (
+    BahrainiDinar,
+    AlgerianDinar,
+    IraqiDinar,
+    JordanianDinar,
+    KuwaitiDinar,
+    LibyanDinar,
+    SerbianDinar,
+    TunisianDinar)
+from .dirham import (
+    UAEDirham,
+    MoroccanDirham)
 from .dobra import Dobra
-from .dominican_peso import DominicanPeso
+from .dollar import (
+    AustralianDollar,
+    BarbadosDollar,
+    BermudianDollar,
+    BruneiDollar,
+    BahamianDollar,
+    BelizeDollar,
+    CanadianDollarEN,
+    CanadianDollarFR,
+    FijiDollar,
+    GuyanaDollar,
+    HongKongDollar,
+    JamaicanDollar,
+    CaymanIslandsDollar,
+    LiberianDollar,
+    NamibiaDollar,
+    NewZealandDollar,
+    SolomonIslandsDollar,
+    SingaporeDollar,
+    SurinameDollar,
+    TrinidadandTobagoDollar,
+    TaiwanDollar,
+    USDollar,
+    EastCaribbeanDollar,
+    ZimbabweDollar)
 from .dong import Dong
-from .east_caribbean_dollar import EastCaribbeanDollar
-from .egyptian_pound import EgyptianPound
-from .ethiopian_birr import EthiopianBirr
+from .dram import ArmenianDram
+from .escudo import CapeVerdeEscudo
 from .euro import Euro
-from .falkland_islands_pound import FalklandIslandsPound
-from .fiji_dollar import FijiDollar
+from .florin import ArubanFlorin
 from .forint import Forint
-from .gibraltar_pound import GibraltarPound
+from .franc import (
+    BurundiFranc,
+    CongoleseFranc,
+    SwissFranc,
+    DjiboutiFranc,
+    GuineaFranc,
+    RwandaFranc,
+    CFAFrancBCEAO,
+    CFAFrancBEAC,
+    CFPFranc)
+from .fuerte import BolivarFuerte
 from .gourde import Gourde
 from .guarani import Guarani
-from .guinea_franc import GuineaFranc
-from .guyana_dollar import GuyanaDollar
-from .hong_kong_dollar import HongKongDollar
 from .hryvnia import Hryvnia
-from .iceland_krona import IcelandKrona
-from .indian_rupee import IndianRupee
-from .iranian_rial import IranianRial
-from .iraqi_dinar import IraqiDinar
-from .jamaican_dollar import JamaicanDollar
-from .jordanian_dinar import JordanianDinar
-from .kenyan_shilling import KenyanShilling
 from .kina import Kina
 from .kip import Kip
-from .konvertibilna_marka import KonvertibilnaMarka
-from .kuwaiti_dinar import KuwaitiDinar
-from .kwacha import Kwacha
+from .koruna import CzechKoruna
+from .krona import (
+    IcelandKrona,
+    SwedishKrona)
+from .krone import (
+    DanishKrone,
+    NorwegianKrone)
+from .kuna import CroatianKuna
+from .kwacha import (
+    Kwacha,
+    ZambianKwacha)
 from .kwanza import Kwanza
 from .kyat import Kyat
 from .lari import Lari
-from .lebanese_pound import LebanesePound
 from .lek import Lek
 from .lempira import Lempira
 from .leone import Leone
-from .leu import Leu
-from .liberian_dollar import LiberianDollar
-from .libyan_dinar import LibyanDinar
+from .leu import (
+    MoldovanLeu,
+    Leu)
+from .lev import BulgarianLev
 from .lilangeni import Lilangeni
+from .lira import TurkishLira
 from .loti import Loti
-from .malagasy_ariary import MalagasyAriary
-from .malaysian_ringgit import MalaysianRinggit
-from .manat import Manat
-from .mauritius_rupee import MauritiusRupee
+from .manat import (
+    AzerbaijanianManat,
+    Manat)
+from .marka import KonvertibilnaMarka
 from .metical import Metical
-from .mexican_peso import MexicanPeso
-from .moldovan_leu import MoldovanLeu
-from .moroccan_dirham import MoroccanDirham
 from .naira import Naira
 from .nakfa import Nakfa
-from .namibia_dollar import NamibiaDollar
-from .nepalese_rupee import NepaleseRupee
-from .new_israeli_shekel import NewIsraeliShekel
-from .new_zealand_dollar import NewZealandDollar
 from .ngultrum import Ngultrum
-from .north_korean_won import NorthKoreanWon
-from .norwegian_krone import NorwegianKrone
 from .nuevo_sol import NuevoSol
+from .oro import CordobaOro
 from .ouguiya import Ouguiya
-from .pzloty import PZloty
-from .pakistan_rupee import PakistanRupee
-from .pataca import Pataca
 from .paanga import Paanga
-from .peso_uruguayo import PesoUruguayo
-from .philippine_peso import PhilippinePeso
-from .pound_sterling import PoundSterling
+from .pataca import Pataca
+from .peso import (
+    ArgentinePeso,
+    ChileanPeso,
+    ColombianPeso,
+    CubanPeso,
+    DominicanPeso,
+    MexicanPeso,
+    PhilippinePeso,
+    PesoUruguayo)
+from .pound import (
+    EgyptianPound,
+    FalklandIslandsPound,
+    PoundSterling,
+    GibraltarPound,
+    LebanesePound,
+    SudanesePound,
+    SaintHelenaPound,
+    SyrianPound)
 from .pula import Pula
-from .qatari_rial import QatariRial
+from .pzloty import PZloty
 from .quetzal import Quetzal
 from .rand import Rand
-from .rial_omani import RialOmani
+from .real import BrazilianReal
+from .rial import (
+    IranianRial,
+    RialOmani,
+    QatariRial,
+    YemeniRial)
 from .riel import Riel
+from .ringgit import MalaysianRinggit
+from .riyal import SaudiRiyal
+from .ruble import (
+    BelarusianRuble,
+    RussianRuble)
 from .rufiyaa import Rufiyaa
+from .rupee import (
+    IndianRupee,
+    SriLankaRupee,
+    MauritiusRupee,
+    NepaleseRupee,
+    PakistanRupee,
+    SeychellesRupee)
 from .rupiah import Rupiah
-from .russian_ruble import RussianRuble
-from .rwanda_franc import RwandaFranc
-from .saint_helena_pound import SaintHelenaPound
-from .saudi_riyal import SaudiRiyal
-from .serbian_dinar import SerbianDinar
-from .seychelles_rupee import SeychellesRupee
-from .singapore_dollar import SingaporeDollar
-from .solomon_islands_dollar import SolomonIslandsDollar
+from .shekel import NewIsraeliShekel
+from .shilling import (
+    KenyanShilling,
+    SomaliShilling,
+    TanzanianShilling,
+    UgandaShilling)
 from .som import Som
-from .somali_shilling import SomaliShilling
 from .somoni import Somoni
-from .south_korean_won import SouthKoreanWon
-from .sri_lanka_rupee import SriLankaRupee
-from .sudanese_pound import SudanesePound
-from .suriname_dollar import SurinameDollar
-from .swedish_krona import SwedishKrona
-from .swiss_franc import SwissFranc
-from .syrian_pound import SyrianPound
-from .taiwan_dollar import TaiwanDollar
+from .sum import UzbekistanSum
 from .taka import Taka
 from .tala import Tala
-from .tanzanian_shilling import TanzanianShilling
 from .tenge import Tenge
-from .trinidad_and_tobago_dollar import TrinidadandTobagoDollar
 from .tugrik import Tugrik
-from .tunisian_dinar import TunisianDinar
-from .turkish_lira import TurkishLira
-from .uae_dirham import UAEDirham
-from .us_dollar import USDollar
-from .uganda_shilling import UgandaShilling
-from .uzbekistan_sum import UzbekistanSum
 from .vatu import Vatu
-from .yemeni_rial import YemeniRial
+from .won import (
+    NorthKoreanWon,
+    SouthKoreanWon)
 from .yen import Yen
 from .yuan import Yuan
-from .zambian_kwacha import ZambianKwacha
-from .zimbabwe_dollar import ZimbabweDollar
 
 
 __all__ = [
@@ -716,9 +732,9 @@ __all__ = [
     'NuevoSol',
     'Ouguiya',
     'PZloty',
+    'Paanga',
     'PakistanRupee',
     'Pataca',
-    'Paanga',
     'PesoUruguayo',
     'PhilippinePeso',
     'PoundSterling',
@@ -773,4 +789,4 @@ __author__: Final[str] = 'Frederico Martins'
 __author_email__: Final[str] = 'fscm@users.noreply.github.com'
 __license__: Final[str] = 'MIT'
 __project__: Final[str] = __package__
-__version__: Final[str] = '0.1.0'
+__version__: Final[str] = '0.2.0'

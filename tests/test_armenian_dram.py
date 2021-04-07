@@ -149,7 +149,7 @@ def test_armenian_dram_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'armenian_dram.ArmenianDram\'> '
+                   'dram.ArmenianDram\'> '
                    'and <class \'str\'>.')):
         _ = armenian_dram_one.__add__('1.00')
     assert (armenian_dram_one + armenian_dram_two) == armenian_dram_three

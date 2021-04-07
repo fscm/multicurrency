@@ -149,7 +149,7 @@ def test_mauritius_rupee_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'mauritius_rupee.MauritiusRupee\'> '
+                   'rupee.MauritiusRupee\'> '
                    'and <class \'str\'>.')):
         _ = mauritius_rupee_one.__add__('1.00')
     assert (mauritius_rupee_one + mauritius_rupee_two) == mauritius_rupee_three

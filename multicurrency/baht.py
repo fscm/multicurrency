@@ -4,17 +4,7 @@
 # author: Frederico Martins <http://github.com/fscm>
 # license: SPDX-License-Identifier: MIT
 
-"""Baht currency representation.
-
-Simple usage example:
-
-    >>> from multicurrency import Baht
-    >>> baht = Baht(amount=1)
-    >>> print(baht)
-    ฿1.00
-
-For more details see `multicurrency.currency.Currency` .
-"""
+"""Baht currency representation(s)."""
 
 from decimal import Decimal
 from typing import Optional, Union
@@ -23,6 +13,15 @@ from .currency import Currency
 
 class Baht(Currency):
     """Baht currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import Baht
+        >>> baht = Baht(amount=1)
+        >>> print(baht)
+        ฿1.00
+
+    For more details see `multicurrency.currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

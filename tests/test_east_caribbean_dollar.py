@@ -149,7 +149,7 @@ def test_east_caribbean_dollar_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'east_caribbean_dollar.EastCaribbeanDollar\'> '
+                   'dollar.EastCaribbeanDollar\'> '
                    'and <class \'str\'>.')):
         _ = east_caribbean_dollar_one.__add__('1.00')
     assert (

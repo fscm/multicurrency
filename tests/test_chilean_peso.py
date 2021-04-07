@@ -149,7 +149,7 @@ def test_chilean_peso_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'chilean_peso.ChileanPeso\'> '
+                   'peso.ChileanPeso\'> '
                    'and <class \'str\'>.')):
         _ = chilean_peso_one.__add__('1.00')
     assert (chilean_peso_one + chilean_peso_two) == chilean_peso_three

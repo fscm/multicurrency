@@ -149,7 +149,7 @@ def test_cayman_islands_dollar_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'cayman_islands_dollar.CaymanIslandsDollar\'> '
+                   'dollar.CaymanIslandsDollar\'> '
                    'and <class \'str\'>.')):
         _ = cayman_islands_dollar_one.__add__('1.00')
     assert (

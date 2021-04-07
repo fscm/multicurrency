@@ -149,7 +149,7 @@ def test_russian_ruble_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'russian_ruble.RussianRuble\'> '
+                   'ruble.RussianRuble\'> '
                    'and <class \'str\'>.')):
         _ = russian_ruble_one.__add__('1.00')
     assert (russian_ruble_one + russian_ruble_two) == russian_ruble_three

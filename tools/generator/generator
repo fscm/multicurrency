@@ -19,14 +19,22 @@ Simple usage example:
 The `currency.csv` file format is one currency per line with the details
 separated by a coma (',') and in the following order:
 
-    "Currency","Symbol","Digital code","Name","Country","Decimal Places","Decimal Sign","Grouping Sign"
+    * "Currency"
+    * "Symbol"
+    * "Digital Code"
+    * "Class"
+    * "Name"
+    * "Country"
+    * "Decimal Places"
+    * "Decimal Sign"
+    * "Grouping Sign"
 
 `currency.csv` file example:
 
-    "AED","د.إ","784","UAE Dirham","UAE","2",",","."
-    "AFN","Af","971","Afghani","Afghanistan","2",",","."
-    "ALL","L","008","Lek","Albania","2",",","."
-    "AMD","Դ","051","Armenian Dram","Armenia","2",",","."
+    "Currency","Symbol","Digital Code","Class","Name","Country","Decimal Places","Decimal Sign","Grouping Sign"
+    "AFN","Af","971","Afghani","Afghani","Afghanistan","2",",","."
+    "ALL","L","008","Lek","Lek","Albania","2",",","."
+    "AMD","Դ","051","Dram","Armenian Dram","Armenia","2",".",","
 """
 
 import csv
@@ -35,107 +43,141 @@ import os
 from decimal import Context
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
+CSV_FILE = 'currency.csv'
+CURRENCY_CLASS = 'currency_class.tmpl'
+CURRENCY_MODULE = 'currency_module.tmpl'
+CURRENCY_TESTS = 'currency_tests.tmpl'
 
-work_folder = os.path.dirname(os.path.realpath(__file__))
-currency_list = {}
+#workfolder = os.path.dirname(os.path.realpath(__file__))
+workfolder = os.getcwd()
+re_nospace = dict(
+    (re.escape(k), v) for k,v in {' ': '', '’': '', '\'': ''}.items())
+re_underscore = dict(
+    (re.escape(k), v) for k,v in {' ': '_', '’': '', '\'': ''}.items())
+comp_nospace = re.compile('|'.join(re_nospace.keys()))
+comp_underscore = re.compile('|'.join(re_underscore.keys()))
 
 decimal = CONTEXT.create_decimal(1) / CONTEXT.create_decimal(7)
+currencies = {}
+countries = {}
+text_module = ''
+text_class = ''
+text_tests = ''
+
+with open(f'{workfolder}/{CURRENCY_MODULE}', 'r') as file_in_module:
+    text_module = file_in_module.read()
+
+with open(f'{workfolder}/{CURRENCY_CLASS}', 'r') as file_in_class:
+    text_class = file_in_class.read()
+
+with open(f'{workfolder}/{CURRENCY_TESTS}', 'r') as file_in_tests:
+    text_tests = file_in_tests.read()
 
 
 print('Loading CSV data...')
-with open(f'{work_folder}/currency.csv') as csv_file:
+with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
-    next(csv_reader, None)
+    headers = [
+        f'{h.lower().replace(" ", "_")}' for h in next(csv_reader, None)]
     for record in csv_reader:
-        currency_name = record[3]
-        currency_variable = currency_name.lower().replace(' ', '_').replace('’', '').replace('\'', '')
-        currency_class = currency_name.replace(' ', '').replace('’', '').replace('\'', '')
-        currency = record[0]
-        symbol = record[1]
-        code = record[2]
-        country = record[4]
-        decimal_places = int(record[5])
-        decimal_sign = record[6]
-        grouping_sign = record[7]
-        _ = currency_list.setdefault(currency_name, {
-            'currency_name': currency_name,
-            'currency_variable': currency_variable,
-            'currency_class': currency_class,
-            'currency': currency,
-            'decimal_places': decimal_places,
-            'decimal_sign': decimal_sign,
-            'grouping_sign': grouping_sign,
-            'symbol': symbol,
-            'code': code})
+        currency = dict(zip(headers, record))
+        currency_class = comp_underscore.sub(
+            lambda l: re_nospace[re.escape(l.group(0))],
+            currency['name'])
+        currency_module = comp_underscore.sub(
+            lambda l: re_underscore[re.escape(l.group(0))],
+            currency['class'].lower())
+        currency_variable = comp_underscore.sub(
+            lambda l: re_underscore[re.escape(l.group(0))],
+            currency['name'].lower())
+        decimal_zeros = '0' * int(currency['decimal_places'])
+        decimal_sign = f'{currency["decimal_sign"]}' if int(currency['decimal_places']) else ''
+        decimal_part = f'{decimal_sign}{decimal_zeros}'
+        grouping_sign_alt = f'\\{currency["grouping_sign"]}' if currency[
+            'grouping_sign'] == '\'' else f'{currency["grouping_sign"]}'
+        _ = countries.setdefault(
+            currency['country'],
+            (currency['name'], f'{currency_module}.{currency_class}'))
+        t = currencies.setdefault(
+            currency_module,
+            {'name': currency['class'], 'currencies': {}})
+        _ = t['currencies'].setdefault(currency_variable, {
+            '__CODE__': currency['digital_code'],
+            '__CURRENCY__': currency['currency'],
+            '__CURRENCY_CLASS__': currency_class,
+            '__CURRENCY_NAME__': currency['name'],
+            '__CURRENCY_VARIABLE__': currency_variable,
+            '__DECIMAL_PART__': decimal_part,
+            '__DECIMAL_PLACES__': currency['decimal_places'],
+            '__DECIMAL_SIGN__': currency['decimal_sign'],
+            '__GROUPING_SIGN__': currency['grouping_sign'],
+            '__GROUPING_SIGN_ALT__': grouping_sign_alt,
+            '__SYMBOL__': currency['symbol']})
+
 
 print('Creating currency types...')
-for _, currency in currency_list.items():
-    file_in = open(f'{work_folder}/currency.tmpl', 'r+')
-    file_out = open(
-        f'{work_folder}/_multicurrency/{currency["currency_variable"]}.py', 'w+')
-    text = file_in.read()
-    decimal_zeros = '0' * currency['decimal_places']
-    decimal_sign = f'{currency["decimal_sign"]}' if currency['decimal_places'] else ''
-    decimal_part = f'{decimal_sign}{decimal_zeros}'
-    grouping_sign_alt = f'\{currency["grouping_sign"]}' if currency['grouping_sign'] == '\'' else f'{currency["grouping_sign"]}'
-    text = re.sub('\[CURRENCY_NAME\]', currency['currency_name'], text)
-    text = re.sub('\[CURRENCY_CLASS\]', currency['currency_class'], text)
-    text = re.sub('\[CURRENCY_VARIABLE\]', currency['currency_variable'], text)
-    text = re.sub('\[DECIMAL_PLACES\]', str(currency['decimal_places']), text)
-    text = re.sub('\[DECIMAL_PART\]', decimal_part, text)
-    text = re.sub('\[DECIMAL_SIGN\]', currency['decimal_sign'], text)
-    text = re.sub('\[GROUPING_SIGN\]', currency['grouping_sign'], text)
-    text = re.sub('\[GROUPING_SIGN_ALT\]', grouping_sign_alt, text)
-    text = re.sub('\[CURRENCY\]', currency['currency'], text)
-    text = re.sub('\[SYMBOL\]', currency['symbol'], text)
-    text = re.sub('\[CODE\]', currency['code'], text)
-    _ = file_out.write(text)
-    _ = file_out.truncate()
-    file_in.close()
-    file_out.close()
+for currency_module in currencies:
+    out_text = ''
+    out_text = re.sub(
+        '__CURRENCY_MODULE__',
+        currencies[currency_module]["name"], text_module)
+    for _, values in currencies[currency_module]['currencies'].items():
+        re_values = dict((re.escape(k), v) for k,v in values.items())
+        comp_values = re.compile('|'.join(re_values.keys()))
+        out_text = out_text + comp_values.sub(
+            lambda l: re_values[re.escape(l.group(0))], text_class)
+    with open(
+            f'{workfolder}/_multicurrency/{currency_module}.py',
+            'w+') as file_out:
+        _ = file_out.write(out_text)
+        _ = file_out.truncate()
 
-print('Creating test files...')
-for _, currency in currency_list.items():
-    file_in = open(f'{work_folder}/test_currency.tmpl', 'r+')
-    file_out = open(
-        f'{work_folder}/_tests/test_{currency["currency_variable"]}.py', 'w+')
-    text = file_in.read()
-    decimal_zeros = '0' * currency['decimal_places']
-    decimal_sign = f'{currency["decimal_sign"]}' if currency['decimal_places'] else ''
-    decimal_part = f'{decimal_sign}{decimal_zeros}'
-    grouping_sign_alt = f'\{currency["grouping_sign"]}' if currency['grouping_sign'] == '\'' else f'{currency["grouping_sign"]}'
-    text = re.sub('\[CURRENCY_NAME\]', currency['currency_name'], text)
-    text = re.sub('\[CURRENCY_CLASS\]', currency['currency_class'], text)
-    text = re.sub('\[CURRENCY_VARIABLE\]', currency['currency_variable'], text)
-    text = re.sub('\[DECIMAL_PLACES\]', str(currency['decimal_places']), text)
-    text = re.sub('\[DECIMAL_PART\]', decimal_part, text)
-    text = re.sub('\[DECIMAL_SIGN\]', currency['decimal_sign'], text)
-    text = re.sub('\[GROUPING_SIGN\]', currency['grouping_sign'], text)
-    text = re.sub('\[GROUPING_SIGN_ALT\]', grouping_sign_alt, text)
-    text = re.sub('\[CURRENCY\]', currency['currency'], text)
-    text = re.sub('\[SYMBOL\]', currency['symbol'], text)
-    text = re.sub('\[CODE\]', currency['code'], text)
-    text = re.sub('\[1DIV7\]', str(round(decimal, currency['decimal_places'])).replace('.', currency['decimal_sign']), text)
-    _ = file_out.write(text)
-    _ = file_out.truncate()
-    file_in.close()
-    file_out.close()
+
+print('Creating currency tests...')
+for currency_module in currencies:
+    for currency, values in currencies[currency_module]['currencies'].items():
+        re_values = dict((re.escape(k), v) for k,v in values.items())
+        comp_values = re.compile('|'.join(re_values.keys()))
+        out_text = ''
+        out_text = out_text + comp_values.sub(
+            lambda l: re_values[re.escape(l.group(0))], text_tests)
+        out_text = re.sub(
+            '__1DIV7__',
+            str(round(decimal, int(values['__DECIMAL_PLACES__']))).replace(
+                '.', values['__DECIMAL_SIGN__']), out_text)
+        out_text = re.sub('__CURRENCY_MODULE__', currency_module, out_text)
+        with open(
+                f'{workfolder}/_tests/test_{currency}.py', 'w+') as file_out:
+            _ = file_out.write(out_text)
+            _ = file_out.truncate()
+
 
 print()
 print('Generating __init__.py file data...')
+all_classes = []
 print()
 print('Imports:')
-for c in sorted(currency_list.keys()):
-    currency = currency_list[c]
-    print(f'from .{currency["currency_variable"]} import {currency["currency_class"]}')
+for currency_module, data in sorted(currencies.items()):
+    classes = [data['currencies'][c]['__CURRENCY_CLASS__'] for c in data['currencies']]
+    if len(classes) > 1:
+        print(f'from .{currency_module} import (')
+        print('    ' + ',\n    '.join(classes) + ')')
+    else:
+        print(f'from .{currency_module} import {classes[0]}')
+    all_classes.extend(classes)
 print()
 print('__all__:')
-for c in sorted(currency_list.keys()):
-    currency = currency_list[c]
-    print(f'    \'{currency["currency_class"]}\',')
-print()
-# print('Supported:')
-# for c in sorted(currency_list.keys()):
-#     currency = currency_list[c]
-#     eg = getattr(multicurrency, currency['currency_class'])(1000)
-#     print('`'+f"multicurrency.{currency['currency_variable']}.{currency['currency_class']}"'`'+f' ({eg})'+', ')
+print('    \'' + '\',\n    \''.join(sorted(all_classes)) + '\']')
+# print()
+# print('docstring supported currencies:')
+# import multicurrency
+# supported = []
+# for currency_module, data in currencies.items():
+#     for _, values in data['currencies'].items():
+#         currency_class = values['__CURRENCY_CLASS__']
+#         eg = getattr(multicurrency, currency_class)(1000)
+#         supported.append((
+#             currency_class,
+#             '`'+f"multicurrency.{currency_module}.{currency_class}"'`'+f' ({eg})'))
+# supported_sorted = [ c for _, c in sorted(supported)]
+# print(',\n'.join(supported_sorted))

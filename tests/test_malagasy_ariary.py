@@ -149,7 +149,7 @@ def test_malagasy_ariary_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'malagasy_ariary.MalagasyAriary\'> '
+                   'ariary.MalagasyAriary\'> '
                    'and <class \'str\'>.')):
         _ = malagasy_ariary_one.__add__('1.00')
     assert (malagasy_ariary_one + malagasy_ariary_two) == malagasy_ariary_three

@@ -149,7 +149,7 @@ def test_jamaican_dollar_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'jamaican_dollar.JamaicanDollar\'> '
+                   'dollar.JamaicanDollar\'> '
                    'and <class \'str\'>.')):
         _ = jamaican_dollar_one.__add__('1.00')
     assert (jamaican_dollar_one + jamaican_dollar_two) == jamaican_dollar_three

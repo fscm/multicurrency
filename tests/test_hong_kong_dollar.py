@@ -149,7 +149,7 @@ def test_hong_kong_dollar_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'hong_kong_dollar.HongKongDollar\'> '
+                   'dollar.HongKongDollar\'> '
                    'and <class \'str\'>.')):
         _ = hong_kong_dollar_one.__add__('1.00')
     assert (

@@ -149,7 +149,7 @@ def test_new_zealand_dollar_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'new_zealand_dollar.NewZealandDollar\'> '
+                   'dollar.NewZealandDollar\'> '
                    'and <class \'str\'>.')):
         _ = new_zealand_dollar_one.__add__('1.00')
     assert (

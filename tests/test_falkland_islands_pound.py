@@ -149,7 +149,7 @@ def test_falkland_islands_pound_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'falkland_islands_pound.FalklandIslandsPound\'> '
+                   'pound.FalklandIslandsPound\'> '
                    'and <class \'str\'>.')):
         _ = falkland_islands_pound_one.__add__('1.00')
     assert (

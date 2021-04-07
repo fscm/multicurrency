@@ -149,7 +149,7 @@ def test_new_israeli_shekel_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'new_israeli_shekel.NewIsraeliShekel\'> '
+                   'shekel.NewIsraeliShekel\'> '
                    'and <class \'str\'>.')):
         _ = new_israeli_shekel_one.__add__('1.00')
     assert (

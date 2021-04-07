@@ -149,7 +149,7 @@ def test_turkish_lira_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'turkish_lira.TurkishLira\'> '
+                   'lira.TurkishLira\'> '
                    'and <class \'str\'>.')):
         _ = turkish_lira_one.__add__('1.00')
     assert (turkish_lira_one + turkish_lira_two) == turkish_lira_three

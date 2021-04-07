@@ -1,155 +1,84 @@
 from .afghani import Afghani as Afghani
-from .algerian_dinar import AlgerianDinar as AlgerianDinar
-from .argentine_peso import ArgentinePeso as ArgentinePeso
-from .armenian_dram import ArmenianDram as ArmenianDram
-from .aruban_florin import ArubanFlorin as ArubanFlorin
-from .australian_dollar import AustralianDollar as AustralianDollar
-from .azerbaijanian_manat import AzerbaijanianManat as AzerbaijanianManat
-from .bahamian_dollar import BahamianDollar as BahamianDollar
-from .bahraini_dinar import BahrainiDinar as BahrainiDinar
+from .ariary import MalagasyAriary as MalagasyAriary
 from .baht import Baht as Baht
 from .balboa import Balboa as Balboa
-from .barbados_dollar import BarbadosDollar as BarbadosDollar
-from .belarusian_ruble import BelarusianRuble as BelarusianRuble
-from .belize_dollar import BelizeDollar as BelizeDollar
-from .bermudian_dollar import BermudianDollar as BermudianDollar
-from .bolivar_fuerte import BolivarFuerte as BolivarFuerte
+from .birr import EthiopianBirr as EthiopianBirr
 from .boliviano import Boliviano as Boliviano
-from .brazilian_real import BrazilianReal as BrazilianReal
-from .brunei_dollar import BruneiDollar as BruneiDollar
-from .bulgarian_lev import BulgarianLev as BulgarianLev
-from .burundi_franc import BurundiFranc as BurundiFranc
-from .canadian_dollar_en import CanadianDollarEN as CanadianDollarEN
-from .canadian_dollar_fr import CanadianDollarFR as CanadianDollarFR
-from .cape_verde_escudo import CapeVerdeEscudo as CapeVerdeEscudo
-from .cayman_islands_dollar import CaymanIslandsDollar as CaymanIslandsDollar
 from .cedi import Cedi as Cedi
-from .cfa_franc_bceao import CFAFrancBCEAO as CFAFrancBCEAO
-from .cfa_franc_beac import CFAFrancBEAC as CFAFrancBEAC
-from .cfp_franc import CFPFranc as CFPFranc
-from .chilean_peso import ChileanPeso as ChileanPeso
-from .colombian_peso import ColombianPeso as ColombianPeso
-from .congolese_franc import CongoleseFranc as CongoleseFranc
-from .cordoba_oro import CordobaOro as CordobaOro
-from .costa_rican_colon import CostaRicanColon as CostaRicanColon
-from .croatian_kuna import CroatianKuna as CroatianKuna
-from .cuban_peso import CubanPeso as CubanPeso
+from .colon import CostaRicanColon as CostaRicanColon
 from .currency import Currency as Currency, CurrencyContext as CurrencyContext
-from .czech_koruna import CzechKoruna as CzechKoruna
 from .dalasi import Dalasi as Dalasi
-from .danish_krone import DanishKrone as DanishKrone
 from .denar import Denar as Denar
-from .djibouti_franc import DjiboutiFranc as DjiboutiFranc
+from .dinar import AlgerianDinar as AlgerianDinar, BahrainiDinar as BahrainiDinar, IraqiDinar as IraqiDinar, JordanianDinar as JordanianDinar, KuwaitiDinar as KuwaitiDinar, LibyanDinar as LibyanDinar, SerbianDinar as SerbianDinar, TunisianDinar as TunisianDinar
+from .dirham import MoroccanDirham as MoroccanDirham, UAEDirham as UAEDirham
 from .dobra import Dobra as Dobra
-from .dominican_peso import DominicanPeso as DominicanPeso
+from .dollar import AustralianDollar as AustralianDollar, BahamianDollar as BahamianDollar, BarbadosDollar as BarbadosDollar, BelizeDollar as BelizeDollar, BermudianDollar as BermudianDollar, BruneiDollar as BruneiDollar, CanadianDollarEN as CanadianDollarEN, CanadianDollarFR as CanadianDollarFR, CaymanIslandsDollar as CaymanIslandsDollar, EastCaribbeanDollar as EastCaribbeanDollar, FijiDollar as FijiDollar, GuyanaDollar as GuyanaDollar, HongKongDollar as HongKongDollar, JamaicanDollar as JamaicanDollar, LiberianDollar as LiberianDollar, NamibiaDollar as NamibiaDollar, NewZealandDollar as NewZealandDollar, SingaporeDollar as SingaporeDollar, SolomonIslandsDollar as SolomonIslandsDollar, SurinameDollar as SurinameDollar, TaiwanDollar as TaiwanDollar, TrinidadandTobagoDollar as TrinidadandTobagoDollar, USDollar as USDollar, ZimbabweDollar as ZimbabweDollar
 from .dong import Dong as Dong
-from .east_caribbean_dollar import EastCaribbeanDollar as EastCaribbeanDollar
-from .egyptian_pound import EgyptianPound as EgyptianPound
-from .ethiopian_birr import EthiopianBirr as EthiopianBirr
+from .dram import ArmenianDram as ArmenianDram
+from .escudo import CapeVerdeEscudo as CapeVerdeEscudo
 from .euro import Euro as Euro
 from .exceptions import CurrencyException as CurrencyException, CurrencyInvalidDivision as CurrencyInvalidDivision, CurrencyInvalidMultiplication as CurrencyInvalidMultiplication, CurrencyMismatchException as CurrencyMismatchException, CurrencyTypeException as CurrencyTypeException
-from .falkland_islands_pound import FalklandIslandsPound as FalklandIslandsPound
-from .fiji_dollar import FijiDollar as FijiDollar
+from .florin import ArubanFlorin as ArubanFlorin
 from .forint import Forint as Forint
-from .gibraltar_pound import GibraltarPound as GibraltarPound
+from .franc import BurundiFranc as BurundiFranc, CFAFrancBCEAO as CFAFrancBCEAO, CFAFrancBEAC as CFAFrancBEAC, CFPFranc as CFPFranc, CongoleseFranc as CongoleseFranc, DjiboutiFranc as DjiboutiFranc, GuineaFranc as GuineaFranc, RwandaFranc as RwandaFranc, SwissFranc as SwissFranc
+from .fuerte import BolivarFuerte as BolivarFuerte
 from .gourde import Gourde as Gourde
 from .guarani import Guarani as Guarani
-from .guinea_franc import GuineaFranc as GuineaFranc
-from .guyana_dollar import GuyanaDollar as GuyanaDollar
-from .hong_kong_dollar import HongKongDollar as HongKongDollar
 from .hryvnia import Hryvnia as Hryvnia
-from .iceland_krona import IcelandKrona as IcelandKrona
-from .indian_rupee import IndianRupee as IndianRupee
-from .iranian_rial import IranianRial as IranianRial
-from .iraqi_dinar import IraqiDinar as IraqiDinar
-from .jamaican_dollar import JamaicanDollar as JamaicanDollar
-from .jordanian_dinar import JordanianDinar as JordanianDinar
-from .kenyan_shilling import KenyanShilling as KenyanShilling
 from .kina import Kina as Kina
 from .kip import Kip as Kip
-from .konvertibilna_marka import KonvertibilnaMarka as KonvertibilnaMarka
-from .kuwaiti_dinar import KuwaitiDinar as KuwaitiDinar
-from .kwacha import Kwacha as Kwacha
+from .koruna import CzechKoruna as CzechKoruna
+from .krona import IcelandKrona as IcelandKrona, SwedishKrona as SwedishKrona
+from .krone import DanishKrone as DanishKrone, NorwegianKrone as NorwegianKrone
+from .kuna import CroatianKuna as CroatianKuna
+from .kwacha import Kwacha as Kwacha, ZambianKwacha as ZambianKwacha
 from .kwanza import Kwanza as Kwanza
 from .kyat import Kyat as Kyat
 from .lari import Lari as Lari
-from .lebanese_pound import LebanesePound as LebanesePound
 from .lek import Lek as Lek
 from .lempira import Lempira as Lempira
 from .leone import Leone as Leone
-from .leu import Leu as Leu
-from .liberian_dollar import LiberianDollar as LiberianDollar
-from .libyan_dinar import LibyanDinar as LibyanDinar
+from .leu import Leu as Leu, MoldovanLeu as MoldovanLeu
+from .lev import BulgarianLev as BulgarianLev
 from .lilangeni import Lilangeni as Lilangeni
+from .lira import TurkishLira as TurkishLira
 from .loti import Loti as Loti
-from .malagasy_ariary import MalagasyAriary as MalagasyAriary
-from .malaysian_ringgit import MalaysianRinggit as MalaysianRinggit
-from .manat import Manat as Manat
-from .mauritius_rupee import MauritiusRupee as MauritiusRupee
+from .manat import AzerbaijanianManat as AzerbaijanianManat, Manat as Manat
+from .marka import KonvertibilnaMarka as KonvertibilnaMarka
 from .metical import Metical as Metical
-from .mexican_peso import MexicanPeso as MexicanPeso
-from .moldovan_leu import MoldovanLeu as MoldovanLeu
-from .moroccan_dirham import MoroccanDirham as MoroccanDirham
 from .naira import Naira as Naira
 from .nakfa import Nakfa as Nakfa
-from .namibia_dollar import NamibiaDollar as NamibiaDollar
-from .nepalese_rupee import NepaleseRupee as NepaleseRupee
-from .new_israeli_shekel import NewIsraeliShekel as NewIsraeliShekel
-from .new_zealand_dollar import NewZealandDollar as NewZealandDollar
 from .ngultrum import Ngultrum as Ngultrum
-from .north_korean_won import NorthKoreanWon as NorthKoreanWon
-from .norwegian_krone import NorwegianKrone as NorwegianKrone
 from .nuevo_sol import NuevoSol as NuevoSol
+from .oro import CordobaOro as CordobaOro
 from .ouguiya import Ouguiya as Ouguiya
 from .paanga import Paanga as Paanga
-from .pakistan_rupee import PakistanRupee as PakistanRupee
 from .pataca import Pataca as Pataca
-from .peso_uruguayo import PesoUruguayo as PesoUruguayo
-from .philippine_peso import PhilippinePeso as PhilippinePeso
-from .pound_sterling import PoundSterling as PoundSterling
+from .peso import ArgentinePeso as ArgentinePeso, ChileanPeso as ChileanPeso, ColombianPeso as ColombianPeso, CubanPeso as CubanPeso, DominicanPeso as DominicanPeso, MexicanPeso as MexicanPeso, PesoUruguayo as PesoUruguayo, PhilippinePeso as PhilippinePeso
+from .pound import EgyptianPound as EgyptianPound, FalklandIslandsPound as FalklandIslandsPound, GibraltarPound as GibraltarPound, LebanesePound as LebanesePound, PoundSterling as PoundSterling, SaintHelenaPound as SaintHelenaPound, SudanesePound as SudanesePound, SyrianPound as SyrianPound
 from .pula import Pula as Pula
 from .pzloty import PZloty as PZloty
-from .qatari_rial import QatariRial as QatariRial
 from .quetzal import Quetzal as Quetzal
 from .rand import Rand as Rand
-from .rial_omani import RialOmani as RialOmani
+from .real import BrazilianReal as BrazilianReal
+from .rial import IranianRial as IranianRial, QatariRial as QatariRial, RialOmani as RialOmani, YemeniRial as YemeniRial
 from .riel import Riel as Riel
+from .ringgit import MalaysianRinggit as MalaysianRinggit
+from .riyal import SaudiRiyal as SaudiRiyal
+from .ruble import BelarusianRuble as BelarusianRuble, RussianRuble as RussianRuble
 from .rufiyaa import Rufiyaa as Rufiyaa
+from .rupee import IndianRupee as IndianRupee, MauritiusRupee as MauritiusRupee, NepaleseRupee as NepaleseRupee, PakistanRupee as PakistanRupee, SeychellesRupee as SeychellesRupee, SriLankaRupee as SriLankaRupee
 from .rupiah import Rupiah as Rupiah
-from .russian_ruble import RussianRuble as RussianRuble
-from .rwanda_franc import RwandaFranc as RwandaFranc
-from .saint_helena_pound import SaintHelenaPound as SaintHelenaPound
-from .saudi_riyal import SaudiRiyal as SaudiRiyal
-from .serbian_dinar import SerbianDinar as SerbianDinar
-from .seychelles_rupee import SeychellesRupee as SeychellesRupee
-from .singapore_dollar import SingaporeDollar as SingaporeDollar
-from .solomon_islands_dollar import SolomonIslandsDollar as SolomonIslandsDollar
+from .shekel import NewIsraeliShekel as NewIsraeliShekel
+from .shilling import KenyanShilling as KenyanShilling, SomaliShilling as SomaliShilling, TanzanianShilling as TanzanianShilling, UgandaShilling as UgandaShilling
 from .som import Som as Som
-from .somali_shilling import SomaliShilling as SomaliShilling
 from .somoni import Somoni as Somoni
-from .south_korean_won import SouthKoreanWon as SouthKoreanWon
-from .sri_lanka_rupee import SriLankaRupee as SriLankaRupee
-from .sudanese_pound import SudanesePound as SudanesePound
-from .suriname_dollar import SurinameDollar as SurinameDollar
-from .swedish_krona import SwedishKrona as SwedishKrona
-from .swiss_franc import SwissFranc as SwissFranc
-from .syrian_pound import SyrianPound as SyrianPound
-from .taiwan_dollar import TaiwanDollar as TaiwanDollar
+from .sum import UzbekistanSum as UzbekistanSum
 from .taka import Taka as Taka
 from .tala import Tala as Tala
-from .tanzanian_shilling import TanzanianShilling as TanzanianShilling
 from .tenge import Tenge as Tenge
-from .trinidad_and_tobago_dollar import TrinidadandTobagoDollar as TrinidadandTobagoDollar
 from .tugrik import Tugrik as Tugrik
-from .tunisian_dinar import TunisianDinar as TunisianDinar
-from .turkish_lira import TurkishLira as TurkishLira
-from .uae_dirham import UAEDirham as UAEDirham
-from .uganda_shilling import UgandaShilling as UgandaShilling
-from .us_dollar import USDollar as USDollar
-from .uzbekistan_sum import UzbekistanSum as UzbekistanSum
 from .vatu import Vatu as Vatu
-from .yemeni_rial import YemeniRial as YemeniRial
+from .won import NorthKoreanWon as NorthKoreanWon, SouthKoreanWon as SouthKoreanWon
 from .yen import Yen as Yen
 from .yuan import Yuan as Yuan
-from .zambian_kwacha import ZambianKwacha as ZambianKwacha
-from .zimbabwe_dollar import ZimbabweDollar as ZimbabweDollar

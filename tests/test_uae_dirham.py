@@ -149,7 +149,7 @@ def test_uae_dirham_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'uae_dirham.UAEDirham\'> '
+                   'dirham.UAEDirham\'> '
                    'and <class \'str\'>.')):
         _ = uae_dirham_one.__add__('1.00')
     assert (uae_dirham_one + uae_dirham_two) == uae_dirham_three

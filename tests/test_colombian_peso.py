@@ -149,7 +149,7 @@ def test_colombian_peso_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'colombian_peso.ColombianPeso\'> '
+                   'peso.ColombianPeso\'> '
                    'and <class \'str\'>.')):
         _ = colombian_peso_one.__add__('1.00')
     assert (colombian_peso_one + colombian_peso_two) == colombian_peso_three

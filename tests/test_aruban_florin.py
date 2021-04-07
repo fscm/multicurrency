@@ -149,7 +149,7 @@ def test_aruban_florin_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'aruban_florin.ArubanFlorin\'> '
+                   'florin.ArubanFlorin\'> '
                    'and <class \'str\'>.')):
         _ = aruban_florin_one.__add__('1.00')
     assert (aruban_florin_one + aruban_florin_two) == aruban_florin_three

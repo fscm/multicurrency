@@ -149,7 +149,7 @@ def test_zimbabwe_dollar_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'zimbabwe_dollar.ZimbabweDollar\'> '
+                   'dollar.ZimbabweDollar\'> '
                    'and <class \'str\'>.')):
         _ = zimbabwe_dollar_one.__add__('1.00')
     assert (zimbabwe_dollar_one + zimbabwe_dollar_two) == zimbabwe_dollar_three

@@ -149,7 +149,7 @@ def test_nepalese_rupee_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'nepalese_rupee.NepaleseRupee\'> '
+                   'rupee.NepaleseRupee\'> '
                    'and <class \'str\'>.')):
         _ = nepalese_rupee_one.__add__('1.00')
     assert (nepalese_rupee_one + nepalese_rupee_two) == nepalese_rupee_three

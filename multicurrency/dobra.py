@@ -4,17 +4,7 @@
 # author: Frederico Martins <http://github.com/fscm>
 # license: SPDX-License-Identifier: MIT
 
-"""Dobra currency representation.
-
-Simple usage example:
-
-    >>> from multicurrency import Dobra
-    >>> dobra = Dobra(amount=1)
-    >>> print(dobra)
-    Db1,00
-
-For more details see `multicurrency.currency.Currency` .
-"""
+"""Dobra currency representation(s)."""
 
 from decimal import Decimal
 from typing import Optional, Union
@@ -23,6 +13,15 @@ from .currency import Currency
 
 class Dobra(Currency):
     """Dobra currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import Dobra
+        >>> dobra = Dobra(amount=1)
+        >>> print(dobra)
+        Db1,00
+
+    For more details see `multicurrency.currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
