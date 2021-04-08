@@ -788,7 +788,7 @@ class Currency:
         """
         symbol = self._symbol if not self._international else (
             f'{self._currency} ' if self._currency else '')
-        signed = ['', '-'][self._amount.is_signed()]
+        signed = ('', '-')[self._amount.is_signed()]
         p = self._decimal_places
         converted = f'{abs(round(self._amount, p)):.{p}f}'
         if p > 0:
@@ -892,7 +892,7 @@ class Currency:
         """
         s = self._symbol if not self._international else (
             f'{self._currency} ' if self._currency else '')
-        signed = ['', '-'][self._amount.is_signed()]
+        signed = ('', '-')[self._amount.is_signed()]
         p = max(precision, 0)
         converted = f'{abs(round(self._amount, p)):.{p}f}'
         if p > 0:
