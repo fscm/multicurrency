@@ -9,12 +9,11 @@
 
 from setuptools import setup
 from multicurrency import (
-    __author__, __author_email__, __license__, __project__, __version__)
+    __author__, __license__, __project__, __version__)
 
 if __name__ == '__main__':
     setup(
         author=__author__,
-        #author_email=__author_email__,
         classifiers=[
             'Development Status :: 4 - Beta',
             'Intended Audience :: Developers',
