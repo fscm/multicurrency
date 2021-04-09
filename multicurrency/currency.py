@@ -790,24 +790,11 @@ class Currency:
             f'{self._currency} ' if self._currency else '')
         signed = ('', '-')[self._amount.is_signed()]
         p = self._decimal_places
-        converted = f'{abs(round(self._amount, p)):.{p}f}'
-        if p > 0:
-            n, d = converted.rsplit('.', 1)
-            l = len(n)
-            grouped = self._grouping_sign.join(filter(
-                None,
-                [n[0:l % 3]] + [n[i:i + 3] for i in range(
-                    l % 3, l, 3)])) if self._grouping_sign else n
-            formatted = f'{symbol}{signed}{grouped}{self._decimal_sign}{d}'
-        else:
-            n = converted
-            l = len(n)
-            grouped = self._grouping_sign.join(filter(
-                None,
-                [n[0:l % 3]] + [n[i:i + 3] for i in range(
-                    l % 3, l, 3)])) if self._grouping_sign else n
-            formatted = f'{symbol}{signed}{grouped}'
-        return formatted
+        converted = f'{abs(round(self._amount, p)):,.{p}f}'
+        n, _, d = converted.partition('.')
+        grouped = n.replace(',', self._grouping_sign)
+        decimal = f'{self._decimal_sign}{d}' if p else ''
+        return f'{symbol}{signed}{grouped}{decimal}'
 
     def __sub__(self, other: Any) -> 'Currency':
         """Subtract `other` from this.
@@ -890,28 +877,15 @@ class Currency:
         Returns:
             str: value
         """
-        s = self._symbol if not self._international else (
+        symbol = self._symbol if not self._international else (
             f'{self._currency} ' if self._currency else '')
         signed = ('', '-')[self._amount.is_signed()]
         p = max(precision, 0)
-        converted = f'{abs(round(self._amount, p)):.{p}f}'
-        if p > 0:
-            n, d = converted.rsplit('.', 1)
-            l = len(n)
-            grouped = self._grouping_sign.join(filter(
-                None,
-                [n[0:l % 3]] + [n[i:i + 3] for i in range(
-                    l % 3, l, 3)])) if self._grouping_sign else n
-            formatted = f'{s}{signed}{grouped}{self._decimal_sign}{d}'
-        else:
-            n = converted
-            l = len(n)
-            grouped = self._grouping_sign.join(filter(
-                None,
-                [n[0:l % 3]] + [n[i:i + 3] for i in range(
-                    l % 3, l, 3)])) if self._grouping_sign else n
-            formatted = f'{s}{signed}{grouped}'
-        return formatted
+        converted = f'{abs(round(self._amount, p)):,.{p}f}'
+        n, _, d = converted.partition('.')
+        grouped = n.replace(',', self._grouping_sign)
+        decimal = f'{self._decimal_sign}{d}' if p else ''
+        return f'{symbol}{signed}{grouped}{decimal}'
 
     @property
     def amount(self) -> Decimal:
