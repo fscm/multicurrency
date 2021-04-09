@@ -48,8 +48,8 @@ CURRENCY_CLASS = 'currency_class.tmpl'
 CURRENCY_MODULE = 'currency_module.tmpl'
 CURRENCY_TESTS = 'currency_tests.tmpl'
 
-#workfolder = os.path.dirname(os.path.realpath(__file__))
-workfolder = os.getcwd()
+workfolder = os.path.dirname(os.path.realpath(__file__))
+#workfolder = os.getcwd()
 re_nospace = dict(
     (re.escape(k), v) for k,v in {' ': '', '’': '', '\'': ''}.items())
 re_underscore = dict(
