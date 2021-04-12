@@ -788,13 +788,12 @@ class Currency:
         """
         symbol = self._symbol if not self._international else (
             f'{self._currency} ' if self._currency else '')
-        signed = ('', '-')[self._amount.is_signed()]
         p = self._decimal_places
-        converted = f'{abs(round(self._amount, p)):,.{p}f}'
-        n, _, d = converted.partition('.')
-        grouped = n.replace(',', self._grouping_sign)
-        decimal = f'{self._decimal_sign}{d}' if p else ''
-        return f'{symbol}{signed}{grouped}{decimal}'
+        converted = f'{round(self._amount, p):,.{p}f}'.replace(
+            '.', 'X').replace(
+                ',', self._grouping_sign).replace(
+                    'X', self._decimal_sign)
+        return symbol + converted
 
     def __sub__(self, other: Any) -> 'Currency':
         """Subtract `other` from this.
@@ -879,13 +878,12 @@ class Currency:
         """
         symbol = self._symbol if not self._international else (
             f'{self._currency} ' if self._currency else '')
-        signed = ('', '-')[self._amount.is_signed()]
         p = max(precision, 0)
-        converted = f'{abs(round(self._amount, p)):,.{p}f}'
-        n, _, d = converted.partition('.')
-        grouped = n.replace(',', self._grouping_sign)
-        decimal = f'{self._decimal_sign}{d}' if p else ''
-        return f'{symbol}{signed}{grouped}{decimal}'
+        converted = f'{round(self._amount, p):,.{p}f}'.replace(
+            '.', 'X').replace(
+                ',', self._grouping_sign).replace(
+                    'X', self._decimal_sign)
+        return symbol + converted
 
     @property
     def amount(self) -> Decimal:
