@@ -117,10 +117,9 @@ with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
 
 print('Creating currency types...')
 for currency_module in currencies:
-    out_text = ''
     out_text = re.sub(
         '__CURRENCY_MODULE__',
-        currencies[currency_module]["name"], text_module)
+        currencies[currency_module]['name'], text_module)
     for _, values in currencies[currency_module]['currencies'].items():
         re_values = dict((re.escape(k), v) for k,v in values.items())
         comp_values = re.compile('|'.join(re_values.keys()))
@@ -138,8 +137,7 @@ for currency_module in currencies:
     for currency, values in currencies[currency_module]['currencies'].items():
         re_values = dict((re.escape(k), v) for k,v in values.items())
         comp_values = re.compile('|'.join(re_values.keys()))
-        out_text = ''
-        out_text = out_text + comp_values.sub(
+        out_text = comp_values.sub(
             lambda l: re_values[re.escape(l.group(0))], text_tests)
         out_text = re.sub(
             '__1DIV7__',
