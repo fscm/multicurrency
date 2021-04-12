@@ -78,6 +78,7 @@ List of supported currencies (and default format):
 `multicurrency.pound.EgyptianPound` (£1,000.00),
 `multicurrency.birr.EthiopianBirr` (1.000,00),
 `multicurrency.euro.Euro` (€1.000,00),
+`multicurrency.euro.EuroIE` (€1,000.00),
 `multicurrency.pound.FalklandIslandsPound` (£1.000,00),
 `multicurrency.dollar.FijiDollar` ($1.000,00),
 `multicurrency.forint.Forint` (Ft1.000),
@@ -502,7 +503,9 @@ from .dollar import (
 from .dong import Dong
 from .dram import ArmenianDram
 from .escudo import CapeVerdeEscudo
-from .euro import Euro
+from .euro import (
+    Euro,
+    EuroIE)
 from .florin import ArubanFlorin
 from .forint import Forint
 from .franc import (
@@ -678,6 +681,7 @@ __all__ = [
     'EgyptianPound',
     'EthiopianBirr',
     'Euro',
+    'EuroIE',
     'FalklandIslandsPound',
     'FijiDollar',
     'Forint',

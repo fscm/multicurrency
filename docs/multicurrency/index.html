@@ -84,6 +84,7 @@ operations are described in the <code><a title="multicurrency.currency" href="cu
 <code><a title="multicurrency.pound.EgyptianPound" href="pound.html#multicurrency.pound.EgyptianPound">EgyptianPound</a></code> (£1,000.00),
 <code><a title="multicurrency.birr.EthiopianBirr" href="birr.html#multicurrency.birr.EthiopianBirr">EthiopianBirr</a></code> (1.000,00),
 <code><a title="multicurrency.euro.Euro" href="euro.html#multicurrency.euro.Euro">Euro</a></code> (€1.000,00),
+<code><a title="multicurrency.euro.EuroIE" href="euro.html#multicurrency.euro.EuroIE">EuroIE</a></code> (€1,000.00),
 <code><a title="multicurrency.pound.FalklandIslandsPound" href="pound.html#multicurrency.pound.FalklandIslandsPound">FalklandIslandsPound</a></code> (£1.000,00),
 <code><a title="multicurrency.dollar.FijiDollar" href="dollar.html#multicurrency.dollar.FijiDollar">FijiDollar</a></code> ($1.000,00),
 <code><a title="multicurrency.forint.Forint" href="forint.html#multicurrency.forint.Forint">Forint</a></code> (Ft1.000),
@@ -2734,6 +2735,7 @@ False.</dd>
 <li><a title="multicurrency.dram.ArmenianDram" href="dram.html#multicurrency.dram.ArmenianDram">ArmenianDram</a></li>
 <li><a title="multicurrency.escudo.CapeVerdeEscudo" href="escudo.html#multicurrency.escudo.CapeVerdeEscudo">CapeVerdeEscudo</a></li>
 <li><a title="multicurrency.euro.Euro" href="euro.html#multicurrency.euro.Euro">Euro</a></li>
+<li><a title="multicurrency.euro.EuroIE" href="euro.html#multicurrency.euro.EuroIE">EuroIE</a></li>
 <li><a title="multicurrency.florin.ArubanFlorin" href="florin.html#multicurrency.florin.ArubanFlorin">ArubanFlorin</a></li>
 <li><a title="multicurrency.forint.Forint" href="forint.html#multicurrency.forint.Forint">Forint</a></li>
 <li><a title="multicurrency.franc.BurundiFranc" href="franc.html#multicurrency.franc.BurundiFranc">BurundiFranc</a></li>
@@ -3598,6 +3600,57 @@ currency representation. Defaults to 2,</dd>
 <dd>Decimal symbol. Defaults to ','.</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to '.'.</dd>
+<dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Identifies the currency using
+the 'currency' value instead of the 'symbol'. Defaults to
+False.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.currency.Currency.amount" href="currency.html#multicurrency.currency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.code" href="currency.html#multicurrency.currency.Currency.code">code</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.currency" href="currency.html#multicurrency.currency.Currency.currency">currency</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.pstr" href="currency.html#multicurrency.currency.Currency.pstr">pstr</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol" href="currency.html#multicurrency.currency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.EuroIE"><code class="flex name class">
+<span>class <span class="ident">EuroIE</span></span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: int = 2, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: bool = False, **other)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>EuroIE currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import EuroIE
+&gt;&gt;&gt; euroie = EuroIE(amount=1)
+&gt;&gt;&gt; print(euroie)
+€1.00
+</code></pre>
+<p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>decimal_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of decimal places for the
+currency representation. Defaults to 2,</dd>
+<dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Decimal symbol. Defaults to '.'.</dd>
+<dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Grouping symbol. Defaults to ','.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
 <dd>Identifies the currency using
 the 'currency' value instead of the 'symbol'. Defaults to
@@ -9257,6 +9310,9 @@ False.</dd>
 </li>
 <li>
 <h4><code><a title="multicurrency.Euro" href="#multicurrency.Euro">Euro</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.EuroIE" href="#multicurrency.EuroIE">EuroIE</a></code></h4>
 </li>
 <li>
 <h4><code><a title="multicurrency.FalklandIslandsPound" href="#multicurrency.FalklandIslandsPound">FalklandIslandsPound</a></code></h4>

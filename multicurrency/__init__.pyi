@@ -16,7 +16,7 @@ from .dollar import AustralianDollar as AustralianDollar, BahamianDollar as Baha
 from .dong import Dong as Dong
 from .dram import ArmenianDram as ArmenianDram
 from .escudo import CapeVerdeEscudo as CapeVerdeEscudo
-from .euro import Euro as Euro
+from .euro import Euro as Euro, EuroIE as EuroIE
 from .exceptions import CurrencyException as CurrencyException, CurrencyInvalidDivision as CurrencyInvalidDivision, CurrencyInvalidMultiplication as CurrencyInvalidMultiplication, CurrencyMismatchException as CurrencyMismatchException, CurrencyTypeException as CurrencyTypeException
 from .florin import ArubanFlorin as ArubanFlorin
 from .forint import Forint as Forint

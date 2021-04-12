@@ -4,3 +4,6 @@ from typing import Any, Optional, Union
 
 class Euro(Currency):
     def __new__(cls: Any, amount: Union[int, float, Decimal], decimal_places: int=..., decimal_sign: Optional[str]=..., grouping_sign: Optional[str]=..., international: bool=..., **other: Any) -> Euro: ...
+
+class EuroIE(Currency):
+    def __new__(cls: Any, amount: Union[int, float, Decimal], decimal_places: int=..., decimal_sign: Optional[str]=..., grouping_sign: Optional[str]=..., international: bool=..., **other: Any) -> EuroIE: ...
