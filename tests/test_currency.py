@@ -490,13 +490,21 @@ def test_currency_is_signed():
     assert not currency_euro_one.is_signed()
 
 
-def test_currency_precision():
-    """test_currency_precision."""
+def test_currency_precision_1():
+    """test_currency_precision_1."""
     test_currency = (Currency(1.01) - Currency(0.99)) * 1e18
     assert test_currency.amount == (
         (CONTEXT.create_decimal('1.01') - CONTEXT.create_decimal('0.99')) *
         CONTEXT.create_decimal('1e18'))
     assert test_currency.__str__() == '20,000,000,000,000,000.00'
+
+
+def test_currency_precision_2():
+    """test_currency_precision_2."""
+    test_currency = (Currency(0.1) + Currency(0.1) + Currency(0.1))
+    assert test_currency == Currency(0.3)
+    assert test_currency.amount == CONTEXT.create_decimal('0.3')
+    assert test_currency.__str__() == '0.30'
 
 
 def test_currency_roundings_positive():
