@@ -38,7 +38,7 @@ def profile(sortargs=['cumulative'], printargs=[10]):
 
 @profile()
 def create_currency():
-    for value in range(10000):
+    for value in range(10_000):
         _ = Currency(
             amount=value,
             code='978',
@@ -61,7 +61,7 @@ def create_currency_string():
         decimal_sign=',',
         grouping_sign='.',
         international=False)
-    for value in range(10000):
+    for value in range(10_000):
         _ = currency.__str__()
 
 
