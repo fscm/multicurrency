@@ -398,6 +398,7 @@ List of supported currencies (and default format):
 `EgyptianPound` (£1,000.00),
 `EthiopianBirr` (1.000,00),
 `Euro` (€1.000,00),
+`EuroIE` (€1,000.00),
 `FalklandIslandsPound` (£1.000,00),
 `FijiDollar` ($1.000,00),
 `Forint` (Ft1.000),
