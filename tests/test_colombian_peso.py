@@ -23,8 +23,8 @@ def test_colombian_peso():
     colombian_peso = ColombianPeso(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert colombian_peso.amount == decimal
-    assert colombian_peso.code == '170'
-    assert colombian_peso.currency == 'COP'
+    assert colombian_peso.numeric_code == '170'
+    assert colombian_peso.alpha_code == 'COP'
     assert colombian_peso.decimal_places == 2
     assert colombian_peso.decimal_sign == ','
     assert colombian_peso.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_colombian_peso():
     assert colombian_peso.__hash__() == hash((decimal, 'COP', '170'))
     assert colombian_peso.__repr__() == (
         'ColombianPeso(amount: 0.1428571428571428571428571429, '
-        'currency: "COP", '
+        'alpha_code: "COP", '
         'symbol: "$", '
-        'code: "170", '
+        'numeric_code: "170", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_colombian_peso_negative():
     amount = -100
     colombian_peso = ColombianPeso(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert colombian_peso.code == '170'
-    assert colombian_peso.currency == 'COP'
+    assert colombian_peso.numeric_code == '170'
+    assert colombian_peso.alpha_code == 'COP'
     assert colombian_peso.decimal_places == 2
     assert colombian_peso.decimal_sign == ','
     assert colombian_peso.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_colombian_peso_negative():
     assert colombian_peso.__hash__() == hash((decimal, 'COP', '170'))
     assert colombian_peso.__repr__() == (
         'ColombianPeso(amount: -100, '
-        'currency: "COP", '
+        'alpha_code: "COP", '
         'symbol: "$", '
-        'code: "170", '
+        'numeric_code: "170", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_colombian_peso_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert colombian_peso.amount == decimal
-    assert colombian_peso.code == '170'
-    assert colombian_peso.currency == 'COP'
+    assert colombian_peso.numeric_code == '170'
+    assert colombian_peso.alpha_code == 'COP'
     assert colombian_peso.decimal_places == 5
     assert colombian_peso.decimal_sign == '.'
     assert colombian_peso.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_colombian_peso_custom():
     assert colombian_peso.__hash__() == hash((decimal, 'COP', '170'))
     assert colombian_peso.__repr__() == (
         'ColombianPeso(amount: 1000, '
-        'currency: "COP", '
+        'alpha_code: "COP", '
         'symbol: "$", '
-        'code: "170", '
+        'numeric_code: "170", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_colombian_peso_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        colombian_peso.currency = 'EUR'
+        colombian_peso.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_colombian_peso_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        colombian_peso.code = '978'
+        colombian_peso.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_colombian_peso_math_add():
     colombian_peso_one = ColombianPeso(amount=1)
     colombian_peso_two = ColombianPeso(amount=2)
     colombian_peso_three = ColombianPeso(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency COP and OTHER.'):

@@ -18,9 +18,9 @@ from multicurrency import (
 
 
 def aux_currency_mismatch_exception():
-    euro = Currency(amount=1.0, currency='EUR')
-    dollar = Currency(amount=1.0, currency='USD')
-    raise CurrencyMismatchException(euro.currency, dollar.currency)
+    euro = Currency(amount=1.0, alpha_code='EUR')
+    dollar = Currency(amount=1.0, alpha_code='USD')
+    raise CurrencyMismatchException(euro.alpha_code, dollar.alpha_code)
 
 
 def aux_multicurrency_exception():

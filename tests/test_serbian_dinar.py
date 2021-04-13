@@ -23,8 +23,8 @@ def test_serbian_dinar():
     serbian_dinar = SerbianDinar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert serbian_dinar.amount == decimal
-    assert serbian_dinar.code == '941'
-    assert serbian_dinar.currency == 'RSD'
+    assert serbian_dinar.numeric_code == '941'
+    assert serbian_dinar.alpha_code == 'RSD'
     assert serbian_dinar.decimal_places == 2
     assert serbian_dinar.decimal_sign == ','
     assert serbian_dinar.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_serbian_dinar():
     assert serbian_dinar.__hash__() == hash((decimal, 'RSD', '941'))
     assert serbian_dinar.__repr__() == (
         'SerbianDinar(amount: 0.1428571428571428571428571429, '
-        'currency: "RSD", '
+        'alpha_code: "RSD", '
         'symbol: "din", '
-        'code: "941", '
+        'numeric_code: "941", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_serbian_dinar_negative():
     amount = -100
     serbian_dinar = SerbianDinar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert serbian_dinar.code == '941'
-    assert serbian_dinar.currency == 'RSD'
+    assert serbian_dinar.numeric_code == '941'
+    assert serbian_dinar.alpha_code == 'RSD'
     assert serbian_dinar.decimal_places == 2
     assert serbian_dinar.decimal_sign == ','
     assert serbian_dinar.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_serbian_dinar_negative():
     assert serbian_dinar.__hash__() == hash((decimal, 'RSD', '941'))
     assert serbian_dinar.__repr__() == (
         'SerbianDinar(amount: -100, '
-        'currency: "RSD", '
+        'alpha_code: "RSD", '
         'symbol: "din", '
-        'code: "941", '
+        'numeric_code: "941", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_serbian_dinar_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert serbian_dinar.amount == decimal
-    assert serbian_dinar.code == '941'
-    assert serbian_dinar.currency == 'RSD'
+    assert serbian_dinar.numeric_code == '941'
+    assert serbian_dinar.alpha_code == 'RSD'
     assert serbian_dinar.decimal_places == 5
     assert serbian_dinar.decimal_sign == '.'
     assert serbian_dinar.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_serbian_dinar_custom():
     assert serbian_dinar.__hash__() == hash((decimal, 'RSD', '941'))
     assert serbian_dinar.__repr__() == (
         'SerbianDinar(amount: 1000, '
-        'currency: "RSD", '
+        'alpha_code: "RSD", '
         'symbol: "din", '
-        'code: "941", '
+        'numeric_code: "941", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_serbian_dinar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        serbian_dinar.currency = 'EUR'
+        serbian_dinar.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_serbian_dinar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        serbian_dinar.code = '978'
+        serbian_dinar.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_serbian_dinar_math_add():
     serbian_dinar_one = SerbianDinar(amount=1)
     serbian_dinar_two = SerbianDinar(amount=2)
     serbian_dinar_three = SerbianDinar(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency RSD and OTHER.'):

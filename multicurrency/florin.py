@@ -52,9 +52,9 @@ class ArubanFlorin(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='AWG',
+            alpha_code='AWG',
+            numeric_code='533',
             symbol='ƒ',
-            code='533',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

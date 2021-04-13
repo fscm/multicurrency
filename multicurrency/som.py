@@ -52,9 +52,9 @@ class Som(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='KGS',
+            alpha_code='KGS',
+            numeric_code='417',
             symbol='',
-            code='417',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

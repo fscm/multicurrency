@@ -52,9 +52,9 @@ class Leone(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='SLL',
+            alpha_code='SLL',
+            numeric_code='694',
             symbol='Le',
-            code='694',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

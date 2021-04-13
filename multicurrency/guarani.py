@@ -52,9 +52,9 @@ class Guarani(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='PYG',
+            alpha_code='PYG',
+            numeric_code='600',
             symbol='₲',
-            code='600',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

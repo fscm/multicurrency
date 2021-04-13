@@ -23,8 +23,8 @@ def test_aruban_florin():
     aruban_florin = ArubanFlorin(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert aruban_florin.amount == decimal
-    assert aruban_florin.code == '533'
-    assert aruban_florin.currency == 'AWG'
+    assert aruban_florin.numeric_code == '533'
+    assert aruban_florin.alpha_code == 'AWG'
     assert aruban_florin.decimal_places == 2
     assert aruban_florin.decimal_sign == '.'
     assert aruban_florin.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_aruban_florin():
     assert aruban_florin.__hash__() == hash((decimal, 'AWG', '533'))
     assert aruban_florin.__repr__() == (
         'ArubanFlorin(amount: 0.1428571428571428571428571429, '
-        'currency: "AWG", '
+        'alpha_code: "AWG", '
         'symbol: "ƒ", '
-        'code: "533", '
+        'numeric_code: "533", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_aruban_florin_negative():
     amount = -100
     aruban_florin = ArubanFlorin(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert aruban_florin.code == '533'
-    assert aruban_florin.currency == 'AWG'
+    assert aruban_florin.numeric_code == '533'
+    assert aruban_florin.alpha_code == 'AWG'
     assert aruban_florin.decimal_places == 2
     assert aruban_florin.decimal_sign == '.'
     assert aruban_florin.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_aruban_florin_negative():
     assert aruban_florin.__hash__() == hash((decimal, 'AWG', '533'))
     assert aruban_florin.__repr__() == (
         'ArubanFlorin(amount: -100, '
-        'currency: "AWG", '
+        'alpha_code: "AWG", '
         'symbol: "ƒ", '
-        'code: "533", '
+        'numeric_code: "533", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_aruban_florin_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert aruban_florin.amount == decimal
-    assert aruban_florin.code == '533'
-    assert aruban_florin.currency == 'AWG'
+    assert aruban_florin.numeric_code == '533'
+    assert aruban_florin.alpha_code == 'AWG'
     assert aruban_florin.decimal_places == 5
     assert aruban_florin.decimal_sign == ','
     assert aruban_florin.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_aruban_florin_custom():
     assert aruban_florin.__hash__() == hash((decimal, 'AWG', '533'))
     assert aruban_florin.__repr__() == (
         'ArubanFlorin(amount: 1000, '
-        'currency: "AWG", '
+        'alpha_code: "AWG", '
         'symbol: "ƒ", '
-        'code: "533", '
+        'numeric_code: "533", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_aruban_florin_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        aruban_florin.currency = 'EUR'
+        aruban_florin.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_aruban_florin_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        aruban_florin.code = '978'
+        aruban_florin.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_aruban_florin_math_add():
     aruban_florin_one = ArubanFlorin(amount=1)
     aruban_florin_two = ArubanFlorin(amount=2)
     aruban_florin_three = ArubanFlorin(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency AWG and OTHER.'):

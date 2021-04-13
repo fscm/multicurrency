@@ -52,9 +52,9 @@ class Vatu(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='VUV',
+            alpha_code='VUV',
+            numeric_code='548',
             symbol='Vt',
-            code='548',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

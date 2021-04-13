@@ -23,8 +23,8 @@ def test_cfp_franc():
     cfp_franc = CFPFranc(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert cfp_franc.amount == decimal
-    assert cfp_franc.code == '953'
-    assert cfp_franc.currency == 'XPF'
+    assert cfp_franc.numeric_code == '953'
+    assert cfp_franc.alpha_code == 'XPF'
     assert cfp_franc.decimal_places == 0
     assert cfp_franc.decimal_sign == ','
     assert cfp_franc.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_cfp_franc():
     assert cfp_franc.__hash__() == hash((decimal, 'XPF', '953'))
     assert cfp_franc.__repr__() == (
         'CFPFranc(amount: 0.1428571428571428571428571429, '
-        'currency: "XPF", '
+        'alpha_code: "XPF", '
         'symbol: "₣", '
-        'code: "953", '
+        'numeric_code: "953", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_cfp_franc_negative():
     amount = -100
     cfp_franc = CFPFranc(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert cfp_franc.code == '953'
-    assert cfp_franc.currency == 'XPF'
+    assert cfp_franc.numeric_code == '953'
+    assert cfp_franc.alpha_code == 'XPF'
     assert cfp_franc.decimal_places == 0
     assert cfp_franc.decimal_sign == ','
     assert cfp_franc.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_cfp_franc_negative():
     assert cfp_franc.__hash__() == hash((decimal, 'XPF', '953'))
     assert cfp_franc.__repr__() == (
         'CFPFranc(amount: -100, '
-        'currency: "XPF", '
+        'alpha_code: "XPF", '
         'symbol: "₣", '
-        'code: "953", '
+        'numeric_code: "953", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_cfp_franc_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert cfp_franc.amount == decimal
-    assert cfp_franc.code == '953'
-    assert cfp_franc.currency == 'XPF'
+    assert cfp_franc.numeric_code == '953'
+    assert cfp_franc.alpha_code == 'XPF'
     assert cfp_franc.decimal_places == 5
     assert cfp_franc.decimal_sign == '.'
     assert cfp_franc.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_cfp_franc_custom():
     assert cfp_franc.__hash__() == hash((decimal, 'XPF', '953'))
     assert cfp_franc.__repr__() == (
         'CFPFranc(amount: 1000, '
-        'currency: "XPF", '
+        'alpha_code: "XPF", '
         'symbol: "₣", '
-        'code: "953", '
+        'numeric_code: "953", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_cfp_franc_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        cfp_franc.currency = 'EUR'
+        cfp_franc.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_cfp_franc_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        cfp_franc.code = '978'
+        cfp_franc.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_cfp_franc_math_add():
     cfp_franc_one = CFPFranc(amount=1)
     cfp_franc_two = CFPFranc(amount=2)
     cfp_franc_three = CFPFranc(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency XPF and OTHER.'):

@@ -23,8 +23,8 @@ def test_costa_rican_colon():
     costa_rican_colon = CostaRicanColon(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert costa_rican_colon.amount == decimal
-    assert costa_rican_colon.code == '188'
-    assert costa_rican_colon.currency == 'CRC'
+    assert costa_rican_colon.numeric_code == '188'
+    assert costa_rican_colon.alpha_code == 'CRC'
     assert costa_rican_colon.decimal_places == 2
     assert costa_rican_colon.decimal_sign == ','
     assert costa_rican_colon.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_costa_rican_colon():
     assert costa_rican_colon.__hash__() == hash((decimal, 'CRC', '188'))
     assert costa_rican_colon.__repr__() == (
         'CostaRicanColon(amount: 0.1428571428571428571428571429, '
-        'currency: "CRC", '
+        'alpha_code: "CRC", '
         'symbol: "₡", '
-        'code: "188", '
+        'numeric_code: "188", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_costa_rican_colon_negative():
     amount = -100
     costa_rican_colon = CostaRicanColon(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert costa_rican_colon.code == '188'
-    assert costa_rican_colon.currency == 'CRC'
+    assert costa_rican_colon.numeric_code == '188'
+    assert costa_rican_colon.alpha_code == 'CRC'
     assert costa_rican_colon.decimal_places == 2
     assert costa_rican_colon.decimal_sign == ','
     assert costa_rican_colon.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_costa_rican_colon_negative():
     assert costa_rican_colon.__hash__() == hash((decimal, 'CRC', '188'))
     assert costa_rican_colon.__repr__() == (
         'CostaRicanColon(amount: -100, '
-        'currency: "CRC", '
+        'alpha_code: "CRC", '
         'symbol: "₡", '
-        'code: "188", '
+        'numeric_code: "188", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_costa_rican_colon_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert costa_rican_colon.amount == decimal
-    assert costa_rican_colon.code == '188'
-    assert costa_rican_colon.currency == 'CRC'
+    assert costa_rican_colon.numeric_code == '188'
+    assert costa_rican_colon.alpha_code == 'CRC'
     assert costa_rican_colon.decimal_places == 5
     assert costa_rican_colon.decimal_sign == '.'
     assert costa_rican_colon.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_costa_rican_colon_custom():
     assert costa_rican_colon.__hash__() == hash((decimal, 'CRC', '188'))
     assert costa_rican_colon.__repr__() == (
         'CostaRicanColon(amount: 1000, '
-        'currency: "CRC", '
+        'alpha_code: "CRC", '
         'symbol: "₡", '
-        'code: "188", '
+        'numeric_code: "188", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_costa_rican_colon_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        costa_rican_colon.currency = 'EUR'
+        costa_rican_colon.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_costa_rican_colon_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        costa_rican_colon.code = '978'
+        costa_rican_colon.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_costa_rican_colon_math_add():
     costa_rican_colon_one = CostaRicanColon(amount=1)
     costa_rican_colon_two = CostaRicanColon(amount=2)
     costa_rican_colon_three = CostaRicanColon(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency CRC and OTHER.'):
@@ -152,9 +152,7 @@ def test_costa_rican_colon_math_add():
                    'colon.CostaRicanColon\'> '
                    'and <class \'str\'>.')):
         _ = costa_rican_colon_one.__add__('1.00')
-    assert (
-        costa_rican_colon_one +
-        costa_rican_colon_two) == costa_rican_colon_three
+    assert (costa_rican_colon_one + costa_rican_colon_two) == costa_rican_colon_three
 
 
 def test_currency_slots():

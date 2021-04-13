@@ -52,9 +52,9 @@ class Hryvnia(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='UAH',
+            alpha_code='UAH',
+            numeric_code='980',
             symbol='₴',
-            code='980',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

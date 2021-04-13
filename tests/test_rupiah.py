@@ -23,8 +23,8 @@ def test_rupiah():
     rupiah = Rupiah(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert rupiah.amount == decimal
-    assert rupiah.code == '360'
-    assert rupiah.currency == 'IDR'
+    assert rupiah.numeric_code == '360'
+    assert rupiah.alpha_code == 'IDR'
     assert rupiah.decimal_places == 2
     assert rupiah.decimal_sign == ','
     assert rupiah.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_rupiah():
     assert rupiah.__hash__() == hash((decimal, 'IDR', '360'))
     assert rupiah.__repr__() == (
         'Rupiah(amount: 0.1428571428571428571428571429, '
-        'currency: "IDR", '
+        'alpha_code: "IDR", '
         'symbol: "Rp", '
-        'code: "360", '
+        'numeric_code: "360", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_rupiah_negative():
     amount = -100
     rupiah = Rupiah(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert rupiah.code == '360'
-    assert rupiah.currency == 'IDR'
+    assert rupiah.numeric_code == '360'
+    assert rupiah.alpha_code == 'IDR'
     assert rupiah.decimal_places == 2
     assert rupiah.decimal_sign == ','
     assert rupiah.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_rupiah_negative():
     assert rupiah.__hash__() == hash((decimal, 'IDR', '360'))
     assert rupiah.__repr__() == (
         'Rupiah(amount: -100, '
-        'currency: "IDR", '
+        'alpha_code: "IDR", '
         'symbol: "Rp", '
-        'code: "360", '
+        'numeric_code: "360", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_rupiah_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert rupiah.amount == decimal
-    assert rupiah.code == '360'
-    assert rupiah.currency == 'IDR'
+    assert rupiah.numeric_code == '360'
+    assert rupiah.alpha_code == 'IDR'
     assert rupiah.decimal_places == 5
     assert rupiah.decimal_sign == '.'
     assert rupiah.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_rupiah_custom():
     assert rupiah.__hash__() == hash((decimal, 'IDR', '360'))
     assert rupiah.__repr__() == (
         'Rupiah(amount: 1000, '
-        'currency: "IDR", '
+        'alpha_code: "IDR", '
         'symbol: "Rp", '
-        'code: "360", '
+        'numeric_code: "360", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_rupiah_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        rupiah.currency = 'EUR'
+        rupiah.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_rupiah_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        rupiah.code = '978'
+        rupiah.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_rupiah_math_add():
     rupiah_one = Rupiah(amount=1)
     rupiah_two = Rupiah(amount=2)
     rupiah_three = Rupiah(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency IDR and OTHER.'):

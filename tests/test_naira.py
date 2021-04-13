@@ -23,8 +23,8 @@ def test_naira():
     naira = Naira(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert naira.amount == decimal
-    assert naira.code == '566'
-    assert naira.currency == 'NGN'
+    assert naira.numeric_code == '566'
+    assert naira.alpha_code == 'NGN'
     assert naira.decimal_places == 2
     assert naira.decimal_sign == ','
     assert naira.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_naira():
     assert naira.__hash__() == hash((decimal, 'NGN', '566'))
     assert naira.__repr__() == (
         'Naira(amount: 0.1428571428571428571428571429, '
-        'currency: "NGN", '
+        'alpha_code: "NGN", '
         'symbol: "₦", '
-        'code: "566", '
+        'numeric_code: "566", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_naira_negative():
     amount = -100
     naira = Naira(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert naira.code == '566'
-    assert naira.currency == 'NGN'
+    assert naira.numeric_code == '566'
+    assert naira.alpha_code == 'NGN'
     assert naira.decimal_places == 2
     assert naira.decimal_sign == ','
     assert naira.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_naira_negative():
     assert naira.__hash__() == hash((decimal, 'NGN', '566'))
     assert naira.__repr__() == (
         'Naira(amount: -100, '
-        'currency: "NGN", '
+        'alpha_code: "NGN", '
         'symbol: "₦", '
-        'code: "566", '
+        'numeric_code: "566", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_naira_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert naira.amount == decimal
-    assert naira.code == '566'
-    assert naira.currency == 'NGN'
+    assert naira.numeric_code == '566'
+    assert naira.alpha_code == 'NGN'
     assert naira.decimal_places == 5
     assert naira.decimal_sign == '.'
     assert naira.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_naira_custom():
     assert naira.__hash__() == hash((decimal, 'NGN', '566'))
     assert naira.__repr__() == (
         'Naira(amount: 1000, '
-        'currency: "NGN", '
+        'alpha_code: "NGN", '
         'symbol: "₦", '
-        'code: "566", '
+        'numeric_code: "566", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_naira_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        naira.currency = 'EUR'
+        naira.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_naira_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        naira.code = '978'
+        naira.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_naira_math_add():
     naira_one = Naira(amount=1)
     naira_two = Naira(amount=2)
     naira_three = Naira(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency NGN and OTHER.'):

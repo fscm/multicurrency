@@ -23,8 +23,8 @@ def test_trinidad_and_tobago_dollar():
     trinidad_and_tobago_dollar = TrinidadandTobagoDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert trinidad_and_tobago_dollar.amount == decimal
-    assert trinidad_and_tobago_dollar.code == '780'
-    assert trinidad_and_tobago_dollar.currency == 'TTD'
+    assert trinidad_and_tobago_dollar.numeric_code == '780'
+    assert trinidad_and_tobago_dollar.alpha_code == 'TTD'
     assert trinidad_and_tobago_dollar.decimal_places == 2
     assert trinidad_and_tobago_dollar.decimal_sign == ','
     assert trinidad_and_tobago_dollar.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_trinidad_and_tobago_dollar():
     assert trinidad_and_tobago_dollar.__hash__() == hash((decimal, 'TTD', '780'))
     assert trinidad_and_tobago_dollar.__repr__() == (
         'TrinidadandTobagoDollar(amount: 0.1428571428571428571428571429, '
-        'currency: "TTD", '
+        'alpha_code: "TTD", '
         'symbol: "$", '
-        'code: "780", '
+        'numeric_code: "780", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_trinidad_and_tobago_dollar_negative():
     amount = -100
     trinidad_and_tobago_dollar = TrinidadandTobagoDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert trinidad_and_tobago_dollar.code == '780'
-    assert trinidad_and_tobago_dollar.currency == 'TTD'
+    assert trinidad_and_tobago_dollar.numeric_code == '780'
+    assert trinidad_and_tobago_dollar.alpha_code == 'TTD'
     assert trinidad_and_tobago_dollar.decimal_places == 2
     assert trinidad_and_tobago_dollar.decimal_sign == ','
     assert trinidad_and_tobago_dollar.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_trinidad_and_tobago_dollar_negative():
     assert trinidad_and_tobago_dollar.__hash__() == hash((decimal, 'TTD', '780'))
     assert trinidad_and_tobago_dollar.__repr__() == (
         'TrinidadandTobagoDollar(amount: -100, '
-        'currency: "TTD", '
+        'alpha_code: "TTD", '
         'symbol: "$", '
-        'code: "780", '
+        'numeric_code: "780", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_trinidad_and_tobago_dollar_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert trinidad_and_tobago_dollar.amount == decimal
-    assert trinidad_and_tobago_dollar.code == '780'
-    assert trinidad_and_tobago_dollar.currency == 'TTD'
+    assert trinidad_and_tobago_dollar.numeric_code == '780'
+    assert trinidad_and_tobago_dollar.alpha_code == 'TTD'
     assert trinidad_and_tobago_dollar.decimal_places == 5
     assert trinidad_and_tobago_dollar.decimal_sign == '.'
     assert trinidad_and_tobago_dollar.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_trinidad_and_tobago_dollar_custom():
     assert trinidad_and_tobago_dollar.__hash__() == hash((decimal, 'TTD', '780'))
     assert trinidad_and_tobago_dollar.__repr__() == (
         'TrinidadandTobagoDollar(amount: 1000, '
-        'currency: "TTD", '
+        'alpha_code: "TTD", '
         'symbol: "$", '
-        'code: "780", '
+        'numeric_code: "780", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_trinidad_and_tobago_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        trinidad_and_tobago_dollar.currency = 'EUR'
+        trinidad_and_tobago_dollar.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_trinidad_and_tobago_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        trinidad_and_tobago_dollar.code = '978'
+        trinidad_and_tobago_dollar.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_trinidad_and_tobago_dollar_math_add():
     trinidad_and_tobago_dollar_one = TrinidadandTobagoDollar(amount=1)
     trinidad_and_tobago_dollar_two = TrinidadandTobagoDollar(amount=2)
     trinidad_and_tobago_dollar_three = TrinidadandTobagoDollar(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency TTD and OTHER.'):
@@ -152,8 +152,7 @@ def test_trinidad_and_tobago_dollar_math_add():
                    'dollar.TrinidadandTobagoDollar\'> '
                    'and <class \'str\'>.')):
         _ = trinidad_and_tobago_dollar_one.__add__('1.00')
-    assert (trinidad_and_tobago_dollar_one +
-            trinidad_and_tobago_dollar_two) == trinidad_and_tobago_dollar_three
+    assert (trinidad_and_tobago_dollar_one + trinidad_and_tobago_dollar_two) == trinidad_and_tobago_dollar_three
 
 
 def test_currency_slots():

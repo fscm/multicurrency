@@ -52,9 +52,9 @@ class Yen(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='JPY',
+            alpha_code='JPY',
+            numeric_code='392',
             symbol='¥',
-            code='392',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

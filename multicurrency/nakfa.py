@@ -52,9 +52,9 @@ class Nakfa(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='ERN',
+            alpha_code='ERN',
+            numeric_code='232',
             symbol='Nfk',
-            code='232',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

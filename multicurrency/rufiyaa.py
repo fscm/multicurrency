@@ -52,9 +52,9 @@ class Rufiyaa(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='MVR',
+            alpha_code='MVR',
+            numeric_code='462',
             symbol='ރ.',
-            code='462',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

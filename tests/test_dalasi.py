@@ -23,8 +23,8 @@ def test_dalasi():
     dalasi = Dalasi(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert dalasi.amount == decimal
-    assert dalasi.code == '270'
-    assert dalasi.currency == 'GMD'
+    assert dalasi.numeric_code == '270'
+    assert dalasi.alpha_code == 'GMD'
     assert dalasi.decimal_places == 2
     assert dalasi.decimal_sign == ','
     assert dalasi.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_dalasi():
     assert dalasi.__hash__() == hash((decimal, 'GMD', '270'))
     assert dalasi.__repr__() == (
         'Dalasi(amount: 0.1428571428571428571428571429, '
-        'currency: "GMD", '
+        'alpha_code: "GMD", '
         'symbol: "D", '
-        'code: "270", '
+        'numeric_code: "270", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_dalasi_negative():
     amount = -100
     dalasi = Dalasi(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert dalasi.code == '270'
-    assert dalasi.currency == 'GMD'
+    assert dalasi.numeric_code == '270'
+    assert dalasi.alpha_code == 'GMD'
     assert dalasi.decimal_places == 2
     assert dalasi.decimal_sign == ','
     assert dalasi.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_dalasi_negative():
     assert dalasi.__hash__() == hash((decimal, 'GMD', '270'))
     assert dalasi.__repr__() == (
         'Dalasi(amount: -100, '
-        'currency: "GMD", '
+        'alpha_code: "GMD", '
         'symbol: "D", '
-        'code: "270", '
+        'numeric_code: "270", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_dalasi_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert dalasi.amount == decimal
-    assert dalasi.code == '270'
-    assert dalasi.currency == 'GMD'
+    assert dalasi.numeric_code == '270'
+    assert dalasi.alpha_code == 'GMD'
     assert dalasi.decimal_places == 5
     assert dalasi.decimal_sign == '.'
     assert dalasi.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_dalasi_custom():
     assert dalasi.__hash__() == hash((decimal, 'GMD', '270'))
     assert dalasi.__repr__() == (
         'Dalasi(amount: 1000, '
-        'currency: "GMD", '
+        'alpha_code: "GMD", '
         'symbol: "D", '
-        'code: "270", '
+        'numeric_code: "270", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_dalasi_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        dalasi.currency = 'EUR'
+        dalasi.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_dalasi_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        dalasi.code = '978'
+        dalasi.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_dalasi_math_add():
     dalasi_one = Dalasi(amount=1)
     dalasi_two = Dalasi(amount=2)
     dalasi_three = Dalasi(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency GMD and OTHER.'):

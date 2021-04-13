@@ -23,8 +23,8 @@ def test_cape_verde_escudo():
     cape_verde_escudo = CapeVerdeEscudo(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert cape_verde_escudo.amount == decimal
-    assert cape_verde_escudo.code == '132'
-    assert cape_verde_escudo.currency == 'CVE'
+    assert cape_verde_escudo.numeric_code == '132'
+    assert cape_verde_escudo.alpha_code == 'CVE'
     assert cape_verde_escudo.decimal_places == 2
     assert cape_verde_escudo.decimal_sign == ','
     assert cape_verde_escudo.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_cape_verde_escudo():
     assert cape_verde_escudo.__hash__() == hash((decimal, 'CVE', '132'))
     assert cape_verde_escudo.__repr__() == (
         'CapeVerdeEscudo(amount: 0.1428571428571428571428571429, '
-        'currency: "CVE", '
+        'alpha_code: "CVE", '
         'symbol: "$", '
-        'code: "132", '
+        'numeric_code: "132", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_cape_verde_escudo_negative():
     amount = -100
     cape_verde_escudo = CapeVerdeEscudo(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert cape_verde_escudo.code == '132'
-    assert cape_verde_escudo.currency == 'CVE'
+    assert cape_verde_escudo.numeric_code == '132'
+    assert cape_verde_escudo.alpha_code == 'CVE'
     assert cape_verde_escudo.decimal_places == 2
     assert cape_verde_escudo.decimal_sign == ','
     assert cape_verde_escudo.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_cape_verde_escudo_negative():
     assert cape_verde_escudo.__hash__() == hash((decimal, 'CVE', '132'))
     assert cape_verde_escudo.__repr__() == (
         'CapeVerdeEscudo(amount: -100, '
-        'currency: "CVE", '
+        'alpha_code: "CVE", '
         'symbol: "$", '
-        'code: "132", '
+        'numeric_code: "132", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_cape_verde_escudo_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert cape_verde_escudo.amount == decimal
-    assert cape_verde_escudo.code == '132'
-    assert cape_verde_escudo.currency == 'CVE'
+    assert cape_verde_escudo.numeric_code == '132'
+    assert cape_verde_escudo.alpha_code == 'CVE'
     assert cape_verde_escudo.decimal_places == 5
     assert cape_verde_escudo.decimal_sign == '.'
     assert cape_verde_escudo.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_cape_verde_escudo_custom():
     assert cape_verde_escudo.__hash__() == hash((decimal, 'CVE', '132'))
     assert cape_verde_escudo.__repr__() == (
         'CapeVerdeEscudo(amount: 1000, '
-        'currency: "CVE", '
+        'alpha_code: "CVE", '
         'symbol: "$", '
-        'code: "132", '
+        'numeric_code: "132", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_cape_verde_escudo_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        cape_verde_escudo.currency = 'EUR'
+        cape_verde_escudo.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_cape_verde_escudo_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        cape_verde_escudo.code = '978'
+        cape_verde_escudo.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_cape_verde_escudo_math_add():
     cape_verde_escudo_one = CapeVerdeEscudo(amount=1)
     cape_verde_escudo_two = CapeVerdeEscudo(amount=2)
     cape_verde_escudo_three = CapeVerdeEscudo(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency CVE and OTHER.'):
@@ -152,9 +152,7 @@ def test_cape_verde_escudo_math_add():
                    'escudo.CapeVerdeEscudo\'> '
                    'and <class \'str\'>.')):
         _ = cape_verde_escudo_one.__add__('1.00')
-    assert (
-        cape_verde_escudo_one +
-        cape_verde_escudo_two) == cape_verde_escudo_three
+    assert (cape_verde_escudo_one + cape_verde_escudo_two) == cape_verde_escudo_three
 
 
 def test_currency_slots():

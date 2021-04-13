@@ -52,9 +52,9 @@ class Dong(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='VND',
+            alpha_code='VND',
+            numeric_code='704',
             symbol='₫',
-            code='704',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

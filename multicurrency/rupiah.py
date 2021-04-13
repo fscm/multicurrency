@@ -52,9 +52,9 @@ class Rupiah(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='IDR',
+            alpha_code='IDR',
+            numeric_code='360',
             symbol='Rp',
-            code='360',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

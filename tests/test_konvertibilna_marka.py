@@ -23,8 +23,8 @@ def test_konvertibilna_marka():
     konvertibilna_marka = KonvertibilnaMarka(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert konvertibilna_marka.amount == decimal
-    assert konvertibilna_marka.code == '977'
-    assert konvertibilna_marka.currency == 'BAM'
+    assert konvertibilna_marka.numeric_code == '977'
+    assert konvertibilna_marka.alpha_code == 'BAM'
     assert konvertibilna_marka.decimal_places == 2
     assert konvertibilna_marka.decimal_sign == '.'
     assert konvertibilna_marka.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_konvertibilna_marka():
     assert konvertibilna_marka.__hash__() == hash((decimal, 'BAM', '977'))
     assert konvertibilna_marka.__repr__() == (
         'KonvertibilnaMarka(amount: 0.1428571428571428571428571429, '
-        'currency: "BAM", '
+        'alpha_code: "BAM", '
         'symbol: "КМ", '
-        'code: "977", '
+        'numeric_code: "977", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_konvertibilna_marka_negative():
     amount = -100
     konvertibilna_marka = KonvertibilnaMarka(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert konvertibilna_marka.code == '977'
-    assert konvertibilna_marka.currency == 'BAM'
+    assert konvertibilna_marka.numeric_code == '977'
+    assert konvertibilna_marka.alpha_code == 'BAM'
     assert konvertibilna_marka.decimal_places == 2
     assert konvertibilna_marka.decimal_sign == '.'
     assert konvertibilna_marka.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_konvertibilna_marka_negative():
     assert konvertibilna_marka.__hash__() == hash((decimal, 'BAM', '977'))
     assert konvertibilna_marka.__repr__() == (
         'KonvertibilnaMarka(amount: -100, '
-        'currency: "BAM", '
+        'alpha_code: "BAM", '
         'symbol: "КМ", '
-        'code: "977", '
+        'numeric_code: "977", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_konvertibilna_marka_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert konvertibilna_marka.amount == decimal
-    assert konvertibilna_marka.code == '977'
-    assert konvertibilna_marka.currency == 'BAM'
+    assert konvertibilna_marka.numeric_code == '977'
+    assert konvertibilna_marka.alpha_code == 'BAM'
     assert konvertibilna_marka.decimal_places == 5
     assert konvertibilna_marka.decimal_sign == ','
     assert konvertibilna_marka.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_konvertibilna_marka_custom():
     assert konvertibilna_marka.__hash__() == hash((decimal, 'BAM', '977'))
     assert konvertibilna_marka.__repr__() == (
         'KonvertibilnaMarka(amount: 1000, '
-        'currency: "BAM", '
+        'alpha_code: "BAM", '
         'symbol: "КМ", '
-        'code: "977", '
+        'numeric_code: "977", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_konvertibilna_marka_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        konvertibilna_marka.currency = 'EUR'
+        konvertibilna_marka.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_konvertibilna_marka_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        konvertibilna_marka.code = '978'
+        konvertibilna_marka.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_konvertibilna_marka_math_add():
     konvertibilna_marka_one = KonvertibilnaMarka(amount=1)
     konvertibilna_marka_two = KonvertibilnaMarka(amount=2)
     konvertibilna_marka_three = KonvertibilnaMarka(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency BAM and OTHER.'):
@@ -152,9 +152,7 @@ def test_konvertibilna_marka_math_add():
                    'marka.KonvertibilnaMarka\'> '
                    'and <class \'str\'>.')):
         _ = konvertibilna_marka_one.__add__('1.00')
-    assert (
-        konvertibilna_marka_one +
-        konvertibilna_marka_two) == konvertibilna_marka_three
+    assert (konvertibilna_marka_one + konvertibilna_marka_two) == konvertibilna_marka_three
 
 
 def test_currency_slots():

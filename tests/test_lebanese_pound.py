@@ -23,8 +23,8 @@ def test_lebanese_pound():
     lebanese_pound = LebanesePound(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert lebanese_pound.amount == decimal
-    assert lebanese_pound.code == '422'
-    assert lebanese_pound.currency == 'LBP'
+    assert lebanese_pound.numeric_code == '422'
+    assert lebanese_pound.alpha_code == 'LBP'
     assert lebanese_pound.decimal_places == 0
     assert lebanese_pound.decimal_sign == '.'
     assert lebanese_pound.grouping_sign == ' '
@@ -33,9 +33,9 @@ def test_lebanese_pound():
     assert lebanese_pound.__hash__() == hash((decimal, 'LBP', '422'))
     assert lebanese_pound.__repr__() == (
         'LebanesePound(amount: 0.1428571428571428571428571429, '
-        'currency: "LBP", '
+        'alpha_code: "LBP", '
         'symbol: "ل.ل", '
-        'code: "422", '
+        'numeric_code: "422", '
         'decimal_places: "0", '
         'decimal_sign: ".", '
         'grouping_sign: " ", '
@@ -48,8 +48,8 @@ def test_lebanese_pound_negative():
     amount = -100
     lebanese_pound = LebanesePound(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert lebanese_pound.code == '422'
-    assert lebanese_pound.currency == 'LBP'
+    assert lebanese_pound.numeric_code == '422'
+    assert lebanese_pound.alpha_code == 'LBP'
     assert lebanese_pound.decimal_places == 0
     assert lebanese_pound.decimal_sign == '.'
     assert lebanese_pound.grouping_sign == ' '
@@ -58,9 +58,9 @@ def test_lebanese_pound_negative():
     assert lebanese_pound.__hash__() == hash((decimal, 'LBP', '422'))
     assert lebanese_pound.__repr__() == (
         'LebanesePound(amount: -100, '
-        'currency: "LBP", '
+        'alpha_code: "LBP", '
         'symbol: "ل.ل", '
-        'code: "422", '
+        'numeric_code: "422", '
         'decimal_places: "0", '
         'decimal_sign: ".", '
         'grouping_sign: " ", '
@@ -79,8 +79,8 @@ def test_lebanese_pound_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert lebanese_pound.amount == decimal
-    assert lebanese_pound.code == '422'
-    assert lebanese_pound.currency == 'LBP'
+    assert lebanese_pound.numeric_code == '422'
+    assert lebanese_pound.alpha_code == 'LBP'
     assert lebanese_pound.decimal_places == 5
     assert lebanese_pound.decimal_sign == ' '
     assert lebanese_pound.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_lebanese_pound_custom():
     assert lebanese_pound.__hash__() == hash((decimal, 'LBP', '422'))
     assert lebanese_pound.__repr__() == (
         'LebanesePound(amount: 1000, '
-        'currency: "LBP", '
+        'alpha_code: "LBP", '
         'symbol: "ل.ل", '
-        'code: "422", '
+        'numeric_code: "422", '
         'decimal_places: "5", '
         'decimal_sign: " ", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_lebanese_pound_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        lebanese_pound.currency = 'EUR'
+        lebanese_pound.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_lebanese_pound_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        lebanese_pound.code = '978'
+        lebanese_pound.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_lebanese_pound_math_add():
     lebanese_pound_one = LebanesePound(amount=1)
     lebanese_pound_two = LebanesePound(amount=2)
     lebanese_pound_three = LebanesePound(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency LBP and OTHER.'):

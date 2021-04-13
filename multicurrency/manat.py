@@ -52,9 +52,9 @@ class AzerbaijanianManat(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='AZN',
+            alpha_code='AZN',
+            numeric_code='944',
             symbol='ман',
-            code='944',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -102,9 +102,9 @@ class Manat(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='TMT',
+            alpha_code='TMT',
+            numeric_code='934',
             symbol='m',
-            code='934',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

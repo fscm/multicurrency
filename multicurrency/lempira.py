@@ -52,9 +52,9 @@ class Lempira(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='HNL',
+            alpha_code='HNL',
+            numeric_code='340',
             symbol='L',
-            code='340',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

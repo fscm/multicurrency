@@ -23,8 +23,8 @@ def test_mauritius_rupee():
     mauritius_rupee = MauritiusRupee(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert mauritius_rupee.amount == decimal
-    assert mauritius_rupee.code == '480'
-    assert mauritius_rupee.currency == 'MUR'
+    assert mauritius_rupee.numeric_code == '480'
+    assert mauritius_rupee.alpha_code == 'MUR'
     assert mauritius_rupee.decimal_places == 2
     assert mauritius_rupee.decimal_sign == '.'
     assert mauritius_rupee.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_mauritius_rupee():
     assert mauritius_rupee.__hash__() == hash((decimal, 'MUR', '480'))
     assert mauritius_rupee.__repr__() == (
         'MauritiusRupee(amount: 0.1428571428571428571428571429, '
-        'currency: "MUR", '
+        'alpha_code: "MUR", '
         'symbol: "₨", '
-        'code: "480", '
+        'numeric_code: "480", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_mauritius_rupee_negative():
     amount = -100
     mauritius_rupee = MauritiusRupee(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert mauritius_rupee.code == '480'
-    assert mauritius_rupee.currency == 'MUR'
+    assert mauritius_rupee.numeric_code == '480'
+    assert mauritius_rupee.alpha_code == 'MUR'
     assert mauritius_rupee.decimal_places == 2
     assert mauritius_rupee.decimal_sign == '.'
     assert mauritius_rupee.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_mauritius_rupee_negative():
     assert mauritius_rupee.__hash__() == hash((decimal, 'MUR', '480'))
     assert mauritius_rupee.__repr__() == (
         'MauritiusRupee(amount: -100, '
-        'currency: "MUR", '
+        'alpha_code: "MUR", '
         'symbol: "₨", '
-        'code: "480", '
+        'numeric_code: "480", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_mauritius_rupee_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert mauritius_rupee.amount == decimal
-    assert mauritius_rupee.code == '480'
-    assert mauritius_rupee.currency == 'MUR'
+    assert mauritius_rupee.numeric_code == '480'
+    assert mauritius_rupee.alpha_code == 'MUR'
     assert mauritius_rupee.decimal_places == 5
     assert mauritius_rupee.decimal_sign == ','
     assert mauritius_rupee.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_mauritius_rupee_custom():
     assert mauritius_rupee.__hash__() == hash((decimal, 'MUR', '480'))
     assert mauritius_rupee.__repr__() == (
         'MauritiusRupee(amount: 1000, '
-        'currency: "MUR", '
+        'alpha_code: "MUR", '
         'symbol: "₨", '
-        'code: "480", '
+        'numeric_code: "480", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_mauritius_rupee_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        mauritius_rupee.currency = 'EUR'
+        mauritius_rupee.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_mauritius_rupee_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        mauritius_rupee.code = '978'
+        mauritius_rupee.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_mauritius_rupee_math_add():
     mauritius_rupee_one = MauritiusRupee(amount=1)
     mauritius_rupee_two = MauritiusRupee(amount=2)
     mauritius_rupee_three = MauritiusRupee(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency MUR and OTHER.'):

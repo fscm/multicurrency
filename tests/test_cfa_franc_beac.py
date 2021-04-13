@@ -23,8 +23,8 @@ def test_cfa_franc_beac():
     cfa_franc_beac = CFAFrancBEAC(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert cfa_franc_beac.amount == decimal
-    assert cfa_franc_beac.code == '950'
-    assert cfa_franc_beac.currency == 'XAF'
+    assert cfa_franc_beac.numeric_code == '950'
+    assert cfa_franc_beac.alpha_code == 'XAF'
     assert cfa_franc_beac.decimal_places == 0
     assert cfa_franc_beac.decimal_sign == ','
     assert cfa_franc_beac.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_cfa_franc_beac():
     assert cfa_franc_beac.__hash__() == hash((decimal, 'XAF', '950'))
     assert cfa_franc_beac.__repr__() == (
         'CFAFrancBEAC(amount: 0.1428571428571428571428571429, '
-        'currency: "XAF", '
+        'alpha_code: "XAF", '
         'symbol: "₣", '
-        'code: "950", '
+        'numeric_code: "950", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_cfa_franc_beac_negative():
     amount = -100
     cfa_franc_beac = CFAFrancBEAC(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert cfa_franc_beac.code == '950'
-    assert cfa_franc_beac.currency == 'XAF'
+    assert cfa_franc_beac.numeric_code == '950'
+    assert cfa_franc_beac.alpha_code == 'XAF'
     assert cfa_franc_beac.decimal_places == 0
     assert cfa_franc_beac.decimal_sign == ','
     assert cfa_franc_beac.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_cfa_franc_beac_negative():
     assert cfa_franc_beac.__hash__() == hash((decimal, 'XAF', '950'))
     assert cfa_franc_beac.__repr__() == (
         'CFAFrancBEAC(amount: -100, '
-        'currency: "XAF", '
+        'alpha_code: "XAF", '
         'symbol: "₣", '
-        'code: "950", '
+        'numeric_code: "950", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_cfa_franc_beac_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert cfa_franc_beac.amount == decimal
-    assert cfa_franc_beac.code == '950'
-    assert cfa_franc_beac.currency == 'XAF'
+    assert cfa_franc_beac.numeric_code == '950'
+    assert cfa_franc_beac.alpha_code == 'XAF'
     assert cfa_franc_beac.decimal_places == 5
     assert cfa_franc_beac.decimal_sign == '.'
     assert cfa_franc_beac.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_cfa_franc_beac_custom():
     assert cfa_franc_beac.__hash__() == hash((decimal, 'XAF', '950'))
     assert cfa_franc_beac.__repr__() == (
         'CFAFrancBEAC(amount: 1000, '
-        'currency: "XAF", '
+        'alpha_code: "XAF", '
         'symbol: "₣", '
-        'code: "950", '
+        'numeric_code: "950", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_cfa_franc_beac_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        cfa_franc_beac.currency = 'EUR'
+        cfa_franc_beac.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_cfa_franc_beac_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        cfa_franc_beac.code = '978'
+        cfa_franc_beac.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_cfa_franc_beac_math_add():
     cfa_franc_beac_one = CFAFrancBEAC(amount=1)
     cfa_franc_beac_two = CFAFrancBEAC(amount=2)
     cfa_franc_beac_three = CFAFrancBEAC(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency XAF and OTHER.'):

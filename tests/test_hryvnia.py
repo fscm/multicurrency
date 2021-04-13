@@ -23,8 +23,8 @@ def test_hryvnia():
     hryvnia = Hryvnia(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert hryvnia.amount == decimal
-    assert hryvnia.code == '980'
-    assert hryvnia.currency == 'UAH'
+    assert hryvnia.numeric_code == '980'
+    assert hryvnia.alpha_code == 'UAH'
     assert hryvnia.decimal_places == 2
     assert hryvnia.decimal_sign == ','
     assert hryvnia.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_hryvnia():
     assert hryvnia.__hash__() == hash((decimal, 'UAH', '980'))
     assert hryvnia.__repr__() == (
         'Hryvnia(amount: 0.1428571428571428571428571429, '
-        'currency: "UAH", '
+        'alpha_code: "UAH", '
         'symbol: "₴", '
-        'code: "980", '
+        'numeric_code: "980", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_hryvnia_negative():
     amount = -100
     hryvnia = Hryvnia(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert hryvnia.code == '980'
-    assert hryvnia.currency == 'UAH'
+    assert hryvnia.numeric_code == '980'
+    assert hryvnia.alpha_code == 'UAH'
     assert hryvnia.decimal_places == 2
     assert hryvnia.decimal_sign == ','
     assert hryvnia.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_hryvnia_negative():
     assert hryvnia.__hash__() == hash((decimal, 'UAH', '980'))
     assert hryvnia.__repr__() == (
         'Hryvnia(amount: -100, '
-        'currency: "UAH", '
+        'alpha_code: "UAH", '
         'symbol: "₴", '
-        'code: "980", '
+        'numeric_code: "980", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_hryvnia_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert hryvnia.amount == decimal
-    assert hryvnia.code == '980'
-    assert hryvnia.currency == 'UAH'
+    assert hryvnia.numeric_code == '980'
+    assert hryvnia.alpha_code == 'UAH'
     assert hryvnia.decimal_places == 5
     assert hryvnia.decimal_sign == '.'
     assert hryvnia.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_hryvnia_custom():
     assert hryvnia.__hash__() == hash((decimal, 'UAH', '980'))
     assert hryvnia.__repr__() == (
         'Hryvnia(amount: 1000, '
-        'currency: "UAH", '
+        'alpha_code: "UAH", '
         'symbol: "₴", '
-        'code: "980", '
+        'numeric_code: "980", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_hryvnia_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        hryvnia.currency = 'EUR'
+        hryvnia.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_hryvnia_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        hryvnia.code = '978'
+        hryvnia.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_hryvnia_math_add():
     hryvnia_one = Hryvnia(amount=1)
     hryvnia_two = Hryvnia(amount=2)
     hryvnia_three = Hryvnia(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency UAH and OTHER.'):

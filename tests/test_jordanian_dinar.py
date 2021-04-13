@@ -23,8 +23,8 @@ def test_jordanian_dinar():
     jordanian_dinar = JordanianDinar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert jordanian_dinar.amount == decimal
-    assert jordanian_dinar.code == '400'
-    assert jordanian_dinar.currency == 'JOD'
+    assert jordanian_dinar.numeric_code == '400'
+    assert jordanian_dinar.alpha_code == 'JOD'
     assert jordanian_dinar.decimal_places == 3
     assert jordanian_dinar.decimal_sign == '.'
     assert jordanian_dinar.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_jordanian_dinar():
     assert jordanian_dinar.__hash__() == hash((decimal, 'JOD', '400'))
     assert jordanian_dinar.__repr__() == (
         'JordanianDinar(amount: 0.1428571428571428571428571429, '
-        'currency: "JOD", '
+        'alpha_code: "JOD", '
         'symbol: "د.ا", '
-        'code: "400", '
+        'numeric_code: "400", '
         'decimal_places: "3", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_jordanian_dinar_negative():
     amount = -100
     jordanian_dinar = JordanianDinar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert jordanian_dinar.code == '400'
-    assert jordanian_dinar.currency == 'JOD'
+    assert jordanian_dinar.numeric_code == '400'
+    assert jordanian_dinar.alpha_code == 'JOD'
     assert jordanian_dinar.decimal_places == 3
     assert jordanian_dinar.decimal_sign == '.'
     assert jordanian_dinar.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_jordanian_dinar_negative():
     assert jordanian_dinar.__hash__() == hash((decimal, 'JOD', '400'))
     assert jordanian_dinar.__repr__() == (
         'JordanianDinar(amount: -100, '
-        'currency: "JOD", '
+        'alpha_code: "JOD", '
         'symbol: "د.ا", '
-        'code: "400", '
+        'numeric_code: "400", '
         'decimal_places: "3", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_jordanian_dinar_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert jordanian_dinar.amount == decimal
-    assert jordanian_dinar.code == '400'
-    assert jordanian_dinar.currency == 'JOD'
+    assert jordanian_dinar.numeric_code == '400'
+    assert jordanian_dinar.alpha_code == 'JOD'
     assert jordanian_dinar.decimal_places == 5
     assert jordanian_dinar.decimal_sign == ','
     assert jordanian_dinar.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_jordanian_dinar_custom():
     assert jordanian_dinar.__hash__() == hash((decimal, 'JOD', '400'))
     assert jordanian_dinar.__repr__() == (
         'JordanianDinar(amount: 1000, '
-        'currency: "JOD", '
+        'alpha_code: "JOD", '
         'symbol: "د.ا", '
-        'code: "400", '
+        'numeric_code: "400", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_jordanian_dinar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        jordanian_dinar.currency = 'EUR'
+        jordanian_dinar.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_jordanian_dinar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        jordanian_dinar.code = '978'
+        jordanian_dinar.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_jordanian_dinar_math_add():
     jordanian_dinar_one = JordanianDinar(amount=1)
     jordanian_dinar_two = JordanianDinar(amount=2)
     jordanian_dinar_three = JordanianDinar(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency JOD and OTHER.'):

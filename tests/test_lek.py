@@ -23,8 +23,8 @@ def test_lek():
     lek = Lek(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert lek.amount == decimal
-    assert lek.code == '008'
-    assert lek.currency == 'ALL'
+    assert lek.numeric_code == '008'
+    assert lek.alpha_code == 'ALL'
     assert lek.decimal_places == 2
     assert lek.decimal_sign == ','
     assert lek.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_lek():
     assert lek.__hash__() == hash((decimal, 'ALL', '008'))
     assert lek.__repr__() == (
         'Lek(amount: 0.1428571428571428571428571429, '
-        'currency: "ALL", '
+        'alpha_code: "ALL", '
         'symbol: "L", '
-        'code: "008", '
+        'numeric_code: "008", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_lek_negative():
     amount = -100
     lek = Lek(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert lek.code == '008'
-    assert lek.currency == 'ALL'
+    assert lek.numeric_code == '008'
+    assert lek.alpha_code == 'ALL'
     assert lek.decimal_places == 2
     assert lek.decimal_sign == ','
     assert lek.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_lek_negative():
     assert lek.__hash__() == hash((decimal, 'ALL', '008'))
     assert lek.__repr__() == (
         'Lek(amount: -100, '
-        'currency: "ALL", '
+        'alpha_code: "ALL", '
         'symbol: "L", '
-        'code: "008", '
+        'numeric_code: "008", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_lek_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert lek.amount == decimal
-    assert lek.code == '008'
-    assert lek.currency == 'ALL'
+    assert lek.numeric_code == '008'
+    assert lek.alpha_code == 'ALL'
     assert lek.decimal_places == 5
     assert lek.decimal_sign == '.'
     assert lek.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_lek_custom():
     assert lek.__hash__() == hash((decimal, 'ALL', '008'))
     assert lek.__repr__() == (
         'Lek(amount: 1000, '
-        'currency: "ALL", '
+        'alpha_code: "ALL", '
         'symbol: "L", '
-        'code: "008", '
+        'numeric_code: "008", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_lek_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        lek.currency = 'EUR'
+        lek.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_lek_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        lek.code = '978'
+        lek.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_lek_math_add():
     lek_one = Lek(amount=1)
     lek_two = Lek(amount=2)
     lek_three = Lek(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency ALL and OTHER.'):

@@ -23,8 +23,8 @@ def test_taka():
     taka = Taka(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert taka.amount == decimal
-    assert taka.code == '050'
-    assert taka.currency == 'BDT'
+    assert taka.numeric_code == '050'
+    assert taka.alpha_code == 'BDT'
     assert taka.decimal_places == 2
     assert taka.decimal_sign == '.'
     assert taka.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_taka():
     assert taka.__hash__() == hash((decimal, 'BDT', '050'))
     assert taka.__repr__() == (
         'Taka(amount: 0.1428571428571428571428571429, '
-        'currency: "BDT", '
+        'alpha_code: "BDT", '
         'symbol: "৳", '
-        'code: "050", '
+        'numeric_code: "050", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_taka_negative():
     amount = -100
     taka = Taka(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert taka.code == '050'
-    assert taka.currency == 'BDT'
+    assert taka.numeric_code == '050'
+    assert taka.alpha_code == 'BDT'
     assert taka.decimal_places == 2
     assert taka.decimal_sign == '.'
     assert taka.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_taka_negative():
     assert taka.__hash__() == hash((decimal, 'BDT', '050'))
     assert taka.__repr__() == (
         'Taka(amount: -100, '
-        'currency: "BDT", '
+        'alpha_code: "BDT", '
         'symbol: "৳", '
-        'code: "050", '
+        'numeric_code: "050", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_taka_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert taka.amount == decimal
-    assert taka.code == '050'
-    assert taka.currency == 'BDT'
+    assert taka.numeric_code == '050'
+    assert taka.alpha_code == 'BDT'
     assert taka.decimal_places == 5
     assert taka.decimal_sign == ','
     assert taka.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_taka_custom():
     assert taka.__hash__() == hash((decimal, 'BDT', '050'))
     assert taka.__repr__() == (
         'Taka(amount: 1000, '
-        'currency: "BDT", '
+        'alpha_code: "BDT", '
         'symbol: "৳", '
-        'code: "050", '
+        'numeric_code: "050", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_taka_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        taka.currency = 'EUR'
+        taka.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_taka_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        taka.code = '978'
+        taka.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_taka_math_add():
     taka_one = Taka(amount=1)
     taka_two = Taka(amount=2)
     taka_three = Taka(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency BDT and OTHER.'):

@@ -52,9 +52,9 @@ class CostaRicanColon(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='CRC',
+            alpha_code='CRC',
+            numeric_code='188',
             symbol='₡',
-            code='188',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

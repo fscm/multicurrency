@@ -52,9 +52,9 @@ class CroatianKuna(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='HRK',
+            alpha_code='HRK',
+            numeric_code='191',
             symbol='Kn',
-            code='191',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

@@ -23,8 +23,8 @@ def test_rufiyaa():
     rufiyaa = Rufiyaa(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert rufiyaa.amount == decimal
-    assert rufiyaa.code == '462'
-    assert rufiyaa.currency == 'MVR'
+    assert rufiyaa.numeric_code == '462'
+    assert rufiyaa.alpha_code == 'MVR'
     assert rufiyaa.decimal_places == 2
     assert rufiyaa.decimal_sign == ','
     assert rufiyaa.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_rufiyaa():
     assert rufiyaa.__hash__() == hash((decimal, 'MVR', '462'))
     assert rufiyaa.__repr__() == (
         'Rufiyaa(amount: 0.1428571428571428571428571429, '
-        'currency: "MVR", '
+        'alpha_code: "MVR", '
         'symbol: "ރ.", '
-        'code: "462", '
+        'numeric_code: "462", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_rufiyaa_negative():
     amount = -100
     rufiyaa = Rufiyaa(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert rufiyaa.code == '462'
-    assert rufiyaa.currency == 'MVR'
+    assert rufiyaa.numeric_code == '462'
+    assert rufiyaa.alpha_code == 'MVR'
     assert rufiyaa.decimal_places == 2
     assert rufiyaa.decimal_sign == ','
     assert rufiyaa.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_rufiyaa_negative():
     assert rufiyaa.__hash__() == hash((decimal, 'MVR', '462'))
     assert rufiyaa.__repr__() == (
         'Rufiyaa(amount: -100, '
-        'currency: "MVR", '
+        'alpha_code: "MVR", '
         'symbol: "ރ.", '
-        'code: "462", '
+        'numeric_code: "462", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_rufiyaa_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert rufiyaa.amount == decimal
-    assert rufiyaa.code == '462'
-    assert rufiyaa.currency == 'MVR'
+    assert rufiyaa.numeric_code == '462'
+    assert rufiyaa.alpha_code == 'MVR'
     assert rufiyaa.decimal_places == 5
     assert rufiyaa.decimal_sign == '.'
     assert rufiyaa.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_rufiyaa_custom():
     assert rufiyaa.__hash__() == hash((decimal, 'MVR', '462'))
     assert rufiyaa.__repr__() == (
         'Rufiyaa(amount: 1000, '
-        'currency: "MVR", '
+        'alpha_code: "MVR", '
         'symbol: "ރ.", '
-        'code: "462", '
+        'numeric_code: "462", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_rufiyaa_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        rufiyaa.currency = 'EUR'
+        rufiyaa.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_rufiyaa_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        rufiyaa.code = '978'
+        rufiyaa.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_rufiyaa_math_add():
     rufiyaa_one = Rufiyaa(amount=1)
     rufiyaa_two = Rufiyaa(amount=2)
     rufiyaa_three = Rufiyaa(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency MVR and OTHER.'):

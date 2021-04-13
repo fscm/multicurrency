@@ -23,8 +23,8 @@ def test_metical():
     metical = Metical(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert metical.amount == decimal
-    assert metical.code == '943'
-    assert metical.currency == 'MZN'
+    assert metical.numeric_code == '943'
+    assert metical.alpha_code == 'MZN'
     assert metical.decimal_places == 0
     assert metical.decimal_sign == ','
     assert metical.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_metical():
     assert metical.__hash__() == hash((decimal, 'MZN', '943'))
     assert metical.__repr__() == (
         'Metical(amount: 0.1428571428571428571428571429, '
-        'currency: "MZN", '
+        'alpha_code: "MZN", '
         'symbol: "MTn", '
-        'code: "943", '
+        'numeric_code: "943", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_metical_negative():
     amount = -100
     metical = Metical(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert metical.code == '943'
-    assert metical.currency == 'MZN'
+    assert metical.numeric_code == '943'
+    assert metical.alpha_code == 'MZN'
     assert metical.decimal_places == 0
     assert metical.decimal_sign == ','
     assert metical.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_metical_negative():
     assert metical.__hash__() == hash((decimal, 'MZN', '943'))
     assert metical.__repr__() == (
         'Metical(amount: -100, '
-        'currency: "MZN", '
+        'alpha_code: "MZN", '
         'symbol: "MTn", '
-        'code: "943", '
+        'numeric_code: "943", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_metical_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert metical.amount == decimal
-    assert metical.code == '943'
-    assert metical.currency == 'MZN'
+    assert metical.numeric_code == '943'
+    assert metical.alpha_code == 'MZN'
     assert metical.decimal_places == 5
     assert metical.decimal_sign == '.'
     assert metical.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_metical_custom():
     assert metical.__hash__() == hash((decimal, 'MZN', '943'))
     assert metical.__repr__() == (
         'Metical(amount: 1000, '
-        'currency: "MZN", '
+        'alpha_code: "MZN", '
         'symbol: "MTn", '
-        'code: "943", '
+        'numeric_code: "943", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_metical_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        metical.currency = 'EUR'
+        metical.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_metical_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        metical.code = '978'
+        metical.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_metical_math_add():
     metical_one = Metical(amount=1)
     metical_two = Metical(amount=2)
     metical_three = Metical(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency MZN and OTHER.'):

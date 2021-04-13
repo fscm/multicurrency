@@ -52,9 +52,9 @@ class Taka(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='BDT',
+            alpha_code='BDT',
+            numeric_code='050',
             symbol='৳',
-            code='050',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

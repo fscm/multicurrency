@@ -52,9 +52,9 @@ class Quetzal(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='GTQ',
+            alpha_code='GTQ',
+            numeric_code='320',
             symbol='Q',
-            code='320',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

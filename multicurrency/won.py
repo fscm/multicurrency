@@ -52,9 +52,9 @@ class NorthKoreanWon(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='KPW',
+            alpha_code='KPW',
+            numeric_code='408',
             symbol='₩',
-            code='408',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -102,9 +102,9 @@ class SouthKoreanWon(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='KRW',
+            alpha_code='KRW',
+            numeric_code='410',
             symbol='₩',
-            code='410',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

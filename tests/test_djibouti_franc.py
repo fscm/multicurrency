@@ -23,8 +23,8 @@ def test_djibouti_franc():
     djibouti_franc = DjiboutiFranc(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert djibouti_franc.amount == decimal
-    assert djibouti_franc.code == '262'
-    assert djibouti_franc.currency == 'DJF'
+    assert djibouti_franc.numeric_code == '262'
+    assert djibouti_franc.alpha_code == 'DJF'
     assert djibouti_franc.decimal_places == 0
     assert djibouti_franc.decimal_sign == ','
     assert djibouti_franc.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_djibouti_franc():
     assert djibouti_franc.__hash__() == hash((decimal, 'DJF', '262'))
     assert djibouti_franc.__repr__() == (
         'DjiboutiFranc(amount: 0.1428571428571428571428571429, '
-        'currency: "DJF", '
+        'alpha_code: "DJF", '
         'symbol: "₣", '
-        'code: "262", '
+        'numeric_code: "262", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_djibouti_franc_negative():
     amount = -100
     djibouti_franc = DjiboutiFranc(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert djibouti_franc.code == '262'
-    assert djibouti_franc.currency == 'DJF'
+    assert djibouti_franc.numeric_code == '262'
+    assert djibouti_franc.alpha_code == 'DJF'
     assert djibouti_franc.decimal_places == 0
     assert djibouti_franc.decimal_sign == ','
     assert djibouti_franc.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_djibouti_franc_negative():
     assert djibouti_franc.__hash__() == hash((decimal, 'DJF', '262'))
     assert djibouti_franc.__repr__() == (
         'DjiboutiFranc(amount: -100, '
-        'currency: "DJF", '
+        'alpha_code: "DJF", '
         'symbol: "₣", '
-        'code: "262", '
+        'numeric_code: "262", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_djibouti_franc_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert djibouti_franc.amount == decimal
-    assert djibouti_franc.code == '262'
-    assert djibouti_franc.currency == 'DJF'
+    assert djibouti_franc.numeric_code == '262'
+    assert djibouti_franc.alpha_code == 'DJF'
     assert djibouti_franc.decimal_places == 5
     assert djibouti_franc.decimal_sign == '.'
     assert djibouti_franc.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_djibouti_franc_custom():
     assert djibouti_franc.__hash__() == hash((decimal, 'DJF', '262'))
     assert djibouti_franc.__repr__() == (
         'DjiboutiFranc(amount: 1000, '
-        'currency: "DJF", '
+        'alpha_code: "DJF", '
         'symbol: "₣", '
-        'code: "262", '
+        'numeric_code: "262", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_djibouti_franc_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        djibouti_franc.currency = 'EUR'
+        djibouti_franc.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_djibouti_franc_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        djibouti_franc.code = '978'
+        djibouti_franc.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_djibouti_franc_math_add():
     djibouti_franc_one = DjiboutiFranc(amount=1)
     djibouti_franc_two = DjiboutiFranc(amount=2)
     djibouti_franc_three = DjiboutiFranc(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency DJF and OTHER.'):

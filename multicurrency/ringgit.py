@@ -52,9 +52,9 @@ class MalaysianRinggit(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='MYR',
+            alpha_code='MYR',
+            numeric_code='458',
             symbol='RM',
-            code='458',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

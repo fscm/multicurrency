@@ -23,8 +23,8 @@ def test_lari():
     lari = Lari(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert lari.amount == decimal
-    assert lari.code == '981'
-    assert lari.currency == 'GEL'
+    assert lari.numeric_code == '981'
+    assert lari.alpha_code == 'GEL'
     assert lari.decimal_places == 2
     assert lari.decimal_sign == ','
     assert lari.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_lari():
     assert lari.__hash__() == hash((decimal, 'GEL', '981'))
     assert lari.__repr__() == (
         'Lari(amount: 0.1428571428571428571428571429, '
-        'currency: "GEL", '
+        'alpha_code: "GEL", '
         'symbol: "ლ", '
-        'code: "981", '
+        'numeric_code: "981", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_lari_negative():
     amount = -100
     lari = Lari(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert lari.code == '981'
-    assert lari.currency == 'GEL'
+    assert lari.numeric_code == '981'
+    assert lari.alpha_code == 'GEL'
     assert lari.decimal_places == 2
     assert lari.decimal_sign == ','
     assert lari.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_lari_negative():
     assert lari.__hash__() == hash((decimal, 'GEL', '981'))
     assert lari.__repr__() == (
         'Lari(amount: -100, '
-        'currency: "GEL", '
+        'alpha_code: "GEL", '
         'symbol: "ლ", '
-        'code: "981", '
+        'numeric_code: "981", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_lari_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert lari.amount == decimal
-    assert lari.code == '981'
-    assert lari.currency == 'GEL'
+    assert lari.numeric_code == '981'
+    assert lari.alpha_code == 'GEL'
     assert lari.decimal_places == 5
     assert lari.decimal_sign == '.'
     assert lari.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_lari_custom():
     assert lari.__hash__() == hash((decimal, 'GEL', '981'))
     assert lari.__repr__() == (
         'Lari(amount: 1000, '
-        'currency: "GEL", '
+        'alpha_code: "GEL", '
         'symbol: "ლ", '
-        'code: "981", '
+        'numeric_code: "981", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_lari_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        lari.currency = 'EUR'
+        lari.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_lari_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        lari.code = '978'
+        lari.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_lari_math_add():
     lari_one = Lari(amount=1)
     lari_two = Lari(amount=2)
     lari_three = Lari(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency GEL and OTHER.'):

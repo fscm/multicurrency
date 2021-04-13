@@ -23,8 +23,8 @@ def test_pula():
     pula = Pula(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert pula.amount == decimal
-    assert pula.code == '072'
-    assert pula.currency == 'BWP'
+    assert pula.numeric_code == '072'
+    assert pula.alpha_code == 'BWP'
     assert pula.decimal_places == 2
     assert pula.decimal_sign == ','
     assert pula.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_pula():
     assert pula.__hash__() == hash((decimal, 'BWP', '072'))
     assert pula.__repr__() == (
         'Pula(amount: 0.1428571428571428571428571429, '
-        'currency: "BWP", '
+        'alpha_code: "BWP", '
         'symbol: "P", '
-        'code: "072", '
+        'numeric_code: "072", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_pula_negative():
     amount = -100
     pula = Pula(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert pula.code == '072'
-    assert pula.currency == 'BWP'
+    assert pula.numeric_code == '072'
+    assert pula.alpha_code == 'BWP'
     assert pula.decimal_places == 2
     assert pula.decimal_sign == ','
     assert pula.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_pula_negative():
     assert pula.__hash__() == hash((decimal, 'BWP', '072'))
     assert pula.__repr__() == (
         'Pula(amount: -100, '
-        'currency: "BWP", '
+        'alpha_code: "BWP", '
         'symbol: "P", '
-        'code: "072", '
+        'numeric_code: "072", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_pula_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert pula.amount == decimal
-    assert pula.code == '072'
-    assert pula.currency == 'BWP'
+    assert pula.numeric_code == '072'
+    assert pula.alpha_code == 'BWP'
     assert pula.decimal_places == 5
     assert pula.decimal_sign == '.'
     assert pula.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_pula_custom():
     assert pula.__hash__() == hash((decimal, 'BWP', '072'))
     assert pula.__repr__() == (
         'Pula(amount: 1000, '
-        'currency: "BWP", '
+        'alpha_code: "BWP", '
         'symbol: "P", '
-        'code: "072", '
+        'numeric_code: "072", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_pula_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        pula.currency = 'EUR'
+        pula.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_pula_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        pula.code = '978'
+        pula.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_pula_math_add():
     pula_one = Pula(amount=1)
     pula_two = Pula(amount=2)
     pula_three = Pula(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency BWP and OTHER.'):

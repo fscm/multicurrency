@@ -52,9 +52,9 @@ class DanishKrone(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='DKK',
+            alpha_code='DKK',
+            numeric_code='208',
             symbol='kr',
-            code='208',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -102,9 +102,9 @@ class NorwegianKrone(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='NOK',
+            alpha_code='NOK',
+            numeric_code='578',
             symbol='kr',
-            code='578',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

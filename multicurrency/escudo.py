@@ -52,9 +52,9 @@ class CapeVerdeEscudo(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='CVE',
+            alpha_code='CVE',
+            numeric_code='132',
             symbol='$',
-            code='132',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

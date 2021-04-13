@@ -23,8 +23,8 @@ def test_kwacha():
     kwacha = Kwacha(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert kwacha.amount == decimal
-    assert kwacha.code == '454'
-    assert kwacha.currency == 'MWK'
+    assert kwacha.numeric_code == '454'
+    assert kwacha.alpha_code == 'MWK'
     assert kwacha.decimal_places == 2
     assert kwacha.decimal_sign == ','
     assert kwacha.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_kwacha():
     assert kwacha.__hash__() == hash((decimal, 'MWK', '454'))
     assert kwacha.__repr__() == (
         'Kwacha(amount: 0.1428571428571428571428571429, '
-        'currency: "MWK", '
+        'alpha_code: "MWK", '
         'symbol: "MK", '
-        'code: "454", '
+        'numeric_code: "454", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_kwacha_negative():
     amount = -100
     kwacha = Kwacha(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert kwacha.code == '454'
-    assert kwacha.currency == 'MWK'
+    assert kwacha.numeric_code == '454'
+    assert kwacha.alpha_code == 'MWK'
     assert kwacha.decimal_places == 2
     assert kwacha.decimal_sign == ','
     assert kwacha.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_kwacha_negative():
     assert kwacha.__hash__() == hash((decimal, 'MWK', '454'))
     assert kwacha.__repr__() == (
         'Kwacha(amount: -100, '
-        'currency: "MWK", '
+        'alpha_code: "MWK", '
         'symbol: "MK", '
-        'code: "454", '
+        'numeric_code: "454", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_kwacha_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert kwacha.amount == decimal
-    assert kwacha.code == '454'
-    assert kwacha.currency == 'MWK'
+    assert kwacha.numeric_code == '454'
+    assert kwacha.alpha_code == 'MWK'
     assert kwacha.decimal_places == 5
     assert kwacha.decimal_sign == '.'
     assert kwacha.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_kwacha_custom():
     assert kwacha.__hash__() == hash((decimal, 'MWK', '454'))
     assert kwacha.__repr__() == (
         'Kwacha(amount: 1000, '
-        'currency: "MWK", '
+        'alpha_code: "MWK", '
         'symbol: "MK", '
-        'code: "454", '
+        'numeric_code: "454", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_kwacha_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        kwacha.currency = 'EUR'
+        kwacha.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_kwacha_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        kwacha.code = '978'
+        kwacha.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_kwacha_math_add():
     kwacha_one = Kwacha(amount=1)
     kwacha_two = Kwacha(amount=2)
     kwacha_three = Kwacha(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency MWK and OTHER.'):

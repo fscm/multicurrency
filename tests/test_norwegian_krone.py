@@ -23,8 +23,8 @@ def test_norwegian_krone():
     norwegian_krone = NorwegianKrone(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert norwegian_krone.amount == decimal
-    assert norwegian_krone.code == '578'
-    assert norwegian_krone.currency == 'NOK'
+    assert norwegian_krone.numeric_code == '578'
+    assert norwegian_krone.alpha_code == 'NOK'
     assert norwegian_krone.decimal_places == 2
     assert norwegian_krone.decimal_sign == ','
     assert norwegian_krone.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_norwegian_krone():
     assert norwegian_krone.__hash__() == hash((decimal, 'NOK', '578'))
     assert norwegian_krone.__repr__() == (
         'NorwegianKrone(amount: 0.1428571428571428571428571429, '
-        'currency: "NOK", '
+        'alpha_code: "NOK", '
         'symbol: "kr", '
-        'code: "578", '
+        'numeric_code: "578", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_norwegian_krone_negative():
     amount = -100
     norwegian_krone = NorwegianKrone(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert norwegian_krone.code == '578'
-    assert norwegian_krone.currency == 'NOK'
+    assert norwegian_krone.numeric_code == '578'
+    assert norwegian_krone.alpha_code == 'NOK'
     assert norwegian_krone.decimal_places == 2
     assert norwegian_krone.decimal_sign == ','
     assert norwegian_krone.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_norwegian_krone_negative():
     assert norwegian_krone.__hash__() == hash((decimal, 'NOK', '578'))
     assert norwegian_krone.__repr__() == (
         'NorwegianKrone(amount: -100, '
-        'currency: "NOK", '
+        'alpha_code: "NOK", '
         'symbol: "kr", '
-        'code: "578", '
+        'numeric_code: "578", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_norwegian_krone_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert norwegian_krone.amount == decimal
-    assert norwegian_krone.code == '578'
-    assert norwegian_krone.currency == 'NOK'
+    assert norwegian_krone.numeric_code == '578'
+    assert norwegian_krone.alpha_code == 'NOK'
     assert norwegian_krone.decimal_places == 5
     assert norwegian_krone.decimal_sign == '.'
     assert norwegian_krone.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_norwegian_krone_custom():
     assert norwegian_krone.__hash__() == hash((decimal, 'NOK', '578'))
     assert norwegian_krone.__repr__() == (
         'NorwegianKrone(amount: 1000, '
-        'currency: "NOK", '
+        'alpha_code: "NOK", '
         'symbol: "kr", '
-        'code: "578", '
+        'numeric_code: "578", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_norwegian_krone_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        norwegian_krone.currency = 'EUR'
+        norwegian_krone.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_norwegian_krone_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        norwegian_krone.code = '978'
+        norwegian_krone.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_norwegian_krone_math_add():
     norwegian_krone_one = NorwegianKrone(amount=1)
     norwegian_krone_two = NorwegianKrone(amount=2)
     norwegian_krone_three = NorwegianKrone(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency NOK and OTHER.'):

@@ -23,8 +23,8 @@ def test_congolese_franc():
     congolese_franc = CongoleseFranc(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert congolese_franc.amount == decimal
-    assert congolese_franc.code == '976'
-    assert congolese_franc.currency == 'CDF'
+    assert congolese_franc.numeric_code == '976'
+    assert congolese_franc.alpha_code == 'CDF'
     assert congolese_franc.decimal_places == 2
     assert congolese_franc.decimal_sign == ','
     assert congolese_franc.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_congolese_franc():
     assert congolese_franc.__hash__() == hash((decimal, 'CDF', '976'))
     assert congolese_franc.__repr__() == (
         'CongoleseFranc(amount: 0.1428571428571428571428571429, '
-        'currency: "CDF", '
+        'alpha_code: "CDF", '
         'symbol: "₣", '
-        'code: "976", '
+        'numeric_code: "976", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_congolese_franc_negative():
     amount = -100
     congolese_franc = CongoleseFranc(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert congolese_franc.code == '976'
-    assert congolese_franc.currency == 'CDF'
+    assert congolese_franc.numeric_code == '976'
+    assert congolese_franc.alpha_code == 'CDF'
     assert congolese_franc.decimal_places == 2
     assert congolese_franc.decimal_sign == ','
     assert congolese_franc.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_congolese_franc_negative():
     assert congolese_franc.__hash__() == hash((decimal, 'CDF', '976'))
     assert congolese_franc.__repr__() == (
         'CongoleseFranc(amount: -100, '
-        'currency: "CDF", '
+        'alpha_code: "CDF", '
         'symbol: "₣", '
-        'code: "976", '
+        'numeric_code: "976", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_congolese_franc_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert congolese_franc.amount == decimal
-    assert congolese_franc.code == '976'
-    assert congolese_franc.currency == 'CDF'
+    assert congolese_franc.numeric_code == '976'
+    assert congolese_franc.alpha_code == 'CDF'
     assert congolese_franc.decimal_places == 5
     assert congolese_franc.decimal_sign == '.'
     assert congolese_franc.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_congolese_franc_custom():
     assert congolese_franc.__hash__() == hash((decimal, 'CDF', '976'))
     assert congolese_franc.__repr__() == (
         'CongoleseFranc(amount: 1000, '
-        'currency: "CDF", '
+        'alpha_code: "CDF", '
         'symbol: "₣", '
-        'code: "976", '
+        'numeric_code: "976", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_congolese_franc_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        congolese_franc.currency = 'EUR'
+        congolese_franc.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_congolese_franc_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        congolese_franc.code = '978'
+        congolese_franc.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_congolese_franc_math_add():
     congolese_franc_one = CongoleseFranc(amount=1)
     congolese_franc_two = CongoleseFranc(amount=2)
     congolese_franc_three = CongoleseFranc(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency CDF and OTHER.'):

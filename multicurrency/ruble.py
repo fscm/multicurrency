@@ -52,9 +52,9 @@ class BelarusianRuble(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='BYN',
+            alpha_code='BYN',
+            numeric_code='933',
             symbol='Br',
-            code='933',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -102,9 +102,9 @@ class RussianRuble(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='RUB',
+            alpha_code='RUB',
+            numeric_code='643',
             symbol='р.',
-            code='643',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

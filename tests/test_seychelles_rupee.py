@@ -23,8 +23,8 @@ def test_seychelles_rupee():
     seychelles_rupee = SeychellesRupee(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert seychelles_rupee.amount == decimal
-    assert seychelles_rupee.code == '690'
-    assert seychelles_rupee.currency == 'SCR'
+    assert seychelles_rupee.numeric_code == '690'
+    assert seychelles_rupee.alpha_code == 'SCR'
     assert seychelles_rupee.decimal_places == 2
     assert seychelles_rupee.decimal_sign == ','
     assert seychelles_rupee.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_seychelles_rupee():
     assert seychelles_rupee.__hash__() == hash((decimal, 'SCR', '690'))
     assert seychelles_rupee.__repr__() == (
         'SeychellesRupee(amount: 0.1428571428571428571428571429, '
-        'currency: "SCR", '
+        'alpha_code: "SCR", '
         'symbol: "₨", '
-        'code: "690", '
+        'numeric_code: "690", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_seychelles_rupee_negative():
     amount = -100
     seychelles_rupee = SeychellesRupee(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert seychelles_rupee.code == '690'
-    assert seychelles_rupee.currency == 'SCR'
+    assert seychelles_rupee.numeric_code == '690'
+    assert seychelles_rupee.alpha_code == 'SCR'
     assert seychelles_rupee.decimal_places == 2
     assert seychelles_rupee.decimal_sign == ','
     assert seychelles_rupee.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_seychelles_rupee_negative():
     assert seychelles_rupee.__hash__() == hash((decimal, 'SCR', '690'))
     assert seychelles_rupee.__repr__() == (
         'SeychellesRupee(amount: -100, '
-        'currency: "SCR", '
+        'alpha_code: "SCR", '
         'symbol: "₨", '
-        'code: "690", '
+        'numeric_code: "690", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_seychelles_rupee_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert seychelles_rupee.amount == decimal
-    assert seychelles_rupee.code == '690'
-    assert seychelles_rupee.currency == 'SCR'
+    assert seychelles_rupee.numeric_code == '690'
+    assert seychelles_rupee.alpha_code == 'SCR'
     assert seychelles_rupee.decimal_places == 5
     assert seychelles_rupee.decimal_sign == '.'
     assert seychelles_rupee.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_seychelles_rupee_custom():
     assert seychelles_rupee.__hash__() == hash((decimal, 'SCR', '690'))
     assert seychelles_rupee.__repr__() == (
         'SeychellesRupee(amount: 1000, '
-        'currency: "SCR", '
+        'alpha_code: "SCR", '
         'symbol: "₨", '
-        'code: "690", '
+        'numeric_code: "690", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_seychelles_rupee_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        seychelles_rupee.currency = 'EUR'
+        seychelles_rupee.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_seychelles_rupee_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        seychelles_rupee.code = '978'
+        seychelles_rupee.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_seychelles_rupee_math_add():
     seychelles_rupee_one = SeychellesRupee(amount=1)
     seychelles_rupee_two = SeychellesRupee(amount=2)
     seychelles_rupee_three = SeychellesRupee(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency SCR and OTHER.'):
@@ -152,9 +152,7 @@ def test_seychelles_rupee_math_add():
                    'rupee.SeychellesRupee\'> '
                    'and <class \'str\'>.')):
         _ = seychelles_rupee_one.__add__('1.00')
-    assert (
-        seychelles_rupee_one +
-        seychelles_rupee_two) == seychelles_rupee_three
+    assert (seychelles_rupee_one + seychelles_rupee_two) == seychelles_rupee_three
 
 
 def test_currency_slots():

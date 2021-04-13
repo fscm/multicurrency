@@ -52,9 +52,9 @@ class Kip(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='LAK',
+            alpha_code='LAK',
+            numeric_code='418',
             symbol='₭',
-            code='418',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

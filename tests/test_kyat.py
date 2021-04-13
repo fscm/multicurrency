@@ -23,8 +23,8 @@ def test_kyat():
     kyat = Kyat(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert kyat.amount == decimal
-    assert kyat.code == '104'
-    assert kyat.currency == 'MMK'
+    assert kyat.numeric_code == '104'
+    assert kyat.alpha_code == 'MMK'
     assert kyat.decimal_places == 2
     assert kyat.decimal_sign == ','
     assert kyat.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_kyat():
     assert kyat.__hash__() == hash((decimal, 'MMK', '104'))
     assert kyat.__repr__() == (
         'Kyat(amount: 0.1428571428571428571428571429, '
-        'currency: "MMK", '
+        'alpha_code: "MMK", '
         'symbol: "K", '
-        'code: "104", '
+        'numeric_code: "104", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_kyat_negative():
     amount = -100
     kyat = Kyat(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert kyat.code == '104'
-    assert kyat.currency == 'MMK'
+    assert kyat.numeric_code == '104'
+    assert kyat.alpha_code == 'MMK'
     assert kyat.decimal_places == 2
     assert kyat.decimal_sign == ','
     assert kyat.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_kyat_negative():
     assert kyat.__hash__() == hash((decimal, 'MMK', '104'))
     assert kyat.__repr__() == (
         'Kyat(amount: -100, '
-        'currency: "MMK", '
+        'alpha_code: "MMK", '
         'symbol: "K", '
-        'code: "104", '
+        'numeric_code: "104", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_kyat_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert kyat.amount == decimal
-    assert kyat.code == '104'
-    assert kyat.currency == 'MMK'
+    assert kyat.numeric_code == '104'
+    assert kyat.alpha_code == 'MMK'
     assert kyat.decimal_places == 5
     assert kyat.decimal_sign == '.'
     assert kyat.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_kyat_custom():
     assert kyat.__hash__() == hash((decimal, 'MMK', '104'))
     assert kyat.__repr__() == (
         'Kyat(amount: 1000, '
-        'currency: "MMK", '
+        'alpha_code: "MMK", '
         'symbol: "K", '
-        'code: "104", '
+        'numeric_code: "104", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_kyat_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        kyat.currency = 'EUR'
+        kyat.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_kyat_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        kyat.code = '978'
+        kyat.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_kyat_math_add():
     kyat_one = Kyat(amount=1)
     kyat_two = Kyat(amount=2)
     kyat_three = Kyat(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency MMK and OTHER.'):

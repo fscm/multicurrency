@@ -23,8 +23,8 @@ def test_qatari_rial():
     qatari_rial = QatariRial(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert qatari_rial.amount == decimal
-    assert qatari_rial.code == '634'
-    assert qatari_rial.currency == 'QAR'
+    assert qatari_rial.numeric_code == '634'
+    assert qatari_rial.alpha_code == 'QAR'
     assert qatari_rial.decimal_places == 2
     assert qatari_rial.decimal_sign == ','
     assert qatari_rial.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_qatari_rial():
     assert qatari_rial.__hash__() == hash((decimal, 'QAR', '634'))
     assert qatari_rial.__repr__() == (
         'QatariRial(amount: 0.1428571428571428571428571429, '
-        'currency: "QAR", '
+        'alpha_code: "QAR", '
         'symbol: "ر.ق", '
-        'code: "634", '
+        'numeric_code: "634", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_qatari_rial_negative():
     amount = -100
     qatari_rial = QatariRial(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert qatari_rial.code == '634'
-    assert qatari_rial.currency == 'QAR'
+    assert qatari_rial.numeric_code == '634'
+    assert qatari_rial.alpha_code == 'QAR'
     assert qatari_rial.decimal_places == 2
     assert qatari_rial.decimal_sign == ','
     assert qatari_rial.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_qatari_rial_negative():
     assert qatari_rial.__hash__() == hash((decimal, 'QAR', '634'))
     assert qatari_rial.__repr__() == (
         'QatariRial(amount: -100, '
-        'currency: "QAR", '
+        'alpha_code: "QAR", '
         'symbol: "ر.ق", '
-        'code: "634", '
+        'numeric_code: "634", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_qatari_rial_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert qatari_rial.amount == decimal
-    assert qatari_rial.code == '634'
-    assert qatari_rial.currency == 'QAR'
+    assert qatari_rial.numeric_code == '634'
+    assert qatari_rial.alpha_code == 'QAR'
     assert qatari_rial.decimal_places == 5
     assert qatari_rial.decimal_sign == '.'
     assert qatari_rial.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_qatari_rial_custom():
     assert qatari_rial.__hash__() == hash((decimal, 'QAR', '634'))
     assert qatari_rial.__repr__() == (
         'QatariRial(amount: 1000, '
-        'currency: "QAR", '
+        'alpha_code: "QAR", '
         'symbol: "ر.ق", '
-        'code: "634", '
+        'numeric_code: "634", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_qatari_rial_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        qatari_rial.currency = 'EUR'
+        qatari_rial.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_qatari_rial_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        qatari_rial.code = '978'
+        qatari_rial.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_qatari_rial_math_add():
     qatari_rial_one = QatariRial(amount=1)
     qatari_rial_two = QatariRial(amount=2)
     qatari_rial_three = QatariRial(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency QAR and OTHER.'):

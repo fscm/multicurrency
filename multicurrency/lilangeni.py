@@ -52,9 +52,9 @@ class Lilangeni(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='SZL',
+            alpha_code='SZL',
+            numeric_code='748',
             symbol='L',
-            code='748',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

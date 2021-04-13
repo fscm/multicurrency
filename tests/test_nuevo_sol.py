@@ -23,8 +23,8 @@ def test_nuevo_sol():
     nuevo_sol = NuevoSol(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert nuevo_sol.amount == decimal
-    assert nuevo_sol.code == '604'
-    assert nuevo_sol.currency == 'PEN'
+    assert nuevo_sol.numeric_code == '604'
+    assert nuevo_sol.alpha_code == 'PEN'
     assert nuevo_sol.decimal_places == 2
     assert nuevo_sol.decimal_sign == '.'
     assert nuevo_sol.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_nuevo_sol():
     assert nuevo_sol.__hash__() == hash((decimal, 'PEN', '604'))
     assert nuevo_sol.__repr__() == (
         'NuevoSol(amount: 0.1428571428571428571428571429, '
-        'currency: "PEN", '
+        'alpha_code: "PEN", '
         'symbol: "S/.", '
-        'code: "604", '
+        'numeric_code: "604", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_nuevo_sol_negative():
     amount = -100
     nuevo_sol = NuevoSol(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert nuevo_sol.code == '604'
-    assert nuevo_sol.currency == 'PEN'
+    assert nuevo_sol.numeric_code == '604'
+    assert nuevo_sol.alpha_code == 'PEN'
     assert nuevo_sol.decimal_places == 2
     assert nuevo_sol.decimal_sign == '.'
     assert nuevo_sol.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_nuevo_sol_negative():
     assert nuevo_sol.__hash__() == hash((decimal, 'PEN', '604'))
     assert nuevo_sol.__repr__() == (
         'NuevoSol(amount: -100, '
-        'currency: "PEN", '
+        'alpha_code: "PEN", '
         'symbol: "S/.", '
-        'code: "604", '
+        'numeric_code: "604", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_nuevo_sol_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert nuevo_sol.amount == decimal
-    assert nuevo_sol.code == '604'
-    assert nuevo_sol.currency == 'PEN'
+    assert nuevo_sol.numeric_code == '604'
+    assert nuevo_sol.alpha_code == 'PEN'
     assert nuevo_sol.decimal_places == 5
     assert nuevo_sol.decimal_sign == ','
     assert nuevo_sol.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_nuevo_sol_custom():
     assert nuevo_sol.__hash__() == hash((decimal, 'PEN', '604'))
     assert nuevo_sol.__repr__() == (
         'NuevoSol(amount: 1000, '
-        'currency: "PEN", '
+        'alpha_code: "PEN", '
         'symbol: "S/.", '
-        'code: "604", '
+        'numeric_code: "604", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_nuevo_sol_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        nuevo_sol.currency = 'EUR'
+        nuevo_sol.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_nuevo_sol_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        nuevo_sol.code = '978'
+        nuevo_sol.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_nuevo_sol_math_add():
     nuevo_sol_one = NuevoSol(amount=1)
     nuevo_sol_two = NuevoSol(amount=2)
     nuevo_sol_three = NuevoSol(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency PEN and OTHER.'):

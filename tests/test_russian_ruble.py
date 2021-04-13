@@ -23,8 +23,8 @@ def test_russian_ruble():
     russian_ruble = RussianRuble(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert russian_ruble.amount == decimal
-    assert russian_ruble.code == '643'
-    assert russian_ruble.currency == 'RUB'
+    assert russian_ruble.numeric_code == '643'
+    assert russian_ruble.alpha_code == 'RUB'
     assert russian_ruble.decimal_places == 2
     assert russian_ruble.decimal_sign == ','
     assert russian_ruble.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_russian_ruble():
     assert russian_ruble.__hash__() == hash((decimal, 'RUB', '643'))
     assert russian_ruble.__repr__() == (
         'RussianRuble(amount: 0.1428571428571428571428571429, '
-        'currency: "RUB", '
+        'alpha_code: "RUB", '
         'symbol: "р.", '
-        'code: "643", '
+        'numeric_code: "643", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_russian_ruble_negative():
     amount = -100
     russian_ruble = RussianRuble(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert russian_ruble.code == '643'
-    assert russian_ruble.currency == 'RUB'
+    assert russian_ruble.numeric_code == '643'
+    assert russian_ruble.alpha_code == 'RUB'
     assert russian_ruble.decimal_places == 2
     assert russian_ruble.decimal_sign == ','
     assert russian_ruble.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_russian_ruble_negative():
     assert russian_ruble.__hash__() == hash((decimal, 'RUB', '643'))
     assert russian_ruble.__repr__() == (
         'RussianRuble(amount: -100, '
-        'currency: "RUB", '
+        'alpha_code: "RUB", '
         'symbol: "р.", '
-        'code: "643", '
+        'numeric_code: "643", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_russian_ruble_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert russian_ruble.amount == decimal
-    assert russian_ruble.code == '643'
-    assert russian_ruble.currency == 'RUB'
+    assert russian_ruble.numeric_code == '643'
+    assert russian_ruble.alpha_code == 'RUB'
     assert russian_ruble.decimal_places == 5
     assert russian_ruble.decimal_sign == '.'
     assert russian_ruble.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_russian_ruble_custom():
     assert russian_ruble.__hash__() == hash((decimal, 'RUB', '643'))
     assert russian_ruble.__repr__() == (
         'RussianRuble(amount: 1000, '
-        'currency: "RUB", '
+        'alpha_code: "RUB", '
         'symbol: "р.", '
-        'code: "643", '
+        'numeric_code: "643", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_russian_ruble_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        russian_ruble.currency = 'EUR'
+        russian_ruble.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_russian_ruble_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        russian_ruble.code = '978'
+        russian_ruble.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_russian_ruble_math_add():
     russian_ruble_one = RussianRuble(amount=1)
     russian_ruble_two = RussianRuble(amount=2)
     russian_ruble_three = RussianRuble(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency RUB and OTHER.'):

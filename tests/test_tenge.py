@@ -23,8 +23,8 @@ def test_tenge():
     tenge = Tenge(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert tenge.amount == decimal
-    assert tenge.code == '398'
-    assert tenge.currency == 'KZT'
+    assert tenge.numeric_code == '398'
+    assert tenge.alpha_code == 'KZT'
     assert tenge.decimal_places == 2
     assert tenge.decimal_sign == ','
     assert tenge.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_tenge():
     assert tenge.__hash__() == hash((decimal, 'KZT', '398'))
     assert tenge.__repr__() == (
         'Tenge(amount: 0.1428571428571428571428571429, '
-        'currency: "KZT", '
+        'alpha_code: "KZT", '
         'symbol: "〒", '
-        'code: "398", '
+        'numeric_code: "398", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_tenge_negative():
     amount = -100
     tenge = Tenge(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert tenge.code == '398'
-    assert tenge.currency == 'KZT'
+    assert tenge.numeric_code == '398'
+    assert tenge.alpha_code == 'KZT'
     assert tenge.decimal_places == 2
     assert tenge.decimal_sign == ','
     assert tenge.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_tenge_negative():
     assert tenge.__hash__() == hash((decimal, 'KZT', '398'))
     assert tenge.__repr__() == (
         'Tenge(amount: -100, '
-        'currency: "KZT", '
+        'alpha_code: "KZT", '
         'symbol: "〒", '
-        'code: "398", '
+        'numeric_code: "398", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_tenge_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert tenge.amount == decimal
-    assert tenge.code == '398'
-    assert tenge.currency == 'KZT'
+    assert tenge.numeric_code == '398'
+    assert tenge.alpha_code == 'KZT'
     assert tenge.decimal_places == 5
     assert tenge.decimal_sign == '.'
     assert tenge.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_tenge_custom():
     assert tenge.__hash__() == hash((decimal, 'KZT', '398'))
     assert tenge.__repr__() == (
         'Tenge(amount: 1000, '
-        'currency: "KZT", '
+        'alpha_code: "KZT", '
         'symbol: "〒", '
-        'code: "398", '
+        'numeric_code: "398", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_tenge_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        tenge.currency = 'EUR'
+        tenge.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_tenge_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        tenge.code = '978'
+        tenge.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_tenge_math_add():
     tenge_one = Tenge(amount=1)
     tenge_two = Tenge(amount=2)
     tenge_three = Tenge(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency KZT and OTHER.'):

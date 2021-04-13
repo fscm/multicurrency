@@ -52,9 +52,9 @@ class KonvertibilnaMarka(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='BAM',
+            alpha_code='BAM',
+            numeric_code='977',
             symbol='КМ',
-            code='977',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

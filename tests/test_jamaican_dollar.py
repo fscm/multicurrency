@@ -23,8 +23,8 @@ def test_jamaican_dollar():
     jamaican_dollar = JamaicanDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert jamaican_dollar.amount == decimal
-    assert jamaican_dollar.code == '388'
-    assert jamaican_dollar.currency == 'JMD'
+    assert jamaican_dollar.numeric_code == '388'
+    assert jamaican_dollar.alpha_code == 'JMD'
     assert jamaican_dollar.decimal_places == 2
     assert jamaican_dollar.decimal_sign == '.'
     assert jamaican_dollar.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_jamaican_dollar():
     assert jamaican_dollar.__hash__() == hash((decimal, 'JMD', '388'))
     assert jamaican_dollar.__repr__() == (
         'JamaicanDollar(amount: 0.1428571428571428571428571429, '
-        'currency: "JMD", '
+        'alpha_code: "JMD", '
         'symbol: "$", '
-        'code: "388", '
+        'numeric_code: "388", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_jamaican_dollar_negative():
     amount = -100
     jamaican_dollar = JamaicanDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert jamaican_dollar.code == '388'
-    assert jamaican_dollar.currency == 'JMD'
+    assert jamaican_dollar.numeric_code == '388'
+    assert jamaican_dollar.alpha_code == 'JMD'
     assert jamaican_dollar.decimal_places == 2
     assert jamaican_dollar.decimal_sign == '.'
     assert jamaican_dollar.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_jamaican_dollar_negative():
     assert jamaican_dollar.__hash__() == hash((decimal, 'JMD', '388'))
     assert jamaican_dollar.__repr__() == (
         'JamaicanDollar(amount: -100, '
-        'currency: "JMD", '
+        'alpha_code: "JMD", '
         'symbol: "$", '
-        'code: "388", '
+        'numeric_code: "388", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_jamaican_dollar_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert jamaican_dollar.amount == decimal
-    assert jamaican_dollar.code == '388'
-    assert jamaican_dollar.currency == 'JMD'
+    assert jamaican_dollar.numeric_code == '388'
+    assert jamaican_dollar.alpha_code == 'JMD'
     assert jamaican_dollar.decimal_places == 5
     assert jamaican_dollar.decimal_sign == ','
     assert jamaican_dollar.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_jamaican_dollar_custom():
     assert jamaican_dollar.__hash__() == hash((decimal, 'JMD', '388'))
     assert jamaican_dollar.__repr__() == (
         'JamaicanDollar(amount: 1000, '
-        'currency: "JMD", '
+        'alpha_code: "JMD", '
         'symbol: "$", '
-        'code: "388", '
+        'numeric_code: "388", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_jamaican_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        jamaican_dollar.currency = 'EUR'
+        jamaican_dollar.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_jamaican_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        jamaican_dollar.code = '978'
+        jamaican_dollar.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_jamaican_dollar_math_add():
     jamaican_dollar_one = JamaicanDollar(amount=1)
     jamaican_dollar_two = JamaicanDollar(amount=2)
     jamaican_dollar_three = JamaicanDollar(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency JMD and OTHER.'):

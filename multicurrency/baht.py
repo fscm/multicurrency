@@ -52,9 +52,9 @@ class Baht(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='THB',
+            alpha_code='THB',
+            numeric_code='764',
             symbol='฿',
-            code='764',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

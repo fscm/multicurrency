@@ -23,8 +23,8 @@ def test_philippine_peso():
     philippine_peso = PhilippinePeso(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert philippine_peso.amount == decimal
-    assert philippine_peso.code == '608'
-    assert philippine_peso.currency == 'PHP'
+    assert philippine_peso.numeric_code == '608'
+    assert philippine_peso.alpha_code == 'PHP'
     assert philippine_peso.decimal_places == 2
     assert philippine_peso.decimal_sign == '.'
     assert philippine_peso.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_philippine_peso():
     assert philippine_peso.__hash__() == hash((decimal, 'PHP', '608'))
     assert philippine_peso.__repr__() == (
         'PhilippinePeso(amount: 0.1428571428571428571428571429, '
-        'currency: "PHP", '
+        'alpha_code: "PHP", '
         'symbol: "₱", '
-        'code: "608", '
+        'numeric_code: "608", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_philippine_peso_negative():
     amount = -100
     philippine_peso = PhilippinePeso(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert philippine_peso.code == '608'
-    assert philippine_peso.currency == 'PHP'
+    assert philippine_peso.numeric_code == '608'
+    assert philippine_peso.alpha_code == 'PHP'
     assert philippine_peso.decimal_places == 2
     assert philippine_peso.decimal_sign == '.'
     assert philippine_peso.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_philippine_peso_negative():
     assert philippine_peso.__hash__() == hash((decimal, 'PHP', '608'))
     assert philippine_peso.__repr__() == (
         'PhilippinePeso(amount: -100, '
-        'currency: "PHP", '
+        'alpha_code: "PHP", '
         'symbol: "₱", '
-        'code: "608", '
+        'numeric_code: "608", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_philippine_peso_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert philippine_peso.amount == decimal
-    assert philippine_peso.code == '608'
-    assert philippine_peso.currency == 'PHP'
+    assert philippine_peso.numeric_code == '608'
+    assert philippine_peso.alpha_code == 'PHP'
     assert philippine_peso.decimal_places == 5
     assert philippine_peso.decimal_sign == ','
     assert philippine_peso.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_philippine_peso_custom():
     assert philippine_peso.__hash__() == hash((decimal, 'PHP', '608'))
     assert philippine_peso.__repr__() == (
         'PhilippinePeso(amount: 1000, '
-        'currency: "PHP", '
+        'alpha_code: "PHP", '
         'symbol: "₱", '
-        'code: "608", '
+        'numeric_code: "608", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_philippine_peso_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        philippine_peso.currency = 'EUR'
+        philippine_peso.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_philippine_peso_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        philippine_peso.code = '978'
+        philippine_peso.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_philippine_peso_math_add():
     philippine_peso_one = PhilippinePeso(amount=1)
     philippine_peso_two = PhilippinePeso(amount=2)
     philippine_peso_three = PhilippinePeso(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency PHP and OTHER.'):

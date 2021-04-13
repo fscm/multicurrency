@@ -23,8 +23,8 @@ def test_singapore_dollar():
     singapore_dollar = SingaporeDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert singapore_dollar.amount == decimal
-    assert singapore_dollar.code == '702'
-    assert singapore_dollar.currency == 'SGD'
+    assert singapore_dollar.numeric_code == '702'
+    assert singapore_dollar.alpha_code == 'SGD'
     assert singapore_dollar.decimal_places == 2
     assert singapore_dollar.decimal_sign == '.'
     assert singapore_dollar.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_singapore_dollar():
     assert singapore_dollar.__hash__() == hash((decimal, 'SGD', '702'))
     assert singapore_dollar.__repr__() == (
         'SingaporeDollar(amount: 0.1428571428571428571428571429, '
-        'currency: "SGD", '
+        'alpha_code: "SGD", '
         'symbol: "$", '
-        'code: "702", '
+        'numeric_code: "702", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_singapore_dollar_negative():
     amount = -100
     singapore_dollar = SingaporeDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert singapore_dollar.code == '702'
-    assert singapore_dollar.currency == 'SGD'
+    assert singapore_dollar.numeric_code == '702'
+    assert singapore_dollar.alpha_code == 'SGD'
     assert singapore_dollar.decimal_places == 2
     assert singapore_dollar.decimal_sign == '.'
     assert singapore_dollar.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_singapore_dollar_negative():
     assert singapore_dollar.__hash__() == hash((decimal, 'SGD', '702'))
     assert singapore_dollar.__repr__() == (
         'SingaporeDollar(amount: -100, '
-        'currency: "SGD", '
+        'alpha_code: "SGD", '
         'symbol: "$", '
-        'code: "702", '
+        'numeric_code: "702", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_singapore_dollar_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert singapore_dollar.amount == decimal
-    assert singapore_dollar.code == '702'
-    assert singapore_dollar.currency == 'SGD'
+    assert singapore_dollar.numeric_code == '702'
+    assert singapore_dollar.alpha_code == 'SGD'
     assert singapore_dollar.decimal_places == 5
     assert singapore_dollar.decimal_sign == ','
     assert singapore_dollar.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_singapore_dollar_custom():
     assert singapore_dollar.__hash__() == hash((decimal, 'SGD', '702'))
     assert singapore_dollar.__repr__() == (
         'SingaporeDollar(amount: 1000, '
-        'currency: "SGD", '
+        'alpha_code: "SGD", '
         'symbol: "$", '
-        'code: "702", '
+        'numeric_code: "702", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_singapore_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        singapore_dollar.currency = 'EUR'
+        singapore_dollar.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_singapore_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        singapore_dollar.code = '978'
+        singapore_dollar.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_singapore_dollar_math_add():
     singapore_dollar_one = SingaporeDollar(amount=1)
     singapore_dollar_two = SingaporeDollar(amount=2)
     singapore_dollar_three = SingaporeDollar(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency SGD and OTHER.'):
@@ -152,9 +152,7 @@ def test_singapore_dollar_math_add():
                    'dollar.SingaporeDollar\'> '
                    'and <class \'str\'>.')):
         _ = singapore_dollar_one.__add__('1.00')
-    assert (
-        singapore_dollar_one +
-        singapore_dollar_two) == singapore_dollar_three
+    assert (singapore_dollar_one + singapore_dollar_two) == singapore_dollar_three
 
 
 def test_currency_slots():

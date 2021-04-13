@@ -23,8 +23,8 @@ def test_gibraltar_pound():
     gibraltar_pound = GibraltarPound(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert gibraltar_pound.amount == decimal
-    assert gibraltar_pound.code == '292'
-    assert gibraltar_pound.currency == 'GIP'
+    assert gibraltar_pound.numeric_code == '292'
+    assert gibraltar_pound.alpha_code == 'GIP'
     assert gibraltar_pound.decimal_places == 2
     assert gibraltar_pound.decimal_sign == ','
     assert gibraltar_pound.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_gibraltar_pound():
     assert gibraltar_pound.__hash__() == hash((decimal, 'GIP', '292'))
     assert gibraltar_pound.__repr__() == (
         'GibraltarPound(amount: 0.1428571428571428571428571429, '
-        'currency: "GIP", '
+        'alpha_code: "GIP", '
         'symbol: "£", '
-        'code: "292", '
+        'numeric_code: "292", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_gibraltar_pound_negative():
     amount = -100
     gibraltar_pound = GibraltarPound(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert gibraltar_pound.code == '292'
-    assert gibraltar_pound.currency == 'GIP'
+    assert gibraltar_pound.numeric_code == '292'
+    assert gibraltar_pound.alpha_code == 'GIP'
     assert gibraltar_pound.decimal_places == 2
     assert gibraltar_pound.decimal_sign == ','
     assert gibraltar_pound.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_gibraltar_pound_negative():
     assert gibraltar_pound.__hash__() == hash((decimal, 'GIP', '292'))
     assert gibraltar_pound.__repr__() == (
         'GibraltarPound(amount: -100, '
-        'currency: "GIP", '
+        'alpha_code: "GIP", '
         'symbol: "£", '
-        'code: "292", '
+        'numeric_code: "292", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_gibraltar_pound_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert gibraltar_pound.amount == decimal
-    assert gibraltar_pound.code == '292'
-    assert gibraltar_pound.currency == 'GIP'
+    assert gibraltar_pound.numeric_code == '292'
+    assert gibraltar_pound.alpha_code == 'GIP'
     assert gibraltar_pound.decimal_places == 5
     assert gibraltar_pound.decimal_sign == '.'
     assert gibraltar_pound.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_gibraltar_pound_custom():
     assert gibraltar_pound.__hash__() == hash((decimal, 'GIP', '292'))
     assert gibraltar_pound.__repr__() == (
         'GibraltarPound(amount: 1000, '
-        'currency: "GIP", '
+        'alpha_code: "GIP", '
         'symbol: "£", '
-        'code: "292", '
+        'numeric_code: "292", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_gibraltar_pound_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        gibraltar_pound.currency = 'EUR'
+        gibraltar_pound.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_gibraltar_pound_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        gibraltar_pound.code = '978'
+        gibraltar_pound.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_gibraltar_pound_math_add():
     gibraltar_pound_one = GibraltarPound(amount=1)
     gibraltar_pound_two = GibraltarPound(amount=2)
     gibraltar_pound_three = GibraltarPound(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency GIP and OTHER.'):

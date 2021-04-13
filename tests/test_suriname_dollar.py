@@ -23,8 +23,8 @@ def test_suriname_dollar():
     suriname_dollar = SurinameDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert suriname_dollar.amount == decimal
-    assert suriname_dollar.code == '968'
-    assert suriname_dollar.currency == 'SRD'
+    assert suriname_dollar.numeric_code == '968'
+    assert suriname_dollar.alpha_code == 'SRD'
     assert suriname_dollar.decimal_places == 2
     assert suriname_dollar.decimal_sign == ','
     assert suriname_dollar.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_suriname_dollar():
     assert suriname_dollar.__hash__() == hash((decimal, 'SRD', '968'))
     assert suriname_dollar.__repr__() == (
         'SurinameDollar(amount: 0.1428571428571428571428571429, '
-        'currency: "SRD", '
+        'alpha_code: "SRD", '
         'symbol: "$", '
-        'code: "968", '
+        'numeric_code: "968", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_suriname_dollar_negative():
     amount = -100
     suriname_dollar = SurinameDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert suriname_dollar.code == '968'
-    assert suriname_dollar.currency == 'SRD'
+    assert suriname_dollar.numeric_code == '968'
+    assert suriname_dollar.alpha_code == 'SRD'
     assert suriname_dollar.decimal_places == 2
     assert suriname_dollar.decimal_sign == ','
     assert suriname_dollar.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_suriname_dollar_negative():
     assert suriname_dollar.__hash__() == hash((decimal, 'SRD', '968'))
     assert suriname_dollar.__repr__() == (
         'SurinameDollar(amount: -100, '
-        'currency: "SRD", '
+        'alpha_code: "SRD", '
         'symbol: "$", '
-        'code: "968", '
+        'numeric_code: "968", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_suriname_dollar_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert suriname_dollar.amount == decimal
-    assert suriname_dollar.code == '968'
-    assert suriname_dollar.currency == 'SRD'
+    assert suriname_dollar.numeric_code == '968'
+    assert suriname_dollar.alpha_code == 'SRD'
     assert suriname_dollar.decimal_places == 5
     assert suriname_dollar.decimal_sign == '.'
     assert suriname_dollar.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_suriname_dollar_custom():
     assert suriname_dollar.__hash__() == hash((decimal, 'SRD', '968'))
     assert suriname_dollar.__repr__() == (
         'SurinameDollar(amount: 1000, '
-        'currency: "SRD", '
+        'alpha_code: "SRD", '
         'symbol: "$", '
-        'code: "968", '
+        'numeric_code: "968", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_suriname_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        suriname_dollar.currency = 'EUR'
+        suriname_dollar.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_suriname_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        suriname_dollar.code = '978'
+        suriname_dollar.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_suriname_dollar_math_add():
     suriname_dollar_one = SurinameDollar(amount=1)
     suriname_dollar_two = SurinameDollar(amount=2)
     suriname_dollar_three = SurinameDollar(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency SRD and OTHER.'):

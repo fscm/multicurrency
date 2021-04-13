@@ -52,9 +52,9 @@ class Kwacha(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='MWK',
+            alpha_code='MWK',
+            numeric_code='454',
             symbol='MK',
-            code='454',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -102,9 +102,9 @@ class ZambianKwacha(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='ZMW',
+            alpha_code='ZMW',
+            numeric_code='967',
             symbol='ZK',
-            code='967',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

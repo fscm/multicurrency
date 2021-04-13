@@ -23,8 +23,8 @@ def test_rial_omani():
     rial_omani = RialOmani(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert rial_omani.amount == decimal
-    assert rial_omani.code == '512'
-    assert rial_omani.currency == 'OMR'
+    assert rial_omani.numeric_code == '512'
+    assert rial_omani.alpha_code == 'OMR'
     assert rial_omani.decimal_places == 3
     assert rial_omani.decimal_sign == '.'
     assert rial_omani.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_rial_omani():
     assert rial_omani.__hash__() == hash((decimal, 'OMR', '512'))
     assert rial_omani.__repr__() == (
         'RialOmani(amount: 0.1428571428571428571428571429, '
-        'currency: "OMR", '
+        'alpha_code: "OMR", '
         'symbol: "ر.ع.", '
-        'code: "512", '
+        'numeric_code: "512", '
         'decimal_places: "3", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_rial_omani_negative():
     amount = -100
     rial_omani = RialOmani(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert rial_omani.code == '512'
-    assert rial_omani.currency == 'OMR'
+    assert rial_omani.numeric_code == '512'
+    assert rial_omani.alpha_code == 'OMR'
     assert rial_omani.decimal_places == 3
     assert rial_omani.decimal_sign == '.'
     assert rial_omani.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_rial_omani_negative():
     assert rial_omani.__hash__() == hash((decimal, 'OMR', '512'))
     assert rial_omani.__repr__() == (
         'RialOmani(amount: -100, '
-        'currency: "OMR", '
+        'alpha_code: "OMR", '
         'symbol: "ر.ع.", '
-        'code: "512", '
+        'numeric_code: "512", '
         'decimal_places: "3", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_rial_omani_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert rial_omani.amount == decimal
-    assert rial_omani.code == '512'
-    assert rial_omani.currency == 'OMR'
+    assert rial_omani.numeric_code == '512'
+    assert rial_omani.alpha_code == 'OMR'
     assert rial_omani.decimal_places == 5
     assert rial_omani.decimal_sign == ','
     assert rial_omani.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_rial_omani_custom():
     assert rial_omani.__hash__() == hash((decimal, 'OMR', '512'))
     assert rial_omani.__repr__() == (
         'RialOmani(amount: 1000, '
-        'currency: "OMR", '
+        'alpha_code: "OMR", '
         'symbol: "ر.ع.", '
-        'code: "512", '
+        'numeric_code: "512", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_rial_omani_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        rial_omani.currency = 'EUR'
+        rial_omani.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_rial_omani_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        rial_omani.code = '978'
+        rial_omani.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_rial_omani_math_add():
     rial_omani_one = RialOmani(amount=1)
     rial_omani_two = RialOmani(amount=2)
     rial_omani_three = RialOmani(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency OMR and OTHER.'):

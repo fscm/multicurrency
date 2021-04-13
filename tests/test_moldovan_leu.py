@@ -23,8 +23,8 @@ def test_moldovan_leu():
     moldovan_leu = MoldovanLeu(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert moldovan_leu.amount == decimal
-    assert moldovan_leu.code == '498'
-    assert moldovan_leu.currency == 'MDL'
+    assert moldovan_leu.numeric_code == '498'
+    assert moldovan_leu.alpha_code == 'MDL'
     assert moldovan_leu.decimal_places == 2
     assert moldovan_leu.decimal_sign == ','
     assert moldovan_leu.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_moldovan_leu():
     assert moldovan_leu.__hash__() == hash((decimal, 'MDL', '498'))
     assert moldovan_leu.__repr__() == (
         'MoldovanLeu(amount: 0.1428571428571428571428571429, '
-        'currency: "MDL", '
+        'alpha_code: "MDL", '
         'symbol: "L", '
-        'code: "498", '
+        'numeric_code: "498", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_moldovan_leu_negative():
     amount = -100
     moldovan_leu = MoldovanLeu(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert moldovan_leu.code == '498'
-    assert moldovan_leu.currency == 'MDL'
+    assert moldovan_leu.numeric_code == '498'
+    assert moldovan_leu.alpha_code == 'MDL'
     assert moldovan_leu.decimal_places == 2
     assert moldovan_leu.decimal_sign == ','
     assert moldovan_leu.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_moldovan_leu_negative():
     assert moldovan_leu.__hash__() == hash((decimal, 'MDL', '498'))
     assert moldovan_leu.__repr__() == (
         'MoldovanLeu(amount: -100, '
-        'currency: "MDL", '
+        'alpha_code: "MDL", '
         'symbol: "L", '
-        'code: "498", '
+        'numeric_code: "498", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_moldovan_leu_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert moldovan_leu.amount == decimal
-    assert moldovan_leu.code == '498'
-    assert moldovan_leu.currency == 'MDL'
+    assert moldovan_leu.numeric_code == '498'
+    assert moldovan_leu.alpha_code == 'MDL'
     assert moldovan_leu.decimal_places == 5
     assert moldovan_leu.decimal_sign == '.'
     assert moldovan_leu.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_moldovan_leu_custom():
     assert moldovan_leu.__hash__() == hash((decimal, 'MDL', '498'))
     assert moldovan_leu.__repr__() == (
         'MoldovanLeu(amount: 1000, '
-        'currency: "MDL", '
+        'alpha_code: "MDL", '
         'symbol: "L", '
-        'code: "498", '
+        'numeric_code: "498", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_moldovan_leu_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        moldovan_leu.currency = 'EUR'
+        moldovan_leu.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_moldovan_leu_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        moldovan_leu.code = '978'
+        moldovan_leu.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_moldovan_leu_math_add():
     moldovan_leu_one = MoldovanLeu(amount=1)
     moldovan_leu_two = MoldovanLeu(amount=2)
     moldovan_leu_three = MoldovanLeu(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency MDL and OTHER.'):

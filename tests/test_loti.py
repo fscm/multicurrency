@@ -23,8 +23,8 @@ def test_loti():
     loti = Loti(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert loti.amount == decimal
-    assert loti.code == '426'
-    assert loti.currency == 'LSL'
+    assert loti.numeric_code == '426'
+    assert loti.alpha_code == 'LSL'
     assert loti.decimal_places == 2
     assert loti.decimal_sign == ','
     assert loti.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_loti():
     assert loti.__hash__() == hash((decimal, 'LSL', '426'))
     assert loti.__repr__() == (
         'Loti(amount: 0.1428571428571428571428571429, '
-        'currency: "LSL", '
+        'alpha_code: "LSL", '
         'symbol: "L", '
-        'code: "426", '
+        'numeric_code: "426", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_loti_negative():
     amount = -100
     loti = Loti(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert loti.code == '426'
-    assert loti.currency == 'LSL'
+    assert loti.numeric_code == '426'
+    assert loti.alpha_code == 'LSL'
     assert loti.decimal_places == 2
     assert loti.decimal_sign == ','
     assert loti.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_loti_negative():
     assert loti.__hash__() == hash((decimal, 'LSL', '426'))
     assert loti.__repr__() == (
         'Loti(amount: -100, '
-        'currency: "LSL", '
+        'alpha_code: "LSL", '
         'symbol: "L", '
-        'code: "426", '
+        'numeric_code: "426", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_loti_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert loti.amount == decimal
-    assert loti.code == '426'
-    assert loti.currency == 'LSL'
+    assert loti.numeric_code == '426'
+    assert loti.alpha_code == 'LSL'
     assert loti.decimal_places == 5
     assert loti.decimal_sign == '.'
     assert loti.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_loti_custom():
     assert loti.__hash__() == hash((decimal, 'LSL', '426'))
     assert loti.__repr__() == (
         'Loti(amount: 1000, '
-        'currency: "LSL", '
+        'alpha_code: "LSL", '
         'symbol: "L", '
-        'code: "426", '
+        'numeric_code: "426", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_loti_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        loti.currency = 'EUR'
+        loti.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_loti_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        loti.code = '978'
+        loti.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_loti_math_add():
     loti_one = Loti(amount=1)
     loti_two = Loti(amount=2)
     loti_three = Loti(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency LSL and OTHER.'):

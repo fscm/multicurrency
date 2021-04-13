@@ -52,9 +52,9 @@ class Balboa(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='PAB',
+            alpha_code='PAB',
+            numeric_code='590',
             symbol='B/.',
-            code='590',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

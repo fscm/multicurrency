@@ -23,8 +23,8 @@ def test_balboa():
     balboa = Balboa(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert balboa.amount == decimal
-    assert balboa.code == '590'
-    assert balboa.currency == 'PAB'
+    assert balboa.numeric_code == '590'
+    assert balboa.alpha_code == 'PAB'
     assert balboa.decimal_places == 2
     assert balboa.decimal_sign == ','
     assert balboa.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_balboa():
     assert balboa.__hash__() == hash((decimal, 'PAB', '590'))
     assert balboa.__repr__() == (
         'Balboa(amount: 0.1428571428571428571428571429, '
-        'currency: "PAB", '
+        'alpha_code: "PAB", '
         'symbol: "B/.", '
-        'code: "590", '
+        'numeric_code: "590", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_balboa_negative():
     amount = -100
     balboa = Balboa(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert balboa.code == '590'
-    assert balboa.currency == 'PAB'
+    assert balboa.numeric_code == '590'
+    assert balboa.alpha_code == 'PAB'
     assert balboa.decimal_places == 2
     assert balboa.decimal_sign == ','
     assert balboa.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_balboa_negative():
     assert balboa.__hash__() == hash((decimal, 'PAB', '590'))
     assert balboa.__repr__() == (
         'Balboa(amount: -100, '
-        'currency: "PAB", '
+        'alpha_code: "PAB", '
         'symbol: "B/.", '
-        'code: "590", '
+        'numeric_code: "590", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_balboa_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert balboa.amount == decimal
-    assert balboa.code == '590'
-    assert balboa.currency == 'PAB'
+    assert balboa.numeric_code == '590'
+    assert balboa.alpha_code == 'PAB'
     assert balboa.decimal_places == 5
     assert balboa.decimal_sign == '.'
     assert balboa.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_balboa_custom():
     assert balboa.__hash__() == hash((decimal, 'PAB', '590'))
     assert balboa.__repr__() == (
         'Balboa(amount: 1000, '
-        'currency: "PAB", '
+        'alpha_code: "PAB", '
         'symbol: "B/.", '
-        'code: "590", '
+        'numeric_code: "590", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_balboa_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        balboa.currency = 'EUR'
+        balboa.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_balboa_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        balboa.code = '978'
+        balboa.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_balboa_math_add():
     balboa_one = Balboa(amount=1)
     balboa_two = Balboa(amount=2)
     balboa_three = Balboa(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency PAB and OTHER.'):

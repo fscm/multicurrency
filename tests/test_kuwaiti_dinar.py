@@ -23,8 +23,8 @@ def test_kuwaiti_dinar():
     kuwaiti_dinar = KuwaitiDinar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert kuwaiti_dinar.amount == decimal
-    assert kuwaiti_dinar.code == '414'
-    assert kuwaiti_dinar.currency == 'KWD'
+    assert kuwaiti_dinar.numeric_code == '414'
+    assert kuwaiti_dinar.alpha_code == 'KWD'
     assert kuwaiti_dinar.decimal_places == 3
     assert kuwaiti_dinar.decimal_sign == '.'
     assert kuwaiti_dinar.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_kuwaiti_dinar():
     assert kuwaiti_dinar.__hash__() == hash((decimal, 'KWD', '414'))
     assert kuwaiti_dinar.__repr__() == (
         'KuwaitiDinar(amount: 0.1428571428571428571428571429, '
-        'currency: "KWD", '
+        'alpha_code: "KWD", '
         'symbol: "د.ك", '
-        'code: "414", '
+        'numeric_code: "414", '
         'decimal_places: "3", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_kuwaiti_dinar_negative():
     amount = -100
     kuwaiti_dinar = KuwaitiDinar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert kuwaiti_dinar.code == '414'
-    assert kuwaiti_dinar.currency == 'KWD'
+    assert kuwaiti_dinar.numeric_code == '414'
+    assert kuwaiti_dinar.alpha_code == 'KWD'
     assert kuwaiti_dinar.decimal_places == 3
     assert kuwaiti_dinar.decimal_sign == '.'
     assert kuwaiti_dinar.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_kuwaiti_dinar_negative():
     assert kuwaiti_dinar.__hash__() == hash((decimal, 'KWD', '414'))
     assert kuwaiti_dinar.__repr__() == (
         'KuwaitiDinar(amount: -100, '
-        'currency: "KWD", '
+        'alpha_code: "KWD", '
         'symbol: "د.ك", '
-        'code: "414", '
+        'numeric_code: "414", '
         'decimal_places: "3", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_kuwaiti_dinar_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert kuwaiti_dinar.amount == decimal
-    assert kuwaiti_dinar.code == '414'
-    assert kuwaiti_dinar.currency == 'KWD'
+    assert kuwaiti_dinar.numeric_code == '414'
+    assert kuwaiti_dinar.alpha_code == 'KWD'
     assert kuwaiti_dinar.decimal_places == 5
     assert kuwaiti_dinar.decimal_sign == ','
     assert kuwaiti_dinar.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_kuwaiti_dinar_custom():
     assert kuwaiti_dinar.__hash__() == hash((decimal, 'KWD', '414'))
     assert kuwaiti_dinar.__repr__() == (
         'KuwaitiDinar(amount: 1000, '
-        'currency: "KWD", '
+        'alpha_code: "KWD", '
         'symbol: "د.ك", '
-        'code: "414", '
+        'numeric_code: "414", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_kuwaiti_dinar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        kuwaiti_dinar.currency = 'EUR'
+        kuwaiti_dinar.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_kuwaiti_dinar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        kuwaiti_dinar.code = '978'
+        kuwaiti_dinar.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_kuwaiti_dinar_math_add():
     kuwaiti_dinar_one = KuwaitiDinar(amount=1)
     kuwaiti_dinar_two = KuwaitiDinar(amount=2)
     kuwaiti_dinar_three = KuwaitiDinar(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency KWD and OTHER.'):

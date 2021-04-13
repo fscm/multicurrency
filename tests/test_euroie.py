@@ -23,8 +23,8 @@ def test_euroie():
     euroie = EuroIE(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert euroie.amount == decimal
-    assert euroie.code == '978'
-    assert euroie.currency == 'EUR'
+    assert euroie.numeric_code == '978'
+    assert euroie.alpha_code == 'EUR'
     assert euroie.decimal_places == 2
     assert euroie.decimal_sign == '.'
     assert euroie.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_euroie():
     assert euroie.__hash__() == hash((decimal, 'EUR', '978'))
     assert euroie.__repr__() == (
         'EuroIE(amount: 0.1428571428571428571428571429, '
-        'currency: "EUR", '
+        'alpha_code: "EUR", '
         'symbol: "€", '
-        'code: "978", '
+        'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_euroie_negative():
     amount = -100
     euroie = EuroIE(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert euroie.code == '978'
-    assert euroie.currency == 'EUR'
+    assert euroie.numeric_code == '978'
+    assert euroie.alpha_code == 'EUR'
     assert euroie.decimal_places == 2
     assert euroie.decimal_sign == '.'
     assert euroie.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_euroie_negative():
     assert euroie.__hash__() == hash((decimal, 'EUR', '978'))
     assert euroie.__repr__() == (
         'EuroIE(amount: -100, '
-        'currency: "EUR", '
+        'alpha_code: "EUR", '
         'symbol: "€", '
-        'code: "978", '
+        'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_euroie_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert euroie.amount == decimal
-    assert euroie.code == '978'
-    assert euroie.currency == 'EUR'
+    assert euroie.numeric_code == '978'
+    assert euroie.alpha_code == 'EUR'
     assert euroie.decimal_places == 5
     assert euroie.decimal_sign == ','
     assert euroie.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_euroie_custom():
     assert euroie.__hash__() == hash((decimal, 'EUR', '978'))
     assert euroie.__repr__() == (
         'EuroIE(amount: 1000, '
-        'currency: "EUR", '
+        'alpha_code: "EUR", '
         'symbol: "€", '
-        'code: "978", '
+        'numeric_code: "978", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_euroie_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        euroie.currency = 'EUR'
+        euroie.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_euroie_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        euroie.code = '978'
+        euroie.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_euroie_math_add():
     euroie_one = EuroIE(amount=1)
     euroie_two = EuroIE(amount=2)
     euroie_three = EuroIE(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency EUR and OTHER.'):

@@ -52,9 +52,9 @@ class Forint(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='HUF',
+            alpha_code='HUF',
+            numeric_code='348',
             symbol='Ft',
-            code='348',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

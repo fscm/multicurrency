@@ -52,9 +52,9 @@ class ArmenianDram(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='AMD',
+            alpha_code='AMD',
+            numeric_code='051',
             symbol='Դ',
-            code='051',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

@@ -23,8 +23,8 @@ def test_bolivar_fuerte():
     bolivar_fuerte = BolivarFuerte(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert bolivar_fuerte.amount == decimal
-    assert bolivar_fuerte.code == '937'
-    assert bolivar_fuerte.currency == 'VEF'
+    assert bolivar_fuerte.numeric_code == '937'
+    assert bolivar_fuerte.alpha_code == 'VEF'
     assert bolivar_fuerte.decimal_places == 2
     assert bolivar_fuerte.decimal_sign == ','
     assert bolivar_fuerte.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_bolivar_fuerte():
     assert bolivar_fuerte.__hash__() == hash((decimal, 'VEF', '937'))
     assert bolivar_fuerte.__repr__() == (
         'BolivarFuerte(amount: 0.1428571428571428571428571429, '
-        'currency: "VEF", '
+        'alpha_code: "VEF", '
         'symbol: "Bs F", '
-        'code: "937", '
+        'numeric_code: "937", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_bolivar_fuerte_negative():
     amount = -100
     bolivar_fuerte = BolivarFuerte(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert bolivar_fuerte.code == '937'
-    assert bolivar_fuerte.currency == 'VEF'
+    assert bolivar_fuerte.numeric_code == '937'
+    assert bolivar_fuerte.alpha_code == 'VEF'
     assert bolivar_fuerte.decimal_places == 2
     assert bolivar_fuerte.decimal_sign == ','
     assert bolivar_fuerte.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_bolivar_fuerte_negative():
     assert bolivar_fuerte.__hash__() == hash((decimal, 'VEF', '937'))
     assert bolivar_fuerte.__repr__() == (
         'BolivarFuerte(amount: -100, '
-        'currency: "VEF", '
+        'alpha_code: "VEF", '
         'symbol: "Bs F", '
-        'code: "937", '
+        'numeric_code: "937", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_bolivar_fuerte_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert bolivar_fuerte.amount == decimal
-    assert bolivar_fuerte.code == '937'
-    assert bolivar_fuerte.currency == 'VEF'
+    assert bolivar_fuerte.numeric_code == '937'
+    assert bolivar_fuerte.alpha_code == 'VEF'
     assert bolivar_fuerte.decimal_places == 5
     assert bolivar_fuerte.decimal_sign == '.'
     assert bolivar_fuerte.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_bolivar_fuerte_custom():
     assert bolivar_fuerte.__hash__() == hash((decimal, 'VEF', '937'))
     assert bolivar_fuerte.__repr__() == (
         'BolivarFuerte(amount: 1000, '
-        'currency: "VEF", '
+        'alpha_code: "VEF", '
         'symbol: "Bs F", '
-        'code: "937", '
+        'numeric_code: "937", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_bolivar_fuerte_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        bolivar_fuerte.currency = 'EUR'
+        bolivar_fuerte.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_bolivar_fuerte_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        bolivar_fuerte.code = '978'
+        bolivar_fuerte.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_bolivar_fuerte_math_add():
     bolivar_fuerte_one = BolivarFuerte(amount=1)
     bolivar_fuerte_two = BolivarFuerte(amount=2)
     bolivar_fuerte_three = BolivarFuerte(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency VEF and OTHER.'):

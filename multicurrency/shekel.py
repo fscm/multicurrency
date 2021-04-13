@@ -52,9 +52,9 @@ class NewIsraeliShekel(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='ILS',
+            alpha_code='ILS',
+            numeric_code='376',
             symbol='₪',
-            code='376',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

@@ -23,8 +23,8 @@ def test_uganda_shilling():
     uganda_shilling = UgandaShilling(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert uganda_shilling.amount == decimal
-    assert uganda_shilling.code == '800'
-    assert uganda_shilling.currency == 'UGX'
+    assert uganda_shilling.numeric_code == '800'
+    assert uganda_shilling.alpha_code == 'UGX'
     assert uganda_shilling.decimal_places == 0
     assert uganda_shilling.decimal_sign == ','
     assert uganda_shilling.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_uganda_shilling():
     assert uganda_shilling.__hash__() == hash((decimal, 'UGX', '800'))
     assert uganda_shilling.__repr__() == (
         'UgandaShilling(amount: 0.1428571428571428571428571429, '
-        'currency: "UGX", '
+        'alpha_code: "UGX", '
         'symbol: "Sh", '
-        'code: "800", '
+        'numeric_code: "800", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_uganda_shilling_negative():
     amount = -100
     uganda_shilling = UgandaShilling(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert uganda_shilling.code == '800'
-    assert uganda_shilling.currency == 'UGX'
+    assert uganda_shilling.numeric_code == '800'
+    assert uganda_shilling.alpha_code == 'UGX'
     assert uganda_shilling.decimal_places == 0
     assert uganda_shilling.decimal_sign == ','
     assert uganda_shilling.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_uganda_shilling_negative():
     assert uganda_shilling.__hash__() == hash((decimal, 'UGX', '800'))
     assert uganda_shilling.__repr__() == (
         'UgandaShilling(amount: -100, '
-        'currency: "UGX", '
+        'alpha_code: "UGX", '
         'symbol: "Sh", '
-        'code: "800", '
+        'numeric_code: "800", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_uganda_shilling_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert uganda_shilling.amount == decimal
-    assert uganda_shilling.code == '800'
-    assert uganda_shilling.currency == 'UGX'
+    assert uganda_shilling.numeric_code == '800'
+    assert uganda_shilling.alpha_code == 'UGX'
     assert uganda_shilling.decimal_places == 5
     assert uganda_shilling.decimal_sign == '.'
     assert uganda_shilling.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_uganda_shilling_custom():
     assert uganda_shilling.__hash__() == hash((decimal, 'UGX', '800'))
     assert uganda_shilling.__repr__() == (
         'UgandaShilling(amount: 1000, '
-        'currency: "UGX", '
+        'alpha_code: "UGX", '
         'symbol: "Sh", '
-        'code: "800", '
+        'numeric_code: "800", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_uganda_shilling_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        uganda_shilling.currency = 'EUR'
+        uganda_shilling.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_uganda_shilling_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        uganda_shilling.code = '978'
+        uganda_shilling.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_uganda_shilling_math_add():
     uganda_shilling_one = UgandaShilling(amount=1)
     uganda_shilling_two = UgandaShilling(amount=2)
     uganda_shilling_three = UgandaShilling(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency UGX and OTHER.'):

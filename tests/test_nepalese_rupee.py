@@ -23,8 +23,8 @@ def test_nepalese_rupee():
     nepalese_rupee = NepaleseRupee(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert nepalese_rupee.amount == decimal
-    assert nepalese_rupee.code == '524'
-    assert nepalese_rupee.currency == 'NPR'
+    assert nepalese_rupee.numeric_code == '524'
+    assert nepalese_rupee.alpha_code == 'NPR'
     assert nepalese_rupee.decimal_places == 2
     assert nepalese_rupee.decimal_sign == '.'
     assert nepalese_rupee.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_nepalese_rupee():
     assert nepalese_rupee.__hash__() == hash((decimal, 'NPR', '524'))
     assert nepalese_rupee.__repr__() == (
         'NepaleseRupee(amount: 0.1428571428571428571428571429, '
-        'currency: "NPR", '
+        'alpha_code: "NPR", '
         'symbol: "₨", '
-        'code: "524", '
+        'numeric_code: "524", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_nepalese_rupee_negative():
     amount = -100
     nepalese_rupee = NepaleseRupee(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert nepalese_rupee.code == '524'
-    assert nepalese_rupee.currency == 'NPR'
+    assert nepalese_rupee.numeric_code == '524'
+    assert nepalese_rupee.alpha_code == 'NPR'
     assert nepalese_rupee.decimal_places == 2
     assert nepalese_rupee.decimal_sign == '.'
     assert nepalese_rupee.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_nepalese_rupee_negative():
     assert nepalese_rupee.__hash__() == hash((decimal, 'NPR', '524'))
     assert nepalese_rupee.__repr__() == (
         'NepaleseRupee(amount: -100, '
-        'currency: "NPR", '
+        'alpha_code: "NPR", '
         'symbol: "₨", '
-        'code: "524", '
+        'numeric_code: "524", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_nepalese_rupee_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert nepalese_rupee.amount == decimal
-    assert nepalese_rupee.code == '524'
-    assert nepalese_rupee.currency == 'NPR'
+    assert nepalese_rupee.numeric_code == '524'
+    assert nepalese_rupee.alpha_code == 'NPR'
     assert nepalese_rupee.decimal_places == 5
     assert nepalese_rupee.decimal_sign == ','
     assert nepalese_rupee.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_nepalese_rupee_custom():
     assert nepalese_rupee.__hash__() == hash((decimal, 'NPR', '524'))
     assert nepalese_rupee.__repr__() == (
         'NepaleseRupee(amount: 1000, '
-        'currency: "NPR", '
+        'alpha_code: "NPR", '
         'symbol: "₨", '
-        'code: "524", '
+        'numeric_code: "524", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_nepalese_rupee_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        nepalese_rupee.currency = 'EUR'
+        nepalese_rupee.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_nepalese_rupee_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        nepalese_rupee.code = '978'
+        nepalese_rupee.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_nepalese_rupee_math_add():
     nepalese_rupee_one = NepaleseRupee(amount=1)
     nepalese_rupee_two = NepaleseRupee(amount=2)
     nepalese_rupee_three = NepaleseRupee(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency NPR and OTHER.'):

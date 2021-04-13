@@ -23,8 +23,8 @@ def test_australian_dollar():
     australian_dollar = AustralianDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert australian_dollar.amount == decimal
-    assert australian_dollar.code == '036'
-    assert australian_dollar.currency == 'AUD'
+    assert australian_dollar.numeric_code == '036'
+    assert australian_dollar.alpha_code == 'AUD'
     assert australian_dollar.decimal_places == 2
     assert australian_dollar.decimal_sign == '.'
     assert australian_dollar.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_australian_dollar():
     assert australian_dollar.__hash__() == hash((decimal, 'AUD', '036'))
     assert australian_dollar.__repr__() == (
         'AustralianDollar(amount: 0.1428571428571428571428571429, '
-        'currency: "AUD", '
+        'alpha_code: "AUD", '
         'symbol: "$", '
-        'code: "036", '
+        'numeric_code: "036", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_australian_dollar_negative():
     amount = -100
     australian_dollar = AustralianDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert australian_dollar.code == '036'
-    assert australian_dollar.currency == 'AUD'
+    assert australian_dollar.numeric_code == '036'
+    assert australian_dollar.alpha_code == 'AUD'
     assert australian_dollar.decimal_places == 2
     assert australian_dollar.decimal_sign == '.'
     assert australian_dollar.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_australian_dollar_negative():
     assert australian_dollar.__hash__() == hash((decimal, 'AUD', '036'))
     assert australian_dollar.__repr__() == (
         'AustralianDollar(amount: -100, '
-        'currency: "AUD", '
+        'alpha_code: "AUD", '
         'symbol: "$", '
-        'code: "036", '
+        'numeric_code: "036", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_australian_dollar_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert australian_dollar.amount == decimal
-    assert australian_dollar.code == '036'
-    assert australian_dollar.currency == 'AUD'
+    assert australian_dollar.numeric_code == '036'
+    assert australian_dollar.alpha_code == 'AUD'
     assert australian_dollar.decimal_places == 5
     assert australian_dollar.decimal_sign == ','
     assert australian_dollar.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_australian_dollar_custom():
     assert australian_dollar.__hash__() == hash((decimal, 'AUD', '036'))
     assert australian_dollar.__repr__() == (
         'AustralianDollar(amount: 1000, '
-        'currency: "AUD", '
+        'alpha_code: "AUD", '
         'symbol: "$", '
-        'code: "036", '
+        'numeric_code: "036", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_australian_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        australian_dollar.currency = 'EUR'
+        australian_dollar.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_australian_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        australian_dollar.code = '978'
+        australian_dollar.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_australian_dollar_math_add():
     australian_dollar_one = AustralianDollar(amount=1)
     australian_dollar_two = AustralianDollar(amount=2)
     australian_dollar_three = AustralianDollar(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency AUD and OTHER.'):
@@ -152,9 +152,7 @@ def test_australian_dollar_math_add():
                    'dollar.AustralianDollar\'> '
                    'and <class \'str\'>.')):
         _ = australian_dollar_one.__add__('1.00')
-    assert (
-        australian_dollar_one +
-        australian_dollar_two) == australian_dollar_three
+    assert (australian_dollar_one + australian_dollar_two) == australian_dollar_three
 
 
 def test_currency_slots():

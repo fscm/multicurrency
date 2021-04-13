@@ -23,8 +23,8 @@ def test_malagasy_ariary():
     malagasy_ariary = MalagasyAriary(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert malagasy_ariary.amount == decimal
-    assert malagasy_ariary.code == '969'
-    assert malagasy_ariary.currency == 'MGA'
+    assert malagasy_ariary.numeric_code == '969'
+    assert malagasy_ariary.alpha_code == 'MGA'
     assert malagasy_ariary.decimal_places == 0
     assert malagasy_ariary.decimal_sign == ','
     assert malagasy_ariary.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_malagasy_ariary():
     assert malagasy_ariary.__hash__() == hash((decimal, 'MGA', '969'))
     assert malagasy_ariary.__repr__() == (
         'MalagasyAriary(amount: 0.1428571428571428571428571429, '
-        'currency: "MGA", '
+        'alpha_code: "MGA", '
         'symbol: "", '
-        'code: "969", '
+        'numeric_code: "969", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_malagasy_ariary_negative():
     amount = -100
     malagasy_ariary = MalagasyAriary(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert malagasy_ariary.code == '969'
-    assert malagasy_ariary.currency == 'MGA'
+    assert malagasy_ariary.numeric_code == '969'
+    assert malagasy_ariary.alpha_code == 'MGA'
     assert malagasy_ariary.decimal_places == 0
     assert malagasy_ariary.decimal_sign == ','
     assert malagasy_ariary.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_malagasy_ariary_negative():
     assert malagasy_ariary.__hash__() == hash((decimal, 'MGA', '969'))
     assert malagasy_ariary.__repr__() == (
         'MalagasyAriary(amount: -100, '
-        'currency: "MGA", '
+        'alpha_code: "MGA", '
         'symbol: "", '
-        'code: "969", '
+        'numeric_code: "969", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_malagasy_ariary_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert malagasy_ariary.amount == decimal
-    assert malagasy_ariary.code == '969'
-    assert malagasy_ariary.currency == 'MGA'
+    assert malagasy_ariary.numeric_code == '969'
+    assert malagasy_ariary.alpha_code == 'MGA'
     assert malagasy_ariary.decimal_places == 5
     assert malagasy_ariary.decimal_sign == '.'
     assert malagasy_ariary.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_malagasy_ariary_custom():
     assert malagasy_ariary.__hash__() == hash((decimal, 'MGA', '969'))
     assert malagasy_ariary.__repr__() == (
         'MalagasyAriary(amount: 1000, '
-        'currency: "MGA", '
+        'alpha_code: "MGA", '
         'symbol: "", '
-        'code: "969", '
+        'numeric_code: "969", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_malagasy_ariary_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        malagasy_ariary.currency = 'EUR'
+        malagasy_ariary.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_malagasy_ariary_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        malagasy_ariary.code = '978'
+        malagasy_ariary.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_malagasy_ariary_math_add():
     malagasy_ariary_one = MalagasyAriary(amount=1)
     malagasy_ariary_two = MalagasyAriary(amount=2)
     malagasy_ariary_three = MalagasyAriary(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency MGA and OTHER.'):

@@ -52,9 +52,9 @@ class Ouguiya(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='MRU',
+            alpha_code='MRU',
+            numeric_code='929',
             symbol='UM',
-            code='929',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

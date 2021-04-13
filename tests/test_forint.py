@@ -23,8 +23,8 @@ def test_forint():
     forint = Forint(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert forint.amount == decimal
-    assert forint.code == '348'
-    assert forint.currency == 'HUF'
+    assert forint.numeric_code == '348'
+    assert forint.alpha_code == 'HUF'
     assert forint.decimal_places == 0
     assert forint.decimal_sign == ','
     assert forint.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_forint():
     assert forint.__hash__() == hash((decimal, 'HUF', '348'))
     assert forint.__repr__() == (
         'Forint(amount: 0.1428571428571428571428571429, '
-        'currency: "HUF", '
+        'alpha_code: "HUF", '
         'symbol: "Ft", '
-        'code: "348", '
+        'numeric_code: "348", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_forint_negative():
     amount = -100
     forint = Forint(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert forint.code == '348'
-    assert forint.currency == 'HUF'
+    assert forint.numeric_code == '348'
+    assert forint.alpha_code == 'HUF'
     assert forint.decimal_places == 0
     assert forint.decimal_sign == ','
     assert forint.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_forint_negative():
     assert forint.__hash__() == hash((decimal, 'HUF', '348'))
     assert forint.__repr__() == (
         'Forint(amount: -100, '
-        'currency: "HUF", '
+        'alpha_code: "HUF", '
         'symbol: "Ft", '
-        'code: "348", '
+        'numeric_code: "348", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_forint_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert forint.amount == decimal
-    assert forint.code == '348'
-    assert forint.currency == 'HUF'
+    assert forint.numeric_code == '348'
+    assert forint.alpha_code == 'HUF'
     assert forint.decimal_places == 5
     assert forint.decimal_sign == '.'
     assert forint.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_forint_custom():
     assert forint.__hash__() == hash((decimal, 'HUF', '348'))
     assert forint.__repr__() == (
         'Forint(amount: 1000, '
-        'currency: "HUF", '
+        'alpha_code: "HUF", '
         'symbol: "Ft", '
-        'code: "348", '
+        'numeric_code: "348", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_forint_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        forint.currency = 'EUR'
+        forint.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_forint_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        forint.code = '978'
+        forint.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_forint_math_add():
     forint_one = Forint(amount=1)
     forint_two = Forint(amount=2)
     forint_three = Forint(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency HUF and OTHER.'):

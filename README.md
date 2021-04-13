@@ -50,9 +50,9 @@ object with the desired settings.
 >>> from multicurrency import Currency
 >>> bitcoin = Currency(
 ...     amount=1000,
-...     currency='XBT',
+...     alpha_code='XBT',
+...     numeric_code='0',
 ...     symbol='Ƀ',
-...     code='0',
 ...     decimal_places=8,
 ...     decimal_sign='.',
 ...     grouping_sign=',')
@@ -66,9 +66,9 @@ dictionary and used when needed:
 ```python
 >>> from multicurrency import Currency
 >>> settings = {
-...     'currency':'XBT',
+...     'alpha_code':'XBT',
 ...     'symbol':'Ƀ',
-...     'code':'0',
+...     'numeric_code':'0',
 ...     'decimal_places':8,
 ...     'decimal_sign':'.',
 ...     'grouping_sign':','}

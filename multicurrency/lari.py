@@ -52,9 +52,9 @@ class Lari(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='GEL',
+            alpha_code='GEL',
+            numeric_code='981',
             symbol='ლ',
-            code='981',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

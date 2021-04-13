@@ -23,8 +23,8 @@ def test_namibia_dollar():
     namibia_dollar = NamibiaDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert namibia_dollar.amount == decimal
-    assert namibia_dollar.code == '516'
-    assert namibia_dollar.currency == 'NAD'
+    assert namibia_dollar.numeric_code == '516'
+    assert namibia_dollar.alpha_code == 'NAD'
     assert namibia_dollar.decimal_places == 2
     assert namibia_dollar.decimal_sign == ','
     assert namibia_dollar.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_namibia_dollar():
     assert namibia_dollar.__hash__() == hash((decimal, 'NAD', '516'))
     assert namibia_dollar.__repr__() == (
         'NamibiaDollar(amount: 0.1428571428571428571428571429, '
-        'currency: "NAD", '
+        'alpha_code: "NAD", '
         'symbol: "$", '
-        'code: "516", '
+        'numeric_code: "516", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_namibia_dollar_negative():
     amount = -100
     namibia_dollar = NamibiaDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert namibia_dollar.code == '516'
-    assert namibia_dollar.currency == 'NAD'
+    assert namibia_dollar.numeric_code == '516'
+    assert namibia_dollar.alpha_code == 'NAD'
     assert namibia_dollar.decimal_places == 2
     assert namibia_dollar.decimal_sign == ','
     assert namibia_dollar.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_namibia_dollar_negative():
     assert namibia_dollar.__hash__() == hash((decimal, 'NAD', '516'))
     assert namibia_dollar.__repr__() == (
         'NamibiaDollar(amount: -100, '
-        'currency: "NAD", '
+        'alpha_code: "NAD", '
         'symbol: "$", '
-        'code: "516", '
+        'numeric_code: "516", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_namibia_dollar_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert namibia_dollar.amount == decimal
-    assert namibia_dollar.code == '516'
-    assert namibia_dollar.currency == 'NAD'
+    assert namibia_dollar.numeric_code == '516'
+    assert namibia_dollar.alpha_code == 'NAD'
     assert namibia_dollar.decimal_places == 5
     assert namibia_dollar.decimal_sign == '.'
     assert namibia_dollar.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_namibia_dollar_custom():
     assert namibia_dollar.__hash__() == hash((decimal, 'NAD', '516'))
     assert namibia_dollar.__repr__() == (
         'NamibiaDollar(amount: 1000, '
-        'currency: "NAD", '
+        'alpha_code: "NAD", '
         'symbol: "$", '
-        'code: "516", '
+        'numeric_code: "516", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_namibia_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        namibia_dollar.currency = 'EUR'
+        namibia_dollar.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_namibia_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        namibia_dollar.code = '978'
+        namibia_dollar.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_namibia_dollar_math_add():
     namibia_dollar_one = NamibiaDollar(amount=1)
     namibia_dollar_two = NamibiaDollar(amount=2)
     namibia_dollar_three = NamibiaDollar(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency NAD and OTHER.'):

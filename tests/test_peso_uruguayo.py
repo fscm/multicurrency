@@ -23,8 +23,8 @@ def test_peso_uruguayo():
     peso_uruguayo = PesoUruguayo(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert peso_uruguayo.amount == decimal
-    assert peso_uruguayo.code == '858'
-    assert peso_uruguayo.currency == 'UYU'
+    assert peso_uruguayo.numeric_code == '858'
+    assert peso_uruguayo.alpha_code == 'UYU'
     assert peso_uruguayo.decimal_places == 2
     assert peso_uruguayo.decimal_sign == ','
     assert peso_uruguayo.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_peso_uruguayo():
     assert peso_uruguayo.__hash__() == hash((decimal, 'UYU', '858'))
     assert peso_uruguayo.__repr__() == (
         'PesoUruguayo(amount: 0.1428571428571428571428571429, '
-        'currency: "UYU", '
+        'alpha_code: "UYU", '
         'symbol: "$", '
-        'code: "858", '
+        'numeric_code: "858", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_peso_uruguayo_negative():
     amount = -100
     peso_uruguayo = PesoUruguayo(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert peso_uruguayo.code == '858'
-    assert peso_uruguayo.currency == 'UYU'
+    assert peso_uruguayo.numeric_code == '858'
+    assert peso_uruguayo.alpha_code == 'UYU'
     assert peso_uruguayo.decimal_places == 2
     assert peso_uruguayo.decimal_sign == ','
     assert peso_uruguayo.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_peso_uruguayo_negative():
     assert peso_uruguayo.__hash__() == hash((decimal, 'UYU', '858'))
     assert peso_uruguayo.__repr__() == (
         'PesoUruguayo(amount: -100, '
-        'currency: "UYU", '
+        'alpha_code: "UYU", '
         'symbol: "$", '
-        'code: "858", '
+        'numeric_code: "858", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_peso_uruguayo_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert peso_uruguayo.amount == decimal
-    assert peso_uruguayo.code == '858'
-    assert peso_uruguayo.currency == 'UYU'
+    assert peso_uruguayo.numeric_code == '858'
+    assert peso_uruguayo.alpha_code == 'UYU'
     assert peso_uruguayo.decimal_places == 5
     assert peso_uruguayo.decimal_sign == '.'
     assert peso_uruguayo.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_peso_uruguayo_custom():
     assert peso_uruguayo.__hash__() == hash((decimal, 'UYU', '858'))
     assert peso_uruguayo.__repr__() == (
         'PesoUruguayo(amount: 1000, '
-        'currency: "UYU", '
+        'alpha_code: "UYU", '
         'symbol: "$", '
-        'code: "858", '
+        'numeric_code: "858", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_peso_uruguayo_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        peso_uruguayo.currency = 'EUR'
+        peso_uruguayo.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_peso_uruguayo_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        peso_uruguayo.code = '978'
+        peso_uruguayo.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_peso_uruguayo_math_add():
     peso_uruguayo_one = PesoUruguayo(amount=1)
     peso_uruguayo_two = PesoUruguayo(amount=2)
     peso_uruguayo_three = PesoUruguayo(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency UYU and OTHER.'):

@@ -23,8 +23,8 @@ def test_moroccan_dirham():
     moroccan_dirham = MoroccanDirham(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert moroccan_dirham.amount == decimal
-    assert moroccan_dirham.code == '504'
-    assert moroccan_dirham.currency == 'MAD'
+    assert moroccan_dirham.numeric_code == '504'
+    assert moroccan_dirham.alpha_code == 'MAD'
     assert moroccan_dirham.decimal_places == 2
     assert moroccan_dirham.decimal_sign == ','
     assert moroccan_dirham.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_moroccan_dirham():
     assert moroccan_dirham.__hash__() == hash((decimal, 'MAD', '504'))
     assert moroccan_dirham.__repr__() == (
         'MoroccanDirham(amount: 0.1428571428571428571428571429, '
-        'currency: "MAD", '
+        'alpha_code: "MAD", '
         'symbol: "د.م.", '
-        'code: "504", '
+        'numeric_code: "504", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_moroccan_dirham_negative():
     amount = -100
     moroccan_dirham = MoroccanDirham(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert moroccan_dirham.code == '504'
-    assert moroccan_dirham.currency == 'MAD'
+    assert moroccan_dirham.numeric_code == '504'
+    assert moroccan_dirham.alpha_code == 'MAD'
     assert moroccan_dirham.decimal_places == 2
     assert moroccan_dirham.decimal_sign == ','
     assert moroccan_dirham.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_moroccan_dirham_negative():
     assert moroccan_dirham.__hash__() == hash((decimal, 'MAD', '504'))
     assert moroccan_dirham.__repr__() == (
         'MoroccanDirham(amount: -100, '
-        'currency: "MAD", '
+        'alpha_code: "MAD", '
         'symbol: "د.م.", '
-        'code: "504", '
+        'numeric_code: "504", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_moroccan_dirham_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert moroccan_dirham.amount == decimal
-    assert moroccan_dirham.code == '504'
-    assert moroccan_dirham.currency == 'MAD'
+    assert moroccan_dirham.numeric_code == '504'
+    assert moroccan_dirham.alpha_code == 'MAD'
     assert moroccan_dirham.decimal_places == 5
     assert moroccan_dirham.decimal_sign == '.'
     assert moroccan_dirham.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_moroccan_dirham_custom():
     assert moroccan_dirham.__hash__() == hash((decimal, 'MAD', '504'))
     assert moroccan_dirham.__repr__() == (
         'MoroccanDirham(amount: 1000, '
-        'currency: "MAD", '
+        'alpha_code: "MAD", '
         'symbol: "د.م.", '
-        'code: "504", '
+        'numeric_code: "504", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_moroccan_dirham_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        moroccan_dirham.currency = 'EUR'
+        moroccan_dirham.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_moroccan_dirham_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        moroccan_dirham.code = '978'
+        moroccan_dirham.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_moroccan_dirham_math_add():
     moroccan_dirham_one = MoroccanDirham(amount=1)
     moroccan_dirham_two = MoroccanDirham(amount=2)
     moroccan_dirham_three = MoroccanDirham(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency MAD and OTHER.'):

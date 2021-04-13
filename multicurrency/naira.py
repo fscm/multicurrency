@@ -52,9 +52,9 @@ class Naira(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='NGN',
+            alpha_code='NGN',
+            numeric_code='566',
             symbol='₦',
-            code='566',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

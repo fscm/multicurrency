@@ -23,8 +23,8 @@ def test_baht():
     baht = Baht(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert baht.amount == decimal
-    assert baht.code == '764'
-    assert baht.currency == 'THB'
+    assert baht.numeric_code == '764'
+    assert baht.alpha_code == 'THB'
     assert baht.decimal_places == 2
     assert baht.decimal_sign == '.'
     assert baht.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_baht():
     assert baht.__hash__() == hash((decimal, 'THB', '764'))
     assert baht.__repr__() == (
         'Baht(amount: 0.1428571428571428571428571429, '
-        'currency: "THB", '
+        'alpha_code: "THB", '
         'symbol: "฿", '
-        'code: "764", '
+        'numeric_code: "764", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_baht_negative():
     amount = -100
     baht = Baht(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert baht.code == '764'
-    assert baht.currency == 'THB'
+    assert baht.numeric_code == '764'
+    assert baht.alpha_code == 'THB'
     assert baht.decimal_places == 2
     assert baht.decimal_sign == '.'
     assert baht.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_baht_negative():
     assert baht.__hash__() == hash((decimal, 'THB', '764'))
     assert baht.__repr__() == (
         'Baht(amount: -100, '
-        'currency: "THB", '
+        'alpha_code: "THB", '
         'symbol: "฿", '
-        'code: "764", '
+        'numeric_code: "764", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_baht_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert baht.amount == decimal
-    assert baht.code == '764'
-    assert baht.currency == 'THB'
+    assert baht.numeric_code == '764'
+    assert baht.alpha_code == 'THB'
     assert baht.decimal_places == 5
     assert baht.decimal_sign == ','
     assert baht.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_baht_custom():
     assert baht.__hash__() == hash((decimal, 'THB', '764'))
     assert baht.__repr__() == (
         'Baht(amount: 1000, '
-        'currency: "THB", '
+        'alpha_code: "THB", '
         'symbol: "฿", '
-        'code: "764", '
+        'numeric_code: "764", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_baht_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        baht.currency = 'EUR'
+        baht.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_baht_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        baht.code = '978'
+        baht.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_baht_math_add():
     baht_one = Baht(amount=1)
     baht_two = Baht(amount=2)
     baht_three = Baht(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency THB and OTHER.'):

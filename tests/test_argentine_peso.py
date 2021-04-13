@@ -23,8 +23,8 @@ def test_argentine_peso():
     argentine_peso = ArgentinePeso(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert argentine_peso.amount == decimal
-    assert argentine_peso.code == '032'
-    assert argentine_peso.currency == 'ARS'
+    assert argentine_peso.numeric_code == '032'
+    assert argentine_peso.alpha_code == 'ARS'
     assert argentine_peso.decimal_places == 2
     assert argentine_peso.decimal_sign == ','
     assert argentine_peso.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_argentine_peso():
     assert argentine_peso.__hash__() == hash((decimal, 'ARS', '032'))
     assert argentine_peso.__repr__() == (
         'ArgentinePeso(amount: 0.1428571428571428571428571429, '
-        'currency: "ARS", '
+        'alpha_code: "ARS", '
         'symbol: "$", '
-        'code: "032", '
+        'numeric_code: "032", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_argentine_peso_negative():
     amount = -100
     argentine_peso = ArgentinePeso(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert argentine_peso.code == '032'
-    assert argentine_peso.currency == 'ARS'
+    assert argentine_peso.numeric_code == '032'
+    assert argentine_peso.alpha_code == 'ARS'
     assert argentine_peso.decimal_places == 2
     assert argentine_peso.decimal_sign == ','
     assert argentine_peso.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_argentine_peso_negative():
     assert argentine_peso.__hash__() == hash((decimal, 'ARS', '032'))
     assert argentine_peso.__repr__() == (
         'ArgentinePeso(amount: -100, '
-        'currency: "ARS", '
+        'alpha_code: "ARS", '
         'symbol: "$", '
-        'code: "032", '
+        'numeric_code: "032", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_argentine_peso_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert argentine_peso.amount == decimal
-    assert argentine_peso.code == '032'
-    assert argentine_peso.currency == 'ARS'
+    assert argentine_peso.numeric_code == '032'
+    assert argentine_peso.alpha_code == 'ARS'
     assert argentine_peso.decimal_places == 5
     assert argentine_peso.decimal_sign == '.'
     assert argentine_peso.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_argentine_peso_custom():
     assert argentine_peso.__hash__() == hash((decimal, 'ARS', '032'))
     assert argentine_peso.__repr__() == (
         'ArgentinePeso(amount: 1000, '
-        'currency: "ARS", '
+        'alpha_code: "ARS", '
         'symbol: "$", '
-        'code: "032", '
+        'numeric_code: "032", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_argentine_peso_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        argentine_peso.currency = 'EUR'
+        argentine_peso.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_argentine_peso_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        argentine_peso.code = '978'
+        argentine_peso.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_argentine_peso_math_add():
     argentine_peso_one = ArgentinePeso(amount=1)
     argentine_peso_two = ArgentinePeso(amount=2)
     argentine_peso_three = ArgentinePeso(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency ARS and OTHER.'):

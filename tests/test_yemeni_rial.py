@@ -23,8 +23,8 @@ def test_yemeni_rial():
     yemeni_rial = YemeniRial(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert yemeni_rial.amount == decimal
-    assert yemeni_rial.code == '886'
-    assert yemeni_rial.currency == 'YER'
+    assert yemeni_rial.numeric_code == '886'
+    assert yemeni_rial.alpha_code == 'YER'
     assert yemeni_rial.decimal_places == 2
     assert yemeni_rial.decimal_sign == ','
     assert yemeni_rial.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_yemeni_rial():
     assert yemeni_rial.__hash__() == hash((decimal, 'YER', '886'))
     assert yemeni_rial.__repr__() == (
         'YemeniRial(amount: 0.1428571428571428571428571429, '
-        'currency: "YER", '
+        'alpha_code: "YER", '
         'symbol: "﷼", '
-        'code: "886", '
+        'numeric_code: "886", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_yemeni_rial_negative():
     amount = -100
     yemeni_rial = YemeniRial(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert yemeni_rial.code == '886'
-    assert yemeni_rial.currency == 'YER'
+    assert yemeni_rial.numeric_code == '886'
+    assert yemeni_rial.alpha_code == 'YER'
     assert yemeni_rial.decimal_places == 2
     assert yemeni_rial.decimal_sign == ','
     assert yemeni_rial.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_yemeni_rial_negative():
     assert yemeni_rial.__hash__() == hash((decimal, 'YER', '886'))
     assert yemeni_rial.__repr__() == (
         'YemeniRial(amount: -100, '
-        'currency: "YER", '
+        'alpha_code: "YER", '
         'symbol: "﷼", '
-        'code: "886", '
+        'numeric_code: "886", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_yemeni_rial_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert yemeni_rial.amount == decimal
-    assert yemeni_rial.code == '886'
-    assert yemeni_rial.currency == 'YER'
+    assert yemeni_rial.numeric_code == '886'
+    assert yemeni_rial.alpha_code == 'YER'
     assert yemeni_rial.decimal_places == 5
     assert yemeni_rial.decimal_sign == '.'
     assert yemeni_rial.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_yemeni_rial_custom():
     assert yemeni_rial.__hash__() == hash((decimal, 'YER', '886'))
     assert yemeni_rial.__repr__() == (
         'YemeniRial(amount: 1000, '
-        'currency: "YER", '
+        'alpha_code: "YER", '
         'symbol: "﷼", '
-        'code: "886", '
+        'numeric_code: "886", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_yemeni_rial_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        yemeni_rial.currency = 'EUR'
+        yemeni_rial.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_yemeni_rial_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        yemeni_rial.code = '978'
+        yemeni_rial.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_yemeni_rial_math_add():
     yemeni_rial_one = YemeniRial(amount=1)
     yemeni_rial_two = YemeniRial(amount=2)
     yemeni_rial_three = YemeniRial(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency YER and OTHER.'):

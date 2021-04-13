@@ -23,8 +23,8 @@ def test_afghani():
     afghani = Afghani(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert afghani.amount == decimal
-    assert afghani.code == '971'
-    assert afghani.currency == 'AFN'
+    assert afghani.numeric_code == '971'
+    assert afghani.alpha_code == 'AFN'
     assert afghani.decimal_places == 2
     assert afghani.decimal_sign == ','
     assert afghani.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_afghani():
     assert afghani.__hash__() == hash((decimal, 'AFN', '971'))
     assert afghani.__repr__() == (
         'Afghani(amount: 0.1428571428571428571428571429, '
-        'currency: "AFN", '
+        'alpha_code: "AFN", '
         'symbol: "Af", '
-        'code: "971", '
+        'numeric_code: "971", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_afghani_negative():
     amount = -100
     afghani = Afghani(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert afghani.code == '971'
-    assert afghani.currency == 'AFN'
+    assert afghani.numeric_code == '971'
+    assert afghani.alpha_code == 'AFN'
     assert afghani.decimal_places == 2
     assert afghani.decimal_sign == ','
     assert afghani.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_afghani_negative():
     assert afghani.__hash__() == hash((decimal, 'AFN', '971'))
     assert afghani.__repr__() == (
         'Afghani(amount: -100, '
-        'currency: "AFN", '
+        'alpha_code: "AFN", '
         'symbol: "Af", '
-        'code: "971", '
+        'numeric_code: "971", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_afghani_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert afghani.amount == decimal
-    assert afghani.code == '971'
-    assert afghani.currency == 'AFN'
+    assert afghani.numeric_code == '971'
+    assert afghani.alpha_code == 'AFN'
     assert afghani.decimal_places == 5
     assert afghani.decimal_sign == '.'
     assert afghani.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_afghani_custom():
     assert afghani.__hash__() == hash((decimal, 'AFN', '971'))
     assert afghani.__repr__() == (
         'Afghani(amount: 1000, '
-        'currency: "AFN", '
+        'alpha_code: "AFN", '
         'symbol: "Af", '
-        'code: "971", '
+        'numeric_code: "971", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_afghani_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        afghani.currency = 'EUR'
+        afghani.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_afghani_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        afghani.code = '978'
+        afghani.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_afghani_math_add():
     afghani_one = Afghani(amount=1)
     afghani_two = Afghani(amount=2)
     afghani_three = Afghani(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency AFN and OTHER.'):

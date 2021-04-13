@@ -23,8 +23,8 @@ def test_zimbabwe_dollar():
     zimbabwe_dollar = ZimbabweDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert zimbabwe_dollar.amount == decimal
-    assert zimbabwe_dollar.code == '932'
-    assert zimbabwe_dollar.currency == 'ZWL'
+    assert zimbabwe_dollar.numeric_code == '932'
+    assert zimbabwe_dollar.alpha_code == 'ZWL'
     assert zimbabwe_dollar.decimal_places == 2
     assert zimbabwe_dollar.decimal_sign == ','
     assert zimbabwe_dollar.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_zimbabwe_dollar():
     assert zimbabwe_dollar.__hash__() == hash((decimal, 'ZWL', '932'))
     assert zimbabwe_dollar.__repr__() == (
         'ZimbabweDollar(amount: 0.1428571428571428571428571429, '
-        'currency: "ZWL", '
+        'alpha_code: "ZWL", '
         'symbol: "$", '
-        'code: "932", '
+        'numeric_code: "932", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_zimbabwe_dollar_negative():
     amount = -100
     zimbabwe_dollar = ZimbabweDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert zimbabwe_dollar.code == '932'
-    assert zimbabwe_dollar.currency == 'ZWL'
+    assert zimbabwe_dollar.numeric_code == '932'
+    assert zimbabwe_dollar.alpha_code == 'ZWL'
     assert zimbabwe_dollar.decimal_places == 2
     assert zimbabwe_dollar.decimal_sign == ','
     assert zimbabwe_dollar.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_zimbabwe_dollar_negative():
     assert zimbabwe_dollar.__hash__() == hash((decimal, 'ZWL', '932'))
     assert zimbabwe_dollar.__repr__() == (
         'ZimbabweDollar(amount: -100, '
-        'currency: "ZWL", '
+        'alpha_code: "ZWL", '
         'symbol: "$", '
-        'code: "932", '
+        'numeric_code: "932", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_zimbabwe_dollar_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert zimbabwe_dollar.amount == decimal
-    assert zimbabwe_dollar.code == '932'
-    assert zimbabwe_dollar.currency == 'ZWL'
+    assert zimbabwe_dollar.numeric_code == '932'
+    assert zimbabwe_dollar.alpha_code == 'ZWL'
     assert zimbabwe_dollar.decimal_places == 5
     assert zimbabwe_dollar.decimal_sign == '.'
     assert zimbabwe_dollar.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_zimbabwe_dollar_custom():
     assert zimbabwe_dollar.__hash__() == hash((decimal, 'ZWL', '932'))
     assert zimbabwe_dollar.__repr__() == (
         'ZimbabweDollar(amount: 1000, '
-        'currency: "ZWL", '
+        'alpha_code: "ZWL", '
         'symbol: "$", '
-        'code: "932", '
+        'numeric_code: "932", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_zimbabwe_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        zimbabwe_dollar.currency = 'EUR'
+        zimbabwe_dollar.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_zimbabwe_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        zimbabwe_dollar.code = '978'
+        zimbabwe_dollar.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_zimbabwe_dollar_math_add():
     zimbabwe_dollar_one = ZimbabweDollar(amount=1)
     zimbabwe_dollar_two = ZimbabweDollar(amount=2)
     zimbabwe_dollar_three = ZimbabweDollar(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency ZWL and OTHER.'):

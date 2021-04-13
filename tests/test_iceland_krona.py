@@ -23,8 +23,8 @@ def test_iceland_krona():
     iceland_krona = IcelandKrona(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert iceland_krona.amount == decimal
-    assert iceland_krona.code == '352'
-    assert iceland_krona.currency == 'ISK'
+    assert iceland_krona.numeric_code == '352'
+    assert iceland_krona.alpha_code == 'ISK'
     assert iceland_krona.decimal_places == 0
     assert iceland_krona.decimal_sign == ','
     assert iceland_krona.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_iceland_krona():
     assert iceland_krona.__hash__() == hash((decimal, 'ISK', '352'))
     assert iceland_krona.__repr__() == (
         'IcelandKrona(amount: 0.1428571428571428571428571429, '
-        'currency: "ISK", '
+        'alpha_code: "ISK", '
         'symbol: "Kr", '
-        'code: "352", '
+        'numeric_code: "352", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_iceland_krona_negative():
     amount = -100
     iceland_krona = IcelandKrona(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert iceland_krona.code == '352'
-    assert iceland_krona.currency == 'ISK'
+    assert iceland_krona.numeric_code == '352'
+    assert iceland_krona.alpha_code == 'ISK'
     assert iceland_krona.decimal_places == 0
     assert iceland_krona.decimal_sign == ','
     assert iceland_krona.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_iceland_krona_negative():
     assert iceland_krona.__hash__() == hash((decimal, 'ISK', '352'))
     assert iceland_krona.__repr__() == (
         'IcelandKrona(amount: -100, '
-        'currency: "ISK", '
+        'alpha_code: "ISK", '
         'symbol: "Kr", '
-        'code: "352", '
+        'numeric_code: "352", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_iceland_krona_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert iceland_krona.amount == decimal
-    assert iceland_krona.code == '352'
-    assert iceland_krona.currency == 'ISK'
+    assert iceland_krona.numeric_code == '352'
+    assert iceland_krona.alpha_code == 'ISK'
     assert iceland_krona.decimal_places == 5
     assert iceland_krona.decimal_sign == '.'
     assert iceland_krona.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_iceland_krona_custom():
     assert iceland_krona.__hash__() == hash((decimal, 'ISK', '352'))
     assert iceland_krona.__repr__() == (
         'IcelandKrona(amount: 1000, '
-        'currency: "ISK", '
+        'alpha_code: "ISK", '
         'symbol: "Kr", '
-        'code: "352", '
+        'numeric_code: "352", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_iceland_krona_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        iceland_krona.currency = 'EUR'
+        iceland_krona.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_iceland_krona_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        iceland_krona.code = '978'
+        iceland_krona.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_iceland_krona_math_add():
     iceland_krona_one = IcelandKrona(amount=1)
     iceland_krona_two = IcelandKrona(amount=2)
     iceland_krona_three = IcelandKrona(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency ISK and OTHER.'):

@@ -52,9 +52,9 @@ class BolivarFuerte(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='VEF',
+            alpha_code='VEF',
+            numeric_code='937',
             symbol='Bs F',
-            code='937',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

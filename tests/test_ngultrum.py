@@ -23,8 +23,8 @@ def test_ngultrum():
     ngultrum = Ngultrum(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert ngultrum.amount == decimal
-    assert ngultrum.code == '064'
-    assert ngultrum.currency == 'BTN'
+    assert ngultrum.numeric_code == '064'
+    assert ngultrum.alpha_code == 'BTN'
     assert ngultrum.decimal_places == 2
     assert ngultrum.decimal_sign == ','
     assert ngultrum.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_ngultrum():
     assert ngultrum.__hash__() == hash((decimal, 'BTN', '064'))
     assert ngultrum.__repr__() == (
         'Ngultrum(amount: 0.1428571428571428571428571429, '
-        'currency: "BTN", '
+        'alpha_code: "BTN", '
         'symbol: "", '
-        'code: "064", '
+        'numeric_code: "064", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_ngultrum_negative():
     amount = -100
     ngultrum = Ngultrum(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert ngultrum.code == '064'
-    assert ngultrum.currency == 'BTN'
+    assert ngultrum.numeric_code == '064'
+    assert ngultrum.alpha_code == 'BTN'
     assert ngultrum.decimal_places == 2
     assert ngultrum.decimal_sign == ','
     assert ngultrum.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_ngultrum_negative():
     assert ngultrum.__hash__() == hash((decimal, 'BTN', '064'))
     assert ngultrum.__repr__() == (
         'Ngultrum(amount: -100, '
-        'currency: "BTN", '
+        'alpha_code: "BTN", '
         'symbol: "", '
-        'code: "064", '
+        'numeric_code: "064", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_ngultrum_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert ngultrum.amount == decimal
-    assert ngultrum.code == '064'
-    assert ngultrum.currency == 'BTN'
+    assert ngultrum.numeric_code == '064'
+    assert ngultrum.alpha_code == 'BTN'
     assert ngultrum.decimal_places == 5
     assert ngultrum.decimal_sign == '.'
     assert ngultrum.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_ngultrum_custom():
     assert ngultrum.__hash__() == hash((decimal, 'BTN', '064'))
     assert ngultrum.__repr__() == (
         'Ngultrum(amount: 1000, '
-        'currency: "BTN", '
+        'alpha_code: "BTN", '
         'symbol: "", '
-        'code: "064", '
+        'numeric_code: "064", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_ngultrum_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        ngultrum.currency = 'EUR'
+        ngultrum.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_ngultrum_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        ngultrum.code = '978'
+        ngultrum.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_ngultrum_math_add():
     ngultrum_one = Ngultrum(amount=1)
     ngultrum_two = Ngultrum(amount=2)
     ngultrum_three = Ngultrum(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency BTN and OTHER.'):

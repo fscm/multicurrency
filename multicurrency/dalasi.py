@@ -52,9 +52,9 @@ class Dalasi(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='GMD',
+            alpha_code='GMD',
+            numeric_code='270',
             symbol='D',
-            code='270',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

@@ -52,9 +52,9 @@ class Kwanza(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='AOA',
+            alpha_code='AOA',
+            numeric_code='973',
             symbol='Kz',
-            code='973',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

@@ -23,8 +23,8 @@ def test_east_caribbean_dollar():
     east_caribbean_dollar = EastCaribbeanDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert east_caribbean_dollar.amount == decimal
-    assert east_caribbean_dollar.code == '951'
-    assert east_caribbean_dollar.currency == 'XCD'
+    assert east_caribbean_dollar.numeric_code == '951'
+    assert east_caribbean_dollar.alpha_code == 'XCD'
     assert east_caribbean_dollar.decimal_places == 2
     assert east_caribbean_dollar.decimal_sign == '.'
     assert east_caribbean_dollar.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_east_caribbean_dollar():
     assert east_caribbean_dollar.__hash__() == hash((decimal, 'XCD', '951'))
     assert east_caribbean_dollar.__repr__() == (
         'EastCaribbeanDollar(amount: 0.1428571428571428571428571429, '
-        'currency: "XCD", '
+        'alpha_code: "XCD", '
         'symbol: "$", '
-        'code: "951", '
+        'numeric_code: "951", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_east_caribbean_dollar_negative():
     amount = -100
     east_caribbean_dollar = EastCaribbeanDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert east_caribbean_dollar.code == '951'
-    assert east_caribbean_dollar.currency == 'XCD'
+    assert east_caribbean_dollar.numeric_code == '951'
+    assert east_caribbean_dollar.alpha_code == 'XCD'
     assert east_caribbean_dollar.decimal_places == 2
     assert east_caribbean_dollar.decimal_sign == '.'
     assert east_caribbean_dollar.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_east_caribbean_dollar_negative():
     assert east_caribbean_dollar.__hash__() == hash((decimal, 'XCD', '951'))
     assert east_caribbean_dollar.__repr__() == (
         'EastCaribbeanDollar(amount: -100, '
-        'currency: "XCD", '
+        'alpha_code: "XCD", '
         'symbol: "$", '
-        'code: "951", '
+        'numeric_code: "951", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_east_caribbean_dollar_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert east_caribbean_dollar.amount == decimal
-    assert east_caribbean_dollar.code == '951'
-    assert east_caribbean_dollar.currency == 'XCD'
+    assert east_caribbean_dollar.numeric_code == '951'
+    assert east_caribbean_dollar.alpha_code == 'XCD'
     assert east_caribbean_dollar.decimal_places == 5
     assert east_caribbean_dollar.decimal_sign == ','
     assert east_caribbean_dollar.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_east_caribbean_dollar_custom():
     assert east_caribbean_dollar.__hash__() == hash((decimal, 'XCD', '951'))
     assert east_caribbean_dollar.__repr__() == (
         'EastCaribbeanDollar(amount: 1000, '
-        'currency: "XCD", '
+        'alpha_code: "XCD", '
         'symbol: "$", '
-        'code: "951", '
+        'numeric_code: "951", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_east_caribbean_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        east_caribbean_dollar.currency = 'EUR'
+        east_caribbean_dollar.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_east_caribbean_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        east_caribbean_dollar.code = '978'
+        east_caribbean_dollar.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_east_caribbean_dollar_math_add():
     east_caribbean_dollar_one = EastCaribbeanDollar(amount=1)
     east_caribbean_dollar_two = EastCaribbeanDollar(amount=2)
     east_caribbean_dollar_three = EastCaribbeanDollar(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency XCD and OTHER.'):
@@ -152,9 +152,7 @@ def test_east_caribbean_dollar_math_add():
                    'dollar.EastCaribbeanDollar\'> '
                    'and <class \'str\'>.')):
         _ = east_caribbean_dollar_one.__add__('1.00')
-    assert (
-        east_caribbean_dollar_one +
-        east_caribbean_dollar_two) == east_caribbean_dollar_three
+    assert (east_caribbean_dollar_one + east_caribbean_dollar_two) == east_caribbean_dollar_three
 
 
 def test_currency_slots():

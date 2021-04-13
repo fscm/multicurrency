@@ -23,8 +23,8 @@ def test_fiji_dollar():
     fiji_dollar = FijiDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert fiji_dollar.amount == decimal
-    assert fiji_dollar.code == '242'
-    assert fiji_dollar.currency == 'FJD'
+    assert fiji_dollar.numeric_code == '242'
+    assert fiji_dollar.alpha_code == 'FJD'
     assert fiji_dollar.decimal_places == 2
     assert fiji_dollar.decimal_sign == ','
     assert fiji_dollar.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_fiji_dollar():
     assert fiji_dollar.__hash__() == hash((decimal, 'FJD', '242'))
     assert fiji_dollar.__repr__() == (
         'FijiDollar(amount: 0.1428571428571428571428571429, '
-        'currency: "FJD", '
+        'alpha_code: "FJD", '
         'symbol: "$", '
-        'code: "242", '
+        'numeric_code: "242", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_fiji_dollar_negative():
     amount = -100
     fiji_dollar = FijiDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert fiji_dollar.code == '242'
-    assert fiji_dollar.currency == 'FJD'
+    assert fiji_dollar.numeric_code == '242'
+    assert fiji_dollar.alpha_code == 'FJD'
     assert fiji_dollar.decimal_places == 2
     assert fiji_dollar.decimal_sign == ','
     assert fiji_dollar.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_fiji_dollar_negative():
     assert fiji_dollar.__hash__() == hash((decimal, 'FJD', '242'))
     assert fiji_dollar.__repr__() == (
         'FijiDollar(amount: -100, '
-        'currency: "FJD", '
+        'alpha_code: "FJD", '
         'symbol: "$", '
-        'code: "242", '
+        'numeric_code: "242", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_fiji_dollar_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert fiji_dollar.amount == decimal
-    assert fiji_dollar.code == '242'
-    assert fiji_dollar.currency == 'FJD'
+    assert fiji_dollar.numeric_code == '242'
+    assert fiji_dollar.alpha_code == 'FJD'
     assert fiji_dollar.decimal_places == 5
     assert fiji_dollar.decimal_sign == '.'
     assert fiji_dollar.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_fiji_dollar_custom():
     assert fiji_dollar.__hash__() == hash((decimal, 'FJD', '242'))
     assert fiji_dollar.__repr__() == (
         'FijiDollar(amount: 1000, '
-        'currency: "FJD", '
+        'alpha_code: "FJD", '
         'symbol: "$", '
-        'code: "242", '
+        'numeric_code: "242", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_fiji_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        fiji_dollar.currency = 'EUR'
+        fiji_dollar.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_fiji_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        fiji_dollar.code = '978'
+        fiji_dollar.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_fiji_dollar_math_add():
     fiji_dollar_one = FijiDollar(amount=1)
     fiji_dollar_two = FijiDollar(amount=2)
     fiji_dollar_three = FijiDollar(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency FJD and OTHER.'):

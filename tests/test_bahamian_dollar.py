@@ -23,8 +23,8 @@ def test_bahamian_dollar():
     bahamian_dollar = BahamianDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert bahamian_dollar.amount == decimal
-    assert bahamian_dollar.code == '044'
-    assert bahamian_dollar.currency == 'BSD'
+    assert bahamian_dollar.numeric_code == '044'
+    assert bahamian_dollar.alpha_code == 'BSD'
     assert bahamian_dollar.decimal_places == 2
     assert bahamian_dollar.decimal_sign == '.'
     assert bahamian_dollar.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_bahamian_dollar():
     assert bahamian_dollar.__hash__() == hash((decimal, 'BSD', '044'))
     assert bahamian_dollar.__repr__() == (
         'BahamianDollar(amount: 0.1428571428571428571428571429, '
-        'currency: "BSD", '
+        'alpha_code: "BSD", '
         'symbol: "$", '
-        'code: "044", '
+        'numeric_code: "044", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_bahamian_dollar_negative():
     amount = -100
     bahamian_dollar = BahamianDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert bahamian_dollar.code == '044'
-    assert bahamian_dollar.currency == 'BSD'
+    assert bahamian_dollar.numeric_code == '044'
+    assert bahamian_dollar.alpha_code == 'BSD'
     assert bahamian_dollar.decimal_places == 2
     assert bahamian_dollar.decimal_sign == '.'
     assert bahamian_dollar.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_bahamian_dollar_negative():
     assert bahamian_dollar.__hash__() == hash((decimal, 'BSD', '044'))
     assert bahamian_dollar.__repr__() == (
         'BahamianDollar(amount: -100, '
-        'currency: "BSD", '
+        'alpha_code: "BSD", '
         'symbol: "$", '
-        'code: "044", '
+        'numeric_code: "044", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_bahamian_dollar_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert bahamian_dollar.amount == decimal
-    assert bahamian_dollar.code == '044'
-    assert bahamian_dollar.currency == 'BSD'
+    assert bahamian_dollar.numeric_code == '044'
+    assert bahamian_dollar.alpha_code == 'BSD'
     assert bahamian_dollar.decimal_places == 5
     assert bahamian_dollar.decimal_sign == ','
     assert bahamian_dollar.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_bahamian_dollar_custom():
     assert bahamian_dollar.__hash__() == hash((decimal, 'BSD', '044'))
     assert bahamian_dollar.__repr__() == (
         'BahamianDollar(amount: 1000, '
-        'currency: "BSD", '
+        'alpha_code: "BSD", '
         'symbol: "$", '
-        'code: "044", '
+        'numeric_code: "044", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_bahamian_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        bahamian_dollar.currency = 'EUR'
+        bahamian_dollar.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_bahamian_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        bahamian_dollar.code = '978'
+        bahamian_dollar.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_bahamian_dollar_math_add():
     bahamian_dollar_one = BahamianDollar(amount=1)
     bahamian_dollar_two = BahamianDollar(amount=2)
     bahamian_dollar_three = BahamianDollar(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency BSD and OTHER.'):

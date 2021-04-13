@@ -23,8 +23,8 @@ def test_pataca():
     pataca = Pataca(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert pataca.amount == decimal
-    assert pataca.code == '446'
-    assert pataca.currency == 'MOP'
+    assert pataca.numeric_code == '446'
+    assert pataca.alpha_code == 'MOP'
     assert pataca.decimal_places == 2
     assert pataca.decimal_sign == ','
     assert pataca.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_pataca():
     assert pataca.__hash__() == hash((decimal, 'MOP', '446'))
     assert pataca.__repr__() == (
         'Pataca(amount: 0.1428571428571428571428571429, '
-        'currency: "MOP", '
+        'alpha_code: "MOP", '
         'symbol: "P", '
-        'code: "446", '
+        'numeric_code: "446", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_pataca_negative():
     amount = -100
     pataca = Pataca(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert pataca.code == '446'
-    assert pataca.currency == 'MOP'
+    assert pataca.numeric_code == '446'
+    assert pataca.alpha_code == 'MOP'
     assert pataca.decimal_places == 2
     assert pataca.decimal_sign == ','
     assert pataca.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_pataca_negative():
     assert pataca.__hash__() == hash((decimal, 'MOP', '446'))
     assert pataca.__repr__() == (
         'Pataca(amount: -100, '
-        'currency: "MOP", '
+        'alpha_code: "MOP", '
         'symbol: "P", '
-        'code: "446", '
+        'numeric_code: "446", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_pataca_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert pataca.amount == decimal
-    assert pataca.code == '446'
-    assert pataca.currency == 'MOP'
+    assert pataca.numeric_code == '446'
+    assert pataca.alpha_code == 'MOP'
     assert pataca.decimal_places == 5
     assert pataca.decimal_sign == '.'
     assert pataca.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_pataca_custom():
     assert pataca.__hash__() == hash((decimal, 'MOP', '446'))
     assert pataca.__repr__() == (
         'Pataca(amount: 1000, '
-        'currency: "MOP", '
+        'alpha_code: "MOP", '
         'symbol: "P", '
-        'code: "446", '
+        'numeric_code: "446", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_pataca_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        pataca.currency = 'EUR'
+        pataca.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_pataca_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        pataca.code = '978'
+        pataca.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_pataca_math_add():
     pataca_one = Pataca(amount=1)
     pataca_two = Pataca(amount=2)
     pataca_three = Pataca(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency MOP and OTHER.'):

@@ -23,8 +23,8 @@ def test_uae_dirham():
     uae_dirham = UAEDirham(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert uae_dirham.amount == decimal
-    assert uae_dirham.code == '784'
-    assert uae_dirham.currency == 'AED'
+    assert uae_dirham.numeric_code == '784'
+    assert uae_dirham.alpha_code == 'AED'
     assert uae_dirham.decimal_places == 2
     assert uae_dirham.decimal_sign == '.'
     assert uae_dirham.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_uae_dirham():
     assert uae_dirham.__hash__() == hash((decimal, 'AED', '784'))
     assert uae_dirham.__repr__() == (
         'UAEDirham(amount: 0.1428571428571428571428571429, '
-        'currency: "AED", '
+        'alpha_code: "AED", '
         'symbol: "د.إ", '
-        'code: "784", '
+        'numeric_code: "784", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_uae_dirham_negative():
     amount = -100
     uae_dirham = UAEDirham(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert uae_dirham.code == '784'
-    assert uae_dirham.currency == 'AED'
+    assert uae_dirham.numeric_code == '784'
+    assert uae_dirham.alpha_code == 'AED'
     assert uae_dirham.decimal_places == 2
     assert uae_dirham.decimal_sign == '.'
     assert uae_dirham.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_uae_dirham_negative():
     assert uae_dirham.__hash__() == hash((decimal, 'AED', '784'))
     assert uae_dirham.__repr__() == (
         'UAEDirham(amount: -100, '
-        'currency: "AED", '
+        'alpha_code: "AED", '
         'symbol: "د.إ", '
-        'code: "784", '
+        'numeric_code: "784", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_uae_dirham_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert uae_dirham.amount == decimal
-    assert uae_dirham.code == '784'
-    assert uae_dirham.currency == 'AED'
+    assert uae_dirham.numeric_code == '784'
+    assert uae_dirham.alpha_code == 'AED'
     assert uae_dirham.decimal_places == 5
     assert uae_dirham.decimal_sign == ','
     assert uae_dirham.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_uae_dirham_custom():
     assert uae_dirham.__hash__() == hash((decimal, 'AED', '784'))
     assert uae_dirham.__repr__() == (
         'UAEDirham(amount: 1000, '
-        'currency: "AED", '
+        'alpha_code: "AED", '
         'symbol: "د.إ", '
-        'code: "784", '
+        'numeric_code: "784", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_uae_dirham_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        uae_dirham.currency = 'EUR'
+        uae_dirham.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_uae_dirham_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        uae_dirham.code = '978'
+        uae_dirham.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_uae_dirham_math_add():
     uae_dirham_one = UAEDirham(amount=1)
     uae_dirham_two = UAEDirham(amount=2)
     uae_dirham_three = UAEDirham(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency AED and OTHER.'):

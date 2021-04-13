@@ -23,8 +23,8 @@ def test_gourde():
     gourde = Gourde(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert gourde.amount == decimal
-    assert gourde.code == '332'
-    assert gourde.currency == 'HTG'
+    assert gourde.numeric_code == '332'
+    assert gourde.alpha_code == 'HTG'
     assert gourde.decimal_places == 2
     assert gourde.decimal_sign == ','
     assert gourde.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_gourde():
     assert gourde.__hash__() == hash((decimal, 'HTG', '332'))
     assert gourde.__repr__() == (
         'Gourde(amount: 0.1428571428571428571428571429, '
-        'currency: "HTG", '
+        'alpha_code: "HTG", '
         'symbol: "G", '
-        'code: "332", '
+        'numeric_code: "332", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_gourde_negative():
     amount = -100
     gourde = Gourde(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert gourde.code == '332'
-    assert gourde.currency == 'HTG'
+    assert gourde.numeric_code == '332'
+    assert gourde.alpha_code == 'HTG'
     assert gourde.decimal_places == 2
     assert gourde.decimal_sign == ','
     assert gourde.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_gourde_negative():
     assert gourde.__hash__() == hash((decimal, 'HTG', '332'))
     assert gourde.__repr__() == (
         'Gourde(amount: -100, '
-        'currency: "HTG", '
+        'alpha_code: "HTG", '
         'symbol: "G", '
-        'code: "332", '
+        'numeric_code: "332", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_gourde_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert gourde.amount == decimal
-    assert gourde.code == '332'
-    assert gourde.currency == 'HTG'
+    assert gourde.numeric_code == '332'
+    assert gourde.alpha_code == 'HTG'
     assert gourde.decimal_places == 5
     assert gourde.decimal_sign == '.'
     assert gourde.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_gourde_custom():
     assert gourde.__hash__() == hash((decimal, 'HTG', '332'))
     assert gourde.__repr__() == (
         'Gourde(amount: 1000, '
-        'currency: "HTG", '
+        'alpha_code: "HTG", '
         'symbol: "G", '
-        'code: "332", '
+        'numeric_code: "332", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_gourde_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        gourde.currency = 'EUR'
+        gourde.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_gourde_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        gourde.code = '978'
+        gourde.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_gourde_math_add():
     gourde_one = Gourde(amount=1)
     gourde_two = Gourde(amount=2)
     gourde_three = Gourde(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency HTG and OTHER.'):

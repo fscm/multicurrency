@@ -52,9 +52,9 @@ class Pula(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='BWP',
+            alpha_code='BWP',
+            numeric_code='072',
             symbol='P',
-            code='072',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

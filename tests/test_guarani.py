@@ -23,8 +23,8 @@ def test_guarani():
     guarani = Guarani(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert guarani.amount == decimal
-    assert guarani.code == '600'
-    assert guarani.currency == 'PYG'
+    assert guarani.numeric_code == '600'
+    assert guarani.alpha_code == 'PYG'
     assert guarani.decimal_places == 0
     assert guarani.decimal_sign == ','
     assert guarani.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_guarani():
     assert guarani.__hash__() == hash((decimal, 'PYG', '600'))
     assert guarani.__repr__() == (
         'Guarani(amount: 0.1428571428571428571428571429, '
-        'currency: "PYG", '
+        'alpha_code: "PYG", '
         'symbol: "₲", '
-        'code: "600", '
+        'numeric_code: "600", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_guarani_negative():
     amount = -100
     guarani = Guarani(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert guarani.code == '600'
-    assert guarani.currency == 'PYG'
+    assert guarani.numeric_code == '600'
+    assert guarani.alpha_code == 'PYG'
     assert guarani.decimal_places == 0
     assert guarani.decimal_sign == ','
     assert guarani.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_guarani_negative():
     assert guarani.__hash__() == hash((decimal, 'PYG', '600'))
     assert guarani.__repr__() == (
         'Guarani(amount: -100, '
-        'currency: "PYG", '
+        'alpha_code: "PYG", '
         'symbol: "₲", '
-        'code: "600", '
+        'numeric_code: "600", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_guarani_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert guarani.amount == decimal
-    assert guarani.code == '600'
-    assert guarani.currency == 'PYG'
+    assert guarani.numeric_code == '600'
+    assert guarani.alpha_code == 'PYG'
     assert guarani.decimal_places == 5
     assert guarani.decimal_sign == '.'
     assert guarani.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_guarani_custom():
     assert guarani.__hash__() == hash((decimal, 'PYG', '600'))
     assert guarani.__repr__() == (
         'Guarani(amount: 1000, '
-        'currency: "PYG", '
+        'alpha_code: "PYG", '
         'symbol: "₲", '
-        'code: "600", '
+        'numeric_code: "600", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_guarani_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        guarani.currency = 'EUR'
+        guarani.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_guarani_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        guarani.code = '978'
+        guarani.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_guarani_math_add():
     guarani_one = Guarani(amount=1)
     guarani_two = Guarani(amount=2)
     guarani_three = Guarani(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency PYG and OTHER.'):

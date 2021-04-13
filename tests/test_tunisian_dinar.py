@@ -23,8 +23,8 @@ def test_tunisian_dinar():
     tunisian_dinar = TunisianDinar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert tunisian_dinar.amount == decimal
-    assert tunisian_dinar.code == '788'
-    assert tunisian_dinar.currency == 'TND'
+    assert tunisian_dinar.numeric_code == '788'
+    assert tunisian_dinar.alpha_code == 'TND'
     assert tunisian_dinar.decimal_places == 3
     assert tunisian_dinar.decimal_sign == ','
     assert tunisian_dinar.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_tunisian_dinar():
     assert tunisian_dinar.__hash__() == hash((decimal, 'TND', '788'))
     assert tunisian_dinar.__repr__() == (
         'TunisianDinar(amount: 0.1428571428571428571428571429, '
-        'currency: "TND", '
+        'alpha_code: "TND", '
         'symbol: "د.ت", '
-        'code: "788", '
+        'numeric_code: "788", '
         'decimal_places: "3", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_tunisian_dinar_negative():
     amount = -100
     tunisian_dinar = TunisianDinar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert tunisian_dinar.code == '788'
-    assert tunisian_dinar.currency == 'TND'
+    assert tunisian_dinar.numeric_code == '788'
+    assert tunisian_dinar.alpha_code == 'TND'
     assert tunisian_dinar.decimal_places == 3
     assert tunisian_dinar.decimal_sign == ','
     assert tunisian_dinar.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_tunisian_dinar_negative():
     assert tunisian_dinar.__hash__() == hash((decimal, 'TND', '788'))
     assert tunisian_dinar.__repr__() == (
         'TunisianDinar(amount: -100, '
-        'currency: "TND", '
+        'alpha_code: "TND", '
         'symbol: "د.ت", '
-        'code: "788", '
+        'numeric_code: "788", '
         'decimal_places: "3", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_tunisian_dinar_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert tunisian_dinar.amount == decimal
-    assert tunisian_dinar.code == '788'
-    assert tunisian_dinar.currency == 'TND'
+    assert tunisian_dinar.numeric_code == '788'
+    assert tunisian_dinar.alpha_code == 'TND'
     assert tunisian_dinar.decimal_places == 5
     assert tunisian_dinar.decimal_sign == '.'
     assert tunisian_dinar.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_tunisian_dinar_custom():
     assert tunisian_dinar.__hash__() == hash((decimal, 'TND', '788'))
     assert tunisian_dinar.__repr__() == (
         'TunisianDinar(amount: 1000, '
-        'currency: "TND", '
+        'alpha_code: "TND", '
         'symbol: "د.ت", '
-        'code: "788", '
+        'numeric_code: "788", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_tunisian_dinar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        tunisian_dinar.currency = 'EUR'
+        tunisian_dinar.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_tunisian_dinar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        tunisian_dinar.code = '978'
+        tunisian_dinar.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_tunisian_dinar_math_add():
     tunisian_dinar_one = TunisianDinar(amount=1)
     tunisian_dinar_two = TunisianDinar(amount=2)
     tunisian_dinar_three = TunisianDinar(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency TND and OTHER.'):

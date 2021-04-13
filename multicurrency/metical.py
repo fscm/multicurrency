@@ -52,9 +52,9 @@ class Metical(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='MZN',
+            alpha_code='MZN',
+            numeric_code='943',
             symbol='MTn',
-            code='943',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

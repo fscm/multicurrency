@@ -23,8 +23,8 @@ def test_guinea_franc():
     guinea_franc = GuineaFranc(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert guinea_franc.amount == decimal
-    assert guinea_franc.code == '324'
-    assert guinea_franc.currency == 'GNF'
+    assert guinea_franc.numeric_code == '324'
+    assert guinea_franc.alpha_code == 'GNF'
     assert guinea_franc.decimal_places == 0
     assert guinea_franc.decimal_sign == ','
     assert guinea_franc.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_guinea_franc():
     assert guinea_franc.__hash__() == hash((decimal, 'GNF', '324'))
     assert guinea_franc.__repr__() == (
         'GuineaFranc(amount: 0.1428571428571428571428571429, '
-        'currency: "GNF", '
+        'alpha_code: "GNF", '
         'symbol: "₣", '
-        'code: "324", '
+        'numeric_code: "324", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_guinea_franc_negative():
     amount = -100
     guinea_franc = GuineaFranc(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert guinea_franc.code == '324'
-    assert guinea_franc.currency == 'GNF'
+    assert guinea_franc.numeric_code == '324'
+    assert guinea_franc.alpha_code == 'GNF'
     assert guinea_franc.decimal_places == 0
     assert guinea_franc.decimal_sign == ','
     assert guinea_franc.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_guinea_franc_negative():
     assert guinea_franc.__hash__() == hash((decimal, 'GNF', '324'))
     assert guinea_franc.__repr__() == (
         'GuineaFranc(amount: -100, '
-        'currency: "GNF", '
+        'alpha_code: "GNF", '
         'symbol: "₣", '
-        'code: "324", '
+        'numeric_code: "324", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_guinea_franc_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert guinea_franc.amount == decimal
-    assert guinea_franc.code == '324'
-    assert guinea_franc.currency == 'GNF'
+    assert guinea_franc.numeric_code == '324'
+    assert guinea_franc.alpha_code == 'GNF'
     assert guinea_franc.decimal_places == 5
     assert guinea_franc.decimal_sign == '.'
     assert guinea_franc.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_guinea_franc_custom():
     assert guinea_franc.__hash__() == hash((decimal, 'GNF', '324'))
     assert guinea_franc.__repr__() == (
         'GuineaFranc(amount: 1000, '
-        'currency: "GNF", '
+        'alpha_code: "GNF", '
         'symbol: "₣", '
-        'code: "324", '
+        'numeric_code: "324", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_guinea_franc_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        guinea_franc.currency = 'EUR'
+        guinea_franc.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_guinea_franc_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        guinea_franc.code = '978'
+        guinea_franc.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_guinea_franc_math_add():
     guinea_franc_one = GuineaFranc(amount=1)
     guinea_franc_two = GuineaFranc(amount=2)
     guinea_franc_three = GuineaFranc(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency GNF and OTHER.'):

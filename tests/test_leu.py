@@ -23,8 +23,8 @@ def test_leu():
     leu = Leu(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert leu.amount == decimal
-    assert leu.code == '946'
-    assert leu.currency == 'RON'
+    assert leu.numeric_code == '946'
+    assert leu.alpha_code == 'RON'
     assert leu.decimal_places == 2
     assert leu.decimal_sign == ','
     assert leu.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_leu():
     assert leu.__hash__() == hash((decimal, 'RON', '946'))
     assert leu.__repr__() == (
         'Leu(amount: 0.1428571428571428571428571429, '
-        'currency: "RON", '
+        'alpha_code: "RON", '
         'symbol: "L", '
-        'code: "946", '
+        'numeric_code: "946", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_leu_negative():
     amount = -100
     leu = Leu(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert leu.code == '946'
-    assert leu.currency == 'RON'
+    assert leu.numeric_code == '946'
+    assert leu.alpha_code == 'RON'
     assert leu.decimal_places == 2
     assert leu.decimal_sign == ','
     assert leu.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_leu_negative():
     assert leu.__hash__() == hash((decimal, 'RON', '946'))
     assert leu.__repr__() == (
         'Leu(amount: -100, '
-        'currency: "RON", '
+        'alpha_code: "RON", '
         'symbol: "L", '
-        'code: "946", '
+        'numeric_code: "946", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_leu_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert leu.amount == decimal
-    assert leu.code == '946'
-    assert leu.currency == 'RON'
+    assert leu.numeric_code == '946'
+    assert leu.alpha_code == 'RON'
     assert leu.decimal_places == 5
     assert leu.decimal_sign == '.'
     assert leu.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_leu_custom():
     assert leu.__hash__() == hash((decimal, 'RON', '946'))
     assert leu.__repr__() == (
         'Leu(amount: 1000, '
-        'currency: "RON", '
+        'alpha_code: "RON", '
         'symbol: "L", '
-        'code: "946", '
+        'numeric_code: "946", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_leu_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        leu.currency = 'EUR'
+        leu.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_leu_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        leu.code = '978'
+        leu.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_leu_math_add():
     leu_one = Leu(amount=1)
     leu_two = Leu(amount=2)
     leu_three = Leu(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency RON and OTHER.'):

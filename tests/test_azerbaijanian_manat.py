@@ -23,8 +23,8 @@ def test_azerbaijanian_manat():
     azerbaijanian_manat = AzerbaijanianManat(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert azerbaijanian_manat.amount == decimal
-    assert azerbaijanian_manat.code == '944'
-    assert azerbaijanian_manat.currency == 'AZN'
+    assert azerbaijanian_manat.numeric_code == '944'
+    assert azerbaijanian_manat.alpha_code == 'AZN'
     assert azerbaijanian_manat.decimal_places == 2
     assert azerbaijanian_manat.decimal_sign == ','
     assert azerbaijanian_manat.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_azerbaijanian_manat():
     assert azerbaijanian_manat.__hash__() == hash((decimal, 'AZN', '944'))
     assert azerbaijanian_manat.__repr__() == (
         'AzerbaijanianManat(amount: 0.1428571428571428571428571429, '
-        'currency: "AZN", '
+        'alpha_code: "AZN", '
         'symbol: "ман", '
-        'code: "944", '
+        'numeric_code: "944", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_azerbaijanian_manat_negative():
     amount = -100
     azerbaijanian_manat = AzerbaijanianManat(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert azerbaijanian_manat.code == '944'
-    assert azerbaijanian_manat.currency == 'AZN'
+    assert azerbaijanian_manat.numeric_code == '944'
+    assert azerbaijanian_manat.alpha_code == 'AZN'
     assert azerbaijanian_manat.decimal_places == 2
     assert azerbaijanian_manat.decimal_sign == ','
     assert azerbaijanian_manat.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_azerbaijanian_manat_negative():
     assert azerbaijanian_manat.__hash__() == hash((decimal, 'AZN', '944'))
     assert azerbaijanian_manat.__repr__() == (
         'AzerbaijanianManat(amount: -100, '
-        'currency: "AZN", '
+        'alpha_code: "AZN", '
         'symbol: "ман", '
-        'code: "944", '
+        'numeric_code: "944", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_azerbaijanian_manat_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert azerbaijanian_manat.amount == decimal
-    assert azerbaijanian_manat.code == '944'
-    assert azerbaijanian_manat.currency == 'AZN'
+    assert azerbaijanian_manat.numeric_code == '944'
+    assert azerbaijanian_manat.alpha_code == 'AZN'
     assert azerbaijanian_manat.decimal_places == 5
     assert azerbaijanian_manat.decimal_sign == '.'
     assert azerbaijanian_manat.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_azerbaijanian_manat_custom():
     assert azerbaijanian_manat.__hash__() == hash((decimal, 'AZN', '944'))
     assert azerbaijanian_manat.__repr__() == (
         'AzerbaijanianManat(amount: 1000, '
-        'currency: "AZN", '
+        'alpha_code: "AZN", '
         'symbol: "ман", '
-        'code: "944", '
+        'numeric_code: "944", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_azerbaijanian_manat_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        azerbaijanian_manat.currency = 'EUR'
+        azerbaijanian_manat.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_azerbaijanian_manat_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        azerbaijanian_manat.code = '978'
+        azerbaijanian_manat.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_azerbaijanian_manat_math_add():
     azerbaijanian_manat_one = AzerbaijanianManat(amount=1)
     azerbaijanian_manat_two = AzerbaijanianManat(amount=2)
     azerbaijanian_manat_three = AzerbaijanianManat(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency AZN and OTHER.'):
@@ -152,9 +152,7 @@ def test_azerbaijanian_manat_math_add():
                    'manat.AzerbaijanianManat\'> '
                    'and <class \'str\'>.')):
         _ = azerbaijanian_manat_one.__add__('1.00')
-    assert (
-        azerbaijanian_manat_one +
-        azerbaijanian_manat_two) == azerbaijanian_manat_three
+    assert (azerbaijanian_manat_one + azerbaijanian_manat_two) == azerbaijanian_manat_three
 
 
 def test_currency_slots():

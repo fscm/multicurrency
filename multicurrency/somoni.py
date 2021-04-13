@@ -52,9 +52,9 @@ class Somoni(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='TJS',
+            alpha_code='TJS',
+            numeric_code='972',
             symbol='ЅМ',
-            code='972',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

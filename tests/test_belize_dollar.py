@@ -23,8 +23,8 @@ def test_belize_dollar():
     belize_dollar = BelizeDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert belize_dollar.amount == decimal
-    assert belize_dollar.code == '084'
-    assert belize_dollar.currency == 'BZD'
+    assert belize_dollar.numeric_code == '084'
+    assert belize_dollar.alpha_code == 'BZD'
     assert belize_dollar.decimal_places == 2
     assert belize_dollar.decimal_sign == '.'
     assert belize_dollar.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_belize_dollar():
     assert belize_dollar.__hash__() == hash((decimal, 'BZD', '084'))
     assert belize_dollar.__repr__() == (
         'BelizeDollar(amount: 0.1428571428571428571428571429, '
-        'currency: "BZD", '
+        'alpha_code: "BZD", '
         'symbol: "$", '
-        'code: "084", '
+        'numeric_code: "084", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_belize_dollar_negative():
     amount = -100
     belize_dollar = BelizeDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert belize_dollar.code == '084'
-    assert belize_dollar.currency == 'BZD'
+    assert belize_dollar.numeric_code == '084'
+    assert belize_dollar.alpha_code == 'BZD'
     assert belize_dollar.decimal_places == 2
     assert belize_dollar.decimal_sign == '.'
     assert belize_dollar.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_belize_dollar_negative():
     assert belize_dollar.__hash__() == hash((decimal, 'BZD', '084'))
     assert belize_dollar.__repr__() == (
         'BelizeDollar(amount: -100, '
-        'currency: "BZD", '
+        'alpha_code: "BZD", '
         'symbol: "$", '
-        'code: "084", '
+        'numeric_code: "084", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_belize_dollar_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert belize_dollar.amount == decimal
-    assert belize_dollar.code == '084'
-    assert belize_dollar.currency == 'BZD'
+    assert belize_dollar.numeric_code == '084'
+    assert belize_dollar.alpha_code == 'BZD'
     assert belize_dollar.decimal_places == 5
     assert belize_dollar.decimal_sign == ','
     assert belize_dollar.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_belize_dollar_custom():
     assert belize_dollar.__hash__() == hash((decimal, 'BZD', '084'))
     assert belize_dollar.__repr__() == (
         'BelizeDollar(amount: 1000, '
-        'currency: "BZD", '
+        'alpha_code: "BZD", '
         'symbol: "$", '
-        'code: "084", '
+        'numeric_code: "084", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_belize_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        belize_dollar.currency = 'EUR'
+        belize_dollar.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_belize_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        belize_dollar.code = '978'
+        belize_dollar.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_belize_dollar_math_add():
     belize_dollar_one = BelizeDollar(amount=1)
     belize_dollar_two = BelizeDollar(amount=2)
     belize_dollar_three = BelizeDollar(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency BZD and OTHER.'):

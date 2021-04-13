@@ -52,9 +52,9 @@ class CordobaOro(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='NIO',
+            alpha_code='NIO',
+            numeric_code='558',
             symbol='C$',
-            code='558',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

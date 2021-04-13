@@ -52,9 +52,9 @@ class IcelandKrona(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='ISK',
+            alpha_code='ISK',
+            numeric_code='352',
             symbol='Kr',
-            code='352',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -102,9 +102,9 @@ class SwedishKrona(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='SEK',
+            alpha_code='SEK',
+            numeric_code='752',
             symbol='kr',
-            code='752',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

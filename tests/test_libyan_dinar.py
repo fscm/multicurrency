@@ -23,8 +23,8 @@ def test_libyan_dinar():
     libyan_dinar = LibyanDinar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert libyan_dinar.amount == decimal
-    assert libyan_dinar.code == '434'
-    assert libyan_dinar.currency == 'LYD'
+    assert libyan_dinar.numeric_code == '434'
+    assert libyan_dinar.alpha_code == 'LYD'
     assert libyan_dinar.decimal_places == 3
     assert libyan_dinar.decimal_sign == ','
     assert libyan_dinar.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_libyan_dinar():
     assert libyan_dinar.__hash__() == hash((decimal, 'LYD', '434'))
     assert libyan_dinar.__repr__() == (
         'LibyanDinar(amount: 0.1428571428571428571428571429, '
-        'currency: "LYD", '
+        'alpha_code: "LYD", '
         'symbol: "ل.د", '
-        'code: "434", '
+        'numeric_code: "434", '
         'decimal_places: "3", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_libyan_dinar_negative():
     amount = -100
     libyan_dinar = LibyanDinar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert libyan_dinar.code == '434'
-    assert libyan_dinar.currency == 'LYD'
+    assert libyan_dinar.numeric_code == '434'
+    assert libyan_dinar.alpha_code == 'LYD'
     assert libyan_dinar.decimal_places == 3
     assert libyan_dinar.decimal_sign == ','
     assert libyan_dinar.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_libyan_dinar_negative():
     assert libyan_dinar.__hash__() == hash((decimal, 'LYD', '434'))
     assert libyan_dinar.__repr__() == (
         'LibyanDinar(amount: -100, '
-        'currency: "LYD", '
+        'alpha_code: "LYD", '
         'symbol: "ل.د", '
-        'code: "434", '
+        'numeric_code: "434", '
         'decimal_places: "3", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_libyan_dinar_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert libyan_dinar.amount == decimal
-    assert libyan_dinar.code == '434'
-    assert libyan_dinar.currency == 'LYD'
+    assert libyan_dinar.numeric_code == '434'
+    assert libyan_dinar.alpha_code == 'LYD'
     assert libyan_dinar.decimal_places == 5
     assert libyan_dinar.decimal_sign == '.'
     assert libyan_dinar.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_libyan_dinar_custom():
     assert libyan_dinar.__hash__() == hash((decimal, 'LYD', '434'))
     assert libyan_dinar.__repr__() == (
         'LibyanDinar(amount: 1000, '
-        'currency: "LYD", '
+        'alpha_code: "LYD", '
         'symbol: "ل.د", '
-        'code: "434", '
+        'numeric_code: "434", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_libyan_dinar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        libyan_dinar.currency = 'EUR'
+        libyan_dinar.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_libyan_dinar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        libyan_dinar.code = '978'
+        libyan_dinar.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_libyan_dinar_math_add():
     libyan_dinar_one = LibyanDinar(amount=1)
     libyan_dinar_two = LibyanDinar(amount=2)
     libyan_dinar_three = LibyanDinar(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency LYD and OTHER.'):

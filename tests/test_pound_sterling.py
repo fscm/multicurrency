@@ -23,8 +23,8 @@ def test_pound_sterling():
     pound_sterling = PoundSterling(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert pound_sterling.amount == decimal
-    assert pound_sterling.code == '826'
-    assert pound_sterling.currency == 'GBP'
+    assert pound_sterling.numeric_code == '826'
+    assert pound_sterling.alpha_code == 'GBP'
     assert pound_sterling.decimal_places == 2
     assert pound_sterling.decimal_sign == '.'
     assert pound_sterling.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_pound_sterling():
     assert pound_sterling.__hash__() == hash((decimal, 'GBP', '826'))
     assert pound_sterling.__repr__() == (
         'PoundSterling(amount: 0.1428571428571428571428571429, '
-        'currency: "GBP", '
+        'alpha_code: "GBP", '
         'symbol: "£", '
-        'code: "826", '
+        'numeric_code: "826", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_pound_sterling_negative():
     amount = -100
     pound_sterling = PoundSterling(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert pound_sterling.code == '826'
-    assert pound_sterling.currency == 'GBP'
+    assert pound_sterling.numeric_code == '826'
+    assert pound_sterling.alpha_code == 'GBP'
     assert pound_sterling.decimal_places == 2
     assert pound_sterling.decimal_sign == '.'
     assert pound_sterling.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_pound_sterling_negative():
     assert pound_sterling.__hash__() == hash((decimal, 'GBP', '826'))
     assert pound_sterling.__repr__() == (
         'PoundSterling(amount: -100, '
-        'currency: "GBP", '
+        'alpha_code: "GBP", '
         'symbol: "£", '
-        'code: "826", '
+        'numeric_code: "826", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_pound_sterling_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert pound_sterling.amount == decimal
-    assert pound_sterling.code == '826'
-    assert pound_sterling.currency == 'GBP'
+    assert pound_sterling.numeric_code == '826'
+    assert pound_sterling.alpha_code == 'GBP'
     assert pound_sterling.decimal_places == 5
     assert pound_sterling.decimal_sign == ','
     assert pound_sterling.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_pound_sterling_custom():
     assert pound_sterling.__hash__() == hash((decimal, 'GBP', '826'))
     assert pound_sterling.__repr__() == (
         'PoundSterling(amount: 1000, '
-        'currency: "GBP", '
+        'alpha_code: "GBP", '
         'symbol: "£", '
-        'code: "826", '
+        'numeric_code: "826", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_pound_sterling_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        pound_sterling.currency = 'EUR'
+        pound_sterling.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_pound_sterling_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        pound_sterling.code = '978'
+        pound_sterling.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_pound_sterling_math_add():
     pound_sterling_one = PoundSterling(amount=1)
     pound_sterling_two = PoundSterling(amount=2)
     pound_sterling_three = PoundSterling(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency GBP and OTHER.'):

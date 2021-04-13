@@ -23,8 +23,8 @@ def test_swedish_krona():
     swedish_krona = SwedishKrona(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert swedish_krona.amount == decimal
-    assert swedish_krona.code == '752'
-    assert swedish_krona.currency == 'SEK'
+    assert swedish_krona.numeric_code == '752'
+    assert swedish_krona.alpha_code == 'SEK'
     assert swedish_krona.decimal_places == 2
     assert swedish_krona.decimal_sign == ','
     assert swedish_krona.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_swedish_krona():
     assert swedish_krona.__hash__() == hash((decimal, 'SEK', '752'))
     assert swedish_krona.__repr__() == (
         'SwedishKrona(amount: 0.1428571428571428571428571429, '
-        'currency: "SEK", '
+        'alpha_code: "SEK", '
         'symbol: "kr", '
-        'code: "752", '
+        'numeric_code: "752", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_swedish_krona_negative():
     amount = -100
     swedish_krona = SwedishKrona(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert swedish_krona.code == '752'
-    assert swedish_krona.currency == 'SEK'
+    assert swedish_krona.numeric_code == '752'
+    assert swedish_krona.alpha_code == 'SEK'
     assert swedish_krona.decimal_places == 2
     assert swedish_krona.decimal_sign == ','
     assert swedish_krona.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_swedish_krona_negative():
     assert swedish_krona.__hash__() == hash((decimal, 'SEK', '752'))
     assert swedish_krona.__repr__() == (
         'SwedishKrona(amount: -100, '
-        'currency: "SEK", '
+        'alpha_code: "SEK", '
         'symbol: "kr", '
-        'code: "752", '
+        'numeric_code: "752", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_swedish_krona_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert swedish_krona.amount == decimal
-    assert swedish_krona.code == '752'
-    assert swedish_krona.currency == 'SEK'
+    assert swedish_krona.numeric_code == '752'
+    assert swedish_krona.alpha_code == 'SEK'
     assert swedish_krona.decimal_places == 5
     assert swedish_krona.decimal_sign == '.'
     assert swedish_krona.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_swedish_krona_custom():
     assert swedish_krona.__hash__() == hash((decimal, 'SEK', '752'))
     assert swedish_krona.__repr__() == (
         'SwedishKrona(amount: 1000, '
-        'currency: "SEK", '
+        'alpha_code: "SEK", '
         'symbol: "kr", '
-        'code: "752", '
+        'numeric_code: "752", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_swedish_krona_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        swedish_krona.currency = 'EUR'
+        swedish_krona.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_swedish_krona_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        swedish_krona.code = '978'
+        swedish_krona.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_swedish_krona_math_add():
     swedish_krona_one = SwedishKrona(amount=1)
     swedish_krona_two = SwedishKrona(amount=2)
     swedish_krona_three = SwedishKrona(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency SEK and OTHER.'):

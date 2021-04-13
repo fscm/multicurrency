@@ -23,8 +23,8 @@ def test_vatu():
     vatu = Vatu(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert vatu.amount == decimal
-    assert vatu.code == '548'
-    assert vatu.currency == 'VUV'
+    assert vatu.numeric_code == '548'
+    assert vatu.alpha_code == 'VUV'
     assert vatu.decimal_places == 0
     assert vatu.decimal_sign == '.'
     assert vatu.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_vatu():
     assert vatu.__hash__() == hash((decimal, 'VUV', '548'))
     assert vatu.__repr__() == (
         'Vatu(amount: 0.1428571428571428571428571429, '
-        'currency: "VUV", '
+        'alpha_code: "VUV", '
         'symbol: "Vt", '
-        'code: "548", '
+        'numeric_code: "548", '
         'decimal_places: "0", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_vatu_negative():
     amount = -100
     vatu = Vatu(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert vatu.code == '548'
-    assert vatu.currency == 'VUV'
+    assert vatu.numeric_code == '548'
+    assert vatu.alpha_code == 'VUV'
     assert vatu.decimal_places == 0
     assert vatu.decimal_sign == '.'
     assert vatu.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_vatu_negative():
     assert vatu.__hash__() == hash((decimal, 'VUV', '548'))
     assert vatu.__repr__() == (
         'Vatu(amount: -100, '
-        'currency: "VUV", '
+        'alpha_code: "VUV", '
         'symbol: "Vt", '
-        'code: "548", '
+        'numeric_code: "548", '
         'decimal_places: "0", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_vatu_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert vatu.amount == decimal
-    assert vatu.code == '548'
-    assert vatu.currency == 'VUV'
+    assert vatu.numeric_code == '548'
+    assert vatu.alpha_code == 'VUV'
     assert vatu.decimal_places == 5
     assert vatu.decimal_sign == ','
     assert vatu.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_vatu_custom():
     assert vatu.__hash__() == hash((decimal, 'VUV', '548'))
     assert vatu.__repr__() == (
         'Vatu(amount: 1000, '
-        'currency: "VUV", '
+        'alpha_code: "VUV", '
         'symbol: "Vt", '
-        'code: "548", '
+        'numeric_code: "548", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_vatu_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        vatu.currency = 'EUR'
+        vatu.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_vatu_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        vatu.code = '978'
+        vatu.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_vatu_math_add():
     vatu_one = Vatu(amount=1)
     vatu_two = Vatu(amount=2)
     vatu_three = Vatu(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency VUV and OTHER.'):

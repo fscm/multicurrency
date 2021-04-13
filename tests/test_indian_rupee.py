@@ -23,8 +23,8 @@ def test_indian_rupee():
     indian_rupee = IndianRupee(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert indian_rupee.amount == decimal
-    assert indian_rupee.code == '356'
-    assert indian_rupee.currency == 'INR'
+    assert indian_rupee.numeric_code == '356'
+    assert indian_rupee.alpha_code == 'INR'
     assert indian_rupee.decimal_places == 2
     assert indian_rupee.decimal_sign == '.'
     assert indian_rupee.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_indian_rupee():
     assert indian_rupee.__hash__() == hash((decimal, 'INR', '356'))
     assert indian_rupee.__repr__() == (
         'IndianRupee(amount: 0.1428571428571428571428571429, '
-        'currency: "INR", '
+        'alpha_code: "INR", '
         'symbol: "₹", '
-        'code: "356", '
+        'numeric_code: "356", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_indian_rupee_negative():
     amount = -100
     indian_rupee = IndianRupee(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert indian_rupee.code == '356'
-    assert indian_rupee.currency == 'INR'
+    assert indian_rupee.numeric_code == '356'
+    assert indian_rupee.alpha_code == 'INR'
     assert indian_rupee.decimal_places == 2
     assert indian_rupee.decimal_sign == '.'
     assert indian_rupee.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_indian_rupee_negative():
     assert indian_rupee.__hash__() == hash((decimal, 'INR', '356'))
     assert indian_rupee.__repr__() == (
         'IndianRupee(amount: -100, '
-        'currency: "INR", '
+        'alpha_code: "INR", '
         'symbol: "₹", '
-        'code: "356", '
+        'numeric_code: "356", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_indian_rupee_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert indian_rupee.amount == decimal
-    assert indian_rupee.code == '356'
-    assert indian_rupee.currency == 'INR'
+    assert indian_rupee.numeric_code == '356'
+    assert indian_rupee.alpha_code == 'INR'
     assert indian_rupee.decimal_places == 5
     assert indian_rupee.decimal_sign == ','
     assert indian_rupee.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_indian_rupee_custom():
     assert indian_rupee.__hash__() == hash((decimal, 'INR', '356'))
     assert indian_rupee.__repr__() == (
         'IndianRupee(amount: 1000, '
-        'currency: "INR", '
+        'alpha_code: "INR", '
         'symbol: "₹", '
-        'code: "356", '
+        'numeric_code: "356", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_indian_rupee_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        indian_rupee.currency = 'EUR'
+        indian_rupee.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_indian_rupee_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        indian_rupee.code = '978'
+        indian_rupee.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_indian_rupee_math_add():
     indian_rupee_one = IndianRupee(amount=1)
     indian_rupee_two = IndianRupee(amount=2)
     indian_rupee_three = IndianRupee(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency INR and OTHER.'):

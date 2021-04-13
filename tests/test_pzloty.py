@@ -23,8 +23,8 @@ def test_pzloty():
     pzloty = PZloty(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert pzloty.amount == decimal
-    assert pzloty.code == '985'
-    assert pzloty.currency == 'PLN'
+    assert pzloty.numeric_code == '985'
+    assert pzloty.alpha_code == 'PLN'
     assert pzloty.decimal_places == 2
     assert pzloty.decimal_sign == ','
     assert pzloty.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_pzloty():
     assert pzloty.__hash__() == hash((decimal, 'PLN', '985'))
     assert pzloty.__repr__() == (
         'PZloty(amount: 0.1428571428571428571428571429, '
-        'currency: "PLN", '
+        'alpha_code: "PLN", '
         'symbol: "zł", '
-        'code: "985", '
+        'numeric_code: "985", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_pzloty_negative():
     amount = -100
     pzloty = PZloty(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert pzloty.code == '985'
-    assert pzloty.currency == 'PLN'
+    assert pzloty.numeric_code == '985'
+    assert pzloty.alpha_code == 'PLN'
     assert pzloty.decimal_places == 2
     assert pzloty.decimal_sign == ','
     assert pzloty.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_pzloty_negative():
     assert pzloty.__hash__() == hash((decimal, 'PLN', '985'))
     assert pzloty.__repr__() == (
         'PZloty(amount: -100, '
-        'currency: "PLN", '
+        'alpha_code: "PLN", '
         'symbol: "zł", '
-        'code: "985", '
+        'numeric_code: "985", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_pzloty_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert pzloty.amount == decimal
-    assert pzloty.code == '985'
-    assert pzloty.currency == 'PLN'
+    assert pzloty.numeric_code == '985'
+    assert pzloty.alpha_code == 'PLN'
     assert pzloty.decimal_places == 5
     assert pzloty.decimal_sign == '.'
     assert pzloty.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_pzloty_custom():
     assert pzloty.__hash__() == hash((decimal, 'PLN', '985'))
     assert pzloty.__repr__() == (
         'PZloty(amount: 1000, '
-        'currency: "PLN", '
+        'alpha_code: "PLN", '
         'symbol: "zł", '
-        'code: "985", '
+        'numeric_code: "985", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_pzloty_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        pzloty.currency = 'EUR'
+        pzloty.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_pzloty_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        pzloty.code = '978'
+        pzloty.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_pzloty_math_add():
     pzloty_one = PZloty(amount=1)
     pzloty_two = PZloty(amount=2)
     pzloty_three = PZloty(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency PLN and OTHER.'):

@@ -52,9 +52,9 @@ class UzbekistanSum(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='UZS',
+            alpha_code='UZS',
+            numeric_code='860',
             symbol='',
-            code='860',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

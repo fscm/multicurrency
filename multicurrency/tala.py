@@ -52,9 +52,9 @@ class Tala(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='WST',
+            alpha_code='WST',
+            numeric_code='882',
             symbol='T',
-            code='882',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

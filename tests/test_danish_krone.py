@@ -23,8 +23,8 @@ def test_danish_krone():
     danish_krone = DanishKrone(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert danish_krone.amount == decimal
-    assert danish_krone.code == '208'
-    assert danish_krone.currency == 'DKK'
+    assert danish_krone.numeric_code == '208'
+    assert danish_krone.alpha_code == 'DKK'
     assert danish_krone.decimal_places == 2
     assert danish_krone.decimal_sign == ','
     assert danish_krone.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_danish_krone():
     assert danish_krone.__hash__() == hash((decimal, 'DKK', '208'))
     assert danish_krone.__repr__() == (
         'DanishKrone(amount: 0.1428571428571428571428571429, '
-        'currency: "DKK", '
+        'alpha_code: "DKK", '
         'symbol: "kr", '
-        'code: "208", '
+        'numeric_code: "208", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_danish_krone_negative():
     amount = -100
     danish_krone = DanishKrone(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert danish_krone.code == '208'
-    assert danish_krone.currency == 'DKK'
+    assert danish_krone.numeric_code == '208'
+    assert danish_krone.alpha_code == 'DKK'
     assert danish_krone.decimal_places == 2
     assert danish_krone.decimal_sign == ','
     assert danish_krone.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_danish_krone_negative():
     assert danish_krone.__hash__() == hash((decimal, 'DKK', '208'))
     assert danish_krone.__repr__() == (
         'DanishKrone(amount: -100, '
-        'currency: "DKK", '
+        'alpha_code: "DKK", '
         'symbol: "kr", '
-        'code: "208", '
+        'numeric_code: "208", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_danish_krone_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert danish_krone.amount == decimal
-    assert danish_krone.code == '208'
-    assert danish_krone.currency == 'DKK'
+    assert danish_krone.numeric_code == '208'
+    assert danish_krone.alpha_code == 'DKK'
     assert danish_krone.decimal_places == 5
     assert danish_krone.decimal_sign == '.'
     assert danish_krone.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_danish_krone_custom():
     assert danish_krone.__hash__() == hash((decimal, 'DKK', '208'))
     assert danish_krone.__repr__() == (
         'DanishKrone(amount: 1000, '
-        'currency: "DKK", '
+        'alpha_code: "DKK", '
         'symbol: "kr", '
-        'code: "208", '
+        'numeric_code: "208", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_danish_krone_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        danish_krone.currency = 'EUR'
+        danish_krone.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_danish_krone_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        danish_krone.code = '978'
+        danish_krone.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_danish_krone_math_add():
     danish_krone_one = DanishKrone(amount=1)
     danish_krone_two = DanishKrone(amount=2)
     danish_krone_three = DanishKrone(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency DKK and OTHER.'):

@@ -23,8 +23,8 @@ def test_burundi_franc():
     burundi_franc = BurundiFranc(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert burundi_franc.amount == decimal
-    assert burundi_franc.code == '108'
-    assert burundi_franc.currency == 'BIF'
+    assert burundi_franc.numeric_code == '108'
+    assert burundi_franc.alpha_code == 'BIF'
     assert burundi_franc.decimal_places == 0
     assert burundi_franc.decimal_sign == ','
     assert burundi_franc.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_burundi_franc():
     assert burundi_franc.__hash__() == hash((decimal, 'BIF', '108'))
     assert burundi_franc.__repr__() == (
         'BurundiFranc(amount: 0.1428571428571428571428571429, '
-        'currency: "BIF", '
+        'alpha_code: "BIF", '
         'symbol: "₣", '
-        'code: "108", '
+        'numeric_code: "108", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_burundi_franc_negative():
     amount = -100
     burundi_franc = BurundiFranc(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert burundi_franc.code == '108'
-    assert burundi_franc.currency == 'BIF'
+    assert burundi_franc.numeric_code == '108'
+    assert burundi_franc.alpha_code == 'BIF'
     assert burundi_franc.decimal_places == 0
     assert burundi_franc.decimal_sign == ','
     assert burundi_franc.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_burundi_franc_negative():
     assert burundi_franc.__hash__() == hash((decimal, 'BIF', '108'))
     assert burundi_franc.__repr__() == (
         'BurundiFranc(amount: -100, '
-        'currency: "BIF", '
+        'alpha_code: "BIF", '
         'symbol: "₣", '
-        'code: "108", '
+        'numeric_code: "108", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_burundi_franc_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert burundi_franc.amount == decimal
-    assert burundi_franc.code == '108'
-    assert burundi_franc.currency == 'BIF'
+    assert burundi_franc.numeric_code == '108'
+    assert burundi_franc.alpha_code == 'BIF'
     assert burundi_franc.decimal_places == 5
     assert burundi_franc.decimal_sign == '.'
     assert burundi_franc.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_burundi_franc_custom():
     assert burundi_franc.__hash__() == hash((decimal, 'BIF', '108'))
     assert burundi_franc.__repr__() == (
         'BurundiFranc(amount: 1000, '
-        'currency: "BIF", '
+        'alpha_code: "BIF", '
         'symbol: "₣", '
-        'code: "108", '
+        'numeric_code: "108", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_burundi_franc_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        burundi_franc.currency = 'EUR'
+        burundi_franc.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_burundi_franc_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        burundi_franc.code = '978'
+        burundi_franc.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_burundi_franc_math_add():
     burundi_franc_one = BurundiFranc(amount=1)
     burundi_franc_two = BurundiFranc(amount=2)
     burundi_franc_three = BurundiFranc(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency BIF and OTHER.'):

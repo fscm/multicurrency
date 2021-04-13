@@ -23,8 +23,8 @@ def test_paanga():
     paanga = Paanga(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert paanga.amount == decimal
-    assert paanga.code == '776'
-    assert paanga.currency == 'TOP'
+    assert paanga.numeric_code == '776'
+    assert paanga.alpha_code == 'TOP'
     assert paanga.decimal_places == 2
     assert paanga.decimal_sign == '.'
     assert paanga.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_paanga():
     assert paanga.__hash__() == hash((decimal, 'TOP', '776'))
     assert paanga.__repr__() == (
         'Paanga(amount: 0.1428571428571428571428571429, '
-        'currency: "TOP", '
+        'alpha_code: "TOP", '
         'symbol: "T$", '
-        'code: "776", '
+        'numeric_code: "776", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_paanga_negative():
     amount = -100
     paanga = Paanga(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert paanga.code == '776'
-    assert paanga.currency == 'TOP'
+    assert paanga.numeric_code == '776'
+    assert paanga.alpha_code == 'TOP'
     assert paanga.decimal_places == 2
     assert paanga.decimal_sign == '.'
     assert paanga.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_paanga_negative():
     assert paanga.__hash__() == hash((decimal, 'TOP', '776'))
     assert paanga.__repr__() == (
         'Paanga(amount: -100, '
-        'currency: "TOP", '
+        'alpha_code: "TOP", '
         'symbol: "T$", '
-        'code: "776", '
+        'numeric_code: "776", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_paanga_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert paanga.amount == decimal
-    assert paanga.code == '776'
-    assert paanga.currency == 'TOP'
+    assert paanga.numeric_code == '776'
+    assert paanga.alpha_code == 'TOP'
     assert paanga.decimal_places == 5
     assert paanga.decimal_sign == ','
     assert paanga.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_paanga_custom():
     assert paanga.__hash__() == hash((decimal, 'TOP', '776'))
     assert paanga.__repr__() == (
         'Paanga(amount: 1000, '
-        'currency: "TOP", '
+        'alpha_code: "TOP", '
         'symbol: "T$", '
-        'code: "776", '
+        'numeric_code: "776", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_paanga_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        paanga.currency = 'EUR'
+        paanga.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_paanga_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        paanga.code = '978'
+        paanga.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_paanga_math_add():
     paanga_one = Paanga(amount=1)
     paanga_two = Paanga(amount=2)
     paanga_three = Paanga(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency TOP and OTHER.'):

@@ -23,8 +23,8 @@ def test_sudanese_pound():
     sudanese_pound = SudanesePound(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert sudanese_pound.amount == decimal
-    assert sudanese_pound.code == '938'
-    assert sudanese_pound.currency == 'SDG'
+    assert sudanese_pound.numeric_code == '938'
+    assert sudanese_pound.alpha_code == 'SDG'
     assert sudanese_pound.decimal_places == 2
     assert sudanese_pound.decimal_sign == ','
     assert sudanese_pound.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_sudanese_pound():
     assert sudanese_pound.__hash__() == hash((decimal, 'SDG', '938'))
     assert sudanese_pound.__repr__() == (
         'SudanesePound(amount: 0.1428571428571428571428571429, '
-        'currency: "SDG", '
+        'alpha_code: "SDG", '
         'symbol: "£", '
-        'code: "938", '
+        'numeric_code: "938", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_sudanese_pound_negative():
     amount = -100
     sudanese_pound = SudanesePound(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert sudanese_pound.code == '938'
-    assert sudanese_pound.currency == 'SDG'
+    assert sudanese_pound.numeric_code == '938'
+    assert sudanese_pound.alpha_code == 'SDG'
     assert sudanese_pound.decimal_places == 2
     assert sudanese_pound.decimal_sign == ','
     assert sudanese_pound.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_sudanese_pound_negative():
     assert sudanese_pound.__hash__() == hash((decimal, 'SDG', '938'))
     assert sudanese_pound.__repr__() == (
         'SudanesePound(amount: -100, '
-        'currency: "SDG", '
+        'alpha_code: "SDG", '
         'symbol: "£", '
-        'code: "938", '
+        'numeric_code: "938", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_sudanese_pound_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert sudanese_pound.amount == decimal
-    assert sudanese_pound.code == '938'
-    assert sudanese_pound.currency == 'SDG'
+    assert sudanese_pound.numeric_code == '938'
+    assert sudanese_pound.alpha_code == 'SDG'
     assert sudanese_pound.decimal_places == 5
     assert sudanese_pound.decimal_sign == '.'
     assert sudanese_pound.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_sudanese_pound_custom():
     assert sudanese_pound.__hash__() == hash((decimal, 'SDG', '938'))
     assert sudanese_pound.__repr__() == (
         'SudanesePound(amount: 1000, '
-        'currency: "SDG", '
+        'alpha_code: "SDG", '
         'symbol: "£", '
-        'code: "938", '
+        'numeric_code: "938", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_sudanese_pound_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        sudanese_pound.currency = 'EUR'
+        sudanese_pound.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_sudanese_pound_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        sudanese_pound.code = '978'
+        sudanese_pound.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_sudanese_pound_math_add():
     sudanese_pound_one = SudanesePound(amount=1)
     sudanese_pound_two = SudanesePound(amount=2)
     sudanese_pound_three = SudanesePound(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency SDG and OTHER.'):

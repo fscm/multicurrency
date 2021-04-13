@@ -23,8 +23,8 @@ def test_nakfa():
     nakfa = Nakfa(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert nakfa.amount == decimal
-    assert nakfa.code == '232'
-    assert nakfa.currency == 'ERN'
+    assert nakfa.numeric_code == '232'
+    assert nakfa.alpha_code == 'ERN'
     assert nakfa.decimal_places == 2
     assert nakfa.decimal_sign == ','
     assert nakfa.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_nakfa():
     assert nakfa.__hash__() == hash((decimal, 'ERN', '232'))
     assert nakfa.__repr__() == (
         'Nakfa(amount: 0.1428571428571428571428571429, '
-        'currency: "ERN", '
+        'alpha_code: "ERN", '
         'symbol: "Nfk", '
-        'code: "232", '
+        'numeric_code: "232", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_nakfa_negative():
     amount = -100
     nakfa = Nakfa(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert nakfa.code == '232'
-    assert nakfa.currency == 'ERN'
+    assert nakfa.numeric_code == '232'
+    assert nakfa.alpha_code == 'ERN'
     assert nakfa.decimal_places == 2
     assert nakfa.decimal_sign == ','
     assert nakfa.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_nakfa_negative():
     assert nakfa.__hash__() == hash((decimal, 'ERN', '232'))
     assert nakfa.__repr__() == (
         'Nakfa(amount: -100, '
-        'currency: "ERN", '
+        'alpha_code: "ERN", '
         'symbol: "Nfk", '
-        'code: "232", '
+        'numeric_code: "232", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_nakfa_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert nakfa.amount == decimal
-    assert nakfa.code == '232'
-    assert nakfa.currency == 'ERN'
+    assert nakfa.numeric_code == '232'
+    assert nakfa.alpha_code == 'ERN'
     assert nakfa.decimal_places == 5
     assert nakfa.decimal_sign == '.'
     assert nakfa.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_nakfa_custom():
     assert nakfa.__hash__() == hash((decimal, 'ERN', '232'))
     assert nakfa.__repr__() == (
         'Nakfa(amount: 1000, '
-        'currency: "ERN", '
+        'alpha_code: "ERN", '
         'symbol: "Nfk", '
-        'code: "232", '
+        'numeric_code: "232", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_nakfa_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        nakfa.currency = 'EUR'
+        nakfa.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_nakfa_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        nakfa.code = '978'
+        nakfa.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_nakfa_math_add():
     nakfa_one = Nakfa(amount=1)
     nakfa_two = Nakfa(amount=2)
     nakfa_three = Nakfa(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency ERN and OTHER.'):

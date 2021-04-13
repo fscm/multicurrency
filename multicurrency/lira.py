@@ -52,9 +52,9 @@ class TurkishLira(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='TRY',
+            alpha_code='TRY',
+            numeric_code='949',
             symbol='₤',
-            code='949',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

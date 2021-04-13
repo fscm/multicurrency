@@ -23,8 +23,8 @@ def test_dobra():
     dobra = Dobra(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert dobra.amount == decimal
-    assert dobra.code == '930'
-    assert dobra.currency == 'STN'
+    assert dobra.numeric_code == '930'
+    assert dobra.alpha_code == 'STN'
     assert dobra.decimal_places == 2
     assert dobra.decimal_sign == ','
     assert dobra.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_dobra():
     assert dobra.__hash__() == hash((decimal, 'STN', '930'))
     assert dobra.__repr__() == (
         'Dobra(amount: 0.1428571428571428571428571429, '
-        'currency: "STN", '
+        'alpha_code: "STN", '
         'symbol: "Db", '
-        'code: "930", '
+        'numeric_code: "930", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_dobra_negative():
     amount = -100
     dobra = Dobra(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert dobra.code == '930'
-    assert dobra.currency == 'STN'
+    assert dobra.numeric_code == '930'
+    assert dobra.alpha_code == 'STN'
     assert dobra.decimal_places == 2
     assert dobra.decimal_sign == ','
     assert dobra.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_dobra_negative():
     assert dobra.__hash__() == hash((decimal, 'STN', '930'))
     assert dobra.__repr__() == (
         'Dobra(amount: -100, '
-        'currency: "STN", '
+        'alpha_code: "STN", '
         'symbol: "Db", '
-        'code: "930", '
+        'numeric_code: "930", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_dobra_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert dobra.amount == decimal
-    assert dobra.code == '930'
-    assert dobra.currency == 'STN'
+    assert dobra.numeric_code == '930'
+    assert dobra.alpha_code == 'STN'
     assert dobra.decimal_places == 5
     assert dobra.decimal_sign == '.'
     assert dobra.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_dobra_custom():
     assert dobra.__hash__() == hash((decimal, 'STN', '930'))
     assert dobra.__repr__() == (
         'Dobra(amount: 1000, '
-        'currency: "STN", '
+        'alpha_code: "STN", '
         'symbol: "Db", '
-        'code: "930", '
+        'numeric_code: "930", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_dobra_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        dobra.currency = 'EUR'
+        dobra.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_dobra_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        dobra.code = '978'
+        dobra.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_dobra_math_add():
     dobra_one = Dobra(amount=1)
     dobra_two = Dobra(amount=2)
     dobra_three = Dobra(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency STN and OTHER.'):

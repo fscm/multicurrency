@@ -23,8 +23,8 @@ def test_rwanda_franc():
     rwanda_franc = RwandaFranc(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert rwanda_franc.amount == decimal
-    assert rwanda_franc.code == '646'
-    assert rwanda_franc.currency == 'RWF'
+    assert rwanda_franc.numeric_code == '646'
+    assert rwanda_franc.alpha_code == 'RWF'
     assert rwanda_franc.decimal_places == 0
     assert rwanda_franc.decimal_sign == ','
     assert rwanda_franc.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_rwanda_franc():
     assert rwanda_franc.__hash__() == hash((decimal, 'RWF', '646'))
     assert rwanda_franc.__repr__() == (
         'RwandaFranc(amount: 0.1428571428571428571428571429, '
-        'currency: "RWF", '
+        'alpha_code: "RWF", '
         'symbol: "₣", '
-        'code: "646", '
+        'numeric_code: "646", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_rwanda_franc_negative():
     amount = -100
     rwanda_franc = RwandaFranc(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert rwanda_franc.code == '646'
-    assert rwanda_franc.currency == 'RWF'
+    assert rwanda_franc.numeric_code == '646'
+    assert rwanda_franc.alpha_code == 'RWF'
     assert rwanda_franc.decimal_places == 0
     assert rwanda_franc.decimal_sign == ','
     assert rwanda_franc.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_rwanda_franc_negative():
     assert rwanda_franc.__hash__() == hash((decimal, 'RWF', '646'))
     assert rwanda_franc.__repr__() == (
         'RwandaFranc(amount: -100, '
-        'currency: "RWF", '
+        'alpha_code: "RWF", '
         'symbol: "₣", '
-        'code: "646", '
+        'numeric_code: "646", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_rwanda_franc_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert rwanda_franc.amount == decimal
-    assert rwanda_franc.code == '646'
-    assert rwanda_franc.currency == 'RWF'
+    assert rwanda_franc.numeric_code == '646'
+    assert rwanda_franc.alpha_code == 'RWF'
     assert rwanda_franc.decimal_places == 5
     assert rwanda_franc.decimal_sign == '.'
     assert rwanda_franc.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_rwanda_franc_custom():
     assert rwanda_franc.__hash__() == hash((decimal, 'RWF', '646'))
     assert rwanda_franc.__repr__() == (
         'RwandaFranc(amount: 1000, '
-        'currency: "RWF", '
+        'alpha_code: "RWF", '
         'symbol: "₣", '
-        'code: "646", '
+        'numeric_code: "646", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_rwanda_franc_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        rwanda_franc.currency = 'EUR'
+        rwanda_franc.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_rwanda_franc_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        rwanda_franc.code = '978'
+        rwanda_franc.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_rwanda_franc_math_add():
     rwanda_franc_one = RwandaFranc(amount=1)
     rwanda_franc_two = RwandaFranc(amount=2)
     rwanda_franc_three = RwandaFranc(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency RWF and OTHER.'):

@@ -23,8 +23,8 @@ def test_cordoba_oro():
     cordoba_oro = CordobaOro(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert cordoba_oro.amount == decimal
-    assert cordoba_oro.code == '558'
-    assert cordoba_oro.currency == 'NIO'
+    assert cordoba_oro.numeric_code == '558'
+    assert cordoba_oro.alpha_code == 'NIO'
     assert cordoba_oro.decimal_places == 2
     assert cordoba_oro.decimal_sign == ','
     assert cordoba_oro.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_cordoba_oro():
     assert cordoba_oro.__hash__() == hash((decimal, 'NIO', '558'))
     assert cordoba_oro.__repr__() == (
         'CordobaOro(amount: 0.1428571428571428571428571429, '
-        'currency: "NIO", '
+        'alpha_code: "NIO", '
         'symbol: "C$", '
-        'code: "558", '
+        'numeric_code: "558", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_cordoba_oro_negative():
     amount = -100
     cordoba_oro = CordobaOro(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert cordoba_oro.code == '558'
-    assert cordoba_oro.currency == 'NIO'
+    assert cordoba_oro.numeric_code == '558'
+    assert cordoba_oro.alpha_code == 'NIO'
     assert cordoba_oro.decimal_places == 2
     assert cordoba_oro.decimal_sign == ','
     assert cordoba_oro.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_cordoba_oro_negative():
     assert cordoba_oro.__hash__() == hash((decimal, 'NIO', '558'))
     assert cordoba_oro.__repr__() == (
         'CordobaOro(amount: -100, '
-        'currency: "NIO", '
+        'alpha_code: "NIO", '
         'symbol: "C$", '
-        'code: "558", '
+        'numeric_code: "558", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_cordoba_oro_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert cordoba_oro.amount == decimal
-    assert cordoba_oro.code == '558'
-    assert cordoba_oro.currency == 'NIO'
+    assert cordoba_oro.numeric_code == '558'
+    assert cordoba_oro.alpha_code == 'NIO'
     assert cordoba_oro.decimal_places == 5
     assert cordoba_oro.decimal_sign == '.'
     assert cordoba_oro.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_cordoba_oro_custom():
     assert cordoba_oro.__hash__() == hash((decimal, 'NIO', '558'))
     assert cordoba_oro.__repr__() == (
         'CordobaOro(amount: 1000, '
-        'currency: "NIO", '
+        'alpha_code: "NIO", '
         'symbol: "C$", '
-        'code: "558", '
+        'numeric_code: "558", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_cordoba_oro_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        cordoba_oro.currency = 'EUR'
+        cordoba_oro.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_cordoba_oro_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        cordoba_oro.code = '978'
+        cordoba_oro.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_cordoba_oro_math_add():
     cordoba_oro_one = CordobaOro(amount=1)
     cordoba_oro_two = CordobaOro(amount=2)
     cordoba_oro_three = CordobaOro(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency NIO and OTHER.'):

@@ -23,8 +23,8 @@ def test_lempira():
     lempira = Lempira(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert lempira.amount == decimal
-    assert lempira.code == '340'
-    assert lempira.currency == 'HNL'
+    assert lempira.numeric_code == '340'
+    assert lempira.alpha_code == 'HNL'
     assert lempira.decimal_places == 2
     assert lempira.decimal_sign == '.'
     assert lempira.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_lempira():
     assert lempira.__hash__() == hash((decimal, 'HNL', '340'))
     assert lempira.__repr__() == (
         'Lempira(amount: 0.1428571428571428571428571429, '
-        'currency: "HNL", '
+        'alpha_code: "HNL", '
         'symbol: "L", '
-        'code: "340", '
+        'numeric_code: "340", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_lempira_negative():
     amount = -100
     lempira = Lempira(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert lempira.code == '340'
-    assert lempira.currency == 'HNL'
+    assert lempira.numeric_code == '340'
+    assert lempira.alpha_code == 'HNL'
     assert lempira.decimal_places == 2
     assert lempira.decimal_sign == '.'
     assert lempira.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_lempira_negative():
     assert lempira.__hash__() == hash((decimal, 'HNL', '340'))
     assert lempira.__repr__() == (
         'Lempira(amount: -100, '
-        'currency: "HNL", '
+        'alpha_code: "HNL", '
         'symbol: "L", '
-        'code: "340", '
+        'numeric_code: "340", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_lempira_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert lempira.amount == decimal
-    assert lempira.code == '340'
-    assert lempira.currency == 'HNL'
+    assert lempira.numeric_code == '340'
+    assert lempira.alpha_code == 'HNL'
     assert lempira.decimal_places == 5
     assert lempira.decimal_sign == ','
     assert lempira.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_lempira_custom():
     assert lempira.__hash__() == hash((decimal, 'HNL', '340'))
     assert lempira.__repr__() == (
         'Lempira(amount: 1000, '
-        'currency: "HNL", '
+        'alpha_code: "HNL", '
         'symbol: "L", '
-        'code: "340", '
+        'numeric_code: "340", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_lempira_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        lempira.currency = 'EUR'
+        lempira.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_lempira_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        lempira.code = '978'
+        lempira.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_lempira_math_add():
     lempira_one = Lempira(amount=1)
     lempira_two = Lempira(amount=2)
     lempira_three = Lempira(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency HNL and OTHER.'):

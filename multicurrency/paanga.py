@@ -52,9 +52,9 @@ class Paanga(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='TOP',
+            alpha_code='TOP',
+            numeric_code='776',
             symbol='T$',
-            code='776',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

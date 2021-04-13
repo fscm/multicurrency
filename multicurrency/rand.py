@@ -52,9 +52,9 @@ class Rand(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='ZAR',
+            alpha_code='ZAR',
+            numeric_code='710',
             symbol='R',
-            code='710',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

@@ -23,8 +23,8 @@ def test_algerian_dinar():
     algerian_dinar = AlgerianDinar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert algerian_dinar.amount == decimal
-    assert algerian_dinar.code == '012'
-    assert algerian_dinar.currency == 'DZD'
+    assert algerian_dinar.numeric_code == '012'
+    assert algerian_dinar.alpha_code == 'DZD'
     assert algerian_dinar.decimal_places == 2
     assert algerian_dinar.decimal_sign == ','
     assert algerian_dinar.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_algerian_dinar():
     assert algerian_dinar.__hash__() == hash((decimal, 'DZD', '012'))
     assert algerian_dinar.__repr__() == (
         'AlgerianDinar(amount: 0.1428571428571428571428571429, '
-        'currency: "DZD", '
+        'alpha_code: "DZD", '
         'symbol: "د.ج", '
-        'code: "012", '
+        'numeric_code: "012", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_algerian_dinar_negative():
     amount = -100
     algerian_dinar = AlgerianDinar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert algerian_dinar.code == '012'
-    assert algerian_dinar.currency == 'DZD'
+    assert algerian_dinar.numeric_code == '012'
+    assert algerian_dinar.alpha_code == 'DZD'
     assert algerian_dinar.decimal_places == 2
     assert algerian_dinar.decimal_sign == ','
     assert algerian_dinar.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_algerian_dinar_negative():
     assert algerian_dinar.__hash__() == hash((decimal, 'DZD', '012'))
     assert algerian_dinar.__repr__() == (
         'AlgerianDinar(amount: -100, '
-        'currency: "DZD", '
+        'alpha_code: "DZD", '
         'symbol: "د.ج", '
-        'code: "012", '
+        'numeric_code: "012", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_algerian_dinar_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert algerian_dinar.amount == decimal
-    assert algerian_dinar.code == '012'
-    assert algerian_dinar.currency == 'DZD'
+    assert algerian_dinar.numeric_code == '012'
+    assert algerian_dinar.alpha_code == 'DZD'
     assert algerian_dinar.decimal_places == 5
     assert algerian_dinar.decimal_sign == '.'
     assert algerian_dinar.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_algerian_dinar_custom():
     assert algerian_dinar.__hash__() == hash((decimal, 'DZD', '012'))
     assert algerian_dinar.__repr__() == (
         'AlgerianDinar(amount: 1000, '
-        'currency: "DZD", '
+        'alpha_code: "DZD", '
         'symbol: "د.ج", '
-        'code: "012", '
+        'numeric_code: "012", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_algerian_dinar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        algerian_dinar.currency = 'EUR'
+        algerian_dinar.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_algerian_dinar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        algerian_dinar.code = '978'
+        algerian_dinar.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_algerian_dinar_math_add():
     algerian_dinar_one = AlgerianDinar(amount=1)
     algerian_dinar_two = AlgerianDinar(amount=2)
     algerian_dinar_three = AlgerianDinar(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency DZD and OTHER.'):

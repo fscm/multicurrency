@@ -23,8 +23,8 @@ def test_manat():
     manat = Manat(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert manat.amount == decimal
-    assert manat.code == '934'
-    assert manat.currency == 'TMT'
+    assert manat.numeric_code == '934'
+    assert manat.alpha_code == 'TMT'
     assert manat.decimal_places == 2
     assert manat.decimal_sign == ','
     assert manat.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_manat():
     assert manat.__hash__() == hash((decimal, 'TMT', '934'))
     assert manat.__repr__() == (
         'Manat(amount: 0.1428571428571428571428571429, '
-        'currency: "TMT", '
+        'alpha_code: "TMT", '
         'symbol: "m", '
-        'code: "934", '
+        'numeric_code: "934", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_manat_negative():
     amount = -100
     manat = Manat(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert manat.code == '934'
-    assert manat.currency == 'TMT'
+    assert manat.numeric_code == '934'
+    assert manat.alpha_code == 'TMT'
     assert manat.decimal_places == 2
     assert manat.decimal_sign == ','
     assert manat.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_manat_negative():
     assert manat.__hash__() == hash((decimal, 'TMT', '934'))
     assert manat.__repr__() == (
         'Manat(amount: -100, '
-        'currency: "TMT", '
+        'alpha_code: "TMT", '
         'symbol: "m", '
-        'code: "934", '
+        'numeric_code: "934", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_manat_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert manat.amount == decimal
-    assert manat.code == '934'
-    assert manat.currency == 'TMT'
+    assert manat.numeric_code == '934'
+    assert manat.alpha_code == 'TMT'
     assert manat.decimal_places == 5
     assert manat.decimal_sign == '.'
     assert manat.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_manat_custom():
     assert manat.__hash__() == hash((decimal, 'TMT', '934'))
     assert manat.__repr__() == (
         'Manat(amount: 1000, '
-        'currency: "TMT", '
+        'alpha_code: "TMT", '
         'symbol: "m", '
-        'code: "934", '
+        'numeric_code: "934", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_manat_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        manat.currency = 'EUR'
+        manat.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_manat_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        manat.code = '978'
+        manat.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_manat_math_add():
     manat_one = Manat(amount=1)
     manat_two = Manat(amount=2)
     manat_three = Manat(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency TMT and OTHER.'):

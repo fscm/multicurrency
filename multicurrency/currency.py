@@ -11,7 +11,7 @@ Representation of a currency value.
 Simple usage example:
 
     >>> from multicurrency import Currency
-    >>> euro = Currency(amount=1, currency='EUR', symbol='€')
+    >>> euro = Currency(amount=1, alpha_code='EUR', symbol='€')
     >>> print(euro)
     €1.00
 
@@ -127,7 +127,7 @@ the quotient of the division of the currency by either an `int`,
 Produces a hash representation of the `multicurrency.currency.Currency`.
 
     >>> from multicurrency import Currency
-    >>> hash(Currency(amount=7, currency='EUR', code='978'))
+    >>> hash(Currency(amount=7, alpha_code='EUR', numeric_code='978'))
     1166476495300974230
 
 ### Int
@@ -262,12 +262,12 @@ class Currency:
     the preceding digit is examined, even values cause the result to be
     rounded down and odd digits cause the result to be rounded up.
 
-    The `currency` argument can be set to identify a specifid currency.
-    Recomendation is for the three-letter code defined in the ISO-4217
-    to be used.
-
-    The `code` argument should be set accordingly to the three-digit
+    The `alpha_code` should be set accordingly to the three-letter
     numeric code defined by the ISO-4217 for the represented language.
+
+    The `numeric_code` argument should be set accordingly to the
+    three-digit numeric code defined by the ISO-4217 for the
+    represented language.
 
     The `symbol`, when set, will be used to identify the currency when
     printing out the value.
@@ -277,10 +277,12 @@ class Currency:
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
-        currency (str, optionsl): Represented currency. Defaults to ''.
+        alpha_code (str, optionsl): Represented currency alpha code.
+            Defaults to ''.
+        numeric_code (str, optional): Represented currency numeric
+            code. Defaults to 0.
         symbol (str, optionsl): Represented currency symbol. Defaults
             to ''.
-        code (str, optional): Represented currency code. Defaults to 0.
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
@@ -291,21 +293,21 @@ class Currency:
     """
 
     __slots__ = [
+        '_alpha_code',
         '_amount',
-        '_code',
-        '_currency',
         '_decimal_places',
         '_decimal_sign',
         '_grouping_sign',
         '_international',
+        '_numeric_code',
         '_symbol']
 
     def __new__(
             cls,
             amount: Union[int, float, Decimal],
-            currency: Optional[str] = '',
+            alpha_code: Optional[str] = '',
+            numeric_code: str = '0',
             symbol: str = '',
-            code: str = '0',
             decimal_places: int = 2,
             decimal_sign: Optional[str] = '.',
             grouping_sign: Optional[str] = ',',
@@ -317,12 +319,12 @@ class Currency:
         """
         self = object.__new__(cls)
         self._amount = CurrencyContext.create_decimal(str(amount))
-        self._code = code
-        self._currency = currency
+        self._alpha_code = alpha_code
         self._decimal_places = max(decimal_places, 0)
         self._decimal_sign = decimal_sign
         self._grouping_sign = grouping_sign
         self._international = international
+        self._numeric_code = numeric_code
         self._symbol = symbol
         return self
 
@@ -337,9 +339,9 @@ class Currency:
         """
         return self.__class__(
             amount=abs(self._amount),
-            currency=self._currency,
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
             symbol=self._symbol,
-            code=self._code,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
@@ -357,18 +359,18 @@ class Currency:
         Raises:
             CurrencyTypeException: If `other` not instance of
                 'Currency'.
-            CurrencyMismatchException: If `other.currency` is
-                differente from `currency`.
+            CurrencyMismatchException: If `other.alpha_code` is
+                differente from `alpha_code`.
         """
         if not isinstance(other, Currency):
             raise CurrencyTypeException(self, other)
-        if self._currency != other.currency:
-            raise CurrencyMismatchException(self._currency, other.currency)
+        if self._alpha_code != other.alpha_code:
+            raise CurrencyMismatchException(self._alpha_code, other.alpha_code)
         return self.__class__(
             amount=self._amount + other.amount,
-            currency=self._currency,
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
             symbol=self._symbol,
-            code=self._code,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
@@ -390,9 +392,9 @@ class Currency:
         """
         return self.__class__(
             amount=self._amount.__ceil__(),
-            currency=self._currency,
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
             symbol=self._symbol,
-            code=self._code,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
@@ -406,9 +408,9 @@ class Currency:
         """
         return self.__class__(
             amount=self._amount,
-            currency=self._currency,
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
             symbol=self._symbol,
-            code=self._code,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
@@ -438,18 +440,18 @@ class Currency:
         return (
             self.__class__(
                 amount=quotient,
-                currency=self._currency,
+                alpha_code=self._alpha_code,
+                numeric_code=self._numeric_code,
                 symbol=self._symbol,
-                code=self._code,
                 decimal_places=self._decimal_places,
                 decimal_sign=self._decimal_sign,
                 grouping_sign=self._grouping_sign,
                 international=self._international),
             self.__class__(
                 amount=remainder,
-                currency=self._currency,
+                alpha_code=self._alpha_code,
+                numeric_code=self._numeric_code,
                 symbol=self._symbol,
-                code=self._code,
                 decimal_places=self._decimal_places,
                 decimal_sign=self._decimal_sign,
                 grouping_sign=self._grouping_sign,
@@ -468,7 +470,7 @@ class Currency:
         if isinstance(other, self.__class__):
             return (
                 (self.amount == other.amount) and
-                (self._currency == other.currency))
+                (self._alpha_code == other.alpha_code))
         return False
 
     def __float__(self) -> float:
@@ -487,9 +489,9 @@ class Currency:
         """
         return self.__class__(
             amount=self._amount.__floor__(),
-            currency=self._currency,
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
             symbol=self._symbol,
-            code=self._code,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
@@ -517,9 +519,9 @@ class Currency:
         return self.__class__(
             amount=self._amount.__floordiv__(
                 CurrencyContext.create_decimal(str(other))),
-            currency=self._currency,
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
             symbol=self._symbol,
-            code=self._code,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
@@ -538,13 +540,13 @@ class Currency:
         Raises:
             CurrencyTypeException: If `other` not instance of
                 'Currency'.
-            CurrencyMismatchException: If `other.currency` is
-                differente from `currency`.
+            CurrencyMismatchException: If `other.alpha_code` is
+                differente from `alpha_code`.
         """
         if not isinstance(other, self.__class__):
             raise CurrencyTypeException(self, other)
-        if self._currency != other.currency:
-            raise CurrencyMismatchException(self._currency, other.currency)
+        if self._alpha_code != other.alpha_code:
+            raise CurrencyMismatchException(self._alpha_code, other.alpha_code)
         return self._amount >= other.amount
 
     def __gt__(self, other: Any) -> bool:
@@ -559,13 +561,13 @@ class Currency:
         Raises:
             CurrencyTypeException: If `other` not instance of
                 'Currency'.
-            CurrencyMismatchException: If `other.currency` is
-                differente from `currency`.
+            CurrencyMismatchException: If `other.alpha_code` is
+                differente from `alpha_code`.
         """
         if not isinstance(other, self.__class__):
             raise CurrencyTypeException(self, other)
-        if self._currency != other.currency:
-            raise CurrencyMismatchException(self._currency, other.currency)
+        if self._alpha_code != other.alpha_code:
+            raise CurrencyMismatchException(self._alpha_code, other.alpha_code)
         return self._amount > other.amount
 
     def __hash__(self) -> int:
@@ -574,13 +576,13 @@ class Currency:
         Returns:
             int: Hash value.
         """
-        return hash((self._amount, self._currency, self._code))
+        return hash((self._amount, self._alpha_code, self._numeric_code))
 
     def __int__(self) -> int:
         """Integer representation.
 
         Returns:
-            int: The currency value as float.
+            int: The currency value as an integer.
         """
         return int(self._amount)
 
@@ -597,13 +599,13 @@ class Currency:
         Raises:
             CurrencyTypeException: If `other` not instance of
                 'Currency'.
-            CurrencyMismatchException: If `other.currency` is
-                differente from `currency`.
+            CurrencyMismatchException: If `other.alpha_code` is
+                differente from `alpha_code`.
         """
         if not isinstance(other, self.__class__):
             raise CurrencyTypeException(self, other)
-        if self._currency != other.currency:
-            raise CurrencyMismatchException(self._currency, other.currency)
+        if self._alpha_code != other.alpha_code:
+            raise CurrencyMismatchException(self._alpha_code, other.alpha_code)
         return self._amount <= other.amount
 
     def __lt__(self, other: Any) -> bool:
@@ -618,13 +620,13 @@ class Currency:
         Raises:
             CurrencyTypeException: If `other` not instance of
                 'Currency'.
-            CurrencyMismatchException: If `other.currency` is
-                differente from `currency`.
+            CurrencyMismatchException: If `other.alpha_code` is
+                differente from `alpha_code`.
         """
         if not isinstance(other, self.__class__):
             raise CurrencyTypeException(self, other)
-        if self._currency != other.currency:
-            raise CurrencyMismatchException(self._currency, other.currency)
+        if self._alpha_code != other.alpha_code:
+            raise CurrencyMismatchException(self._alpha_code, other.alpha_code)
         return self._amount < other.amount
 
     def __mod__(self, other: Any) -> 'Currency':
@@ -648,9 +650,9 @@ class Currency:
         return self.__class__(
             amount=self._amount.__mod__(
                 CurrencyContext.create_decimal(str(other))),
-            currency=self._currency,
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
             symbol=self._symbol,
-            code=self._code,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
@@ -673,9 +675,9 @@ class Currency:
             raise CurrencyInvalidMultiplication(self, other)
         return self.__class__(
             amount=self._amount * CurrencyContext.create_decimal(str(other)),
-            currency=self._currency,
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
             symbol=self._symbol,
-            code=self._code,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
@@ -700,9 +702,9 @@ class Currency:
         """
         return self.__class__(
             amount=self._amount.__neg__(),
-            currency=self._currency,
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
             symbol=self._symbol,
-            code=self._code,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
@@ -716,9 +718,9 @@ class Currency:
         """
         return self.__class__(
             amount=self._amount.__pos__(),
-            currency=self._currency,
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
             symbol=self._symbol,
-            code=self._code,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
@@ -735,9 +737,9 @@ class Currency:
             self.__class__,
             (
                 self._amount,
-                self._currency,
+                self._alpha_code,
                 self._symbol,
-                self._code,
+                self._numeric_code,
                 self._decimal_places,
                 self._decimal_sign,
                 self._grouping_sign,
@@ -752,9 +754,9 @@ class Currency:
         return (
             f'{self.__class__.__name__}('
             f'amount: {self._amount}, '
-            f'currency: "{self._currency}", '
+            f'alpha_code: "{self._alpha_code}", '
             f'symbol: "{self._symbol}", '
-            f'code: "{self._code}", '
+            f'numeric_code: "{self._numeric_code}", '
             f'decimal_places: "{self._decimal_places}", '
             f'decimal_sign: "{self._decimal_sign}", '
             f'grouping_sign: "{self._grouping_sign}", '
@@ -772,9 +774,9 @@ class Currency:
         return self.__class__(
             amount=(self._amount.__round__(precision) if precision
                     else self._amount.__round__()),
-            currency=self._currency,
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
             symbol=self._symbol,
-            code=self._code,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
@@ -787,7 +789,7 @@ class Currency:
             str: value
         """
         symbol = self._symbol if not self._international else (
-            f'{self._currency} ' if self._currency else '')
+            f'{self._alpha_code} ' if self._alpha_code else '')
         p = self._decimal_places
         converted = f'{round(self._amount, p):,.{p}f}'.replace(
             '.', 'X').replace(
@@ -807,18 +809,18 @@ class Currency:
         Raises:
             CurrencyTypeException: If `other` not instance of
                 'Currency'.
-            CurrencyMismatchException: If `other.currency` is
-                differente from `currency`.
+            CurrencyMismatchException: If `other.alpha_code` is
+                differente from `alpha_code`.
         """
         if not isinstance(other, self.__class__):
             raise CurrencyTypeException(self, other)
-        if self._currency != other.currency:
-            raise CurrencyMismatchException(self._currency, other.currency)
+        if self._alpha_code != other.alpha_code:
+            raise CurrencyMismatchException(self._alpha_code, other.alpha_code)
         return self.__class__(
             amount=self._amount - other.amount,
-            currency=self._currency,
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
             symbol=self._symbol,
-            code=self._code,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
@@ -845,9 +847,9 @@ class Currency:
         return self.__class__(
             amount=self._amount.__truediv__(
                 CurrencyContext.create_decimal(str(other))),
-            currency=self._currency,
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
             symbol=self._symbol,
-            code=self._code,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
@@ -877,7 +879,7 @@ class Currency:
             str: value
         """
         symbol = self._symbol if not self._international else (
-            f'{self._currency} ' if self._currency else '')
+            f'{self._alpha_code} ' if self._alpha_code else '')
         p = max(precision, 0)
         converted = f'{round(self._amount, p):,.{p}f}'.replace(
             '.', 'X').replace(
@@ -891,14 +893,14 @@ class Currency:
         return self._amount
 
     @property
-    def code(self) -> str:
-        """str: code."""
-        return self._code
+    def numeric_code(self) -> str:
+        """str: numeric_code."""
+        return self._numeric_code
 
     @property
-    def currency(self) -> str:
-        """str: currency."""
-        return self._currency
+    def alpha_code(self) -> str:
+        """str: alpha_code."""
+        return self._alpha_code
 
     @property
     def decimal_places(self) -> int:

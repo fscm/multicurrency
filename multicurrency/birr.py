@@ -52,9 +52,9 @@ class EthiopianBirr(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='ETB',
+            alpha_code='ETB',
+            numeric_code='230',
             symbol='',
-            code='230',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

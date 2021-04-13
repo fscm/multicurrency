@@ -23,8 +23,8 @@ def test_somali_shilling():
     somali_shilling = SomaliShilling(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert somali_shilling.amount == decimal
-    assert somali_shilling.code == '706'
-    assert somali_shilling.currency == 'SOS'
+    assert somali_shilling.numeric_code == '706'
+    assert somali_shilling.alpha_code == 'SOS'
     assert somali_shilling.decimal_places == 2
     assert somali_shilling.decimal_sign == ','
     assert somali_shilling.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_somali_shilling():
     assert somali_shilling.__hash__() == hash((decimal, 'SOS', '706'))
     assert somali_shilling.__repr__() == (
         'SomaliShilling(amount: 0.1428571428571428571428571429, '
-        'currency: "SOS", '
+        'alpha_code: "SOS", '
         'symbol: "Sh", '
-        'code: "706", '
+        'numeric_code: "706", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_somali_shilling_negative():
     amount = -100
     somali_shilling = SomaliShilling(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert somali_shilling.code == '706'
-    assert somali_shilling.currency == 'SOS'
+    assert somali_shilling.numeric_code == '706'
+    assert somali_shilling.alpha_code == 'SOS'
     assert somali_shilling.decimal_places == 2
     assert somali_shilling.decimal_sign == ','
     assert somali_shilling.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_somali_shilling_negative():
     assert somali_shilling.__hash__() == hash((decimal, 'SOS', '706'))
     assert somali_shilling.__repr__() == (
         'SomaliShilling(amount: -100, '
-        'currency: "SOS", '
+        'alpha_code: "SOS", '
         'symbol: "Sh", '
-        'code: "706", '
+        'numeric_code: "706", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_somali_shilling_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert somali_shilling.amount == decimal
-    assert somali_shilling.code == '706'
-    assert somali_shilling.currency == 'SOS'
+    assert somali_shilling.numeric_code == '706'
+    assert somali_shilling.alpha_code == 'SOS'
     assert somali_shilling.decimal_places == 5
     assert somali_shilling.decimal_sign == '.'
     assert somali_shilling.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_somali_shilling_custom():
     assert somali_shilling.__hash__() == hash((decimal, 'SOS', '706'))
     assert somali_shilling.__repr__() == (
         'SomaliShilling(amount: 1000, '
-        'currency: "SOS", '
+        'alpha_code: "SOS", '
         'symbol: "Sh", '
-        'code: "706", '
+        'numeric_code: "706", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_somali_shilling_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        somali_shilling.currency = 'EUR'
+        somali_shilling.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_somali_shilling_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        somali_shilling.code = '978'
+        somali_shilling.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_somali_shilling_math_add():
     somali_shilling_one = SomaliShilling(amount=1)
     somali_shilling_two = SomaliShilling(amount=2)
     somali_shilling_three = SomaliShilling(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency SOS and OTHER.'):

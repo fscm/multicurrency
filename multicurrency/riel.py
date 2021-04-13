@@ -52,9 +52,9 @@ class Riel(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='KHR',
+            alpha_code='KHR',
+            numeric_code='116',
             symbol='៛',
-            code='116',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

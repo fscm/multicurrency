@@ -23,8 +23,8 @@ def test_hong_kong_dollar():
     hong_kong_dollar = HongKongDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert hong_kong_dollar.amount == decimal
-    assert hong_kong_dollar.code == '344'
-    assert hong_kong_dollar.currency == 'HKD'
+    assert hong_kong_dollar.numeric_code == '344'
+    assert hong_kong_dollar.alpha_code == 'HKD'
     assert hong_kong_dollar.decimal_places == 2
     assert hong_kong_dollar.decimal_sign == '.'
     assert hong_kong_dollar.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_hong_kong_dollar():
     assert hong_kong_dollar.__hash__() == hash((decimal, 'HKD', '344'))
     assert hong_kong_dollar.__repr__() == (
         'HongKongDollar(amount: 0.1428571428571428571428571429, '
-        'currency: "HKD", '
+        'alpha_code: "HKD", '
         'symbol: "$", '
-        'code: "344", '
+        'numeric_code: "344", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_hong_kong_dollar_negative():
     amount = -100
     hong_kong_dollar = HongKongDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert hong_kong_dollar.code == '344'
-    assert hong_kong_dollar.currency == 'HKD'
+    assert hong_kong_dollar.numeric_code == '344'
+    assert hong_kong_dollar.alpha_code == 'HKD'
     assert hong_kong_dollar.decimal_places == 2
     assert hong_kong_dollar.decimal_sign == '.'
     assert hong_kong_dollar.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_hong_kong_dollar_negative():
     assert hong_kong_dollar.__hash__() == hash((decimal, 'HKD', '344'))
     assert hong_kong_dollar.__repr__() == (
         'HongKongDollar(amount: -100, '
-        'currency: "HKD", '
+        'alpha_code: "HKD", '
         'symbol: "$", '
-        'code: "344", '
+        'numeric_code: "344", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_hong_kong_dollar_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert hong_kong_dollar.amount == decimal
-    assert hong_kong_dollar.code == '344'
-    assert hong_kong_dollar.currency == 'HKD'
+    assert hong_kong_dollar.numeric_code == '344'
+    assert hong_kong_dollar.alpha_code == 'HKD'
     assert hong_kong_dollar.decimal_places == 5
     assert hong_kong_dollar.decimal_sign == ','
     assert hong_kong_dollar.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_hong_kong_dollar_custom():
     assert hong_kong_dollar.__hash__() == hash((decimal, 'HKD', '344'))
     assert hong_kong_dollar.__repr__() == (
         'HongKongDollar(amount: 1000, '
-        'currency: "HKD", '
+        'alpha_code: "HKD", '
         'symbol: "$", '
-        'code: "344", '
+        'numeric_code: "344", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_hong_kong_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        hong_kong_dollar.currency = 'EUR'
+        hong_kong_dollar.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_hong_kong_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        hong_kong_dollar.code = '978'
+        hong_kong_dollar.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_hong_kong_dollar_math_add():
     hong_kong_dollar_one = HongKongDollar(amount=1)
     hong_kong_dollar_two = HongKongDollar(amount=2)
     hong_kong_dollar_three = HongKongDollar(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency HKD and OTHER.'):
@@ -152,9 +152,7 @@ def test_hong_kong_dollar_math_add():
                    'dollar.HongKongDollar\'> '
                    'and <class \'str\'>.')):
         _ = hong_kong_dollar_one.__add__('1.00')
-    assert (
-        hong_kong_dollar_one +
-        hong_kong_dollar_two) == hong_kong_dollar_three
+    assert (hong_kong_dollar_one + hong_kong_dollar_two) == hong_kong_dollar_three
 
 
 def test_currency_slots():

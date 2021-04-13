@@ -23,8 +23,8 @@ def test_yen():
     yen = Yen(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert yen.amount == decimal
-    assert yen.code == '392'
-    assert yen.currency == 'JPY'
+    assert yen.numeric_code == '392'
+    assert yen.alpha_code == 'JPY'
     assert yen.decimal_places == 0
     assert yen.decimal_sign == '.'
     assert yen.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_yen():
     assert yen.__hash__() == hash((decimal, 'JPY', '392'))
     assert yen.__repr__() == (
         'Yen(amount: 0.1428571428571428571428571429, '
-        'currency: "JPY", '
+        'alpha_code: "JPY", '
         'symbol: "¥", '
-        'code: "392", '
+        'numeric_code: "392", '
         'decimal_places: "0", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_yen_negative():
     amount = -100
     yen = Yen(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert yen.code == '392'
-    assert yen.currency == 'JPY'
+    assert yen.numeric_code == '392'
+    assert yen.alpha_code == 'JPY'
     assert yen.decimal_places == 0
     assert yen.decimal_sign == '.'
     assert yen.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_yen_negative():
     assert yen.__hash__() == hash((decimal, 'JPY', '392'))
     assert yen.__repr__() == (
         'Yen(amount: -100, '
-        'currency: "JPY", '
+        'alpha_code: "JPY", '
         'symbol: "¥", '
-        'code: "392", '
+        'numeric_code: "392", '
         'decimal_places: "0", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_yen_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert yen.amount == decimal
-    assert yen.code == '392'
-    assert yen.currency == 'JPY'
+    assert yen.numeric_code == '392'
+    assert yen.alpha_code == 'JPY'
     assert yen.decimal_places == 5
     assert yen.decimal_sign == ','
     assert yen.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_yen_custom():
     assert yen.__hash__() == hash((decimal, 'JPY', '392'))
     assert yen.__repr__() == (
         'Yen(amount: 1000, '
-        'currency: "JPY", '
+        'alpha_code: "JPY", '
         'symbol: "¥", '
-        'code: "392", '
+        'numeric_code: "392", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_yen_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        yen.currency = 'EUR'
+        yen.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_yen_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        yen.code = '978'
+        yen.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_yen_math_add():
     yen_one = Yen(amount=1)
     yen_two = Yen(amount=2)
     yen_three = Yen(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency JPY and OTHER.'):

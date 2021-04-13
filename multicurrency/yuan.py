@@ -52,9 +52,9 @@ class Yuan(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='CNY',
+            alpha_code='CNY',
+            numeric_code='156',
             symbol='¥',
-            code='156',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

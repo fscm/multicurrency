@@ -23,8 +23,8 @@ def test_saudi_riyal():
     saudi_riyal = SaudiRiyal(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert saudi_riyal.amount == decimal
-    assert saudi_riyal.code == '682'
-    assert saudi_riyal.currency == 'SAR'
+    assert saudi_riyal.numeric_code == '682'
+    assert saudi_riyal.alpha_code == 'SAR'
     assert saudi_riyal.decimal_places == 2
     assert saudi_riyal.decimal_sign == '.'
     assert saudi_riyal.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_saudi_riyal():
     assert saudi_riyal.__hash__() == hash((decimal, 'SAR', '682'))
     assert saudi_riyal.__repr__() == (
         'SaudiRiyal(amount: 0.1428571428571428571428571429, '
-        'currency: "SAR", '
+        'alpha_code: "SAR", '
         'symbol: "ر.س", '
-        'code: "682", '
+        'numeric_code: "682", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_saudi_riyal_negative():
     amount = -100
     saudi_riyal = SaudiRiyal(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert saudi_riyal.code == '682'
-    assert saudi_riyal.currency == 'SAR'
+    assert saudi_riyal.numeric_code == '682'
+    assert saudi_riyal.alpha_code == 'SAR'
     assert saudi_riyal.decimal_places == 2
     assert saudi_riyal.decimal_sign == '.'
     assert saudi_riyal.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_saudi_riyal_negative():
     assert saudi_riyal.__hash__() == hash((decimal, 'SAR', '682'))
     assert saudi_riyal.__repr__() == (
         'SaudiRiyal(amount: -100, '
-        'currency: "SAR", '
+        'alpha_code: "SAR", '
         'symbol: "ر.س", '
-        'code: "682", '
+        'numeric_code: "682", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_saudi_riyal_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert saudi_riyal.amount == decimal
-    assert saudi_riyal.code == '682'
-    assert saudi_riyal.currency == 'SAR'
+    assert saudi_riyal.numeric_code == '682'
+    assert saudi_riyal.alpha_code == 'SAR'
     assert saudi_riyal.decimal_places == 5
     assert saudi_riyal.decimal_sign == ','
     assert saudi_riyal.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_saudi_riyal_custom():
     assert saudi_riyal.__hash__() == hash((decimal, 'SAR', '682'))
     assert saudi_riyal.__repr__() == (
         'SaudiRiyal(amount: 1000, '
-        'currency: "SAR", '
+        'alpha_code: "SAR", '
         'symbol: "ر.س", '
-        'code: "682", '
+        'numeric_code: "682", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_saudi_riyal_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        saudi_riyal.currency = 'EUR'
+        saudi_riyal.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_saudi_riyal_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        saudi_riyal.code = '978'
+        saudi_riyal.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_saudi_riyal_math_add():
     saudi_riyal_one = SaudiRiyal(amount=1)
     saudi_riyal_two = SaudiRiyal(amount=2)
     saudi_riyal_three = SaudiRiyal(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency SAR and OTHER.'):

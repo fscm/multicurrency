@@ -52,9 +52,9 @@ class Kina(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='PGK',
+            alpha_code='PGK',
+            numeric_code='598',
             symbol='K',
-            code='598',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

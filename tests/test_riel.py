@@ -23,8 +23,8 @@ def test_riel():
     riel = Riel(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert riel.amount == decimal
-    assert riel.code == '116'
-    assert riel.currency == 'KHR'
+    assert riel.numeric_code == '116'
+    assert riel.alpha_code == 'KHR'
     assert riel.decimal_places == 2
     assert riel.decimal_sign == ','
     assert riel.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_riel():
     assert riel.__hash__() == hash((decimal, 'KHR', '116'))
     assert riel.__repr__() == (
         'Riel(amount: 0.1428571428571428571428571429, '
-        'currency: "KHR", '
+        'alpha_code: "KHR", '
         'symbol: "៛", '
-        'code: "116", '
+        'numeric_code: "116", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_riel_negative():
     amount = -100
     riel = Riel(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert riel.code == '116'
-    assert riel.currency == 'KHR'
+    assert riel.numeric_code == '116'
+    assert riel.alpha_code == 'KHR'
     assert riel.decimal_places == 2
     assert riel.decimal_sign == ','
     assert riel.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_riel_negative():
     assert riel.__hash__() == hash((decimal, 'KHR', '116'))
     assert riel.__repr__() == (
         'Riel(amount: -100, '
-        'currency: "KHR", '
+        'alpha_code: "KHR", '
         'symbol: "៛", '
-        'code: "116", '
+        'numeric_code: "116", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_riel_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert riel.amount == decimal
-    assert riel.code == '116'
-    assert riel.currency == 'KHR'
+    assert riel.numeric_code == '116'
+    assert riel.alpha_code == 'KHR'
     assert riel.decimal_places == 5
     assert riel.decimal_sign == '.'
     assert riel.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_riel_custom():
     assert riel.__hash__() == hash((decimal, 'KHR', '116'))
     assert riel.__repr__() == (
         'Riel(amount: 1000, '
-        'currency: "KHR", '
+        'alpha_code: "KHR", '
         'symbol: "៛", '
-        'code: "116", '
+        'numeric_code: "116", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_riel_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        riel.currency = 'EUR'
+        riel.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_riel_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        riel.code = '978'
+        riel.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_riel_math_add():
     riel_one = Riel(amount=1)
     riel_two = Riel(amount=2)
     riel_three = Riel(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency KHR and OTHER.'):

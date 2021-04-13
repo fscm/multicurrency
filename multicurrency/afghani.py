@@ -52,9 +52,9 @@ class Afghani(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='AFN',
+            alpha_code='AFN',
+            numeric_code='971',
             symbol='Af',
-            code='971',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

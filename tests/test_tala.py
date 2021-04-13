@@ -23,8 +23,8 @@ def test_tala():
     tala = Tala(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert tala.amount == decimal
-    assert tala.code == '882'
-    assert tala.currency == 'WST'
+    assert tala.numeric_code == '882'
+    assert tala.alpha_code == 'WST'
     assert tala.decimal_places == 2
     assert tala.decimal_sign == ','
     assert tala.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_tala():
     assert tala.__hash__() == hash((decimal, 'WST', '882'))
     assert tala.__repr__() == (
         'Tala(amount: 0.1428571428571428571428571429, '
-        'currency: "WST", '
+        'alpha_code: "WST", '
         'symbol: "T", '
-        'code: "882", '
+        'numeric_code: "882", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_tala_negative():
     amount = -100
     tala = Tala(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert tala.code == '882'
-    assert tala.currency == 'WST'
+    assert tala.numeric_code == '882'
+    assert tala.alpha_code == 'WST'
     assert tala.decimal_places == 2
     assert tala.decimal_sign == ','
     assert tala.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_tala_negative():
     assert tala.__hash__() == hash((decimal, 'WST', '882'))
     assert tala.__repr__() == (
         'Tala(amount: -100, '
-        'currency: "WST", '
+        'alpha_code: "WST", '
         'symbol: "T", '
-        'code: "882", '
+        'numeric_code: "882", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_tala_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert tala.amount == decimal
-    assert tala.code == '882'
-    assert tala.currency == 'WST'
+    assert tala.numeric_code == '882'
+    assert tala.alpha_code == 'WST'
     assert tala.decimal_places == 5
     assert tala.decimal_sign == '.'
     assert tala.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_tala_custom():
     assert tala.__hash__() == hash((decimal, 'WST', '882'))
     assert tala.__repr__() == (
         'Tala(amount: 1000, '
-        'currency: "WST", '
+        'alpha_code: "WST", '
         'symbol: "T", '
-        'code: "882", '
+        'numeric_code: "882", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_tala_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        tala.currency = 'EUR'
+        tala.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_tala_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        tala.code = '978'
+        tala.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_tala_math_add():
     tala_one = Tala(amount=1)
     tala_two = Tala(amount=2)
     tala_three = Tala(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency WST and OTHER.'):

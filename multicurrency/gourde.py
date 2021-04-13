@@ -52,9 +52,9 @@ class Gourde(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='HTG',
+            alpha_code='HTG',
+            numeric_code='332',
             symbol='G',
-            code='332',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

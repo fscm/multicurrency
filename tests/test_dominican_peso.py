@@ -23,8 +23,8 @@ def test_dominican_peso():
     dominican_peso = DominicanPeso(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert dominican_peso.amount == decimal
-    assert dominican_peso.code == '214'
-    assert dominican_peso.currency == 'DOP'
+    assert dominican_peso.numeric_code == '214'
+    assert dominican_peso.alpha_code == 'DOP'
     assert dominican_peso.decimal_places == 2
     assert dominican_peso.decimal_sign == '.'
     assert dominican_peso.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_dominican_peso():
     assert dominican_peso.__hash__() == hash((decimal, 'DOP', '214'))
     assert dominican_peso.__repr__() == (
         'DominicanPeso(amount: 0.1428571428571428571428571429, '
-        'currency: "DOP", '
+        'alpha_code: "DOP", '
         'symbol: "$", '
-        'code: "214", '
+        'numeric_code: "214", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_dominican_peso_negative():
     amount = -100
     dominican_peso = DominicanPeso(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert dominican_peso.code == '214'
-    assert dominican_peso.currency == 'DOP'
+    assert dominican_peso.numeric_code == '214'
+    assert dominican_peso.alpha_code == 'DOP'
     assert dominican_peso.decimal_places == 2
     assert dominican_peso.decimal_sign == '.'
     assert dominican_peso.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_dominican_peso_negative():
     assert dominican_peso.__hash__() == hash((decimal, 'DOP', '214'))
     assert dominican_peso.__repr__() == (
         'DominicanPeso(amount: -100, '
-        'currency: "DOP", '
+        'alpha_code: "DOP", '
         'symbol: "$", '
-        'code: "214", '
+        'numeric_code: "214", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_dominican_peso_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert dominican_peso.amount == decimal
-    assert dominican_peso.code == '214'
-    assert dominican_peso.currency == 'DOP'
+    assert dominican_peso.numeric_code == '214'
+    assert dominican_peso.alpha_code == 'DOP'
     assert dominican_peso.decimal_places == 5
     assert dominican_peso.decimal_sign == ','
     assert dominican_peso.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_dominican_peso_custom():
     assert dominican_peso.__hash__() == hash((decimal, 'DOP', '214'))
     assert dominican_peso.__repr__() == (
         'DominicanPeso(amount: 1000, '
-        'currency: "DOP", '
+        'alpha_code: "DOP", '
         'symbol: "$", '
-        'code: "214", '
+        'numeric_code: "214", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_dominican_peso_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        dominican_peso.currency = 'EUR'
+        dominican_peso.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_dominican_peso_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        dominican_peso.code = '978'
+        dominican_peso.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_dominican_peso_math_add():
     dominican_peso_one = DominicanPeso(amount=1)
     dominican_peso_two = DominicanPeso(amount=2)
     dominican_peso_three = DominicanPeso(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency DOP and OTHER.'):

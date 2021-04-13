@@ -23,8 +23,8 @@ def test_yuan():
     yuan = Yuan(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert yuan.amount == decimal
-    assert yuan.code == '156'
-    assert yuan.currency == 'CNY'
+    assert yuan.numeric_code == '156'
+    assert yuan.alpha_code == 'CNY'
     assert yuan.decimal_places == 2
     assert yuan.decimal_sign == '.'
     assert yuan.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_yuan():
     assert yuan.__hash__() == hash((decimal, 'CNY', '156'))
     assert yuan.__repr__() == (
         'Yuan(amount: 0.1428571428571428571428571429, '
-        'currency: "CNY", '
+        'alpha_code: "CNY", '
         'symbol: "¥", '
-        'code: "156", '
+        'numeric_code: "156", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_yuan_negative():
     amount = -100
     yuan = Yuan(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert yuan.code == '156'
-    assert yuan.currency == 'CNY'
+    assert yuan.numeric_code == '156'
+    assert yuan.alpha_code == 'CNY'
     assert yuan.decimal_places == 2
     assert yuan.decimal_sign == '.'
     assert yuan.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_yuan_negative():
     assert yuan.__hash__() == hash((decimal, 'CNY', '156'))
     assert yuan.__repr__() == (
         'Yuan(amount: -100, '
-        'currency: "CNY", '
+        'alpha_code: "CNY", '
         'symbol: "¥", '
-        'code: "156", '
+        'numeric_code: "156", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_yuan_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert yuan.amount == decimal
-    assert yuan.code == '156'
-    assert yuan.currency == 'CNY'
+    assert yuan.numeric_code == '156'
+    assert yuan.alpha_code == 'CNY'
     assert yuan.decimal_places == 5
     assert yuan.decimal_sign == ','
     assert yuan.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_yuan_custom():
     assert yuan.__hash__() == hash((decimal, 'CNY', '156'))
     assert yuan.__repr__() == (
         'Yuan(amount: 1000, '
-        'currency: "CNY", '
+        'alpha_code: "CNY", '
         'symbol: "¥", '
-        'code: "156", '
+        'numeric_code: "156", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_yuan_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        yuan.currency = 'EUR'
+        yuan.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_yuan_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        yuan.code = '978'
+        yuan.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_yuan_math_add():
     yuan_one = Yuan(amount=1)
     yuan_two = Yuan(amount=2)
     yuan_three = Yuan(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency CNY and OTHER.'):

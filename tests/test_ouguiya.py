@@ -23,8 +23,8 @@ def test_ouguiya():
     ouguiya = Ouguiya(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert ouguiya.amount == decimal
-    assert ouguiya.code == '929'
-    assert ouguiya.currency == 'MRU'
+    assert ouguiya.numeric_code == '929'
+    assert ouguiya.alpha_code == 'MRU'
     assert ouguiya.decimal_places == 2
     assert ouguiya.decimal_sign == ','
     assert ouguiya.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_ouguiya():
     assert ouguiya.__hash__() == hash((decimal, 'MRU', '929'))
     assert ouguiya.__repr__() == (
         'Ouguiya(amount: 0.1428571428571428571428571429, '
-        'currency: "MRU", '
+        'alpha_code: "MRU", '
         'symbol: "UM", '
-        'code: "929", '
+        'numeric_code: "929", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_ouguiya_negative():
     amount = -100
     ouguiya = Ouguiya(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert ouguiya.code == '929'
-    assert ouguiya.currency == 'MRU'
+    assert ouguiya.numeric_code == '929'
+    assert ouguiya.alpha_code == 'MRU'
     assert ouguiya.decimal_places == 2
     assert ouguiya.decimal_sign == ','
     assert ouguiya.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_ouguiya_negative():
     assert ouguiya.__hash__() == hash((decimal, 'MRU', '929'))
     assert ouguiya.__repr__() == (
         'Ouguiya(amount: -100, '
-        'currency: "MRU", '
+        'alpha_code: "MRU", '
         'symbol: "UM", '
-        'code: "929", '
+        'numeric_code: "929", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_ouguiya_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert ouguiya.amount == decimal
-    assert ouguiya.code == '929'
-    assert ouguiya.currency == 'MRU'
+    assert ouguiya.numeric_code == '929'
+    assert ouguiya.alpha_code == 'MRU'
     assert ouguiya.decimal_places == 5
     assert ouguiya.decimal_sign == '.'
     assert ouguiya.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_ouguiya_custom():
     assert ouguiya.__hash__() == hash((decimal, 'MRU', '929'))
     assert ouguiya.__repr__() == (
         'Ouguiya(amount: 1000, '
-        'currency: "MRU", '
+        'alpha_code: "MRU", '
         'symbol: "UM", '
-        'code: "929", '
+        'numeric_code: "929", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_ouguiya_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        ouguiya.currency = 'EUR'
+        ouguiya.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_ouguiya_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        ouguiya.code = '978'
+        ouguiya.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_ouguiya_math_add():
     ouguiya_one = Ouguiya(amount=1)
     ouguiya_two = Ouguiya(amount=2)
     ouguiya_three = Ouguiya(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency MRU and OTHER.'):

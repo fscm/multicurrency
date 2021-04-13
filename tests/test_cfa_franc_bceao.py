@@ -23,8 +23,8 @@ def test_cfa_franc_bceao():
     cfa_franc_bceao = CFAFrancBCEAO(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert cfa_franc_bceao.amount == decimal
-    assert cfa_franc_bceao.code == '952'
-    assert cfa_franc_bceao.currency == 'XOF'
+    assert cfa_franc_bceao.numeric_code == '952'
+    assert cfa_franc_bceao.alpha_code == 'XOF'
     assert cfa_franc_bceao.decimal_places == 0
     assert cfa_franc_bceao.decimal_sign == ','
     assert cfa_franc_bceao.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_cfa_franc_bceao():
     assert cfa_franc_bceao.__hash__() == hash((decimal, 'XOF', '952'))
     assert cfa_franc_bceao.__repr__() == (
         'CFAFrancBCEAO(amount: 0.1428571428571428571428571429, '
-        'currency: "XOF", '
+        'alpha_code: "XOF", '
         'symbol: "₣", '
-        'code: "952", '
+        'numeric_code: "952", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_cfa_franc_bceao_negative():
     amount = -100
     cfa_franc_bceao = CFAFrancBCEAO(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert cfa_franc_bceao.code == '952'
-    assert cfa_franc_bceao.currency == 'XOF'
+    assert cfa_franc_bceao.numeric_code == '952'
+    assert cfa_franc_bceao.alpha_code == 'XOF'
     assert cfa_franc_bceao.decimal_places == 0
     assert cfa_franc_bceao.decimal_sign == ','
     assert cfa_franc_bceao.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_cfa_franc_bceao_negative():
     assert cfa_franc_bceao.__hash__() == hash((decimal, 'XOF', '952'))
     assert cfa_franc_bceao.__repr__() == (
         'CFAFrancBCEAO(amount: -100, '
-        'currency: "XOF", '
+        'alpha_code: "XOF", '
         'symbol: "₣", '
-        'code: "952", '
+        'numeric_code: "952", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_cfa_franc_bceao_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert cfa_franc_bceao.amount == decimal
-    assert cfa_franc_bceao.code == '952'
-    assert cfa_franc_bceao.currency == 'XOF'
+    assert cfa_franc_bceao.numeric_code == '952'
+    assert cfa_franc_bceao.alpha_code == 'XOF'
     assert cfa_franc_bceao.decimal_places == 5
     assert cfa_franc_bceao.decimal_sign == '.'
     assert cfa_franc_bceao.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_cfa_franc_bceao_custom():
     assert cfa_franc_bceao.__hash__() == hash((decimal, 'XOF', '952'))
     assert cfa_franc_bceao.__repr__() == (
         'CFAFrancBCEAO(amount: 1000, '
-        'currency: "XOF", '
+        'alpha_code: "XOF", '
         'symbol: "₣", '
-        'code: "952", '
+        'numeric_code: "952", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_cfa_franc_bceao_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        cfa_franc_bceao.currency = 'EUR'
+        cfa_franc_bceao.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_cfa_franc_bceao_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        cfa_franc_bceao.code = '978'
+        cfa_franc_bceao.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_cfa_franc_bceao_math_add():
     cfa_franc_bceao_one = CFAFrancBCEAO(amount=1)
     cfa_franc_bceao_two = CFAFrancBCEAO(amount=2)
     cfa_franc_bceao_three = CFAFrancBCEAO(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency XOF and OTHER.'):

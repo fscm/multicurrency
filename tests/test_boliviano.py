@@ -23,8 +23,8 @@ def test_boliviano():
     boliviano = Boliviano(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert boliviano.amount == decimal
-    assert boliviano.code == '068'
-    assert boliviano.currency == 'BOB'
+    assert boliviano.numeric_code == '068'
+    assert boliviano.alpha_code == 'BOB'
     assert boliviano.decimal_places == 2
     assert boliviano.decimal_sign == '.'
     assert boliviano.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_boliviano():
     assert boliviano.__hash__() == hash((decimal, 'BOB', '068'))
     assert boliviano.__repr__() == (
         'Boliviano(amount: 0.1428571428571428571428571429, '
-        'currency: "BOB", '
+        'alpha_code: "BOB", '
         'symbol: "Bs.", '
-        'code: "068", '
+        'numeric_code: "068", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_boliviano_negative():
     amount = -100
     boliviano = Boliviano(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert boliviano.code == '068'
-    assert boliviano.currency == 'BOB'
+    assert boliviano.numeric_code == '068'
+    assert boliviano.alpha_code == 'BOB'
     assert boliviano.decimal_places == 2
     assert boliviano.decimal_sign == '.'
     assert boliviano.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_boliviano_negative():
     assert boliviano.__hash__() == hash((decimal, 'BOB', '068'))
     assert boliviano.__repr__() == (
         'Boliviano(amount: -100, '
-        'currency: "BOB", '
+        'alpha_code: "BOB", '
         'symbol: "Bs.", '
-        'code: "068", '
+        'numeric_code: "068", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_boliviano_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert boliviano.amount == decimal
-    assert boliviano.code == '068'
-    assert boliviano.currency == 'BOB'
+    assert boliviano.numeric_code == '068'
+    assert boliviano.alpha_code == 'BOB'
     assert boliviano.decimal_places == 5
     assert boliviano.decimal_sign == ','
     assert boliviano.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_boliviano_custom():
     assert boliviano.__hash__() == hash((decimal, 'BOB', '068'))
     assert boliviano.__repr__() == (
         'Boliviano(amount: 1000, '
-        'currency: "BOB", '
+        'alpha_code: "BOB", '
         'symbol: "Bs.", '
-        'code: "068", '
+        'numeric_code: "068", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_boliviano_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        boliviano.currency = 'EUR'
+        boliviano.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_boliviano_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        boliviano.code = '978'
+        boliviano.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_boliviano_math_add():
     boliviano_one = Boliviano(amount=1)
     boliviano_two = Boliviano(amount=2)
     boliviano_three = Boliviano(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency BOB and OTHER.'):

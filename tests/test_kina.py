@@ -23,8 +23,8 @@ def test_kina():
     kina = Kina(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert kina.amount == decimal
-    assert kina.code == '598'
-    assert kina.currency == 'PGK'
+    assert kina.numeric_code == '598'
+    assert kina.alpha_code == 'PGK'
     assert kina.decimal_places == 2
     assert kina.decimal_sign == ','
     assert kina.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_kina():
     assert kina.__hash__() == hash((decimal, 'PGK', '598'))
     assert kina.__repr__() == (
         'Kina(amount: 0.1428571428571428571428571429, '
-        'currency: "PGK", '
+        'alpha_code: "PGK", '
         'symbol: "K", '
-        'code: "598", '
+        'numeric_code: "598", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_kina_negative():
     amount = -100
     kina = Kina(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert kina.code == '598'
-    assert kina.currency == 'PGK'
+    assert kina.numeric_code == '598'
+    assert kina.alpha_code == 'PGK'
     assert kina.decimal_places == 2
     assert kina.decimal_sign == ','
     assert kina.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_kina_negative():
     assert kina.__hash__() == hash((decimal, 'PGK', '598'))
     assert kina.__repr__() == (
         'Kina(amount: -100, '
-        'currency: "PGK", '
+        'alpha_code: "PGK", '
         'symbol: "K", '
-        'code: "598", '
+        'numeric_code: "598", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_kina_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert kina.amount == decimal
-    assert kina.code == '598'
-    assert kina.currency == 'PGK'
+    assert kina.numeric_code == '598'
+    assert kina.alpha_code == 'PGK'
     assert kina.decimal_places == 5
     assert kina.decimal_sign == '.'
     assert kina.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_kina_custom():
     assert kina.__hash__() == hash((decimal, 'PGK', '598'))
     assert kina.__repr__() == (
         'Kina(amount: 1000, '
-        'currency: "PGK", '
+        'alpha_code: "PGK", '
         'symbol: "K", '
-        'code: "598", '
+        'numeric_code: "598", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_kina_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        kina.currency = 'EUR'
+        kina.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_kina_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        kina.code = '978'
+        kina.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_kina_math_add():
     kina_one = Kina(amount=1)
     kina_two = Kina(amount=2)
     kina_three = Kina(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency PGK and OTHER.'):

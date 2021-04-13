@@ -23,8 +23,8 @@ def test_brunei_dollar():
     brunei_dollar = BruneiDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert brunei_dollar.amount == decimal
-    assert brunei_dollar.code == '096'
-    assert brunei_dollar.currency == 'BND'
+    assert brunei_dollar.numeric_code == '096'
+    assert brunei_dollar.alpha_code == 'BND'
     assert brunei_dollar.decimal_places == 2
     assert brunei_dollar.decimal_sign == '.'
     assert brunei_dollar.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_brunei_dollar():
     assert brunei_dollar.__hash__() == hash((decimal, 'BND', '096'))
     assert brunei_dollar.__repr__() == (
         'BruneiDollar(amount: 0.1428571428571428571428571429, '
-        'currency: "BND", '
+        'alpha_code: "BND", '
         'symbol: "$", '
-        'code: "096", '
+        'numeric_code: "096", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_brunei_dollar_negative():
     amount = -100
     brunei_dollar = BruneiDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert brunei_dollar.code == '096'
-    assert brunei_dollar.currency == 'BND'
+    assert brunei_dollar.numeric_code == '096'
+    assert brunei_dollar.alpha_code == 'BND'
     assert brunei_dollar.decimal_places == 2
     assert brunei_dollar.decimal_sign == '.'
     assert brunei_dollar.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_brunei_dollar_negative():
     assert brunei_dollar.__hash__() == hash((decimal, 'BND', '096'))
     assert brunei_dollar.__repr__() == (
         'BruneiDollar(amount: -100, '
-        'currency: "BND", '
+        'alpha_code: "BND", '
         'symbol: "$", '
-        'code: "096", '
+        'numeric_code: "096", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_brunei_dollar_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert brunei_dollar.amount == decimal
-    assert brunei_dollar.code == '096'
-    assert brunei_dollar.currency == 'BND'
+    assert brunei_dollar.numeric_code == '096'
+    assert brunei_dollar.alpha_code == 'BND'
     assert brunei_dollar.decimal_places == 5
     assert brunei_dollar.decimal_sign == ','
     assert brunei_dollar.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_brunei_dollar_custom():
     assert brunei_dollar.__hash__() == hash((decimal, 'BND', '096'))
     assert brunei_dollar.__repr__() == (
         'BruneiDollar(amount: 1000, '
-        'currency: "BND", '
+        'alpha_code: "BND", '
         'symbol: "$", '
-        'code: "096", '
+        'numeric_code: "096", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_brunei_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        brunei_dollar.currency = 'EUR'
+        brunei_dollar.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_brunei_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        brunei_dollar.code = '978'
+        brunei_dollar.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_brunei_dollar_math_add():
     brunei_dollar_one = BruneiDollar(amount=1)
     brunei_dollar_two = BruneiDollar(amount=2)
     brunei_dollar_three = BruneiDollar(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency BND and OTHER.'):

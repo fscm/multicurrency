@@ -23,8 +23,8 @@ def test_leone():
     leone = Leone(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert leone.amount == decimal
-    assert leone.code == '694'
-    assert leone.currency == 'SLL'
+    assert leone.numeric_code == '694'
+    assert leone.alpha_code == 'SLL'
     assert leone.decimal_places == 2
     assert leone.decimal_sign == ','
     assert leone.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_leone():
     assert leone.__hash__() == hash((decimal, 'SLL', '694'))
     assert leone.__repr__() == (
         'Leone(amount: 0.1428571428571428571428571429, '
-        'currency: "SLL", '
+        'alpha_code: "SLL", '
         'symbol: "Le", '
-        'code: "694", '
+        'numeric_code: "694", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_leone_negative():
     amount = -100
     leone = Leone(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert leone.code == '694'
-    assert leone.currency == 'SLL'
+    assert leone.numeric_code == '694'
+    assert leone.alpha_code == 'SLL'
     assert leone.decimal_places == 2
     assert leone.decimal_sign == ','
     assert leone.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_leone_negative():
     assert leone.__hash__() == hash((decimal, 'SLL', '694'))
     assert leone.__repr__() == (
         'Leone(amount: -100, '
-        'currency: "SLL", '
+        'alpha_code: "SLL", '
         'symbol: "Le", '
-        'code: "694", '
+        'numeric_code: "694", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_leone_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert leone.amount == decimal
-    assert leone.code == '694'
-    assert leone.currency == 'SLL'
+    assert leone.numeric_code == '694'
+    assert leone.alpha_code == 'SLL'
     assert leone.decimal_places == 5
     assert leone.decimal_sign == '.'
     assert leone.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_leone_custom():
     assert leone.__hash__() == hash((decimal, 'SLL', '694'))
     assert leone.__repr__() == (
         'Leone(amount: 1000, '
-        'currency: "SLL", '
+        'alpha_code: "SLL", '
         'symbol: "Le", '
-        'code: "694", '
+        'numeric_code: "694", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_leone_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        leone.currency = 'EUR'
+        leone.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_leone_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        leone.code = '978'
+        leone.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_leone_math_add():
     leone_one = Leone(amount=1)
     leone_two = Leone(amount=2)
     leone_three = Leone(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency SLL and OTHER.'):

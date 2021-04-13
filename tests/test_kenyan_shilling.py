@@ -23,8 +23,8 @@ def test_kenyan_shilling():
     kenyan_shilling = KenyanShilling(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert kenyan_shilling.amount == decimal
-    assert kenyan_shilling.code == '404'
-    assert kenyan_shilling.currency == 'KES'
+    assert kenyan_shilling.numeric_code == '404'
+    assert kenyan_shilling.alpha_code == 'KES'
     assert kenyan_shilling.decimal_places == 2
     assert kenyan_shilling.decimal_sign == '.'
     assert kenyan_shilling.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_kenyan_shilling():
     assert kenyan_shilling.__hash__() == hash((decimal, 'KES', '404'))
     assert kenyan_shilling.__repr__() == (
         'KenyanShilling(amount: 0.1428571428571428571428571429, '
-        'currency: "KES", '
+        'alpha_code: "KES", '
         'symbol: "Sh", '
-        'code: "404", '
+        'numeric_code: "404", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_kenyan_shilling_negative():
     amount = -100
     kenyan_shilling = KenyanShilling(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert kenyan_shilling.code == '404'
-    assert kenyan_shilling.currency == 'KES'
+    assert kenyan_shilling.numeric_code == '404'
+    assert kenyan_shilling.alpha_code == 'KES'
     assert kenyan_shilling.decimal_places == 2
     assert kenyan_shilling.decimal_sign == '.'
     assert kenyan_shilling.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_kenyan_shilling_negative():
     assert kenyan_shilling.__hash__() == hash((decimal, 'KES', '404'))
     assert kenyan_shilling.__repr__() == (
         'KenyanShilling(amount: -100, '
-        'currency: "KES", '
+        'alpha_code: "KES", '
         'symbol: "Sh", '
-        'code: "404", '
+        'numeric_code: "404", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_kenyan_shilling_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert kenyan_shilling.amount == decimal
-    assert kenyan_shilling.code == '404'
-    assert kenyan_shilling.currency == 'KES'
+    assert kenyan_shilling.numeric_code == '404'
+    assert kenyan_shilling.alpha_code == 'KES'
     assert kenyan_shilling.decimal_places == 5
     assert kenyan_shilling.decimal_sign == ','
     assert kenyan_shilling.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_kenyan_shilling_custom():
     assert kenyan_shilling.__hash__() == hash((decimal, 'KES', '404'))
     assert kenyan_shilling.__repr__() == (
         'KenyanShilling(amount: 1000, '
-        'currency: "KES", '
+        'alpha_code: "KES", '
         'symbol: "Sh", '
-        'code: "404", '
+        'numeric_code: "404", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_kenyan_shilling_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        kenyan_shilling.currency = 'EUR'
+        kenyan_shilling.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_kenyan_shilling_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        kenyan_shilling.code = '978'
+        kenyan_shilling.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_kenyan_shilling_math_add():
     kenyan_shilling_one = KenyanShilling(amount=1)
     kenyan_shilling_two = KenyanShilling(amount=2)
     kenyan_shilling_three = KenyanShilling(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency KES and OTHER.'):

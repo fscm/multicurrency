@@ -52,9 +52,9 @@ class CzechKoruna(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='CZK',
+            alpha_code='CZK',
+            numeric_code='203',
             symbol='Kč',
-            code='203',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

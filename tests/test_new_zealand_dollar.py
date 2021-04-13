@@ -23,8 +23,8 @@ def test_new_zealand_dollar():
     new_zealand_dollar = NewZealandDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert new_zealand_dollar.amount == decimal
-    assert new_zealand_dollar.code == '554'
-    assert new_zealand_dollar.currency == 'NZD'
+    assert new_zealand_dollar.numeric_code == '554'
+    assert new_zealand_dollar.alpha_code == 'NZD'
     assert new_zealand_dollar.decimal_places == 2
     assert new_zealand_dollar.decimal_sign == '.'
     assert new_zealand_dollar.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_new_zealand_dollar():
     assert new_zealand_dollar.__hash__() == hash((decimal, 'NZD', '554'))
     assert new_zealand_dollar.__repr__() == (
         'NewZealandDollar(amount: 0.1428571428571428571428571429, '
-        'currency: "NZD", '
+        'alpha_code: "NZD", '
         'symbol: "$", '
-        'code: "554", '
+        'numeric_code: "554", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_new_zealand_dollar_negative():
     amount = -100
     new_zealand_dollar = NewZealandDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert new_zealand_dollar.code == '554'
-    assert new_zealand_dollar.currency == 'NZD'
+    assert new_zealand_dollar.numeric_code == '554'
+    assert new_zealand_dollar.alpha_code == 'NZD'
     assert new_zealand_dollar.decimal_places == 2
     assert new_zealand_dollar.decimal_sign == '.'
     assert new_zealand_dollar.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_new_zealand_dollar_negative():
     assert new_zealand_dollar.__hash__() == hash((decimal, 'NZD', '554'))
     assert new_zealand_dollar.__repr__() == (
         'NewZealandDollar(amount: -100, '
-        'currency: "NZD", '
+        'alpha_code: "NZD", '
         'symbol: "$", '
-        'code: "554", '
+        'numeric_code: "554", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_new_zealand_dollar_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert new_zealand_dollar.amount == decimal
-    assert new_zealand_dollar.code == '554'
-    assert new_zealand_dollar.currency == 'NZD'
+    assert new_zealand_dollar.numeric_code == '554'
+    assert new_zealand_dollar.alpha_code == 'NZD'
     assert new_zealand_dollar.decimal_places == 5
     assert new_zealand_dollar.decimal_sign == ','
     assert new_zealand_dollar.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_new_zealand_dollar_custom():
     assert new_zealand_dollar.__hash__() == hash((decimal, 'NZD', '554'))
     assert new_zealand_dollar.__repr__() == (
         'NewZealandDollar(amount: 1000, '
-        'currency: "NZD", '
+        'alpha_code: "NZD", '
         'symbol: "$", '
-        'code: "554", '
+        'numeric_code: "554", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_new_zealand_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        new_zealand_dollar.currency = 'EUR'
+        new_zealand_dollar.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_new_zealand_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        new_zealand_dollar.code = '978'
+        new_zealand_dollar.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_new_zealand_dollar_math_add():
     new_zealand_dollar_one = NewZealandDollar(amount=1)
     new_zealand_dollar_two = NewZealandDollar(amount=2)
     new_zealand_dollar_three = NewZealandDollar(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency NZD and OTHER.'):
@@ -152,9 +152,7 @@ def test_new_zealand_dollar_math_add():
                    'dollar.NewZealandDollar\'> '
                    'and <class \'str\'>.')):
         _ = new_zealand_dollar_one.__add__('1.00')
-    assert (
-        new_zealand_dollar_one +
-        new_zealand_dollar_two) == new_zealand_dollar_three
+    assert (new_zealand_dollar_one + new_zealand_dollar_two) == new_zealand_dollar_three
 
 
 def test_currency_slots():

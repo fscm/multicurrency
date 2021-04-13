@@ -52,9 +52,9 @@ class Dobra(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='STN',
+            alpha_code='STN',
+            numeric_code='930',
             symbol='Db',
-            code='930',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

@@ -41,9 +41,9 @@ class __CURRENCY_CLASS__(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='__CURRENCY__',
+            alpha_code='__CURRENCY__',
+            numeric_code='__CODE__',
             symbol='__SYMBOL__',
-            code='__CODE__',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

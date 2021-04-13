@@ -23,8 +23,8 @@ def test_swiss_franc():
     swiss_franc = SwissFranc(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert swiss_franc.amount == decimal
-    assert swiss_franc.code == '756'
-    assert swiss_franc.currency == 'CHF'
+    assert swiss_franc.numeric_code == '756'
+    assert swiss_franc.alpha_code == 'CHF'
     assert swiss_franc.decimal_places == 2
     assert swiss_franc.decimal_sign == '.'
     assert swiss_franc.grouping_sign == '\''
@@ -33,9 +33,9 @@ def test_swiss_franc():
     assert swiss_franc.__hash__() == hash((decimal, 'CHF', '756'))
     assert swiss_franc.__repr__() == (
         'SwissFranc(amount: 0.1428571428571428571428571429, '
-        'currency: "CHF", '
+        'alpha_code: "CHF", '
         'symbol: "₣", '
-        'code: "756", '
+        'numeric_code: "756", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: "\'", '
@@ -48,8 +48,8 @@ def test_swiss_franc_negative():
     amount = -100
     swiss_franc = SwissFranc(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert swiss_franc.code == '756'
-    assert swiss_franc.currency == 'CHF'
+    assert swiss_franc.numeric_code == '756'
+    assert swiss_franc.alpha_code == 'CHF'
     assert swiss_franc.decimal_places == 2
     assert swiss_franc.decimal_sign == '.'
     assert swiss_franc.grouping_sign == '\''
@@ -58,9 +58,9 @@ def test_swiss_franc_negative():
     assert swiss_franc.__hash__() == hash((decimal, 'CHF', '756'))
     assert swiss_franc.__repr__() == (
         'SwissFranc(amount: -100, '
-        'currency: "CHF", '
+        'alpha_code: "CHF", '
         'symbol: "₣", '
-        'code: "756", '
+        'numeric_code: "756", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: "\'", '
@@ -79,8 +79,8 @@ def test_swiss_franc_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert swiss_franc.amount == decimal
-    assert swiss_franc.code == '756'
-    assert swiss_franc.currency == 'CHF'
+    assert swiss_franc.numeric_code == '756'
+    assert swiss_franc.alpha_code == 'CHF'
     assert swiss_franc.decimal_places == 5
     assert swiss_franc.decimal_sign == '\''
     assert swiss_franc.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_swiss_franc_custom():
     assert swiss_franc.__hash__() == hash((decimal, 'CHF', '756'))
     assert swiss_franc.__repr__() == (
         'SwissFranc(amount: 1000, '
-        'currency: "CHF", '
+        'alpha_code: "CHF", '
         'symbol: "₣", '
-        'code: "756", '
+        'numeric_code: "756", '
         'decimal_places: "5", '
         'decimal_sign: "\'", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_swiss_franc_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        swiss_franc.currency = 'EUR'
+        swiss_franc.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_swiss_franc_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        swiss_franc.code = '978'
+        swiss_franc.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_swiss_franc_math_add():
     swiss_franc_one = SwissFranc(amount=1)
     swiss_franc_two = SwissFranc(amount=2)
     swiss_franc_three = SwissFranc(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency CHF and OTHER.'):

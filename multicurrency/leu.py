@@ -52,9 +52,9 @@ class MoldovanLeu(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='MDL',
+            alpha_code='MDL',
+            numeric_code='498',
             symbol='L',
-            code='498',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -102,9 +102,9 @@ class Leu(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='RON',
+            alpha_code='RON',
+            numeric_code='946',
             symbol='L',
-            code='946',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

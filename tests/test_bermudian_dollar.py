@@ -23,8 +23,8 @@ def test_bermudian_dollar():
     bermudian_dollar = BermudianDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert bermudian_dollar.amount == decimal
-    assert bermudian_dollar.code == '060'
-    assert bermudian_dollar.currency == 'BMD'
+    assert bermudian_dollar.numeric_code == '060'
+    assert bermudian_dollar.alpha_code == 'BMD'
     assert bermudian_dollar.decimal_places == 2
     assert bermudian_dollar.decimal_sign == '.'
     assert bermudian_dollar.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_bermudian_dollar():
     assert bermudian_dollar.__hash__() == hash((decimal, 'BMD', '060'))
     assert bermudian_dollar.__repr__() == (
         'BermudianDollar(amount: 0.1428571428571428571428571429, '
-        'currency: "BMD", '
+        'alpha_code: "BMD", '
         'symbol: "$", '
-        'code: "060", '
+        'numeric_code: "060", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_bermudian_dollar_negative():
     amount = -100
     bermudian_dollar = BermudianDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert bermudian_dollar.code == '060'
-    assert bermudian_dollar.currency == 'BMD'
+    assert bermudian_dollar.numeric_code == '060'
+    assert bermudian_dollar.alpha_code == 'BMD'
     assert bermudian_dollar.decimal_places == 2
     assert bermudian_dollar.decimal_sign == '.'
     assert bermudian_dollar.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_bermudian_dollar_negative():
     assert bermudian_dollar.__hash__() == hash((decimal, 'BMD', '060'))
     assert bermudian_dollar.__repr__() == (
         'BermudianDollar(amount: -100, '
-        'currency: "BMD", '
+        'alpha_code: "BMD", '
         'symbol: "$", '
-        'code: "060", '
+        'numeric_code: "060", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_bermudian_dollar_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert bermudian_dollar.amount == decimal
-    assert bermudian_dollar.code == '060'
-    assert bermudian_dollar.currency == 'BMD'
+    assert bermudian_dollar.numeric_code == '060'
+    assert bermudian_dollar.alpha_code == 'BMD'
     assert bermudian_dollar.decimal_places == 5
     assert bermudian_dollar.decimal_sign == ','
     assert bermudian_dollar.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_bermudian_dollar_custom():
     assert bermudian_dollar.__hash__() == hash((decimal, 'BMD', '060'))
     assert bermudian_dollar.__repr__() == (
         'BermudianDollar(amount: 1000, '
-        'currency: "BMD", '
+        'alpha_code: "BMD", '
         'symbol: "$", '
-        'code: "060", '
+        'numeric_code: "060", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_bermudian_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        bermudian_dollar.currency = 'EUR'
+        bermudian_dollar.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_bermudian_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        bermudian_dollar.code = '978'
+        bermudian_dollar.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_bermudian_dollar_math_add():
     bermudian_dollar_one = BermudianDollar(amount=1)
     bermudian_dollar_two = BermudianDollar(amount=2)
     bermudian_dollar_three = BermudianDollar(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency BMD and OTHER.'):
@@ -152,9 +152,7 @@ def test_bermudian_dollar_math_add():
                    'dollar.BermudianDollar\'> '
                    'and <class \'str\'>.')):
         _ = bermudian_dollar_one.__add__('1.00')
-    assert (
-        bermudian_dollar_one +
-        bermudian_dollar_two) == bermudian_dollar_three
+    assert (bermudian_dollar_one + bermudian_dollar_two) == bermudian_dollar_three
 
 
 def test_currency_slots():

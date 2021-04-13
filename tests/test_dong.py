@@ -23,8 +23,8 @@ def test_dong():
     dong = Dong(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert dong.amount == decimal
-    assert dong.code == '704'
-    assert dong.currency == 'VND'
+    assert dong.numeric_code == '704'
+    assert dong.alpha_code == 'VND'
     assert dong.decimal_places == 0
     assert dong.decimal_sign == ','
     assert dong.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_dong():
     assert dong.__hash__() == hash((decimal, 'VND', '704'))
     assert dong.__repr__() == (
         'Dong(amount: 0.1428571428571428571428571429, '
-        'currency: "VND", '
+        'alpha_code: "VND", '
         'symbol: "₫", '
-        'code: "704", '
+        'numeric_code: "704", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_dong_negative():
     amount = -100
     dong = Dong(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert dong.code == '704'
-    assert dong.currency == 'VND'
+    assert dong.numeric_code == '704'
+    assert dong.alpha_code == 'VND'
     assert dong.decimal_places == 0
     assert dong.decimal_sign == ','
     assert dong.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_dong_negative():
     assert dong.__hash__() == hash((decimal, 'VND', '704'))
     assert dong.__repr__() == (
         'Dong(amount: -100, '
-        'currency: "VND", '
+        'alpha_code: "VND", '
         'symbol: "₫", '
-        'code: "704", '
+        'numeric_code: "704", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_dong_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert dong.amount == decimal
-    assert dong.code == '704'
-    assert dong.currency == 'VND'
+    assert dong.numeric_code == '704'
+    assert dong.alpha_code == 'VND'
     assert dong.decimal_places == 5
     assert dong.decimal_sign == '.'
     assert dong.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_dong_custom():
     assert dong.__hash__() == hash((decimal, 'VND', '704'))
     assert dong.__repr__() == (
         'Dong(amount: 1000, '
-        'currency: "VND", '
+        'alpha_code: "VND", '
         'symbol: "₫", '
-        'code: "704", '
+        'numeric_code: "704", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_dong_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        dong.currency = 'EUR'
+        dong.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_dong_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        dong.code = '978'
+        dong.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_dong_math_add():
     dong_one = Dong(amount=1)
     dong_two = Dong(amount=2)
     dong_three = Dong(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency VND and OTHER.'):

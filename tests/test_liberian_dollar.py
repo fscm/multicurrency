@@ -23,8 +23,8 @@ def test_liberian_dollar():
     liberian_dollar = LiberianDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert liberian_dollar.amount == decimal
-    assert liberian_dollar.code == '430'
-    assert liberian_dollar.currency == 'LRD'
+    assert liberian_dollar.numeric_code == '430'
+    assert liberian_dollar.alpha_code == 'LRD'
     assert liberian_dollar.decimal_places == 2
     assert liberian_dollar.decimal_sign == ','
     assert liberian_dollar.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_liberian_dollar():
     assert liberian_dollar.__hash__() == hash((decimal, 'LRD', '430'))
     assert liberian_dollar.__repr__() == (
         'LiberianDollar(amount: 0.1428571428571428571428571429, '
-        'currency: "LRD", '
+        'alpha_code: "LRD", '
         'symbol: "$", '
-        'code: "430", '
+        'numeric_code: "430", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_liberian_dollar_negative():
     amount = -100
     liberian_dollar = LiberianDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert liberian_dollar.code == '430'
-    assert liberian_dollar.currency == 'LRD'
+    assert liberian_dollar.numeric_code == '430'
+    assert liberian_dollar.alpha_code == 'LRD'
     assert liberian_dollar.decimal_places == 2
     assert liberian_dollar.decimal_sign == ','
     assert liberian_dollar.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_liberian_dollar_negative():
     assert liberian_dollar.__hash__() == hash((decimal, 'LRD', '430'))
     assert liberian_dollar.__repr__() == (
         'LiberianDollar(amount: -100, '
-        'currency: "LRD", '
+        'alpha_code: "LRD", '
         'symbol: "$", '
-        'code: "430", '
+        'numeric_code: "430", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_liberian_dollar_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert liberian_dollar.amount == decimal
-    assert liberian_dollar.code == '430'
-    assert liberian_dollar.currency == 'LRD'
+    assert liberian_dollar.numeric_code == '430'
+    assert liberian_dollar.alpha_code == 'LRD'
     assert liberian_dollar.decimal_places == 5
     assert liberian_dollar.decimal_sign == '.'
     assert liberian_dollar.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_liberian_dollar_custom():
     assert liberian_dollar.__hash__() == hash((decimal, 'LRD', '430'))
     assert liberian_dollar.__repr__() == (
         'LiberianDollar(amount: 1000, '
-        'currency: "LRD", '
+        'alpha_code: "LRD", '
         'symbol: "$", '
-        'code: "430", '
+        'numeric_code: "430", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_liberian_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        liberian_dollar.currency = 'EUR'
+        liberian_dollar.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_liberian_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        liberian_dollar.code = '978'
+        liberian_dollar.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_liberian_dollar_math_add():
     liberian_dollar_one = LiberianDollar(amount=1)
     liberian_dollar_two = LiberianDollar(amount=2)
     liberian_dollar_three = LiberianDollar(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency LRD and OTHER.'):

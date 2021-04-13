@@ -23,8 +23,8 @@ def test_tugrik():
     tugrik = Tugrik(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert tugrik.amount == decimal
-    assert tugrik.code == '496'
-    assert tugrik.currency == 'MNT'
+    assert tugrik.numeric_code == '496'
+    assert tugrik.alpha_code == 'MNT'
     assert tugrik.decimal_places == 2
     assert tugrik.decimal_sign == ','
     assert tugrik.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_tugrik():
     assert tugrik.__hash__() == hash((decimal, 'MNT', '496'))
     assert tugrik.__repr__() == (
         'Tugrik(amount: 0.1428571428571428571428571429, '
-        'currency: "MNT", '
+        'alpha_code: "MNT", '
         'symbol: "₮", '
-        'code: "496", '
+        'numeric_code: "496", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_tugrik_negative():
     amount = -100
     tugrik = Tugrik(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert tugrik.code == '496'
-    assert tugrik.currency == 'MNT'
+    assert tugrik.numeric_code == '496'
+    assert tugrik.alpha_code == 'MNT'
     assert tugrik.decimal_places == 2
     assert tugrik.decimal_sign == ','
     assert tugrik.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_tugrik_negative():
     assert tugrik.__hash__() == hash((decimal, 'MNT', '496'))
     assert tugrik.__repr__() == (
         'Tugrik(amount: -100, '
-        'currency: "MNT", '
+        'alpha_code: "MNT", '
         'symbol: "₮", '
-        'code: "496", '
+        'numeric_code: "496", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_tugrik_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert tugrik.amount == decimal
-    assert tugrik.code == '496'
-    assert tugrik.currency == 'MNT'
+    assert tugrik.numeric_code == '496'
+    assert tugrik.alpha_code == 'MNT'
     assert tugrik.decimal_places == 5
     assert tugrik.decimal_sign == '.'
     assert tugrik.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_tugrik_custom():
     assert tugrik.__hash__() == hash((decimal, 'MNT', '496'))
     assert tugrik.__repr__() == (
         'Tugrik(amount: 1000, '
-        'currency: "MNT", '
+        'alpha_code: "MNT", '
         'symbol: "₮", '
-        'code: "496", '
+        'numeric_code: "496", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_tugrik_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        tugrik.currency = 'EUR'
+        tugrik.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_tugrik_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        tugrik.code = '978'
+        tugrik.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_tugrik_math_add():
     tugrik_one = Tugrik(amount=1)
     tugrik_two = Tugrik(amount=2)
     tugrik_three = Tugrik(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency MNT and OTHER.'):

@@ -23,8 +23,8 @@ def test_belarusian_ruble():
     belarusian_ruble = BelarusianRuble(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert belarusian_ruble.amount == decimal
-    assert belarusian_ruble.code == '933'
-    assert belarusian_ruble.currency == 'BYN'
+    assert belarusian_ruble.numeric_code == '933'
+    assert belarusian_ruble.alpha_code == 'BYN'
     assert belarusian_ruble.decimal_places == 2
     assert belarusian_ruble.decimal_sign == ','
     assert belarusian_ruble.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_belarusian_ruble():
     assert belarusian_ruble.__hash__() == hash((decimal, 'BYN', '933'))
     assert belarusian_ruble.__repr__() == (
         'BelarusianRuble(amount: 0.1428571428571428571428571429, '
-        'currency: "BYN", '
+        'alpha_code: "BYN", '
         'symbol: "Br", '
-        'code: "933", '
+        'numeric_code: "933", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_belarusian_ruble_negative():
     amount = -100
     belarusian_ruble = BelarusianRuble(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert belarusian_ruble.code == '933'
-    assert belarusian_ruble.currency == 'BYN'
+    assert belarusian_ruble.numeric_code == '933'
+    assert belarusian_ruble.alpha_code == 'BYN'
     assert belarusian_ruble.decimal_places == 2
     assert belarusian_ruble.decimal_sign == ','
     assert belarusian_ruble.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_belarusian_ruble_negative():
     assert belarusian_ruble.__hash__() == hash((decimal, 'BYN', '933'))
     assert belarusian_ruble.__repr__() == (
         'BelarusianRuble(amount: -100, '
-        'currency: "BYN", '
+        'alpha_code: "BYN", '
         'symbol: "Br", '
-        'code: "933", '
+        'numeric_code: "933", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_belarusian_ruble_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert belarusian_ruble.amount == decimal
-    assert belarusian_ruble.code == '933'
-    assert belarusian_ruble.currency == 'BYN'
+    assert belarusian_ruble.numeric_code == '933'
+    assert belarusian_ruble.alpha_code == 'BYN'
     assert belarusian_ruble.decimal_places == 5
     assert belarusian_ruble.decimal_sign == '.'
     assert belarusian_ruble.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_belarusian_ruble_custom():
     assert belarusian_ruble.__hash__() == hash((decimal, 'BYN', '933'))
     assert belarusian_ruble.__repr__() == (
         'BelarusianRuble(amount: 1000, '
-        'currency: "BYN", '
+        'alpha_code: "BYN", '
         'symbol: "Br", '
-        'code: "933", '
+        'numeric_code: "933", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_belarusian_ruble_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        belarusian_ruble.currency = 'EUR'
+        belarusian_ruble.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_belarusian_ruble_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        belarusian_ruble.code = '978'
+        belarusian_ruble.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_belarusian_ruble_math_add():
     belarusian_ruble_one = BelarusianRuble(amount=1)
     belarusian_ruble_two = BelarusianRuble(amount=2)
     belarusian_ruble_three = BelarusianRuble(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency BYN and OTHER.'):
@@ -152,9 +152,7 @@ def test_belarusian_ruble_math_add():
                    'ruble.BelarusianRuble\'> '
                    'and <class \'str\'>.')):
         _ = belarusian_ruble_one.__add__('1.00')
-    assert (
-        belarusian_ruble_one +
-        belarusian_ruble_two) == belarusian_ruble_three
+    assert (belarusian_ruble_one + belarusian_ruble_two) == belarusian_ruble_three
 
 
 def test_currency_slots():

@@ -52,9 +52,9 @@ class Ngultrum(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='BTN',
+            alpha_code='BTN',
+            numeric_code='064',
             symbol='',
-            code='064',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

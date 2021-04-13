@@ -23,8 +23,8 @@ def test_kip():
     kip = Kip(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert kip.amount == decimal
-    assert kip.code == '418'
-    assert kip.currency == 'LAK'
+    assert kip.numeric_code == '418'
+    assert kip.alpha_code == 'LAK'
     assert kip.decimal_places == 2
     assert kip.decimal_sign == ','
     assert kip.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_kip():
     assert kip.__hash__() == hash((decimal, 'LAK', '418'))
     assert kip.__repr__() == (
         'Kip(amount: 0.1428571428571428571428571429, '
-        'currency: "LAK", '
+        'alpha_code: "LAK", '
         'symbol: "₭", '
-        'code: "418", '
+        'numeric_code: "418", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_kip_negative():
     amount = -100
     kip = Kip(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert kip.code == '418'
-    assert kip.currency == 'LAK'
+    assert kip.numeric_code == '418'
+    assert kip.alpha_code == 'LAK'
     assert kip.decimal_places == 2
     assert kip.decimal_sign == ','
     assert kip.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_kip_negative():
     assert kip.__hash__() == hash((decimal, 'LAK', '418'))
     assert kip.__repr__() == (
         'Kip(amount: -100, '
-        'currency: "LAK", '
+        'alpha_code: "LAK", '
         'symbol: "₭", '
-        'code: "418", '
+        'numeric_code: "418", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_kip_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert kip.amount == decimal
-    assert kip.code == '418'
-    assert kip.currency == 'LAK'
+    assert kip.numeric_code == '418'
+    assert kip.alpha_code == 'LAK'
     assert kip.decimal_places == 5
     assert kip.decimal_sign == '.'
     assert kip.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_kip_custom():
     assert kip.__hash__() == hash((decimal, 'LAK', '418'))
     assert kip.__repr__() == (
         'Kip(amount: 1000, '
-        'currency: "LAK", '
+        'alpha_code: "LAK", '
         'symbol: "₭", '
-        'code: "418", '
+        'numeric_code: "418", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_kip_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        kip.currency = 'EUR'
+        kip.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_kip_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        kip.code = '978'
+        kip.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_kip_math_add():
     kip_one = Kip(amount=1)
     kip_two = Kip(amount=2)
     kip_three = Kip(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency LAK and OTHER.'):

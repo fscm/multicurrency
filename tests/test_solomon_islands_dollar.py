@@ -23,8 +23,8 @@ def test_solomon_islands_dollar():
     solomon_islands_dollar = SolomonIslandsDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert solomon_islands_dollar.amount == decimal
-    assert solomon_islands_dollar.code == '090'
-    assert solomon_islands_dollar.currency == 'SBD'
+    assert solomon_islands_dollar.numeric_code == '090'
+    assert solomon_islands_dollar.alpha_code == 'SBD'
     assert solomon_islands_dollar.decimal_places == 2
     assert solomon_islands_dollar.decimal_sign == ','
     assert solomon_islands_dollar.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_solomon_islands_dollar():
     assert solomon_islands_dollar.__hash__() == hash((decimal, 'SBD', '090'))
     assert solomon_islands_dollar.__repr__() == (
         'SolomonIslandsDollar(amount: 0.1428571428571428571428571429, '
-        'currency: "SBD", '
+        'alpha_code: "SBD", '
         'symbol: "$", '
-        'code: "090", '
+        'numeric_code: "090", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_solomon_islands_dollar_negative():
     amount = -100
     solomon_islands_dollar = SolomonIslandsDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert solomon_islands_dollar.code == '090'
-    assert solomon_islands_dollar.currency == 'SBD'
+    assert solomon_islands_dollar.numeric_code == '090'
+    assert solomon_islands_dollar.alpha_code == 'SBD'
     assert solomon_islands_dollar.decimal_places == 2
     assert solomon_islands_dollar.decimal_sign == ','
     assert solomon_islands_dollar.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_solomon_islands_dollar_negative():
     assert solomon_islands_dollar.__hash__() == hash((decimal, 'SBD', '090'))
     assert solomon_islands_dollar.__repr__() == (
         'SolomonIslandsDollar(amount: -100, '
-        'currency: "SBD", '
+        'alpha_code: "SBD", '
         'symbol: "$", '
-        'code: "090", '
+        'numeric_code: "090", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_solomon_islands_dollar_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert solomon_islands_dollar.amount == decimal
-    assert solomon_islands_dollar.code == '090'
-    assert solomon_islands_dollar.currency == 'SBD'
+    assert solomon_islands_dollar.numeric_code == '090'
+    assert solomon_islands_dollar.alpha_code == 'SBD'
     assert solomon_islands_dollar.decimal_places == 5
     assert solomon_islands_dollar.decimal_sign == '.'
     assert solomon_islands_dollar.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_solomon_islands_dollar_custom():
     assert solomon_islands_dollar.__hash__() == hash((decimal, 'SBD', '090'))
     assert solomon_islands_dollar.__repr__() == (
         'SolomonIslandsDollar(amount: 1000, '
-        'currency: "SBD", '
+        'alpha_code: "SBD", '
         'symbol: "$", '
-        'code: "090", '
+        'numeric_code: "090", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_solomon_islands_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        solomon_islands_dollar.currency = 'EUR'
+        solomon_islands_dollar.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_solomon_islands_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        solomon_islands_dollar.code = '978'
+        solomon_islands_dollar.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_solomon_islands_dollar_math_add():
     solomon_islands_dollar_one = SolomonIslandsDollar(amount=1)
     solomon_islands_dollar_two = SolomonIslandsDollar(amount=2)
     solomon_islands_dollar_three = SolomonIslandsDollar(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency SBD and OTHER.'):
@@ -152,9 +152,7 @@ def test_solomon_islands_dollar_math_add():
                    'dollar.SolomonIslandsDollar\'> '
                    'and <class \'str\'>.')):
         _ = solomon_islands_dollar_one.__add__('1.00')
-    assert (
-        solomon_islands_dollar_one +
-        solomon_islands_dollar_two) == solomon_islands_dollar_three
+    assert (solomon_islands_dollar_one + solomon_islands_dollar_two) == solomon_islands_dollar_three
 
 
 def test_currency_slots():

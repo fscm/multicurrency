@@ -23,8 +23,8 @@ def test_armenian_dram():
     armenian_dram = ArmenianDram(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert armenian_dram.amount == decimal
-    assert armenian_dram.code == '051'
-    assert armenian_dram.currency == 'AMD'
+    assert armenian_dram.numeric_code == '051'
+    assert armenian_dram.alpha_code == 'AMD'
     assert armenian_dram.decimal_places == 2
     assert armenian_dram.decimal_sign == '.'
     assert armenian_dram.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_armenian_dram():
     assert armenian_dram.__hash__() == hash((decimal, 'AMD', '051'))
     assert armenian_dram.__repr__() == (
         'ArmenianDram(amount: 0.1428571428571428571428571429, '
-        'currency: "AMD", '
+        'alpha_code: "AMD", '
         'symbol: "Դ", '
-        'code: "051", '
+        'numeric_code: "051", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_armenian_dram_negative():
     amount = -100
     armenian_dram = ArmenianDram(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert armenian_dram.code == '051'
-    assert armenian_dram.currency == 'AMD'
+    assert armenian_dram.numeric_code == '051'
+    assert armenian_dram.alpha_code == 'AMD'
     assert armenian_dram.decimal_places == 2
     assert armenian_dram.decimal_sign == '.'
     assert armenian_dram.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_armenian_dram_negative():
     assert armenian_dram.__hash__() == hash((decimal, 'AMD', '051'))
     assert armenian_dram.__repr__() == (
         'ArmenianDram(amount: -100, '
-        'currency: "AMD", '
+        'alpha_code: "AMD", '
         'symbol: "Դ", '
-        'code: "051", '
+        'numeric_code: "051", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_armenian_dram_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert armenian_dram.amount == decimal
-    assert armenian_dram.code == '051'
-    assert armenian_dram.currency == 'AMD'
+    assert armenian_dram.numeric_code == '051'
+    assert armenian_dram.alpha_code == 'AMD'
     assert armenian_dram.decimal_places == 5
     assert armenian_dram.decimal_sign == ','
     assert armenian_dram.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_armenian_dram_custom():
     assert armenian_dram.__hash__() == hash((decimal, 'AMD', '051'))
     assert armenian_dram.__repr__() == (
         'ArmenianDram(amount: 1000, '
-        'currency: "AMD", '
+        'alpha_code: "AMD", '
         'symbol: "Դ", '
-        'code: "051", '
+        'numeric_code: "051", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_armenian_dram_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        armenian_dram.currency = 'EUR'
+        armenian_dram.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_armenian_dram_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        armenian_dram.code = '978'
+        armenian_dram.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_armenian_dram_math_add():
     armenian_dram_one = ArmenianDram(amount=1)
     armenian_dram_two = ArmenianDram(amount=2)
     armenian_dram_three = ArmenianDram(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency AMD and OTHER.'):

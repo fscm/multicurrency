@@ -52,9 +52,9 @@ class Kyat(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='MMK',
+            alpha_code='MMK',
+            numeric_code='104',
             symbol='K',
-            code='104',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

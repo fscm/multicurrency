@@ -23,8 +23,8 @@ def test___CURRENCY_VARIABLE__():
     __CURRENCY_VARIABLE__ = __CURRENCY_CLASS__(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert __CURRENCY_VARIABLE__.amount == decimal
-    assert __CURRENCY_VARIABLE__.code == '__CODE__'
-    assert __CURRENCY_VARIABLE__.currency == '__CURRENCY__'
+    assert __CURRENCY_VARIABLE__.numeric_code == '__CODE__'
+    assert __CURRENCY_VARIABLE__.alpha_code == '__CURRENCY__'
     assert __CURRENCY_VARIABLE__.decimal_places == __DECIMAL_PLACES__
     assert __CURRENCY_VARIABLE__.decimal_sign == '__DECIMAL_SIGN__'
     assert __CURRENCY_VARIABLE__.grouping_sign == '__GROUPING_SIGN_ALT__'
@@ -33,9 +33,9 @@ def test___CURRENCY_VARIABLE__():
     assert __CURRENCY_VARIABLE__.__hash__() == hash((decimal, '__CURRENCY__', '__CODE__'))
     assert __CURRENCY_VARIABLE__.__repr__() == (
         '__CURRENCY_CLASS__(amount: 0.1428571428571428571428571429, '
-        'currency: "__CURRENCY__", '
+        'alpha_code: "__CURRENCY__", '
         'symbol: "__SYMBOL__", '
-        'code: "__CODE__", '
+        'numeric_code: "__CODE__", '
         'decimal_places: "__DECIMAL_PLACES__", '
         'decimal_sign: "__DECIMAL_SIGN__", '
         'grouping_sign: "__GROUPING_SIGN_ALT__", '
@@ -48,8 +48,8 @@ def test___CURRENCY_VARIABLE___negative():
     amount = -100
     __CURRENCY_VARIABLE__ = __CURRENCY_CLASS__(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert __CURRENCY_VARIABLE__.code == '__CODE__'
-    assert __CURRENCY_VARIABLE__.currency == '__CURRENCY__'
+    assert __CURRENCY_VARIABLE__.numeric_code == '__CODE__'
+    assert __CURRENCY_VARIABLE__.alpha_code == '__CURRENCY__'
     assert __CURRENCY_VARIABLE__.decimal_places == __DECIMAL_PLACES__
     assert __CURRENCY_VARIABLE__.decimal_sign == '__DECIMAL_SIGN__'
     assert __CURRENCY_VARIABLE__.grouping_sign == '__GROUPING_SIGN_ALT__'
@@ -58,9 +58,9 @@ def test___CURRENCY_VARIABLE___negative():
     assert __CURRENCY_VARIABLE__.__hash__() == hash((decimal, '__CURRENCY__', '__CODE__'))
     assert __CURRENCY_VARIABLE__.__repr__() == (
         '__CURRENCY_CLASS__(amount: -100, '
-        'currency: "__CURRENCY__", '
+        'alpha_code: "__CURRENCY__", '
         'symbol: "__SYMBOL__", '
-        'code: "__CODE__", '
+        'numeric_code: "__CODE__", '
         'decimal_places: "__DECIMAL_PLACES__", '
         'decimal_sign: "__DECIMAL_SIGN__", '
         'grouping_sign: "__GROUPING_SIGN_ALT__", '
@@ -79,8 +79,8 @@ def test___CURRENCY_VARIABLE___custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert __CURRENCY_VARIABLE__.amount == decimal
-    assert __CURRENCY_VARIABLE__.code == '__CODE__'
-    assert __CURRENCY_VARIABLE__.currency == '__CURRENCY__'
+    assert __CURRENCY_VARIABLE__.numeric_code == '__CODE__'
+    assert __CURRENCY_VARIABLE__.alpha_code == '__CURRENCY__'
     assert __CURRENCY_VARIABLE__.decimal_places == 5
     assert __CURRENCY_VARIABLE__.decimal_sign == '__GROUPING_SIGN_ALT__'
     assert __CURRENCY_VARIABLE__.grouping_sign == '__DECIMAL_SIGN__'
@@ -89,9 +89,9 @@ def test___CURRENCY_VARIABLE___custom():
     assert __CURRENCY_VARIABLE__.__hash__() == hash((decimal, '__CURRENCY__', '__CODE__'))
     assert __CURRENCY_VARIABLE__.__repr__() == (
         '__CURRENCY_CLASS__(amount: 1000, '
-        'currency: "__CURRENCY__", '
+        'alpha_code: "__CURRENCY__", '
         'symbol: "__SYMBOL__", '
-        'code: "__CODE__", '
+        'numeric_code: "__CODE__", '
         'decimal_places: "5", '
         'decimal_sign: "__GROUPING_SIGN_ALT__", '
         'grouping_sign: "__DECIMAL_SIGN__", '
@@ -109,7 +109,7 @@ def test___CURRENCY_VARIABLE___changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        __CURRENCY_VARIABLE__.currency = 'EUR'
+        __CURRENCY_VARIABLE__.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test___CURRENCY_VARIABLE___changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        __CURRENCY_VARIABLE__.code = '978'
+        __CURRENCY_VARIABLE__.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test___CURRENCY_VARIABLE___math_add():
     __CURRENCY_VARIABLE___one = __CURRENCY_CLASS__(amount=1)
     __CURRENCY_VARIABLE___two = __CURRENCY_CLASS__(amount=2)
     __CURRENCY_VARIABLE___three = __CURRENCY_CLASS__(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency __CURRENCY__ and OTHER.'):

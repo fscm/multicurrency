@@ -52,9 +52,9 @@ class Tenge(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='KZT',
+            alpha_code='KZT',
+            numeric_code='398',
             symbol='〒',
-            code='398',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

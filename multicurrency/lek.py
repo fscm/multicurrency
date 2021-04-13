@@ -52,9 +52,9 @@ class Lek(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='ALL',
+            alpha_code='ALL',
+            numeric_code='008',
             symbol='L',
-            code='008',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

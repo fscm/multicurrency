@@ -23,8 +23,8 @@ def test_saint_helena_pound():
     saint_helena_pound = SaintHelenaPound(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert saint_helena_pound.amount == decimal
-    assert saint_helena_pound.code == '654'
-    assert saint_helena_pound.currency == 'SHP'
+    assert saint_helena_pound.numeric_code == '654'
+    assert saint_helena_pound.alpha_code == 'SHP'
     assert saint_helena_pound.decimal_places == 2
     assert saint_helena_pound.decimal_sign == ','
     assert saint_helena_pound.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_saint_helena_pound():
     assert saint_helena_pound.__hash__() == hash((decimal, 'SHP', '654'))
     assert saint_helena_pound.__repr__() == (
         'SaintHelenaPound(amount: 0.1428571428571428571428571429, '
-        'currency: "SHP", '
+        'alpha_code: "SHP", '
         'symbol: "£", '
-        'code: "654", '
+        'numeric_code: "654", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_saint_helena_pound_negative():
     amount = -100
     saint_helena_pound = SaintHelenaPound(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert saint_helena_pound.code == '654'
-    assert saint_helena_pound.currency == 'SHP'
+    assert saint_helena_pound.numeric_code == '654'
+    assert saint_helena_pound.alpha_code == 'SHP'
     assert saint_helena_pound.decimal_places == 2
     assert saint_helena_pound.decimal_sign == ','
     assert saint_helena_pound.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_saint_helena_pound_negative():
     assert saint_helena_pound.__hash__() == hash((decimal, 'SHP', '654'))
     assert saint_helena_pound.__repr__() == (
         'SaintHelenaPound(amount: -100, '
-        'currency: "SHP", '
+        'alpha_code: "SHP", '
         'symbol: "£", '
-        'code: "654", '
+        'numeric_code: "654", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_saint_helena_pound_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert saint_helena_pound.amount == decimal
-    assert saint_helena_pound.code == '654'
-    assert saint_helena_pound.currency == 'SHP'
+    assert saint_helena_pound.numeric_code == '654'
+    assert saint_helena_pound.alpha_code == 'SHP'
     assert saint_helena_pound.decimal_places == 5
     assert saint_helena_pound.decimal_sign == '.'
     assert saint_helena_pound.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_saint_helena_pound_custom():
     assert saint_helena_pound.__hash__() == hash((decimal, 'SHP', '654'))
     assert saint_helena_pound.__repr__() == (
         'SaintHelenaPound(amount: 1000, '
-        'currency: "SHP", '
+        'alpha_code: "SHP", '
         'symbol: "£", '
-        'code: "654", '
+        'numeric_code: "654", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_saint_helena_pound_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        saint_helena_pound.currency = 'EUR'
+        saint_helena_pound.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_saint_helena_pound_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        saint_helena_pound.code = '978'
+        saint_helena_pound.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_saint_helena_pound_math_add():
     saint_helena_pound_one = SaintHelenaPound(amount=1)
     saint_helena_pound_two = SaintHelenaPound(amount=2)
     saint_helena_pound_three = SaintHelenaPound(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency SHP and OTHER.'):
@@ -152,9 +152,7 @@ def test_saint_helena_pound_math_add():
                    'pound.SaintHelenaPound\'> '
                    'and <class \'str\'>.')):
         _ = saint_helena_pound_one.__add__('1.00')
-    assert (
-        saint_helena_pound_one +
-        saint_helena_pound_two) == saint_helena_pound_three
+    assert (saint_helena_pound_one + saint_helena_pound_two) == saint_helena_pound_three
 
 
 def test_currency_slots():

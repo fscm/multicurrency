@@ -23,8 +23,8 @@ def test_lilangeni():
     lilangeni = Lilangeni(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert lilangeni.amount == decimal
-    assert lilangeni.code == '748'
-    assert lilangeni.currency == 'SZL'
+    assert lilangeni.numeric_code == '748'
+    assert lilangeni.alpha_code == 'SZL'
     assert lilangeni.decimal_places == 2
     assert lilangeni.decimal_sign == '.'
     assert lilangeni.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_lilangeni():
     assert lilangeni.__hash__() == hash((decimal, 'SZL', '748'))
     assert lilangeni.__repr__() == (
         'Lilangeni(amount: 0.1428571428571428571428571429, '
-        'currency: "SZL", '
+        'alpha_code: "SZL", '
         'symbol: "L", '
-        'code: "748", '
+        'numeric_code: "748", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_lilangeni_negative():
     amount = -100
     lilangeni = Lilangeni(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert lilangeni.code == '748'
-    assert lilangeni.currency == 'SZL'
+    assert lilangeni.numeric_code == '748'
+    assert lilangeni.alpha_code == 'SZL'
     assert lilangeni.decimal_places == 2
     assert lilangeni.decimal_sign == '.'
     assert lilangeni.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_lilangeni_negative():
     assert lilangeni.__hash__() == hash((decimal, 'SZL', '748'))
     assert lilangeni.__repr__() == (
         'Lilangeni(amount: -100, '
-        'currency: "SZL", '
+        'alpha_code: "SZL", '
         'symbol: "L", '
-        'code: "748", '
+        'numeric_code: "748", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_lilangeni_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert lilangeni.amount == decimal
-    assert lilangeni.code == '748'
-    assert lilangeni.currency == 'SZL'
+    assert lilangeni.numeric_code == '748'
+    assert lilangeni.alpha_code == 'SZL'
     assert lilangeni.decimal_places == 5
     assert lilangeni.decimal_sign == ','
     assert lilangeni.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_lilangeni_custom():
     assert lilangeni.__hash__() == hash((decimal, 'SZL', '748'))
     assert lilangeni.__repr__() == (
         'Lilangeni(amount: 1000, '
-        'currency: "SZL", '
+        'alpha_code: "SZL", '
         'symbol: "L", '
-        'code: "748", '
+        'numeric_code: "748", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_lilangeni_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        lilangeni.currency = 'EUR'
+        lilangeni.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_lilangeni_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        lilangeni.code = '978'
+        lilangeni.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_lilangeni_math_add():
     lilangeni_one = Lilangeni(amount=1)
     lilangeni_two = Lilangeni(amount=2)
     lilangeni_three = Lilangeni(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency SZL and OTHER.'):

@@ -52,9 +52,9 @@ class SaudiRiyal(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='SAR',
+            alpha_code='SAR',
+            numeric_code='682',
             symbol='ر.س',
-            code='682',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

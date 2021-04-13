@@ -52,9 +52,9 @@ class Tugrik(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='MNT',
+            alpha_code='MNT',
+            numeric_code='496',
             symbol='₮',
-            code='496',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

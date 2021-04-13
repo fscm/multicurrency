@@ -52,9 +52,9 @@ class Euro(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='EUR',
+            alpha_code='EUR',
+            numeric_code='978',
             symbol='€',
-            code='978',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -102,9 +102,9 @@ class EuroIE(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='EUR',
+            alpha_code='EUR',
+            numeric_code='978',
             symbol='€',
-            code='978',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

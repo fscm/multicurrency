@@ -23,8 +23,8 @@ def test_egyptian_pound():
     egyptian_pound = EgyptianPound(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert egyptian_pound.amount == decimal
-    assert egyptian_pound.code == '818'
-    assert egyptian_pound.currency == 'EGP'
+    assert egyptian_pound.numeric_code == '818'
+    assert egyptian_pound.alpha_code == 'EGP'
     assert egyptian_pound.decimal_places == 2
     assert egyptian_pound.decimal_sign == '.'
     assert egyptian_pound.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_egyptian_pound():
     assert egyptian_pound.__hash__() == hash((decimal, 'EGP', '818'))
     assert egyptian_pound.__repr__() == (
         'EgyptianPound(amount: 0.1428571428571428571428571429, '
-        'currency: "EGP", '
+        'alpha_code: "EGP", '
         'symbol: "£", '
-        'code: "818", '
+        'numeric_code: "818", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_egyptian_pound_negative():
     amount = -100
     egyptian_pound = EgyptianPound(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert egyptian_pound.code == '818'
-    assert egyptian_pound.currency == 'EGP'
+    assert egyptian_pound.numeric_code == '818'
+    assert egyptian_pound.alpha_code == 'EGP'
     assert egyptian_pound.decimal_places == 2
     assert egyptian_pound.decimal_sign == '.'
     assert egyptian_pound.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_egyptian_pound_negative():
     assert egyptian_pound.__hash__() == hash((decimal, 'EGP', '818'))
     assert egyptian_pound.__repr__() == (
         'EgyptianPound(amount: -100, '
-        'currency: "EGP", '
+        'alpha_code: "EGP", '
         'symbol: "£", '
-        'code: "818", '
+        'numeric_code: "818", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_egyptian_pound_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert egyptian_pound.amount == decimal
-    assert egyptian_pound.code == '818'
-    assert egyptian_pound.currency == 'EGP'
+    assert egyptian_pound.numeric_code == '818'
+    assert egyptian_pound.alpha_code == 'EGP'
     assert egyptian_pound.decimal_places == 5
     assert egyptian_pound.decimal_sign == ','
     assert egyptian_pound.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_egyptian_pound_custom():
     assert egyptian_pound.__hash__() == hash((decimal, 'EGP', '818'))
     assert egyptian_pound.__repr__() == (
         'EgyptianPound(amount: 1000, '
-        'currency: "EGP", '
+        'alpha_code: "EGP", '
         'symbol: "£", '
-        'code: "818", '
+        'numeric_code: "818", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_egyptian_pound_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        egyptian_pound.currency = 'EUR'
+        egyptian_pound.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_egyptian_pound_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        egyptian_pound.code = '978'
+        egyptian_pound.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_egyptian_pound_math_add():
     egyptian_pound_one = EgyptianPound(amount=1)
     egyptian_pound_two = EgyptianPound(amount=2)
     egyptian_pound_three = EgyptianPound(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency EGP and OTHER.'):

@@ -52,9 +52,9 @@ class Loti(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='LSL',
+            alpha_code='LSL',
+            numeric_code='426',
             symbol='L',
-            code='426',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

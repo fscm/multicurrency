@@ -52,9 +52,9 @@ class Cedi(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='GHS',
+            alpha_code='GHS',
+            numeric_code='936',
             symbol='₵',
-            code='936',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

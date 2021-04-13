@@ -23,8 +23,8 @@ def test_quetzal():
     quetzal = Quetzal(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert quetzal.amount == decimal
-    assert quetzal.code == '320'
-    assert quetzal.currency == 'GTQ'
+    assert quetzal.numeric_code == '320'
+    assert quetzal.alpha_code == 'GTQ'
     assert quetzal.decimal_places == 2
     assert quetzal.decimal_sign == ','
     assert quetzal.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_quetzal():
     assert quetzal.__hash__() == hash((decimal, 'GTQ', '320'))
     assert quetzal.__repr__() == (
         'Quetzal(amount: 0.1428571428571428571428571429, '
-        'currency: "GTQ", '
+        'alpha_code: "GTQ", '
         'symbol: "Q", '
-        'code: "320", '
+        'numeric_code: "320", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_quetzal_negative():
     amount = -100
     quetzal = Quetzal(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert quetzal.code == '320'
-    assert quetzal.currency == 'GTQ'
+    assert quetzal.numeric_code == '320'
+    assert quetzal.alpha_code == 'GTQ'
     assert quetzal.decimal_places == 2
     assert quetzal.decimal_sign == ','
     assert quetzal.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_quetzal_negative():
     assert quetzal.__hash__() == hash((decimal, 'GTQ', '320'))
     assert quetzal.__repr__() == (
         'Quetzal(amount: -100, '
-        'currency: "GTQ", '
+        'alpha_code: "GTQ", '
         'symbol: "Q", '
-        'code: "320", '
+        'numeric_code: "320", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_quetzal_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert quetzal.amount == decimal
-    assert quetzal.code == '320'
-    assert quetzal.currency == 'GTQ'
+    assert quetzal.numeric_code == '320'
+    assert quetzal.alpha_code == 'GTQ'
     assert quetzal.decimal_places == 5
     assert quetzal.decimal_sign == '.'
     assert quetzal.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_quetzal_custom():
     assert quetzal.__hash__() == hash((decimal, 'GTQ', '320'))
     assert quetzal.__repr__() == (
         'Quetzal(amount: 1000, '
-        'currency: "GTQ", '
+        'alpha_code: "GTQ", '
         'symbol: "Q", '
-        'code: "320", '
+        'numeric_code: "320", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_quetzal_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        quetzal.currency = 'EUR'
+        quetzal.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_quetzal_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        quetzal.code = '978'
+        quetzal.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_quetzal_math_add():
     quetzal_one = Quetzal(amount=1)
     quetzal_two = Quetzal(amount=2)
     quetzal_three = Quetzal(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency GTQ and OTHER.'):

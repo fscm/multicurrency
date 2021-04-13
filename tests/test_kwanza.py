@@ -23,8 +23,8 @@ def test_kwanza():
     kwanza = Kwanza(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert kwanza.amount == decimal
-    assert kwanza.code == '973'
-    assert kwanza.currency == 'AOA'
+    assert kwanza.numeric_code == '973'
+    assert kwanza.alpha_code == 'AOA'
     assert kwanza.decimal_places == 2
     assert kwanza.decimal_sign == ','
     assert kwanza.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_kwanza():
     assert kwanza.__hash__() == hash((decimal, 'AOA', '973'))
     assert kwanza.__repr__() == (
         'Kwanza(amount: 0.1428571428571428571428571429, '
-        'currency: "AOA", '
+        'alpha_code: "AOA", '
         'symbol: "Kz", '
-        'code: "973", '
+        'numeric_code: "973", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_kwanza_negative():
     amount = -100
     kwanza = Kwanza(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert kwanza.code == '973'
-    assert kwanza.currency == 'AOA'
+    assert kwanza.numeric_code == '973'
+    assert kwanza.alpha_code == 'AOA'
     assert kwanza.decimal_places == 2
     assert kwanza.decimal_sign == ','
     assert kwanza.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_kwanza_negative():
     assert kwanza.__hash__() == hash((decimal, 'AOA', '973'))
     assert kwanza.__repr__() == (
         'Kwanza(amount: -100, '
-        'currency: "AOA", '
+        'alpha_code: "AOA", '
         'symbol: "Kz", '
-        'code: "973", '
+        'numeric_code: "973", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_kwanza_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert kwanza.amount == decimal
-    assert kwanza.code == '973'
-    assert kwanza.currency == 'AOA'
+    assert kwanza.numeric_code == '973'
+    assert kwanza.alpha_code == 'AOA'
     assert kwanza.decimal_places == 5
     assert kwanza.decimal_sign == '.'
     assert kwanza.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_kwanza_custom():
     assert kwanza.__hash__() == hash((decimal, 'AOA', '973'))
     assert kwanza.__repr__() == (
         'Kwanza(amount: 1000, '
-        'currency: "AOA", '
+        'alpha_code: "AOA", '
         'symbol: "Kz", '
-        'code: "973", '
+        'numeric_code: "973", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_kwanza_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        kwanza.currency = 'EUR'
+        kwanza.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_kwanza_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        kwanza.code = '978'
+        kwanza.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_kwanza_math_add():
     kwanza_one = Kwanza(amount=1)
     kwanza_two = Kwanza(amount=2)
     kwanza_three = Kwanza(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency AOA and OTHER.'):

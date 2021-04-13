@@ -23,8 +23,8 @@ def test_canadian_dollar_en():
     canadian_dollar_en = CanadianDollarEN(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert canadian_dollar_en.amount == decimal
-    assert canadian_dollar_en.code == '124'
-    assert canadian_dollar_en.currency == 'CAD'
+    assert canadian_dollar_en.numeric_code == '124'
+    assert canadian_dollar_en.alpha_code == 'CAD'
     assert canadian_dollar_en.decimal_places == 2
     assert canadian_dollar_en.decimal_sign == '.'
     assert canadian_dollar_en.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_canadian_dollar_en():
     assert canadian_dollar_en.__hash__() == hash((decimal, 'CAD', '124'))
     assert canadian_dollar_en.__repr__() == (
         'CanadianDollarEN(amount: 0.1428571428571428571428571429, '
-        'currency: "CAD", '
+        'alpha_code: "CAD", '
         'symbol: "$", '
-        'code: "124", '
+        'numeric_code: "124", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_canadian_dollar_en_negative():
     amount = -100
     canadian_dollar_en = CanadianDollarEN(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert canadian_dollar_en.code == '124'
-    assert canadian_dollar_en.currency == 'CAD'
+    assert canadian_dollar_en.numeric_code == '124'
+    assert canadian_dollar_en.alpha_code == 'CAD'
     assert canadian_dollar_en.decimal_places == 2
     assert canadian_dollar_en.decimal_sign == '.'
     assert canadian_dollar_en.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_canadian_dollar_en_negative():
     assert canadian_dollar_en.__hash__() == hash((decimal, 'CAD', '124'))
     assert canadian_dollar_en.__repr__() == (
         'CanadianDollarEN(amount: -100, '
-        'currency: "CAD", '
+        'alpha_code: "CAD", '
         'symbol: "$", '
-        'code: "124", '
+        'numeric_code: "124", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_canadian_dollar_en_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert canadian_dollar_en.amount == decimal
-    assert canadian_dollar_en.code == '124'
-    assert canadian_dollar_en.currency == 'CAD'
+    assert canadian_dollar_en.numeric_code == '124'
+    assert canadian_dollar_en.alpha_code == 'CAD'
     assert canadian_dollar_en.decimal_places == 5
     assert canadian_dollar_en.decimal_sign == ','
     assert canadian_dollar_en.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_canadian_dollar_en_custom():
     assert canadian_dollar_en.__hash__() == hash((decimal, 'CAD', '124'))
     assert canadian_dollar_en.__repr__() == (
         'CanadianDollarEN(amount: 1000, '
-        'currency: "CAD", '
+        'alpha_code: "CAD", '
         'symbol: "$", '
-        'code: "124", '
+        'numeric_code: "124", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_canadian_dollar_en_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        canadian_dollar_en.currency = 'EUR'
+        canadian_dollar_en.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_canadian_dollar_en_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        canadian_dollar_en.code = '978'
+        canadian_dollar_en.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_canadian_dollar_en_math_add():
     canadian_dollar_en_one = CanadianDollarEN(amount=1)
     canadian_dollar_en_two = CanadianDollarEN(amount=2)
     canadian_dollar_en_three = CanadianDollarEN(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency CAD and OTHER.'):
@@ -152,9 +152,7 @@ def test_canadian_dollar_en_math_add():
                    'dollar.CanadianDollarEN\'> '
                    'and <class \'str\'>.')):
         _ = canadian_dollar_en_one.__add__('1.00')
-    assert (
-        canadian_dollar_en_one +
-        canadian_dollar_en_two) == canadian_dollar_en_three
+    assert (canadian_dollar_en_one + canadian_dollar_en_two) == canadian_dollar_en_three
 
 
 def test_currency_slots():

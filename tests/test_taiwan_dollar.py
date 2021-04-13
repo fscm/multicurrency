@@ -23,8 +23,8 @@ def test_taiwan_dollar():
     taiwan_dollar = TaiwanDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert taiwan_dollar.amount == decimal
-    assert taiwan_dollar.code == '901'
-    assert taiwan_dollar.currency == 'TWD'
+    assert taiwan_dollar.numeric_code == '901'
+    assert taiwan_dollar.alpha_code == 'TWD'
     assert taiwan_dollar.decimal_places == 2
     assert taiwan_dollar.decimal_sign == ','
     assert taiwan_dollar.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_taiwan_dollar():
     assert taiwan_dollar.__hash__() == hash((decimal, 'TWD', '901'))
     assert taiwan_dollar.__repr__() == (
         'TaiwanDollar(amount: 0.1428571428571428571428571429, '
-        'currency: "TWD", '
+        'alpha_code: "TWD", '
         'symbol: "$", '
-        'code: "901", '
+        'numeric_code: "901", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_taiwan_dollar_negative():
     amount = -100
     taiwan_dollar = TaiwanDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert taiwan_dollar.code == '901'
-    assert taiwan_dollar.currency == 'TWD'
+    assert taiwan_dollar.numeric_code == '901'
+    assert taiwan_dollar.alpha_code == 'TWD'
     assert taiwan_dollar.decimal_places == 2
     assert taiwan_dollar.decimal_sign == ','
     assert taiwan_dollar.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_taiwan_dollar_negative():
     assert taiwan_dollar.__hash__() == hash((decimal, 'TWD', '901'))
     assert taiwan_dollar.__repr__() == (
         'TaiwanDollar(amount: -100, '
-        'currency: "TWD", '
+        'alpha_code: "TWD", '
         'symbol: "$", '
-        'code: "901", '
+        'numeric_code: "901", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_taiwan_dollar_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert taiwan_dollar.amount == decimal
-    assert taiwan_dollar.code == '901'
-    assert taiwan_dollar.currency == 'TWD'
+    assert taiwan_dollar.numeric_code == '901'
+    assert taiwan_dollar.alpha_code == 'TWD'
     assert taiwan_dollar.decimal_places == 5
     assert taiwan_dollar.decimal_sign == '.'
     assert taiwan_dollar.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_taiwan_dollar_custom():
     assert taiwan_dollar.__hash__() == hash((decimal, 'TWD', '901'))
     assert taiwan_dollar.__repr__() == (
         'TaiwanDollar(amount: 1000, '
-        'currency: "TWD", '
+        'alpha_code: "TWD", '
         'symbol: "$", '
-        'code: "901", '
+        'numeric_code: "901", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_taiwan_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        taiwan_dollar.currency = 'EUR'
+        taiwan_dollar.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_taiwan_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        taiwan_dollar.code = '978'
+        taiwan_dollar.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_taiwan_dollar_math_add():
     taiwan_dollar_one = TaiwanDollar(amount=1)
     taiwan_dollar_two = TaiwanDollar(amount=2)
     taiwan_dollar_three = TaiwanDollar(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency TWD and OTHER.'):

@@ -23,8 +23,8 @@ def test_zambian_kwacha():
     zambian_kwacha = ZambianKwacha(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert zambian_kwacha.amount == decimal
-    assert zambian_kwacha.code == '967'
-    assert zambian_kwacha.currency == 'ZMW'
+    assert zambian_kwacha.numeric_code == '967'
+    assert zambian_kwacha.alpha_code == 'ZMW'
     assert zambian_kwacha.decimal_places == 2
     assert zambian_kwacha.decimal_sign == ','
     assert zambian_kwacha.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_zambian_kwacha():
     assert zambian_kwacha.__hash__() == hash((decimal, 'ZMW', '967'))
     assert zambian_kwacha.__repr__() == (
         'ZambianKwacha(amount: 0.1428571428571428571428571429, '
-        'currency: "ZMW", '
+        'alpha_code: "ZMW", '
         'symbol: "ZK", '
-        'code: "967", '
+        'numeric_code: "967", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_zambian_kwacha_negative():
     amount = -100
     zambian_kwacha = ZambianKwacha(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert zambian_kwacha.code == '967'
-    assert zambian_kwacha.currency == 'ZMW'
+    assert zambian_kwacha.numeric_code == '967'
+    assert zambian_kwacha.alpha_code == 'ZMW'
     assert zambian_kwacha.decimal_places == 2
     assert zambian_kwacha.decimal_sign == ','
     assert zambian_kwacha.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_zambian_kwacha_negative():
     assert zambian_kwacha.__hash__() == hash((decimal, 'ZMW', '967'))
     assert zambian_kwacha.__repr__() == (
         'ZambianKwacha(amount: -100, '
-        'currency: "ZMW", '
+        'alpha_code: "ZMW", '
         'symbol: "ZK", '
-        'code: "967", '
+        'numeric_code: "967", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_zambian_kwacha_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert zambian_kwacha.amount == decimal
-    assert zambian_kwacha.code == '967'
-    assert zambian_kwacha.currency == 'ZMW'
+    assert zambian_kwacha.numeric_code == '967'
+    assert zambian_kwacha.alpha_code == 'ZMW'
     assert zambian_kwacha.decimal_places == 5
     assert zambian_kwacha.decimal_sign == '.'
     assert zambian_kwacha.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_zambian_kwacha_custom():
     assert zambian_kwacha.__hash__() == hash((decimal, 'ZMW', '967'))
     assert zambian_kwacha.__repr__() == (
         'ZambianKwacha(amount: 1000, '
-        'currency: "ZMW", '
+        'alpha_code: "ZMW", '
         'symbol: "ZK", '
-        'code: "967", '
+        'numeric_code: "967", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_zambian_kwacha_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        zambian_kwacha.currency = 'EUR'
+        zambian_kwacha.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_zambian_kwacha_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        zambian_kwacha.code = '978'
+        zambian_kwacha.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_zambian_kwacha_math_add():
     zambian_kwacha_one = ZambianKwacha(amount=1)
     zambian_kwacha_two = ZambianKwacha(amount=2)
     zambian_kwacha_three = ZambianKwacha(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency ZMW and OTHER.'):

@@ -23,8 +23,8 @@ def test_cedi():
     cedi = Cedi(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert cedi.amount == decimal
-    assert cedi.code == '936'
-    assert cedi.currency == 'GHS'
+    assert cedi.numeric_code == '936'
+    assert cedi.alpha_code == 'GHS'
     assert cedi.decimal_places == 2
     assert cedi.decimal_sign == ','
     assert cedi.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_cedi():
     assert cedi.__hash__() == hash((decimal, 'GHS', '936'))
     assert cedi.__repr__() == (
         'Cedi(amount: 0.1428571428571428571428571429, '
-        'currency: "GHS", '
+        'alpha_code: "GHS", '
         'symbol: "₵", '
-        'code: "936", '
+        'numeric_code: "936", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_cedi_negative():
     amount = -100
     cedi = Cedi(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert cedi.code == '936'
-    assert cedi.currency == 'GHS'
+    assert cedi.numeric_code == '936'
+    assert cedi.alpha_code == 'GHS'
     assert cedi.decimal_places == 2
     assert cedi.decimal_sign == ','
     assert cedi.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_cedi_negative():
     assert cedi.__hash__() == hash((decimal, 'GHS', '936'))
     assert cedi.__repr__() == (
         'Cedi(amount: -100, '
-        'currency: "GHS", '
+        'alpha_code: "GHS", '
         'symbol: "₵", '
-        'code: "936", '
+        'numeric_code: "936", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_cedi_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert cedi.amount == decimal
-    assert cedi.code == '936'
-    assert cedi.currency == 'GHS'
+    assert cedi.numeric_code == '936'
+    assert cedi.alpha_code == 'GHS'
     assert cedi.decimal_places == 5
     assert cedi.decimal_sign == '.'
     assert cedi.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_cedi_custom():
     assert cedi.__hash__() == hash((decimal, 'GHS', '936'))
     assert cedi.__repr__() == (
         'Cedi(amount: 1000, '
-        'currency: "GHS", '
+        'alpha_code: "GHS", '
         'symbol: "₵", '
-        'code: "936", '
+        'numeric_code: "936", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_cedi_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        cedi.currency = 'EUR'
+        cedi.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_cedi_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        cedi.code = '978'
+        cedi.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_cedi_math_add():
     cedi_one = Cedi(amount=1)
     cedi_two = Cedi(amount=2)
     cedi_three = Cedi(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency GHS and OTHER.'):

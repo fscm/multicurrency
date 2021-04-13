@@ -52,9 +52,9 @@ class BrazilianReal(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='BRL',
+            alpha_code='BRL',
+            numeric_code='986',
             symbol='R$',
-            code='986',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

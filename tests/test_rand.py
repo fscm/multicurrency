@@ -23,8 +23,8 @@ def test_rand():
     rand = Rand(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert rand.amount == decimal
-    assert rand.code == '710'
-    assert rand.currency == 'ZAR'
+    assert rand.numeric_code == '710'
+    assert rand.alpha_code == 'ZAR'
     assert rand.decimal_places == 2
     assert rand.decimal_sign == '.'
     assert rand.grouping_sign == ' '
@@ -33,9 +33,9 @@ def test_rand():
     assert rand.__hash__() == hash((decimal, 'ZAR', '710'))
     assert rand.__repr__() == (
         'Rand(amount: 0.1428571428571428571428571429, '
-        'currency: "ZAR", '
+        'alpha_code: "ZAR", '
         'symbol: "R", '
-        'code: "710", '
+        'numeric_code: "710", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: " ", '
@@ -48,8 +48,8 @@ def test_rand_negative():
     amount = -100
     rand = Rand(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert rand.code == '710'
-    assert rand.currency == 'ZAR'
+    assert rand.numeric_code == '710'
+    assert rand.alpha_code == 'ZAR'
     assert rand.decimal_places == 2
     assert rand.decimal_sign == '.'
     assert rand.grouping_sign == ' '
@@ -58,9 +58,9 @@ def test_rand_negative():
     assert rand.__hash__() == hash((decimal, 'ZAR', '710'))
     assert rand.__repr__() == (
         'Rand(amount: -100, '
-        'currency: "ZAR", '
+        'alpha_code: "ZAR", '
         'symbol: "R", '
-        'code: "710", '
+        'numeric_code: "710", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: " ", '
@@ -79,8 +79,8 @@ def test_rand_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert rand.amount == decimal
-    assert rand.code == '710'
-    assert rand.currency == 'ZAR'
+    assert rand.numeric_code == '710'
+    assert rand.alpha_code == 'ZAR'
     assert rand.decimal_places == 5
     assert rand.decimal_sign == ' '
     assert rand.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_rand_custom():
     assert rand.__hash__() == hash((decimal, 'ZAR', '710'))
     assert rand.__repr__() == (
         'Rand(amount: 1000, '
-        'currency: "ZAR", '
+        'alpha_code: "ZAR", '
         'symbol: "R", '
-        'code: "710", '
+        'numeric_code: "710", '
         'decimal_places: "5", '
         'decimal_sign: " ", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_rand_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        rand.currency = 'EUR'
+        rand.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_rand_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        rand.code = '978'
+        rand.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_rand_math_add():
     rand_one = Rand(amount=1)
     rand_two = Rand(amount=2)
     rand_three = Rand(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency ZAR and OTHER.'):

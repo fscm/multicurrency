@@ -23,8 +23,8 @@ def test_pakistan_rupee():
     pakistan_rupee = PakistanRupee(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert pakistan_rupee.amount == decimal
-    assert pakistan_rupee.code == '586'
-    assert pakistan_rupee.currency == 'PKR'
+    assert pakistan_rupee.numeric_code == '586'
+    assert pakistan_rupee.alpha_code == 'PKR'
     assert pakistan_rupee.decimal_places == 2
     assert pakistan_rupee.decimal_sign == '.'
     assert pakistan_rupee.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_pakistan_rupee():
     assert pakistan_rupee.__hash__() == hash((decimal, 'PKR', '586'))
     assert pakistan_rupee.__repr__() == (
         'PakistanRupee(amount: 0.1428571428571428571428571429, '
-        'currency: "PKR", '
+        'alpha_code: "PKR", '
         'symbol: "₨", '
-        'code: "586", '
+        'numeric_code: "586", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_pakistan_rupee_negative():
     amount = -100
     pakistan_rupee = PakistanRupee(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert pakistan_rupee.code == '586'
-    assert pakistan_rupee.currency == 'PKR'
+    assert pakistan_rupee.numeric_code == '586'
+    assert pakistan_rupee.alpha_code == 'PKR'
     assert pakistan_rupee.decimal_places == 2
     assert pakistan_rupee.decimal_sign == '.'
     assert pakistan_rupee.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_pakistan_rupee_negative():
     assert pakistan_rupee.__hash__() == hash((decimal, 'PKR', '586'))
     assert pakistan_rupee.__repr__() == (
         'PakistanRupee(amount: -100, '
-        'currency: "PKR", '
+        'alpha_code: "PKR", '
         'symbol: "₨", '
-        'code: "586", '
+        'numeric_code: "586", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_pakistan_rupee_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert pakistan_rupee.amount == decimal
-    assert pakistan_rupee.code == '586'
-    assert pakistan_rupee.currency == 'PKR'
+    assert pakistan_rupee.numeric_code == '586'
+    assert pakistan_rupee.alpha_code == 'PKR'
     assert pakistan_rupee.decimal_places == 5
     assert pakistan_rupee.decimal_sign == ','
     assert pakistan_rupee.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_pakistan_rupee_custom():
     assert pakistan_rupee.__hash__() == hash((decimal, 'PKR', '586'))
     assert pakistan_rupee.__repr__() == (
         'PakistanRupee(amount: 1000, '
-        'currency: "PKR", '
+        'alpha_code: "PKR", '
         'symbol: "₨", '
-        'code: "586", '
+        'numeric_code: "586", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_pakistan_rupee_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        pakistan_rupee.currency = 'EUR'
+        pakistan_rupee.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_pakistan_rupee_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        pakistan_rupee.code = '978'
+        pakistan_rupee.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_pakistan_rupee_math_add():
     pakistan_rupee_one = PakistanRupee(amount=1)
     pakistan_rupee_two = PakistanRupee(amount=2)
     pakistan_rupee_three = PakistanRupee(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency PKR and OTHER.'):

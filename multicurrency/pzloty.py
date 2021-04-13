@@ -52,9 +52,9 @@ class PZloty(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='PLN',
+            alpha_code='PLN',
+            numeric_code='985',
             symbol='zł',
-            code='985',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

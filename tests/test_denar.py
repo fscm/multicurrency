@@ -23,8 +23,8 @@ def test_denar():
     denar = Denar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert denar.amount == decimal
-    assert denar.code == '807'
-    assert denar.currency == 'MKD'
+    assert denar.numeric_code == '807'
+    assert denar.alpha_code == 'MKD'
     assert denar.decimal_places == 2
     assert denar.decimal_sign == '.'
     assert denar.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_denar():
     assert denar.__hash__() == hash((decimal, 'MKD', '807'))
     assert denar.__repr__() == (
         'Denar(amount: 0.1428571428571428571428571429, '
-        'currency: "MKD", '
+        'alpha_code: "MKD", '
         'symbol: "ден", '
-        'code: "807", '
+        'numeric_code: "807", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_denar_negative():
     amount = -100
     denar = Denar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert denar.code == '807'
-    assert denar.currency == 'MKD'
+    assert denar.numeric_code == '807'
+    assert denar.alpha_code == 'MKD'
     assert denar.decimal_places == 2
     assert denar.decimal_sign == '.'
     assert denar.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_denar_negative():
     assert denar.__hash__() == hash((decimal, 'MKD', '807'))
     assert denar.__repr__() == (
         'Denar(amount: -100, '
-        'currency: "MKD", '
+        'alpha_code: "MKD", '
         'symbol: "ден", '
-        'code: "807", '
+        'numeric_code: "807", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_denar_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert denar.amount == decimal
-    assert denar.code == '807'
-    assert denar.currency == 'MKD'
+    assert denar.numeric_code == '807'
+    assert denar.alpha_code == 'MKD'
     assert denar.decimal_places == 5
     assert denar.decimal_sign == ','
     assert denar.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_denar_custom():
     assert denar.__hash__() == hash((decimal, 'MKD', '807'))
     assert denar.__repr__() == (
         'Denar(amount: 1000, '
-        'currency: "MKD", '
+        'alpha_code: "MKD", '
         'symbol: "ден", '
-        'code: "807", '
+        'numeric_code: "807", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_denar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        denar.currency = 'EUR'
+        denar.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_denar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        denar.code = '978'
+        denar.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_denar_math_add():
     denar_one = Denar(amount=1)
     denar_two = Denar(amount=2)
     denar_three = Denar(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency MKD and OTHER.'):

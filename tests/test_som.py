@@ -23,8 +23,8 @@ def test_som():
     som = Som(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert som.amount == decimal
-    assert som.code == '417'
-    assert som.currency == 'KGS'
+    assert som.numeric_code == '417'
+    assert som.alpha_code == 'KGS'
     assert som.decimal_places == 2
     assert som.decimal_sign == ','
     assert som.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_som():
     assert som.__hash__() == hash((decimal, 'KGS', '417'))
     assert som.__repr__() == (
         'Som(amount: 0.1428571428571428571428571429, '
-        'currency: "KGS", '
+        'alpha_code: "KGS", '
         'symbol: "", '
-        'code: "417", '
+        'numeric_code: "417", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_som_negative():
     amount = -100
     som = Som(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert som.code == '417'
-    assert som.currency == 'KGS'
+    assert som.numeric_code == '417'
+    assert som.alpha_code == 'KGS'
     assert som.decimal_places == 2
     assert som.decimal_sign == ','
     assert som.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_som_negative():
     assert som.__hash__() == hash((decimal, 'KGS', '417'))
     assert som.__repr__() == (
         'Som(amount: -100, '
-        'currency: "KGS", '
+        'alpha_code: "KGS", '
         'symbol: "", '
-        'code: "417", '
+        'numeric_code: "417", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_som_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert som.amount == decimal
-    assert som.code == '417'
-    assert som.currency == 'KGS'
+    assert som.numeric_code == '417'
+    assert som.alpha_code == 'KGS'
     assert som.decimal_places == 5
     assert som.decimal_sign == '.'
     assert som.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_som_custom():
     assert som.__hash__() == hash((decimal, 'KGS', '417'))
     assert som.__repr__() == (
         'Som(amount: 1000, '
-        'currency: "KGS", '
+        'alpha_code: "KGS", '
         'symbol: "", '
-        'code: "417", '
+        'numeric_code: "417", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_som_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        som.currency = 'EUR'
+        som.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_som_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        som.code = '978'
+        som.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_som_math_add():
     som_one = Som(amount=1)
     som_two = Som(amount=2)
     som_three = Som(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency KGS and OTHER.'):

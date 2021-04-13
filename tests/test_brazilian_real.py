@@ -23,8 +23,8 @@ def test_brazilian_real():
     brazilian_real = BrazilianReal(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert brazilian_real.amount == decimal
-    assert brazilian_real.code == '986'
-    assert brazilian_real.currency == 'BRL'
+    assert brazilian_real.numeric_code == '986'
+    assert brazilian_real.alpha_code == 'BRL'
     assert brazilian_real.decimal_places == 2
     assert brazilian_real.decimal_sign == ','
     assert brazilian_real.grouping_sign == '.'
@@ -33,9 +33,9 @@ def test_brazilian_real():
     assert brazilian_real.__hash__() == hash((decimal, 'BRL', '986'))
     assert brazilian_real.__repr__() == (
         'BrazilianReal(amount: 0.1428571428571428571428571429, '
-        'currency: "BRL", '
+        'alpha_code: "BRL", '
         'symbol: "R$", '
-        'code: "986", '
+        'numeric_code: "986", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -48,8 +48,8 @@ def test_brazilian_real_negative():
     amount = -100
     brazilian_real = BrazilianReal(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert brazilian_real.code == '986'
-    assert brazilian_real.currency == 'BRL'
+    assert brazilian_real.numeric_code == '986'
+    assert brazilian_real.alpha_code == 'BRL'
     assert brazilian_real.decimal_places == 2
     assert brazilian_real.decimal_sign == ','
     assert brazilian_real.grouping_sign == '.'
@@ -58,9 +58,9 @@ def test_brazilian_real_negative():
     assert brazilian_real.__hash__() == hash((decimal, 'BRL', '986'))
     assert brazilian_real.__repr__() == (
         'BrazilianReal(amount: -100, '
-        'currency: "BRL", '
+        'alpha_code: "BRL", '
         'symbol: "R$", '
-        'code: "986", '
+        'numeric_code: "986", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -79,8 +79,8 @@ def test_brazilian_real_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert brazilian_real.amount == decimal
-    assert brazilian_real.code == '986'
-    assert brazilian_real.currency == 'BRL'
+    assert brazilian_real.numeric_code == '986'
+    assert brazilian_real.alpha_code == 'BRL'
     assert brazilian_real.decimal_places == 5
     assert brazilian_real.decimal_sign == '.'
     assert brazilian_real.grouping_sign == ','
@@ -89,9 +89,9 @@ def test_brazilian_real_custom():
     assert brazilian_real.__hash__() == hash((decimal, 'BRL', '986'))
     assert brazilian_real.__repr__() == (
         'BrazilianReal(amount: 1000, '
-        'currency: "BRL", '
+        'alpha_code: "BRL", '
         'symbol: "R$", '
-        'code: "986", '
+        'numeric_code: "986", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -109,7 +109,7 @@ def test_brazilian_real_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        brazilian_real.currency = 'EUR'
+        brazilian_real.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_brazilian_real_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        brazilian_real.code = '978'
+        brazilian_real.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_brazilian_real_math_add():
     brazilian_real_one = BrazilianReal(amount=1)
     brazilian_real_two = BrazilianReal(amount=2)
     brazilian_real_three = BrazilianReal(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency BRL and OTHER.'):

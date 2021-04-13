@@ -23,8 +23,8 @@ def test_us_dollar():
     us_dollar = USDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert us_dollar.amount == decimal
-    assert us_dollar.code == '840'
-    assert us_dollar.currency == 'USD'
+    assert us_dollar.numeric_code == '840'
+    assert us_dollar.alpha_code == 'USD'
     assert us_dollar.decimal_places == 2
     assert us_dollar.decimal_sign == '.'
     assert us_dollar.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_us_dollar():
     assert us_dollar.__hash__() == hash((decimal, 'USD', '840'))
     assert us_dollar.__repr__() == (
         'USDollar(amount: 0.1428571428571428571428571429, '
-        'currency: "USD", '
+        'alpha_code: "USD", '
         'symbol: "$", '
-        'code: "840", '
+        'numeric_code: "840", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_us_dollar_negative():
     amount = -100
     us_dollar = USDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert us_dollar.code == '840'
-    assert us_dollar.currency == 'USD'
+    assert us_dollar.numeric_code == '840'
+    assert us_dollar.alpha_code == 'USD'
     assert us_dollar.decimal_places == 2
     assert us_dollar.decimal_sign == '.'
     assert us_dollar.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_us_dollar_negative():
     assert us_dollar.__hash__() == hash((decimal, 'USD', '840'))
     assert us_dollar.__repr__() == (
         'USDollar(amount: -100, '
-        'currency: "USD", '
+        'alpha_code: "USD", '
         'symbol: "$", '
-        'code: "840", '
+        'numeric_code: "840", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_us_dollar_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert us_dollar.amount == decimal
-    assert us_dollar.code == '840'
-    assert us_dollar.currency == 'USD'
+    assert us_dollar.numeric_code == '840'
+    assert us_dollar.alpha_code == 'USD'
     assert us_dollar.decimal_places == 5
     assert us_dollar.decimal_sign == ','
     assert us_dollar.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_us_dollar_custom():
     assert us_dollar.__hash__() == hash((decimal, 'USD', '840'))
     assert us_dollar.__repr__() == (
         'USDollar(amount: 1000, '
-        'currency: "USD", '
+        'alpha_code: "USD", '
         'symbol: "$", '
-        'code: "840", '
+        'numeric_code: "840", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_us_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        us_dollar.currency = 'EUR'
+        us_dollar.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_us_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        us_dollar.code = '978'
+        us_dollar.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_us_dollar_math_add():
     us_dollar_one = USDollar(amount=1)
     us_dollar_two = USDollar(amount=2)
     us_dollar_three = USDollar(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency USD and OTHER.'):

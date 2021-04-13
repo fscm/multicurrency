@@ -23,8 +23,8 @@ def test_cayman_islands_dollar():
     cayman_islands_dollar = CaymanIslandsDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert cayman_islands_dollar.amount == decimal
-    assert cayman_islands_dollar.code == '136'
-    assert cayman_islands_dollar.currency == 'KYD'
+    assert cayman_islands_dollar.numeric_code == '136'
+    assert cayman_islands_dollar.alpha_code == 'KYD'
     assert cayman_islands_dollar.decimal_places == 2
     assert cayman_islands_dollar.decimal_sign == '.'
     assert cayman_islands_dollar.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_cayman_islands_dollar():
     assert cayman_islands_dollar.__hash__() == hash((decimal, 'KYD', '136'))
     assert cayman_islands_dollar.__repr__() == (
         'CaymanIslandsDollar(amount: 0.1428571428571428571428571429, '
-        'currency: "KYD", '
+        'alpha_code: "KYD", '
         'symbol: "$", '
-        'code: "136", '
+        'numeric_code: "136", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_cayman_islands_dollar_negative():
     amount = -100
     cayman_islands_dollar = CaymanIslandsDollar(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert cayman_islands_dollar.code == '136'
-    assert cayman_islands_dollar.currency == 'KYD'
+    assert cayman_islands_dollar.numeric_code == '136'
+    assert cayman_islands_dollar.alpha_code == 'KYD'
     assert cayman_islands_dollar.decimal_places == 2
     assert cayman_islands_dollar.decimal_sign == '.'
     assert cayman_islands_dollar.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_cayman_islands_dollar_negative():
     assert cayman_islands_dollar.__hash__() == hash((decimal, 'KYD', '136'))
     assert cayman_islands_dollar.__repr__() == (
         'CaymanIslandsDollar(amount: -100, '
-        'currency: "KYD", '
+        'alpha_code: "KYD", '
         'symbol: "$", '
-        'code: "136", '
+        'numeric_code: "136", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_cayman_islands_dollar_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert cayman_islands_dollar.amount == decimal
-    assert cayman_islands_dollar.code == '136'
-    assert cayman_islands_dollar.currency == 'KYD'
+    assert cayman_islands_dollar.numeric_code == '136'
+    assert cayman_islands_dollar.alpha_code == 'KYD'
     assert cayman_islands_dollar.decimal_places == 5
     assert cayman_islands_dollar.decimal_sign == ','
     assert cayman_islands_dollar.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_cayman_islands_dollar_custom():
     assert cayman_islands_dollar.__hash__() == hash((decimal, 'KYD', '136'))
     assert cayman_islands_dollar.__repr__() == (
         'CaymanIslandsDollar(amount: 1000, '
-        'currency: "KYD", '
+        'alpha_code: "KYD", '
         'symbol: "$", '
-        'code: "136", '
+        'numeric_code: "136", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_cayman_islands_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        cayman_islands_dollar.currency = 'EUR'
+        cayman_islands_dollar.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_cayman_islands_dollar_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        cayman_islands_dollar.code = '978'
+        cayman_islands_dollar.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_cayman_islands_dollar_math_add():
     cayman_islands_dollar_one = CaymanIslandsDollar(amount=1)
     cayman_islands_dollar_two = CaymanIslandsDollar(amount=2)
     cayman_islands_dollar_three = CaymanIslandsDollar(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency KYD and OTHER.'):
@@ -152,9 +152,7 @@ def test_cayman_islands_dollar_math_add():
                    'dollar.CaymanIslandsDollar\'> '
                    'and <class \'str\'>.')):
         _ = cayman_islands_dollar_one.__add__('1.00')
-    assert (
-        cayman_islands_dollar_one +
-        cayman_islands_dollar_two) == cayman_islands_dollar_three
+    assert (cayman_islands_dollar_one + cayman_islands_dollar_two) == cayman_islands_dollar_three
 
 
 def test_currency_slots():

@@ -52,9 +52,9 @@ class UAEDirham(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='AED',
+            alpha_code='AED',
+            numeric_code='784',
             symbol='د.إ',
-            code='784',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -102,9 +102,9 @@ class MoroccanDirham(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='MAD',
+            alpha_code='MAD',
+            numeric_code='504',
             symbol='د.م.',
-            code='504',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

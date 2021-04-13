@@ -52,9 +52,9 @@ class NuevoSol(Currency):
         return Currency.__new__(
             cls,
             amount=amount,
-            currency='PEN',
+            alpha_code='PEN',
+            numeric_code='604',
             symbol='S/.',
-            code='604',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

@@ -23,8 +23,8 @@ def test_malaysian_ringgit():
     malaysian_ringgit = MalaysianRinggit(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
     assert malaysian_ringgit.amount == decimal
-    assert malaysian_ringgit.code == '458'
-    assert malaysian_ringgit.currency == 'MYR'
+    assert malaysian_ringgit.numeric_code == '458'
+    assert malaysian_ringgit.alpha_code == 'MYR'
     assert malaysian_ringgit.decimal_places == 2
     assert malaysian_ringgit.decimal_sign == '.'
     assert malaysian_ringgit.grouping_sign == ','
@@ -33,9 +33,9 @@ def test_malaysian_ringgit():
     assert malaysian_ringgit.__hash__() == hash((decimal, 'MYR', '458'))
     assert malaysian_ringgit.__repr__() == (
         'MalaysianRinggit(amount: 0.1428571428571428571428571429, '
-        'currency: "MYR", '
+        'alpha_code: "MYR", '
         'symbol: "RM", '
-        'code: "458", '
+        'numeric_code: "458", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -48,8 +48,8 @@ def test_malaysian_ringgit_negative():
     amount = -100
     malaysian_ringgit = MalaysianRinggit(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
-    assert malaysian_ringgit.code == '458'
-    assert malaysian_ringgit.currency == 'MYR'
+    assert malaysian_ringgit.numeric_code == '458'
+    assert malaysian_ringgit.alpha_code == 'MYR'
     assert malaysian_ringgit.decimal_places == 2
     assert malaysian_ringgit.decimal_sign == '.'
     assert malaysian_ringgit.grouping_sign == ','
@@ -58,9 +58,9 @@ def test_malaysian_ringgit_negative():
     assert malaysian_ringgit.__hash__() == hash((decimal, 'MYR', '458'))
     assert malaysian_ringgit.__repr__() == (
         'MalaysianRinggit(amount: -100, '
-        'currency: "MYR", '
+        'alpha_code: "MYR", '
         'symbol: "RM", '
-        'code: "458", '
+        'numeric_code: "458", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
@@ -79,8 +79,8 @@ def test_malaysian_ringgit_custom():
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert malaysian_ringgit.amount == decimal
-    assert malaysian_ringgit.code == '458'
-    assert malaysian_ringgit.currency == 'MYR'
+    assert malaysian_ringgit.numeric_code == '458'
+    assert malaysian_ringgit.alpha_code == 'MYR'
     assert malaysian_ringgit.decimal_places == 5
     assert malaysian_ringgit.decimal_sign == ','
     assert malaysian_ringgit.grouping_sign == '.'
@@ -89,9 +89,9 @@ def test_malaysian_ringgit_custom():
     assert malaysian_ringgit.__hash__() == hash((decimal, 'MYR', '458'))
     assert malaysian_ringgit.__repr__() == (
         'MalaysianRinggit(amount: 1000, '
-        'currency: "MYR", '
+        'alpha_code: "MYR", '
         'symbol: "RM", '
-        'code: "458", '
+        'numeric_code: "458", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
@@ -109,7 +109,7 @@ def test_malaysian_ringgit_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        malaysian_ringgit.currency = 'EUR'
+        malaysian_ringgit.alpha_code = 'EUR'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -117,7 +117,7 @@ def test_malaysian_ringgit_changed():
     with raises(
             AttributeError,
             match='can\'t set attribute'):
-        malaysian_ringgit.code = '978'
+        malaysian_ringgit.numeric_code = '978'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -141,7 +141,7 @@ def test_malaysian_ringgit_math_add():
     malaysian_ringgit_one = MalaysianRinggit(amount=1)
     malaysian_ringgit_two = MalaysianRinggit(amount=2)
     malaysian_ringgit_three = MalaysianRinggit(amount=3)
-    currency = Currency(amount=1, currency='OTHER')
+    currency = Currency(amount=1, alpha_code='OTHER')
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency MYR and OTHER.'):
@@ -152,9 +152,7 @@ def test_malaysian_ringgit_math_add():
                    'ringgit.MalaysianRinggit\'> '
                    'and <class \'str\'>.')):
         _ = malaysian_ringgit_one.__add__('1.00')
-    assert (
-        malaysian_ringgit_one +
-        malaysian_ringgit_two) == malaysian_ringgit_three
+    assert (malaysian_ringgit_one + malaysian_ringgit_two) == malaysian_ringgit_three
 
 
 def test_currency_slots():
