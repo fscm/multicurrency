@@ -35,7 +35,7 @@
 <dl>
 <dt id="multicurrency.rand.Rand"><code class="flex name class">
 <span>class <span class="ident">Rand</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: int = 2, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ' ', international: bool = False, **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: int = 2, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = '\xa0', international: bool = False, **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Rand currency representation.</p>
@@ -56,7 +56,7 @@ currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to '.'.</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Grouping symbol. Defaults to ' '.</dd>
+<dd>Grouping symbol. Defaults to ' '.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
 <dd>Identifies the currency using
 the 'currency' value instead of the 'symbol'. Defaults to

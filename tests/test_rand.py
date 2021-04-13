@@ -27,7 +27,7 @@ def test_rand():
     assert rand.alpha_code == 'ZAR'
     assert rand.decimal_places == 2
     assert rand.decimal_sign == '.'
-    assert rand.grouping_sign == ' '
+    assert rand.grouping_sign == '\u00A0'
     assert not rand.international
     assert rand.symbol == 'R'
     assert rand.__hash__() == hash((decimal, 'ZAR', '710'))
@@ -38,7 +38,7 @@ def test_rand():
         'numeric_code: "710", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
-        'grouping_sign: " ", '
+        'grouping_sign: "\u00A0", '
         'international: False)')
     assert rand.__str__() == 'R0.14'
 
@@ -52,7 +52,7 @@ def test_rand_negative():
     assert rand.alpha_code == 'ZAR'
     assert rand.decimal_places == 2
     assert rand.decimal_sign == '.'
-    assert rand.grouping_sign == ' '
+    assert rand.grouping_sign == '\u00A0'
     assert not rand.international
     assert rand.symbol == 'R'
     assert rand.__hash__() == hash((decimal, 'ZAR', '710'))
@@ -63,7 +63,7 @@ def test_rand_negative():
         'numeric_code: "710", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
-        'grouping_sign: " ", '
+        'grouping_sign: "\u00A0", '
         'international: False)')
     assert rand.__str__() == 'R-100.00'
 
@@ -74,7 +74,7 @@ def test_rand_custom():
     rand = Rand(
         amount=amount,
         decimal_places=5,
-        decimal_sign=' ',
+        decimal_sign='\u00A0',
         grouping_sign='.',
         international=True)
     decimal = CONTEXT.create_decimal(amount)
@@ -82,7 +82,7 @@ def test_rand_custom():
     assert rand.numeric_code == '710'
     assert rand.alpha_code == 'ZAR'
     assert rand.decimal_places == 5
-    assert rand.decimal_sign == ' '
+    assert rand.decimal_sign == '\u00A0'
     assert rand.grouping_sign == '.'
     assert rand.international
     assert rand.symbol == 'R'
@@ -93,10 +93,10 @@ def test_rand_custom():
         'symbol: "R", '
         'numeric_code: "710", '
         'decimal_places: "5", '
-        'decimal_sign: " ", '
+        'decimal_sign: "\u00A0", '
         'grouping_sign: ".", '
         'international: True)')
-    assert rand.__str__() == 'ZAR 1.000 00000'
+    assert rand.__str__() == 'ZAR 1.000\u00A000000'
 
 
 def test_rand_changed():

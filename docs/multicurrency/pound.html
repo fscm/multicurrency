@@ -188,7 +188,7 @@ False.</dd>
 </dd>
 <dt id="multicurrency.pound.LebanesePound"><code class="flex name class">
 <span>class <span class="ident">LebanesePound</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: int = 0, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ' ', international: bool = False, **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: int = 0, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = '\xa0', international: bool = False, **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Lebanese Pound currency representation.</p>
@@ -209,7 +209,7 @@ currency representation. Defaults to 0,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to '.'.</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Grouping symbol. Defaults to ' '.</dd>
+<dd>Grouping symbol. Defaults to ' '.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
 <dd>Identifies the currency using
 the 'currency' value instead of the 'symbol'. Defaults to

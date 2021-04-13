@@ -228,7 +228,7 @@ class LebanesePound(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 0,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
-        grouping_sign (str, optional): Grouping symbol. Defaults to ' '.
+        grouping_sign (str, optional): Grouping symbol. Defaults to '\u00A0'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
@@ -241,7 +241,7 @@ class LebanesePound(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: int = 0,
             decimal_sign: Optional[str] = '.',
-            grouping_sign: Optional[str] = ' ',
+            grouping_sign: Optional[str] = '\u00A0',
             international: bool = False,
             **other) -> 'LebanesePound':
         """Class creator.
