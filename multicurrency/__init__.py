@@ -880,4 +880,4 @@ __author__: Final[str] = 'Frederico Martins'
 __author_email__: Final[str] = 'fscm@users.noreply.github.com'
 __license__: Final[str] = 'MIT'
 __project__: Final[str] = __package__
-__version__: Final[str] = '0.2.0'
+__version__: Final[str] = '0.3.0'
