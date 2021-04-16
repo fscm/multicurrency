@@ -27,20 +27,24 @@ def test_lebanese_pound():
     assert lebanese_pound.alpha_code == 'LBP'
     assert lebanese_pound.decimal_places == 0
     assert lebanese_pound.decimal_sign == '.'
-    assert lebanese_pound.grouping_sign == '\u00A0'
+    assert lebanese_pound.grouping_sign == ','
     assert not lebanese_pound.international
-    assert lebanese_pound.symbol == 'ل.ل'
+    assert lebanese_pound.symbol == 'ل.ل.'
+    assert lebanese_pound.symbol_ahead
+    assert lebanese_pound.symbol_separator == '\u00A0'
     assert lebanese_pound.__hash__() == hash((decimal, 'LBP', '422'))
     assert lebanese_pound.__repr__() == (
         'LebanesePound(amount: 0.1428571428571428571428571429, '
         'alpha_code: "LBP", '
-        'symbol: "ل.ل", '
+        'symbol: "ل.ل.", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "422", '
         'decimal_places: "0", '
         'decimal_sign: ".", '
-        'grouping_sign: "\u00A0", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert lebanese_pound.__str__() == 'ل.ل0'
+    assert lebanese_pound.__str__() == 'ل.ل. 0'
 
 
 def test_lebanese_pound_negative():
@@ -52,20 +56,24 @@ def test_lebanese_pound_negative():
     assert lebanese_pound.alpha_code == 'LBP'
     assert lebanese_pound.decimal_places == 0
     assert lebanese_pound.decimal_sign == '.'
-    assert lebanese_pound.grouping_sign == '\u00A0'
+    assert lebanese_pound.grouping_sign == ','
     assert not lebanese_pound.international
-    assert lebanese_pound.symbol == 'ل.ل'
+    assert lebanese_pound.symbol == 'ل.ل.'
+    assert lebanese_pound.symbol_ahead
+    assert lebanese_pound.symbol_separator == '\u00A0'
     assert lebanese_pound.__hash__() == hash((decimal, 'LBP', '422'))
     assert lebanese_pound.__repr__() == (
         'LebanesePound(amount: -100, '
         'alpha_code: "LBP", '
-        'symbol: "ل.ل", '
+        'symbol: "ل.ل.", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "422", '
         'decimal_places: "0", '
         'decimal_sign: ".", '
-        'grouping_sign: "\u00A0", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert lebanese_pound.__str__() == 'ل.ل-100'
+    assert lebanese_pound.__str__() == 'ل.ل. -100'
 
 
 def test_lebanese_pound_custom():
@@ -74,29 +82,35 @@ def test_lebanese_pound_custom():
     lebanese_pound = LebanesePound(
         amount=amount,
         decimal_places=5,
-        decimal_sign='\u00A0',
+        decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert lebanese_pound.amount == decimal
     assert lebanese_pound.numeric_code == '422'
     assert lebanese_pound.alpha_code == 'LBP'
     assert lebanese_pound.decimal_places == 5
-    assert lebanese_pound.decimal_sign == '\u00A0'
+    assert lebanese_pound.decimal_sign == ','
     assert lebanese_pound.grouping_sign == '.'
     assert lebanese_pound.international
-    assert lebanese_pound.symbol == 'ل.ل'
+    assert lebanese_pound.symbol == 'ل.ل.'
+    assert not lebanese_pound.symbol_ahead
+    assert lebanese_pound.symbol_separator == '_'
     assert lebanese_pound.__hash__() == hash((decimal, 'LBP', '422'))
     assert lebanese_pound.__repr__() == (
         'LebanesePound(amount: 1000, '
         'alpha_code: "LBP", '
-        'symbol: "ل.ل", '
+        'symbol: "ل.ل.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "422", '
         'decimal_places: "5", '
-        'decimal_sign: "\u00A0", '
+        'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert lebanese_pound.__str__() == 'LBP 1.000\u00A000000'
+    assert lebanese_pound.__str__() == 'LBP 1,000.00000'
 
 
 def test_lebanese_pound_changed():
@@ -114,6 +128,14 @@ def test_lebanese_pound_changed():
             AttributeError,
             match='can\'t set attribute'):
         lebanese_pound.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        lebanese_pound.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        lebanese_pound.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_lebanese_pound_math_add():
                    'pound.LebanesePound\'> '
                    'and <class \'str\'>.')):
         _ = lebanese_pound_one.__add__('1.00')
-    assert (lebanese_pound_one + lebanese_pound_two) == lebanese_pound_three
+    assert (
+        lebanese_pound_one +
+        lebanese_pound_two) == lebanese_pound_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = LebanesePound(amount=1000)
+def test_lebanese_pound_slots():
+    """test_lebanese_pound_slots."""
+    lebanese_pound = LebanesePound(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'LebanesePound\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        lebanese_pound.new_variable = 'fail'  # pylint: disable=assigning-non-slot

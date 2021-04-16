@@ -30,11 +30,15 @@ def test_kip():
     assert kip.grouping_sign == '.'
     assert not kip.international
     assert kip.symbol == '₭'
+    assert kip.symbol_ahead
+    assert kip.symbol_separator == ''
     assert kip.__hash__() == hash((decimal, 'LAK', '418'))
     assert kip.__repr__() == (
         'Kip(amount: 0.1428571428571428571428571429, '
         'alpha_code: "LAK", '
         'symbol: "₭", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "418", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
@@ -55,11 +59,15 @@ def test_kip_negative():
     assert kip.grouping_sign == '.'
     assert not kip.international
     assert kip.symbol == '₭'
+    assert kip.symbol_ahead
+    assert kip.symbol_separator == ''
     assert kip.__hash__() == hash((decimal, 'LAK', '418'))
     assert kip.__repr__() == (
         'Kip(amount: -100, '
         'alpha_code: "LAK", '
         'symbol: "₭", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "418", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
@@ -76,7 +84,9 @@ def test_kip_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert kip.amount == decimal
     assert kip.numeric_code == '418'
@@ -86,11 +96,15 @@ def test_kip_custom():
     assert kip.grouping_sign == ','
     assert kip.international
     assert kip.symbol == '₭'
+    assert not kip.symbol_ahead
+    assert kip.symbol_separator == '_'
     assert kip.__hash__() == hash((decimal, 'LAK', '418'))
     assert kip.__repr__() == (
         'Kip(amount: 1000, '
         'alpha_code: "LAK", '
         'symbol: "₭", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "418", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_kip_changed():
             AttributeError,
             match='can\'t set attribute'):
         kip.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        kip.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        kip.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_kip_math_add():
                    'kip.Kip\'> '
                    'and <class \'str\'>.')):
         _ = kip_one.__add__('1.00')
-    assert (kip_one + kip_two) == kip_three
+    assert (
+        kip_one +
+        kip_two) == kip_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Kip(amount=1000)
+def test_kip_slots():
+    """test_kip_slots."""
+    kip = Kip(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Kip\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        kip.new_variable = 'fail'  # pylint: disable=assigning-non-slot

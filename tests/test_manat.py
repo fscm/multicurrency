@@ -27,20 +27,24 @@ def test_manat():
     assert manat.alpha_code == 'TMT'
     assert manat.decimal_places == 2
     assert manat.decimal_sign == ','
-    assert manat.grouping_sign == '.'
+    assert manat.grouping_sign == '\u202F'
     assert not manat.international
     assert manat.symbol == 'm'
+    assert not manat.symbol_ahead
+    assert manat.symbol_separator == '\u00A0'
     assert manat.__hash__() == hash((decimal, 'TMT', '934'))
     assert manat.__repr__() == (
         'Manat(amount: 0.1428571428571428571428571429, '
         'alpha_code: "TMT", '
         'symbol: "m", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "934", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert manat.__str__() == 'm0,14'
+    assert manat.__str__() == '0,14 m'
 
 
 def test_manat_negative():
@@ -52,20 +56,24 @@ def test_manat_negative():
     assert manat.alpha_code == 'TMT'
     assert manat.decimal_places == 2
     assert manat.decimal_sign == ','
-    assert manat.grouping_sign == '.'
+    assert manat.grouping_sign == '\u202F'
     assert not manat.international
     assert manat.symbol == 'm'
+    assert not manat.symbol_ahead
+    assert manat.symbol_separator == '\u00A0'
     assert manat.__hash__() == hash((decimal, 'TMT', '934'))
     assert manat.__repr__() == (
         'Manat(amount: -100, '
         'alpha_code: "TMT", '
         'symbol: "m", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "934", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert manat.__str__() == 'm-100,00'
+    assert manat.__str__() == '-100,00 m'
 
 
 def test_manat_custom():
@@ -74,26 +82,32 @@ def test_manat_custom():
     manat = Manat(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
+        decimal_sign='\u202F',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert manat.amount == decimal
     assert manat.numeric_code == '934'
     assert manat.alpha_code == 'TMT'
     assert manat.decimal_places == 5
-    assert manat.decimal_sign == '.'
+    assert manat.decimal_sign == '\u202F'
     assert manat.grouping_sign == ','
     assert manat.international
     assert manat.symbol == 'm'
+    assert not manat.symbol_ahead
+    assert manat.symbol_separator == '_'
     assert manat.__hash__() == hash((decimal, 'TMT', '934'))
     assert manat.__repr__() == (
         'Manat(amount: 1000, '
         'alpha_code: "TMT", '
         'symbol: "m", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "934", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
+        'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
         'international: True)')
     assert manat.__str__() == 'TMT 1,000.00000'
@@ -114,6 +128,14 @@ def test_manat_changed():
             AttributeError,
             match='can\'t set attribute'):
         manat.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        manat.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        manat.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_manat_math_add():
                    'manat.Manat\'> '
                    'and <class \'str\'>.')):
         _ = manat_one.__add__('1.00')
-    assert (manat_one + manat_two) == manat_three
+    assert (
+        manat_one +
+        manat_two) == manat_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Manat(amount=1000)
+def test_manat_slots():
+    """test_manat_slots."""
+    manat = Manat(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Manat\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        manat.new_variable = 'fail'  # pylint: disable=assigning-non-slot

@@ -27,20 +27,24 @@ def test_hryvnia():
     assert hryvnia.alpha_code == 'UAH'
     assert hryvnia.decimal_places == 2
     assert hryvnia.decimal_sign == ','
-    assert hryvnia.grouping_sign == '.'
+    assert hryvnia.grouping_sign == '\u202F'
     assert not hryvnia.international
     assert hryvnia.symbol == '₴'
+    assert not hryvnia.symbol_ahead
+    assert hryvnia.symbol_separator == '\u00A0'
     assert hryvnia.__hash__() == hash((decimal, 'UAH', '980'))
     assert hryvnia.__repr__() == (
         'Hryvnia(amount: 0.1428571428571428571428571429, '
         'alpha_code: "UAH", '
         'symbol: "₴", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "980", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert hryvnia.__str__() == '₴0,14'
+    assert hryvnia.__str__() == '0,14 ₴'
 
 
 def test_hryvnia_negative():
@@ -52,20 +56,24 @@ def test_hryvnia_negative():
     assert hryvnia.alpha_code == 'UAH'
     assert hryvnia.decimal_places == 2
     assert hryvnia.decimal_sign == ','
-    assert hryvnia.grouping_sign == '.'
+    assert hryvnia.grouping_sign == '\u202F'
     assert not hryvnia.international
     assert hryvnia.symbol == '₴'
+    assert not hryvnia.symbol_ahead
+    assert hryvnia.symbol_separator == '\u00A0'
     assert hryvnia.__hash__() == hash((decimal, 'UAH', '980'))
     assert hryvnia.__repr__() == (
         'Hryvnia(amount: -100, '
         'alpha_code: "UAH", '
         'symbol: "₴", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "980", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert hryvnia.__str__() == '₴-100,00'
+    assert hryvnia.__str__() == '-100,00 ₴'
 
 
 def test_hryvnia_custom():
@@ -74,26 +82,32 @@ def test_hryvnia_custom():
     hryvnia = Hryvnia(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
+        decimal_sign='\u202F',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert hryvnia.amount == decimal
     assert hryvnia.numeric_code == '980'
     assert hryvnia.alpha_code == 'UAH'
     assert hryvnia.decimal_places == 5
-    assert hryvnia.decimal_sign == '.'
+    assert hryvnia.decimal_sign == '\u202F'
     assert hryvnia.grouping_sign == ','
     assert hryvnia.international
     assert hryvnia.symbol == '₴'
+    assert not hryvnia.symbol_ahead
+    assert hryvnia.symbol_separator == '_'
     assert hryvnia.__hash__() == hash((decimal, 'UAH', '980'))
     assert hryvnia.__repr__() == (
         'Hryvnia(amount: 1000, '
         'alpha_code: "UAH", '
         'symbol: "₴", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "980", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
+        'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
         'international: True)')
     assert hryvnia.__str__() == 'UAH 1,000.00000'
@@ -114,6 +128,14 @@ def test_hryvnia_changed():
             AttributeError,
             match='can\'t set attribute'):
         hryvnia.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        hryvnia.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        hryvnia.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_hryvnia_math_add():
                    'hryvnia.Hryvnia\'> '
                    'and <class \'str\'>.')):
         _ = hryvnia_one.__add__('1.00')
-    assert (hryvnia_one + hryvnia_two) == hryvnia_three
+    assert (
+        hryvnia_one +
+        hryvnia_two) == hryvnia_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Hryvnia(amount=1000)
+def test_hryvnia_slots():
+    """test_hryvnia_slots."""
+    hryvnia = Hryvnia(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Hryvnia\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        hryvnia.new_variable = 'fail'  # pylint: disable=assigning-non-slot

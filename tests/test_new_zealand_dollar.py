@@ -30,11 +30,15 @@ def test_new_zealand_dollar():
     assert new_zealand_dollar.grouping_sign == ','
     assert not new_zealand_dollar.international
     assert new_zealand_dollar.symbol == '$'
+    assert new_zealand_dollar.symbol_ahead
+    assert new_zealand_dollar.symbol_separator == ''
     assert new_zealand_dollar.__hash__() == hash((decimal, 'NZD', '554'))
     assert new_zealand_dollar.__repr__() == (
         'NewZealandDollar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "NZD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "554", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -55,11 +59,15 @@ def test_new_zealand_dollar_negative():
     assert new_zealand_dollar.grouping_sign == ','
     assert not new_zealand_dollar.international
     assert new_zealand_dollar.symbol == '$'
+    assert new_zealand_dollar.symbol_ahead
+    assert new_zealand_dollar.symbol_separator == ''
     assert new_zealand_dollar.__hash__() == hash((decimal, 'NZD', '554'))
     assert new_zealand_dollar.__repr__() == (
         'NewZealandDollar(amount: -100, '
         'alpha_code: "NZD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "554", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -76,7 +84,9 @@ def test_new_zealand_dollar_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert new_zealand_dollar.amount == decimal
     assert new_zealand_dollar.numeric_code == '554'
@@ -86,17 +96,21 @@ def test_new_zealand_dollar_custom():
     assert new_zealand_dollar.grouping_sign == '.'
     assert new_zealand_dollar.international
     assert new_zealand_dollar.symbol == '$'
+    assert not new_zealand_dollar.symbol_ahead
+    assert new_zealand_dollar.symbol_separator == '_'
     assert new_zealand_dollar.__hash__() == hash((decimal, 'NZD', '554'))
     assert new_zealand_dollar.__repr__() == (
         'NewZealandDollar(amount: 1000, '
         'alpha_code: "NZD", '
         'symbol: "$", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "554", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert new_zealand_dollar.__str__() == 'NZD 1.000,00000'
+    assert new_zealand_dollar.__str__() == 'NZD 1,000.00000'
 
 
 def test_new_zealand_dollar_changed():
@@ -114,6 +128,14 @@ def test_new_zealand_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         new_zealand_dollar.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        new_zealand_dollar.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        new_zealand_dollar.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_new_zealand_dollar_math_add():
                    'dollar.NewZealandDollar\'> '
                    'and <class \'str\'>.')):
         _ = new_zealand_dollar_one.__add__('1.00')
-    assert (new_zealand_dollar_one + new_zealand_dollar_two) == new_zealand_dollar_three
+    assert (
+        new_zealand_dollar_one +
+        new_zealand_dollar_two) == new_zealand_dollar_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = NewZealandDollar(amount=1000)
+def test_new_zealand_dollar_slots():
+    """test_new_zealand_dollar_slots."""
+    new_zealand_dollar = NewZealandDollar(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'NewZealandDollar\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        new_zealand_dollar.new_variable = 'fail'  # pylint: disable=assigning-non-slot

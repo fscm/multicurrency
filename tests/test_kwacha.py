@@ -26,21 +26,25 @@ def test_kwacha():
     assert kwacha.numeric_code == '454'
     assert kwacha.alpha_code == 'MWK'
     assert kwacha.decimal_places == 2
-    assert kwacha.decimal_sign == ','
-    assert kwacha.grouping_sign == '.'
+    assert kwacha.decimal_sign == '.'
+    assert kwacha.grouping_sign == ','
     assert not kwacha.international
     assert kwacha.symbol == 'MK'
+    assert kwacha.symbol_ahead
+    assert kwacha.symbol_separator == '\u00A0'
     assert kwacha.__hash__() == hash((decimal, 'MWK', '454'))
     assert kwacha.__repr__() == (
         'Kwacha(amount: 0.1428571428571428571428571429, '
         'alpha_code: "MWK", '
         'symbol: "MK", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "454", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert kwacha.__str__() == 'MK0,14'
+    assert kwacha.__str__() == 'MK 0.14'
 
 
 def test_kwacha_negative():
@@ -51,21 +55,25 @@ def test_kwacha_negative():
     assert kwacha.numeric_code == '454'
     assert kwacha.alpha_code == 'MWK'
     assert kwacha.decimal_places == 2
-    assert kwacha.decimal_sign == ','
-    assert kwacha.grouping_sign == '.'
+    assert kwacha.decimal_sign == '.'
+    assert kwacha.grouping_sign == ','
     assert not kwacha.international
     assert kwacha.symbol == 'MK'
+    assert kwacha.symbol_ahead
+    assert kwacha.symbol_separator == '\u00A0'
     assert kwacha.__hash__() == hash((decimal, 'MWK', '454'))
     assert kwacha.__repr__() == (
         'Kwacha(amount: -100, '
         'alpha_code: "MWK", '
         'symbol: "MK", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "454", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert kwacha.__str__() == 'MK-100,00'
+    assert kwacha.__str__() == 'MK -100.00'
 
 
 def test_kwacha_custom():
@@ -74,27 +82,33 @@ def test_kwacha_custom():
     kwacha = Kwacha(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert kwacha.amount == decimal
     assert kwacha.numeric_code == '454'
     assert kwacha.alpha_code == 'MWK'
     assert kwacha.decimal_places == 5
-    assert kwacha.decimal_sign == '.'
-    assert kwacha.grouping_sign == ','
+    assert kwacha.decimal_sign == ','
+    assert kwacha.grouping_sign == '.'
     assert kwacha.international
     assert kwacha.symbol == 'MK'
+    assert not kwacha.symbol_ahead
+    assert kwacha.symbol_separator == '_'
     assert kwacha.__hash__() == hash((decimal, 'MWK', '454'))
     assert kwacha.__repr__() == (
         'Kwacha(amount: 1000, '
         'alpha_code: "MWK", '
         'symbol: "MK", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "454", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert kwacha.__str__() == 'MWK 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_kwacha_changed():
             AttributeError,
             match='can\'t set attribute'):
         kwacha.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        kwacha.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        kwacha.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_kwacha_math_add():
                    'kwacha.Kwacha\'> '
                    'and <class \'str\'>.')):
         _ = kwacha_one.__add__('1.00')
-    assert (kwacha_one + kwacha_two) == kwacha_three
+    assert (
+        kwacha_one +
+        kwacha_two) == kwacha_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Kwacha(amount=1000)
+def test_kwacha_slots():
+    """test_kwacha_slots."""
+    kwacha = Kwacha(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Kwacha\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        kwacha.new_variable = 'fail'  # pylint: disable=assigning-non-slot

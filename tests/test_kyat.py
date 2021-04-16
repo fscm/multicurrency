@@ -26,21 +26,25 @@ def test_kyat():
     assert kyat.numeric_code == '104'
     assert kyat.alpha_code == 'MMK'
     assert kyat.decimal_places == 2
-    assert kyat.decimal_sign == ','
-    assert kyat.grouping_sign == '.'
+    assert kyat.decimal_sign == '.'
+    assert kyat.grouping_sign == ','
     assert not kyat.international
     assert kyat.symbol == 'K'
+    assert not kyat.symbol_ahead
+    assert kyat.symbol_separator == '\u00A0'
     assert kyat.__hash__() == hash((decimal, 'MMK', '104'))
     assert kyat.__repr__() == (
         'Kyat(amount: 0.1428571428571428571428571429, '
         'alpha_code: "MMK", '
         'symbol: "K", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "104", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert kyat.__str__() == 'K0,14'
+    assert kyat.__str__() == '0.14 K'
 
 
 def test_kyat_negative():
@@ -51,21 +55,25 @@ def test_kyat_negative():
     assert kyat.numeric_code == '104'
     assert kyat.alpha_code == 'MMK'
     assert kyat.decimal_places == 2
-    assert kyat.decimal_sign == ','
-    assert kyat.grouping_sign == '.'
+    assert kyat.decimal_sign == '.'
+    assert kyat.grouping_sign == ','
     assert not kyat.international
     assert kyat.symbol == 'K'
+    assert not kyat.symbol_ahead
+    assert kyat.symbol_separator == '\u00A0'
     assert kyat.__hash__() == hash((decimal, 'MMK', '104'))
     assert kyat.__repr__() == (
         'Kyat(amount: -100, '
         'alpha_code: "MMK", '
         'symbol: "K", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "104", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert kyat.__str__() == 'K-100,00'
+    assert kyat.__str__() == '-100.00 K'
 
 
 def test_kyat_custom():
@@ -74,27 +82,33 @@ def test_kyat_custom():
     kyat = Kyat(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert kyat.amount == decimal
     assert kyat.numeric_code == '104'
     assert kyat.alpha_code == 'MMK'
     assert kyat.decimal_places == 5
-    assert kyat.decimal_sign == '.'
-    assert kyat.grouping_sign == ','
+    assert kyat.decimal_sign == ','
+    assert kyat.grouping_sign == '.'
     assert kyat.international
     assert kyat.symbol == 'K'
+    assert not kyat.symbol_ahead
+    assert kyat.symbol_separator == '_'
     assert kyat.__hash__() == hash((decimal, 'MMK', '104'))
     assert kyat.__repr__() == (
         'Kyat(amount: 1000, '
         'alpha_code: "MMK", '
         'symbol: "K", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "104", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert kyat.__str__() == 'MMK 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_kyat_changed():
             AttributeError,
             match='can\'t set attribute'):
         kyat.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        kyat.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        kyat.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_kyat_math_add():
                    'kyat.Kyat\'> '
                    'and <class \'str\'>.')):
         _ = kyat_one.__add__('1.00')
-    assert (kyat_one + kyat_two) == kyat_three
+    assert (
+        kyat_one +
+        kyat_two) == kyat_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Kyat(amount=1000)
+def test_kyat_slots():
+    """test_kyat_slots."""
+    kyat = Kyat(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Kyat\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        kyat.new_variable = 'fail'  # pylint: disable=assigning-non-slot

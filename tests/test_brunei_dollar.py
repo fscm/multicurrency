@@ -26,21 +26,25 @@ def test_brunei_dollar():
     assert brunei_dollar.numeric_code == '096'
     assert brunei_dollar.alpha_code == 'BND'
     assert brunei_dollar.decimal_places == 2
-    assert brunei_dollar.decimal_sign == '.'
-    assert brunei_dollar.grouping_sign == ','
+    assert brunei_dollar.decimal_sign == ','
+    assert brunei_dollar.grouping_sign == '.'
     assert not brunei_dollar.international
     assert brunei_dollar.symbol == '$'
+    assert brunei_dollar.symbol_ahead
+    assert brunei_dollar.symbol_separator == '\u00A0'
     assert brunei_dollar.__hash__() == hash((decimal, 'BND', '096'))
     assert brunei_dollar.__repr__() == (
         'BruneiDollar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "BND", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "096", '
         'decimal_places: "2", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: False)')
-    assert brunei_dollar.__str__() == '$0.14'
+    assert brunei_dollar.__str__() == '$ 0,14'
 
 
 def test_brunei_dollar_negative():
@@ -51,21 +55,25 @@ def test_brunei_dollar_negative():
     assert brunei_dollar.numeric_code == '096'
     assert brunei_dollar.alpha_code == 'BND'
     assert brunei_dollar.decimal_places == 2
-    assert brunei_dollar.decimal_sign == '.'
-    assert brunei_dollar.grouping_sign == ','
+    assert brunei_dollar.decimal_sign == ','
+    assert brunei_dollar.grouping_sign == '.'
     assert not brunei_dollar.international
     assert brunei_dollar.symbol == '$'
+    assert brunei_dollar.symbol_ahead
+    assert brunei_dollar.symbol_separator == '\u00A0'
     assert brunei_dollar.__hash__() == hash((decimal, 'BND', '096'))
     assert brunei_dollar.__repr__() == (
         'BruneiDollar(amount: -100, '
         'alpha_code: "BND", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "096", '
         'decimal_places: "2", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: False)')
-    assert brunei_dollar.__str__() == '$-100.00'
+    assert brunei_dollar.__str__() == '$ -100,00'
 
 
 def test_brunei_dollar_custom():
@@ -74,29 +82,35 @@ def test_brunei_dollar_custom():
     brunei_dollar = BruneiDollar(
         amount=amount,
         decimal_places=5,
-        decimal_sign=',',
-        grouping_sign='.',
-        international=True)
+        decimal_sign='.',
+        grouping_sign=',',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert brunei_dollar.amount == decimal
     assert brunei_dollar.numeric_code == '096'
     assert brunei_dollar.alpha_code == 'BND'
     assert brunei_dollar.decimal_places == 5
-    assert brunei_dollar.decimal_sign == ','
-    assert brunei_dollar.grouping_sign == '.'
+    assert brunei_dollar.decimal_sign == '.'
+    assert brunei_dollar.grouping_sign == ','
     assert brunei_dollar.international
     assert brunei_dollar.symbol == '$'
+    assert not brunei_dollar.symbol_ahead
+    assert brunei_dollar.symbol_separator == '_'
     assert brunei_dollar.__hash__() == hash((decimal, 'BND', '096'))
     assert brunei_dollar.__repr__() == (
         'BruneiDollar(amount: 1000, '
         'alpha_code: "BND", '
         'symbol: "$", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "096", '
         'decimal_places: "5", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: True)')
-    assert brunei_dollar.__str__() == 'BND 1.000,00000'
+    assert brunei_dollar.__str__() == 'BND 1,000.00000'
 
 
 def test_brunei_dollar_changed():
@@ -114,6 +128,14 @@ def test_brunei_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         brunei_dollar.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        brunei_dollar.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        brunei_dollar.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_brunei_dollar_math_add():
                    'dollar.BruneiDollar\'> '
                    'and <class \'str\'>.')):
         _ = brunei_dollar_one.__add__('1.00')
-    assert (brunei_dollar_one + brunei_dollar_two) == brunei_dollar_three
+    assert (
+        brunei_dollar_one +
+        brunei_dollar_two) == brunei_dollar_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = BruneiDollar(amount=1000)
+def test_brunei_dollar_slots():
+    """test_brunei_dollar_slots."""
+    brunei_dollar = BruneiDollar(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'BruneiDollar\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        brunei_dollar.new_variable = 'fail'  # pylint: disable=assigning-non-slot

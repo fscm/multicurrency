@@ -27,20 +27,24 @@ def test_kwanza():
     assert kwanza.alpha_code == 'AOA'
     assert kwanza.decimal_places == 2
     assert kwanza.decimal_sign == ','
-    assert kwanza.grouping_sign == '.'
+    assert kwanza.grouping_sign == '\u202F'
     assert not kwanza.international
     assert kwanza.symbol == 'Kz'
+    assert not kwanza.symbol_ahead
+    assert kwanza.symbol_separator == '\u00A0'
     assert kwanza.__hash__() == hash((decimal, 'AOA', '973'))
     assert kwanza.__repr__() == (
         'Kwanza(amount: 0.1428571428571428571428571429, '
         'alpha_code: "AOA", '
         'symbol: "Kz", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "973", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert kwanza.__str__() == 'Kz0,14'
+    assert kwanza.__str__() == '0,14 Kz'
 
 
 def test_kwanza_negative():
@@ -52,20 +56,24 @@ def test_kwanza_negative():
     assert kwanza.alpha_code == 'AOA'
     assert kwanza.decimal_places == 2
     assert kwanza.decimal_sign == ','
-    assert kwanza.grouping_sign == '.'
+    assert kwanza.grouping_sign == '\u202F'
     assert not kwanza.international
     assert kwanza.symbol == 'Kz'
+    assert not kwanza.symbol_ahead
+    assert kwanza.symbol_separator == '\u00A0'
     assert kwanza.__hash__() == hash((decimal, 'AOA', '973'))
     assert kwanza.__repr__() == (
         'Kwanza(amount: -100, '
         'alpha_code: "AOA", '
         'symbol: "Kz", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "973", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert kwanza.__str__() == 'Kz-100,00'
+    assert kwanza.__str__() == '-100,00 Kz'
 
 
 def test_kwanza_custom():
@@ -74,26 +82,32 @@ def test_kwanza_custom():
     kwanza = Kwanza(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
+        decimal_sign='\u202F',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert kwanza.amount == decimal
     assert kwanza.numeric_code == '973'
     assert kwanza.alpha_code == 'AOA'
     assert kwanza.decimal_places == 5
-    assert kwanza.decimal_sign == '.'
+    assert kwanza.decimal_sign == '\u202F'
     assert kwanza.grouping_sign == ','
     assert kwanza.international
     assert kwanza.symbol == 'Kz'
+    assert not kwanza.symbol_ahead
+    assert kwanza.symbol_separator == '_'
     assert kwanza.__hash__() == hash((decimal, 'AOA', '973'))
     assert kwanza.__repr__() == (
         'Kwanza(amount: 1000, '
         'alpha_code: "AOA", '
         'symbol: "Kz", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "973", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
+        'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
         'international: True)')
     assert kwanza.__str__() == 'AOA 1,000.00000'
@@ -114,6 +128,14 @@ def test_kwanza_changed():
             AttributeError,
             match='can\'t set attribute'):
         kwanza.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        kwanza.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        kwanza.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_kwanza_math_add():
                    'kwanza.Kwanza\'> '
                    'and <class \'str\'>.')):
         _ = kwanza_one.__add__('1.00')
-    assert (kwanza_one + kwanza_two) == kwanza_three
+    assert (
+        kwanza_one +
+        kwanza_two) == kwanza_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Kwanza(amount=1000)
+def test_kwanza_slots():
+    """test_kwanza_slots."""
+    kwanza = Kwanza(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Kwanza\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        kwanza.new_variable = 'fail'  # pylint: disable=assigning-non-slot

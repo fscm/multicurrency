@@ -26,21 +26,25 @@ def test_leone():
     assert leone.numeric_code == '694'
     assert leone.alpha_code == 'SLL'
     assert leone.decimal_places == 2
-    assert leone.decimal_sign == ','
-    assert leone.grouping_sign == '.'
+    assert leone.decimal_sign == '.'
+    assert leone.grouping_sign == ','
     assert not leone.international
     assert leone.symbol == 'Le'
+    assert leone.symbol_ahead
+    assert leone.symbol_separator == '\u00A0'
     assert leone.__hash__() == hash((decimal, 'SLL', '694'))
     assert leone.__repr__() == (
         'Leone(amount: 0.1428571428571428571428571429, '
         'alpha_code: "SLL", '
         'symbol: "Le", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "694", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert leone.__str__() == 'Le0,14'
+    assert leone.__str__() == 'Le 0.14'
 
 
 def test_leone_negative():
@@ -51,21 +55,25 @@ def test_leone_negative():
     assert leone.numeric_code == '694'
     assert leone.alpha_code == 'SLL'
     assert leone.decimal_places == 2
-    assert leone.decimal_sign == ','
-    assert leone.grouping_sign == '.'
+    assert leone.decimal_sign == '.'
+    assert leone.grouping_sign == ','
     assert not leone.international
     assert leone.symbol == 'Le'
+    assert leone.symbol_ahead
+    assert leone.symbol_separator == '\u00A0'
     assert leone.__hash__() == hash((decimal, 'SLL', '694'))
     assert leone.__repr__() == (
         'Leone(amount: -100, '
         'alpha_code: "SLL", '
         'symbol: "Le", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "694", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert leone.__str__() == 'Le-100,00'
+    assert leone.__str__() == 'Le -100.00'
 
 
 def test_leone_custom():
@@ -74,27 +82,33 @@ def test_leone_custom():
     leone = Leone(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert leone.amount == decimal
     assert leone.numeric_code == '694'
     assert leone.alpha_code == 'SLL'
     assert leone.decimal_places == 5
-    assert leone.decimal_sign == '.'
-    assert leone.grouping_sign == ','
+    assert leone.decimal_sign == ','
+    assert leone.grouping_sign == '.'
     assert leone.international
     assert leone.symbol == 'Le'
+    assert not leone.symbol_ahead
+    assert leone.symbol_separator == '_'
     assert leone.__hash__() == hash((decimal, 'SLL', '694'))
     assert leone.__repr__() == (
         'Leone(amount: 1000, '
         'alpha_code: "SLL", '
         'symbol: "Le", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "694", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert leone.__str__() == 'SLL 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_leone_changed():
             AttributeError,
             match='can\'t set attribute'):
         leone.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        leone.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        leone.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_leone_math_add():
                    'leone.Leone\'> '
                    'and <class \'str\'>.')):
         _ = leone_one.__add__('1.00')
-    assert (leone_one + leone_two) == leone_three
+    assert (
+        leone_one +
+        leone_two) == leone_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Leone(amount=1000)
+def test_leone_slots():
+    """test_leone_slots."""
+    leone = Leone(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Leone\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        leone.new_variable = 'fail'  # pylint: disable=assigning-non-slot

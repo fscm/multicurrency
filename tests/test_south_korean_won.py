@@ -30,11 +30,15 @@ def test_south_korean_won():
     assert south_korean_won.grouping_sign == ','
     assert not south_korean_won.international
     assert south_korean_won.symbol == '₩'
+    assert south_korean_won.symbol_ahead
+    assert south_korean_won.symbol_separator == ''
     assert south_korean_won.__hash__() == hash((decimal, 'KRW', '410'))
     assert south_korean_won.__repr__() == (
         'SouthKoreanWon(amount: 0.1428571428571428571428571429, '
         'alpha_code: "KRW", '
         'symbol: "₩", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "410", '
         'decimal_places: "0", '
         'decimal_sign: ".", '
@@ -55,11 +59,15 @@ def test_south_korean_won_negative():
     assert south_korean_won.grouping_sign == ','
     assert not south_korean_won.international
     assert south_korean_won.symbol == '₩'
+    assert south_korean_won.symbol_ahead
+    assert south_korean_won.symbol_separator == ''
     assert south_korean_won.__hash__() == hash((decimal, 'KRW', '410'))
     assert south_korean_won.__repr__() == (
         'SouthKoreanWon(amount: -100, '
         'alpha_code: "KRW", '
         'symbol: "₩", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "410", '
         'decimal_places: "0", '
         'decimal_sign: ".", '
@@ -76,7 +84,9 @@ def test_south_korean_won_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert south_korean_won.amount == decimal
     assert south_korean_won.numeric_code == '410'
@@ -86,17 +96,21 @@ def test_south_korean_won_custom():
     assert south_korean_won.grouping_sign == '.'
     assert south_korean_won.international
     assert south_korean_won.symbol == '₩'
+    assert not south_korean_won.symbol_ahead
+    assert south_korean_won.symbol_separator == '_'
     assert south_korean_won.__hash__() == hash((decimal, 'KRW', '410'))
     assert south_korean_won.__repr__() == (
         'SouthKoreanWon(amount: 1000, '
         'alpha_code: "KRW", '
         'symbol: "₩", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "410", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert south_korean_won.__str__() == 'KRW 1.000,00000'
+    assert south_korean_won.__str__() == 'KRW 1,000.00000'
 
 
 def test_south_korean_won_changed():
@@ -114,6 +128,14 @@ def test_south_korean_won_changed():
             AttributeError,
             match='can\'t set attribute'):
         south_korean_won.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        south_korean_won.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        south_korean_won.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_south_korean_won_math_add():
                    'won.SouthKoreanWon\'> '
                    'and <class \'str\'>.')):
         _ = south_korean_won_one.__add__('1.00')
-    assert (south_korean_won_one + south_korean_won_two) == south_korean_won_three
+    assert (
+        south_korean_won_one +
+        south_korean_won_two) == south_korean_won_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = SouthKoreanWon(amount=1000)
+def test_south_korean_won_slots():
+    """test_south_korean_won_slots."""
+    south_korean_won = SouthKoreanWon(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'SouthKoreanWon\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        south_korean_won.new_variable = 'fail'  # pylint: disable=assigning-non-slot

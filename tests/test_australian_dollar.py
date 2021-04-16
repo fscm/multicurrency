@@ -30,11 +30,15 @@ def test_australian_dollar():
     assert australian_dollar.grouping_sign == ','
     assert not australian_dollar.international
     assert australian_dollar.symbol == '$'
+    assert australian_dollar.symbol_ahead
+    assert australian_dollar.symbol_separator == ''
     assert australian_dollar.__hash__() == hash((decimal, 'AUD', '036'))
     assert australian_dollar.__repr__() == (
         'AustralianDollar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "AUD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "036", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -55,11 +59,15 @@ def test_australian_dollar_negative():
     assert australian_dollar.grouping_sign == ','
     assert not australian_dollar.international
     assert australian_dollar.symbol == '$'
+    assert australian_dollar.symbol_ahead
+    assert australian_dollar.symbol_separator == ''
     assert australian_dollar.__hash__() == hash((decimal, 'AUD', '036'))
     assert australian_dollar.__repr__() == (
         'AustralianDollar(amount: -100, '
         'alpha_code: "AUD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "036", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -76,7 +84,9 @@ def test_australian_dollar_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert australian_dollar.amount == decimal
     assert australian_dollar.numeric_code == '036'
@@ -86,17 +96,21 @@ def test_australian_dollar_custom():
     assert australian_dollar.grouping_sign == '.'
     assert australian_dollar.international
     assert australian_dollar.symbol == '$'
+    assert not australian_dollar.symbol_ahead
+    assert australian_dollar.symbol_separator == '_'
     assert australian_dollar.__hash__() == hash((decimal, 'AUD', '036'))
     assert australian_dollar.__repr__() == (
         'AustralianDollar(amount: 1000, '
         'alpha_code: "AUD", '
         'symbol: "$", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "036", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert australian_dollar.__str__() == 'AUD 1.000,00000'
+    assert australian_dollar.__str__() == 'AUD 1,000.00000'
 
 
 def test_australian_dollar_changed():
@@ -114,6 +128,14 @@ def test_australian_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         australian_dollar.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        australian_dollar.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        australian_dollar.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_australian_dollar_math_add():
                    'dollar.AustralianDollar\'> '
                    'and <class \'str\'>.')):
         _ = australian_dollar_one.__add__('1.00')
-    assert (australian_dollar_one + australian_dollar_two) == australian_dollar_three
+    assert (
+        australian_dollar_one +
+        australian_dollar_two) == australian_dollar_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = AustralianDollar(amount=1000)
+def test_australian_dollar_slots():
+    """test_australian_dollar_slots."""
+    australian_dollar = AustralianDollar(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'AustralianDollar\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        australian_dollar.new_variable = 'fail'  # pylint: disable=assigning-non-slot

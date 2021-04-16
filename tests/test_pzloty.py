@@ -27,20 +27,24 @@ def test_pzloty():
     assert pzloty.alpha_code == 'PLN'
     assert pzloty.decimal_places == 2
     assert pzloty.decimal_sign == ','
-    assert pzloty.grouping_sign == '.'
+    assert pzloty.grouping_sign == '\u202F'
     assert not pzloty.international
     assert pzloty.symbol == 'zł'
+    assert not pzloty.symbol_ahead
+    assert pzloty.symbol_separator == '\u00A0'
     assert pzloty.__hash__() == hash((decimal, 'PLN', '985'))
     assert pzloty.__repr__() == (
         'PZloty(amount: 0.1428571428571428571428571429, '
         'alpha_code: "PLN", '
         'symbol: "zł", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "985", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert pzloty.__str__() == 'zł0,14'
+    assert pzloty.__str__() == '0,14 zł'
 
 
 def test_pzloty_negative():
@@ -52,20 +56,24 @@ def test_pzloty_negative():
     assert pzloty.alpha_code == 'PLN'
     assert pzloty.decimal_places == 2
     assert pzloty.decimal_sign == ','
-    assert pzloty.grouping_sign == '.'
+    assert pzloty.grouping_sign == '\u202F'
     assert not pzloty.international
     assert pzloty.symbol == 'zł'
+    assert not pzloty.symbol_ahead
+    assert pzloty.symbol_separator == '\u00A0'
     assert pzloty.__hash__() == hash((decimal, 'PLN', '985'))
     assert pzloty.__repr__() == (
         'PZloty(amount: -100, '
         'alpha_code: "PLN", '
         'symbol: "zł", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "985", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert pzloty.__str__() == 'zł-100,00'
+    assert pzloty.__str__() == '-100,00 zł'
 
 
 def test_pzloty_custom():
@@ -74,26 +82,32 @@ def test_pzloty_custom():
     pzloty = PZloty(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
+        decimal_sign='\u202F',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert pzloty.amount == decimal
     assert pzloty.numeric_code == '985'
     assert pzloty.alpha_code == 'PLN'
     assert pzloty.decimal_places == 5
-    assert pzloty.decimal_sign == '.'
+    assert pzloty.decimal_sign == '\u202F'
     assert pzloty.grouping_sign == ','
     assert pzloty.international
     assert pzloty.symbol == 'zł'
+    assert not pzloty.symbol_ahead
+    assert pzloty.symbol_separator == '_'
     assert pzloty.__hash__() == hash((decimal, 'PLN', '985'))
     assert pzloty.__repr__() == (
         'PZloty(amount: 1000, '
         'alpha_code: "PLN", '
         'symbol: "zł", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "985", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
+        'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
         'international: True)')
     assert pzloty.__str__() == 'PLN 1,000.00000'
@@ -114,6 +128,14 @@ def test_pzloty_changed():
             AttributeError,
             match='can\'t set attribute'):
         pzloty.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        pzloty.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        pzloty.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_pzloty_math_add():
                    'pzloty.PZloty\'> '
                    'and <class \'str\'>.')):
         _ = pzloty_one.__add__('1.00')
-    assert (pzloty_one + pzloty_two) == pzloty_three
+    assert (
+        pzloty_one +
+        pzloty_two) == pzloty_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = PZloty(amount=1000)
+def test_pzloty_slots():
+    """test_pzloty_slots."""
+    pzloty = PZloty(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'PZloty\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        pzloty.new_variable = 'fail'  # pylint: disable=assigning-non-slot

@@ -236,7 +236,7 @@ resutls.</p>
 <dl>
 <dt id="multicurrency.currency.Currency"><code class="flex name class">
 <span>class <span class="ident">Currency</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], alpha_code: Optional[str] = '', numeric_code: str = '0', symbol: str = '', decimal_places: int = 2, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: bool = False)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], alpha_code: Optional[str] = '', numeric_code: Optional[str] = '0', symbol: Optional[str] = '', symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '', decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: Optional[bool] = False)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Currency representation.</p>
@@ -269,9 +269,15 @@ Defaults to ''.</dd>
 <dt><strong><code>numeric_code</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Represented currency numeric
 code. Defaults to 0.</dd>
-<dt><strong><code>symbol</code></strong> :&ensp;<code>str, optionsl</code></dt>
+<dt><strong><code>symbol</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Represented currency symbol. Defaults
 to ''.</dd>
+<dt><strong><code>symbol_separator</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Separation between the symbol
+and the value. Defaults to ''.</dd>
+<dt><strong><code>symbol_ahead</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>True if symbol goes ahead of the
+value. False otherwise. Defaults to False.</dd>
 <dt><strong><code>decimal_places</code></strong> :&ensp;<code>int</code>, optional</dt>
 <dd>Number of decimal places for the
 currency representation. Defaults to 2,</dd>
@@ -302,7 +308,8 @@ False.</dd>
 <li><a title="multicurrency.dinar.JordanianDinar" href="dinar.html#multicurrency.dinar.JordanianDinar">JordanianDinar</a></li>
 <li><a title="multicurrency.dinar.KuwaitiDinar" href="dinar.html#multicurrency.dinar.KuwaitiDinar">KuwaitiDinar</a></li>
 <li><a title="multicurrency.dinar.LibyanDinar" href="dinar.html#multicurrency.dinar.LibyanDinar">LibyanDinar</a></li>
-<li><a title="multicurrency.dinar.SerbianDinar" href="dinar.html#multicurrency.dinar.SerbianDinar">SerbianDinar</a></li>
+<li><a title="multicurrency.dinar.SerbianDinarSR" href="dinar.html#multicurrency.dinar.SerbianDinarSR">SerbianDinarSR</a></li>
+<li><a title="multicurrency.dinar.SerbianDinarXK" href="dinar.html#multicurrency.dinar.SerbianDinarXK">SerbianDinarXK</a></li>
 <li><a title="multicurrency.dinar.TunisianDinar" href="dinar.html#multicurrency.dinar.TunisianDinar">TunisianDinar</a></li>
 <li><a title="multicurrency.dirham.MoroccanDirham" href="dirham.html#multicurrency.dirham.MoroccanDirham">MoroccanDirham</a></li>
 <li><a title="multicurrency.dirham.UAEDirham" href="dirham.html#multicurrency.dirham.UAEDirham">UAEDirham</a></li>
@@ -335,7 +342,31 @@ False.</dd>
 <li><a title="multicurrency.dram.ArmenianDram" href="dram.html#multicurrency.dram.ArmenianDram">ArmenianDram</a></li>
 <li><a title="multicurrency.escudo.CapeVerdeEscudo" href="escudo.html#multicurrency.escudo.CapeVerdeEscudo">CapeVerdeEscudo</a></li>
 <li><a title="multicurrency.euro.Euro" href="euro.html#multicurrency.euro.Euro">Euro</a></li>
+<li><a title="multicurrency.euro.EuroAD" href="euro.html#multicurrency.euro.EuroAD">EuroAD</a></li>
+<li><a title="multicurrency.euro.EuroAT" href="euro.html#multicurrency.euro.EuroAT">EuroAT</a></li>
+<li><a title="multicurrency.euro.EuroBE" href="euro.html#multicurrency.euro.EuroBE">EuroBE</a></li>
+<li><a title="multicurrency.euro.EuroCY" href="euro.html#multicurrency.euro.EuroCY">EuroCY</a></li>
+<li><a title="multicurrency.euro.EuroDE" href="euro.html#multicurrency.euro.EuroDE">EuroDE</a></li>
+<li><a title="multicurrency.euro.EuroEE" href="euro.html#multicurrency.euro.EuroEE">EuroEE</a></li>
+<li><a title="multicurrency.euro.EuroES" href="euro.html#multicurrency.euro.EuroES">EuroES</a></li>
+<li><a title="multicurrency.euro.EuroFI" href="euro.html#multicurrency.euro.EuroFI">EuroFI</a></li>
+<li><a title="multicurrency.euro.EuroFR" href="euro.html#multicurrency.euro.EuroFR">EuroFR</a></li>
+<li><a title="multicurrency.euro.EuroGR" href="euro.html#multicurrency.euro.EuroGR">EuroGR</a></li>
 <li><a title="multicurrency.euro.EuroIE" href="euro.html#multicurrency.euro.EuroIE">EuroIE</a></li>
+<li><a title="multicurrency.euro.EuroIT" href="euro.html#multicurrency.euro.EuroIT">EuroIT</a></li>
+<li><a title="multicurrency.euro.EuroLT" href="euro.html#multicurrency.euro.EuroLT">EuroLT</a></li>
+<li><a title="multicurrency.euro.EuroLU" href="euro.html#multicurrency.euro.EuroLU">EuroLU</a></li>
+<li><a title="multicurrency.euro.EuroLV" href="euro.html#multicurrency.euro.EuroLV">EuroLV</a></li>
+<li><a title="multicurrency.euro.EuroMC" href="euro.html#multicurrency.euro.EuroMC">EuroMC</a></li>
+<li><a title="multicurrency.euro.EuroME" href="euro.html#multicurrency.euro.EuroME">EuroME</a></li>
+<li><a title="multicurrency.euro.EuroMT" href="euro.html#multicurrency.euro.EuroMT">EuroMT</a></li>
+<li><a title="multicurrency.euro.EuroNL" href="euro.html#multicurrency.euro.EuroNL">EuroNL</a></li>
+<li><a title="multicurrency.euro.EuroPT" href="euro.html#multicurrency.euro.EuroPT">EuroPT</a></li>
+<li><a title="multicurrency.euro.EuroSI" href="euro.html#multicurrency.euro.EuroSI">EuroSI</a></li>
+<li><a title="multicurrency.euro.EuroSK" href="euro.html#multicurrency.euro.EuroSK">EuroSK</a></li>
+<li><a title="multicurrency.euro.EuroSM" href="euro.html#multicurrency.euro.EuroSM">EuroSM</a></li>
+<li><a title="multicurrency.euro.EuroVA" href="euro.html#multicurrency.euro.EuroVA">EuroVA</a></li>
+<li><a title="multicurrency.euro.EuroXK" href="euro.html#multicurrency.euro.EuroXK">EuroXK</a></li>
 <li><a title="multicurrency.florin.ArubanFlorin" href="florin.html#multicurrency.florin.ArubanFlorin">ArubanFlorin</a></li>
 <li><a title="multicurrency.forint.Forint" href="forint.html#multicurrency.forint.Forint">Forint</a></li>
 <li><a title="multicurrency.franc.BurundiFranc" href="franc.html#multicurrency.franc.BurundiFranc">BurundiFranc</a></li>
@@ -404,7 +435,9 @@ False.</dd>
 <li><a title="multicurrency.pula.Pula" href="pula.html#multicurrency.pula.Pula">Pula</a></li>
 <li><a title="multicurrency.pzloty.PZloty" href="pzloty.html#multicurrency.pzloty.PZloty">PZloty</a></li>
 <li><a title="multicurrency.quetzal.Quetzal" href="quetzal.html#multicurrency.quetzal.Quetzal">Quetzal</a></li>
-<li><a title="multicurrency.rand.Rand" href="rand.html#multicurrency.rand.Rand">Rand</a></li>
+<li><a title="multicurrency.rand.RandLS" href="rand.html#multicurrency.rand.RandLS">RandLS</a></li>
+<li><a title="multicurrency.rand.RandNA" href="rand.html#multicurrency.rand.RandNA">RandNA</a></li>
+<li><a title="multicurrency.rand.RandZA" href="rand.html#multicurrency.rand.RandZA">RandZA</a></li>
 <li><a title="multicurrency.real.BrazilianReal" href="real.html#multicurrency.real.BrazilianReal">BrazilianReal</a></li>
 <li><a title="multicurrency.rial.IranianRial" href="rial.html#multicurrency.rial.IranianRial">IranianRial</a></li>
 <li><a title="multicurrency.rial.QatariRial" href="rial.html#multicurrency.rial.QatariRial">QatariRial</a></li>
@@ -474,6 +507,14 @@ False.</dd>
 <dt id="multicurrency.currency.Currency.symbol"><code class="name">var <span class="ident">symbol</span> : str</code></dt>
 <dd>
 <div class="desc"><p>str: symbol.</p></div>
+</dd>
+<dt id="multicurrency.currency.Currency.symbol_ahead"><code class="name">var <span class="ident">symbol_ahead</span> : bool</code></dt>
+<dd>
+<div class="desc"><p>bool: symbol_ahead.</p></div>
+</dd>
+<dt id="multicurrency.currency.Currency.symbol_separator"><code class="name">var <span class="ident">symbol_separator</span> : str</code></dt>
+<dd>
+<div class="desc"><p>str: symbol_separator.</p></div>
 </dd>
 </dl>
 <h3>Methods</h3>
@@ -566,6 +607,8 @@ Values lower than 0 (zero) will be converted to 0
 <li><code><a title="multicurrency.currency.Currency.numeric_code" href="#multicurrency.currency.Currency.numeric_code">numeric_code</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.pstr" href="#multicurrency.currency.Currency.pstr">pstr</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.symbol" href="#multicurrency.currency.Currency.symbol">symbol</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_ahead" href="#multicurrency.currency.Currency.symbol_ahead">symbol_ahead</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_separator" href="#multicurrency.currency.Currency.symbol_separator">symbol_separator</a></code></li>
 </ul>
 </li>
 </ul>

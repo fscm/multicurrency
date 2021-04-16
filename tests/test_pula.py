@@ -26,21 +26,25 @@ def test_pula():
     assert pula.numeric_code == '072'
     assert pula.alpha_code == 'BWP'
     assert pula.decimal_places == 2
-    assert pula.decimal_sign == ','
-    assert pula.grouping_sign == '.'
+    assert pula.decimal_sign == '.'
+    assert pula.grouping_sign == ','
     assert not pula.international
     assert pula.symbol == 'P'
+    assert pula.symbol_ahead
+    assert pula.symbol_separator == '\u00A0'
     assert pula.__hash__() == hash((decimal, 'BWP', '072'))
     assert pula.__repr__() == (
         'Pula(amount: 0.1428571428571428571428571429, '
         'alpha_code: "BWP", '
         'symbol: "P", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "072", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert pula.__str__() == 'P0,14'
+    assert pula.__str__() == 'P 0.14'
 
 
 def test_pula_negative():
@@ -51,21 +55,25 @@ def test_pula_negative():
     assert pula.numeric_code == '072'
     assert pula.alpha_code == 'BWP'
     assert pula.decimal_places == 2
-    assert pula.decimal_sign == ','
-    assert pula.grouping_sign == '.'
+    assert pula.decimal_sign == '.'
+    assert pula.grouping_sign == ','
     assert not pula.international
     assert pula.symbol == 'P'
+    assert pula.symbol_ahead
+    assert pula.symbol_separator == '\u00A0'
     assert pula.__hash__() == hash((decimal, 'BWP', '072'))
     assert pula.__repr__() == (
         'Pula(amount: -100, '
         'alpha_code: "BWP", '
         'symbol: "P", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "072", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert pula.__str__() == 'P-100,00'
+    assert pula.__str__() == 'P -100.00'
 
 
 def test_pula_custom():
@@ -74,27 +82,33 @@ def test_pula_custom():
     pula = Pula(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert pula.amount == decimal
     assert pula.numeric_code == '072'
     assert pula.alpha_code == 'BWP'
     assert pula.decimal_places == 5
-    assert pula.decimal_sign == '.'
-    assert pula.grouping_sign == ','
+    assert pula.decimal_sign == ','
+    assert pula.grouping_sign == '.'
     assert pula.international
     assert pula.symbol == 'P'
+    assert not pula.symbol_ahead
+    assert pula.symbol_separator == '_'
     assert pula.__hash__() == hash((decimal, 'BWP', '072'))
     assert pula.__repr__() == (
         'Pula(amount: 1000, '
         'alpha_code: "BWP", '
         'symbol: "P", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "072", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert pula.__str__() == 'BWP 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_pula_changed():
             AttributeError,
             match='can\'t set attribute'):
         pula.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        pula.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        pula.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_pula_math_add():
                    'pula.Pula\'> '
                    'and <class \'str\'>.')):
         _ = pula_one.__add__('1.00')
-    assert (pula_one + pula_two) == pula_three
+    assert (
+        pula_one +
+        pula_two) == pula_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Pula(amount=1000)
+def test_pula_slots():
+    """test_pula_slots."""
+    pula = Pula(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Pula\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        pula.new_variable = 'fail'  # pylint: disable=assigning-non-slot

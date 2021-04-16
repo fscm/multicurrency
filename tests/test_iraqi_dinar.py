@@ -29,18 +29,22 @@ def test_iraqi_dinar():
     assert iraqi_dinar.decimal_sign == ','
     assert iraqi_dinar.grouping_sign == '.'
     assert not iraqi_dinar.international
-    assert iraqi_dinar.symbol == 'ع.د'
+    assert iraqi_dinar.symbol == 'د.ع.'
+    assert iraqi_dinar.symbol_ahead
+    assert iraqi_dinar.symbol_separator == '\u00A0'
     assert iraqi_dinar.__hash__() == hash((decimal, 'IQD', '368'))
     assert iraqi_dinar.__repr__() == (
         'IraqiDinar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "IQD", '
-        'symbol: "ع.د", '
+        'symbol: "د.ع.", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "368", '
         'decimal_places: "3", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert iraqi_dinar.__str__() == 'ع.د0,143'
+    assert iraqi_dinar.__str__() == 'د.ع. 0,143'
 
 
 def test_iraqi_dinar_negative():
@@ -54,18 +58,22 @@ def test_iraqi_dinar_negative():
     assert iraqi_dinar.decimal_sign == ','
     assert iraqi_dinar.grouping_sign == '.'
     assert not iraqi_dinar.international
-    assert iraqi_dinar.symbol == 'ع.د'
+    assert iraqi_dinar.symbol == 'د.ع.'
+    assert iraqi_dinar.symbol_ahead
+    assert iraqi_dinar.symbol_separator == '\u00A0'
     assert iraqi_dinar.__hash__() == hash((decimal, 'IQD', '368'))
     assert iraqi_dinar.__repr__() == (
         'IraqiDinar(amount: -100, '
         'alpha_code: "IQD", '
-        'symbol: "ع.د", '
+        'symbol: "د.ع.", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "368", '
         'decimal_places: "3", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert iraqi_dinar.__str__() == 'ع.د-100,000'
+    assert iraqi_dinar.__str__() == 'د.ع. -100,000'
 
 
 def test_iraqi_dinar_custom():
@@ -76,7 +84,9 @@ def test_iraqi_dinar_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert iraqi_dinar.amount == decimal
     assert iraqi_dinar.numeric_code == '368'
@@ -85,12 +95,16 @@ def test_iraqi_dinar_custom():
     assert iraqi_dinar.decimal_sign == '.'
     assert iraqi_dinar.grouping_sign == ','
     assert iraqi_dinar.international
-    assert iraqi_dinar.symbol == 'ع.د'
+    assert iraqi_dinar.symbol == 'د.ع.'
+    assert not iraqi_dinar.symbol_ahead
+    assert iraqi_dinar.symbol_separator == '_'
     assert iraqi_dinar.__hash__() == hash((decimal, 'IQD', '368'))
     assert iraqi_dinar.__repr__() == (
         'IraqiDinar(amount: 1000, '
         'alpha_code: "IQD", '
-        'symbol: "ع.د", '
+        'symbol: "د.ع.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "368", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_iraqi_dinar_changed():
             AttributeError,
             match='can\'t set attribute'):
         iraqi_dinar.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        iraqi_dinar.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        iraqi_dinar.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_iraqi_dinar_math_add():
                    'dinar.IraqiDinar\'> '
                    'and <class \'str\'>.')):
         _ = iraqi_dinar_one.__add__('1.00')
-    assert (iraqi_dinar_one + iraqi_dinar_two) == iraqi_dinar_three
+    assert (
+        iraqi_dinar_one +
+        iraqi_dinar_two) == iraqi_dinar_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = IraqiDinar(amount=1000)
+def test_iraqi_dinar_slots():
+    """test_iraqi_dinar_slots."""
+    iraqi_dinar = IraqiDinar(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'IraqiDinar\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        iraqi_dinar.new_variable = 'fail'  # pylint: disable=assigning-non-slot

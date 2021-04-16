@@ -26,21 +26,25 @@ def test_balboa():
     assert balboa.numeric_code == '590'
     assert balboa.alpha_code == 'PAB'
     assert balboa.decimal_places == 2
-    assert balboa.decimal_sign == ','
-    assert balboa.grouping_sign == '.'
+    assert balboa.decimal_sign == '.'
+    assert balboa.grouping_sign == ','
     assert not balboa.international
     assert balboa.symbol == 'B/.'
+    assert balboa.symbol_ahead
+    assert balboa.symbol_separator == '\u00A0'
     assert balboa.__hash__() == hash((decimal, 'PAB', '590'))
     assert balboa.__repr__() == (
         'Balboa(amount: 0.1428571428571428571428571429, '
         'alpha_code: "PAB", '
         'symbol: "B/.", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "590", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert balboa.__str__() == 'B/.0,14'
+    assert balboa.__str__() == 'B/. 0.14'
 
 
 def test_balboa_negative():
@@ -51,21 +55,25 @@ def test_balboa_negative():
     assert balboa.numeric_code == '590'
     assert balboa.alpha_code == 'PAB'
     assert balboa.decimal_places == 2
-    assert balboa.decimal_sign == ','
-    assert balboa.grouping_sign == '.'
+    assert balboa.decimal_sign == '.'
+    assert balboa.grouping_sign == ','
     assert not balboa.international
     assert balboa.symbol == 'B/.'
+    assert balboa.symbol_ahead
+    assert balboa.symbol_separator == '\u00A0'
     assert balboa.__hash__() == hash((decimal, 'PAB', '590'))
     assert balboa.__repr__() == (
         'Balboa(amount: -100, '
         'alpha_code: "PAB", '
         'symbol: "B/.", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "590", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert balboa.__str__() == 'B/.-100,00'
+    assert balboa.__str__() == 'B/. -100.00'
 
 
 def test_balboa_custom():
@@ -74,27 +82,33 @@ def test_balboa_custom():
     balboa = Balboa(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert balboa.amount == decimal
     assert balboa.numeric_code == '590'
     assert balboa.alpha_code == 'PAB'
     assert balboa.decimal_places == 5
-    assert balboa.decimal_sign == '.'
-    assert balboa.grouping_sign == ','
+    assert balboa.decimal_sign == ','
+    assert balboa.grouping_sign == '.'
     assert balboa.international
     assert balboa.symbol == 'B/.'
+    assert not balboa.symbol_ahead
+    assert balboa.symbol_separator == '_'
     assert balboa.__hash__() == hash((decimal, 'PAB', '590'))
     assert balboa.__repr__() == (
         'Balboa(amount: 1000, '
         'alpha_code: "PAB", '
         'symbol: "B/.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "590", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert balboa.__str__() == 'PAB 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_balboa_changed():
             AttributeError,
             match='can\'t set attribute'):
         balboa.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        balboa.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        balboa.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_balboa_math_add():
                    'balboa.Balboa\'> '
                    'and <class \'str\'>.')):
         _ = balboa_one.__add__('1.00')
-    assert (balboa_one + balboa_two) == balboa_three
+    assert (
+        balboa_one +
+        balboa_two) == balboa_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Balboa(amount=1000)
+def test_balboa_slots():
+    """test_balboa_slots."""
+    balboa = Balboa(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Balboa\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        balboa.new_variable = 'fail'  # pylint: disable=assigning-non-slot

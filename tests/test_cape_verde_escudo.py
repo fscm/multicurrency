@@ -26,21 +26,25 @@ def test_cape_verde_escudo():
     assert cape_verde_escudo.numeric_code == '132'
     assert cape_verde_escudo.alpha_code == 'CVE'
     assert cape_verde_escudo.decimal_places == 2
-    assert cape_verde_escudo.decimal_sign == ','
-    assert cape_verde_escudo.grouping_sign == '.'
+    assert cape_verde_escudo.decimal_sign == '$'
+    assert cape_verde_escudo.grouping_sign == '\u202F'
     assert not cape_verde_escudo.international
-    assert cape_verde_escudo.symbol == '$'
+    assert cape_verde_escudo.symbol == ''
+    assert not cape_verde_escudo.symbol_ahead
+    assert cape_verde_escudo.symbol_separator == ''
     assert cape_verde_escudo.__hash__() == hash((decimal, 'CVE', '132'))
     assert cape_verde_escudo.__repr__() == (
         'CapeVerdeEscudo(amount: 0.1428571428571428571428571429, '
         'alpha_code: "CVE", '
-        'symbol: "$", '
+        'symbol: "", '
+        'symbol_ahead: False, '
+        'symbol_separator: "", '
         'numeric_code: "132", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: "$", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert cape_verde_escudo.__str__() == '$0,14'
+    assert cape_verde_escudo.__str__() == '0$14'
 
 
 def test_cape_verde_escudo_negative():
@@ -51,21 +55,25 @@ def test_cape_verde_escudo_negative():
     assert cape_verde_escudo.numeric_code == '132'
     assert cape_verde_escudo.alpha_code == 'CVE'
     assert cape_verde_escudo.decimal_places == 2
-    assert cape_verde_escudo.decimal_sign == ','
-    assert cape_verde_escudo.grouping_sign == '.'
+    assert cape_verde_escudo.decimal_sign == '$'
+    assert cape_verde_escudo.grouping_sign == '\u202F'
     assert not cape_verde_escudo.international
-    assert cape_verde_escudo.symbol == '$'
+    assert cape_verde_escudo.symbol == ''
+    assert not cape_verde_escudo.symbol_ahead
+    assert cape_verde_escudo.symbol_separator == ''
     assert cape_verde_escudo.__hash__() == hash((decimal, 'CVE', '132'))
     assert cape_verde_escudo.__repr__() == (
         'CapeVerdeEscudo(amount: -100, '
         'alpha_code: "CVE", '
-        'symbol: "$", '
+        'symbol: "", '
+        'symbol_ahead: False, '
+        'symbol_separator: "", '
         'numeric_code: "132", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: "$", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert cape_verde_escudo.__str__() == '$-100,00'
+    assert cape_verde_escudo.__str__() == '-100$00'
 
 
 def test_cape_verde_escudo_custom():
@@ -74,27 +82,33 @@ def test_cape_verde_escudo_custom():
     cape_verde_escudo = CapeVerdeEscudo(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign='\u202F',
+        grouping_sign='$',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert cape_verde_escudo.amount == decimal
     assert cape_verde_escudo.numeric_code == '132'
     assert cape_verde_escudo.alpha_code == 'CVE'
     assert cape_verde_escudo.decimal_places == 5
-    assert cape_verde_escudo.decimal_sign == '.'
-    assert cape_verde_escudo.grouping_sign == ','
+    assert cape_verde_escudo.decimal_sign == '\u202F'
+    assert cape_verde_escudo.grouping_sign == '$'
     assert cape_verde_escudo.international
-    assert cape_verde_escudo.symbol == '$'
+    assert cape_verde_escudo.symbol == ''
+    assert not cape_verde_escudo.symbol_ahead
+    assert cape_verde_escudo.symbol_separator == '_'
     assert cape_verde_escudo.__hash__() == hash((decimal, 'CVE', '132'))
     assert cape_verde_escudo.__repr__() == (
         'CapeVerdeEscudo(amount: 1000, '
         'alpha_code: "CVE", '
-        'symbol: "$", '
+        'symbol: "", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "132", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: "\u202F", '
+        'grouping_sign: "$", '
         'international: True)')
     assert cape_verde_escudo.__str__() == 'CVE 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_cape_verde_escudo_changed():
             AttributeError,
             match='can\'t set attribute'):
         cape_verde_escudo.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cape_verde_escudo.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cape_verde_escudo.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_cape_verde_escudo_math_add():
                    'escudo.CapeVerdeEscudo\'> '
                    'and <class \'str\'>.')):
         _ = cape_verde_escudo_one.__add__('1.00')
-    assert (cape_verde_escudo_one + cape_verde_escudo_two) == cape_verde_escudo_three
+    assert (
+        cape_verde_escudo_one +
+        cape_verde_escudo_two) == cape_verde_escudo_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = CapeVerdeEscudo(amount=1000)
+def test_cape_verde_escudo_slots():
+    """test_cape_verde_escudo_slots."""
+    cape_verde_escudo = CapeVerdeEscudo(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'CapeVerdeEscudo\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        cape_verde_escudo.new_variable = 'fail'  # pylint: disable=assigning-non-slot

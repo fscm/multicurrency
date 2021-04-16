@@ -29,18 +29,22 @@ def test_syrian_pound():
     assert syrian_pound.decimal_sign == ','
     assert syrian_pound.grouping_sign == '.'
     assert not syrian_pound.international
-    assert syrian_pound.symbol == 'ل.س'
+    assert syrian_pound.symbol == 'ل.س.'
+    assert not syrian_pound.symbol_ahead
+    assert syrian_pound.symbol_separator == '\u00A0'
     assert syrian_pound.__hash__() == hash((decimal, 'SYP', '760'))
     assert syrian_pound.__repr__() == (
         'SyrianPound(amount: 0.1428571428571428571428571429, '
         'alpha_code: "SYP", '
-        'symbol: "ل.س", '
+        'symbol: "ل.س.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "760", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert syrian_pound.__str__() == 'ل.س0,14'
+    assert syrian_pound.__str__() == '0,14 ل.س.'
 
 
 def test_syrian_pound_negative():
@@ -54,18 +58,22 @@ def test_syrian_pound_negative():
     assert syrian_pound.decimal_sign == ','
     assert syrian_pound.grouping_sign == '.'
     assert not syrian_pound.international
-    assert syrian_pound.symbol == 'ل.س'
+    assert syrian_pound.symbol == 'ل.س.'
+    assert not syrian_pound.symbol_ahead
+    assert syrian_pound.symbol_separator == '\u00A0'
     assert syrian_pound.__hash__() == hash((decimal, 'SYP', '760'))
     assert syrian_pound.__repr__() == (
         'SyrianPound(amount: -100, '
         'alpha_code: "SYP", '
-        'symbol: "ل.س", '
+        'symbol: "ل.س.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "760", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert syrian_pound.__str__() == 'ل.س-100,00'
+    assert syrian_pound.__str__() == '-100,00 ل.س.'
 
 
 def test_syrian_pound_custom():
@@ -76,7 +84,9 @@ def test_syrian_pound_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert syrian_pound.amount == decimal
     assert syrian_pound.numeric_code == '760'
@@ -85,12 +95,16 @@ def test_syrian_pound_custom():
     assert syrian_pound.decimal_sign == '.'
     assert syrian_pound.grouping_sign == ','
     assert syrian_pound.international
-    assert syrian_pound.symbol == 'ل.س'
+    assert syrian_pound.symbol == 'ل.س.'
+    assert not syrian_pound.symbol_ahead
+    assert syrian_pound.symbol_separator == '_'
     assert syrian_pound.__hash__() == hash((decimal, 'SYP', '760'))
     assert syrian_pound.__repr__() == (
         'SyrianPound(amount: 1000, '
         'alpha_code: "SYP", '
-        'symbol: "ل.س", '
+        'symbol: "ل.س.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "760", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_syrian_pound_changed():
             AttributeError,
             match='can\'t set attribute'):
         syrian_pound.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        syrian_pound.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        syrian_pound.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_syrian_pound_math_add():
                    'pound.SyrianPound\'> '
                    'and <class \'str\'>.')):
         _ = syrian_pound_one.__add__('1.00')
-    assert (syrian_pound_one + syrian_pound_two) == syrian_pound_three
+    assert (
+        syrian_pound_one +
+        syrian_pound_two) == syrian_pound_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = SyrianPound(amount=1000)
+def test_syrian_pound_slots():
+    """test_syrian_pound_slots."""
+    syrian_pound = SyrianPound(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'SyrianPound\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        syrian_pound.new_variable = 'fail'  # pylint: disable=assigning-non-slot

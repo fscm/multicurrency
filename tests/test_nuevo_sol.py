@@ -30,17 +30,21 @@ def test_nuevo_sol():
     assert nuevo_sol.grouping_sign == ','
     assert not nuevo_sol.international
     assert nuevo_sol.symbol == 'S/.'
+    assert nuevo_sol.symbol_ahead
+    assert nuevo_sol.symbol_separator == '\u00A0'
     assert nuevo_sol.__hash__() == hash((decimal, 'PEN', '604'))
     assert nuevo_sol.__repr__() == (
         'NuevoSol(amount: 0.1428571428571428571428571429, '
         'alpha_code: "PEN", '
         'symbol: "S/.", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "604", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert nuevo_sol.__str__() == 'S/.0.14'
+    assert nuevo_sol.__str__() == 'S/. 0.14'
 
 
 def test_nuevo_sol_negative():
@@ -55,17 +59,21 @@ def test_nuevo_sol_negative():
     assert nuevo_sol.grouping_sign == ','
     assert not nuevo_sol.international
     assert nuevo_sol.symbol == 'S/.'
+    assert nuevo_sol.symbol_ahead
+    assert nuevo_sol.symbol_separator == '\u00A0'
     assert nuevo_sol.__hash__() == hash((decimal, 'PEN', '604'))
     assert nuevo_sol.__repr__() == (
         'NuevoSol(amount: -100, '
         'alpha_code: "PEN", '
         'symbol: "S/.", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "604", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert nuevo_sol.__str__() == 'S/.-100.00'
+    assert nuevo_sol.__str__() == 'S/. -100.00'
 
 
 def test_nuevo_sol_custom():
@@ -76,7 +84,9 @@ def test_nuevo_sol_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert nuevo_sol.amount == decimal
     assert nuevo_sol.numeric_code == '604'
@@ -86,17 +96,21 @@ def test_nuevo_sol_custom():
     assert nuevo_sol.grouping_sign == '.'
     assert nuevo_sol.international
     assert nuevo_sol.symbol == 'S/.'
+    assert not nuevo_sol.symbol_ahead
+    assert nuevo_sol.symbol_separator == '_'
     assert nuevo_sol.__hash__() == hash((decimal, 'PEN', '604'))
     assert nuevo_sol.__repr__() == (
         'NuevoSol(amount: 1000, '
         'alpha_code: "PEN", '
         'symbol: "S/.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "604", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert nuevo_sol.__str__() == 'PEN 1.000,00000'
+    assert nuevo_sol.__str__() == 'PEN 1,000.00000'
 
 
 def test_nuevo_sol_changed():
@@ -114,6 +128,14 @@ def test_nuevo_sol_changed():
             AttributeError,
             match='can\'t set attribute'):
         nuevo_sol.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        nuevo_sol.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        nuevo_sol.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_nuevo_sol_math_add():
                    'nuevo_sol.NuevoSol\'> '
                    'and <class \'str\'>.')):
         _ = nuevo_sol_one.__add__('1.00')
-    assert (nuevo_sol_one + nuevo_sol_two) == nuevo_sol_three
+    assert (
+        nuevo_sol_one +
+        nuevo_sol_two) == nuevo_sol_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = NuevoSol(amount=1000)
+def test_nuevo_sol_slots():
+    """test_nuevo_sol_slots."""
+    nuevo_sol = NuevoSol(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'NuevoSol\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        nuevo_sol.new_variable = 'fail'  # pylint: disable=assigning-non-slot

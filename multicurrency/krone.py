@@ -17,9 +17,10 @@ class DanishKrone(Currency):
     Simple usage example:
 
         >>> from multicurrency import DanishKrone
-        >>> danish_krone = DanishKrone(amount=1)
+        >>> danish_krone = DanishKrone(
+        ...     amount=123456.789)
         >>> print(danish_krone)
-        kr1,00
+        123.456,79 kr.
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -32,6 +33,10 @@ class DanishKrone(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to False.
     """
 
     __slots__ = []
@@ -39,10 +44,12 @@ class DanishKrone(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 2,
+            decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
             grouping_sign: Optional[str] = '.',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = False,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'DanishKrone':
         """Class creator.
 
@@ -54,7 +61,9 @@ class DanishKrone(Currency):
             amount=amount,
             alpha_code='DKK',
             numeric_code='208',
-            symbol='kr',
+            symbol='kr.',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -67,9 +76,10 @@ class NorwegianKrone(Currency):
     Simple usage example:
 
         >>> from multicurrency import NorwegianKrone
-        >>> norwegian_krone = NorwegianKrone(amount=1)
+        >>> norwegian_krone = NorwegianKrone(
+        ...     amount=123456.789)
         >>> print(norwegian_krone)
-        kr1,00
+        kr 123 456,79
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -78,10 +88,14 @@ class NorwegianKrone(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
-        grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
+        grouping_sign (str, optional): Grouping symbol. Defaults to ' '.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -89,10 +103,12 @@ class NorwegianKrone(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 2,
+            decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
-            grouping_sign: Optional[str] = '.',
-            international: bool = False,
+            grouping_sign: Optional[str] = '\u202F',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'NorwegianKrone':
         """Class creator.
 
@@ -105,6 +121,8 @@ class NorwegianKrone(Currency):
             alpha_code='NOK',
             numeric_code='578',
             symbol='kr',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

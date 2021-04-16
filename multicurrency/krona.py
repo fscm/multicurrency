@@ -17,9 +17,10 @@ class IcelandKrona(Currency):
     Simple usage example:
 
         >>> from multicurrency import IcelandKrona
-        >>> iceland_krona = IcelandKrona(amount=1)
+        >>> iceland_krona = IcelandKrona(
+        ...     amount=123456.789)
         >>> print(iceland_krona)
-        Kr1
+        123.457 Kr
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -32,6 +33,10 @@ class IcelandKrona(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to False.
     """
 
     __slots__ = []
@@ -39,10 +44,12 @@ class IcelandKrona(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 0,
+            decimal_places: Optional[int] = 0,
             decimal_sign: Optional[str] = ',',
             grouping_sign: Optional[str] = '.',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = False,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'IcelandKrona':
         """Class creator.
 
@@ -55,6 +62,8 @@ class IcelandKrona(Currency):
             alpha_code='ISK',
             numeric_code='352',
             symbol='Kr',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -67,9 +76,10 @@ class SwedishKrona(Currency):
     Simple usage example:
 
         >>> from multicurrency import SwedishKrona
-        >>> swedish_krona = SwedishKrona(amount=1)
+        >>> swedish_krona = SwedishKrona(
+        ...     amount=123456.789)
         >>> print(swedish_krona)
-        kr1,00
+        123 456,79 kr
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -78,10 +88,14 @@ class SwedishKrona(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
-        grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
+        grouping_sign (str, optional): Grouping symbol. Defaults to ' '.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to False.
     """
 
     __slots__ = []
@@ -89,10 +103,12 @@ class SwedishKrona(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 2,
+            decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
-            grouping_sign: Optional[str] = '.',
-            international: bool = False,
+            grouping_sign: Optional[str] = '\u202F',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = False,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'SwedishKrona':
         """Class creator.
 
@@ -105,6 +121,8 @@ class SwedishKrona(Currency):
             alpha_code='SEK',
             numeric_code='752',
             symbol='kr',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

@@ -26,21 +26,25 @@ def test_seychelles_rupee():
     assert seychelles_rupee.numeric_code == '690'
     assert seychelles_rupee.alpha_code == 'SCR'
     assert seychelles_rupee.decimal_places == 2
-    assert seychelles_rupee.decimal_sign == ','
-    assert seychelles_rupee.grouping_sign == '.'
+    assert seychelles_rupee.decimal_sign == '.'
+    assert seychelles_rupee.grouping_sign == ','
     assert not seychelles_rupee.international
     assert seychelles_rupee.symbol == '₨'
+    assert seychelles_rupee.symbol_ahead
+    assert seychelles_rupee.symbol_separator == '\u00A0'
     assert seychelles_rupee.__hash__() == hash((decimal, 'SCR', '690'))
     assert seychelles_rupee.__repr__() == (
         'SeychellesRupee(amount: 0.1428571428571428571428571429, '
         'alpha_code: "SCR", '
         'symbol: "₨", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "690", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert seychelles_rupee.__str__() == '₨0,14'
+    assert seychelles_rupee.__str__() == '₨ 0.14'
 
 
 def test_seychelles_rupee_negative():
@@ -51,21 +55,25 @@ def test_seychelles_rupee_negative():
     assert seychelles_rupee.numeric_code == '690'
     assert seychelles_rupee.alpha_code == 'SCR'
     assert seychelles_rupee.decimal_places == 2
-    assert seychelles_rupee.decimal_sign == ','
-    assert seychelles_rupee.grouping_sign == '.'
+    assert seychelles_rupee.decimal_sign == '.'
+    assert seychelles_rupee.grouping_sign == ','
     assert not seychelles_rupee.international
     assert seychelles_rupee.symbol == '₨'
+    assert seychelles_rupee.symbol_ahead
+    assert seychelles_rupee.symbol_separator == '\u00A0'
     assert seychelles_rupee.__hash__() == hash((decimal, 'SCR', '690'))
     assert seychelles_rupee.__repr__() == (
         'SeychellesRupee(amount: -100, '
         'alpha_code: "SCR", '
         'symbol: "₨", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "690", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert seychelles_rupee.__str__() == '₨-100,00'
+    assert seychelles_rupee.__str__() == '₨ -100.00'
 
 
 def test_seychelles_rupee_custom():
@@ -74,27 +82,33 @@ def test_seychelles_rupee_custom():
     seychelles_rupee = SeychellesRupee(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert seychelles_rupee.amount == decimal
     assert seychelles_rupee.numeric_code == '690'
     assert seychelles_rupee.alpha_code == 'SCR'
     assert seychelles_rupee.decimal_places == 5
-    assert seychelles_rupee.decimal_sign == '.'
-    assert seychelles_rupee.grouping_sign == ','
+    assert seychelles_rupee.decimal_sign == ','
+    assert seychelles_rupee.grouping_sign == '.'
     assert seychelles_rupee.international
     assert seychelles_rupee.symbol == '₨'
+    assert not seychelles_rupee.symbol_ahead
+    assert seychelles_rupee.symbol_separator == '_'
     assert seychelles_rupee.__hash__() == hash((decimal, 'SCR', '690'))
     assert seychelles_rupee.__repr__() == (
         'SeychellesRupee(amount: 1000, '
         'alpha_code: "SCR", '
         'symbol: "₨", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "690", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert seychelles_rupee.__str__() == 'SCR 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_seychelles_rupee_changed():
             AttributeError,
             match='can\'t set attribute'):
         seychelles_rupee.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        seychelles_rupee.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        seychelles_rupee.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_seychelles_rupee_math_add():
                    'rupee.SeychellesRupee\'> '
                    'and <class \'str\'>.')):
         _ = seychelles_rupee_one.__add__('1.00')
-    assert (seychelles_rupee_one + seychelles_rupee_two) == seychelles_rupee_three
+    assert (
+        seychelles_rupee_one +
+        seychelles_rupee_two) == seychelles_rupee_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = SeychellesRupee(amount=1000)
+def test_seychelles_rupee_slots():
+    """test_seychelles_rupee_slots."""
+    seychelles_rupee = SeychellesRupee(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'SeychellesRupee\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        seychelles_rupee.new_variable = 'fail'  # pylint: disable=assigning-non-slot

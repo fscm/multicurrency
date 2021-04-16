@@ -9,14 +9,14 @@ from .colon import CostaRicanColon as CostaRicanColon
 from .currency import Currency as Currency, CurrencyContext as CurrencyContext
 from .dalasi import Dalasi as Dalasi
 from .denar import Denar as Denar
-from .dinar import AlgerianDinar as AlgerianDinar, BahrainiDinar as BahrainiDinar, IraqiDinar as IraqiDinar, JordanianDinar as JordanianDinar, KuwaitiDinar as KuwaitiDinar, LibyanDinar as LibyanDinar, SerbianDinar as SerbianDinar, TunisianDinar as TunisianDinar
+from .dinar import AlgerianDinar as AlgerianDinar, BahrainiDinar as BahrainiDinar, IraqiDinar as IraqiDinar, JordanianDinar as JordanianDinar, KuwaitiDinar as KuwaitiDinar, LibyanDinar as LibyanDinar, SerbianDinarSR as SerbianDinarSR, SerbianDinarXK as SerbianDinarXK, TunisianDinar as TunisianDinar
 from .dirham import MoroccanDirham as MoroccanDirham, UAEDirham as UAEDirham
 from .dobra import Dobra as Dobra
 from .dollar import AustralianDollar as AustralianDollar, BahamianDollar as BahamianDollar, BarbadosDollar as BarbadosDollar, BelizeDollar as BelizeDollar, BermudianDollar as BermudianDollar, BruneiDollar as BruneiDollar, CanadianDollarEN as CanadianDollarEN, CanadianDollarFR as CanadianDollarFR, CaymanIslandsDollar as CaymanIslandsDollar, EastCaribbeanDollar as EastCaribbeanDollar, FijiDollar as FijiDollar, GuyanaDollar as GuyanaDollar, HongKongDollar as HongKongDollar, JamaicanDollar as JamaicanDollar, LiberianDollar as LiberianDollar, NamibiaDollar as NamibiaDollar, NewZealandDollar as NewZealandDollar, SingaporeDollar as SingaporeDollar, SolomonIslandsDollar as SolomonIslandsDollar, SurinameDollar as SurinameDollar, TaiwanDollar as TaiwanDollar, TrinidadandTobagoDollar as TrinidadandTobagoDollar, USDollar as USDollar, ZimbabweDollar as ZimbabweDollar
 from .dong import Dong as Dong
 from .dram import ArmenianDram as ArmenianDram
 from .escudo import CapeVerdeEscudo as CapeVerdeEscudo
-from .euro import Euro as Euro, EuroIE as EuroIE
+from .euro import Euro as Euro, EuroAD as EuroAD, EuroAT as EuroAT, EuroBE as EuroBE, EuroCY as EuroCY, EuroDE as EuroDE, EuroEE as EuroEE, EuroES as EuroES, EuroFI as EuroFI, EuroFR as EuroFR, EuroGR as EuroGR, EuroIE as EuroIE, EuroIT as EuroIT, EuroLT as EuroLT, EuroLU as EuroLU, EuroLV as EuroLV, EuroMC as EuroMC, EuroME as EuroME, EuroMT as EuroMT, EuroNL as EuroNL, EuroPT as EuroPT, EuroSI as EuroSI, EuroSK as EuroSK, EuroSM as EuroSM, EuroVA as EuroVA, EuroXK as EuroXK
 from .exceptions import CurrencyException as CurrencyException, CurrencyInvalidDivision as CurrencyInvalidDivision, CurrencyInvalidMultiplication as CurrencyInvalidMultiplication, CurrencyMismatchException as CurrencyMismatchException, CurrencyTypeException as CurrencyTypeException
 from .florin import ArubanFlorin as ArubanFlorin
 from .forint import Forint as Forint
@@ -59,7 +59,7 @@ from .pound import EgyptianPound as EgyptianPound, FalklandIslandsPound as Falkl
 from .pula import Pula as Pula
 from .pzloty import PZloty as PZloty
 from .quetzal import Quetzal as Quetzal
-from .rand import Rand as Rand
+from .rand import RandLS as RandLS, RandNA as RandNA, RandZA as RandZA
 from .real import BrazilianReal as BrazilianReal
 from .rial import IranianRial as IranianRial, QatariRial as QatariRial, RialOmani as RialOmani, YemeniRial as YemeniRial
 from .riel import Riel as Riel

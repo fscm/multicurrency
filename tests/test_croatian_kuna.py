@@ -30,17 +30,21 @@ def test_croatian_kuna():
     assert croatian_kuna.grouping_sign == '.'
     assert not croatian_kuna.international
     assert croatian_kuna.symbol == 'Kn'
+    assert not croatian_kuna.symbol_ahead
+    assert croatian_kuna.symbol_separator == '\u00A0'
     assert croatian_kuna.__hash__() == hash((decimal, 'HRK', '191'))
     assert croatian_kuna.__repr__() == (
         'CroatianKuna(amount: 0.1428571428571428571428571429, '
         'alpha_code: "HRK", '
         'symbol: "Kn", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "191", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert croatian_kuna.__str__() == 'Kn0,14'
+    assert croatian_kuna.__str__() == '0,14 Kn'
 
 
 def test_croatian_kuna_negative():
@@ -55,17 +59,21 @@ def test_croatian_kuna_negative():
     assert croatian_kuna.grouping_sign == '.'
     assert not croatian_kuna.international
     assert croatian_kuna.symbol == 'Kn'
+    assert not croatian_kuna.symbol_ahead
+    assert croatian_kuna.symbol_separator == '\u00A0'
     assert croatian_kuna.__hash__() == hash((decimal, 'HRK', '191'))
     assert croatian_kuna.__repr__() == (
         'CroatianKuna(amount: -100, '
         'alpha_code: "HRK", '
         'symbol: "Kn", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "191", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert croatian_kuna.__str__() == 'Kn-100,00'
+    assert croatian_kuna.__str__() == '-100,00 Kn'
 
 
 def test_croatian_kuna_custom():
@@ -76,7 +84,9 @@ def test_croatian_kuna_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert croatian_kuna.amount == decimal
     assert croatian_kuna.numeric_code == '191'
@@ -86,11 +96,15 @@ def test_croatian_kuna_custom():
     assert croatian_kuna.grouping_sign == ','
     assert croatian_kuna.international
     assert croatian_kuna.symbol == 'Kn'
+    assert not croatian_kuna.symbol_ahead
+    assert croatian_kuna.symbol_separator == '_'
     assert croatian_kuna.__hash__() == hash((decimal, 'HRK', '191'))
     assert croatian_kuna.__repr__() == (
         'CroatianKuna(amount: 1000, '
         'alpha_code: "HRK", '
         'symbol: "Kn", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "191", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_croatian_kuna_changed():
             AttributeError,
             match='can\'t set attribute'):
         croatian_kuna.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        croatian_kuna.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        croatian_kuna.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_croatian_kuna_math_add():
                    'kuna.CroatianKuna\'> '
                    'and <class \'str\'>.')):
         _ = croatian_kuna_one.__add__('1.00')
-    assert (croatian_kuna_one + croatian_kuna_two) == croatian_kuna_three
+    assert (
+        croatian_kuna_one +
+        croatian_kuna_two) == croatian_kuna_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = CroatianKuna(amount=1000)
+def test_croatian_kuna_slots():
+    """test_croatian_kuna_slots."""
+    croatian_kuna = CroatianKuna(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'CroatianKuna\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        croatian_kuna.new_variable = 'fail'  # pylint: disable=assigning-non-slot

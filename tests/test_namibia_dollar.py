@@ -26,21 +26,25 @@ def test_namibia_dollar():
     assert namibia_dollar.numeric_code == '516'
     assert namibia_dollar.alpha_code == 'NAD'
     assert namibia_dollar.decimal_places == 2
-    assert namibia_dollar.decimal_sign == ','
-    assert namibia_dollar.grouping_sign == '.'
+    assert namibia_dollar.decimal_sign == '.'
+    assert namibia_dollar.grouping_sign == ','
     assert not namibia_dollar.international
     assert namibia_dollar.symbol == '$'
+    assert namibia_dollar.symbol_ahead
+    assert namibia_dollar.symbol_separator == ''
     assert namibia_dollar.__hash__() == hash((decimal, 'NAD', '516'))
     assert namibia_dollar.__repr__() == (
         'NamibiaDollar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "NAD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "516", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert namibia_dollar.__str__() == '$0,14'
+    assert namibia_dollar.__str__() == '$0.14'
 
 
 def test_namibia_dollar_negative():
@@ -51,21 +55,25 @@ def test_namibia_dollar_negative():
     assert namibia_dollar.numeric_code == '516'
     assert namibia_dollar.alpha_code == 'NAD'
     assert namibia_dollar.decimal_places == 2
-    assert namibia_dollar.decimal_sign == ','
-    assert namibia_dollar.grouping_sign == '.'
+    assert namibia_dollar.decimal_sign == '.'
+    assert namibia_dollar.grouping_sign == ','
     assert not namibia_dollar.international
     assert namibia_dollar.symbol == '$'
+    assert namibia_dollar.symbol_ahead
+    assert namibia_dollar.symbol_separator == ''
     assert namibia_dollar.__hash__() == hash((decimal, 'NAD', '516'))
     assert namibia_dollar.__repr__() == (
         'NamibiaDollar(amount: -100, '
         'alpha_code: "NAD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "516", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert namibia_dollar.__str__() == '$-100,00'
+    assert namibia_dollar.__str__() == '$-100.00'
 
 
 def test_namibia_dollar_custom():
@@ -74,27 +82,33 @@ def test_namibia_dollar_custom():
     namibia_dollar = NamibiaDollar(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert namibia_dollar.amount == decimal
     assert namibia_dollar.numeric_code == '516'
     assert namibia_dollar.alpha_code == 'NAD'
     assert namibia_dollar.decimal_places == 5
-    assert namibia_dollar.decimal_sign == '.'
-    assert namibia_dollar.grouping_sign == ','
+    assert namibia_dollar.decimal_sign == ','
+    assert namibia_dollar.grouping_sign == '.'
     assert namibia_dollar.international
     assert namibia_dollar.symbol == '$'
+    assert not namibia_dollar.symbol_ahead
+    assert namibia_dollar.symbol_separator == '_'
     assert namibia_dollar.__hash__() == hash((decimal, 'NAD', '516'))
     assert namibia_dollar.__repr__() == (
         'NamibiaDollar(amount: 1000, '
         'alpha_code: "NAD", '
         'symbol: "$", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "516", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert namibia_dollar.__str__() == 'NAD 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_namibia_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         namibia_dollar.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        namibia_dollar.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        namibia_dollar.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_namibia_dollar_math_add():
                    'dollar.NamibiaDollar\'> '
                    'and <class \'str\'>.')):
         _ = namibia_dollar_one.__add__('1.00')
-    assert (namibia_dollar_one + namibia_dollar_two) == namibia_dollar_three
+    assert (
+        namibia_dollar_one +
+        namibia_dollar_two) == namibia_dollar_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = NamibiaDollar(amount=1000)
+def test_namibia_dollar_slots():
+    """test_namibia_dollar_slots."""
+    namibia_dollar = NamibiaDollar(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'NamibiaDollar\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        namibia_dollar.new_variable = 'fail'  # pylint: disable=assigning-non-slot

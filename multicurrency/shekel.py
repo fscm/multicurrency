@@ -17,9 +17,10 @@ class NewIsraeliShekel(Currency):
     Simple usage example:
 
         >>> from multicurrency import NewIsraeliShekel
-        >>> new_israeli_shekel = NewIsraeliShekel(amount=1)
+        >>> new_israeli_shekel = NewIsraeliShekel(
+        ...     amount=123456.789)
         >>> print(new_israeli_shekel)
-        ₪1.00
+        123,456.79 ₪
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -32,6 +33,10 @@ class NewIsraeliShekel(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to False.
     """
 
     __slots__ = []
@@ -39,10 +44,12 @@ class NewIsraeliShekel(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 2,
+            decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
             grouping_sign: Optional[str] = ',',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = False,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'NewIsraeliShekel':
         """Class creator.
 
@@ -55,6 +62,8 @@ class NewIsraeliShekel(Currency):
             alpha_code='ILS',
             numeric_code='376',
             symbol='₪',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

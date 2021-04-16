@@ -27,20 +27,24 @@ def test_congolese_franc():
     assert congolese_franc.alpha_code == 'CDF'
     assert congolese_franc.decimal_places == 2
     assert congolese_franc.decimal_sign == ','
-    assert congolese_franc.grouping_sign == '.'
+    assert congolese_franc.grouping_sign == '\u202F'
     assert not congolese_franc.international
     assert congolese_franc.symbol == '₣'
+    assert not congolese_franc.symbol_ahead
+    assert congolese_franc.symbol_separator == '\u00A0'
     assert congolese_franc.__hash__() == hash((decimal, 'CDF', '976'))
     assert congolese_franc.__repr__() == (
         'CongoleseFranc(amount: 0.1428571428571428571428571429, '
         'alpha_code: "CDF", '
         'symbol: "₣", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "976", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert congolese_franc.__str__() == '₣0,14'
+    assert congolese_franc.__str__() == '0,14 ₣'
 
 
 def test_congolese_franc_negative():
@@ -52,20 +56,24 @@ def test_congolese_franc_negative():
     assert congolese_franc.alpha_code == 'CDF'
     assert congolese_franc.decimal_places == 2
     assert congolese_franc.decimal_sign == ','
-    assert congolese_franc.grouping_sign == '.'
+    assert congolese_franc.grouping_sign == '\u202F'
     assert not congolese_franc.international
     assert congolese_franc.symbol == '₣'
+    assert not congolese_franc.symbol_ahead
+    assert congolese_franc.symbol_separator == '\u00A0'
     assert congolese_franc.__hash__() == hash((decimal, 'CDF', '976'))
     assert congolese_franc.__repr__() == (
         'CongoleseFranc(amount: -100, '
         'alpha_code: "CDF", '
         'symbol: "₣", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "976", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert congolese_franc.__str__() == '₣-100,00'
+    assert congolese_franc.__str__() == '-100,00 ₣'
 
 
 def test_congolese_franc_custom():
@@ -74,26 +82,32 @@ def test_congolese_franc_custom():
     congolese_franc = CongoleseFranc(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
+        decimal_sign='\u202F',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert congolese_franc.amount == decimal
     assert congolese_franc.numeric_code == '976'
     assert congolese_franc.alpha_code == 'CDF'
     assert congolese_franc.decimal_places == 5
-    assert congolese_franc.decimal_sign == '.'
+    assert congolese_franc.decimal_sign == '\u202F'
     assert congolese_franc.grouping_sign == ','
     assert congolese_franc.international
     assert congolese_franc.symbol == '₣'
+    assert not congolese_franc.symbol_ahead
+    assert congolese_franc.symbol_separator == '_'
     assert congolese_franc.__hash__() == hash((decimal, 'CDF', '976'))
     assert congolese_franc.__repr__() == (
         'CongoleseFranc(amount: 1000, '
         'alpha_code: "CDF", '
         'symbol: "₣", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "976", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
+        'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
         'international: True)')
     assert congolese_franc.__str__() == 'CDF 1,000.00000'
@@ -114,6 +128,14 @@ def test_congolese_franc_changed():
             AttributeError,
             match='can\'t set attribute'):
         congolese_franc.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        congolese_franc.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        congolese_franc.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_congolese_franc_math_add():
                    'franc.CongoleseFranc\'> '
                    'and <class \'str\'>.')):
         _ = congolese_franc_one.__add__('1.00')
-    assert (congolese_franc_one + congolese_franc_two) == congolese_franc_three
+    assert (
+        congolese_franc_one +
+        congolese_franc_two) == congolese_franc_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = CongoleseFranc(amount=1000)
+def test_congolese_franc_slots():
+    """test_congolese_franc_slots."""
+    congolese_franc = CongoleseFranc(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'CongoleseFranc\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        congolese_franc.new_variable = 'fail'  # pylint: disable=assigning-non-slot

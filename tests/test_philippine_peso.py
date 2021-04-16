@@ -30,11 +30,15 @@ def test_philippine_peso():
     assert philippine_peso.grouping_sign == ','
     assert not philippine_peso.international
     assert philippine_peso.symbol == '₱'
+    assert philippine_peso.symbol_ahead
+    assert philippine_peso.symbol_separator == ''
     assert philippine_peso.__hash__() == hash((decimal, 'PHP', '608'))
     assert philippine_peso.__repr__() == (
         'PhilippinePeso(amount: 0.1428571428571428571428571429, '
         'alpha_code: "PHP", '
         'symbol: "₱", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "608", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -55,11 +59,15 @@ def test_philippine_peso_negative():
     assert philippine_peso.grouping_sign == ','
     assert not philippine_peso.international
     assert philippine_peso.symbol == '₱'
+    assert philippine_peso.symbol_ahead
+    assert philippine_peso.symbol_separator == ''
     assert philippine_peso.__hash__() == hash((decimal, 'PHP', '608'))
     assert philippine_peso.__repr__() == (
         'PhilippinePeso(amount: -100, '
         'alpha_code: "PHP", '
         'symbol: "₱", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "608", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -76,7 +84,9 @@ def test_philippine_peso_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert philippine_peso.amount == decimal
     assert philippine_peso.numeric_code == '608'
@@ -86,17 +96,21 @@ def test_philippine_peso_custom():
     assert philippine_peso.grouping_sign == '.'
     assert philippine_peso.international
     assert philippine_peso.symbol == '₱'
+    assert not philippine_peso.symbol_ahead
+    assert philippine_peso.symbol_separator == '_'
     assert philippine_peso.__hash__() == hash((decimal, 'PHP', '608'))
     assert philippine_peso.__repr__() == (
         'PhilippinePeso(amount: 1000, '
         'alpha_code: "PHP", '
         'symbol: "₱", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "608", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert philippine_peso.__str__() == 'PHP 1.000,00000'
+    assert philippine_peso.__str__() == 'PHP 1,000.00000'
 
 
 def test_philippine_peso_changed():
@@ -114,6 +128,14 @@ def test_philippine_peso_changed():
             AttributeError,
             match='can\'t set attribute'):
         philippine_peso.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        philippine_peso.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        philippine_peso.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_philippine_peso_math_add():
                    'peso.PhilippinePeso\'> '
                    'and <class \'str\'>.')):
         _ = philippine_peso_one.__add__('1.00')
-    assert (philippine_peso_one + philippine_peso_two) == philippine_peso_three
+    assert (
+        philippine_peso_one +
+        philippine_peso_two) == philippine_peso_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = PhilippinePeso(amount=1000)
+def test_philippine_peso_slots():
+    """test_philippine_peso_slots."""
+    philippine_peso = PhilippinePeso(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'PhilippinePeso\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        philippine_peso.new_variable = 'fail'  # pylint: disable=assigning-non-slot

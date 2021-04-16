@@ -30,11 +30,15 @@ def test_mexican_peso():
     assert mexican_peso.grouping_sign == ','
     assert not mexican_peso.international
     assert mexican_peso.symbol == '$'
+    assert mexican_peso.symbol_ahead
+    assert mexican_peso.symbol_separator == ''
     assert mexican_peso.__hash__() == hash((decimal, 'MXN', '484'))
     assert mexican_peso.__repr__() == (
         'MexicanPeso(amount: 0.1428571428571428571428571429, '
         'alpha_code: "MXN", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "484", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -55,11 +59,15 @@ def test_mexican_peso_negative():
     assert mexican_peso.grouping_sign == ','
     assert not mexican_peso.international
     assert mexican_peso.symbol == '$'
+    assert mexican_peso.symbol_ahead
+    assert mexican_peso.symbol_separator == ''
     assert mexican_peso.__hash__() == hash((decimal, 'MXN', '484'))
     assert mexican_peso.__repr__() == (
         'MexicanPeso(amount: -100, '
         'alpha_code: "MXN", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "484", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -76,7 +84,9 @@ def test_mexican_peso_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert mexican_peso.amount == decimal
     assert mexican_peso.numeric_code == '484'
@@ -86,17 +96,21 @@ def test_mexican_peso_custom():
     assert mexican_peso.grouping_sign == '.'
     assert mexican_peso.international
     assert mexican_peso.symbol == '$'
+    assert not mexican_peso.symbol_ahead
+    assert mexican_peso.symbol_separator == '_'
     assert mexican_peso.__hash__() == hash((decimal, 'MXN', '484'))
     assert mexican_peso.__repr__() == (
         'MexicanPeso(amount: 1000, '
         'alpha_code: "MXN", '
         'symbol: "$", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "484", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert mexican_peso.__str__() == 'MXN 1.000,00000'
+    assert mexican_peso.__str__() == 'MXN 1,000.00000'
 
 
 def test_mexican_peso_changed():
@@ -114,6 +128,14 @@ def test_mexican_peso_changed():
             AttributeError,
             match='can\'t set attribute'):
         mexican_peso.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        mexican_peso.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        mexican_peso.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_mexican_peso_math_add():
                    'peso.MexicanPeso\'> '
                    'and <class \'str\'>.')):
         _ = mexican_peso_one.__add__('1.00')
-    assert (mexican_peso_one + mexican_peso_two) == mexican_peso_three
+    assert (
+        mexican_peso_one +
+        mexican_peso_two) == mexican_peso_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = MexicanPeso(amount=1000)
+def test_mexican_peso_slots():
+    """test_mexican_peso_slots."""
+    mexican_peso = MexicanPeso(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'MexicanPeso\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        mexican_peso.new_variable = 'fail'  # pylint: disable=assigning-non-slot

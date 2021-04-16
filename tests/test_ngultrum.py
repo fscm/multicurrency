@@ -26,21 +26,25 @@ def test_ngultrum():
     assert ngultrum.numeric_code == '064'
     assert ngultrum.alpha_code == 'BTN'
     assert ngultrum.decimal_places == 2
-    assert ngultrum.decimal_sign == ','
-    assert ngultrum.grouping_sign == '.'
+    assert ngultrum.decimal_sign == '.'
+    assert ngultrum.grouping_sign == ','
     assert not ngultrum.international
-    assert ngultrum.symbol == ''
+    assert ngultrum.symbol == 'Nu.'
+    assert ngultrum.symbol_ahead
+    assert ngultrum.symbol_separator == '\u00A0'
     assert ngultrum.__hash__() == hash((decimal, 'BTN', '064'))
     assert ngultrum.__repr__() == (
         'Ngultrum(amount: 0.1428571428571428571428571429, '
         'alpha_code: "BTN", '
-        'symbol: "", '
+        'symbol: "Nu.", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "064", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert ngultrum.__str__() == '0,14'
+    assert ngultrum.__str__() == 'Nu. 0.14'
 
 
 def test_ngultrum_negative():
@@ -51,21 +55,25 @@ def test_ngultrum_negative():
     assert ngultrum.numeric_code == '064'
     assert ngultrum.alpha_code == 'BTN'
     assert ngultrum.decimal_places == 2
-    assert ngultrum.decimal_sign == ','
-    assert ngultrum.grouping_sign == '.'
+    assert ngultrum.decimal_sign == '.'
+    assert ngultrum.grouping_sign == ','
     assert not ngultrum.international
-    assert ngultrum.symbol == ''
+    assert ngultrum.symbol == 'Nu.'
+    assert ngultrum.symbol_ahead
+    assert ngultrum.symbol_separator == '\u00A0'
     assert ngultrum.__hash__() == hash((decimal, 'BTN', '064'))
     assert ngultrum.__repr__() == (
         'Ngultrum(amount: -100, '
         'alpha_code: "BTN", '
-        'symbol: "", '
+        'symbol: "Nu.", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "064", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert ngultrum.__str__() == '-100,00'
+    assert ngultrum.__str__() == 'Nu. -100.00'
 
 
 def test_ngultrum_custom():
@@ -74,27 +82,33 @@ def test_ngultrum_custom():
     ngultrum = Ngultrum(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert ngultrum.amount == decimal
     assert ngultrum.numeric_code == '064'
     assert ngultrum.alpha_code == 'BTN'
     assert ngultrum.decimal_places == 5
-    assert ngultrum.decimal_sign == '.'
-    assert ngultrum.grouping_sign == ','
+    assert ngultrum.decimal_sign == ','
+    assert ngultrum.grouping_sign == '.'
     assert ngultrum.international
-    assert ngultrum.symbol == ''
+    assert ngultrum.symbol == 'Nu.'
+    assert not ngultrum.symbol_ahead
+    assert ngultrum.symbol_separator == '_'
     assert ngultrum.__hash__() == hash((decimal, 'BTN', '064'))
     assert ngultrum.__repr__() == (
         'Ngultrum(amount: 1000, '
         'alpha_code: "BTN", '
-        'symbol: "", '
+        'symbol: "Nu.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "064", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert ngultrum.__str__() == 'BTN 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_ngultrum_changed():
             AttributeError,
             match='can\'t set attribute'):
         ngultrum.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        ngultrum.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        ngultrum.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_ngultrum_math_add():
                    'ngultrum.Ngultrum\'> '
                    'and <class \'str\'>.')):
         _ = ngultrum_one.__add__('1.00')
-    assert (ngultrum_one + ngultrum_two) == ngultrum_three
+    assert (
+        ngultrum_one +
+        ngultrum_two) == ngultrum_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Ngultrum(amount=1000)
+def test_ngultrum_slots():
+    """test_ngultrum_slots."""
+    ngultrum = Ngultrum(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Ngultrum\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        ngultrum.new_variable = 'fail'  # pylint: disable=assigning-non-slot

@@ -29,18 +29,22 @@ def test_bahraini_dinar():
     assert bahraini_dinar.decimal_sign == '.'
     assert bahraini_dinar.grouping_sign == ','
     assert not bahraini_dinar.international
-    assert bahraini_dinar.symbol == 'ب.د'
+    assert bahraini_dinar.symbol == 'د.ب.'
+    assert not bahraini_dinar.symbol_ahead
+    assert bahraini_dinar.symbol_separator == '\u00A0'
     assert bahraini_dinar.__hash__() == hash((decimal, 'BHD', '048'))
     assert bahraini_dinar.__repr__() == (
         'BahrainiDinar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "BHD", '
-        'symbol: "ب.د", '
+        'symbol: "د.ب.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "048", '
         'decimal_places: "3", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert bahraini_dinar.__str__() == 'ب.د0.143'
+    assert bahraini_dinar.__str__() == '0.143 د.ب.'
 
 
 def test_bahraini_dinar_negative():
@@ -54,18 +58,22 @@ def test_bahraini_dinar_negative():
     assert bahraini_dinar.decimal_sign == '.'
     assert bahraini_dinar.grouping_sign == ','
     assert not bahraini_dinar.international
-    assert bahraini_dinar.symbol == 'ب.د'
+    assert bahraini_dinar.symbol == 'د.ب.'
+    assert not bahraini_dinar.symbol_ahead
+    assert bahraini_dinar.symbol_separator == '\u00A0'
     assert bahraini_dinar.__hash__() == hash((decimal, 'BHD', '048'))
     assert bahraini_dinar.__repr__() == (
         'BahrainiDinar(amount: -100, '
         'alpha_code: "BHD", '
-        'symbol: "ب.د", '
+        'symbol: "د.ب.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "048", '
         'decimal_places: "3", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert bahraini_dinar.__str__() == 'ب.د-100.000'
+    assert bahraini_dinar.__str__() == '-100.000 د.ب.'
 
 
 def test_bahraini_dinar_custom():
@@ -76,7 +84,9 @@ def test_bahraini_dinar_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert bahraini_dinar.amount == decimal
     assert bahraini_dinar.numeric_code == '048'
@@ -85,18 +95,22 @@ def test_bahraini_dinar_custom():
     assert bahraini_dinar.decimal_sign == ','
     assert bahraini_dinar.grouping_sign == '.'
     assert bahraini_dinar.international
-    assert bahraini_dinar.symbol == 'ب.د'
+    assert bahraini_dinar.symbol == 'د.ب.'
+    assert not bahraini_dinar.symbol_ahead
+    assert bahraini_dinar.symbol_separator == '_'
     assert bahraini_dinar.__hash__() == hash((decimal, 'BHD', '048'))
     assert bahraini_dinar.__repr__() == (
         'BahrainiDinar(amount: 1000, '
         'alpha_code: "BHD", '
-        'symbol: "ب.د", '
+        'symbol: "د.ب.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "048", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert bahraini_dinar.__str__() == 'BHD 1.000,00000'
+    assert bahraini_dinar.__str__() == 'BHD 1,000.00000'
 
 
 def test_bahraini_dinar_changed():
@@ -114,6 +128,14 @@ def test_bahraini_dinar_changed():
             AttributeError,
             match='can\'t set attribute'):
         bahraini_dinar.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        bahraini_dinar.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        bahraini_dinar.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_bahraini_dinar_math_add():
                    'dinar.BahrainiDinar\'> '
                    'and <class \'str\'>.')):
         _ = bahraini_dinar_one.__add__('1.00')
-    assert (bahraini_dinar_one + bahraini_dinar_two) == bahraini_dinar_three
+    assert (
+        bahraini_dinar_one +
+        bahraini_dinar_two) == bahraini_dinar_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = BahrainiDinar(amount=1000)
+def test_bahraini_dinar_slots():
+    """test_bahraini_dinar_slots."""
+    bahraini_dinar = BahrainiDinar(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'BahrainiDinar\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        bahraini_dinar.new_variable = 'fail'  # pylint: disable=assigning-non-slot

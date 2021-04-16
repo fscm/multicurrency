@@ -26,21 +26,25 @@ def test_trinidad_and_tobago_dollar():
     assert trinidad_and_tobago_dollar.numeric_code == '780'
     assert trinidad_and_tobago_dollar.alpha_code == 'TTD'
     assert trinidad_and_tobago_dollar.decimal_places == 2
-    assert trinidad_and_tobago_dollar.decimal_sign == ','
-    assert trinidad_and_tobago_dollar.grouping_sign == '.'
+    assert trinidad_and_tobago_dollar.decimal_sign == '.'
+    assert trinidad_and_tobago_dollar.grouping_sign == ','
     assert not trinidad_and_tobago_dollar.international
     assert trinidad_and_tobago_dollar.symbol == '$'
+    assert trinidad_and_tobago_dollar.symbol_ahead
+    assert trinidad_and_tobago_dollar.symbol_separator == ''
     assert trinidad_and_tobago_dollar.__hash__() == hash((decimal, 'TTD', '780'))
     assert trinidad_and_tobago_dollar.__repr__() == (
         'TrinidadandTobagoDollar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "TTD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "780", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert trinidad_and_tobago_dollar.__str__() == '$0,14'
+    assert trinidad_and_tobago_dollar.__str__() == '$0.14'
 
 
 def test_trinidad_and_tobago_dollar_negative():
@@ -51,21 +55,25 @@ def test_trinidad_and_tobago_dollar_negative():
     assert trinidad_and_tobago_dollar.numeric_code == '780'
     assert trinidad_and_tobago_dollar.alpha_code == 'TTD'
     assert trinidad_and_tobago_dollar.decimal_places == 2
-    assert trinidad_and_tobago_dollar.decimal_sign == ','
-    assert trinidad_and_tobago_dollar.grouping_sign == '.'
+    assert trinidad_and_tobago_dollar.decimal_sign == '.'
+    assert trinidad_and_tobago_dollar.grouping_sign == ','
     assert not trinidad_and_tobago_dollar.international
     assert trinidad_and_tobago_dollar.symbol == '$'
+    assert trinidad_and_tobago_dollar.symbol_ahead
+    assert trinidad_and_tobago_dollar.symbol_separator == ''
     assert trinidad_and_tobago_dollar.__hash__() == hash((decimal, 'TTD', '780'))
     assert trinidad_and_tobago_dollar.__repr__() == (
         'TrinidadandTobagoDollar(amount: -100, '
         'alpha_code: "TTD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "780", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert trinidad_and_tobago_dollar.__str__() == '$-100,00'
+    assert trinidad_and_tobago_dollar.__str__() == '$-100.00'
 
 
 def test_trinidad_and_tobago_dollar_custom():
@@ -74,27 +82,33 @@ def test_trinidad_and_tobago_dollar_custom():
     trinidad_and_tobago_dollar = TrinidadandTobagoDollar(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert trinidad_and_tobago_dollar.amount == decimal
     assert trinidad_and_tobago_dollar.numeric_code == '780'
     assert trinidad_and_tobago_dollar.alpha_code == 'TTD'
     assert trinidad_and_tobago_dollar.decimal_places == 5
-    assert trinidad_and_tobago_dollar.decimal_sign == '.'
-    assert trinidad_and_tobago_dollar.grouping_sign == ','
+    assert trinidad_and_tobago_dollar.decimal_sign == ','
+    assert trinidad_and_tobago_dollar.grouping_sign == '.'
     assert trinidad_and_tobago_dollar.international
     assert trinidad_and_tobago_dollar.symbol == '$'
+    assert not trinidad_and_tobago_dollar.symbol_ahead
+    assert trinidad_and_tobago_dollar.symbol_separator == '_'
     assert trinidad_and_tobago_dollar.__hash__() == hash((decimal, 'TTD', '780'))
     assert trinidad_and_tobago_dollar.__repr__() == (
         'TrinidadandTobagoDollar(amount: 1000, '
         'alpha_code: "TTD", '
         'symbol: "$", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "780", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert trinidad_and_tobago_dollar.__str__() == 'TTD 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_trinidad_and_tobago_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         trinidad_and_tobago_dollar.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        trinidad_and_tobago_dollar.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        trinidad_and_tobago_dollar.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_trinidad_and_tobago_dollar_math_add():
                    'dollar.TrinidadandTobagoDollar\'> '
                    'and <class \'str\'>.')):
         _ = trinidad_and_tobago_dollar_one.__add__('1.00')
-    assert (trinidad_and_tobago_dollar_one + trinidad_and_tobago_dollar_two) == trinidad_and_tobago_dollar_three
+    assert (
+        trinidad_and_tobago_dollar_one +
+        trinidad_and_tobago_dollar_two) == trinidad_and_tobago_dollar_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = TrinidadandTobagoDollar(amount=1000)
+def test_trinidad_and_tobago_dollar_slots():
+    """test_trinidad_and_tobago_dollar_slots."""
+    trinidad_and_tobago_dollar = TrinidadandTobagoDollar(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'TrinidadandTobagoDollar\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        trinidad_and_tobago_dollar.new_variable = 'fail'  # pylint: disable=assigning-non-slot

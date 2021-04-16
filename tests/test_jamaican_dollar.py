@@ -30,11 +30,15 @@ def test_jamaican_dollar():
     assert jamaican_dollar.grouping_sign == ','
     assert not jamaican_dollar.international
     assert jamaican_dollar.symbol == '$'
+    assert jamaican_dollar.symbol_ahead
+    assert jamaican_dollar.symbol_separator == ''
     assert jamaican_dollar.__hash__() == hash((decimal, 'JMD', '388'))
     assert jamaican_dollar.__repr__() == (
         'JamaicanDollar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "JMD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "388", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -55,11 +59,15 @@ def test_jamaican_dollar_negative():
     assert jamaican_dollar.grouping_sign == ','
     assert not jamaican_dollar.international
     assert jamaican_dollar.symbol == '$'
+    assert jamaican_dollar.symbol_ahead
+    assert jamaican_dollar.symbol_separator == ''
     assert jamaican_dollar.__hash__() == hash((decimal, 'JMD', '388'))
     assert jamaican_dollar.__repr__() == (
         'JamaicanDollar(amount: -100, '
         'alpha_code: "JMD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "388", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -76,7 +84,9 @@ def test_jamaican_dollar_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert jamaican_dollar.amount == decimal
     assert jamaican_dollar.numeric_code == '388'
@@ -86,17 +96,21 @@ def test_jamaican_dollar_custom():
     assert jamaican_dollar.grouping_sign == '.'
     assert jamaican_dollar.international
     assert jamaican_dollar.symbol == '$'
+    assert not jamaican_dollar.symbol_ahead
+    assert jamaican_dollar.symbol_separator == '_'
     assert jamaican_dollar.__hash__() == hash((decimal, 'JMD', '388'))
     assert jamaican_dollar.__repr__() == (
         'JamaicanDollar(amount: 1000, '
         'alpha_code: "JMD", '
         'symbol: "$", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "388", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert jamaican_dollar.__str__() == 'JMD 1.000,00000'
+    assert jamaican_dollar.__str__() == 'JMD 1,000.00000'
 
 
 def test_jamaican_dollar_changed():
@@ -114,6 +128,14 @@ def test_jamaican_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         jamaican_dollar.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        jamaican_dollar.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        jamaican_dollar.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_jamaican_dollar_math_add():
                    'dollar.JamaicanDollar\'> '
                    'and <class \'str\'>.')):
         _ = jamaican_dollar_one.__add__('1.00')
-    assert (jamaican_dollar_one + jamaican_dollar_two) == jamaican_dollar_three
+    assert (
+        jamaican_dollar_one +
+        jamaican_dollar_two) == jamaican_dollar_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = JamaicanDollar(amount=1000)
+def test_jamaican_dollar_slots():
+    """test_jamaican_dollar_slots."""
+    jamaican_dollar = JamaicanDollar(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'JamaicanDollar\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        jamaican_dollar.new_variable = 'fail'  # pylint: disable=assigning-non-slot

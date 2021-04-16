@@ -27,18 +27,22 @@ def test_costa_rican_colon():
     assert costa_rican_colon.alpha_code == 'CRC'
     assert costa_rican_colon.decimal_places == 2
     assert costa_rican_colon.decimal_sign == ','
-    assert costa_rican_colon.grouping_sign == '.'
+    assert costa_rican_colon.grouping_sign == '\u202F'
     assert not costa_rican_colon.international
     assert costa_rican_colon.symbol == '₡'
+    assert costa_rican_colon.symbol_ahead
+    assert costa_rican_colon.symbol_separator == ''
     assert costa_rican_colon.__hash__() == hash((decimal, 'CRC', '188'))
     assert costa_rican_colon.__repr__() == (
         'CostaRicanColon(amount: 0.1428571428571428571428571429, '
         'alpha_code: "CRC", '
         'symbol: "₡", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "188", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
     assert costa_rican_colon.__str__() == '₡0,14'
 
@@ -52,18 +56,22 @@ def test_costa_rican_colon_negative():
     assert costa_rican_colon.alpha_code == 'CRC'
     assert costa_rican_colon.decimal_places == 2
     assert costa_rican_colon.decimal_sign == ','
-    assert costa_rican_colon.grouping_sign == '.'
+    assert costa_rican_colon.grouping_sign == '\u202F'
     assert not costa_rican_colon.international
     assert costa_rican_colon.symbol == '₡'
+    assert costa_rican_colon.symbol_ahead
+    assert costa_rican_colon.symbol_separator == ''
     assert costa_rican_colon.__hash__() == hash((decimal, 'CRC', '188'))
     assert costa_rican_colon.__repr__() == (
         'CostaRicanColon(amount: -100, '
         'alpha_code: "CRC", '
         'symbol: "₡", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "188", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
     assert costa_rican_colon.__str__() == '₡-100,00'
 
@@ -74,26 +82,32 @@ def test_costa_rican_colon_custom():
     costa_rican_colon = CostaRicanColon(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
+        decimal_sign='\u202F',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert costa_rican_colon.amount == decimal
     assert costa_rican_colon.numeric_code == '188'
     assert costa_rican_colon.alpha_code == 'CRC'
     assert costa_rican_colon.decimal_places == 5
-    assert costa_rican_colon.decimal_sign == '.'
+    assert costa_rican_colon.decimal_sign == '\u202F'
     assert costa_rican_colon.grouping_sign == ','
     assert costa_rican_colon.international
     assert costa_rican_colon.symbol == '₡'
+    assert not costa_rican_colon.symbol_ahead
+    assert costa_rican_colon.symbol_separator == '_'
     assert costa_rican_colon.__hash__() == hash((decimal, 'CRC', '188'))
     assert costa_rican_colon.__repr__() == (
         'CostaRicanColon(amount: 1000, '
         'alpha_code: "CRC", '
         'symbol: "₡", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "188", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
+        'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
         'international: True)')
     assert costa_rican_colon.__str__() == 'CRC 1,000.00000'
@@ -114,6 +128,14 @@ def test_costa_rican_colon_changed():
             AttributeError,
             match='can\'t set attribute'):
         costa_rican_colon.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        costa_rican_colon.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        costa_rican_colon.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_costa_rican_colon_math_add():
                    'colon.CostaRicanColon\'> '
                    'and <class \'str\'>.')):
         _ = costa_rican_colon_one.__add__('1.00')
-    assert (costa_rican_colon_one + costa_rican_colon_two) == costa_rican_colon_three
+    assert (
+        costa_rican_colon_one +
+        costa_rican_colon_two) == costa_rican_colon_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = CostaRicanColon(amount=1000)
+def test_costa_rican_colon_slots():
+    """test_costa_rican_colon_slots."""
+    costa_rican_colon = CostaRicanColon(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'CostaRicanColon\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        costa_rican_colon.new_variable = 'fail'  # pylint: disable=assigning-non-slot

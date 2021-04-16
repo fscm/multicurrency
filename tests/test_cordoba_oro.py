@@ -26,21 +26,25 @@ def test_cordoba_oro():
     assert cordoba_oro.numeric_code == '558'
     assert cordoba_oro.alpha_code == 'NIO'
     assert cordoba_oro.decimal_places == 2
-    assert cordoba_oro.decimal_sign == ','
-    assert cordoba_oro.grouping_sign == '.'
+    assert cordoba_oro.decimal_sign == '.'
+    assert cordoba_oro.grouping_sign == ','
     assert not cordoba_oro.international
     assert cordoba_oro.symbol == 'C$'
+    assert cordoba_oro.symbol_ahead
+    assert cordoba_oro.symbol_separator == ''
     assert cordoba_oro.__hash__() == hash((decimal, 'NIO', '558'))
     assert cordoba_oro.__repr__() == (
         'CordobaOro(amount: 0.1428571428571428571428571429, '
         'alpha_code: "NIO", '
         'symbol: "C$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "558", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert cordoba_oro.__str__() == 'C$0,14'
+    assert cordoba_oro.__str__() == 'C$0.14'
 
 
 def test_cordoba_oro_negative():
@@ -51,21 +55,25 @@ def test_cordoba_oro_negative():
     assert cordoba_oro.numeric_code == '558'
     assert cordoba_oro.alpha_code == 'NIO'
     assert cordoba_oro.decimal_places == 2
-    assert cordoba_oro.decimal_sign == ','
-    assert cordoba_oro.grouping_sign == '.'
+    assert cordoba_oro.decimal_sign == '.'
+    assert cordoba_oro.grouping_sign == ','
     assert not cordoba_oro.international
     assert cordoba_oro.symbol == 'C$'
+    assert cordoba_oro.symbol_ahead
+    assert cordoba_oro.symbol_separator == ''
     assert cordoba_oro.__hash__() == hash((decimal, 'NIO', '558'))
     assert cordoba_oro.__repr__() == (
         'CordobaOro(amount: -100, '
         'alpha_code: "NIO", '
         'symbol: "C$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "558", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert cordoba_oro.__str__() == 'C$-100,00'
+    assert cordoba_oro.__str__() == 'C$-100.00'
 
 
 def test_cordoba_oro_custom():
@@ -74,27 +82,33 @@ def test_cordoba_oro_custom():
     cordoba_oro = CordobaOro(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert cordoba_oro.amount == decimal
     assert cordoba_oro.numeric_code == '558'
     assert cordoba_oro.alpha_code == 'NIO'
     assert cordoba_oro.decimal_places == 5
-    assert cordoba_oro.decimal_sign == '.'
-    assert cordoba_oro.grouping_sign == ','
+    assert cordoba_oro.decimal_sign == ','
+    assert cordoba_oro.grouping_sign == '.'
     assert cordoba_oro.international
     assert cordoba_oro.symbol == 'C$'
+    assert not cordoba_oro.symbol_ahead
+    assert cordoba_oro.symbol_separator == '_'
     assert cordoba_oro.__hash__() == hash((decimal, 'NIO', '558'))
     assert cordoba_oro.__repr__() == (
         'CordobaOro(amount: 1000, '
         'alpha_code: "NIO", '
         'symbol: "C$", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "558", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert cordoba_oro.__str__() == 'NIO 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_cordoba_oro_changed():
             AttributeError,
             match='can\'t set attribute'):
         cordoba_oro.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cordoba_oro.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cordoba_oro.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_cordoba_oro_math_add():
                    'oro.CordobaOro\'> '
                    'and <class \'str\'>.')):
         _ = cordoba_oro_one.__add__('1.00')
-    assert (cordoba_oro_one + cordoba_oro_two) == cordoba_oro_three
+    assert (
+        cordoba_oro_one +
+        cordoba_oro_two) == cordoba_oro_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = CordobaOro(amount=1000)
+def test_cordoba_oro_slots():
+    """test_cordoba_oro_slots."""
+    cordoba_oro = CordobaOro(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'CordobaOro\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        cordoba_oro.new_variable = 'fail'  # pylint: disable=assigning-non-slot

@@ -30,11 +30,15 @@ def test_aruban_florin():
     assert aruban_florin.grouping_sign == ','
     assert not aruban_florin.international
     assert aruban_florin.symbol == 'ƒ'
+    assert aruban_florin.symbol_ahead
+    assert aruban_florin.symbol_separator == ''
     assert aruban_florin.__hash__() == hash((decimal, 'AWG', '533'))
     assert aruban_florin.__repr__() == (
         'ArubanFlorin(amount: 0.1428571428571428571428571429, '
         'alpha_code: "AWG", '
         'symbol: "ƒ", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "533", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -55,11 +59,15 @@ def test_aruban_florin_negative():
     assert aruban_florin.grouping_sign == ','
     assert not aruban_florin.international
     assert aruban_florin.symbol == 'ƒ'
+    assert aruban_florin.symbol_ahead
+    assert aruban_florin.symbol_separator == ''
     assert aruban_florin.__hash__() == hash((decimal, 'AWG', '533'))
     assert aruban_florin.__repr__() == (
         'ArubanFlorin(amount: -100, '
         'alpha_code: "AWG", '
         'symbol: "ƒ", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "533", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -76,7 +84,9 @@ def test_aruban_florin_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert aruban_florin.amount == decimal
     assert aruban_florin.numeric_code == '533'
@@ -86,17 +96,21 @@ def test_aruban_florin_custom():
     assert aruban_florin.grouping_sign == '.'
     assert aruban_florin.international
     assert aruban_florin.symbol == 'ƒ'
+    assert not aruban_florin.symbol_ahead
+    assert aruban_florin.symbol_separator == '_'
     assert aruban_florin.__hash__() == hash((decimal, 'AWG', '533'))
     assert aruban_florin.__repr__() == (
         'ArubanFlorin(amount: 1000, '
         'alpha_code: "AWG", '
         'symbol: "ƒ", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "533", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert aruban_florin.__str__() == 'AWG 1.000,00000'
+    assert aruban_florin.__str__() == 'AWG 1,000.00000'
 
 
 def test_aruban_florin_changed():
@@ -114,6 +128,14 @@ def test_aruban_florin_changed():
             AttributeError,
             match='can\'t set attribute'):
         aruban_florin.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        aruban_florin.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        aruban_florin.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_aruban_florin_math_add():
                    'florin.ArubanFlorin\'> '
                    'and <class \'str\'>.')):
         _ = aruban_florin_one.__add__('1.00')
-    assert (aruban_florin_one + aruban_florin_two) == aruban_florin_three
+    assert (
+        aruban_florin_one +
+        aruban_florin_two) == aruban_florin_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = ArubanFlorin(amount=1000)
+def test_aruban_florin_slots():
+    """test_aruban_florin_slots."""
+    aruban_florin = ArubanFlorin(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'ArubanFlorin\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        aruban_florin.new_variable = 'fail'  # pylint: disable=assigning-non-slot

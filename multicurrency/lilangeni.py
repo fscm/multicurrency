@@ -17,9 +17,10 @@ class Lilangeni(Currency):
     Simple usage example:
 
         >>> from multicurrency import Lilangeni
-        >>> lilangeni = Lilangeni(amount=1)
+        >>> lilangeni = Lilangeni(
+        ...     amount=123456.789)
         >>> print(lilangeni)
-        L1.00
+        L 123,456.79
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -32,6 +33,10 @@ class Lilangeni(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -39,10 +44,12 @@ class Lilangeni(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 2,
+            decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
             grouping_sign: Optional[str] = ',',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'Lilangeni':
         """Class creator.
 
@@ -55,6 +62,8 @@ class Lilangeni(Currency):
             alpha_code='SZL',
             numeric_code='748',
             symbol='L',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

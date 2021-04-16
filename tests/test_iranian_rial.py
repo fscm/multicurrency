@@ -26,21 +26,25 @@ def test_iranian_rial():
     assert iranian_rial.numeric_code == '364'
     assert iranian_rial.alpha_code == 'IRR'
     assert iranian_rial.decimal_places == 2
-    assert iranian_rial.decimal_sign == '.'
-    assert iranian_rial.grouping_sign == ','
+    assert iranian_rial.decimal_sign == ','
+    assert iranian_rial.grouping_sign == '.'
     assert not iranian_rial.international
     assert iranian_rial.symbol == '﷼'
+    assert not iranian_rial.symbol_ahead
+    assert iranian_rial.symbol_separator == '\u00A0'
     assert iranian_rial.__hash__() == hash((decimal, 'IRR', '364'))
     assert iranian_rial.__repr__() == (
         'IranianRial(amount: 0.1428571428571428571428571429, '
         'alpha_code: "IRR", '
         'symbol: "﷼", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "364", '
         'decimal_places: "2", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: False)')
-    assert iranian_rial.__str__() == '﷼0.14'
+    assert iranian_rial.__str__() == '0,14 ﷼'
 
 
 def test_iranian_rial_negative():
@@ -51,21 +55,25 @@ def test_iranian_rial_negative():
     assert iranian_rial.numeric_code == '364'
     assert iranian_rial.alpha_code == 'IRR'
     assert iranian_rial.decimal_places == 2
-    assert iranian_rial.decimal_sign == '.'
-    assert iranian_rial.grouping_sign == ','
+    assert iranian_rial.decimal_sign == ','
+    assert iranian_rial.grouping_sign == '.'
     assert not iranian_rial.international
     assert iranian_rial.symbol == '﷼'
+    assert not iranian_rial.symbol_ahead
+    assert iranian_rial.symbol_separator == '\u00A0'
     assert iranian_rial.__hash__() == hash((decimal, 'IRR', '364'))
     assert iranian_rial.__repr__() == (
         'IranianRial(amount: -100, '
         'alpha_code: "IRR", '
         'symbol: "﷼", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "364", '
         'decimal_places: "2", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: False)')
-    assert iranian_rial.__str__() == '﷼-100.00'
+    assert iranian_rial.__str__() == '-100,00 ﷼'
 
 
 def test_iranian_rial_custom():
@@ -74,29 +82,35 @@ def test_iranian_rial_custom():
     iranian_rial = IranianRial(
         amount=amount,
         decimal_places=5,
-        decimal_sign=',',
-        grouping_sign='.',
-        international=True)
+        decimal_sign='.',
+        grouping_sign=',',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert iranian_rial.amount == decimal
     assert iranian_rial.numeric_code == '364'
     assert iranian_rial.alpha_code == 'IRR'
     assert iranian_rial.decimal_places == 5
-    assert iranian_rial.decimal_sign == ','
-    assert iranian_rial.grouping_sign == '.'
+    assert iranian_rial.decimal_sign == '.'
+    assert iranian_rial.grouping_sign == ','
     assert iranian_rial.international
     assert iranian_rial.symbol == '﷼'
+    assert not iranian_rial.symbol_ahead
+    assert iranian_rial.symbol_separator == '_'
     assert iranian_rial.__hash__() == hash((decimal, 'IRR', '364'))
     assert iranian_rial.__repr__() == (
         'IranianRial(amount: 1000, '
         'alpha_code: "IRR", '
         'symbol: "﷼", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "364", '
         'decimal_places: "5", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: True)')
-    assert iranian_rial.__str__() == 'IRR 1.000,00000'
+    assert iranian_rial.__str__() == 'IRR 1,000.00000'
 
 
 def test_iranian_rial_changed():
@@ -114,6 +128,14 @@ def test_iranian_rial_changed():
             AttributeError,
             match='can\'t set attribute'):
         iranian_rial.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        iranian_rial.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        iranian_rial.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_iranian_rial_math_add():
                    'rial.IranianRial\'> '
                    'and <class \'str\'>.')):
         _ = iranian_rial_one.__add__('1.00')
-    assert (iranian_rial_one + iranian_rial_two) == iranian_rial_three
+    assert (
+        iranian_rial_one +
+        iranian_rial_two) == iranian_rial_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = IranianRial(amount=1000)
+def test_iranian_rial_slots():
+    """test_iranian_rial_slots."""
+    iranian_rial = IranianRial(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'IranianRial\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        iranian_rial.new_variable = 'fail'  # pylint: disable=assigning-non-slot

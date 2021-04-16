@@ -26,21 +26,25 @@ def test_kina():
     assert kina.numeric_code == '598'
     assert kina.alpha_code == 'PGK'
     assert kina.decimal_places == 2
-    assert kina.decimal_sign == ','
-    assert kina.grouping_sign == '.'
+    assert kina.decimal_sign == '.'
+    assert kina.grouping_sign == ','
     assert not kina.international
     assert kina.symbol == 'K'
+    assert kina.symbol_ahead
+    assert kina.symbol_separator == '\u00A0'
     assert kina.__hash__() == hash((decimal, 'PGK', '598'))
     assert kina.__repr__() == (
         'Kina(amount: 0.1428571428571428571428571429, '
         'alpha_code: "PGK", '
         'symbol: "K", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "598", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert kina.__str__() == 'K0,14'
+    assert kina.__str__() == 'K 0.14'
 
 
 def test_kina_negative():
@@ -51,21 +55,25 @@ def test_kina_negative():
     assert kina.numeric_code == '598'
     assert kina.alpha_code == 'PGK'
     assert kina.decimal_places == 2
-    assert kina.decimal_sign == ','
-    assert kina.grouping_sign == '.'
+    assert kina.decimal_sign == '.'
+    assert kina.grouping_sign == ','
     assert not kina.international
     assert kina.symbol == 'K'
+    assert kina.symbol_ahead
+    assert kina.symbol_separator == '\u00A0'
     assert kina.__hash__() == hash((decimal, 'PGK', '598'))
     assert kina.__repr__() == (
         'Kina(amount: -100, '
         'alpha_code: "PGK", '
         'symbol: "K", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "598", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert kina.__str__() == 'K-100,00'
+    assert kina.__str__() == 'K -100.00'
 
 
 def test_kina_custom():
@@ -74,27 +82,33 @@ def test_kina_custom():
     kina = Kina(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert kina.amount == decimal
     assert kina.numeric_code == '598'
     assert kina.alpha_code == 'PGK'
     assert kina.decimal_places == 5
-    assert kina.decimal_sign == '.'
-    assert kina.grouping_sign == ','
+    assert kina.decimal_sign == ','
+    assert kina.grouping_sign == '.'
     assert kina.international
     assert kina.symbol == 'K'
+    assert not kina.symbol_ahead
+    assert kina.symbol_separator == '_'
     assert kina.__hash__() == hash((decimal, 'PGK', '598'))
     assert kina.__repr__() == (
         'Kina(amount: 1000, '
         'alpha_code: "PGK", '
         'symbol: "K", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "598", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert kina.__str__() == 'PGK 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_kina_changed():
             AttributeError,
             match='can\'t set attribute'):
         kina.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        kina.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        kina.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_kina_math_add():
                    'kina.Kina\'> '
                    'and <class \'str\'>.')):
         _ = kina_one.__add__('1.00')
-    assert (kina_one + kina_two) == kina_three
+    assert (
+        kina_one +
+        kina_two) == kina_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Kina(amount=1000)
+def test_kina_slots():
+    """test_kina_slots."""
+    kina = Kina(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Kina\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        kina.new_variable = 'fail'  # pylint: disable=assigning-non-slot

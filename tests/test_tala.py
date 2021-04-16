@@ -26,21 +26,25 @@ def test_tala():
     assert tala.numeric_code == '882'
     assert tala.alpha_code == 'WST'
     assert tala.decimal_places == 2
-    assert tala.decimal_sign == ','
-    assert tala.grouping_sign == '.'
+    assert tala.decimal_sign == '.'
+    assert tala.grouping_sign == ','
     assert not tala.international
     assert tala.symbol == 'T'
+    assert tala.symbol_ahead
+    assert tala.symbol_separator == '\u00A0'
     assert tala.__hash__() == hash((decimal, 'WST', '882'))
     assert tala.__repr__() == (
         'Tala(amount: 0.1428571428571428571428571429, '
         'alpha_code: "WST", '
         'symbol: "T", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "882", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert tala.__str__() == 'T0,14'
+    assert tala.__str__() == 'T 0.14'
 
 
 def test_tala_negative():
@@ -51,21 +55,25 @@ def test_tala_negative():
     assert tala.numeric_code == '882'
     assert tala.alpha_code == 'WST'
     assert tala.decimal_places == 2
-    assert tala.decimal_sign == ','
-    assert tala.grouping_sign == '.'
+    assert tala.decimal_sign == '.'
+    assert tala.grouping_sign == ','
     assert not tala.international
     assert tala.symbol == 'T'
+    assert tala.symbol_ahead
+    assert tala.symbol_separator == '\u00A0'
     assert tala.__hash__() == hash((decimal, 'WST', '882'))
     assert tala.__repr__() == (
         'Tala(amount: -100, '
         'alpha_code: "WST", '
         'symbol: "T", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "882", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert tala.__str__() == 'T-100,00'
+    assert tala.__str__() == 'T -100.00'
 
 
 def test_tala_custom():
@@ -74,27 +82,33 @@ def test_tala_custom():
     tala = Tala(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert tala.amount == decimal
     assert tala.numeric_code == '882'
     assert tala.alpha_code == 'WST'
     assert tala.decimal_places == 5
-    assert tala.decimal_sign == '.'
-    assert tala.grouping_sign == ','
+    assert tala.decimal_sign == ','
+    assert tala.grouping_sign == '.'
     assert tala.international
     assert tala.symbol == 'T'
+    assert not tala.symbol_ahead
+    assert tala.symbol_separator == '_'
     assert tala.__hash__() == hash((decimal, 'WST', '882'))
     assert tala.__repr__() == (
         'Tala(amount: 1000, '
         'alpha_code: "WST", '
         'symbol: "T", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "882", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert tala.__str__() == 'WST 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_tala_changed():
             AttributeError,
             match='can\'t set attribute'):
         tala.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        tala.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        tala.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_tala_math_add():
                    'tala.Tala\'> '
                    'and <class \'str\'>.')):
         _ = tala_one.__add__('1.00')
-    assert (tala_one + tala_two) == tala_three
+    assert (
+        tala_one +
+        tala_two) == tala_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Tala(amount=1000)
+def test_tala_slots():
+    """test_tala_slots."""
+    tala = Tala(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Tala\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        tala.new_variable = 'fail'  # pylint: disable=assigning-non-slot

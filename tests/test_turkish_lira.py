@@ -26,21 +26,25 @@ def test_turkish_lira():
     assert turkish_lira.numeric_code == '949'
     assert turkish_lira.alpha_code == 'TRY'
     assert turkish_lira.decimal_places == 2
-    assert turkish_lira.decimal_sign == '.'
-    assert turkish_lira.grouping_sign == ','
+    assert turkish_lira.decimal_sign == ','
+    assert turkish_lira.grouping_sign == '.'
     assert not turkish_lira.international
     assert turkish_lira.symbol == '₤'
+    assert turkish_lira.symbol_ahead
+    assert turkish_lira.symbol_separator == ''
     assert turkish_lira.__hash__() == hash((decimal, 'TRY', '949'))
     assert turkish_lira.__repr__() == (
         'TurkishLira(amount: 0.1428571428571428571428571429, '
         'alpha_code: "TRY", '
         'symbol: "₤", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "949", '
         'decimal_places: "2", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: False)')
-    assert turkish_lira.__str__() == '₤0.14'
+    assert turkish_lira.__str__() == '₤0,14'
 
 
 def test_turkish_lira_negative():
@@ -51,21 +55,25 @@ def test_turkish_lira_negative():
     assert turkish_lira.numeric_code == '949'
     assert turkish_lira.alpha_code == 'TRY'
     assert turkish_lira.decimal_places == 2
-    assert turkish_lira.decimal_sign == '.'
-    assert turkish_lira.grouping_sign == ','
+    assert turkish_lira.decimal_sign == ','
+    assert turkish_lira.grouping_sign == '.'
     assert not turkish_lira.international
     assert turkish_lira.symbol == '₤'
+    assert turkish_lira.symbol_ahead
+    assert turkish_lira.symbol_separator == ''
     assert turkish_lira.__hash__() == hash((decimal, 'TRY', '949'))
     assert turkish_lira.__repr__() == (
         'TurkishLira(amount: -100, '
         'alpha_code: "TRY", '
         'symbol: "₤", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "949", '
         'decimal_places: "2", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: False)')
-    assert turkish_lira.__str__() == '₤-100.00'
+    assert turkish_lira.__str__() == '₤-100,00'
 
 
 def test_turkish_lira_custom():
@@ -74,29 +82,35 @@ def test_turkish_lira_custom():
     turkish_lira = TurkishLira(
         amount=amount,
         decimal_places=5,
-        decimal_sign=',',
-        grouping_sign='.',
-        international=True)
+        decimal_sign='.',
+        grouping_sign=',',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert turkish_lira.amount == decimal
     assert turkish_lira.numeric_code == '949'
     assert turkish_lira.alpha_code == 'TRY'
     assert turkish_lira.decimal_places == 5
-    assert turkish_lira.decimal_sign == ','
-    assert turkish_lira.grouping_sign == '.'
+    assert turkish_lira.decimal_sign == '.'
+    assert turkish_lira.grouping_sign == ','
     assert turkish_lira.international
     assert turkish_lira.symbol == '₤'
+    assert not turkish_lira.symbol_ahead
+    assert turkish_lira.symbol_separator == '_'
     assert turkish_lira.__hash__() == hash((decimal, 'TRY', '949'))
     assert turkish_lira.__repr__() == (
         'TurkishLira(amount: 1000, '
         'alpha_code: "TRY", '
         'symbol: "₤", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "949", '
         'decimal_places: "5", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: True)')
-    assert turkish_lira.__str__() == 'TRY 1.000,00000'
+    assert turkish_lira.__str__() == 'TRY 1,000.00000'
 
 
 def test_turkish_lira_changed():
@@ -114,6 +128,14 @@ def test_turkish_lira_changed():
             AttributeError,
             match='can\'t set attribute'):
         turkish_lira.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        turkish_lira.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        turkish_lira.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_turkish_lira_math_add():
                    'lira.TurkishLira\'> '
                    'and <class \'str\'>.')):
         _ = turkish_lira_one.__add__('1.00')
-    assert (turkish_lira_one + turkish_lira_two) == turkish_lira_three
+    assert (
+        turkish_lira_one +
+        turkish_lira_two) == turkish_lira_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = TurkishLira(amount=1000)
+def test_turkish_lira_slots():
+    """test_turkish_lira_slots."""
+    turkish_lira = TurkishLira(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'TurkishLira\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        turkish_lira.new_variable = 'fail'  # pylint: disable=assigning-non-slot

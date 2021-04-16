@@ -26,21 +26,25 @@ def test_gourde():
     assert gourde.numeric_code == '332'
     assert gourde.alpha_code == 'HTG'
     assert gourde.decimal_places == 2
-    assert gourde.decimal_sign == ','
-    assert gourde.grouping_sign == '.'
+    assert gourde.decimal_sign == '.'
+    assert gourde.grouping_sign == ','
     assert not gourde.international
     assert gourde.symbol == 'G'
+    assert gourde.symbol_ahead
+    assert gourde.symbol_separator == '\u00A0'
     assert gourde.__hash__() == hash((decimal, 'HTG', '332'))
     assert gourde.__repr__() == (
         'Gourde(amount: 0.1428571428571428571428571429, '
         'alpha_code: "HTG", '
         'symbol: "G", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "332", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert gourde.__str__() == 'G0,14'
+    assert gourde.__str__() == 'G 0.14'
 
 
 def test_gourde_negative():
@@ -51,21 +55,25 @@ def test_gourde_negative():
     assert gourde.numeric_code == '332'
     assert gourde.alpha_code == 'HTG'
     assert gourde.decimal_places == 2
-    assert gourde.decimal_sign == ','
-    assert gourde.grouping_sign == '.'
+    assert gourde.decimal_sign == '.'
+    assert gourde.grouping_sign == ','
     assert not gourde.international
     assert gourde.symbol == 'G'
+    assert gourde.symbol_ahead
+    assert gourde.symbol_separator == '\u00A0'
     assert gourde.__hash__() == hash((decimal, 'HTG', '332'))
     assert gourde.__repr__() == (
         'Gourde(amount: -100, '
         'alpha_code: "HTG", '
         'symbol: "G", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "332", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert gourde.__str__() == 'G-100,00'
+    assert gourde.__str__() == 'G -100.00'
 
 
 def test_gourde_custom():
@@ -74,27 +82,33 @@ def test_gourde_custom():
     gourde = Gourde(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert gourde.amount == decimal
     assert gourde.numeric_code == '332'
     assert gourde.alpha_code == 'HTG'
     assert gourde.decimal_places == 5
-    assert gourde.decimal_sign == '.'
-    assert gourde.grouping_sign == ','
+    assert gourde.decimal_sign == ','
+    assert gourde.grouping_sign == '.'
     assert gourde.international
     assert gourde.symbol == 'G'
+    assert not gourde.symbol_ahead
+    assert gourde.symbol_separator == '_'
     assert gourde.__hash__() == hash((decimal, 'HTG', '332'))
     assert gourde.__repr__() == (
         'Gourde(amount: 1000, '
         'alpha_code: "HTG", '
         'symbol: "G", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "332", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert gourde.__str__() == 'HTG 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_gourde_changed():
             AttributeError,
             match='can\'t set attribute'):
         gourde.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        gourde.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        gourde.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_gourde_math_add():
                    'gourde.Gourde\'> '
                    'and <class \'str\'>.')):
         _ = gourde_one.__add__('1.00')
-    assert (gourde_one + gourde_two) == gourde_three
+    assert (
+        gourde_one +
+        gourde_two) == gourde_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Gourde(amount=1000)
+def test_gourde_slots():
+    """test_gourde_slots."""
+    gourde = Gourde(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Gourde\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        gourde.new_variable = 'fail'  # pylint: disable=assigning-non-slot

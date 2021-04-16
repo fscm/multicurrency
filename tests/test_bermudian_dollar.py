@@ -30,11 +30,15 @@ def test_bermudian_dollar():
     assert bermudian_dollar.grouping_sign == ','
     assert not bermudian_dollar.international
     assert bermudian_dollar.symbol == '$'
+    assert bermudian_dollar.symbol_ahead
+    assert bermudian_dollar.symbol_separator == ''
     assert bermudian_dollar.__hash__() == hash((decimal, 'BMD', '060'))
     assert bermudian_dollar.__repr__() == (
         'BermudianDollar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "BMD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "060", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -55,11 +59,15 @@ def test_bermudian_dollar_negative():
     assert bermudian_dollar.grouping_sign == ','
     assert not bermudian_dollar.international
     assert bermudian_dollar.symbol == '$'
+    assert bermudian_dollar.symbol_ahead
+    assert bermudian_dollar.symbol_separator == ''
     assert bermudian_dollar.__hash__() == hash((decimal, 'BMD', '060'))
     assert bermudian_dollar.__repr__() == (
         'BermudianDollar(amount: -100, '
         'alpha_code: "BMD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "060", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -76,7 +84,9 @@ def test_bermudian_dollar_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert bermudian_dollar.amount == decimal
     assert bermudian_dollar.numeric_code == '060'
@@ -86,17 +96,21 @@ def test_bermudian_dollar_custom():
     assert bermudian_dollar.grouping_sign == '.'
     assert bermudian_dollar.international
     assert bermudian_dollar.symbol == '$'
+    assert not bermudian_dollar.symbol_ahead
+    assert bermudian_dollar.symbol_separator == '_'
     assert bermudian_dollar.__hash__() == hash((decimal, 'BMD', '060'))
     assert bermudian_dollar.__repr__() == (
         'BermudianDollar(amount: 1000, '
         'alpha_code: "BMD", '
         'symbol: "$", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "060", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert bermudian_dollar.__str__() == 'BMD 1.000,00000'
+    assert bermudian_dollar.__str__() == 'BMD 1,000.00000'
 
 
 def test_bermudian_dollar_changed():
@@ -114,6 +128,14 @@ def test_bermudian_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         bermudian_dollar.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        bermudian_dollar.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        bermudian_dollar.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_bermudian_dollar_math_add():
                    'dollar.BermudianDollar\'> '
                    'and <class \'str\'>.')):
         _ = bermudian_dollar_one.__add__('1.00')
-    assert (bermudian_dollar_one + bermudian_dollar_two) == bermudian_dollar_three
+    assert (
+        bermudian_dollar_one +
+        bermudian_dollar_two) == bermudian_dollar_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = BermudianDollar(amount=1000)
+def test_bermudian_dollar_slots():
+    """test_bermudian_dollar_slots."""
+    bermudian_dollar = BermudianDollar(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'BermudianDollar\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        bermudian_dollar.new_variable = 'fail'  # pylint: disable=assigning-non-slot

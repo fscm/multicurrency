@@ -17,9 +17,10 @@ class Balboa(Currency):
     Simple usage example:
 
         >>> from multicurrency import Balboa
-        >>> balboa = Balboa(amount=1)
+        >>> balboa = Balboa(
+        ...     amount=123456.789)
         >>> print(balboa)
-        B/.1,00
+        B/. 123,456.79
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -27,11 +28,15 @@ class Balboa(Currency):
         amount (Union[int, float, Decimal]): Represented value.
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
-        decimal_sign (str, optional): Decimal symbol. Defaults to ','.
-        grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -39,10 +44,12 @@ class Balboa(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 2,
-            decimal_sign: Optional[str] = ',',
-            grouping_sign: Optional[str] = '.',
-            international: bool = False,
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'Balboa':
         """Class creator.
 
@@ -55,6 +62,8 @@ class Balboa(Currency):
             alpha_code='PAB',
             numeric_code='590',
             symbol='B/.',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

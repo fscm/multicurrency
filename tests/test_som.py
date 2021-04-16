@@ -27,20 +27,24 @@ def test_som():
     assert som.alpha_code == 'KGS'
     assert som.decimal_places == 2
     assert som.decimal_sign == ','
-    assert som.grouping_sign == '.'
+    assert som.grouping_sign == '\u202F'
     assert not som.international
-    assert som.symbol == ''
+    assert som.symbol == 'Лв'
+    assert not som.symbol_ahead
+    assert som.symbol_separator == '\u00A0'
     assert som.__hash__() == hash((decimal, 'KGS', '417'))
     assert som.__repr__() == (
         'Som(amount: 0.1428571428571428571428571429, '
         'alpha_code: "KGS", '
-        'symbol: "", '
+        'symbol: "Лв", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "417", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert som.__str__() == '0,14'
+    assert som.__str__() == '0,14 Лв'
 
 
 def test_som_negative():
@@ -52,20 +56,24 @@ def test_som_negative():
     assert som.alpha_code == 'KGS'
     assert som.decimal_places == 2
     assert som.decimal_sign == ','
-    assert som.grouping_sign == '.'
+    assert som.grouping_sign == '\u202F'
     assert not som.international
-    assert som.symbol == ''
+    assert som.symbol == 'Лв'
+    assert not som.symbol_ahead
+    assert som.symbol_separator == '\u00A0'
     assert som.__hash__() == hash((decimal, 'KGS', '417'))
     assert som.__repr__() == (
         'Som(amount: -100, '
         'alpha_code: "KGS", '
-        'symbol: "", '
+        'symbol: "Лв", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "417", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert som.__str__() == '-100,00'
+    assert som.__str__() == '-100,00 Лв'
 
 
 def test_som_custom():
@@ -74,26 +82,32 @@ def test_som_custom():
     som = Som(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
+        decimal_sign='\u202F',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert som.amount == decimal
     assert som.numeric_code == '417'
     assert som.alpha_code == 'KGS'
     assert som.decimal_places == 5
-    assert som.decimal_sign == '.'
+    assert som.decimal_sign == '\u202F'
     assert som.grouping_sign == ','
     assert som.international
-    assert som.symbol == ''
+    assert som.symbol == 'Лв'
+    assert not som.symbol_ahead
+    assert som.symbol_separator == '_'
     assert som.__hash__() == hash((decimal, 'KGS', '417'))
     assert som.__repr__() == (
         'Som(amount: 1000, '
         'alpha_code: "KGS", '
-        'symbol: "", '
+        'symbol: "Лв", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "417", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
+        'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
         'international: True)')
     assert som.__str__() == 'KGS 1,000.00000'
@@ -114,6 +128,14 @@ def test_som_changed():
             AttributeError,
             match='can\'t set attribute'):
         som.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        som.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        som.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_som_math_add():
                    'som.Som\'> '
                    'and <class \'str\'>.')):
         _ = som_one.__add__('1.00')
-    assert (som_one + som_two) == som_three
+    assert (
+        som_one +
+        som_two) == som_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Som(amount=1000)
+def test_som_slots():
+    """test_som_slots."""
+    som = Som(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Som\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        som.new_variable = 'fail'  # pylint: disable=assigning-non-slot

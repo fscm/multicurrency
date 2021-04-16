@@ -26,21 +26,25 @@ def test_barbados_dollar():
     assert barbados_dollar.numeric_code == '052'
     assert barbados_dollar.alpha_code == 'BBD'
     assert barbados_dollar.decimal_places == 2
-    assert barbados_dollar.decimal_sign == ','
-    assert barbados_dollar.grouping_sign == '.'
+    assert barbados_dollar.decimal_sign == '.'
+    assert barbados_dollar.grouping_sign == ','
     assert not barbados_dollar.international
     assert barbados_dollar.symbol == '$'
+    assert barbados_dollar.symbol_ahead
+    assert barbados_dollar.symbol_separator == ''
     assert barbados_dollar.__hash__() == hash((decimal, 'BBD', '052'))
     assert barbados_dollar.__repr__() == (
         'BarbadosDollar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "BBD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "052", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert barbados_dollar.__str__() == '$0,14'
+    assert barbados_dollar.__str__() == '$0.14'
 
 
 def test_barbados_dollar_negative():
@@ -51,21 +55,25 @@ def test_barbados_dollar_negative():
     assert barbados_dollar.numeric_code == '052'
     assert barbados_dollar.alpha_code == 'BBD'
     assert barbados_dollar.decimal_places == 2
-    assert barbados_dollar.decimal_sign == ','
-    assert barbados_dollar.grouping_sign == '.'
+    assert barbados_dollar.decimal_sign == '.'
+    assert barbados_dollar.grouping_sign == ','
     assert not barbados_dollar.international
     assert barbados_dollar.symbol == '$'
+    assert barbados_dollar.symbol_ahead
+    assert barbados_dollar.symbol_separator == ''
     assert barbados_dollar.__hash__() == hash((decimal, 'BBD', '052'))
     assert barbados_dollar.__repr__() == (
         'BarbadosDollar(amount: -100, '
         'alpha_code: "BBD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "052", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert barbados_dollar.__str__() == '$-100,00'
+    assert barbados_dollar.__str__() == '$-100.00'
 
 
 def test_barbados_dollar_custom():
@@ -74,27 +82,33 @@ def test_barbados_dollar_custom():
     barbados_dollar = BarbadosDollar(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert barbados_dollar.amount == decimal
     assert barbados_dollar.numeric_code == '052'
     assert barbados_dollar.alpha_code == 'BBD'
     assert barbados_dollar.decimal_places == 5
-    assert barbados_dollar.decimal_sign == '.'
-    assert barbados_dollar.grouping_sign == ','
+    assert barbados_dollar.decimal_sign == ','
+    assert barbados_dollar.grouping_sign == '.'
     assert barbados_dollar.international
     assert barbados_dollar.symbol == '$'
+    assert not barbados_dollar.symbol_ahead
+    assert barbados_dollar.symbol_separator == '_'
     assert barbados_dollar.__hash__() == hash((decimal, 'BBD', '052'))
     assert barbados_dollar.__repr__() == (
         'BarbadosDollar(amount: 1000, '
         'alpha_code: "BBD", '
         'symbol: "$", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "052", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert barbados_dollar.__str__() == 'BBD 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_barbados_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         barbados_dollar.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        barbados_dollar.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        barbados_dollar.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_barbados_dollar_math_add():
                    'dollar.BarbadosDollar\'> '
                    'and <class \'str\'>.')):
         _ = barbados_dollar_one.__add__('1.00')
-    assert (barbados_dollar_one + barbados_dollar_two) == barbados_dollar_three
+    assert (
+        barbados_dollar_one +
+        barbados_dollar_two) == barbados_dollar_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = BarbadosDollar(amount=1000)
+def test_barbados_dollar_slots():
+    """test_barbados_dollar_slots."""
+    barbados_dollar = BarbadosDollar(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'BarbadosDollar\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        barbados_dollar.new_variable = 'fail'  # pylint: disable=assigning-non-slot

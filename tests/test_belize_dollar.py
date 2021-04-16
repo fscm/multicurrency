@@ -30,11 +30,15 @@ def test_belize_dollar():
     assert belize_dollar.grouping_sign == ','
     assert not belize_dollar.international
     assert belize_dollar.symbol == '$'
+    assert belize_dollar.symbol_ahead
+    assert belize_dollar.symbol_separator == ''
     assert belize_dollar.__hash__() == hash((decimal, 'BZD', '084'))
     assert belize_dollar.__repr__() == (
         'BelizeDollar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "BZD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "084", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -55,11 +59,15 @@ def test_belize_dollar_negative():
     assert belize_dollar.grouping_sign == ','
     assert not belize_dollar.international
     assert belize_dollar.symbol == '$'
+    assert belize_dollar.symbol_ahead
+    assert belize_dollar.symbol_separator == ''
     assert belize_dollar.__hash__() == hash((decimal, 'BZD', '084'))
     assert belize_dollar.__repr__() == (
         'BelizeDollar(amount: -100, '
         'alpha_code: "BZD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "084", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -76,7 +84,9 @@ def test_belize_dollar_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert belize_dollar.amount == decimal
     assert belize_dollar.numeric_code == '084'
@@ -86,17 +96,21 @@ def test_belize_dollar_custom():
     assert belize_dollar.grouping_sign == '.'
     assert belize_dollar.international
     assert belize_dollar.symbol == '$'
+    assert not belize_dollar.symbol_ahead
+    assert belize_dollar.symbol_separator == '_'
     assert belize_dollar.__hash__() == hash((decimal, 'BZD', '084'))
     assert belize_dollar.__repr__() == (
         'BelizeDollar(amount: 1000, '
         'alpha_code: "BZD", '
         'symbol: "$", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "084", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert belize_dollar.__str__() == 'BZD 1.000,00000'
+    assert belize_dollar.__str__() == 'BZD 1,000.00000'
 
 
 def test_belize_dollar_changed():
@@ -114,6 +128,14 @@ def test_belize_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         belize_dollar.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        belize_dollar.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        belize_dollar.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_belize_dollar_math_add():
                    'dollar.BelizeDollar\'> '
                    'and <class \'str\'>.')):
         _ = belize_dollar_one.__add__('1.00')
-    assert (belize_dollar_one + belize_dollar_two) == belize_dollar_three
+    assert (
+        belize_dollar_one +
+        belize_dollar_two) == belize_dollar_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = BelizeDollar(amount=1000)
+def test_belize_dollar_slots():
+    """test_belize_dollar_slots."""
+    belize_dollar = BelizeDollar(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'BelizeDollar\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        belize_dollar.new_variable = 'fail'  # pylint: disable=assigning-non-slot

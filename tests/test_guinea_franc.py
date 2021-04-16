@@ -27,20 +27,24 @@ def test_guinea_franc():
     assert guinea_franc.alpha_code == 'GNF'
     assert guinea_franc.decimal_places == 0
     assert guinea_franc.decimal_sign == ','
-    assert guinea_franc.grouping_sign == '.'
+    assert guinea_franc.grouping_sign == '\u202F'
     assert not guinea_franc.international
     assert guinea_franc.symbol == '₣'
+    assert not guinea_franc.symbol_ahead
+    assert guinea_franc.symbol_separator == '\u00A0'
     assert guinea_franc.__hash__() == hash((decimal, 'GNF', '324'))
     assert guinea_franc.__repr__() == (
         'GuineaFranc(amount: 0.1428571428571428571428571429, '
         'alpha_code: "GNF", '
         'symbol: "₣", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "324", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert guinea_franc.__str__() == '₣0'
+    assert guinea_franc.__str__() == '0 ₣'
 
 
 def test_guinea_franc_negative():
@@ -52,20 +56,24 @@ def test_guinea_franc_negative():
     assert guinea_franc.alpha_code == 'GNF'
     assert guinea_franc.decimal_places == 0
     assert guinea_franc.decimal_sign == ','
-    assert guinea_franc.grouping_sign == '.'
+    assert guinea_franc.grouping_sign == '\u202F'
     assert not guinea_franc.international
     assert guinea_franc.symbol == '₣'
+    assert not guinea_franc.symbol_ahead
+    assert guinea_franc.symbol_separator == '\u00A0'
     assert guinea_franc.__hash__() == hash((decimal, 'GNF', '324'))
     assert guinea_franc.__repr__() == (
         'GuineaFranc(amount: -100, '
         'alpha_code: "GNF", '
         'symbol: "₣", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "324", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert guinea_franc.__str__() == '₣-100'
+    assert guinea_franc.__str__() == '-100 ₣'
 
 
 def test_guinea_franc_custom():
@@ -74,26 +82,32 @@ def test_guinea_franc_custom():
     guinea_franc = GuineaFranc(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
+        decimal_sign='\u202F',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert guinea_franc.amount == decimal
     assert guinea_franc.numeric_code == '324'
     assert guinea_franc.alpha_code == 'GNF'
     assert guinea_franc.decimal_places == 5
-    assert guinea_franc.decimal_sign == '.'
+    assert guinea_franc.decimal_sign == '\u202F'
     assert guinea_franc.grouping_sign == ','
     assert guinea_franc.international
     assert guinea_franc.symbol == '₣'
+    assert not guinea_franc.symbol_ahead
+    assert guinea_franc.symbol_separator == '_'
     assert guinea_franc.__hash__() == hash((decimal, 'GNF', '324'))
     assert guinea_franc.__repr__() == (
         'GuineaFranc(amount: 1000, '
         'alpha_code: "GNF", '
         'symbol: "₣", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "324", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
+        'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
         'international: True)')
     assert guinea_franc.__str__() == 'GNF 1,000.00000'
@@ -114,6 +128,14 @@ def test_guinea_franc_changed():
             AttributeError,
             match='can\'t set attribute'):
         guinea_franc.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        guinea_franc.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        guinea_franc.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_guinea_franc_math_add():
                    'franc.GuineaFranc\'> '
                    'and <class \'str\'>.')):
         _ = guinea_franc_one.__add__('1.00')
-    assert (guinea_franc_one + guinea_franc_two) == guinea_franc_three
+    assert (
+        guinea_franc_one +
+        guinea_franc_two) == guinea_franc_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = GuineaFranc(amount=1000)
+def test_guinea_franc_slots():
+    """test_guinea_franc_slots."""
+    guinea_franc = GuineaFranc(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'GuineaFranc\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        guinea_franc.new_variable = 'fail'  # pylint: disable=assigning-non-slot

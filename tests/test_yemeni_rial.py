@@ -30,17 +30,21 @@ def test_yemeni_rial():
     assert yemeni_rial.grouping_sign == '.'
     assert not yemeni_rial.international
     assert yemeni_rial.symbol == '﷼'
+    assert not yemeni_rial.symbol_ahead
+    assert yemeni_rial.symbol_separator == '\u00A0'
     assert yemeni_rial.__hash__() == hash((decimal, 'YER', '886'))
     assert yemeni_rial.__repr__() == (
         'YemeniRial(amount: 0.1428571428571428571428571429, '
         'alpha_code: "YER", '
         'symbol: "﷼", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "886", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert yemeni_rial.__str__() == '﷼0,14'
+    assert yemeni_rial.__str__() == '0,14 ﷼'
 
 
 def test_yemeni_rial_negative():
@@ -55,17 +59,21 @@ def test_yemeni_rial_negative():
     assert yemeni_rial.grouping_sign == '.'
     assert not yemeni_rial.international
     assert yemeni_rial.symbol == '﷼'
+    assert not yemeni_rial.symbol_ahead
+    assert yemeni_rial.symbol_separator == '\u00A0'
     assert yemeni_rial.__hash__() == hash((decimal, 'YER', '886'))
     assert yemeni_rial.__repr__() == (
         'YemeniRial(amount: -100, '
         'alpha_code: "YER", '
         'symbol: "﷼", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "886", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert yemeni_rial.__str__() == '﷼-100,00'
+    assert yemeni_rial.__str__() == '-100,00 ﷼'
 
 
 def test_yemeni_rial_custom():
@@ -76,7 +84,9 @@ def test_yemeni_rial_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert yemeni_rial.amount == decimal
     assert yemeni_rial.numeric_code == '886'
@@ -86,11 +96,15 @@ def test_yemeni_rial_custom():
     assert yemeni_rial.grouping_sign == ','
     assert yemeni_rial.international
     assert yemeni_rial.symbol == '﷼'
+    assert not yemeni_rial.symbol_ahead
+    assert yemeni_rial.symbol_separator == '_'
     assert yemeni_rial.__hash__() == hash((decimal, 'YER', '886'))
     assert yemeni_rial.__repr__() == (
         'YemeniRial(amount: 1000, '
         'alpha_code: "YER", '
         'symbol: "﷼", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "886", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_yemeni_rial_changed():
             AttributeError,
             match='can\'t set attribute'):
         yemeni_rial.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        yemeni_rial.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        yemeni_rial.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_yemeni_rial_math_add():
                    'rial.YemeniRial\'> '
                    'and <class \'str\'>.')):
         _ = yemeni_rial_one.__add__('1.00')
-    assert (yemeni_rial_one + yemeni_rial_two) == yemeni_rial_three
+    assert (
+        yemeni_rial_one +
+        yemeni_rial_two) == yemeni_rial_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = YemeniRial(amount=1000)
+def test_yemeni_rial_slots():
+    """test_yemeni_rial_slots."""
+    yemeni_rial = YemeniRial(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'YemeniRial\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        yemeni_rial.new_variable = 'fail'  # pylint: disable=assigning-non-slot

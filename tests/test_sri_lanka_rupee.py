@@ -26,21 +26,25 @@ def test_sri_lanka_rupee():
     assert sri_lanka_rupee.numeric_code == '144'
     assert sri_lanka_rupee.alpha_code == 'LKR'
     assert sri_lanka_rupee.decimal_places == 2
-    assert sri_lanka_rupee.decimal_sign == ','
-    assert sri_lanka_rupee.grouping_sign == '.'
+    assert sri_lanka_rupee.decimal_sign == '.'
+    assert sri_lanka_rupee.grouping_sign == ','
     assert not sri_lanka_rupee.international
-    assert sri_lanka_rupee.symbol == 'Rs'
+    assert sri_lanka_rupee.symbol == 'රු.'
+    assert sri_lanka_rupee.symbol_ahead
+    assert sri_lanka_rupee.symbol_separator == '\u00A0'
     assert sri_lanka_rupee.__hash__() == hash((decimal, 'LKR', '144'))
     assert sri_lanka_rupee.__repr__() == (
         'SriLankaRupee(amount: 0.1428571428571428571428571429, '
         'alpha_code: "LKR", '
-        'symbol: "Rs", '
+        'symbol: "රු.", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "144", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert sri_lanka_rupee.__str__() == 'Rs0,14'
+    assert sri_lanka_rupee.__str__() == 'රු. 0.14'
 
 
 def test_sri_lanka_rupee_negative():
@@ -51,21 +55,25 @@ def test_sri_lanka_rupee_negative():
     assert sri_lanka_rupee.numeric_code == '144'
     assert sri_lanka_rupee.alpha_code == 'LKR'
     assert sri_lanka_rupee.decimal_places == 2
-    assert sri_lanka_rupee.decimal_sign == ','
-    assert sri_lanka_rupee.grouping_sign == '.'
+    assert sri_lanka_rupee.decimal_sign == '.'
+    assert sri_lanka_rupee.grouping_sign == ','
     assert not sri_lanka_rupee.international
-    assert sri_lanka_rupee.symbol == 'Rs'
+    assert sri_lanka_rupee.symbol == 'රු.'
+    assert sri_lanka_rupee.symbol_ahead
+    assert sri_lanka_rupee.symbol_separator == '\u00A0'
     assert sri_lanka_rupee.__hash__() == hash((decimal, 'LKR', '144'))
     assert sri_lanka_rupee.__repr__() == (
         'SriLankaRupee(amount: -100, '
         'alpha_code: "LKR", '
-        'symbol: "Rs", '
+        'symbol: "රු.", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "144", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert sri_lanka_rupee.__str__() == 'Rs-100,00'
+    assert sri_lanka_rupee.__str__() == 'රු. -100.00'
 
 
 def test_sri_lanka_rupee_custom():
@@ -74,27 +82,33 @@ def test_sri_lanka_rupee_custom():
     sri_lanka_rupee = SriLankaRupee(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert sri_lanka_rupee.amount == decimal
     assert sri_lanka_rupee.numeric_code == '144'
     assert sri_lanka_rupee.alpha_code == 'LKR'
     assert sri_lanka_rupee.decimal_places == 5
-    assert sri_lanka_rupee.decimal_sign == '.'
-    assert sri_lanka_rupee.grouping_sign == ','
+    assert sri_lanka_rupee.decimal_sign == ','
+    assert sri_lanka_rupee.grouping_sign == '.'
     assert sri_lanka_rupee.international
-    assert sri_lanka_rupee.symbol == 'Rs'
+    assert sri_lanka_rupee.symbol == 'රු.'
+    assert not sri_lanka_rupee.symbol_ahead
+    assert sri_lanka_rupee.symbol_separator == '_'
     assert sri_lanka_rupee.__hash__() == hash((decimal, 'LKR', '144'))
     assert sri_lanka_rupee.__repr__() == (
         'SriLankaRupee(amount: 1000, '
         'alpha_code: "LKR", '
-        'symbol: "Rs", '
+        'symbol: "රු.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "144", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert sri_lanka_rupee.__str__() == 'LKR 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_sri_lanka_rupee_changed():
             AttributeError,
             match='can\'t set attribute'):
         sri_lanka_rupee.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        sri_lanka_rupee.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        sri_lanka_rupee.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_sri_lanka_rupee_math_add():
                    'rupee.SriLankaRupee\'> '
                    'and <class \'str\'>.')):
         _ = sri_lanka_rupee_one.__add__('1.00')
-    assert (sri_lanka_rupee_one + sri_lanka_rupee_two) == sri_lanka_rupee_three
+    assert (
+        sri_lanka_rupee_one +
+        sri_lanka_rupee_two) == sri_lanka_rupee_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = SriLankaRupee(amount=1000)
+def test_sri_lanka_rupee_slots():
+    """test_sri_lanka_rupee_slots."""
+    sri_lanka_rupee = SriLankaRupee(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'SriLankaRupee\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        sri_lanka_rupee.new_variable = 'fail'  # pylint: disable=assigning-non-slot

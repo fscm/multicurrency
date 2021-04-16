@@ -17,9 +17,10 @@ class ArgentinePeso(Currency):
     Simple usage example:
 
         >>> from multicurrency import ArgentinePeso
-        >>> argentine_peso = ArgentinePeso(amount=1)
+        >>> argentine_peso = ArgentinePeso(
+        ...     amount=123456.789)
         >>> print(argentine_peso)
-        $1,00
+        $ 123.456,79
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -32,6 +33,10 @@ class ArgentinePeso(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -39,10 +44,12 @@ class ArgentinePeso(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 2,
+            decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
             grouping_sign: Optional[str] = '.',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'ArgentinePeso':
         """Class creator.
 
@@ -55,6 +62,8 @@ class ArgentinePeso(Currency):
             alpha_code='ARS',
             numeric_code='032',
             symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -67,9 +76,10 @@ class ChileanPeso(Currency):
     Simple usage example:
 
         >>> from multicurrency import ChileanPeso
-        >>> chilean_peso = ChileanPeso(amount=1)
+        >>> chilean_peso = ChileanPeso(
+        ...     amount=123456.789)
         >>> print(chilean_peso)
-        $1
+        $123.457
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -82,6 +92,10 @@ class ChileanPeso(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -89,10 +103,12 @@ class ChileanPeso(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 0,
+            decimal_places: Optional[int] = 0,
             decimal_sign: Optional[str] = ',',
             grouping_sign: Optional[str] = '.',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
             **other) -> 'ChileanPeso':
         """Class creator.
 
@@ -105,6 +121,8 @@ class ChileanPeso(Currency):
             alpha_code='CLP',
             numeric_code='152',
             symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -117,9 +135,10 @@ class ColombianPeso(Currency):
     Simple usage example:
 
         >>> from multicurrency import ColombianPeso
-        >>> colombian_peso = ColombianPeso(amount=1)
+        >>> colombian_peso = ColombianPeso(
+        ...     amount=123456.789)
         >>> print(colombian_peso)
-        $1,00
+        $ 123.456,79
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -132,6 +151,10 @@ class ColombianPeso(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -139,10 +162,12 @@ class ColombianPeso(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 2,
+            decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
             grouping_sign: Optional[str] = '.',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'ColombianPeso':
         """Class creator.
 
@@ -155,6 +180,8 @@ class ColombianPeso(Currency):
             alpha_code='COP',
             numeric_code='170',
             symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -167,9 +194,10 @@ class CubanPeso(Currency):
     Simple usage example:
 
         >>> from multicurrency import CubanPeso
-        >>> cuban_peso = CubanPeso(amount=1)
+        >>> cuban_peso = CubanPeso(
+        ...     amount=123456.789)
         >>> print(cuban_peso)
-        $1.00
+        $123,456.79
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -182,6 +210,10 @@ class CubanPeso(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -189,10 +221,12 @@ class CubanPeso(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 2,
+            decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
             grouping_sign: Optional[str] = ',',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
             **other) -> 'CubanPeso':
         """Class creator.
 
@@ -205,6 +239,8 @@ class CubanPeso(Currency):
             alpha_code='CUP',
             numeric_code='192',
             symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -217,9 +253,10 @@ class DominicanPeso(Currency):
     Simple usage example:
 
         >>> from multicurrency import DominicanPeso
-        >>> dominican_peso = DominicanPeso(amount=1)
+        >>> dominican_peso = DominicanPeso(
+        ...     amount=123456.789)
         >>> print(dominican_peso)
-        $1.00
+        $123,456.79
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -232,6 +269,10 @@ class DominicanPeso(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -239,10 +280,12 @@ class DominicanPeso(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 2,
+            decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
             grouping_sign: Optional[str] = ',',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
             **other) -> 'DominicanPeso':
         """Class creator.
 
@@ -255,6 +298,8 @@ class DominicanPeso(Currency):
             alpha_code='DOP',
             numeric_code='214',
             symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -267,9 +312,10 @@ class MexicanPeso(Currency):
     Simple usage example:
 
         >>> from multicurrency import MexicanPeso
-        >>> mexican_peso = MexicanPeso(amount=1)
+        >>> mexican_peso = MexicanPeso(
+        ...     amount=123456.789)
         >>> print(mexican_peso)
-        $1.00
+        $123,456.79
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -282,6 +328,10 @@ class MexicanPeso(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -289,10 +339,12 @@ class MexicanPeso(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 2,
+            decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
             grouping_sign: Optional[str] = ',',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
             **other) -> 'MexicanPeso':
         """Class creator.
 
@@ -305,6 +357,8 @@ class MexicanPeso(Currency):
             alpha_code='MXN',
             numeric_code='484',
             symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -317,9 +371,10 @@ class PhilippinePeso(Currency):
     Simple usage example:
 
         >>> from multicurrency import PhilippinePeso
-        >>> philippine_peso = PhilippinePeso(amount=1)
+        >>> philippine_peso = PhilippinePeso(
+        ...     amount=123456.789)
         >>> print(philippine_peso)
-        ₱1.00
+        ₱123,456.79
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -332,6 +387,10 @@ class PhilippinePeso(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -339,10 +398,12 @@ class PhilippinePeso(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 2,
+            decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
             grouping_sign: Optional[str] = ',',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
             **other) -> 'PhilippinePeso':
         """Class creator.
 
@@ -355,6 +416,8 @@ class PhilippinePeso(Currency):
             alpha_code='PHP',
             numeric_code='608',
             symbol='₱',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -367,9 +430,10 @@ class PesoUruguayo(Currency):
     Simple usage example:
 
         >>> from multicurrency import PesoUruguayo
-        >>> peso_uruguayo = PesoUruguayo(amount=1)
+        >>> peso_uruguayo = PesoUruguayo(
+        ...     amount=123456.789)
         >>> print(peso_uruguayo)
-        $1,00
+        $ 123.456,79
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -382,6 +446,10 @@ class PesoUruguayo(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -389,10 +457,12 @@ class PesoUruguayo(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 2,
+            decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
             grouping_sign: Optional[str] = '.',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'PesoUruguayo':
         """Class creator.
 
@@ -405,6 +475,8 @@ class PesoUruguayo(Currency):
             alpha_code='UYU',
             numeric_code='858',
             symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

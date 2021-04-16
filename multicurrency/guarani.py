@@ -17,9 +17,10 @@ class Guarani(Currency):
     Simple usage example:
 
         >>> from multicurrency import Guarani
-        >>> guarani = Guarani(amount=1)
+        >>> guarani = Guarani(
+        ...     amount=123456.789)
         >>> print(guarani)
-        ₲1
+        ₲ 123.457
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -32,6 +33,10 @@ class Guarani(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -39,10 +44,12 @@ class Guarani(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 0,
+            decimal_places: Optional[int] = 0,
             decimal_sign: Optional[str] = ',',
             grouping_sign: Optional[str] = '.',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'Guarani':
         """Class creator.
 
@@ -55,6 +62,8 @@ class Guarani(Currency):
             alpha_code='PYG',
             numeric_code='600',
             symbol='₲',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

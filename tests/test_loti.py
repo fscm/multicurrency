@@ -26,21 +26,25 @@ def test_loti():
     assert loti.numeric_code == '426'
     assert loti.alpha_code == 'LSL'
     assert loti.decimal_places == 2
-    assert loti.decimal_sign == ','
-    assert loti.grouping_sign == '.'
+    assert loti.decimal_sign == '.'
+    assert loti.grouping_sign == ','
     assert not loti.international
     assert loti.symbol == 'L'
+    assert loti.symbol_ahead
+    assert loti.symbol_separator == '\u00A0'
     assert loti.__hash__() == hash((decimal, 'LSL', '426'))
     assert loti.__repr__() == (
         'Loti(amount: 0.1428571428571428571428571429, '
         'alpha_code: "LSL", '
         'symbol: "L", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "426", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert loti.__str__() == 'L0,14'
+    assert loti.__str__() == 'L 0.14'
 
 
 def test_loti_negative():
@@ -51,21 +55,25 @@ def test_loti_negative():
     assert loti.numeric_code == '426'
     assert loti.alpha_code == 'LSL'
     assert loti.decimal_places == 2
-    assert loti.decimal_sign == ','
-    assert loti.grouping_sign == '.'
+    assert loti.decimal_sign == '.'
+    assert loti.grouping_sign == ','
     assert not loti.international
     assert loti.symbol == 'L'
+    assert loti.symbol_ahead
+    assert loti.symbol_separator == '\u00A0'
     assert loti.__hash__() == hash((decimal, 'LSL', '426'))
     assert loti.__repr__() == (
         'Loti(amount: -100, '
         'alpha_code: "LSL", '
         'symbol: "L", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "426", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert loti.__str__() == 'L-100,00'
+    assert loti.__str__() == 'L -100.00'
 
 
 def test_loti_custom():
@@ -74,27 +82,33 @@ def test_loti_custom():
     loti = Loti(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert loti.amount == decimal
     assert loti.numeric_code == '426'
     assert loti.alpha_code == 'LSL'
     assert loti.decimal_places == 5
-    assert loti.decimal_sign == '.'
-    assert loti.grouping_sign == ','
+    assert loti.decimal_sign == ','
+    assert loti.grouping_sign == '.'
     assert loti.international
     assert loti.symbol == 'L'
+    assert not loti.symbol_ahead
+    assert loti.symbol_separator == '_'
     assert loti.__hash__() == hash((decimal, 'LSL', '426'))
     assert loti.__repr__() == (
         'Loti(amount: 1000, '
         'alpha_code: "LSL", '
         'symbol: "L", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "426", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert loti.__str__() == 'LSL 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_loti_changed():
             AttributeError,
             match='can\'t set attribute'):
         loti.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        loti.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        loti.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_loti_math_add():
                    'loti.Loti\'> '
                    'and <class \'str\'>.')):
         _ = loti_one.__add__('1.00')
-    assert (loti_one + loti_two) == loti_three
+    assert (
+        loti_one +
+        loti_two) == loti_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Loti(amount=1000)
+def test_loti_slots():
+    """test_loti_slots."""
+    loti = Loti(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Loti\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        loti.new_variable = 'fail'  # pylint: disable=assigning-non-slot

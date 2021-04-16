@@ -26,21 +26,25 @@ def test_tugrik():
     assert tugrik.numeric_code == '496'
     assert tugrik.alpha_code == 'MNT'
     assert tugrik.decimal_places == 2
-    assert tugrik.decimal_sign == ','
-    assert tugrik.grouping_sign == '.'
+    assert tugrik.decimal_sign == '.'
+    assert tugrik.grouping_sign == ','
     assert not tugrik.international
     assert tugrik.symbol == '₮'
+    assert tugrik.symbol_ahead
+    assert tugrik.symbol_separator == '\u00A0'
     assert tugrik.__hash__() == hash((decimal, 'MNT', '496'))
     assert tugrik.__repr__() == (
         'Tugrik(amount: 0.1428571428571428571428571429, '
         'alpha_code: "MNT", '
         'symbol: "₮", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "496", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert tugrik.__str__() == '₮0,14'
+    assert tugrik.__str__() == '₮ 0.14'
 
 
 def test_tugrik_negative():
@@ -51,21 +55,25 @@ def test_tugrik_negative():
     assert tugrik.numeric_code == '496'
     assert tugrik.alpha_code == 'MNT'
     assert tugrik.decimal_places == 2
-    assert tugrik.decimal_sign == ','
-    assert tugrik.grouping_sign == '.'
+    assert tugrik.decimal_sign == '.'
+    assert tugrik.grouping_sign == ','
     assert not tugrik.international
     assert tugrik.symbol == '₮'
+    assert tugrik.symbol_ahead
+    assert tugrik.symbol_separator == '\u00A0'
     assert tugrik.__hash__() == hash((decimal, 'MNT', '496'))
     assert tugrik.__repr__() == (
         'Tugrik(amount: -100, '
         'alpha_code: "MNT", '
         'symbol: "₮", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "496", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert tugrik.__str__() == '₮-100,00'
+    assert tugrik.__str__() == '₮ -100.00'
 
 
 def test_tugrik_custom():
@@ -74,27 +82,33 @@ def test_tugrik_custom():
     tugrik = Tugrik(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert tugrik.amount == decimal
     assert tugrik.numeric_code == '496'
     assert tugrik.alpha_code == 'MNT'
     assert tugrik.decimal_places == 5
-    assert tugrik.decimal_sign == '.'
-    assert tugrik.grouping_sign == ','
+    assert tugrik.decimal_sign == ','
+    assert tugrik.grouping_sign == '.'
     assert tugrik.international
     assert tugrik.symbol == '₮'
+    assert not tugrik.symbol_ahead
+    assert tugrik.symbol_separator == '_'
     assert tugrik.__hash__() == hash((decimal, 'MNT', '496'))
     assert tugrik.__repr__() == (
         'Tugrik(amount: 1000, '
         'alpha_code: "MNT", '
         'symbol: "₮", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "496", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert tugrik.__str__() == 'MNT 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_tugrik_changed():
             AttributeError,
             match='can\'t set attribute'):
         tugrik.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        tugrik.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        tugrik.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_tugrik_math_add():
                    'tugrik.Tugrik\'> '
                    'and <class \'str\'>.')):
         _ = tugrik_one.__add__('1.00')
-    assert (tugrik_one + tugrik_two) == tugrik_three
+    assert (
+        tugrik_one +
+        tugrik_two) == tugrik_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Tugrik(amount=1000)
+def test_tugrik_slots():
+    """test_tugrik_slots."""
+    tugrik = Tugrik(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Tugrik\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        tugrik.new_variable = 'fail'  # pylint: disable=assigning-non-slot

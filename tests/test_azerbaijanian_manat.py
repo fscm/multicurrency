@@ -30,17 +30,21 @@ def test_azerbaijanian_manat():
     assert azerbaijanian_manat.grouping_sign == '.'
     assert not azerbaijanian_manat.international
     assert azerbaijanian_manat.symbol == 'ман'
+    assert not azerbaijanian_manat.symbol_ahead
+    assert azerbaijanian_manat.symbol_separator == '\u00A0'
     assert azerbaijanian_manat.__hash__() == hash((decimal, 'AZN', '944'))
     assert azerbaijanian_manat.__repr__() == (
         'AzerbaijanianManat(amount: 0.1428571428571428571428571429, '
         'alpha_code: "AZN", '
         'symbol: "ман", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "944", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert azerbaijanian_manat.__str__() == 'ман0,14'
+    assert azerbaijanian_manat.__str__() == '0,14 ман'
 
 
 def test_azerbaijanian_manat_negative():
@@ -55,17 +59,21 @@ def test_azerbaijanian_manat_negative():
     assert azerbaijanian_manat.grouping_sign == '.'
     assert not azerbaijanian_manat.international
     assert azerbaijanian_manat.symbol == 'ман'
+    assert not azerbaijanian_manat.symbol_ahead
+    assert azerbaijanian_manat.symbol_separator == '\u00A0'
     assert azerbaijanian_manat.__hash__() == hash((decimal, 'AZN', '944'))
     assert azerbaijanian_manat.__repr__() == (
         'AzerbaijanianManat(amount: -100, '
         'alpha_code: "AZN", '
         'symbol: "ман", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "944", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert azerbaijanian_manat.__str__() == 'ман-100,00'
+    assert azerbaijanian_manat.__str__() == '-100,00 ман'
 
 
 def test_azerbaijanian_manat_custom():
@@ -76,7 +84,9 @@ def test_azerbaijanian_manat_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert azerbaijanian_manat.amount == decimal
     assert azerbaijanian_manat.numeric_code == '944'
@@ -86,11 +96,15 @@ def test_azerbaijanian_manat_custom():
     assert azerbaijanian_manat.grouping_sign == ','
     assert azerbaijanian_manat.international
     assert azerbaijanian_manat.symbol == 'ман'
+    assert not azerbaijanian_manat.symbol_ahead
+    assert azerbaijanian_manat.symbol_separator == '_'
     assert azerbaijanian_manat.__hash__() == hash((decimal, 'AZN', '944'))
     assert azerbaijanian_manat.__repr__() == (
         'AzerbaijanianManat(amount: 1000, '
         'alpha_code: "AZN", '
         'symbol: "ман", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "944", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_azerbaijanian_manat_changed():
             AttributeError,
             match='can\'t set attribute'):
         azerbaijanian_manat.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        azerbaijanian_manat.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        azerbaijanian_manat.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_azerbaijanian_manat_math_add():
                    'manat.AzerbaijanianManat\'> '
                    'and <class \'str\'>.')):
         _ = azerbaijanian_manat_one.__add__('1.00')
-    assert (azerbaijanian_manat_one + azerbaijanian_manat_two) == azerbaijanian_manat_three
+    assert (
+        azerbaijanian_manat_one +
+        azerbaijanian_manat_two) == azerbaijanian_manat_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = AzerbaijanianManat(amount=1000)
+def test_azerbaijanian_manat_slots():
+    """test_azerbaijanian_manat_slots."""
+    azerbaijanian_manat = AzerbaijanianManat(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'AzerbaijanianManat\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        azerbaijanian_manat.new_variable = 'fail'  # pylint: disable=assigning-non-slot

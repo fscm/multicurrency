@@ -30,11 +30,15 @@ def test_east_caribbean_dollar():
     assert east_caribbean_dollar.grouping_sign == ','
     assert not east_caribbean_dollar.international
     assert east_caribbean_dollar.symbol == '$'
+    assert east_caribbean_dollar.symbol_ahead
+    assert east_caribbean_dollar.symbol_separator == ''
     assert east_caribbean_dollar.__hash__() == hash((decimal, 'XCD', '951'))
     assert east_caribbean_dollar.__repr__() == (
         'EastCaribbeanDollar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "XCD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "951", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -55,11 +59,15 @@ def test_east_caribbean_dollar_negative():
     assert east_caribbean_dollar.grouping_sign == ','
     assert not east_caribbean_dollar.international
     assert east_caribbean_dollar.symbol == '$'
+    assert east_caribbean_dollar.symbol_ahead
+    assert east_caribbean_dollar.symbol_separator == ''
     assert east_caribbean_dollar.__hash__() == hash((decimal, 'XCD', '951'))
     assert east_caribbean_dollar.__repr__() == (
         'EastCaribbeanDollar(amount: -100, '
         'alpha_code: "XCD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "951", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -76,7 +84,9 @@ def test_east_caribbean_dollar_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert east_caribbean_dollar.amount == decimal
     assert east_caribbean_dollar.numeric_code == '951'
@@ -86,17 +96,21 @@ def test_east_caribbean_dollar_custom():
     assert east_caribbean_dollar.grouping_sign == '.'
     assert east_caribbean_dollar.international
     assert east_caribbean_dollar.symbol == '$'
+    assert not east_caribbean_dollar.symbol_ahead
+    assert east_caribbean_dollar.symbol_separator == '_'
     assert east_caribbean_dollar.__hash__() == hash((decimal, 'XCD', '951'))
     assert east_caribbean_dollar.__repr__() == (
         'EastCaribbeanDollar(amount: 1000, '
         'alpha_code: "XCD", '
         'symbol: "$", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "951", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert east_caribbean_dollar.__str__() == 'XCD 1.000,00000'
+    assert east_caribbean_dollar.__str__() == 'XCD 1,000.00000'
 
 
 def test_east_caribbean_dollar_changed():
@@ -114,6 +128,14 @@ def test_east_caribbean_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         east_caribbean_dollar.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        east_caribbean_dollar.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        east_caribbean_dollar.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_east_caribbean_dollar_math_add():
                    'dollar.EastCaribbeanDollar\'> '
                    'and <class \'str\'>.')):
         _ = east_caribbean_dollar_one.__add__('1.00')
-    assert (east_caribbean_dollar_one + east_caribbean_dollar_two) == east_caribbean_dollar_three
+    assert (
+        east_caribbean_dollar_one +
+        east_caribbean_dollar_two) == east_caribbean_dollar_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = EastCaribbeanDollar(amount=1000)
+def test_east_caribbean_dollar_slots():
+    """test_east_caribbean_dollar_slots."""
+    east_caribbean_dollar = EastCaribbeanDollar(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'EastCaribbeanDollar\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        east_caribbean_dollar.new_variable = 'fail'  # pylint: disable=assigning-non-slot

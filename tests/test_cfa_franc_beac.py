@@ -27,20 +27,24 @@ def test_cfa_franc_beac():
     assert cfa_franc_beac.alpha_code == 'XAF'
     assert cfa_franc_beac.decimal_places == 0
     assert cfa_franc_beac.decimal_sign == ','
-    assert cfa_franc_beac.grouping_sign == '.'
+    assert cfa_franc_beac.grouping_sign == '\u202F'
     assert not cfa_franc_beac.international
     assert cfa_franc_beac.symbol == '₣'
+    assert not cfa_franc_beac.symbol_ahead
+    assert cfa_franc_beac.symbol_separator == '\u00A0'
     assert cfa_franc_beac.__hash__() == hash((decimal, 'XAF', '950'))
     assert cfa_franc_beac.__repr__() == (
         'CFAFrancBEAC(amount: 0.1428571428571428571428571429, '
         'alpha_code: "XAF", '
         'symbol: "₣", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "950", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert cfa_franc_beac.__str__() == '₣0'
+    assert cfa_franc_beac.__str__() == '0 ₣'
 
 
 def test_cfa_franc_beac_negative():
@@ -52,20 +56,24 @@ def test_cfa_franc_beac_negative():
     assert cfa_franc_beac.alpha_code == 'XAF'
     assert cfa_franc_beac.decimal_places == 0
     assert cfa_franc_beac.decimal_sign == ','
-    assert cfa_franc_beac.grouping_sign == '.'
+    assert cfa_franc_beac.grouping_sign == '\u202F'
     assert not cfa_franc_beac.international
     assert cfa_franc_beac.symbol == '₣'
+    assert not cfa_franc_beac.symbol_ahead
+    assert cfa_franc_beac.symbol_separator == '\u00A0'
     assert cfa_franc_beac.__hash__() == hash((decimal, 'XAF', '950'))
     assert cfa_franc_beac.__repr__() == (
         'CFAFrancBEAC(amount: -100, '
         'alpha_code: "XAF", '
         'symbol: "₣", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "950", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert cfa_franc_beac.__str__() == '₣-100'
+    assert cfa_franc_beac.__str__() == '-100 ₣'
 
 
 def test_cfa_franc_beac_custom():
@@ -74,26 +82,32 @@ def test_cfa_franc_beac_custom():
     cfa_franc_beac = CFAFrancBEAC(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
+        decimal_sign='\u202F',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert cfa_franc_beac.amount == decimal
     assert cfa_franc_beac.numeric_code == '950'
     assert cfa_franc_beac.alpha_code == 'XAF'
     assert cfa_franc_beac.decimal_places == 5
-    assert cfa_franc_beac.decimal_sign == '.'
+    assert cfa_franc_beac.decimal_sign == '\u202F'
     assert cfa_franc_beac.grouping_sign == ','
     assert cfa_franc_beac.international
     assert cfa_franc_beac.symbol == '₣'
+    assert not cfa_franc_beac.symbol_ahead
+    assert cfa_franc_beac.symbol_separator == '_'
     assert cfa_franc_beac.__hash__() == hash((decimal, 'XAF', '950'))
     assert cfa_franc_beac.__repr__() == (
         'CFAFrancBEAC(amount: 1000, '
         'alpha_code: "XAF", '
         'symbol: "₣", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "950", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
+        'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
         'international: True)')
     assert cfa_franc_beac.__str__() == 'XAF 1,000.00000'
@@ -114,6 +128,14 @@ def test_cfa_franc_beac_changed():
             AttributeError,
             match='can\'t set attribute'):
         cfa_franc_beac.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cfa_franc_beac.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cfa_franc_beac.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_cfa_franc_beac_math_add():
                    'franc.CFAFrancBEAC\'> '
                    'and <class \'str\'>.')):
         _ = cfa_franc_beac_one.__add__('1.00')
-    assert (cfa_franc_beac_one + cfa_franc_beac_two) == cfa_franc_beac_three
+    assert (
+        cfa_franc_beac_one +
+        cfa_franc_beac_two) == cfa_franc_beac_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = CFAFrancBEAC(amount=1000)
+def test_cfa_franc_beac_slots():
+    """test_cfa_franc_beac_slots."""
+    cfa_franc_beac = CFAFrancBEAC(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'CFAFrancBEAC\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        cfa_franc_beac.new_variable = 'fail'  # pylint: disable=assigning-non-slot

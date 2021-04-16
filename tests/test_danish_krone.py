@@ -29,18 +29,22 @@ def test_danish_krone():
     assert danish_krone.decimal_sign == ','
     assert danish_krone.grouping_sign == '.'
     assert not danish_krone.international
-    assert danish_krone.symbol == 'kr'
+    assert danish_krone.symbol == 'kr.'
+    assert not danish_krone.symbol_ahead
+    assert danish_krone.symbol_separator == '\u00A0'
     assert danish_krone.__hash__() == hash((decimal, 'DKK', '208'))
     assert danish_krone.__repr__() == (
         'DanishKrone(amount: 0.1428571428571428571428571429, '
         'alpha_code: "DKK", '
-        'symbol: "kr", '
+        'symbol: "kr.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "208", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert danish_krone.__str__() == 'kr0,14'
+    assert danish_krone.__str__() == '0,14 kr.'
 
 
 def test_danish_krone_negative():
@@ -54,18 +58,22 @@ def test_danish_krone_negative():
     assert danish_krone.decimal_sign == ','
     assert danish_krone.grouping_sign == '.'
     assert not danish_krone.international
-    assert danish_krone.symbol == 'kr'
+    assert danish_krone.symbol == 'kr.'
+    assert not danish_krone.symbol_ahead
+    assert danish_krone.symbol_separator == '\u00A0'
     assert danish_krone.__hash__() == hash((decimal, 'DKK', '208'))
     assert danish_krone.__repr__() == (
         'DanishKrone(amount: -100, '
         'alpha_code: "DKK", '
-        'symbol: "kr", '
+        'symbol: "kr.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "208", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert danish_krone.__str__() == 'kr-100,00'
+    assert danish_krone.__str__() == '-100,00 kr.'
 
 
 def test_danish_krone_custom():
@@ -76,7 +84,9 @@ def test_danish_krone_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert danish_krone.amount == decimal
     assert danish_krone.numeric_code == '208'
@@ -85,12 +95,16 @@ def test_danish_krone_custom():
     assert danish_krone.decimal_sign == '.'
     assert danish_krone.grouping_sign == ','
     assert danish_krone.international
-    assert danish_krone.symbol == 'kr'
+    assert danish_krone.symbol == 'kr.'
+    assert not danish_krone.symbol_ahead
+    assert danish_krone.symbol_separator == '_'
     assert danish_krone.__hash__() == hash((decimal, 'DKK', '208'))
     assert danish_krone.__repr__() == (
         'DanishKrone(amount: 1000, '
         'alpha_code: "DKK", '
-        'symbol: "kr", '
+        'symbol: "kr.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "208", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_danish_krone_changed():
             AttributeError,
             match='can\'t set attribute'):
         danish_krone.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        danish_krone.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        danish_krone.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_danish_krone_math_add():
                    'krone.DanishKrone\'> '
                    'and <class \'str\'>.')):
         _ = danish_krone_one.__add__('1.00')
-    assert (danish_krone_one + danish_krone_two) == danish_krone_three
+    assert (
+        danish_krone_one +
+        danish_krone_two) == danish_krone_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = DanishKrone(amount=1000)
+def test_danish_krone_slots():
+    """test_danish_krone_slots."""
+    danish_krone = DanishKrone(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'DanishKrone\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        danish_krone.new_variable = 'fail'  # pylint: disable=assigning-non-slot

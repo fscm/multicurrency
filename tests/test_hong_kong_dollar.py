@@ -30,11 +30,15 @@ def test_hong_kong_dollar():
     assert hong_kong_dollar.grouping_sign == ','
     assert not hong_kong_dollar.international
     assert hong_kong_dollar.symbol == '$'
+    assert hong_kong_dollar.symbol_ahead
+    assert hong_kong_dollar.symbol_separator == ''
     assert hong_kong_dollar.__hash__() == hash((decimal, 'HKD', '344'))
     assert hong_kong_dollar.__repr__() == (
         'HongKongDollar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "HKD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "344", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -55,11 +59,15 @@ def test_hong_kong_dollar_negative():
     assert hong_kong_dollar.grouping_sign == ','
     assert not hong_kong_dollar.international
     assert hong_kong_dollar.symbol == '$'
+    assert hong_kong_dollar.symbol_ahead
+    assert hong_kong_dollar.symbol_separator == ''
     assert hong_kong_dollar.__hash__() == hash((decimal, 'HKD', '344'))
     assert hong_kong_dollar.__repr__() == (
         'HongKongDollar(amount: -100, '
         'alpha_code: "HKD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "344", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -76,7 +84,9 @@ def test_hong_kong_dollar_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert hong_kong_dollar.amount == decimal
     assert hong_kong_dollar.numeric_code == '344'
@@ -86,17 +96,21 @@ def test_hong_kong_dollar_custom():
     assert hong_kong_dollar.grouping_sign == '.'
     assert hong_kong_dollar.international
     assert hong_kong_dollar.symbol == '$'
+    assert not hong_kong_dollar.symbol_ahead
+    assert hong_kong_dollar.symbol_separator == '_'
     assert hong_kong_dollar.__hash__() == hash((decimal, 'HKD', '344'))
     assert hong_kong_dollar.__repr__() == (
         'HongKongDollar(amount: 1000, '
         'alpha_code: "HKD", '
         'symbol: "$", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "344", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert hong_kong_dollar.__str__() == 'HKD 1.000,00000'
+    assert hong_kong_dollar.__str__() == 'HKD 1,000.00000'
 
 
 def test_hong_kong_dollar_changed():
@@ -114,6 +128,14 @@ def test_hong_kong_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         hong_kong_dollar.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        hong_kong_dollar.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        hong_kong_dollar.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_hong_kong_dollar_math_add():
                    'dollar.HongKongDollar\'> '
                    'and <class \'str\'>.')):
         _ = hong_kong_dollar_one.__add__('1.00')
-    assert (hong_kong_dollar_one + hong_kong_dollar_two) == hong_kong_dollar_three
+    assert (
+        hong_kong_dollar_one +
+        hong_kong_dollar_two) == hong_kong_dollar_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = HongKongDollar(amount=1000)
+def test_hong_kong_dollar_slots():
+    """test_hong_kong_dollar_slots."""
+    hong_kong_dollar = HongKongDollar(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'HongKongDollar\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        hong_kong_dollar.new_variable = 'fail'  # pylint: disable=assigning-non-slot

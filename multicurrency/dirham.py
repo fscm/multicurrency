@@ -17,9 +17,10 @@ class UAEDirham(Currency):
     Simple usage example:
 
         >>> from multicurrency import UAEDirham
-        >>> uae_dirham = UAEDirham(amount=1)
+        >>> uae_dirham = UAEDirham(
+        ...     amount=123456.789)
         >>> print(uae_dirham)
-        د.إ1.00
+        123,456.79 د.إ.
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -32,6 +33,10 @@ class UAEDirham(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to False.
     """
 
     __slots__ = []
@@ -39,10 +44,12 @@ class UAEDirham(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 2,
+            decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
             grouping_sign: Optional[str] = ',',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = False,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'UAEDirham':
         """Class creator.
 
@@ -54,7 +61,9 @@ class UAEDirham(Currency):
             amount=amount,
             alpha_code='AED',
             numeric_code='784',
-            symbol='د.إ',
+            symbol='د.إ.',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -67,9 +76,10 @@ class MoroccanDirham(Currency):
     Simple usage example:
 
         >>> from multicurrency import MoroccanDirham
-        >>> moroccan_dirham = MoroccanDirham(amount=1)
+        >>> moroccan_dirham = MoroccanDirham(
+        ...     amount=123456.789)
         >>> print(moroccan_dirham)
-        د.م.1,00
+        123.456,79 د.م.
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -82,6 +92,10 @@ class MoroccanDirham(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to False.
     """
 
     __slots__ = []
@@ -89,10 +103,12 @@ class MoroccanDirham(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 2,
+            decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
             grouping_sign: Optional[str] = '.',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = False,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'MoroccanDirham':
         """Class creator.
 
@@ -105,6 +121,8 @@ class MoroccanDirham(Currency):
             alpha_code='MAD',
             numeric_code='504',
             symbol='د.م.',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

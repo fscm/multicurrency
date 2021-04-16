@@ -27,20 +27,24 @@ def test_czech_koruna():
     assert czech_koruna.alpha_code == 'CZK'
     assert czech_koruna.decimal_places == 2
     assert czech_koruna.decimal_sign == ','
-    assert czech_koruna.grouping_sign == '.'
+    assert czech_koruna.grouping_sign == '\u202F'
     assert not czech_koruna.international
     assert czech_koruna.symbol == 'Kč'
+    assert not czech_koruna.symbol_ahead
+    assert czech_koruna.symbol_separator == '\u00A0'
     assert czech_koruna.__hash__() == hash((decimal, 'CZK', '203'))
     assert czech_koruna.__repr__() == (
         'CzechKoruna(amount: 0.1428571428571428571428571429, '
         'alpha_code: "CZK", '
         'symbol: "Kč", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "203", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert czech_koruna.__str__() == 'Kč0,14'
+    assert czech_koruna.__str__() == '0,14 Kč'
 
 
 def test_czech_koruna_negative():
@@ -52,20 +56,24 @@ def test_czech_koruna_negative():
     assert czech_koruna.alpha_code == 'CZK'
     assert czech_koruna.decimal_places == 2
     assert czech_koruna.decimal_sign == ','
-    assert czech_koruna.grouping_sign == '.'
+    assert czech_koruna.grouping_sign == '\u202F'
     assert not czech_koruna.international
     assert czech_koruna.symbol == 'Kč'
+    assert not czech_koruna.symbol_ahead
+    assert czech_koruna.symbol_separator == '\u00A0'
     assert czech_koruna.__hash__() == hash((decimal, 'CZK', '203'))
     assert czech_koruna.__repr__() == (
         'CzechKoruna(amount: -100, '
         'alpha_code: "CZK", '
         'symbol: "Kč", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "203", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert czech_koruna.__str__() == 'Kč-100,00'
+    assert czech_koruna.__str__() == '-100,00 Kč'
 
 
 def test_czech_koruna_custom():
@@ -74,26 +82,32 @@ def test_czech_koruna_custom():
     czech_koruna = CzechKoruna(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
+        decimal_sign='\u202F',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert czech_koruna.amount == decimal
     assert czech_koruna.numeric_code == '203'
     assert czech_koruna.alpha_code == 'CZK'
     assert czech_koruna.decimal_places == 5
-    assert czech_koruna.decimal_sign == '.'
+    assert czech_koruna.decimal_sign == '\u202F'
     assert czech_koruna.grouping_sign == ','
     assert czech_koruna.international
     assert czech_koruna.symbol == 'Kč'
+    assert not czech_koruna.symbol_ahead
+    assert czech_koruna.symbol_separator == '_'
     assert czech_koruna.__hash__() == hash((decimal, 'CZK', '203'))
     assert czech_koruna.__repr__() == (
         'CzechKoruna(amount: 1000, '
         'alpha_code: "CZK", '
         'symbol: "Kč", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "203", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
+        'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
         'international: True)')
     assert czech_koruna.__str__() == 'CZK 1,000.00000'
@@ -114,6 +128,14 @@ def test_czech_koruna_changed():
             AttributeError,
             match='can\'t set attribute'):
         czech_koruna.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        czech_koruna.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        czech_koruna.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_czech_koruna_math_add():
                    'koruna.CzechKoruna\'> '
                    'and <class \'str\'>.')):
         _ = czech_koruna_one.__add__('1.00')
-    assert (czech_koruna_one + czech_koruna_two) == czech_koruna_three
+    assert (
+        czech_koruna_one +
+        czech_koruna_two) == czech_koruna_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = CzechKoruna(amount=1000)
+def test_czech_koruna_slots():
+    """test_czech_koruna_slots."""
+    czech_koruna = CzechKoruna(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'CzechKoruna\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        czech_koruna.new_variable = 'fail'  # pylint: disable=assigning-non-slot

@@ -30,17 +30,21 @@ def test_suriname_dollar():
     assert suriname_dollar.grouping_sign == '.'
     assert not suriname_dollar.international
     assert suriname_dollar.symbol == '$'
+    assert suriname_dollar.symbol_ahead
+    assert suriname_dollar.symbol_separator == '\u00A0'
     assert suriname_dollar.__hash__() == hash((decimal, 'SRD', '968'))
     assert suriname_dollar.__repr__() == (
         'SurinameDollar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "SRD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "968", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert suriname_dollar.__str__() == '$0,14'
+    assert suriname_dollar.__str__() == '$ 0,14'
 
 
 def test_suriname_dollar_negative():
@@ -55,17 +59,21 @@ def test_suriname_dollar_negative():
     assert suriname_dollar.grouping_sign == '.'
     assert not suriname_dollar.international
     assert suriname_dollar.symbol == '$'
+    assert suriname_dollar.symbol_ahead
+    assert suriname_dollar.symbol_separator == '\u00A0'
     assert suriname_dollar.__hash__() == hash((decimal, 'SRD', '968'))
     assert suriname_dollar.__repr__() == (
         'SurinameDollar(amount: -100, '
         'alpha_code: "SRD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "968", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert suriname_dollar.__str__() == '$-100,00'
+    assert suriname_dollar.__str__() == '$ -100,00'
 
 
 def test_suriname_dollar_custom():
@@ -76,7 +84,9 @@ def test_suriname_dollar_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert suriname_dollar.amount == decimal
     assert suriname_dollar.numeric_code == '968'
@@ -86,11 +96,15 @@ def test_suriname_dollar_custom():
     assert suriname_dollar.grouping_sign == ','
     assert suriname_dollar.international
     assert suriname_dollar.symbol == '$'
+    assert not suriname_dollar.symbol_ahead
+    assert suriname_dollar.symbol_separator == '_'
     assert suriname_dollar.__hash__() == hash((decimal, 'SRD', '968'))
     assert suriname_dollar.__repr__() == (
         'SurinameDollar(amount: 1000, '
         'alpha_code: "SRD", '
         'symbol: "$", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "968", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_suriname_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         suriname_dollar.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        suriname_dollar.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        suriname_dollar.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_suriname_dollar_math_add():
                    'dollar.SurinameDollar\'> '
                    'and <class \'str\'>.')):
         _ = suriname_dollar_one.__add__('1.00')
-    assert (suriname_dollar_one + suriname_dollar_two) == suriname_dollar_three
+    assert (
+        suriname_dollar_one +
+        suriname_dollar_two) == suriname_dollar_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = SurinameDollar(amount=1000)
+def test_suriname_dollar_slots():
+    """test_suriname_dollar_slots."""
+    suriname_dollar = SurinameDollar(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'SurinameDollar\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        suriname_dollar.new_variable = 'fail'  # pylint: disable=assigning-non-slot

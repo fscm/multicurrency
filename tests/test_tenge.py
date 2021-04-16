@@ -27,20 +27,24 @@ def test_tenge():
     assert tenge.alpha_code == 'KZT'
     assert tenge.decimal_places == 2
     assert tenge.decimal_sign == ','
-    assert tenge.grouping_sign == '.'
+    assert tenge.grouping_sign == '\u202F'
     assert not tenge.international
     assert tenge.symbol == '〒'
+    assert not tenge.symbol_ahead
+    assert tenge.symbol_separator == '\u00A0'
     assert tenge.__hash__() == hash((decimal, 'KZT', '398'))
     assert tenge.__repr__() == (
         'Tenge(amount: 0.1428571428571428571428571429, '
         'alpha_code: "KZT", '
         'symbol: "〒", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "398", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert tenge.__str__() == '〒0,14'
+    assert tenge.__str__() == '0,14 〒'
 
 
 def test_tenge_negative():
@@ -52,20 +56,24 @@ def test_tenge_negative():
     assert tenge.alpha_code == 'KZT'
     assert tenge.decimal_places == 2
     assert tenge.decimal_sign == ','
-    assert tenge.grouping_sign == '.'
+    assert tenge.grouping_sign == '\u202F'
     assert not tenge.international
     assert tenge.symbol == '〒'
+    assert not tenge.symbol_ahead
+    assert tenge.symbol_separator == '\u00A0'
     assert tenge.__hash__() == hash((decimal, 'KZT', '398'))
     assert tenge.__repr__() == (
         'Tenge(amount: -100, '
         'alpha_code: "KZT", '
         'symbol: "〒", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "398", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert tenge.__str__() == '〒-100,00'
+    assert tenge.__str__() == '-100,00 〒'
 
 
 def test_tenge_custom():
@@ -74,26 +82,32 @@ def test_tenge_custom():
     tenge = Tenge(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
+        decimal_sign='\u202F',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert tenge.amount == decimal
     assert tenge.numeric_code == '398'
     assert tenge.alpha_code == 'KZT'
     assert tenge.decimal_places == 5
-    assert tenge.decimal_sign == '.'
+    assert tenge.decimal_sign == '\u202F'
     assert tenge.grouping_sign == ','
     assert tenge.international
     assert tenge.symbol == '〒'
+    assert not tenge.symbol_ahead
+    assert tenge.symbol_separator == '_'
     assert tenge.__hash__() == hash((decimal, 'KZT', '398'))
     assert tenge.__repr__() == (
         'Tenge(amount: 1000, '
         'alpha_code: "KZT", '
         'symbol: "〒", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "398", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
+        'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
         'international: True)')
     assert tenge.__str__() == 'KZT 1,000.00000'
@@ -114,6 +128,14 @@ def test_tenge_changed():
             AttributeError,
             match='can\'t set attribute'):
         tenge.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        tenge.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        tenge.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_tenge_math_add():
                    'tenge.Tenge\'> '
                    'and <class \'str\'>.')):
         _ = tenge_one.__add__('1.00')
-    assert (tenge_one + tenge_two) == tenge_three
+    assert (
+        tenge_one +
+        tenge_two) == tenge_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Tenge(amount=1000)
+def test_tenge_slots():
+    """test_tenge_slots."""
+    tenge = Tenge(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Tenge\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        tenge.new_variable = 'fail'  # pylint: disable=assigning-non-slot

@@ -30,17 +30,21 @@ def test_leu():
     assert leu.grouping_sign == '.'
     assert not leu.international
     assert leu.symbol == 'L'
+    assert not leu.symbol_ahead
+    assert leu.symbol_separator == '\u00A0'
     assert leu.__hash__() == hash((decimal, 'RON', '946'))
     assert leu.__repr__() == (
         'Leu(amount: 0.1428571428571428571428571429, '
         'alpha_code: "RON", '
         'symbol: "L", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "946", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert leu.__str__() == 'L0,14'
+    assert leu.__str__() == '0,14 L'
 
 
 def test_leu_negative():
@@ -55,17 +59,21 @@ def test_leu_negative():
     assert leu.grouping_sign == '.'
     assert not leu.international
     assert leu.symbol == 'L'
+    assert not leu.symbol_ahead
+    assert leu.symbol_separator == '\u00A0'
     assert leu.__hash__() == hash((decimal, 'RON', '946'))
     assert leu.__repr__() == (
         'Leu(amount: -100, '
         'alpha_code: "RON", '
         'symbol: "L", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "946", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert leu.__str__() == 'L-100,00'
+    assert leu.__str__() == '-100,00 L'
 
 
 def test_leu_custom():
@@ -76,7 +84,9 @@ def test_leu_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert leu.amount == decimal
     assert leu.numeric_code == '946'
@@ -86,11 +96,15 @@ def test_leu_custom():
     assert leu.grouping_sign == ','
     assert leu.international
     assert leu.symbol == 'L'
+    assert not leu.symbol_ahead
+    assert leu.symbol_separator == '_'
     assert leu.__hash__() == hash((decimal, 'RON', '946'))
     assert leu.__repr__() == (
         'Leu(amount: 1000, '
         'alpha_code: "RON", '
         'symbol: "L", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "946", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_leu_changed():
             AttributeError,
             match='can\'t set attribute'):
         leu.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        leu.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        leu.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_leu_math_add():
                    'leu.Leu\'> '
                    'and <class \'str\'>.')):
         _ = leu_one.__add__('1.00')
-    assert (leu_one + leu_two) == leu_three
+    assert (
+        leu_one +
+        leu_two) == leu_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Leu(amount=1000)
+def test_leu_slots():
+    """test_leu_slots."""
+    leu = Leu(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Leu\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        leu.new_variable = 'fail'  # pylint: disable=assigning-non-slot

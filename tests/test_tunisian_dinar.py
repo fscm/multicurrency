@@ -29,18 +29,22 @@ def test_tunisian_dinar():
     assert tunisian_dinar.decimal_sign == ','
     assert tunisian_dinar.grouping_sign == '.'
     assert not tunisian_dinar.international
-    assert tunisian_dinar.symbol == 'د.ت'
+    assert tunisian_dinar.symbol == 'د.ت.'
+    assert tunisian_dinar.symbol_ahead
+    assert tunisian_dinar.symbol_separator == '\u00A0'
     assert tunisian_dinar.__hash__() == hash((decimal, 'TND', '788'))
     assert tunisian_dinar.__repr__() == (
         'TunisianDinar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "TND", '
-        'symbol: "د.ت", '
+        'symbol: "د.ت.", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "788", '
         'decimal_places: "3", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert tunisian_dinar.__str__() == 'د.ت0,143'
+    assert tunisian_dinar.__str__() == 'د.ت. 0,143'
 
 
 def test_tunisian_dinar_negative():
@@ -54,18 +58,22 @@ def test_tunisian_dinar_negative():
     assert tunisian_dinar.decimal_sign == ','
     assert tunisian_dinar.grouping_sign == '.'
     assert not tunisian_dinar.international
-    assert tunisian_dinar.symbol == 'د.ت'
+    assert tunisian_dinar.symbol == 'د.ت.'
+    assert tunisian_dinar.symbol_ahead
+    assert tunisian_dinar.symbol_separator == '\u00A0'
     assert tunisian_dinar.__hash__() == hash((decimal, 'TND', '788'))
     assert tunisian_dinar.__repr__() == (
         'TunisianDinar(amount: -100, '
         'alpha_code: "TND", '
-        'symbol: "د.ت", '
+        'symbol: "د.ت.", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "788", '
         'decimal_places: "3", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert tunisian_dinar.__str__() == 'د.ت-100,000'
+    assert tunisian_dinar.__str__() == 'د.ت. -100,000'
 
 
 def test_tunisian_dinar_custom():
@@ -76,7 +84,9 @@ def test_tunisian_dinar_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert tunisian_dinar.amount == decimal
     assert tunisian_dinar.numeric_code == '788'
@@ -85,12 +95,16 @@ def test_tunisian_dinar_custom():
     assert tunisian_dinar.decimal_sign == '.'
     assert tunisian_dinar.grouping_sign == ','
     assert tunisian_dinar.international
-    assert tunisian_dinar.symbol == 'د.ت'
+    assert tunisian_dinar.symbol == 'د.ت.'
+    assert not tunisian_dinar.symbol_ahead
+    assert tunisian_dinar.symbol_separator == '_'
     assert tunisian_dinar.__hash__() == hash((decimal, 'TND', '788'))
     assert tunisian_dinar.__repr__() == (
         'TunisianDinar(amount: 1000, '
         'alpha_code: "TND", '
-        'symbol: "د.ت", '
+        'symbol: "د.ت.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "788", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_tunisian_dinar_changed():
             AttributeError,
             match='can\'t set attribute'):
         tunisian_dinar.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        tunisian_dinar.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        tunisian_dinar.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_tunisian_dinar_math_add():
                    'dinar.TunisianDinar\'> '
                    'and <class \'str\'>.')):
         _ = tunisian_dinar_one.__add__('1.00')
-    assert (tunisian_dinar_one + tunisian_dinar_two) == tunisian_dinar_three
+    assert (
+        tunisian_dinar_one +
+        tunisian_dinar_two) == tunisian_dinar_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = TunisianDinar(amount=1000)
+def test_tunisian_dinar_slots():
+    """test_tunisian_dinar_slots."""
+    tunisian_dinar = TunisianDinar(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'TunisianDinar\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        tunisian_dinar.new_variable = 'fail'  # pylint: disable=assigning-non-slot

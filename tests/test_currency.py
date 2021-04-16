@@ -34,6 +34,8 @@ currency = Currency(
     amount=CONTEXT.create_decimal(1) / CONTEXT.create_decimal(7),
     alpha_code='EUR',
     symbol='€',
+    symbol_ahead=True,
+    symbol_separator='',
     numeric_code='978',
     decimal_places=2,
     decimal_sign=',',
@@ -54,11 +56,20 @@ def test_currency_default():
     assert default.grouping_sign == ','
     assert not default.international
     assert default.symbol == ''
+    assert default.symbol_ahead
+    assert default.symbol_separator == ''
     assert default.__hash__() == hash((decimal, '', '0'))
     assert default.__repr__() == (
-        'Currency(amount: 0.1428571428571428571428571429, alpha_code: "", '
-        'symbol: "", numeric_code: "0", decimal_places: "2", '
-        'decimal_sign: ".", grouping_sign: ",", international: False)')
+        'Currency(amount: 0.1428571428571428571428571429, '
+        'alpha_code: "", '
+        'symbol: "", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
+        'numeric_code: "0", '
+        'decimal_places: "2", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
+        'international: False)')
     assert default.__str__() == '0.14'
 
 
@@ -74,11 +85,20 @@ def test_currency_negative():
     assert default.grouping_sign == ','
     assert not default.international
     assert default.symbol == ''
+    assert default.symbol_ahead
+    assert default.symbol_separator == ''
     assert default.__hash__() == hash((decimal, '', '0'))
     assert default.__repr__() == (
-        'Currency(amount: -100, alpha_code: "", symbol: "", '
-        'numeric_code: "0", decimal_places: "2", decimal_sign: ".", '
-        'grouping_sign: ",", international: False)')
+        'Currency(amount: -100, '
+        'alpha_code: "", '
+        'symbol: "", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
+        'numeric_code: "0", '
+        'decimal_places: "2", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
+        'international: False)')
     assert default.__str__() == '-100.00'
 
 
@@ -89,6 +109,8 @@ def test_currency_custom():
         amount=amount,
         alpha_code='EUR',
         symbol='€',
+        symbol_ahead=False,
+        symbol_separator='\u00A0',
         numeric_code='978',
         decimal_places=2,
         decimal_sign=',',
@@ -103,12 +125,21 @@ def test_currency_custom():
     assert euro.grouping_sign == '.'
     assert euro.international
     assert euro.symbol == '€'
+    assert not euro.symbol_ahead
+    assert euro.symbol_separator == '\u00A0'
     assert euro.__hash__() == hash((decimal, 'EUR', '978'))
     assert euro.__repr__() == (
-        'Currency(amount: 1000, alpha_code: "EUR", symbol: "€", '
-        'numeric_code: "978", decimal_places: "2", decimal_sign: ",", '
-        'grouping_sign: ".", international: True)')
-    assert euro.__str__() == 'EUR 1.000,00'
+        'Currency(amount: 1000, '
+        'alpha_code: "EUR", '
+        'symbol: "€", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
+        'numeric_code: "978", '
+        'decimal_places: "2", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
+        'international: True)')
+    assert euro.__str__() == 'EUR 1,000.00'
 
 
 def test_currency_decimal_places():
@@ -117,15 +148,20 @@ def test_currency_decimal_places():
         amount=1000,
         alpha_code='EUR',
         symbol='€',
+        symbol_ahead=False,
+        symbol_separator='\u00A0',
         numeric_code='978',
         decimal_places=-2)
     assert euro.numeric_code == '978'
     assert euro.alpha_code == 'EUR'
     assert euro.decimal_places == 0
-    assert euro.__str__() == '€1,000'
-    assert euro.pstr(-2) == '€1,000'
-    assert euro.pstr(0) == '€1,000'
-    assert euro.pstr(1) == '€1,000.0'
+    assert not euro.symbol_ahead
+    assert euro.symbol_separator == '\u00A0'
+    assert not euro.international
+    assert euro.__str__() == '1,000\u00A0€'
+    assert euro.pstr(-2) == '1,000\u00A0€'
+    assert euro.pstr(0) == '1,000\u00A0€'
+    assert euro.pstr(1) == '1,000.0\u00A0€'
 
 
 def test_currency_changed():
@@ -143,6 +179,14 @@ def test_currency_changed():
             AttributeError,
             match='can\'t set attribute'):
         euro.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        euro.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        euro.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -425,17 +469,24 @@ def test_currency_copy():
     assert new_currency.grouping_sign == '.'
     assert new_currency.international
     assert new_currency.symbol == '€'
+    assert new_currency.symbol_ahead
+    assert new_currency.symbol_separator == ''
     assert new_currency.__repr__() == (
-        'Currency(amount: 0.1428571428571428571428571429, alpha_code: "EUR", '
-        'symbol: "€", numeric_code: "978", decimal_places: "2", '
-        'decimal_sign: ",", grouping_sign: ".", international: True)')
-    assert new_currency.__str__() == 'EUR 0,14'
+        'Currency(amount: 0.1428571428571428571428571429, '
+        'alpha_code: "EUR", '
+        'symbol: "€", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
+        'numeric_code: "978", '
+        'decimal_places: "2", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
+        'international: True)')
+    assert new_currency.__str__() == 'EUR 0.14'
 
 
 def test_currency_float():
     """test_currency_float."""
-    #assert float(currency) == 0.143
-    #assert currency.__float__() == 0.143
     assert float(currency) == 0.14285714285714285
     assert currency.__float__() == 0.14285714285714285
 
@@ -505,6 +556,13 @@ def test_currency_precision_2():
     assert test_currency == Currency(0.3)
     assert test_currency.amount == CONTEXT.create_decimal('0.3')
     assert test_currency.__str__() == '0.30'
+
+
+def test_currency_precision_international():
+    """test_currency_precision_international."""
+    test_currency = Currency(0.1, alpha_code='EUR', international=True)
+    assert test_currency.amount == CONTEXT.create_decimal('0.1')
+    assert test_currency.pstr(precision=4) == 'EUR 0.1000'
 
 
 def test_currency_roundings_positive():

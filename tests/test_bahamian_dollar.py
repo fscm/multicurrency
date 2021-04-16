@@ -30,11 +30,15 @@ def test_bahamian_dollar():
     assert bahamian_dollar.grouping_sign == ','
     assert not bahamian_dollar.international
     assert bahamian_dollar.symbol == '$'
+    assert bahamian_dollar.symbol_ahead
+    assert bahamian_dollar.symbol_separator == ''
     assert bahamian_dollar.__hash__() == hash((decimal, 'BSD', '044'))
     assert bahamian_dollar.__repr__() == (
         'BahamianDollar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "BSD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "044", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -55,11 +59,15 @@ def test_bahamian_dollar_negative():
     assert bahamian_dollar.grouping_sign == ','
     assert not bahamian_dollar.international
     assert bahamian_dollar.symbol == '$'
+    assert bahamian_dollar.symbol_ahead
+    assert bahamian_dollar.symbol_separator == ''
     assert bahamian_dollar.__hash__() == hash((decimal, 'BSD', '044'))
     assert bahamian_dollar.__repr__() == (
         'BahamianDollar(amount: -100, '
         'alpha_code: "BSD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "044", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -76,7 +84,9 @@ def test_bahamian_dollar_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert bahamian_dollar.amount == decimal
     assert bahamian_dollar.numeric_code == '044'
@@ -86,17 +96,21 @@ def test_bahamian_dollar_custom():
     assert bahamian_dollar.grouping_sign == '.'
     assert bahamian_dollar.international
     assert bahamian_dollar.symbol == '$'
+    assert not bahamian_dollar.symbol_ahead
+    assert bahamian_dollar.symbol_separator == '_'
     assert bahamian_dollar.__hash__() == hash((decimal, 'BSD', '044'))
     assert bahamian_dollar.__repr__() == (
         'BahamianDollar(amount: 1000, '
         'alpha_code: "BSD", '
         'symbol: "$", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "044", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert bahamian_dollar.__str__() == 'BSD 1.000,00000'
+    assert bahamian_dollar.__str__() == 'BSD 1,000.00000'
 
 
 def test_bahamian_dollar_changed():
@@ -114,6 +128,14 @@ def test_bahamian_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         bahamian_dollar.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        bahamian_dollar.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        bahamian_dollar.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_bahamian_dollar_math_add():
                    'dollar.BahamianDollar\'> '
                    'and <class \'str\'>.')):
         _ = bahamian_dollar_one.__add__('1.00')
-    assert (bahamian_dollar_one + bahamian_dollar_two) == bahamian_dollar_three
+    assert (
+        bahamian_dollar_one +
+        bahamian_dollar_two) == bahamian_dollar_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = BahamianDollar(amount=1000)
+def test_bahamian_dollar_slots():
+    """test_bahamian_dollar_slots."""
+    bahamian_dollar = BahamianDollar(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'BahamianDollar\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        bahamian_dollar.new_variable = 'fail'  # pylint: disable=assigning-non-slot

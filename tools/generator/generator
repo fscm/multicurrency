@@ -28,13 +28,15 @@ separated by a coma (',') and in the following order:
     * "Decimal Places"
     * "Decimal Sign"
     * "Grouping Sign"
+    * "Symbol Separator"
+    * "Symbol Ahead"
 
 `currency.csv` file example:
 
-    "Currency","Symbol","Digital Code","Class","Name","Country","Decimal Places","Decimal Sign","Grouping Sign"
-    "AFN","Af","971","Afghani","Afghani","Afghanistan","2",",","."
-    "ALL","L","008","Lek","Lek","Albania","2",",","."
-    "AMD","Դ","051","Dram","Armenian Dram","Armenia","2",".",","
+    "Currency","Symbol","Digital Code","Class","Name","Country","Decimal Places","Decimal Sign","Grouping Sign","Symbol Separator","Symbol Ahead"
+    "AFN","Af","971","Afghani","Afghani","Afghanistan","2",",",".","\u00A0","True"
+    "ALL","Lekë","008","Lek","Lek","Albania","2",",","\u202F","\u00A0","False"
+    "AMD","Դ","051","Dram","Armenian Dram","Armenia","2",",","\u202F","\u00A0","False"
 """
 
 import csv
@@ -58,6 +60,9 @@ comp_nospace = re.compile('|'.join(re_nospace.keys()))
 comp_underscore = re.compile('|'.join(re_underscore.keys()))
 
 decimal = CONTEXT.create_decimal(1) / CONTEXT.create_decimal(7)
+example = CONTEXT.create_decimal('123456.789')
+negative = CONTEXT.create_decimal('-100')
+custom = CONTEXT.create_decimal('1000')
 currencies = {}
 countries = {}
 text_module = ''
@@ -72,6 +77,28 @@ with open(f'{workfolder}/{CURRENCY_CLASS}', 'r') as file_in_class:
 
 with open(f'{workfolder}/{CURRENCY_TESTS}', 'r') as file_in_tests:
     text_tests = file_in_tests.read()
+
+
+def format(
+        _amount,
+        _decimal_places,
+        _alpha_code,
+        _grouping_sign,
+        _decimal_sign,
+        _symbol,
+        _symbol_ahead,
+        _symbol_separator,
+        _international=False):
+    _converted = f'{round(_amount, _decimal_places):,.{_decimal_places}f}'
+    _grouping_sign = bytes(_grouping_sign, 'utf-8').decode('unicode_escape')
+    _symbol_separator = bytes(_symbol_separator, 'utf-8').decode('unicode_escape')
+    if _international:
+        return f'{_alpha_code} {_converted}'
+    _converted = _converted.replace('.', 'X').replace(
+        ',', _grouping_sign).replace('X', _decimal_sign)
+    if _symbol_ahead:
+        return f'{_symbol}{_symbol_separator}{_converted}'
+    return f'{_converted}{_symbol_separator}{_symbol}'
 
 
 print('Loading CSV data...')
@@ -110,9 +137,56 @@ with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
             '__DECIMAL_PART__': decimal_part,
             '__DECIMAL_PLACES__': currency['decimal_places'],
             '__DECIMAL_SIGN__': currency['decimal_sign'],
+            '__DECIMAL_SIGN_STR__': bytes(
+                currency['decimal_sign'], 'utf-8').decode('unicode_escape'),
             '__GROUPING_SIGN__': currency['grouping_sign'],
+            '__GROUPING_SIGN_STR__': bytes(
+                currency['grouping_sign'], 'utf-8').decode('unicode_escape'),
             '__GROUPING_SIGN_ALT__': grouping_sign_alt,
-            '__SYMBOL__': currency['symbol']})
+            '__SYMBOL__': currency['symbol'],
+            '__SYMBOL_SEPARATOR__': currency['symbol_separator'],
+            '__SYMBOL_SEPARATOR_STR__': bytes(
+                currency['symbol_separator'], 'utf-8').decode('unicode_escape'),
+            '__SYMBOL_AHEAD__': currency['symbol_ahead'],
+            '__SYMBOL_AHEAD_ALT__': '' if bool(
+                eval(currency['symbol_ahead'])) else 'not ',
+            '__EXAMPLE_OUTPUT__': format(
+                example,
+                int(currency['decimal_places']),
+                currency['currency'],
+                currency['grouping_sign'],
+                currency['decimal_sign'],
+                currency['symbol'],
+                eval(currency['symbol_ahead']),
+                currency['symbol_separator']),
+            '__EXAMPLE_1DIV7__': format(
+                decimal,
+                int(currency['decimal_places']),
+                currency['currency'],
+                currency['grouping_sign'],
+                currency['decimal_sign'],
+                currency['symbol'],
+                eval(currency['symbol_ahead']),
+                currency['symbol_separator']),
+            '__EXAMPLE_NEGATIVE__': format(
+                negative,
+                int(currency['decimal_places']),
+                currency['currency'],
+                currency['grouping_sign'],
+                currency['decimal_sign'],
+                currency['symbol'],
+                eval(currency['symbol_ahead']),
+                currency['symbol_separator']),
+            '__EXAMPLE_CUSTOM__': format(
+                custom,
+                5,
+                currency['currency'],
+                currency['decimal_sign'],
+                grouping_sign_alt,
+                currency['symbol'],
+                False,
+                '_',
+                True)})
 
 
 print('Creating currency types...')
@@ -139,10 +213,6 @@ for currency_module in currencies:
         comp_values = re.compile('|'.join(re_values.keys()))
         out_text = comp_values.sub(
             lambda l: re_values[re.escape(l.group(0))], text_tests)
-        out_text = re.sub(
-            '__1DIV7__',
-            str(round(decimal, int(values['__DECIMAL_PLACES__']))).replace(
-                '.', values['__DECIMAL_SIGN__']), out_text)
         out_text = re.sub('__CURRENCY_MODULE__', currency_module, out_text)
         with open(
                 f'{workfolder}/_tests/test_{currency}.py', 'w+') as file_out:
@@ -166,16 +236,20 @@ for currency_module, data in sorted(currencies.items()):
 print()
 print('__all__:')
 print('    \'' + '\',\n    \''.join(sorted(all_classes)) + '\']')
-# print()
-# print('docstring supported currencies:')
-# import multicurrency
-# supported = []
-# for currency_module, data in currencies.items():
-#     for _, values in data['currencies'].items():
-#         currency_class = values['__CURRENCY_CLASS__']
-#         eg = getattr(multicurrency, currency_class)(1000)
-#         supported.append((
-#             currency_class,
-#             '`'+f"multicurrency.{currency_module}.{currency_class}"'`'+f' ({eg})'))
-# supported_sorted = [c for _, c in sorted(supported)]
-# print(',\n'.join(supported_sorted))
+
+print()
+print('docstring supported currencies:')
+supported = []
+for currency_module, data in currencies.items():
+    for _, values in data['currencies'].items():
+        currency_class = values['__CURRENCY_CLASS__']
+        eg_locale = values['__EXAMPLE_OUTPUT__']
+        eg_international = format(
+                example, int(values['__DECIMAL_PLACES__']),
+                values['__CURRENCY__'], '', '', '', False, '', True)
+        supported.append((
+            currency_class,
+            '`'+f"multicurrency.{currency_module}.{currency_class}"'`'+f' ({eg_locale} | {eg_international})'))
+supported_sorted = [c for _, c in sorted(supported)]
+print(',\n'.join(supported_sorted))
+print()

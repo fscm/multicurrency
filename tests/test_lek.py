@@ -27,20 +27,24 @@ def test_lek():
     assert lek.alpha_code == 'ALL'
     assert lek.decimal_places == 2
     assert lek.decimal_sign == ','
-    assert lek.grouping_sign == '.'
+    assert lek.grouping_sign == '\u202F'
     assert not lek.international
-    assert lek.symbol == 'L'
+    assert lek.symbol == 'Lekë'
+    assert not lek.symbol_ahead
+    assert lek.symbol_separator == '\u00A0'
     assert lek.__hash__() == hash((decimal, 'ALL', '008'))
     assert lek.__repr__() == (
         'Lek(amount: 0.1428571428571428571428571429, '
         'alpha_code: "ALL", '
-        'symbol: "L", '
+        'symbol: "Lekë", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "008", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert lek.__str__() == 'L0,14'
+    assert lek.__str__() == '0,14 Lekë'
 
 
 def test_lek_negative():
@@ -52,20 +56,24 @@ def test_lek_negative():
     assert lek.alpha_code == 'ALL'
     assert lek.decimal_places == 2
     assert lek.decimal_sign == ','
-    assert lek.grouping_sign == '.'
+    assert lek.grouping_sign == '\u202F'
     assert not lek.international
-    assert lek.symbol == 'L'
+    assert lek.symbol == 'Lekë'
+    assert not lek.symbol_ahead
+    assert lek.symbol_separator == '\u00A0'
     assert lek.__hash__() == hash((decimal, 'ALL', '008'))
     assert lek.__repr__() == (
         'Lek(amount: -100, '
         'alpha_code: "ALL", '
-        'symbol: "L", '
+        'symbol: "Lekë", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "008", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert lek.__str__() == 'L-100,00'
+    assert lek.__str__() == '-100,00 Lekë'
 
 
 def test_lek_custom():
@@ -74,26 +82,32 @@ def test_lek_custom():
     lek = Lek(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
+        decimal_sign='\u202F',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert lek.amount == decimal
     assert lek.numeric_code == '008'
     assert lek.alpha_code == 'ALL'
     assert lek.decimal_places == 5
-    assert lek.decimal_sign == '.'
+    assert lek.decimal_sign == '\u202F'
     assert lek.grouping_sign == ','
     assert lek.international
-    assert lek.symbol == 'L'
+    assert lek.symbol == 'Lekë'
+    assert not lek.symbol_ahead
+    assert lek.symbol_separator == '_'
     assert lek.__hash__() == hash((decimal, 'ALL', '008'))
     assert lek.__repr__() == (
         'Lek(amount: 1000, '
         'alpha_code: "ALL", '
-        'symbol: "L", '
+        'symbol: "Lekë", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "008", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
+        'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
         'international: True)')
     assert lek.__str__() == 'ALL 1,000.00000'
@@ -114,6 +128,14 @@ def test_lek_changed():
             AttributeError,
             match='can\'t set attribute'):
         lek.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        lek.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        lek.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_lek_math_add():
                    'lek.Lek\'> '
                    'and <class \'str\'>.')):
         _ = lek_one.__add__('1.00')
-    assert (lek_one + lek_two) == lek_three
+    assert (
+        lek_one +
+        lek_two) == lek_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Lek(amount=1000)
+def test_lek_slots():
+    """test_lek_slots."""
+    lek = Lek(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Lek\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        lek.new_variable = 'fail'  # pylint: disable=assigning-non-slot

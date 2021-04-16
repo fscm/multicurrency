@@ -27,20 +27,24 @@ def test_cfp_franc():
     assert cfp_franc.alpha_code == 'XPF'
     assert cfp_franc.decimal_places == 0
     assert cfp_franc.decimal_sign == ','
-    assert cfp_franc.grouping_sign == '.'
+    assert cfp_franc.grouping_sign == '\u202F'
     assert not cfp_franc.international
     assert cfp_franc.symbol == '₣'
+    assert not cfp_franc.symbol_ahead
+    assert cfp_franc.symbol_separator == '\u00A0'
     assert cfp_franc.__hash__() == hash((decimal, 'XPF', '953'))
     assert cfp_franc.__repr__() == (
         'CFPFranc(amount: 0.1428571428571428571428571429, '
         'alpha_code: "XPF", '
         'symbol: "₣", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "953", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert cfp_franc.__str__() == '₣0'
+    assert cfp_franc.__str__() == '0 ₣'
 
 
 def test_cfp_franc_negative():
@@ -52,20 +56,24 @@ def test_cfp_franc_negative():
     assert cfp_franc.alpha_code == 'XPF'
     assert cfp_franc.decimal_places == 0
     assert cfp_franc.decimal_sign == ','
-    assert cfp_franc.grouping_sign == '.'
+    assert cfp_franc.grouping_sign == '\u202F'
     assert not cfp_franc.international
     assert cfp_franc.symbol == '₣'
+    assert not cfp_franc.symbol_ahead
+    assert cfp_franc.symbol_separator == '\u00A0'
     assert cfp_franc.__hash__() == hash((decimal, 'XPF', '953'))
     assert cfp_franc.__repr__() == (
         'CFPFranc(amount: -100, '
         'alpha_code: "XPF", '
         'symbol: "₣", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "953", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert cfp_franc.__str__() == '₣-100'
+    assert cfp_franc.__str__() == '-100 ₣'
 
 
 def test_cfp_franc_custom():
@@ -74,26 +82,32 @@ def test_cfp_franc_custom():
     cfp_franc = CFPFranc(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
+        decimal_sign='\u202F',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert cfp_franc.amount == decimal
     assert cfp_franc.numeric_code == '953'
     assert cfp_franc.alpha_code == 'XPF'
     assert cfp_franc.decimal_places == 5
-    assert cfp_franc.decimal_sign == '.'
+    assert cfp_franc.decimal_sign == '\u202F'
     assert cfp_franc.grouping_sign == ','
     assert cfp_franc.international
     assert cfp_franc.symbol == '₣'
+    assert not cfp_franc.symbol_ahead
+    assert cfp_franc.symbol_separator == '_'
     assert cfp_franc.__hash__() == hash((decimal, 'XPF', '953'))
     assert cfp_franc.__repr__() == (
         'CFPFranc(amount: 1000, '
         'alpha_code: "XPF", '
         'symbol: "₣", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "953", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
+        'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
         'international: True)')
     assert cfp_franc.__str__() == 'XPF 1,000.00000'
@@ -114,6 +128,14 @@ def test_cfp_franc_changed():
             AttributeError,
             match='can\'t set attribute'):
         cfp_franc.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cfp_franc.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cfp_franc.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_cfp_franc_math_add():
                    'franc.CFPFranc\'> '
                    'and <class \'str\'>.')):
         _ = cfp_franc_one.__add__('1.00')
-    assert (cfp_franc_one + cfp_franc_two) == cfp_franc_three
+    assert (
+        cfp_franc_one +
+        cfp_franc_two) == cfp_franc_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = CFPFranc(amount=1000)
+def test_cfp_franc_slots():
+    """test_cfp_franc_slots."""
+    cfp_franc = CFPFranc(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'CFPFranc\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        cfp_franc.new_variable = 'fail'  # pylint: disable=assigning-non-slot

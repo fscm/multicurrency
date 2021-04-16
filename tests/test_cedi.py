@@ -26,21 +26,25 @@ def test_cedi():
     assert cedi.numeric_code == '936'
     assert cedi.alpha_code == 'GHS'
     assert cedi.decimal_places == 2
-    assert cedi.decimal_sign == ','
-    assert cedi.grouping_sign == '.'
+    assert cedi.decimal_sign == '.'
+    assert cedi.grouping_sign == ','
     assert not cedi.international
     assert cedi.symbol == '₵'
+    assert cedi.symbol_ahead
+    assert cedi.symbol_separator == ''
     assert cedi.__hash__() == hash((decimal, 'GHS', '936'))
     assert cedi.__repr__() == (
         'Cedi(amount: 0.1428571428571428571428571429, '
         'alpha_code: "GHS", '
         'symbol: "₵", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "936", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert cedi.__str__() == '₵0,14'
+    assert cedi.__str__() == '₵0.14'
 
 
 def test_cedi_negative():
@@ -51,21 +55,25 @@ def test_cedi_negative():
     assert cedi.numeric_code == '936'
     assert cedi.alpha_code == 'GHS'
     assert cedi.decimal_places == 2
-    assert cedi.decimal_sign == ','
-    assert cedi.grouping_sign == '.'
+    assert cedi.decimal_sign == '.'
+    assert cedi.grouping_sign == ','
     assert not cedi.international
     assert cedi.symbol == '₵'
+    assert cedi.symbol_ahead
+    assert cedi.symbol_separator == ''
     assert cedi.__hash__() == hash((decimal, 'GHS', '936'))
     assert cedi.__repr__() == (
         'Cedi(amount: -100, '
         'alpha_code: "GHS", '
         'symbol: "₵", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "936", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert cedi.__str__() == '₵-100,00'
+    assert cedi.__str__() == '₵-100.00'
 
 
 def test_cedi_custom():
@@ -74,27 +82,33 @@ def test_cedi_custom():
     cedi = Cedi(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert cedi.amount == decimal
     assert cedi.numeric_code == '936'
     assert cedi.alpha_code == 'GHS'
     assert cedi.decimal_places == 5
-    assert cedi.decimal_sign == '.'
-    assert cedi.grouping_sign == ','
+    assert cedi.decimal_sign == ','
+    assert cedi.grouping_sign == '.'
     assert cedi.international
     assert cedi.symbol == '₵'
+    assert not cedi.symbol_ahead
+    assert cedi.symbol_separator == '_'
     assert cedi.__hash__() == hash((decimal, 'GHS', '936'))
     assert cedi.__repr__() == (
         'Cedi(amount: 1000, '
         'alpha_code: "GHS", '
         'symbol: "₵", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "936", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert cedi.__str__() == 'GHS 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_cedi_changed():
             AttributeError,
             match='can\'t set attribute'):
         cedi.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cedi.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cedi.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_cedi_math_add():
                    'cedi.Cedi\'> '
                    'and <class \'str\'>.')):
         _ = cedi_one.__add__('1.00')
-    assert (cedi_one + cedi_two) == cedi_three
+    assert (
+        cedi_one +
+        cedi_two) == cedi_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Cedi(amount=1000)
+def test_cedi_slots():
+    """test_cedi_slots."""
+    cedi = Cedi(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Cedi\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        cedi.new_variable = 'fail'  # pylint: disable=assigning-non-slot

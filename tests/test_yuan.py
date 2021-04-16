@@ -30,11 +30,15 @@ def test_yuan():
     assert yuan.grouping_sign == ','
     assert not yuan.international
     assert yuan.symbol == '¥'
+    assert yuan.symbol_ahead
+    assert yuan.symbol_separator == ''
     assert yuan.__hash__() == hash((decimal, 'CNY', '156'))
     assert yuan.__repr__() == (
         'Yuan(amount: 0.1428571428571428571428571429, '
         'alpha_code: "CNY", '
         'symbol: "¥", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "156", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -55,11 +59,15 @@ def test_yuan_negative():
     assert yuan.grouping_sign == ','
     assert not yuan.international
     assert yuan.symbol == '¥'
+    assert yuan.symbol_ahead
+    assert yuan.symbol_separator == ''
     assert yuan.__hash__() == hash((decimal, 'CNY', '156'))
     assert yuan.__repr__() == (
         'Yuan(amount: -100, '
         'alpha_code: "CNY", '
         'symbol: "¥", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "156", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -76,7 +84,9 @@ def test_yuan_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert yuan.amount == decimal
     assert yuan.numeric_code == '156'
@@ -86,17 +96,21 @@ def test_yuan_custom():
     assert yuan.grouping_sign == '.'
     assert yuan.international
     assert yuan.symbol == '¥'
+    assert not yuan.symbol_ahead
+    assert yuan.symbol_separator == '_'
     assert yuan.__hash__() == hash((decimal, 'CNY', '156'))
     assert yuan.__repr__() == (
         'Yuan(amount: 1000, '
         'alpha_code: "CNY", '
         'symbol: "¥", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "156", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert yuan.__str__() == 'CNY 1.000,00000'
+    assert yuan.__str__() == 'CNY 1,000.00000'
 
 
 def test_yuan_changed():
@@ -114,6 +128,14 @@ def test_yuan_changed():
             AttributeError,
             match='can\'t set attribute'):
         yuan.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        yuan.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        yuan.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_yuan_math_add():
                    'yuan.Yuan\'> '
                    'and <class \'str\'>.')):
         _ = yuan_one.__add__('1.00')
-    assert (yuan_one + yuan_two) == yuan_three
+    assert (
+        yuan_one +
+        yuan_two) == yuan_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Yuan(amount=1000)
+def test_yuan_slots():
+    """test_yuan_slots."""
+    yuan = Yuan(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Yuan\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        yuan.new_variable = 'fail'  # pylint: disable=assigning-non-slot

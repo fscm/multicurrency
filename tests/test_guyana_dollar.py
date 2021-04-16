@@ -26,21 +26,25 @@ def test_guyana_dollar():
     assert guyana_dollar.numeric_code == '328'
     assert guyana_dollar.alpha_code == 'GYD'
     assert guyana_dollar.decimal_places == 2
-    assert guyana_dollar.decimal_sign == ','
-    assert guyana_dollar.grouping_sign == '.'
+    assert guyana_dollar.decimal_sign == '.'
+    assert guyana_dollar.grouping_sign == ','
     assert not guyana_dollar.international
     assert guyana_dollar.symbol == '$'
+    assert guyana_dollar.symbol_ahead
+    assert guyana_dollar.symbol_separator == ''
     assert guyana_dollar.__hash__() == hash((decimal, 'GYD', '328'))
     assert guyana_dollar.__repr__() == (
         'GuyanaDollar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "GYD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "328", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert guyana_dollar.__str__() == '$0,14'
+    assert guyana_dollar.__str__() == '$0.14'
 
 
 def test_guyana_dollar_negative():
@@ -51,21 +55,25 @@ def test_guyana_dollar_negative():
     assert guyana_dollar.numeric_code == '328'
     assert guyana_dollar.alpha_code == 'GYD'
     assert guyana_dollar.decimal_places == 2
-    assert guyana_dollar.decimal_sign == ','
-    assert guyana_dollar.grouping_sign == '.'
+    assert guyana_dollar.decimal_sign == '.'
+    assert guyana_dollar.grouping_sign == ','
     assert not guyana_dollar.international
     assert guyana_dollar.symbol == '$'
+    assert guyana_dollar.symbol_ahead
+    assert guyana_dollar.symbol_separator == ''
     assert guyana_dollar.__hash__() == hash((decimal, 'GYD', '328'))
     assert guyana_dollar.__repr__() == (
         'GuyanaDollar(amount: -100, '
         'alpha_code: "GYD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "328", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert guyana_dollar.__str__() == '$-100,00'
+    assert guyana_dollar.__str__() == '$-100.00'
 
 
 def test_guyana_dollar_custom():
@@ -74,27 +82,33 @@ def test_guyana_dollar_custom():
     guyana_dollar = GuyanaDollar(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert guyana_dollar.amount == decimal
     assert guyana_dollar.numeric_code == '328'
     assert guyana_dollar.alpha_code == 'GYD'
     assert guyana_dollar.decimal_places == 5
-    assert guyana_dollar.decimal_sign == '.'
-    assert guyana_dollar.grouping_sign == ','
+    assert guyana_dollar.decimal_sign == ','
+    assert guyana_dollar.grouping_sign == '.'
     assert guyana_dollar.international
     assert guyana_dollar.symbol == '$'
+    assert not guyana_dollar.symbol_ahead
+    assert guyana_dollar.symbol_separator == '_'
     assert guyana_dollar.__hash__() == hash((decimal, 'GYD', '328'))
     assert guyana_dollar.__repr__() == (
         'GuyanaDollar(amount: 1000, '
         'alpha_code: "GYD", '
         'symbol: "$", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "328", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert guyana_dollar.__str__() == 'GYD 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_guyana_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         guyana_dollar.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        guyana_dollar.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        guyana_dollar.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_guyana_dollar_math_add():
                    'dollar.GuyanaDollar\'> '
                    'and <class \'str\'>.')):
         _ = guyana_dollar_one.__add__('1.00')
-    assert (guyana_dollar_one + guyana_dollar_two) == guyana_dollar_three
+    assert (
+        guyana_dollar_one +
+        guyana_dollar_two) == guyana_dollar_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = GuyanaDollar(amount=1000)
+def test_guyana_dollar_slots():
+    """test_guyana_dollar_slots."""
+    guyana_dollar = GuyanaDollar(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'GuyanaDollar\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        guyana_dollar.new_variable = 'fail'  # pylint: disable=assigning-non-slot

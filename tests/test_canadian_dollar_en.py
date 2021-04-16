@@ -30,11 +30,15 @@ def test_canadian_dollar_en():
     assert canadian_dollar_en.grouping_sign == ','
     assert not canadian_dollar_en.international
     assert canadian_dollar_en.symbol == '$'
+    assert canadian_dollar_en.symbol_ahead
+    assert canadian_dollar_en.symbol_separator == ''
     assert canadian_dollar_en.__hash__() == hash((decimal, 'CAD', '124'))
     assert canadian_dollar_en.__repr__() == (
         'CanadianDollarEN(amount: 0.1428571428571428571428571429, '
         'alpha_code: "CAD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "124", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -55,11 +59,15 @@ def test_canadian_dollar_en_negative():
     assert canadian_dollar_en.grouping_sign == ','
     assert not canadian_dollar_en.international
     assert canadian_dollar_en.symbol == '$'
+    assert canadian_dollar_en.symbol_ahead
+    assert canadian_dollar_en.symbol_separator == ''
     assert canadian_dollar_en.__hash__() == hash((decimal, 'CAD', '124'))
     assert canadian_dollar_en.__repr__() == (
         'CanadianDollarEN(amount: -100, '
         'alpha_code: "CAD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "124", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -76,7 +84,9 @@ def test_canadian_dollar_en_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert canadian_dollar_en.amount == decimal
     assert canadian_dollar_en.numeric_code == '124'
@@ -86,17 +96,21 @@ def test_canadian_dollar_en_custom():
     assert canadian_dollar_en.grouping_sign == '.'
     assert canadian_dollar_en.international
     assert canadian_dollar_en.symbol == '$'
+    assert not canadian_dollar_en.symbol_ahead
+    assert canadian_dollar_en.symbol_separator == '_'
     assert canadian_dollar_en.__hash__() == hash((decimal, 'CAD', '124'))
     assert canadian_dollar_en.__repr__() == (
         'CanadianDollarEN(amount: 1000, '
         'alpha_code: "CAD", '
         'symbol: "$", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "124", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert canadian_dollar_en.__str__() == 'CAD 1.000,00000'
+    assert canadian_dollar_en.__str__() == 'CAD 1,000.00000'
 
 
 def test_canadian_dollar_en_changed():
@@ -114,6 +128,14 @@ def test_canadian_dollar_en_changed():
             AttributeError,
             match='can\'t set attribute'):
         canadian_dollar_en.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        canadian_dollar_en.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        canadian_dollar_en.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_canadian_dollar_en_math_add():
                    'dollar.CanadianDollarEN\'> '
                    'and <class \'str\'>.')):
         _ = canadian_dollar_en_one.__add__('1.00')
-    assert (canadian_dollar_en_one + canadian_dollar_en_two) == canadian_dollar_en_three
+    assert (
+        canadian_dollar_en_one +
+        canadian_dollar_en_two) == canadian_dollar_en_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = CanadianDollarEN(amount=1000)
+def test_canadian_dollar_en_slots():
+    """test_canadian_dollar_en_slots."""
+    canadian_dollar_en = CanadianDollarEN(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'CanadianDollarEN\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        canadian_dollar_en.new_variable = 'fail'  # pylint: disable=assigning-non-slot

@@ -30,17 +30,21 @@ def test_metical():
     assert metical.grouping_sign == '.'
     assert not metical.international
     assert metical.symbol == 'MTn'
+    assert not metical.symbol_ahead
+    assert metical.symbol_separator == '\u00A0'
     assert metical.__hash__() == hash((decimal, 'MZN', '943'))
     assert metical.__repr__() == (
         'Metical(amount: 0.1428571428571428571428571429, '
         'alpha_code: "MZN", '
         'symbol: "MTn", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "943", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert metical.__str__() == 'MTn0'
+    assert metical.__str__() == '0 MTn'
 
 
 def test_metical_negative():
@@ -55,17 +59,21 @@ def test_metical_negative():
     assert metical.grouping_sign == '.'
     assert not metical.international
     assert metical.symbol == 'MTn'
+    assert not metical.symbol_ahead
+    assert metical.symbol_separator == '\u00A0'
     assert metical.__hash__() == hash((decimal, 'MZN', '943'))
     assert metical.__repr__() == (
         'Metical(amount: -100, '
         'alpha_code: "MZN", '
         'symbol: "MTn", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "943", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert metical.__str__() == 'MTn-100'
+    assert metical.__str__() == '-100 MTn'
 
 
 def test_metical_custom():
@@ -76,7 +84,9 @@ def test_metical_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert metical.amount == decimal
     assert metical.numeric_code == '943'
@@ -86,11 +96,15 @@ def test_metical_custom():
     assert metical.grouping_sign == ','
     assert metical.international
     assert metical.symbol == 'MTn'
+    assert not metical.symbol_ahead
+    assert metical.symbol_separator == '_'
     assert metical.__hash__() == hash((decimal, 'MZN', '943'))
     assert metical.__repr__() == (
         'Metical(amount: 1000, '
         'alpha_code: "MZN", '
         'symbol: "MTn", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "943", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_metical_changed():
             AttributeError,
             match='can\'t set attribute'):
         metical.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        metical.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        metical.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_metical_math_add():
                    'metical.Metical\'> '
                    'and <class \'str\'>.')):
         _ = metical_one.__add__('1.00')
-    assert (metical_one + metical_two) == metical_three
+    assert (
+        metical_one +
+        metical_two) == metical_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Metical(amount=1000)
+def test_metical_slots():
+    """test_metical_slots."""
+    metical = Metical(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Metical\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        metical.new_variable = 'fail'  # pylint: disable=assigning-non-slot

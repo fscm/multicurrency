@@ -30,17 +30,21 @@ def test_dobra():
     assert dobra.grouping_sign == '.'
     assert not dobra.international
     assert dobra.symbol == 'Db'
+    assert not dobra.symbol_ahead
+    assert dobra.symbol_separator == '\u00A0'
     assert dobra.__hash__() == hash((decimal, 'STN', '930'))
     assert dobra.__repr__() == (
         'Dobra(amount: 0.1428571428571428571428571429, '
         'alpha_code: "STN", '
         'symbol: "Db", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "930", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert dobra.__str__() == 'Db0,14'
+    assert dobra.__str__() == '0,14 Db'
 
 
 def test_dobra_negative():
@@ -55,17 +59,21 @@ def test_dobra_negative():
     assert dobra.grouping_sign == '.'
     assert not dobra.international
     assert dobra.symbol == 'Db'
+    assert not dobra.symbol_ahead
+    assert dobra.symbol_separator == '\u00A0'
     assert dobra.__hash__() == hash((decimal, 'STN', '930'))
     assert dobra.__repr__() == (
         'Dobra(amount: -100, '
         'alpha_code: "STN", '
         'symbol: "Db", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "930", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert dobra.__str__() == 'Db-100,00'
+    assert dobra.__str__() == '-100,00 Db'
 
 
 def test_dobra_custom():
@@ -76,7 +84,9 @@ def test_dobra_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert dobra.amount == decimal
     assert dobra.numeric_code == '930'
@@ -86,11 +96,15 @@ def test_dobra_custom():
     assert dobra.grouping_sign == ','
     assert dobra.international
     assert dobra.symbol == 'Db'
+    assert not dobra.symbol_ahead
+    assert dobra.symbol_separator == '_'
     assert dobra.__hash__() == hash((decimal, 'STN', '930'))
     assert dobra.__repr__() == (
         'Dobra(amount: 1000, '
         'alpha_code: "STN", '
         'symbol: "Db", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "930", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_dobra_changed():
             AttributeError,
             match='can\'t set attribute'):
         dobra.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        dobra.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        dobra.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_dobra_math_add():
                    'dobra.Dobra\'> '
                    'and <class \'str\'>.')):
         _ = dobra_one.__add__('1.00')
-    assert (dobra_one + dobra_two) == dobra_three
+    assert (
+        dobra_one +
+        dobra_two) == dobra_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Dobra(amount=1000)
+def test_dobra_slots():
+    """test_dobra_slots."""
+    dobra = Dobra(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Dobra\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        dobra.new_variable = 'fail'  # pylint: disable=assigning-non-slot

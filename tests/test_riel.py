@@ -30,17 +30,21 @@ def test_riel():
     assert riel.grouping_sign == '.'
     assert not riel.international
     assert riel.symbol == '៛'
+    assert not riel.symbol_ahead
+    assert riel.symbol_separator == ''
     assert riel.__hash__() == hash((decimal, 'KHR', '116'))
     assert riel.__repr__() == (
         'Riel(amount: 0.1428571428571428571428571429, '
         'alpha_code: "KHR", '
         'symbol: "៛", '
+        'symbol_ahead: False, '
+        'symbol_separator: "", '
         'numeric_code: "116", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert riel.__str__() == '៛0,14'
+    assert riel.__str__() == '0,14៛'
 
 
 def test_riel_negative():
@@ -55,17 +59,21 @@ def test_riel_negative():
     assert riel.grouping_sign == '.'
     assert not riel.international
     assert riel.symbol == '៛'
+    assert not riel.symbol_ahead
+    assert riel.symbol_separator == ''
     assert riel.__hash__() == hash((decimal, 'KHR', '116'))
     assert riel.__repr__() == (
         'Riel(amount: -100, '
         'alpha_code: "KHR", '
         'symbol: "៛", '
+        'symbol_ahead: False, '
+        'symbol_separator: "", '
         'numeric_code: "116", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert riel.__str__() == '៛-100,00'
+    assert riel.__str__() == '-100,00៛'
 
 
 def test_riel_custom():
@@ -76,7 +84,9 @@ def test_riel_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert riel.amount == decimal
     assert riel.numeric_code == '116'
@@ -86,11 +96,15 @@ def test_riel_custom():
     assert riel.grouping_sign == ','
     assert riel.international
     assert riel.symbol == '៛'
+    assert not riel.symbol_ahead
+    assert riel.symbol_separator == '_'
     assert riel.__hash__() == hash((decimal, 'KHR', '116'))
     assert riel.__repr__() == (
         'Riel(amount: 1000, '
         'alpha_code: "KHR", '
         'symbol: "៛", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "116", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_riel_changed():
             AttributeError,
             match='can\'t set attribute'):
         riel.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        riel.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        riel.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_riel_math_add():
                    'riel.Riel\'> '
                    'and <class \'str\'>.')):
         _ = riel_one.__add__('1.00')
-    assert (riel_one + riel_two) == riel_three
+    assert (
+        riel_one +
+        riel_two) == riel_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Riel(amount=1000)
+def test_riel_slots():
+    """test_riel_slots."""
+    riel = Riel(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Riel\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        riel.new_variable = 'fail'  # pylint: disable=assigning-non-slot

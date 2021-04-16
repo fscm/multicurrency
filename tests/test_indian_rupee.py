@@ -30,11 +30,15 @@ def test_indian_rupee():
     assert indian_rupee.grouping_sign == ','
     assert not indian_rupee.international
     assert indian_rupee.symbol == '₹'
+    assert indian_rupee.symbol_ahead
+    assert indian_rupee.symbol_separator == ''
     assert indian_rupee.__hash__() == hash((decimal, 'INR', '356'))
     assert indian_rupee.__repr__() == (
         'IndianRupee(amount: 0.1428571428571428571428571429, '
         'alpha_code: "INR", '
         'symbol: "₹", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "356", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -55,11 +59,15 @@ def test_indian_rupee_negative():
     assert indian_rupee.grouping_sign == ','
     assert not indian_rupee.international
     assert indian_rupee.symbol == '₹'
+    assert indian_rupee.symbol_ahead
+    assert indian_rupee.symbol_separator == ''
     assert indian_rupee.__hash__() == hash((decimal, 'INR', '356'))
     assert indian_rupee.__repr__() == (
         'IndianRupee(amount: -100, '
         'alpha_code: "INR", '
         'symbol: "₹", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "356", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -76,7 +84,9 @@ def test_indian_rupee_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert indian_rupee.amount == decimal
     assert indian_rupee.numeric_code == '356'
@@ -86,17 +96,21 @@ def test_indian_rupee_custom():
     assert indian_rupee.grouping_sign == '.'
     assert indian_rupee.international
     assert indian_rupee.symbol == '₹'
+    assert not indian_rupee.symbol_ahead
+    assert indian_rupee.symbol_separator == '_'
     assert indian_rupee.__hash__() == hash((decimal, 'INR', '356'))
     assert indian_rupee.__repr__() == (
         'IndianRupee(amount: 1000, '
         'alpha_code: "INR", '
         'symbol: "₹", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "356", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert indian_rupee.__str__() == 'INR 1.000,00000'
+    assert indian_rupee.__str__() == 'INR 1,000.00000'
 
 
 def test_indian_rupee_changed():
@@ -114,6 +128,14 @@ def test_indian_rupee_changed():
             AttributeError,
             match='can\'t set attribute'):
         indian_rupee.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        indian_rupee.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        indian_rupee.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_indian_rupee_math_add():
                    'rupee.IndianRupee\'> '
                    'and <class \'str\'>.')):
         _ = indian_rupee_one.__add__('1.00')
-    assert (indian_rupee_one + indian_rupee_two) == indian_rupee_three
+    assert (
+        indian_rupee_one +
+        indian_rupee_two) == indian_rupee_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = IndianRupee(amount=1000)
+def test_indian_rupee_slots():
+    """test_indian_rupee_slots."""
+    indian_rupee = IndianRupee(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'IndianRupee\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        indian_rupee.new_variable = 'fail'  # pylint: disable=assigning-non-slot

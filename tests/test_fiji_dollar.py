@@ -26,21 +26,25 @@ def test_fiji_dollar():
     assert fiji_dollar.numeric_code == '242'
     assert fiji_dollar.alpha_code == 'FJD'
     assert fiji_dollar.decimal_places == 2
-    assert fiji_dollar.decimal_sign == ','
-    assert fiji_dollar.grouping_sign == '.'
+    assert fiji_dollar.decimal_sign == '.'
+    assert fiji_dollar.grouping_sign == ','
     assert not fiji_dollar.international
     assert fiji_dollar.symbol == '$'
+    assert fiji_dollar.symbol_ahead
+    assert fiji_dollar.symbol_separator == ''
     assert fiji_dollar.__hash__() == hash((decimal, 'FJD', '242'))
     assert fiji_dollar.__repr__() == (
         'FijiDollar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "FJD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "242", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert fiji_dollar.__str__() == '$0,14'
+    assert fiji_dollar.__str__() == '$0.14'
 
 
 def test_fiji_dollar_negative():
@@ -51,21 +55,25 @@ def test_fiji_dollar_negative():
     assert fiji_dollar.numeric_code == '242'
     assert fiji_dollar.alpha_code == 'FJD'
     assert fiji_dollar.decimal_places == 2
-    assert fiji_dollar.decimal_sign == ','
-    assert fiji_dollar.grouping_sign == '.'
+    assert fiji_dollar.decimal_sign == '.'
+    assert fiji_dollar.grouping_sign == ','
     assert not fiji_dollar.international
     assert fiji_dollar.symbol == '$'
+    assert fiji_dollar.symbol_ahead
+    assert fiji_dollar.symbol_separator == ''
     assert fiji_dollar.__hash__() == hash((decimal, 'FJD', '242'))
     assert fiji_dollar.__repr__() == (
         'FijiDollar(amount: -100, '
         'alpha_code: "FJD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "242", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert fiji_dollar.__str__() == '$-100,00'
+    assert fiji_dollar.__str__() == '$-100.00'
 
 
 def test_fiji_dollar_custom():
@@ -74,27 +82,33 @@ def test_fiji_dollar_custom():
     fiji_dollar = FijiDollar(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert fiji_dollar.amount == decimal
     assert fiji_dollar.numeric_code == '242'
     assert fiji_dollar.alpha_code == 'FJD'
     assert fiji_dollar.decimal_places == 5
-    assert fiji_dollar.decimal_sign == '.'
-    assert fiji_dollar.grouping_sign == ','
+    assert fiji_dollar.decimal_sign == ','
+    assert fiji_dollar.grouping_sign == '.'
     assert fiji_dollar.international
     assert fiji_dollar.symbol == '$'
+    assert not fiji_dollar.symbol_ahead
+    assert fiji_dollar.symbol_separator == '_'
     assert fiji_dollar.__hash__() == hash((decimal, 'FJD', '242'))
     assert fiji_dollar.__repr__() == (
         'FijiDollar(amount: 1000, '
         'alpha_code: "FJD", '
         'symbol: "$", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "242", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert fiji_dollar.__str__() == 'FJD 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_fiji_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         fiji_dollar.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        fiji_dollar.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        fiji_dollar.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_fiji_dollar_math_add():
                    'dollar.FijiDollar\'> '
                    'and <class \'str\'>.')):
         _ = fiji_dollar_one.__add__('1.00')
-    assert (fiji_dollar_one + fiji_dollar_two) == fiji_dollar_three
+    assert (
+        fiji_dollar_one +
+        fiji_dollar_two) == fiji_dollar_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = FijiDollar(amount=1000)
+def test_fiji_dollar_slots():
+    """test_fiji_dollar_slots."""
+    fiji_dollar = FijiDollar(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'FijiDollar\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        fiji_dollar.new_variable = 'fail'  # pylint: disable=assigning-non-slot

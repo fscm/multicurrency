@@ -30,11 +30,15 @@ def test_chilean_peso():
     assert chilean_peso.grouping_sign == '.'
     assert not chilean_peso.international
     assert chilean_peso.symbol == '$'
+    assert chilean_peso.symbol_ahead
+    assert chilean_peso.symbol_separator == ''
     assert chilean_peso.__hash__() == hash((decimal, 'CLP', '152'))
     assert chilean_peso.__repr__() == (
         'ChileanPeso(amount: 0.1428571428571428571428571429, '
         'alpha_code: "CLP", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "152", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
@@ -55,11 +59,15 @@ def test_chilean_peso_negative():
     assert chilean_peso.grouping_sign == '.'
     assert not chilean_peso.international
     assert chilean_peso.symbol == '$'
+    assert chilean_peso.symbol_ahead
+    assert chilean_peso.symbol_separator == ''
     assert chilean_peso.__hash__() == hash((decimal, 'CLP', '152'))
     assert chilean_peso.__repr__() == (
         'ChileanPeso(amount: -100, '
         'alpha_code: "CLP", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "152", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
@@ -76,7 +84,9 @@ def test_chilean_peso_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert chilean_peso.amount == decimal
     assert chilean_peso.numeric_code == '152'
@@ -86,11 +96,15 @@ def test_chilean_peso_custom():
     assert chilean_peso.grouping_sign == ','
     assert chilean_peso.international
     assert chilean_peso.symbol == '$'
+    assert not chilean_peso.symbol_ahead
+    assert chilean_peso.symbol_separator == '_'
     assert chilean_peso.__hash__() == hash((decimal, 'CLP', '152'))
     assert chilean_peso.__repr__() == (
         'ChileanPeso(amount: 1000, '
         'alpha_code: "CLP", '
         'symbol: "$", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "152", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_chilean_peso_changed():
             AttributeError,
             match='can\'t set attribute'):
         chilean_peso.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        chilean_peso.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        chilean_peso.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_chilean_peso_math_add():
                    'peso.ChileanPeso\'> '
                    'and <class \'str\'>.')):
         _ = chilean_peso_one.__add__('1.00')
-    assert (chilean_peso_one + chilean_peso_two) == chilean_peso_three
+    assert (
+        chilean_peso_one +
+        chilean_peso_two) == chilean_peso_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = ChileanPeso(amount=1000)
+def test_chilean_peso_slots():
+    """test_chilean_peso_slots."""
+    chilean_peso = ChileanPeso(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'ChileanPeso\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        chilean_peso.new_variable = 'fail'  # pylint: disable=assigning-non-slot

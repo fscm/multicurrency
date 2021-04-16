@@ -30,17 +30,21 @@ def test_euro():
     assert euro.grouping_sign == '.'
     assert not euro.international
     assert euro.symbol == '€'
+    assert not euro.symbol_ahead
+    assert euro.symbol_separator == '\u00A0'
     assert euro.__hash__() == hash((decimal, 'EUR', '978'))
     assert euro.__repr__() == (
         'Euro(amount: 0.1428571428571428571428571429, '
         'alpha_code: "EUR", '
         'symbol: "€", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert euro.__str__() == '€0,14'
+    assert euro.__str__() == '0,14 €'
 
 
 def test_euro_negative():
@@ -55,17 +59,21 @@ def test_euro_negative():
     assert euro.grouping_sign == '.'
     assert not euro.international
     assert euro.symbol == '€'
+    assert not euro.symbol_ahead
+    assert euro.symbol_separator == '\u00A0'
     assert euro.__hash__() == hash((decimal, 'EUR', '978'))
     assert euro.__repr__() == (
         'Euro(amount: -100, '
         'alpha_code: "EUR", '
         'symbol: "€", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert euro.__str__() == '€-100,00'
+    assert euro.__str__() == '-100,00 €'
 
 
 def test_euro_custom():
@@ -76,7 +84,9 @@ def test_euro_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert euro.amount == decimal
     assert euro.numeric_code == '978'
@@ -86,11 +96,15 @@ def test_euro_custom():
     assert euro.grouping_sign == ','
     assert euro.international
     assert euro.symbol == '€'
+    assert not euro.symbol_ahead
+    assert euro.symbol_separator == '_'
     assert euro.__hash__() == hash((decimal, 'EUR', '978'))
     assert euro.__repr__() == (
         'Euro(amount: 1000, '
         'alpha_code: "EUR", '
         'symbol: "€", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "978", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_euro_changed():
             AttributeError,
             match='can\'t set attribute'):
         euro.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        euro.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        euro.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,11 +174,13 @@ def test_euro_math_add():
                    'euro.Euro\'> '
                    'and <class \'str\'>.')):
         _ = euro_one.__add__('1.00')
-    assert (euro_one + euro_two) == euro_three
+    assert (
+        euro_one +
+        euro_two) == euro_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
+def test_euro_slots():
+    """test_euro_slots."""
     euro = Euro(amount=1000)
     with raises(
             AttributeError,

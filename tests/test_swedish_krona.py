@@ -27,20 +27,24 @@ def test_swedish_krona():
     assert swedish_krona.alpha_code == 'SEK'
     assert swedish_krona.decimal_places == 2
     assert swedish_krona.decimal_sign == ','
-    assert swedish_krona.grouping_sign == '.'
+    assert swedish_krona.grouping_sign == '\u202F'
     assert not swedish_krona.international
     assert swedish_krona.symbol == 'kr'
+    assert not swedish_krona.symbol_ahead
+    assert swedish_krona.symbol_separator == '\u00A0'
     assert swedish_krona.__hash__() == hash((decimal, 'SEK', '752'))
     assert swedish_krona.__repr__() == (
         'SwedishKrona(amount: 0.1428571428571428571428571429, '
         'alpha_code: "SEK", '
         'symbol: "kr", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "752", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert swedish_krona.__str__() == 'kr0,14'
+    assert swedish_krona.__str__() == '0,14 kr'
 
 
 def test_swedish_krona_negative():
@@ -52,20 +56,24 @@ def test_swedish_krona_negative():
     assert swedish_krona.alpha_code == 'SEK'
     assert swedish_krona.decimal_places == 2
     assert swedish_krona.decimal_sign == ','
-    assert swedish_krona.grouping_sign == '.'
+    assert swedish_krona.grouping_sign == '\u202F'
     assert not swedish_krona.international
     assert swedish_krona.symbol == 'kr'
+    assert not swedish_krona.symbol_ahead
+    assert swedish_krona.symbol_separator == '\u00A0'
     assert swedish_krona.__hash__() == hash((decimal, 'SEK', '752'))
     assert swedish_krona.__repr__() == (
         'SwedishKrona(amount: -100, '
         'alpha_code: "SEK", '
         'symbol: "kr", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "752", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert swedish_krona.__str__() == 'kr-100,00'
+    assert swedish_krona.__str__() == '-100,00 kr'
 
 
 def test_swedish_krona_custom():
@@ -74,26 +82,32 @@ def test_swedish_krona_custom():
     swedish_krona = SwedishKrona(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
+        decimal_sign='\u202F',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert swedish_krona.amount == decimal
     assert swedish_krona.numeric_code == '752'
     assert swedish_krona.alpha_code == 'SEK'
     assert swedish_krona.decimal_places == 5
-    assert swedish_krona.decimal_sign == '.'
+    assert swedish_krona.decimal_sign == '\u202F'
     assert swedish_krona.grouping_sign == ','
     assert swedish_krona.international
     assert swedish_krona.symbol == 'kr'
+    assert not swedish_krona.symbol_ahead
+    assert swedish_krona.symbol_separator == '_'
     assert swedish_krona.__hash__() == hash((decimal, 'SEK', '752'))
     assert swedish_krona.__repr__() == (
         'SwedishKrona(amount: 1000, '
         'alpha_code: "SEK", '
         'symbol: "kr", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "752", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
+        'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
         'international: True)')
     assert swedish_krona.__str__() == 'SEK 1,000.00000'
@@ -114,6 +128,14 @@ def test_swedish_krona_changed():
             AttributeError,
             match='can\'t set attribute'):
         swedish_krona.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        swedish_krona.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        swedish_krona.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_swedish_krona_math_add():
                    'krona.SwedishKrona\'> '
                    'and <class \'str\'>.')):
         _ = swedish_krona_one.__add__('1.00')
-    assert (swedish_krona_one + swedish_krona_two) == swedish_krona_three
+    assert (
+        swedish_krona_one +
+        swedish_krona_two) == swedish_krona_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = SwedishKrona(amount=1000)
+def test_swedish_krona_slots():
+    """test_swedish_krona_slots."""
+    swedish_krona = SwedishKrona(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'SwedishKrona\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        swedish_krona.new_variable = 'fail'  # pylint: disable=assigning-non-slot

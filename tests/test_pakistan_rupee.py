@@ -30,17 +30,21 @@ def test_pakistan_rupee():
     assert pakistan_rupee.grouping_sign == ','
     assert not pakistan_rupee.international
     assert pakistan_rupee.symbol == '₨'
+    assert pakistan_rupee.symbol_ahead
+    assert pakistan_rupee.symbol_separator == '\u00A0'
     assert pakistan_rupee.__hash__() == hash((decimal, 'PKR', '586'))
     assert pakistan_rupee.__repr__() == (
         'PakistanRupee(amount: 0.1428571428571428571428571429, '
         'alpha_code: "PKR", '
         'symbol: "₨", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "586", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert pakistan_rupee.__str__() == '₨0.14'
+    assert pakistan_rupee.__str__() == '₨ 0.14'
 
 
 def test_pakistan_rupee_negative():
@@ -55,17 +59,21 @@ def test_pakistan_rupee_negative():
     assert pakistan_rupee.grouping_sign == ','
     assert not pakistan_rupee.international
     assert pakistan_rupee.symbol == '₨'
+    assert pakistan_rupee.symbol_ahead
+    assert pakistan_rupee.symbol_separator == '\u00A0'
     assert pakistan_rupee.__hash__() == hash((decimal, 'PKR', '586'))
     assert pakistan_rupee.__repr__() == (
         'PakistanRupee(amount: -100, '
         'alpha_code: "PKR", '
         'symbol: "₨", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "586", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert pakistan_rupee.__str__() == '₨-100.00'
+    assert pakistan_rupee.__str__() == '₨ -100.00'
 
 
 def test_pakistan_rupee_custom():
@@ -76,7 +84,9 @@ def test_pakistan_rupee_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert pakistan_rupee.amount == decimal
     assert pakistan_rupee.numeric_code == '586'
@@ -86,17 +96,21 @@ def test_pakistan_rupee_custom():
     assert pakistan_rupee.grouping_sign == '.'
     assert pakistan_rupee.international
     assert pakistan_rupee.symbol == '₨'
+    assert not pakistan_rupee.symbol_ahead
+    assert pakistan_rupee.symbol_separator == '_'
     assert pakistan_rupee.__hash__() == hash((decimal, 'PKR', '586'))
     assert pakistan_rupee.__repr__() == (
         'PakistanRupee(amount: 1000, '
         'alpha_code: "PKR", '
         'symbol: "₨", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "586", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert pakistan_rupee.__str__() == 'PKR 1.000,00000'
+    assert pakistan_rupee.__str__() == 'PKR 1,000.00000'
 
 
 def test_pakistan_rupee_changed():
@@ -114,6 +128,14 @@ def test_pakistan_rupee_changed():
             AttributeError,
             match='can\'t set attribute'):
         pakistan_rupee.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        pakistan_rupee.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        pakistan_rupee.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_pakistan_rupee_math_add():
                    'rupee.PakistanRupee\'> '
                    'and <class \'str\'>.')):
         _ = pakistan_rupee_one.__add__('1.00')
-    assert (pakistan_rupee_one + pakistan_rupee_two) == pakistan_rupee_three
+    assert (
+        pakistan_rupee_one +
+        pakistan_rupee_two) == pakistan_rupee_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = PakistanRupee(amount=1000)
+def test_pakistan_rupee_slots():
+    """test_pakistan_rupee_slots."""
+    pakistan_rupee = PakistanRupee(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'PakistanRupee\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        pakistan_rupee.new_variable = 'fail'  # pylint: disable=assigning-non-slot

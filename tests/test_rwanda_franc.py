@@ -30,17 +30,21 @@ def test_rwanda_franc():
     assert rwanda_franc.grouping_sign == '.'
     assert not rwanda_franc.international
     assert rwanda_franc.symbol == '₣'
+    assert rwanda_franc.symbol_ahead
+    assert rwanda_franc.symbol_separator == '\u00A0'
     assert rwanda_franc.__hash__() == hash((decimal, 'RWF', '646'))
     assert rwanda_franc.__repr__() == (
         'RwandaFranc(amount: 0.1428571428571428571428571429, '
         'alpha_code: "RWF", '
         'symbol: "₣", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "646", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert rwanda_franc.__str__() == '₣0'
+    assert rwanda_franc.__str__() == '₣ 0'
 
 
 def test_rwanda_franc_negative():
@@ -55,17 +59,21 @@ def test_rwanda_franc_negative():
     assert rwanda_franc.grouping_sign == '.'
     assert not rwanda_franc.international
     assert rwanda_franc.symbol == '₣'
+    assert rwanda_franc.symbol_ahead
+    assert rwanda_franc.symbol_separator == '\u00A0'
     assert rwanda_franc.__hash__() == hash((decimal, 'RWF', '646'))
     assert rwanda_franc.__repr__() == (
         'RwandaFranc(amount: -100, '
         'alpha_code: "RWF", '
         'symbol: "₣", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "646", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert rwanda_franc.__str__() == '₣-100'
+    assert rwanda_franc.__str__() == '₣ -100'
 
 
 def test_rwanda_franc_custom():
@@ -76,7 +84,9 @@ def test_rwanda_franc_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert rwanda_franc.amount == decimal
     assert rwanda_franc.numeric_code == '646'
@@ -86,11 +96,15 @@ def test_rwanda_franc_custom():
     assert rwanda_franc.grouping_sign == ','
     assert rwanda_franc.international
     assert rwanda_franc.symbol == '₣'
+    assert not rwanda_franc.symbol_ahead
+    assert rwanda_franc.symbol_separator == '_'
     assert rwanda_franc.__hash__() == hash((decimal, 'RWF', '646'))
     assert rwanda_franc.__repr__() == (
         'RwandaFranc(amount: 1000, '
         'alpha_code: "RWF", '
         'symbol: "₣", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "646", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_rwanda_franc_changed():
             AttributeError,
             match='can\'t set attribute'):
         rwanda_franc.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        rwanda_franc.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        rwanda_franc.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_rwanda_franc_math_add():
                    'franc.RwandaFranc\'> '
                    'and <class \'str\'>.')):
         _ = rwanda_franc_one.__add__('1.00')
-    assert (rwanda_franc_one + rwanda_franc_two) == rwanda_franc_three
+    assert (
+        rwanda_franc_one +
+        rwanda_franc_two) == rwanda_franc_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = RwandaFranc(amount=1000)
+def test_rwanda_franc_slots():
+    """test_rwanda_franc_slots."""
+    rwanda_franc = RwandaFranc(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'RwandaFranc\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        rwanda_franc.new_variable = 'fail'  # pylint: disable=assigning-non-slot

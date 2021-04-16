@@ -30,17 +30,21 @@ def test_dong():
     assert dong.grouping_sign == '.'
     assert not dong.international
     assert dong.symbol == '₫'
+    assert not dong.symbol_ahead
+    assert dong.symbol_separator == '\u00A0'
     assert dong.__hash__() == hash((decimal, 'VND', '704'))
     assert dong.__repr__() == (
         'Dong(amount: 0.1428571428571428571428571429, '
         'alpha_code: "VND", '
         'symbol: "₫", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "704", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert dong.__str__() == '₫0'
+    assert dong.__str__() == '0 ₫'
 
 
 def test_dong_negative():
@@ -55,17 +59,21 @@ def test_dong_negative():
     assert dong.grouping_sign == '.'
     assert not dong.international
     assert dong.symbol == '₫'
+    assert not dong.symbol_ahead
+    assert dong.symbol_separator == '\u00A0'
     assert dong.__hash__() == hash((decimal, 'VND', '704'))
     assert dong.__repr__() == (
         'Dong(amount: -100, '
         'alpha_code: "VND", '
         'symbol: "₫", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "704", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert dong.__str__() == '₫-100'
+    assert dong.__str__() == '-100 ₫'
 
 
 def test_dong_custom():
@@ -76,7 +84,9 @@ def test_dong_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert dong.amount == decimal
     assert dong.numeric_code == '704'
@@ -86,11 +96,15 @@ def test_dong_custom():
     assert dong.grouping_sign == ','
     assert dong.international
     assert dong.symbol == '₫'
+    assert not dong.symbol_ahead
+    assert dong.symbol_separator == '_'
     assert dong.__hash__() == hash((decimal, 'VND', '704'))
     assert dong.__repr__() == (
         'Dong(amount: 1000, '
         'alpha_code: "VND", '
         'symbol: "₫", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "704", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_dong_changed():
             AttributeError,
             match='can\'t set attribute'):
         dong.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        dong.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        dong.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_dong_math_add():
                    'dong.Dong\'> '
                    'and <class \'str\'>.')):
         _ = dong_one.__add__('1.00')
-    assert (dong_one + dong_two) == dong_three
+    assert (
+        dong_one +
+        dong_two) == dong_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Dong(amount=1000)
+def test_dong_slots():
+    """test_dong_slots."""
+    dong = Dong(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Dong\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        dong.new_variable = 'fail'  # pylint: disable=assigning-non-slot

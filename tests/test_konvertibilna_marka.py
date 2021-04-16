@@ -30,17 +30,21 @@ def test_konvertibilna_marka():
     assert konvertibilna_marka.grouping_sign == ','
     assert not konvertibilna_marka.international
     assert konvertibilna_marka.symbol == 'КМ'
+    assert not konvertibilna_marka.symbol_ahead
+    assert konvertibilna_marka.symbol_separator == '\u00A0'
     assert konvertibilna_marka.__hash__() == hash((decimal, 'BAM', '977'))
     assert konvertibilna_marka.__repr__() == (
         'KonvertibilnaMarka(amount: 0.1428571428571428571428571429, '
         'alpha_code: "BAM", '
         'symbol: "КМ", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "977", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert konvertibilna_marka.__str__() == 'КМ0.14'
+    assert konvertibilna_marka.__str__() == '0.14 КМ'
 
 
 def test_konvertibilna_marka_negative():
@@ -55,17 +59,21 @@ def test_konvertibilna_marka_negative():
     assert konvertibilna_marka.grouping_sign == ','
     assert not konvertibilna_marka.international
     assert konvertibilna_marka.symbol == 'КМ'
+    assert not konvertibilna_marka.symbol_ahead
+    assert konvertibilna_marka.symbol_separator == '\u00A0'
     assert konvertibilna_marka.__hash__() == hash((decimal, 'BAM', '977'))
     assert konvertibilna_marka.__repr__() == (
         'KonvertibilnaMarka(amount: -100, '
         'alpha_code: "BAM", '
         'symbol: "КМ", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "977", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert konvertibilna_marka.__str__() == 'КМ-100.00'
+    assert konvertibilna_marka.__str__() == '-100.00 КМ'
 
 
 def test_konvertibilna_marka_custom():
@@ -76,7 +84,9 @@ def test_konvertibilna_marka_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert konvertibilna_marka.amount == decimal
     assert konvertibilna_marka.numeric_code == '977'
@@ -86,17 +96,21 @@ def test_konvertibilna_marka_custom():
     assert konvertibilna_marka.grouping_sign == '.'
     assert konvertibilna_marka.international
     assert konvertibilna_marka.symbol == 'КМ'
+    assert not konvertibilna_marka.symbol_ahead
+    assert konvertibilna_marka.symbol_separator == '_'
     assert konvertibilna_marka.__hash__() == hash((decimal, 'BAM', '977'))
     assert konvertibilna_marka.__repr__() == (
         'KonvertibilnaMarka(amount: 1000, '
         'alpha_code: "BAM", '
         'symbol: "КМ", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "977", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert konvertibilna_marka.__str__() == 'BAM 1.000,00000'
+    assert konvertibilna_marka.__str__() == 'BAM 1,000.00000'
 
 
 def test_konvertibilna_marka_changed():
@@ -114,6 +128,14 @@ def test_konvertibilna_marka_changed():
             AttributeError,
             match='can\'t set attribute'):
         konvertibilna_marka.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        konvertibilna_marka.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        konvertibilna_marka.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_konvertibilna_marka_math_add():
                    'marka.KonvertibilnaMarka\'> '
                    'and <class \'str\'>.')):
         _ = konvertibilna_marka_one.__add__('1.00')
-    assert (konvertibilna_marka_one + konvertibilna_marka_two) == konvertibilna_marka_three
+    assert (
+        konvertibilna_marka_one +
+        konvertibilna_marka_two) == konvertibilna_marka_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = KonvertibilnaMarka(amount=1000)
+def test_konvertibilna_marka_slots():
+    """test_konvertibilna_marka_slots."""
+    konvertibilna_marka = KonvertibilnaMarka(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'KonvertibilnaMarka\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        konvertibilna_marka.new_variable = 'fail'  # pylint: disable=assigning-non-slot

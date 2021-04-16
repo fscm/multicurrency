@@ -26,21 +26,25 @@ def test_gibraltar_pound():
     assert gibraltar_pound.numeric_code == '292'
     assert gibraltar_pound.alpha_code == 'GIP'
     assert gibraltar_pound.decimal_places == 2
-    assert gibraltar_pound.decimal_sign == ','
-    assert gibraltar_pound.grouping_sign == '.'
+    assert gibraltar_pound.decimal_sign == '.'
+    assert gibraltar_pound.grouping_sign == ','
     assert not gibraltar_pound.international
     assert gibraltar_pound.symbol == '£'
+    assert gibraltar_pound.symbol_ahead
+    assert gibraltar_pound.symbol_separator == ''
     assert gibraltar_pound.__hash__() == hash((decimal, 'GIP', '292'))
     assert gibraltar_pound.__repr__() == (
         'GibraltarPound(amount: 0.1428571428571428571428571429, '
         'alpha_code: "GIP", '
         'symbol: "£", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "292", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert gibraltar_pound.__str__() == '£0,14'
+    assert gibraltar_pound.__str__() == '£0.14'
 
 
 def test_gibraltar_pound_negative():
@@ -51,21 +55,25 @@ def test_gibraltar_pound_negative():
     assert gibraltar_pound.numeric_code == '292'
     assert gibraltar_pound.alpha_code == 'GIP'
     assert gibraltar_pound.decimal_places == 2
-    assert gibraltar_pound.decimal_sign == ','
-    assert gibraltar_pound.grouping_sign == '.'
+    assert gibraltar_pound.decimal_sign == '.'
+    assert gibraltar_pound.grouping_sign == ','
     assert not gibraltar_pound.international
     assert gibraltar_pound.symbol == '£'
+    assert gibraltar_pound.symbol_ahead
+    assert gibraltar_pound.symbol_separator == ''
     assert gibraltar_pound.__hash__() == hash((decimal, 'GIP', '292'))
     assert gibraltar_pound.__repr__() == (
         'GibraltarPound(amount: -100, '
         'alpha_code: "GIP", '
         'symbol: "£", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "292", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert gibraltar_pound.__str__() == '£-100,00'
+    assert gibraltar_pound.__str__() == '£-100.00'
 
 
 def test_gibraltar_pound_custom():
@@ -74,27 +82,33 @@ def test_gibraltar_pound_custom():
     gibraltar_pound = GibraltarPound(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert gibraltar_pound.amount == decimal
     assert gibraltar_pound.numeric_code == '292'
     assert gibraltar_pound.alpha_code == 'GIP'
     assert gibraltar_pound.decimal_places == 5
-    assert gibraltar_pound.decimal_sign == '.'
-    assert gibraltar_pound.grouping_sign == ','
+    assert gibraltar_pound.decimal_sign == ','
+    assert gibraltar_pound.grouping_sign == '.'
     assert gibraltar_pound.international
     assert gibraltar_pound.symbol == '£'
+    assert not gibraltar_pound.symbol_ahead
+    assert gibraltar_pound.symbol_separator == '_'
     assert gibraltar_pound.__hash__() == hash((decimal, 'GIP', '292'))
     assert gibraltar_pound.__repr__() == (
         'GibraltarPound(amount: 1000, '
         'alpha_code: "GIP", '
         'symbol: "£", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "292", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert gibraltar_pound.__str__() == 'GIP 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_gibraltar_pound_changed():
             AttributeError,
             match='can\'t set attribute'):
         gibraltar_pound.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        gibraltar_pound.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        gibraltar_pound.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_gibraltar_pound_math_add():
                    'pound.GibraltarPound\'> '
                    'and <class \'str\'>.')):
         _ = gibraltar_pound_one.__add__('1.00')
-    assert (gibraltar_pound_one + gibraltar_pound_two) == gibraltar_pound_three
+    assert (
+        gibraltar_pound_one +
+        gibraltar_pound_two) == gibraltar_pound_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = GibraltarPound(amount=1000)
+def test_gibraltar_pound_slots():
+    """test_gibraltar_pound_slots."""
+    gibraltar_pound = GibraltarPound(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'GibraltarPound\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        gibraltar_pound.new_variable = 'fail'  # pylint: disable=assigning-non-slot

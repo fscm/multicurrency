@@ -26,21 +26,25 @@ def test_boliviano():
     assert boliviano.numeric_code == '068'
     assert boliviano.alpha_code == 'BOB'
     assert boliviano.decimal_places == 2
-    assert boliviano.decimal_sign == '.'
-    assert boliviano.grouping_sign == ','
+    assert boliviano.decimal_sign == ','
+    assert boliviano.grouping_sign == '.'
     assert not boliviano.international
     assert boliviano.symbol == 'Bs.'
+    assert boliviano.symbol_ahead
+    assert boliviano.symbol_separator == '\u00A0'
     assert boliviano.__hash__() == hash((decimal, 'BOB', '068'))
     assert boliviano.__repr__() == (
         'Boliviano(amount: 0.1428571428571428571428571429, '
         'alpha_code: "BOB", '
         'symbol: "Bs.", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "068", '
         'decimal_places: "2", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: False)')
-    assert boliviano.__str__() == 'Bs.0.14'
+    assert boliviano.__str__() == 'Bs. 0,14'
 
 
 def test_boliviano_negative():
@@ -51,21 +55,25 @@ def test_boliviano_negative():
     assert boliviano.numeric_code == '068'
     assert boliviano.alpha_code == 'BOB'
     assert boliviano.decimal_places == 2
-    assert boliviano.decimal_sign == '.'
-    assert boliviano.grouping_sign == ','
+    assert boliviano.decimal_sign == ','
+    assert boliviano.grouping_sign == '.'
     assert not boliviano.international
     assert boliviano.symbol == 'Bs.'
+    assert boliviano.symbol_ahead
+    assert boliviano.symbol_separator == '\u00A0'
     assert boliviano.__hash__() == hash((decimal, 'BOB', '068'))
     assert boliviano.__repr__() == (
         'Boliviano(amount: -100, '
         'alpha_code: "BOB", '
         'symbol: "Bs.", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "068", '
         'decimal_places: "2", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: False)')
-    assert boliviano.__str__() == 'Bs.-100.00'
+    assert boliviano.__str__() == 'Bs. -100,00'
 
 
 def test_boliviano_custom():
@@ -74,29 +82,35 @@ def test_boliviano_custom():
     boliviano = Boliviano(
         amount=amount,
         decimal_places=5,
-        decimal_sign=',',
-        grouping_sign='.',
-        international=True)
+        decimal_sign='.',
+        grouping_sign=',',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert boliviano.amount == decimal
     assert boliviano.numeric_code == '068'
     assert boliviano.alpha_code == 'BOB'
     assert boliviano.decimal_places == 5
-    assert boliviano.decimal_sign == ','
-    assert boliviano.grouping_sign == '.'
+    assert boliviano.decimal_sign == '.'
+    assert boliviano.grouping_sign == ','
     assert boliviano.international
     assert boliviano.symbol == 'Bs.'
+    assert not boliviano.symbol_ahead
+    assert boliviano.symbol_separator == '_'
     assert boliviano.__hash__() == hash((decimal, 'BOB', '068'))
     assert boliviano.__repr__() == (
         'Boliviano(amount: 1000, '
         'alpha_code: "BOB", '
         'symbol: "Bs.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "068", '
         'decimal_places: "5", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: True)')
-    assert boliviano.__str__() == 'BOB 1.000,00000'
+    assert boliviano.__str__() == 'BOB 1,000.00000'
 
 
 def test_boliviano_changed():
@@ -114,6 +128,14 @@ def test_boliviano_changed():
             AttributeError,
             match='can\'t set attribute'):
         boliviano.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        boliviano.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        boliviano.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_boliviano_math_add():
                    'boliviano.Boliviano\'> '
                    'and <class \'str\'>.')):
         _ = boliviano_one.__add__('1.00')
-    assert (boliviano_one + boliviano_two) == boliviano_three
+    assert (
+        boliviano_one +
+        boliviano_two) == boliviano_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Boliviano(amount=1000)
+def test_boliviano_slots():
+    """test_boliviano_slots."""
+    boliviano = Boliviano(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Boliviano\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        boliviano.new_variable = 'fail'  # pylint: disable=assigning-non-slot

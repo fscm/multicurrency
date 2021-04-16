@@ -27,20 +27,24 @@ def test_djibouti_franc():
     assert djibouti_franc.alpha_code == 'DJF'
     assert djibouti_franc.decimal_places == 0
     assert djibouti_franc.decimal_sign == ','
-    assert djibouti_franc.grouping_sign == '.'
+    assert djibouti_franc.grouping_sign == '\u202F'
     assert not djibouti_franc.international
     assert djibouti_franc.symbol == '₣'
+    assert not djibouti_franc.symbol_ahead
+    assert djibouti_franc.symbol_separator == '\u00A0'
     assert djibouti_franc.__hash__() == hash((decimal, 'DJF', '262'))
     assert djibouti_franc.__repr__() == (
         'DjiboutiFranc(amount: 0.1428571428571428571428571429, '
         'alpha_code: "DJF", '
         'symbol: "₣", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "262", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert djibouti_franc.__str__() == '₣0'
+    assert djibouti_franc.__str__() == '0 ₣'
 
 
 def test_djibouti_franc_negative():
@@ -52,20 +56,24 @@ def test_djibouti_franc_negative():
     assert djibouti_franc.alpha_code == 'DJF'
     assert djibouti_franc.decimal_places == 0
     assert djibouti_franc.decimal_sign == ','
-    assert djibouti_franc.grouping_sign == '.'
+    assert djibouti_franc.grouping_sign == '\u202F'
     assert not djibouti_franc.international
     assert djibouti_franc.symbol == '₣'
+    assert not djibouti_franc.symbol_ahead
+    assert djibouti_franc.symbol_separator == '\u00A0'
     assert djibouti_franc.__hash__() == hash((decimal, 'DJF', '262'))
     assert djibouti_franc.__repr__() == (
         'DjiboutiFranc(amount: -100, '
         'alpha_code: "DJF", '
         'symbol: "₣", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "262", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert djibouti_franc.__str__() == '₣-100'
+    assert djibouti_franc.__str__() == '-100 ₣'
 
 
 def test_djibouti_franc_custom():
@@ -74,26 +82,32 @@ def test_djibouti_franc_custom():
     djibouti_franc = DjiboutiFranc(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
+        decimal_sign='\u202F',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert djibouti_franc.amount == decimal
     assert djibouti_franc.numeric_code == '262'
     assert djibouti_franc.alpha_code == 'DJF'
     assert djibouti_franc.decimal_places == 5
-    assert djibouti_franc.decimal_sign == '.'
+    assert djibouti_franc.decimal_sign == '\u202F'
     assert djibouti_franc.grouping_sign == ','
     assert djibouti_franc.international
     assert djibouti_franc.symbol == '₣'
+    assert not djibouti_franc.symbol_ahead
+    assert djibouti_franc.symbol_separator == '_'
     assert djibouti_franc.__hash__() == hash((decimal, 'DJF', '262'))
     assert djibouti_franc.__repr__() == (
         'DjiboutiFranc(amount: 1000, '
         'alpha_code: "DJF", '
         'symbol: "₣", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "262", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
+        'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
         'international: True)')
     assert djibouti_franc.__str__() == 'DJF 1,000.00000'
@@ -114,6 +128,14 @@ def test_djibouti_franc_changed():
             AttributeError,
             match='can\'t set attribute'):
         djibouti_franc.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        djibouti_franc.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        djibouti_franc.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_djibouti_franc_math_add():
                    'franc.DjiboutiFranc\'> '
                    'and <class \'str\'>.')):
         _ = djibouti_franc_one.__add__('1.00')
-    assert (djibouti_franc_one + djibouti_franc_two) == djibouti_franc_three
+    assert (
+        djibouti_franc_one +
+        djibouti_franc_two) == djibouti_franc_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = DjiboutiFranc(amount=1000)
+def test_djibouti_franc_slots():
+    """test_djibouti_franc_slots."""
+    djibouti_franc = DjiboutiFranc(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'DjiboutiFranc\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        djibouti_franc.new_variable = 'fail'  # pylint: disable=assigning-non-slot

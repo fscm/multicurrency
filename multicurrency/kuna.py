@@ -17,9 +17,10 @@ class CroatianKuna(Currency):
     Simple usage example:
 
         >>> from multicurrency import CroatianKuna
-        >>> croatian_kuna = CroatianKuna(amount=1)
+        >>> croatian_kuna = CroatianKuna(
+        ...     amount=123456.789)
         >>> print(croatian_kuna)
-        Kn1,00
+        123.456,79 Kn
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -32,6 +33,10 @@ class CroatianKuna(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to False.
     """
 
     __slots__ = []
@@ -39,10 +44,12 @@ class CroatianKuna(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 2,
+            decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
             grouping_sign: Optional[str] = '.',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = False,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'CroatianKuna':
         """Class creator.
 
@@ -55,6 +62,8 @@ class CroatianKuna(Currency):
             alpha_code='HRK',
             numeric_code='191',
             symbol='Kn',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

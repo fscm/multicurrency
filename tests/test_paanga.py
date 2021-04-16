@@ -30,17 +30,21 @@ def test_paanga():
     assert paanga.grouping_sign == ','
     assert not paanga.international
     assert paanga.symbol == 'T$'
+    assert paanga.symbol_ahead
+    assert paanga.symbol_separator == '\u00A0'
     assert paanga.__hash__() == hash((decimal, 'TOP', '776'))
     assert paanga.__repr__() == (
         'Paanga(amount: 0.1428571428571428571428571429, '
         'alpha_code: "TOP", '
         'symbol: "T$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "776", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert paanga.__str__() == 'T$0.14'
+    assert paanga.__str__() == 'T$ 0.14'
 
 
 def test_paanga_negative():
@@ -55,17 +59,21 @@ def test_paanga_negative():
     assert paanga.grouping_sign == ','
     assert not paanga.international
     assert paanga.symbol == 'T$'
+    assert paanga.symbol_ahead
+    assert paanga.symbol_separator == '\u00A0'
     assert paanga.__hash__() == hash((decimal, 'TOP', '776'))
     assert paanga.__repr__() == (
         'Paanga(amount: -100, '
         'alpha_code: "TOP", '
         'symbol: "T$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "776", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert paanga.__str__() == 'T$-100.00'
+    assert paanga.__str__() == 'T$ -100.00'
 
 
 def test_paanga_custom():
@@ -76,7 +84,9 @@ def test_paanga_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert paanga.amount == decimal
     assert paanga.numeric_code == '776'
@@ -86,17 +96,21 @@ def test_paanga_custom():
     assert paanga.grouping_sign == '.'
     assert paanga.international
     assert paanga.symbol == 'T$'
+    assert not paanga.symbol_ahead
+    assert paanga.symbol_separator == '_'
     assert paanga.__hash__() == hash((decimal, 'TOP', '776'))
     assert paanga.__repr__() == (
         'Paanga(amount: 1000, '
         'alpha_code: "TOP", '
         'symbol: "T$", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "776", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert paanga.__str__() == 'TOP 1.000,00000'
+    assert paanga.__str__() == 'TOP 1,000.00000'
 
 
 def test_paanga_changed():
@@ -114,6 +128,14 @@ def test_paanga_changed():
             AttributeError,
             match='can\'t set attribute'):
         paanga.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        paanga.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        paanga.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_paanga_math_add():
                    'paanga.Paanga\'> '
                    'and <class \'str\'>.')):
         _ = paanga_one.__add__('1.00')
-    assert (paanga_one + paanga_two) == paanga_three
+    assert (
+        paanga_one +
+        paanga_two) == paanga_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Paanga(amount=1000)
+def test_paanga_slots():
+    """test_paanga_slots."""
+    paanga = Paanga(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Paanga\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        paanga.new_variable = 'fail'  # pylint: disable=assigning-non-slot

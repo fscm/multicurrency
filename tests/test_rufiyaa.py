@@ -26,21 +26,25 @@ def test_rufiyaa():
     assert rufiyaa.numeric_code == '462'
     assert rufiyaa.alpha_code == 'MVR'
     assert rufiyaa.decimal_places == 2
-    assert rufiyaa.decimal_sign == ','
-    assert rufiyaa.grouping_sign == '.'
+    assert rufiyaa.decimal_sign == '.'
+    assert rufiyaa.grouping_sign == ','
     assert not rufiyaa.international
     assert rufiyaa.symbol == 'ރ.'
+    assert rufiyaa.symbol_ahead
+    assert rufiyaa.symbol_separator == '\u00A0'
     assert rufiyaa.__hash__() == hash((decimal, 'MVR', '462'))
     assert rufiyaa.__repr__() == (
         'Rufiyaa(amount: 0.1428571428571428571428571429, '
         'alpha_code: "MVR", '
         'symbol: "ރ.", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "462", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert rufiyaa.__str__() == 'ރ.0,14'
+    assert rufiyaa.__str__() == 'ރ. 0.14'
 
 
 def test_rufiyaa_negative():
@@ -51,21 +55,25 @@ def test_rufiyaa_negative():
     assert rufiyaa.numeric_code == '462'
     assert rufiyaa.alpha_code == 'MVR'
     assert rufiyaa.decimal_places == 2
-    assert rufiyaa.decimal_sign == ','
-    assert rufiyaa.grouping_sign == '.'
+    assert rufiyaa.decimal_sign == '.'
+    assert rufiyaa.grouping_sign == ','
     assert not rufiyaa.international
     assert rufiyaa.symbol == 'ރ.'
+    assert rufiyaa.symbol_ahead
+    assert rufiyaa.symbol_separator == '\u00A0'
     assert rufiyaa.__hash__() == hash((decimal, 'MVR', '462'))
     assert rufiyaa.__repr__() == (
         'Rufiyaa(amount: -100, '
         'alpha_code: "MVR", '
         'symbol: "ރ.", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "462", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert rufiyaa.__str__() == 'ރ.-100,00'
+    assert rufiyaa.__str__() == 'ރ. -100.00'
 
 
 def test_rufiyaa_custom():
@@ -74,27 +82,33 @@ def test_rufiyaa_custom():
     rufiyaa = Rufiyaa(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert rufiyaa.amount == decimal
     assert rufiyaa.numeric_code == '462'
     assert rufiyaa.alpha_code == 'MVR'
     assert rufiyaa.decimal_places == 5
-    assert rufiyaa.decimal_sign == '.'
-    assert rufiyaa.grouping_sign == ','
+    assert rufiyaa.decimal_sign == ','
+    assert rufiyaa.grouping_sign == '.'
     assert rufiyaa.international
     assert rufiyaa.symbol == 'ރ.'
+    assert not rufiyaa.symbol_ahead
+    assert rufiyaa.symbol_separator == '_'
     assert rufiyaa.__hash__() == hash((decimal, 'MVR', '462'))
     assert rufiyaa.__repr__() == (
         'Rufiyaa(amount: 1000, '
         'alpha_code: "MVR", '
         'symbol: "ރ.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "462", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert rufiyaa.__str__() == 'MVR 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_rufiyaa_changed():
             AttributeError,
             match='can\'t set attribute'):
         rufiyaa.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        rufiyaa.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        rufiyaa.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_rufiyaa_math_add():
                    'rufiyaa.Rufiyaa\'> '
                    'and <class \'str\'>.')):
         _ = rufiyaa_one.__add__('1.00')
-    assert (rufiyaa_one + rufiyaa_two) == rufiyaa_three
+    assert (
+        rufiyaa_one +
+        rufiyaa_two) == rufiyaa_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Rufiyaa(amount=1000)
+def test_rufiyaa_slots():
+    """test_rufiyaa_slots."""
+    rufiyaa = Rufiyaa(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Rufiyaa\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        rufiyaa.new_variable = 'fail'  # pylint: disable=assigning-non-slot

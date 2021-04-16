@@ -35,15 +35,16 @@
 <dl>
 <dt id="multicurrency.pound.EgyptianPound"><code class="flex name class">
 <span>class <span class="ident">EgyptianPound</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: int = 2, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: bool = False, **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Egyptian Pound currency representation.</p>
 <p>Simple usage example:</p>
 <pre><code>&gt;&gt;&gt; from multicurrency import EgyptianPound
-&gt;&gt;&gt; egyptian_pound = EgyptianPound(amount=1)
+&gt;&gt;&gt; egyptian_pound = EgyptianPound(
+...     amount=123456.789)
 &gt;&gt;&gt; print(egyptian_pound)
-£1.00
+ج.م. 123,456.79
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -61,6 +62,12 @@ currency representation. Defaults to 2,</dd>
 <dd>Identifies the currency using
 the 'currency' value instead of the 'symbol'. Defaults to
 False.</dd>
+<dt><strong><code>symbol_separator</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Separation between the symbol
+and the value. Defaults to ' '.</dd>
+<dt><strong><code>symbol_ahead</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>True if symbol goes ahead of the
+value. False otherwise. Defaults to True.</dd>
 </dl></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
@@ -80,21 +87,24 @@ False.</dd>
 <li><code><a title="multicurrency.currency.Currency.numeric_code" href="currency.html#multicurrency.currency.Currency.numeric_code">numeric_code</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.pstr" href="currency.html#multicurrency.currency.Currency.pstr">pstr</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.symbol" href="currency.html#multicurrency.currency.Currency.symbol">symbol</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_ahead" href="currency.html#multicurrency.currency.Currency.symbol_ahead">symbol_ahead</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_separator" href="currency.html#multicurrency.currency.Currency.symbol_separator">symbol_separator</a></code></li>
 </ul>
 </li>
 </ul>
 </dd>
 <dt id="multicurrency.pound.FalklandIslandsPound"><code class="flex name class">
 <span>class <span class="ident">FalklandIslandsPound</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: int = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: bool = False, **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Falkland Islands Pound currency representation.</p>
 <p>Simple usage example:</p>
 <pre><code>&gt;&gt;&gt; from multicurrency import FalklandIslandsPound
-&gt;&gt;&gt; falkland_islands_pound = FalklandIslandsPound(amount=1)
+&gt;&gt;&gt; falkland_islands_pound = FalklandIslandsPound(
+...     amount=123456.789)
 &gt;&gt;&gt; print(falkland_islands_pound)
-£1,00
+£123,456.79
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -105,13 +115,19 @@ False.</dd>
 <dd>Number of decimal places for the
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Decimal symbol. Defaults to ','.</dd>
+<dd>Decimal symbol. Defaults to '.'.</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Grouping symbol. Defaults to '.'.</dd>
+<dd>Grouping symbol. Defaults to ','.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
 <dd>Identifies the currency using
 the 'currency' value instead of the 'symbol'. Defaults to
 False.</dd>
+<dt><strong><code>symbol_separator</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Separation between the symbol
+and the value. Defaults to ''.</dd>
+<dt><strong><code>symbol_ahead</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>True if symbol goes ahead of the
+value. False otherwise. Defaults to True.</dd>
 </dl></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
@@ -131,21 +147,24 @@ False.</dd>
 <li><code><a title="multicurrency.currency.Currency.numeric_code" href="currency.html#multicurrency.currency.Currency.numeric_code">numeric_code</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.pstr" href="currency.html#multicurrency.currency.Currency.pstr">pstr</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.symbol" href="currency.html#multicurrency.currency.Currency.symbol">symbol</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_ahead" href="currency.html#multicurrency.currency.Currency.symbol_ahead">symbol_ahead</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_separator" href="currency.html#multicurrency.currency.Currency.symbol_separator">symbol_separator</a></code></li>
 </ul>
 </li>
 </ul>
 </dd>
 <dt id="multicurrency.pound.GibraltarPound"><code class="flex name class">
 <span>class <span class="ident">GibraltarPound</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: int = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: bool = False, **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Gibraltar Pound currency representation.</p>
 <p>Simple usage example:</p>
 <pre><code>&gt;&gt;&gt; from multicurrency import GibraltarPound
-&gt;&gt;&gt; gibraltar_pound = GibraltarPound(amount=1)
+&gt;&gt;&gt; gibraltar_pound = GibraltarPound(
+...     amount=123456.789)
 &gt;&gt;&gt; print(gibraltar_pound)
-£1,00
+£123,456.79
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -156,13 +175,19 @@ False.</dd>
 <dd>Number of decimal places for the
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Decimal symbol. Defaults to ','.</dd>
+<dd>Decimal symbol. Defaults to '.'.</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Grouping symbol. Defaults to '.'.</dd>
+<dd>Grouping symbol. Defaults to ','.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
 <dd>Identifies the currency using
 the 'currency' value instead of the 'symbol'. Defaults to
 False.</dd>
+<dt><strong><code>symbol_separator</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Separation between the symbol
+and the value. Defaults to ''.</dd>
+<dt><strong><code>symbol_ahead</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>True if symbol goes ahead of the
+value. False otherwise. Defaults to True.</dd>
 </dl></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
@@ -182,21 +207,24 @@ False.</dd>
 <li><code><a title="multicurrency.currency.Currency.numeric_code" href="currency.html#multicurrency.currency.Currency.numeric_code">numeric_code</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.pstr" href="currency.html#multicurrency.currency.Currency.pstr">pstr</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.symbol" href="currency.html#multicurrency.currency.Currency.symbol">symbol</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_ahead" href="currency.html#multicurrency.currency.Currency.symbol_ahead">symbol_ahead</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_separator" href="currency.html#multicurrency.currency.Currency.symbol_separator">symbol_separator</a></code></li>
 </ul>
 </li>
 </ul>
 </dd>
 <dt id="multicurrency.pound.LebanesePound"><code class="flex name class">
 <span>class <span class="ident">LebanesePound</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: int = 0, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = '\xa0', international: bool = False, **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 0, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Lebanese Pound currency representation.</p>
 <p>Simple usage example:</p>
 <pre><code>&gt;&gt;&gt; from multicurrency import LebanesePound
-&gt;&gt;&gt; lebanese_pound = LebanesePound(amount=1)
+&gt;&gt;&gt; lebanese_pound = LebanesePound(
+...     amount=123456.789)
 &gt;&gt;&gt; print(lebanese_pound)
-ل.ل1
+ل.ل. 123,457
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -209,11 +237,17 @@ currency representation. Defaults to 0,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to '.'.</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Grouping symbol. Defaults to ' '.</dd>
+<dd>Grouping symbol. Defaults to ','.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
 <dd>Identifies the currency using
 the 'currency' value instead of the 'symbol'. Defaults to
 False.</dd>
+<dt><strong><code>symbol_separator</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Separation between the symbol
+and the value. Defaults to ' '.</dd>
+<dt><strong><code>symbol_ahead</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>True if symbol goes ahead of the
+value. False otherwise. Defaults to True.</dd>
 </dl></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
@@ -233,21 +267,24 @@ False.</dd>
 <li><code><a title="multicurrency.currency.Currency.numeric_code" href="currency.html#multicurrency.currency.Currency.numeric_code">numeric_code</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.pstr" href="currency.html#multicurrency.currency.Currency.pstr">pstr</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.symbol" href="currency.html#multicurrency.currency.Currency.symbol">symbol</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_ahead" href="currency.html#multicurrency.currency.Currency.symbol_ahead">symbol_ahead</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_separator" href="currency.html#multicurrency.currency.Currency.symbol_separator">symbol_separator</a></code></li>
 </ul>
 </li>
 </ul>
 </dd>
 <dt id="multicurrency.pound.PoundSterling"><code class="flex name class">
 <span>class <span class="ident">PoundSterling</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: int = 2, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: bool = False, **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Pound Sterling currency representation.</p>
 <p>Simple usage example:</p>
 <pre><code>&gt;&gt;&gt; from multicurrency import PoundSterling
-&gt;&gt;&gt; pound_sterling = PoundSterling(amount=1)
+&gt;&gt;&gt; pound_sterling = PoundSterling(
+...     amount=123456.789)
 &gt;&gt;&gt; print(pound_sterling)
-£1.00
+£123,456.79
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -265,6 +302,12 @@ currency representation. Defaults to 2,</dd>
 <dd>Identifies the currency using
 the 'currency' value instead of the 'symbol'. Defaults to
 False.</dd>
+<dt><strong><code>symbol_separator</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Separation between the symbol
+and the value. Defaults to ''.</dd>
+<dt><strong><code>symbol_ahead</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>True if symbol goes ahead of the
+value. False otherwise. Defaults to True.</dd>
 </dl></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
@@ -284,21 +327,24 @@ False.</dd>
 <li><code><a title="multicurrency.currency.Currency.numeric_code" href="currency.html#multicurrency.currency.Currency.numeric_code">numeric_code</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.pstr" href="currency.html#multicurrency.currency.Currency.pstr">pstr</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.symbol" href="currency.html#multicurrency.currency.Currency.symbol">symbol</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_ahead" href="currency.html#multicurrency.currency.Currency.symbol_ahead">symbol_ahead</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_separator" href="currency.html#multicurrency.currency.Currency.symbol_separator">symbol_separator</a></code></li>
 </ul>
 </li>
 </ul>
 </dd>
 <dt id="multicurrency.pound.SaintHelenaPound"><code class="flex name class">
 <span>class <span class="ident">SaintHelenaPound</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: int = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: bool = False, **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Saint Helena Pound currency representation.</p>
 <p>Simple usage example:</p>
 <pre><code>&gt;&gt;&gt; from multicurrency import SaintHelenaPound
-&gt;&gt;&gt; saint_helena_pound = SaintHelenaPound(amount=1)
+&gt;&gt;&gt; saint_helena_pound = SaintHelenaPound(
+...     amount=123456.789)
 &gt;&gt;&gt; print(saint_helena_pound)
-£1,00
+£123,456.79
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -309,13 +355,19 @@ False.</dd>
 <dd>Number of decimal places for the
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Decimal symbol. Defaults to ','.</dd>
+<dd>Decimal symbol. Defaults to '.'.</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Grouping symbol. Defaults to '.'.</dd>
+<dd>Grouping symbol. Defaults to ','.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
 <dd>Identifies the currency using
 the 'currency' value instead of the 'symbol'. Defaults to
 False.</dd>
+<dt><strong><code>symbol_separator</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Separation between the symbol
+and the value. Defaults to ''.</dd>
+<dt><strong><code>symbol_ahead</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>True if symbol goes ahead of the
+value. False otherwise. Defaults to True.</dd>
 </dl></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
@@ -335,21 +387,24 @@ False.</dd>
 <li><code><a title="multicurrency.currency.Currency.numeric_code" href="currency.html#multicurrency.currency.Currency.numeric_code">numeric_code</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.pstr" href="currency.html#multicurrency.currency.Currency.pstr">pstr</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.symbol" href="currency.html#multicurrency.currency.Currency.symbol">symbol</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_ahead" href="currency.html#multicurrency.currency.Currency.symbol_ahead">symbol_ahead</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_separator" href="currency.html#multicurrency.currency.Currency.symbol_separator">symbol_separator</a></code></li>
 </ul>
 </li>
 </ul>
 </dd>
 <dt id="multicurrency.pound.SudanesePound"><code class="flex name class">
 <span>class <span class="ident">SudanesePound</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: int = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: bool = False, **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Sudanese Pound currency representation.</p>
 <p>Simple usage example:</p>
 <pre><code>&gt;&gt;&gt; from multicurrency import SudanesePound
-&gt;&gt;&gt; sudanese_pound = SudanesePound(amount=1)
+&gt;&gt;&gt; sudanese_pound = SudanesePound(
+...     amount=123456.789)
 &gt;&gt;&gt; print(sudanese_pound)
-£1,00
+123.456,79 ج.س
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -367,6 +422,12 @@ currency representation. Defaults to 2,</dd>
 <dd>Identifies the currency using
 the 'currency' value instead of the 'symbol'. Defaults to
 False.</dd>
+<dt><strong><code>symbol_separator</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Separation between the symbol
+and the value. Defaults to ' '.</dd>
+<dt><strong><code>symbol_ahead</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>True if symbol goes ahead of the
+value. False otherwise. Defaults to False.</dd>
 </dl></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
@@ -386,21 +447,24 @@ False.</dd>
 <li><code><a title="multicurrency.currency.Currency.numeric_code" href="currency.html#multicurrency.currency.Currency.numeric_code">numeric_code</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.pstr" href="currency.html#multicurrency.currency.Currency.pstr">pstr</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.symbol" href="currency.html#multicurrency.currency.Currency.symbol">symbol</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_ahead" href="currency.html#multicurrency.currency.Currency.symbol_ahead">symbol_ahead</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_separator" href="currency.html#multicurrency.currency.Currency.symbol_separator">symbol_separator</a></code></li>
 </ul>
 </li>
 </ul>
 </dd>
 <dt id="multicurrency.pound.SyrianPound"><code class="flex name class">
 <span>class <span class="ident">SyrianPound</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: int = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: bool = False, **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Syrian Pound currency representation.</p>
 <p>Simple usage example:</p>
 <pre><code>&gt;&gt;&gt; from multicurrency import SyrianPound
-&gt;&gt;&gt; syrian_pound = SyrianPound(amount=1)
+&gt;&gt;&gt; syrian_pound = SyrianPound(
+...     amount=123456.789)
 &gt;&gt;&gt; print(syrian_pound)
-ل.س1,00
+123.456,79 ل.س.
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -418,6 +482,12 @@ currency representation. Defaults to 2,</dd>
 <dd>Identifies the currency using
 the 'currency' value instead of the 'symbol'. Defaults to
 False.</dd>
+<dt><strong><code>symbol_separator</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Separation between the symbol
+and the value. Defaults to ' '.</dd>
+<dt><strong><code>symbol_ahead</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>True if symbol goes ahead of the
+value. False otherwise. Defaults to False.</dd>
 </dl></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
@@ -437,6 +507,8 @@ False.</dd>
 <li><code><a title="multicurrency.currency.Currency.numeric_code" href="currency.html#multicurrency.currency.Currency.numeric_code">numeric_code</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.pstr" href="currency.html#multicurrency.currency.Currency.pstr">pstr</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.symbol" href="currency.html#multicurrency.currency.Currency.symbol">symbol</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_ahead" href="currency.html#multicurrency.currency.Currency.symbol_ahead">symbol_ahead</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_separator" href="currency.html#multicurrency.currency.Currency.symbol_separator">symbol_separator</a></code></li>
 </ul>
 </li>
 </ul>

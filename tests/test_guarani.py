@@ -30,17 +30,21 @@ def test_guarani():
     assert guarani.grouping_sign == '.'
     assert not guarani.international
     assert guarani.symbol == '₲'
+    assert guarani.symbol_ahead
+    assert guarani.symbol_separator == '\u00A0'
     assert guarani.__hash__() == hash((decimal, 'PYG', '600'))
     assert guarani.__repr__() == (
         'Guarani(amount: 0.1428571428571428571428571429, '
         'alpha_code: "PYG", '
         'symbol: "₲", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "600", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert guarani.__str__() == '₲0'
+    assert guarani.__str__() == '₲ 0'
 
 
 def test_guarani_negative():
@@ -55,17 +59,21 @@ def test_guarani_negative():
     assert guarani.grouping_sign == '.'
     assert not guarani.international
     assert guarani.symbol == '₲'
+    assert guarani.symbol_ahead
+    assert guarani.symbol_separator == '\u00A0'
     assert guarani.__hash__() == hash((decimal, 'PYG', '600'))
     assert guarani.__repr__() == (
         'Guarani(amount: -100, '
         'alpha_code: "PYG", '
         'symbol: "₲", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "600", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert guarani.__str__() == '₲-100'
+    assert guarani.__str__() == '₲ -100'
 
 
 def test_guarani_custom():
@@ -76,7 +84,9 @@ def test_guarani_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert guarani.amount == decimal
     assert guarani.numeric_code == '600'
@@ -86,11 +96,15 @@ def test_guarani_custom():
     assert guarani.grouping_sign == ','
     assert guarani.international
     assert guarani.symbol == '₲'
+    assert not guarani.symbol_ahead
+    assert guarani.symbol_separator == '_'
     assert guarani.__hash__() == hash((decimal, 'PYG', '600'))
     assert guarani.__repr__() == (
         'Guarani(amount: 1000, '
         'alpha_code: "PYG", '
         'symbol: "₲", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "600", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_guarani_changed():
             AttributeError,
             match='can\'t set attribute'):
         guarani.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        guarani.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        guarani.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_guarani_math_add():
                    'guarani.Guarani\'> '
                    'and <class \'str\'>.')):
         _ = guarani_one.__add__('1.00')
-    assert (guarani_one + guarani_two) == guarani_three
+    assert (
+        guarani_one +
+        guarani_two) == guarani_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Guarani(amount=1000)
+def test_guarani_slots():
+    """test_guarani_slots."""
+    guarani = Guarani(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Guarani\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        guarani.new_variable = 'fail'  # pylint: disable=assigning-non-slot

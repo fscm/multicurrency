@@ -27,20 +27,24 @@ def test_belarusian_ruble():
     assert belarusian_ruble.alpha_code == 'BYN'
     assert belarusian_ruble.decimal_places == 2
     assert belarusian_ruble.decimal_sign == ','
-    assert belarusian_ruble.grouping_sign == '.'
+    assert belarusian_ruble.grouping_sign == '\u202F'
     assert not belarusian_ruble.international
     assert belarusian_ruble.symbol == 'Br'
+    assert not belarusian_ruble.symbol_ahead
+    assert belarusian_ruble.symbol_separator == '\u00A0'
     assert belarusian_ruble.__hash__() == hash((decimal, 'BYN', '933'))
     assert belarusian_ruble.__repr__() == (
         'BelarusianRuble(amount: 0.1428571428571428571428571429, '
         'alpha_code: "BYN", '
         'symbol: "Br", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "933", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert belarusian_ruble.__str__() == 'Br0,14'
+    assert belarusian_ruble.__str__() == '0,14 Br'
 
 
 def test_belarusian_ruble_negative():
@@ -52,20 +56,24 @@ def test_belarusian_ruble_negative():
     assert belarusian_ruble.alpha_code == 'BYN'
     assert belarusian_ruble.decimal_places == 2
     assert belarusian_ruble.decimal_sign == ','
-    assert belarusian_ruble.grouping_sign == '.'
+    assert belarusian_ruble.grouping_sign == '\u202F'
     assert not belarusian_ruble.international
     assert belarusian_ruble.symbol == 'Br'
+    assert not belarusian_ruble.symbol_ahead
+    assert belarusian_ruble.symbol_separator == '\u00A0'
     assert belarusian_ruble.__hash__() == hash((decimal, 'BYN', '933'))
     assert belarusian_ruble.__repr__() == (
         'BelarusianRuble(amount: -100, '
         'alpha_code: "BYN", '
         'symbol: "Br", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "933", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert belarusian_ruble.__str__() == 'Br-100,00'
+    assert belarusian_ruble.__str__() == '-100,00 Br'
 
 
 def test_belarusian_ruble_custom():
@@ -74,26 +82,32 @@ def test_belarusian_ruble_custom():
     belarusian_ruble = BelarusianRuble(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
+        decimal_sign='\u202F',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert belarusian_ruble.amount == decimal
     assert belarusian_ruble.numeric_code == '933'
     assert belarusian_ruble.alpha_code == 'BYN'
     assert belarusian_ruble.decimal_places == 5
-    assert belarusian_ruble.decimal_sign == '.'
+    assert belarusian_ruble.decimal_sign == '\u202F'
     assert belarusian_ruble.grouping_sign == ','
     assert belarusian_ruble.international
     assert belarusian_ruble.symbol == 'Br'
+    assert not belarusian_ruble.symbol_ahead
+    assert belarusian_ruble.symbol_separator == '_'
     assert belarusian_ruble.__hash__() == hash((decimal, 'BYN', '933'))
     assert belarusian_ruble.__repr__() == (
         'BelarusianRuble(amount: 1000, '
         'alpha_code: "BYN", '
         'symbol: "Br", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "933", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
+        'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
         'international: True)')
     assert belarusian_ruble.__str__() == 'BYN 1,000.00000'
@@ -114,6 +128,14 @@ def test_belarusian_ruble_changed():
             AttributeError,
             match='can\'t set attribute'):
         belarusian_ruble.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        belarusian_ruble.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        belarusian_ruble.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_belarusian_ruble_math_add():
                    'ruble.BelarusianRuble\'> '
                    'and <class \'str\'>.')):
         _ = belarusian_ruble_one.__add__('1.00')
-    assert (belarusian_ruble_one + belarusian_ruble_two) == belarusian_ruble_three
+    assert (
+        belarusian_ruble_one +
+        belarusian_ruble_two) == belarusian_ruble_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = BelarusianRuble(amount=1000)
+def test_belarusian_ruble_slots():
+    """test_belarusian_ruble_slots."""
+    belarusian_ruble = BelarusianRuble(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'BelarusianRuble\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        belarusian_ruble.new_variable = 'fail'  # pylint: disable=assigning-non-slot

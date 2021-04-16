@@ -30,17 +30,21 @@ def test_libyan_dinar():
     assert libyan_dinar.grouping_sign == '.'
     assert not libyan_dinar.international
     assert libyan_dinar.symbol == 'ل.د'
+    assert libyan_dinar.symbol_ahead
+    assert libyan_dinar.symbol_separator == '\u00A0'
     assert libyan_dinar.__hash__() == hash((decimal, 'LYD', '434'))
     assert libyan_dinar.__repr__() == (
         'LibyanDinar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "LYD", '
         'symbol: "ل.د", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "434", '
         'decimal_places: "3", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert libyan_dinar.__str__() == 'ل.د0,143'
+    assert libyan_dinar.__str__() == 'ل.د 0,143'
 
 
 def test_libyan_dinar_negative():
@@ -55,17 +59,21 @@ def test_libyan_dinar_negative():
     assert libyan_dinar.grouping_sign == '.'
     assert not libyan_dinar.international
     assert libyan_dinar.symbol == 'ل.د'
+    assert libyan_dinar.symbol_ahead
+    assert libyan_dinar.symbol_separator == '\u00A0'
     assert libyan_dinar.__hash__() == hash((decimal, 'LYD', '434'))
     assert libyan_dinar.__repr__() == (
         'LibyanDinar(amount: -100, '
         'alpha_code: "LYD", '
         'symbol: "ل.د", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "434", '
         'decimal_places: "3", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert libyan_dinar.__str__() == 'ل.د-100,000'
+    assert libyan_dinar.__str__() == 'ل.د -100,000'
 
 
 def test_libyan_dinar_custom():
@@ -76,7 +84,9 @@ def test_libyan_dinar_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert libyan_dinar.amount == decimal
     assert libyan_dinar.numeric_code == '434'
@@ -86,11 +96,15 @@ def test_libyan_dinar_custom():
     assert libyan_dinar.grouping_sign == ','
     assert libyan_dinar.international
     assert libyan_dinar.symbol == 'ل.د'
+    assert not libyan_dinar.symbol_ahead
+    assert libyan_dinar.symbol_separator == '_'
     assert libyan_dinar.__hash__() == hash((decimal, 'LYD', '434'))
     assert libyan_dinar.__repr__() == (
         'LibyanDinar(amount: 1000, '
         'alpha_code: "LYD", '
         'symbol: "ل.د", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "434", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_libyan_dinar_changed():
             AttributeError,
             match='can\'t set attribute'):
         libyan_dinar.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        libyan_dinar.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        libyan_dinar.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_libyan_dinar_math_add():
                    'dinar.LibyanDinar\'> '
                    'and <class \'str\'>.')):
         _ = libyan_dinar_one.__add__('1.00')
-    assert (libyan_dinar_one + libyan_dinar_two) == libyan_dinar_three
+    assert (
+        libyan_dinar_one +
+        libyan_dinar_two) == libyan_dinar_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = LibyanDinar(amount=1000)
+def test_libyan_dinar_slots():
+    """test_libyan_dinar_slots."""
+    libyan_dinar = LibyanDinar(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'LibyanDinar\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        libyan_dinar.new_variable = 'fail'  # pylint: disable=assigning-non-slot

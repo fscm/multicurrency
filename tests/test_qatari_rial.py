@@ -29,18 +29,22 @@ def test_qatari_rial():
     assert qatari_rial.decimal_sign == ','
     assert qatari_rial.grouping_sign == '.'
     assert not qatari_rial.international
-    assert qatari_rial.symbol == 'ر.ق'
+    assert qatari_rial.symbol == 'ر.ق.'
+    assert not qatari_rial.symbol_ahead
+    assert qatari_rial.symbol_separator == '\u00A0'
     assert qatari_rial.__hash__() == hash((decimal, 'QAR', '634'))
     assert qatari_rial.__repr__() == (
         'QatariRial(amount: 0.1428571428571428571428571429, '
         'alpha_code: "QAR", '
-        'symbol: "ر.ق", '
+        'symbol: "ر.ق.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "634", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert qatari_rial.__str__() == 'ر.ق0,14'
+    assert qatari_rial.__str__() == '0,14 ر.ق.'
 
 
 def test_qatari_rial_negative():
@@ -54,18 +58,22 @@ def test_qatari_rial_negative():
     assert qatari_rial.decimal_sign == ','
     assert qatari_rial.grouping_sign == '.'
     assert not qatari_rial.international
-    assert qatari_rial.symbol == 'ر.ق'
+    assert qatari_rial.symbol == 'ر.ق.'
+    assert not qatari_rial.symbol_ahead
+    assert qatari_rial.symbol_separator == '\u00A0'
     assert qatari_rial.__hash__() == hash((decimal, 'QAR', '634'))
     assert qatari_rial.__repr__() == (
         'QatariRial(amount: -100, '
         'alpha_code: "QAR", '
-        'symbol: "ر.ق", '
+        'symbol: "ر.ق.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "634", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert qatari_rial.__str__() == 'ر.ق-100,00'
+    assert qatari_rial.__str__() == '-100,00 ر.ق.'
 
 
 def test_qatari_rial_custom():
@@ -76,7 +84,9 @@ def test_qatari_rial_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert qatari_rial.amount == decimal
     assert qatari_rial.numeric_code == '634'
@@ -85,12 +95,16 @@ def test_qatari_rial_custom():
     assert qatari_rial.decimal_sign == '.'
     assert qatari_rial.grouping_sign == ','
     assert qatari_rial.international
-    assert qatari_rial.symbol == 'ر.ق'
+    assert qatari_rial.symbol == 'ر.ق.'
+    assert not qatari_rial.symbol_ahead
+    assert qatari_rial.symbol_separator == '_'
     assert qatari_rial.__hash__() == hash((decimal, 'QAR', '634'))
     assert qatari_rial.__repr__() == (
         'QatariRial(amount: 1000, '
         'alpha_code: "QAR", '
-        'symbol: "ر.ق", '
+        'symbol: "ر.ق.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "634", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_qatari_rial_changed():
             AttributeError,
             match='can\'t set attribute'):
         qatari_rial.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        qatari_rial.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        qatari_rial.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_qatari_rial_math_add():
                    'rial.QatariRial\'> '
                    'and <class \'str\'>.')):
         _ = qatari_rial_one.__add__('1.00')
-    assert (qatari_rial_one + qatari_rial_two) == qatari_rial_three
+    assert (
+        qatari_rial_one +
+        qatari_rial_two) == qatari_rial_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = QatariRial(amount=1000)
+def test_qatari_rial_slots():
+    """test_qatari_rial_slots."""
+    qatari_rial = QatariRial(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'QatariRial\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        qatari_rial.new_variable = 'fail'  # pylint: disable=assigning-non-slot

@@ -30,17 +30,21 @@ def test_lempira():
     assert lempira.grouping_sign == ','
     assert not lempira.international
     assert lempira.symbol == 'L'
+    assert lempira.symbol_ahead
+    assert lempira.symbol_separator == '\u00A0'
     assert lempira.__hash__() == hash((decimal, 'HNL', '340'))
     assert lempira.__repr__() == (
         'Lempira(amount: 0.1428571428571428571428571429, '
         'alpha_code: "HNL", '
         'symbol: "L", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "340", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert lempira.__str__() == 'L0.14'
+    assert lempira.__str__() == 'L 0.14'
 
 
 def test_lempira_negative():
@@ -55,17 +59,21 @@ def test_lempira_negative():
     assert lempira.grouping_sign == ','
     assert not lempira.international
     assert lempira.symbol == 'L'
+    assert lempira.symbol_ahead
+    assert lempira.symbol_separator == '\u00A0'
     assert lempira.__hash__() == hash((decimal, 'HNL', '340'))
     assert lempira.__repr__() == (
         'Lempira(amount: -100, '
         'alpha_code: "HNL", '
         'symbol: "L", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "340", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert lempira.__str__() == 'L-100.00'
+    assert lempira.__str__() == 'L -100.00'
 
 
 def test_lempira_custom():
@@ -76,7 +84,9 @@ def test_lempira_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert lempira.amount == decimal
     assert lempira.numeric_code == '340'
@@ -86,17 +96,21 @@ def test_lempira_custom():
     assert lempira.grouping_sign == '.'
     assert lempira.international
     assert lempira.symbol == 'L'
+    assert not lempira.symbol_ahead
+    assert lempira.symbol_separator == '_'
     assert lempira.__hash__() == hash((decimal, 'HNL', '340'))
     assert lempira.__repr__() == (
         'Lempira(amount: 1000, '
         'alpha_code: "HNL", '
         'symbol: "L", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "340", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert lempira.__str__() == 'HNL 1.000,00000'
+    assert lempira.__str__() == 'HNL 1,000.00000'
 
 
 def test_lempira_changed():
@@ -114,6 +128,14 @@ def test_lempira_changed():
             AttributeError,
             match='can\'t set attribute'):
         lempira.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        lempira.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        lempira.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_lempira_math_add():
                    'lempira.Lempira\'> '
                    'and <class \'str\'>.')):
         _ = lempira_one.__add__('1.00')
-    assert (lempira_one + lempira_two) == lempira_three
+    assert (
+        lempira_one +
+        lempira_two) == lempira_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Lempira(amount=1000)
+def test_lempira_slots():
+    """test_lempira_slots."""
+    lempira = Lempira(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Lempira\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        lempira.new_variable = 'fail'  # pylint: disable=assigning-non-slot

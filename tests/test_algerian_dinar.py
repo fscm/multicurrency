@@ -30,17 +30,21 @@ def test_algerian_dinar():
     assert algerian_dinar.grouping_sign == '.'
     assert not algerian_dinar.international
     assert algerian_dinar.symbol == 'د.ج'
+    assert not algerian_dinar.symbol_ahead
+    assert algerian_dinar.symbol_separator == '\u00A0'
     assert algerian_dinar.__hash__() == hash((decimal, 'DZD', '012'))
     assert algerian_dinar.__repr__() == (
         'AlgerianDinar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "DZD", '
         'symbol: "د.ج", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "012", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert algerian_dinar.__str__() == 'د.ج0,14'
+    assert algerian_dinar.__str__() == '0,14 د.ج'
 
 
 def test_algerian_dinar_negative():
@@ -55,17 +59,21 @@ def test_algerian_dinar_negative():
     assert algerian_dinar.grouping_sign == '.'
     assert not algerian_dinar.international
     assert algerian_dinar.symbol == 'د.ج'
+    assert not algerian_dinar.symbol_ahead
+    assert algerian_dinar.symbol_separator == '\u00A0'
     assert algerian_dinar.__hash__() == hash((decimal, 'DZD', '012'))
     assert algerian_dinar.__repr__() == (
         'AlgerianDinar(amount: -100, '
         'alpha_code: "DZD", '
         'symbol: "د.ج", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "012", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert algerian_dinar.__str__() == 'د.ج-100,00'
+    assert algerian_dinar.__str__() == '-100,00 د.ج'
 
 
 def test_algerian_dinar_custom():
@@ -76,7 +84,9 @@ def test_algerian_dinar_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert algerian_dinar.amount == decimal
     assert algerian_dinar.numeric_code == '012'
@@ -86,11 +96,15 @@ def test_algerian_dinar_custom():
     assert algerian_dinar.grouping_sign == ','
     assert algerian_dinar.international
     assert algerian_dinar.symbol == 'د.ج'
+    assert not algerian_dinar.symbol_ahead
+    assert algerian_dinar.symbol_separator == '_'
     assert algerian_dinar.__hash__() == hash((decimal, 'DZD', '012'))
     assert algerian_dinar.__repr__() == (
         'AlgerianDinar(amount: 1000, '
         'alpha_code: "DZD", '
         'symbol: "د.ج", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "012", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_algerian_dinar_changed():
             AttributeError,
             match='can\'t set attribute'):
         algerian_dinar.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        algerian_dinar.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        algerian_dinar.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_algerian_dinar_math_add():
                    'dinar.AlgerianDinar\'> '
                    'and <class \'str\'>.')):
         _ = algerian_dinar_one.__add__('1.00')
-    assert (algerian_dinar_one + algerian_dinar_two) == algerian_dinar_three
+    assert (
+        algerian_dinar_one +
+        algerian_dinar_two) == algerian_dinar_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = AlgerianDinar(amount=1000)
+def test_algerian_dinar_slots():
+    """test_algerian_dinar_slots."""
+    algerian_dinar = AlgerianDinar(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'AlgerianDinar\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        algerian_dinar.new_variable = 'fail'  # pylint: disable=assigning-non-slot

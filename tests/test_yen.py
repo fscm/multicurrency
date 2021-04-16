@@ -30,11 +30,15 @@ def test_yen():
     assert yen.grouping_sign == ','
     assert not yen.international
     assert yen.symbol == '¥'
+    assert yen.symbol_ahead
+    assert yen.symbol_separator == ''
     assert yen.__hash__() == hash((decimal, 'JPY', '392'))
     assert yen.__repr__() == (
         'Yen(amount: 0.1428571428571428571428571429, '
         'alpha_code: "JPY", '
         'symbol: "¥", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "392", '
         'decimal_places: "0", '
         'decimal_sign: ".", '
@@ -55,11 +59,15 @@ def test_yen_negative():
     assert yen.grouping_sign == ','
     assert not yen.international
     assert yen.symbol == '¥'
+    assert yen.symbol_ahead
+    assert yen.symbol_separator == ''
     assert yen.__hash__() == hash((decimal, 'JPY', '392'))
     assert yen.__repr__() == (
         'Yen(amount: -100, '
         'alpha_code: "JPY", '
         'symbol: "¥", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "392", '
         'decimal_places: "0", '
         'decimal_sign: ".", '
@@ -76,7 +84,9 @@ def test_yen_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert yen.amount == decimal
     assert yen.numeric_code == '392'
@@ -86,17 +96,21 @@ def test_yen_custom():
     assert yen.grouping_sign == '.'
     assert yen.international
     assert yen.symbol == '¥'
+    assert not yen.symbol_ahead
+    assert yen.symbol_separator == '_'
     assert yen.__hash__() == hash((decimal, 'JPY', '392'))
     assert yen.__repr__() == (
         'Yen(amount: 1000, '
         'alpha_code: "JPY", '
         'symbol: "¥", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "392", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert yen.__str__() == 'JPY 1.000,00000'
+    assert yen.__str__() == 'JPY 1,000.00000'
 
 
 def test_yen_changed():
@@ -114,6 +128,14 @@ def test_yen_changed():
             AttributeError,
             match='can\'t set attribute'):
         yen.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        yen.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        yen.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_yen_math_add():
                    'yen.Yen\'> '
                    'and <class \'str\'>.')):
         _ = yen_one.__add__('1.00')
-    assert (yen_one + yen_two) == yen_three
+    assert (
+        yen_one +
+        yen_two) == yen_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Yen(amount=1000)
+def test_yen_slots():
+    """test_yen_slots."""
+    yen = Yen(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Yen\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        yen.new_variable = 'fail'  # pylint: disable=assigning-non-slot

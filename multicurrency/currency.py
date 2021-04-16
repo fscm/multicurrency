@@ -281,8 +281,12 @@ class Currency:
             Defaults to ''.
         numeric_code (str, optional): Represented currency numeric
             code. Defaults to 0.
-        symbol (str, optionsl): Represented currency symbol. Defaults
+        symbol (str, optional): Represented currency symbol. Defaults
             to ''.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to False.
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
@@ -300,18 +304,22 @@ class Currency:
         '_grouping_sign',
         '_international',
         '_numeric_code',
-        '_symbol']
+        '_symbol',
+        '_symbol_ahead',
+        '_symbol_separator']
 
     def __new__(
             cls,
             amount: Union[int, float, Decimal],
             alpha_code: Optional[str] = '',
-            numeric_code: str = '0',
-            symbol: str = '',
-            decimal_places: int = 2,
+            numeric_code: Optional[str] = '0',
+            symbol: Optional[str] = '',
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
             grouping_sign: Optional[str] = ',',
-            international: bool = False) -> 'Currency':
+            international: Optional[bool] = False) -> 'Currency':
         """Class creator.
 
         Returns:
@@ -326,6 +334,8 @@ class Currency:
         self._international = international
         self._numeric_code = numeric_code
         self._symbol = symbol
+        self._symbol_ahead = symbol_ahead
+        self._symbol_separator = symbol_separator
         return self
 
     def __abs__(self) -> 'Currency':
@@ -342,6 +352,8 @@ class Currency:
             alpha_code=self._alpha_code,
             numeric_code=self._numeric_code,
             symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
@@ -371,6 +383,8 @@ class Currency:
             alpha_code=self._alpha_code,
             numeric_code=self._numeric_code,
             symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
@@ -395,6 +409,8 @@ class Currency:
             alpha_code=self._alpha_code,
             numeric_code=self._numeric_code,
             symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
@@ -411,6 +427,8 @@ class Currency:
             alpha_code=self._alpha_code,
             numeric_code=self._numeric_code,
             symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
@@ -443,6 +461,8 @@ class Currency:
                 alpha_code=self._alpha_code,
                 numeric_code=self._numeric_code,
                 symbol=self._symbol,
+                symbol_ahead=self._symbol_ahead,
+                symbol_separator=self._symbol_separator,
                 decimal_places=self._decimal_places,
                 decimal_sign=self._decimal_sign,
                 grouping_sign=self._grouping_sign,
@@ -452,6 +472,8 @@ class Currency:
                 alpha_code=self._alpha_code,
                 numeric_code=self._numeric_code,
                 symbol=self._symbol,
+                symbol_ahead=self._symbol_ahead,
+                symbol_separator=self._symbol_separator,
                 decimal_places=self._decimal_places,
                 decimal_sign=self._decimal_sign,
                 grouping_sign=self._grouping_sign,
@@ -492,6 +514,8 @@ class Currency:
             alpha_code=self._alpha_code,
             numeric_code=self._numeric_code,
             symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
@@ -522,6 +546,8 @@ class Currency:
             alpha_code=self._alpha_code,
             numeric_code=self._numeric_code,
             symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
@@ -653,6 +679,8 @@ class Currency:
             alpha_code=self._alpha_code,
             numeric_code=self._numeric_code,
             symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
@@ -678,6 +706,8 @@ class Currency:
             alpha_code=self._alpha_code,
             numeric_code=self._numeric_code,
             symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
@@ -705,6 +735,8 @@ class Currency:
             alpha_code=self._alpha_code,
             numeric_code=self._numeric_code,
             symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
@@ -721,6 +753,8 @@ class Currency:
             alpha_code=self._alpha_code,
             numeric_code=self._numeric_code,
             symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
@@ -738,8 +772,10 @@ class Currency:
             (
                 self._amount,
                 self._alpha_code,
-                self._symbol,
                 self._numeric_code,
+                self._symbol,
+                self._symbol_ahead,
+                self._symbol_separator,
                 self._decimal_places,
                 self._decimal_sign,
                 self._grouping_sign,
@@ -756,6 +792,8 @@ class Currency:
             f'amount: {self._amount}, '
             f'alpha_code: "{self._alpha_code}", '
             f'symbol: "{self._symbol}", '
+            f'symbol_ahead: {self._symbol_ahead}, '
+            f'symbol_separator: "{self._symbol_separator}", '
             f'numeric_code: "{self._numeric_code}", '
             f'decimal_places: "{self._decimal_places}", '
             f'decimal_sign: "{self._decimal_sign}", '
@@ -777,6 +815,8 @@ class Currency:
             alpha_code=self._alpha_code,
             numeric_code=self._numeric_code,
             symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
@@ -788,14 +828,15 @@ class Currency:
         Returns:
             str: value
         """
-        symbol = self._symbol if not self._international else (
-            f'{self._alpha_code} ' if self._alpha_code else '')
         p = self._decimal_places
-        converted = f'{round(self._amount, p):,.{p}f}'.replace(
-            '.', 'X').replace(
-                ',', self._grouping_sign).replace(
-                    'X', self._decimal_sign)
-        return symbol + converted
+        converted = f'{round(self._amount, p):,.{p}f}'
+        if self._international:
+            return f'{self._alpha_code} {converted}'
+        converted = converted.replace('.', 'X').replace(
+            ',', self._grouping_sign).replace('X', self._decimal_sign)
+        if self._symbol_ahead:
+            return f'{self._symbol}{self._symbol_separator}{converted}'
+        return f'{converted}{self._symbol_separator}{self._symbol}'
 
     def __sub__(self, other: Any) -> 'Currency':
         """Subtract `other` from this.
@@ -821,6 +862,8 @@ class Currency:
             alpha_code=self._alpha_code,
             numeric_code=self._numeric_code,
             symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
@@ -850,6 +893,8 @@ class Currency:
             alpha_code=self._alpha_code,
             numeric_code=self._numeric_code,
             symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
@@ -878,14 +923,15 @@ class Currency:
         Returns:
             str: value
         """
-        symbol = self._symbol if not self._international else (
-            f'{self._alpha_code} ' if self._alpha_code else '')
         p = max(precision, 0)
-        converted = f'{round(self._amount, p):,.{p}f}'.replace(
-            '.', 'X').replace(
-                ',', self._grouping_sign).replace(
-                    'X', self._decimal_sign)
-        return symbol + converted
+        converted = f'{round(self._amount, p):,.{p}f}'
+        if self._international:
+            return f'{self._alpha_code} {converted}'
+        converted = converted.replace('.', 'X').replace(
+            ',', self._grouping_sign).replace('X', self._decimal_sign)
+        if self._symbol_ahead:
+            return f'{self._symbol}{self._symbol_separator}{converted}'
+        return f'{converted}{self._symbol_separator}{self._symbol}'
 
     @property
     def amount(self) -> Decimal:
@@ -926,3 +972,13 @@ class Currency:
     def symbol(self) -> str:
         """str: symbol."""
         return self._symbol
+
+    @property
+    def symbol_ahead(self) -> bool:
+        """bool: symbol_ahead."""
+        return self._symbol_ahead
+
+    @property
+    def symbol_separator(self) -> str:
+        """str: symbol_separator."""
+        return self._symbol_separator

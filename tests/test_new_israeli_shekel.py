@@ -30,17 +30,21 @@ def test_new_israeli_shekel():
     assert new_israeli_shekel.grouping_sign == ','
     assert not new_israeli_shekel.international
     assert new_israeli_shekel.symbol == '₪'
+    assert not new_israeli_shekel.symbol_ahead
+    assert new_israeli_shekel.symbol_separator == '\u00A0'
     assert new_israeli_shekel.__hash__() == hash((decimal, 'ILS', '376'))
     assert new_israeli_shekel.__repr__() == (
         'NewIsraeliShekel(amount: 0.1428571428571428571428571429, '
         'alpha_code: "ILS", '
         'symbol: "₪", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "376", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert new_israeli_shekel.__str__() == '₪0.14'
+    assert new_israeli_shekel.__str__() == '0.14 ₪'
 
 
 def test_new_israeli_shekel_negative():
@@ -55,17 +59,21 @@ def test_new_israeli_shekel_negative():
     assert new_israeli_shekel.grouping_sign == ','
     assert not new_israeli_shekel.international
     assert new_israeli_shekel.symbol == '₪'
+    assert not new_israeli_shekel.symbol_ahead
+    assert new_israeli_shekel.symbol_separator == '\u00A0'
     assert new_israeli_shekel.__hash__() == hash((decimal, 'ILS', '376'))
     assert new_israeli_shekel.__repr__() == (
         'NewIsraeliShekel(amount: -100, '
         'alpha_code: "ILS", '
         'symbol: "₪", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "376", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert new_israeli_shekel.__str__() == '₪-100.00'
+    assert new_israeli_shekel.__str__() == '-100.00 ₪'
 
 
 def test_new_israeli_shekel_custom():
@@ -76,7 +84,9 @@ def test_new_israeli_shekel_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert new_israeli_shekel.amount == decimal
     assert new_israeli_shekel.numeric_code == '376'
@@ -86,17 +96,21 @@ def test_new_israeli_shekel_custom():
     assert new_israeli_shekel.grouping_sign == '.'
     assert new_israeli_shekel.international
     assert new_israeli_shekel.symbol == '₪'
+    assert not new_israeli_shekel.symbol_ahead
+    assert new_israeli_shekel.symbol_separator == '_'
     assert new_israeli_shekel.__hash__() == hash((decimal, 'ILS', '376'))
     assert new_israeli_shekel.__repr__() == (
         'NewIsraeliShekel(amount: 1000, '
         'alpha_code: "ILS", '
         'symbol: "₪", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "376", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert new_israeli_shekel.__str__() == 'ILS 1.000,00000'
+    assert new_israeli_shekel.__str__() == 'ILS 1,000.00000'
 
 
 def test_new_israeli_shekel_changed():
@@ -114,6 +128,14 @@ def test_new_israeli_shekel_changed():
             AttributeError,
             match='can\'t set attribute'):
         new_israeli_shekel.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        new_israeli_shekel.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        new_israeli_shekel.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_new_israeli_shekel_math_add():
                    'shekel.NewIsraeliShekel\'> '
                    'and <class \'str\'>.')):
         _ = new_israeli_shekel_one.__add__('1.00')
-    assert (new_israeli_shekel_one + new_israeli_shekel_two) == new_israeli_shekel_three
+    assert (
+        new_israeli_shekel_one +
+        new_israeli_shekel_two) == new_israeli_shekel_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = NewIsraeliShekel(amount=1000)
+def test_new_israeli_shekel_slots():
+    """test_new_israeli_shekel_slots."""
+    new_israeli_shekel = NewIsraeliShekel(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'NewIsraeliShekel\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        new_israeli_shekel.new_variable = 'fail'  # pylint: disable=assigning-non-slot

@@ -30,17 +30,21 @@ def test_iceland_krona():
     assert iceland_krona.grouping_sign == '.'
     assert not iceland_krona.international
     assert iceland_krona.symbol == 'Kr'
+    assert not iceland_krona.symbol_ahead
+    assert iceland_krona.symbol_separator == '\u00A0'
     assert iceland_krona.__hash__() == hash((decimal, 'ISK', '352'))
     assert iceland_krona.__repr__() == (
         'IcelandKrona(amount: 0.1428571428571428571428571429, '
         'alpha_code: "ISK", '
         'symbol: "Kr", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "352", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert iceland_krona.__str__() == 'Kr0'
+    assert iceland_krona.__str__() == '0 Kr'
 
 
 def test_iceland_krona_negative():
@@ -55,17 +59,21 @@ def test_iceland_krona_negative():
     assert iceland_krona.grouping_sign == '.'
     assert not iceland_krona.international
     assert iceland_krona.symbol == 'Kr'
+    assert not iceland_krona.symbol_ahead
+    assert iceland_krona.symbol_separator == '\u00A0'
     assert iceland_krona.__hash__() == hash((decimal, 'ISK', '352'))
     assert iceland_krona.__repr__() == (
         'IcelandKrona(amount: -100, '
         'alpha_code: "ISK", '
         'symbol: "Kr", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "352", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert iceland_krona.__str__() == 'Kr-100'
+    assert iceland_krona.__str__() == '-100 Kr'
 
 
 def test_iceland_krona_custom():
@@ -76,7 +84,9 @@ def test_iceland_krona_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert iceland_krona.amount == decimal
     assert iceland_krona.numeric_code == '352'
@@ -86,11 +96,15 @@ def test_iceland_krona_custom():
     assert iceland_krona.grouping_sign == ','
     assert iceland_krona.international
     assert iceland_krona.symbol == 'Kr'
+    assert not iceland_krona.symbol_ahead
+    assert iceland_krona.symbol_separator == '_'
     assert iceland_krona.__hash__() == hash((decimal, 'ISK', '352'))
     assert iceland_krona.__repr__() == (
         'IcelandKrona(amount: 1000, '
         'alpha_code: "ISK", '
         'symbol: "Kr", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "352", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_iceland_krona_changed():
             AttributeError,
             match='can\'t set attribute'):
         iceland_krona.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        iceland_krona.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        iceland_krona.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_iceland_krona_math_add():
                    'krona.IcelandKrona\'> '
                    'and <class \'str\'>.')):
         _ = iceland_krona_one.__add__('1.00')
-    assert (iceland_krona_one + iceland_krona_two) == iceland_krona_three
+    assert (
+        iceland_krona_one +
+        iceland_krona_two) == iceland_krona_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = IcelandKrona(amount=1000)
+def test_iceland_krona_slots():
+    """test_iceland_krona_slots."""
+    iceland_krona = IcelandKrona(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'IcelandKrona\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        iceland_krona.new_variable = 'fail'  # pylint: disable=assigning-non-slot

@@ -35,15 +35,16 @@
 <dl>
 <dt id="multicurrency.shilling.KenyanShilling"><code class="flex name class">
 <span>class <span class="ident">KenyanShilling</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: int = 2, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: bool = False, **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Kenyan Shilling currency representation.</p>
 <p>Simple usage example:</p>
 <pre><code>&gt;&gt;&gt; from multicurrency import KenyanShilling
-&gt;&gt;&gt; kenyan_shilling = KenyanShilling(amount=1)
+&gt;&gt;&gt; kenyan_shilling = KenyanShilling(
+...     amount=123456.789)
 &gt;&gt;&gt; print(kenyan_shilling)
-Sh1.00
+Ksh 123,456.79
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -61,6 +62,12 @@ currency representation. Defaults to 2,</dd>
 <dd>Identifies the currency using
 the 'currency' value instead of the 'symbol'. Defaults to
 False.</dd>
+<dt><strong><code>symbol_separator</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Separation between the symbol
+and the value. Defaults to ' '.</dd>
+<dt><strong><code>symbol_ahead</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>True if symbol goes ahead of the
+value. False otherwise. Defaults to True.</dd>
 </dl></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
@@ -80,72 +87,24 @@ False.</dd>
 <li><code><a title="multicurrency.currency.Currency.numeric_code" href="currency.html#multicurrency.currency.Currency.numeric_code">numeric_code</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.pstr" href="currency.html#multicurrency.currency.Currency.pstr">pstr</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.symbol" href="currency.html#multicurrency.currency.Currency.symbol">symbol</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_ahead" href="currency.html#multicurrency.currency.Currency.symbol_ahead">symbol_ahead</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_separator" href="currency.html#multicurrency.currency.Currency.symbol_separator">symbol_separator</a></code></li>
 </ul>
 </li>
 </ul>
 </dd>
 <dt id="multicurrency.shilling.SomaliShilling"><code class="flex name class">
 <span>class <span class="ident">SomaliShilling</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: int = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: bool = False, **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Somali Shilling currency representation.</p>
 <p>Simple usage example:</p>
 <pre><code>&gt;&gt;&gt; from multicurrency import SomaliShilling
-&gt;&gt;&gt; somali_shilling = SomaliShilling(amount=1)
+&gt;&gt;&gt; somali_shilling = SomaliShilling(
+...     amount=123456.789)
 &gt;&gt;&gt; print(somali_shilling)
-Sh1,00
-</code></pre>
-<p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
-<h2 id="args">Args</h2>
-<dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
-<dt><strong><code>decimal_places</code></strong> :&ensp;<code>int</code>, optional</dt>
-<dd>Number of decimal places for the
-currency representation. Defaults to 2,</dd>
-<dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Decimal symbol. Defaults to ','.</dd>
-<dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Grouping symbol. Defaults to '.'.</dd>
-<dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
-<dd>Identifies the currency using
-the 'currency' value instead of the 'symbol'. Defaults to
-False.</dd>
-</dl></div>
-<h3>Ancestors</h3>
-<ul class="hlist">
-<li><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></li>
-</ul>
-<h3>Inherited members</h3>
-<ul class="hlist">
-<li><code><b><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></b></code>:
-<ul class="hlist">
-<li><code><a title="multicurrency.currency.Currency.alpha_code" href="currency.html#multicurrency.currency.Currency.alpha_code">alpha_code</a></code></li>
-<li><code><a title="multicurrency.currency.Currency.amount" href="currency.html#multicurrency.currency.Currency.amount">amount</a></code></li>
-<li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
-<li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
-<li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
-<li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
-<li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
-<li><code><a title="multicurrency.currency.Currency.numeric_code" href="currency.html#multicurrency.currency.Currency.numeric_code">numeric_code</a></code></li>
-<li><code><a title="multicurrency.currency.Currency.pstr" href="currency.html#multicurrency.currency.Currency.pstr">pstr</a></code></li>
-<li><code><a title="multicurrency.currency.Currency.symbol" href="currency.html#multicurrency.currency.Currency.symbol">symbol</a></code></li>
-</ul>
-</li>
-</ul>
-</dd>
-<dt id="multicurrency.shilling.TanzanianShilling"><code class="flex name class">
-<span>class <span class="ident">TanzanianShilling</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: int = 2, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: bool = False, **other)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Tanzanian Shilling currency representation.</p>
-<p>Simple usage example:</p>
-<pre><code>&gt;&gt;&gt; from multicurrency import TanzanianShilling
-&gt;&gt;&gt; tanzanian_shilling = TanzanianShilling(amount=1)
-&gt;&gt;&gt; print(tanzanian_shilling)
-Sh1.00
+Sh 123,456.79
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -163,6 +122,12 @@ currency representation. Defaults to 2,</dd>
 <dd>Identifies the currency using
 the 'currency' value instead of the 'symbol'. Defaults to
 False.</dd>
+<dt><strong><code>symbol_separator</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Separation between the symbol
+and the value. Defaults to ' '.</dd>
+<dt><strong><code>symbol_ahead</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>True if symbol goes ahead of the
+value. False otherwise. Defaults to True.</dd>
 </dl></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
@@ -182,21 +147,84 @@ False.</dd>
 <li><code><a title="multicurrency.currency.Currency.numeric_code" href="currency.html#multicurrency.currency.Currency.numeric_code">numeric_code</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.pstr" href="currency.html#multicurrency.currency.Currency.pstr">pstr</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.symbol" href="currency.html#multicurrency.currency.Currency.symbol">symbol</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_ahead" href="currency.html#multicurrency.currency.Currency.symbol_ahead">symbol_ahead</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_separator" href="currency.html#multicurrency.currency.Currency.symbol_separator">symbol_separator</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.shilling.TanzanianShilling"><code class="flex name class">
+<span>class <span class="ident">TanzanianShilling</span></span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '\xa0', **other)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Tanzanian Shilling currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import TanzanianShilling
+&gt;&gt;&gt; tanzanian_shilling = TanzanianShilling(
+...     amount=123456.789)
+&gt;&gt;&gt; print(tanzanian_shilling)
+TSh 123,456.79
+</code></pre>
+<p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>decimal_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of decimal places for the
+currency representation. Defaults to 2,</dd>
+<dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Decimal symbol. Defaults to '.'.</dd>
+<dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Grouping symbol. Defaults to ','.</dd>
+<dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Identifies the currency using
+the 'currency' value instead of the 'symbol'. Defaults to
+False.</dd>
+<dt><strong><code>symbol_separator</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Separation between the symbol
+and the value. Defaults to ' '.</dd>
+<dt><strong><code>symbol_ahead</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>True if symbol goes ahead of the
+value. False otherwise. Defaults to True.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.currency.Currency.alpha_code" href="currency.html#multicurrency.currency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.amount" href="currency.html#multicurrency.currency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.numeric_code" href="currency.html#multicurrency.currency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.pstr" href="currency.html#multicurrency.currency.Currency.pstr">pstr</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol" href="currency.html#multicurrency.currency.Currency.symbol">symbol</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_ahead" href="currency.html#multicurrency.currency.Currency.symbol_ahead">symbol_ahead</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_separator" href="currency.html#multicurrency.currency.Currency.symbol_separator">symbol_separator</a></code></li>
 </ul>
 </li>
 </ul>
 </dd>
 <dt id="multicurrency.shilling.UgandaShilling"><code class="flex name class">
 <span>class <span class="ident">UgandaShilling</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: int = 0, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: bool = False, **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 0, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Uganda Shilling currency representation.</p>
 <p>Simple usage example:</p>
 <pre><code>&gt;&gt;&gt; from multicurrency import UgandaShilling
-&gt;&gt;&gt; uganda_shilling = UgandaShilling(amount=1)
+&gt;&gt;&gt; uganda_shilling = UgandaShilling(
+...     amount=123456.789)
 &gt;&gt;&gt; print(uganda_shilling)
-Sh1
+USh 123,457
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -207,13 +235,19 @@ Sh1
 <dd>Number of decimal places for the
 currency representation. Defaults to 0,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Decimal symbol. Defaults to ','.</dd>
+<dd>Decimal symbol. Defaults to '.'.</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Grouping symbol. Defaults to '.'.</dd>
+<dd>Grouping symbol. Defaults to ','.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
 <dd>Identifies the currency using
 the 'currency' value instead of the 'symbol'. Defaults to
 False.</dd>
+<dt><strong><code>symbol_separator</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Separation between the symbol
+and the value. Defaults to ' '.</dd>
+<dt><strong><code>symbol_ahead</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>True if symbol goes ahead of the
+value. False otherwise. Defaults to True.</dd>
 </dl></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
@@ -233,6 +267,8 @@ False.</dd>
 <li><code><a title="multicurrency.currency.Currency.numeric_code" href="currency.html#multicurrency.currency.Currency.numeric_code">numeric_code</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.pstr" href="currency.html#multicurrency.currency.Currency.pstr">pstr</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.symbol" href="currency.html#multicurrency.currency.Currency.symbol">symbol</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_ahead" href="currency.html#multicurrency.currency.Currency.symbol_ahead">symbol_ahead</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_separator" href="currency.html#multicurrency.currency.Currency.symbol_separator">symbol_separator</a></code></li>
 </ul>
 </li>
 </ul>

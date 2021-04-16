@@ -27,20 +27,24 @@ def test_uzbekistan_sum():
     assert uzbekistan_sum.alpha_code == 'UZS'
     assert uzbekistan_sum.decimal_places == 2
     assert uzbekistan_sum.decimal_sign == ','
-    assert uzbekistan_sum.grouping_sign == '.'
+    assert uzbekistan_sum.grouping_sign == '\u202F'
     assert not uzbekistan_sum.international
-    assert uzbekistan_sum.symbol == ''
+    assert uzbekistan_sum.symbol == 'сўм'
+    assert not uzbekistan_sum.symbol_ahead
+    assert uzbekistan_sum.symbol_separator == '\u00A0'
     assert uzbekistan_sum.__hash__() == hash((decimal, 'UZS', '860'))
     assert uzbekistan_sum.__repr__() == (
         'UzbekistanSum(amount: 0.1428571428571428571428571429, '
         'alpha_code: "UZS", '
-        'symbol: "", '
+        'symbol: "сўм", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "860", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert uzbekistan_sum.__str__() == '0,14'
+    assert uzbekistan_sum.__str__() == '0,14 сўм'
 
 
 def test_uzbekistan_sum_negative():
@@ -52,20 +56,24 @@ def test_uzbekistan_sum_negative():
     assert uzbekistan_sum.alpha_code == 'UZS'
     assert uzbekistan_sum.decimal_places == 2
     assert uzbekistan_sum.decimal_sign == ','
-    assert uzbekistan_sum.grouping_sign == '.'
+    assert uzbekistan_sum.grouping_sign == '\u202F'
     assert not uzbekistan_sum.international
-    assert uzbekistan_sum.symbol == ''
+    assert uzbekistan_sum.symbol == 'сўм'
+    assert not uzbekistan_sum.symbol_ahead
+    assert uzbekistan_sum.symbol_separator == '\u00A0'
     assert uzbekistan_sum.__hash__() == hash((decimal, 'UZS', '860'))
     assert uzbekistan_sum.__repr__() == (
         'UzbekistanSum(amount: -100, '
         'alpha_code: "UZS", '
-        'symbol: "", '
+        'symbol: "сўм", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "860", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert uzbekistan_sum.__str__() == '-100,00'
+    assert uzbekistan_sum.__str__() == '-100,00 сўм'
 
 
 def test_uzbekistan_sum_custom():
@@ -74,26 +82,32 @@ def test_uzbekistan_sum_custom():
     uzbekistan_sum = UzbekistanSum(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
+        decimal_sign='\u202F',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert uzbekistan_sum.amount == decimal
     assert uzbekistan_sum.numeric_code == '860'
     assert uzbekistan_sum.alpha_code == 'UZS'
     assert uzbekistan_sum.decimal_places == 5
-    assert uzbekistan_sum.decimal_sign == '.'
+    assert uzbekistan_sum.decimal_sign == '\u202F'
     assert uzbekistan_sum.grouping_sign == ','
     assert uzbekistan_sum.international
-    assert uzbekistan_sum.symbol == ''
+    assert uzbekistan_sum.symbol == 'сўм'
+    assert not uzbekistan_sum.symbol_ahead
+    assert uzbekistan_sum.symbol_separator == '_'
     assert uzbekistan_sum.__hash__() == hash((decimal, 'UZS', '860'))
     assert uzbekistan_sum.__repr__() == (
         'UzbekistanSum(amount: 1000, '
         'alpha_code: "UZS", '
-        'symbol: "", '
+        'symbol: "сўм", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "860", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
+        'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
         'international: True)')
     assert uzbekistan_sum.__str__() == 'UZS 1,000.00000'
@@ -114,6 +128,14 @@ def test_uzbekistan_sum_changed():
             AttributeError,
             match='can\'t set attribute'):
         uzbekistan_sum.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        uzbekistan_sum.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        uzbekistan_sum.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_uzbekistan_sum_math_add():
                    'sum.UzbekistanSum\'> '
                    'and <class \'str\'>.')):
         _ = uzbekistan_sum_one.__add__('1.00')
-    assert (uzbekistan_sum_one + uzbekistan_sum_two) == uzbekistan_sum_three
+    assert (
+        uzbekistan_sum_one +
+        uzbekistan_sum_two) == uzbekistan_sum_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = UzbekistanSum(amount=1000)
+def test_uzbekistan_sum_slots():
+    """test_uzbekistan_sum_slots."""
+    uzbekistan_sum = UzbekistanSum(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'UzbekistanSum\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        uzbekistan_sum.new_variable = 'fail'  # pylint: disable=assigning-non-slot

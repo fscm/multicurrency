@@ -30,17 +30,21 @@ def test_peso_uruguayo():
     assert peso_uruguayo.grouping_sign == '.'
     assert not peso_uruguayo.international
     assert peso_uruguayo.symbol == '$'
+    assert peso_uruguayo.symbol_ahead
+    assert peso_uruguayo.symbol_separator == '\u00A0'
     assert peso_uruguayo.__hash__() == hash((decimal, 'UYU', '858'))
     assert peso_uruguayo.__repr__() == (
         'PesoUruguayo(amount: 0.1428571428571428571428571429, '
         'alpha_code: "UYU", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "858", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert peso_uruguayo.__str__() == '$0,14'
+    assert peso_uruguayo.__str__() == '$ 0,14'
 
 
 def test_peso_uruguayo_negative():
@@ -55,17 +59,21 @@ def test_peso_uruguayo_negative():
     assert peso_uruguayo.grouping_sign == '.'
     assert not peso_uruguayo.international
     assert peso_uruguayo.symbol == '$'
+    assert peso_uruguayo.symbol_ahead
+    assert peso_uruguayo.symbol_separator == '\u00A0'
     assert peso_uruguayo.__hash__() == hash((decimal, 'UYU', '858'))
     assert peso_uruguayo.__repr__() == (
         'PesoUruguayo(amount: -100, '
         'alpha_code: "UYU", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "858", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert peso_uruguayo.__str__() == '$-100,00'
+    assert peso_uruguayo.__str__() == '$ -100,00'
 
 
 def test_peso_uruguayo_custom():
@@ -76,7 +84,9 @@ def test_peso_uruguayo_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert peso_uruguayo.amount == decimal
     assert peso_uruguayo.numeric_code == '858'
@@ -86,11 +96,15 @@ def test_peso_uruguayo_custom():
     assert peso_uruguayo.grouping_sign == ','
     assert peso_uruguayo.international
     assert peso_uruguayo.symbol == '$'
+    assert not peso_uruguayo.symbol_ahead
+    assert peso_uruguayo.symbol_separator == '_'
     assert peso_uruguayo.__hash__() == hash((decimal, 'UYU', '858'))
     assert peso_uruguayo.__repr__() == (
         'PesoUruguayo(amount: 1000, '
         'alpha_code: "UYU", '
         'symbol: "$", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "858", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_peso_uruguayo_changed():
             AttributeError,
             match='can\'t set attribute'):
         peso_uruguayo.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        peso_uruguayo.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        peso_uruguayo.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_peso_uruguayo_math_add():
                    'peso.PesoUruguayo\'> '
                    'and <class \'str\'>.')):
         _ = peso_uruguayo_one.__add__('1.00')
-    assert (peso_uruguayo_one + peso_uruguayo_two) == peso_uruguayo_three
+    assert (
+        peso_uruguayo_one +
+        peso_uruguayo_two) == peso_uruguayo_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = PesoUruguayo(amount=1000)
+def test_peso_uruguayo_slots():
+    """test_peso_uruguayo_slots."""
+    peso_uruguayo = PesoUruguayo(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'PesoUruguayo\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        peso_uruguayo.new_variable = 'fail'  # pylint: disable=assigning-non-slot

@@ -30,17 +30,21 @@ def test_swiss_franc():
     assert swiss_franc.grouping_sign == '\''
     assert not swiss_franc.international
     assert swiss_franc.symbol == '₣'
+    assert swiss_franc.symbol_ahead
+    assert swiss_franc.symbol_separator == '\u00A0'
     assert swiss_franc.__hash__() == hash((decimal, 'CHF', '756'))
     assert swiss_franc.__repr__() == (
         'SwissFranc(amount: 0.1428571428571428571428571429, '
         'alpha_code: "CHF", '
         'symbol: "₣", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "756", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: "\'", '
         'international: False)')
-    assert swiss_franc.__str__() == '₣0.14'
+    assert swiss_franc.__str__() == '₣ 0.14'
 
 
 def test_swiss_franc_negative():
@@ -55,17 +59,21 @@ def test_swiss_franc_negative():
     assert swiss_franc.grouping_sign == '\''
     assert not swiss_franc.international
     assert swiss_franc.symbol == '₣'
+    assert swiss_franc.symbol_ahead
+    assert swiss_franc.symbol_separator == '\u00A0'
     assert swiss_franc.__hash__() == hash((decimal, 'CHF', '756'))
     assert swiss_franc.__repr__() == (
         'SwissFranc(amount: -100, '
         'alpha_code: "CHF", '
         'symbol: "₣", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "756", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: "\'", '
         'international: False)')
-    assert swiss_franc.__str__() == '₣-100.00'
+    assert swiss_franc.__str__() == '₣ -100.00'
 
 
 def test_swiss_franc_custom():
@@ -76,7 +84,9 @@ def test_swiss_franc_custom():
         decimal_places=5,
         decimal_sign='\'',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert swiss_franc.amount == decimal
     assert swiss_franc.numeric_code == '756'
@@ -86,17 +96,21 @@ def test_swiss_franc_custom():
     assert swiss_franc.grouping_sign == '.'
     assert swiss_franc.international
     assert swiss_franc.symbol == '₣'
+    assert not swiss_franc.symbol_ahead
+    assert swiss_franc.symbol_separator == '_'
     assert swiss_franc.__hash__() == hash((decimal, 'CHF', '756'))
     assert swiss_franc.__repr__() == (
         'SwissFranc(amount: 1000, '
         'alpha_code: "CHF", '
         'symbol: "₣", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "756", '
         'decimal_places: "5", '
         'decimal_sign: "\'", '
         'grouping_sign: ".", '
         'international: True)')
-    assert swiss_franc.__str__() == 'CHF 1.000\'00000'
+    assert swiss_franc.__str__() == 'CHF 1,000.00000'
 
 
 def test_swiss_franc_changed():
@@ -114,6 +128,14 @@ def test_swiss_franc_changed():
             AttributeError,
             match='can\'t set attribute'):
         swiss_franc.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        swiss_franc.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        swiss_franc.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_swiss_franc_math_add():
                    'franc.SwissFranc\'> '
                    'and <class \'str\'>.')):
         _ = swiss_franc_one.__add__('1.00')
-    assert (swiss_franc_one + swiss_franc_two) == swiss_franc_three
+    assert (
+        swiss_franc_one +
+        swiss_franc_two) == swiss_franc_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = SwissFranc(amount=1000)
+def test_swiss_franc_slots():
+    """test_swiss_franc_slots."""
+    swiss_franc = SwissFranc(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'SwissFranc\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        swiss_franc.new_variable = 'fail'  # pylint: disable=assigning-non-slot

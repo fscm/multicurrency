@@ -30,17 +30,21 @@ def test_afghani():
     assert afghani.grouping_sign == '.'
     assert not afghani.international
     assert afghani.symbol == 'Af'
+    assert afghani.symbol_ahead
+    assert afghani.symbol_separator == '\u00A0'
     assert afghani.__hash__() == hash((decimal, 'AFN', '971'))
     assert afghani.__repr__() == (
         'Afghani(amount: 0.1428571428571428571428571429, '
         'alpha_code: "AFN", '
         'symbol: "Af", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "971", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert afghani.__str__() == 'Af0,14'
+    assert afghani.__str__() == 'Af 0,14'
 
 
 def test_afghani_negative():
@@ -55,17 +59,21 @@ def test_afghani_negative():
     assert afghani.grouping_sign == '.'
     assert not afghani.international
     assert afghani.symbol == 'Af'
+    assert afghani.symbol_ahead
+    assert afghani.symbol_separator == '\u00A0'
     assert afghani.__hash__() == hash((decimal, 'AFN', '971'))
     assert afghani.__repr__() == (
         'Afghani(amount: -100, '
         'alpha_code: "AFN", '
         'symbol: "Af", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "971", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert afghani.__str__() == 'Af-100,00'
+    assert afghani.__str__() == 'Af -100,00'
 
 
 def test_afghani_custom():
@@ -76,7 +84,9 @@ def test_afghani_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert afghani.amount == decimal
     assert afghani.numeric_code == '971'
@@ -86,11 +96,15 @@ def test_afghani_custom():
     assert afghani.grouping_sign == ','
     assert afghani.international
     assert afghani.symbol == 'Af'
+    assert not afghani.symbol_ahead
+    assert afghani.symbol_separator == '_'
     assert afghani.__hash__() == hash((decimal, 'AFN', '971'))
     assert afghani.__repr__() == (
         'Afghani(amount: 1000, '
         'alpha_code: "AFN", '
         'symbol: "Af", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "971", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_afghani_changed():
             AttributeError,
             match='can\'t set attribute'):
         afghani.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        afghani.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        afghani.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_afghani_math_add():
                    'afghani.Afghani\'> '
                    'and <class \'str\'>.')):
         _ = afghani_one.__add__('1.00')
-    assert (afghani_one + afghani_two) == afghani_three
+    assert (
+        afghani_one +
+        afghani_two) == afghani_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Afghani(amount=1000)
+def test_afghani_slots():
+    """test_afghani_slots."""
+    afghani = Afghani(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Afghani\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        afghani.new_variable = 'fail'  # pylint: disable=assigning-non-slot

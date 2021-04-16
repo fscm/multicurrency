@@ -30,17 +30,21 @@ def test_bolivar_fuerte():
     assert bolivar_fuerte.grouping_sign == '.'
     assert not bolivar_fuerte.international
     assert bolivar_fuerte.symbol == 'Bs F'
+    assert bolivar_fuerte.symbol_ahead
+    assert bolivar_fuerte.symbol_separator == '\u00A0'
     assert bolivar_fuerte.__hash__() == hash((decimal, 'VEF', '937'))
     assert bolivar_fuerte.__repr__() == (
         'BolivarFuerte(amount: 0.1428571428571428571428571429, '
         'alpha_code: "VEF", '
         'symbol: "Bs F", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "937", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert bolivar_fuerte.__str__() == 'Bs F0,14'
+    assert bolivar_fuerte.__str__() == 'Bs F 0,14'
 
 
 def test_bolivar_fuerte_negative():
@@ -55,17 +59,21 @@ def test_bolivar_fuerte_negative():
     assert bolivar_fuerte.grouping_sign == '.'
     assert not bolivar_fuerte.international
     assert bolivar_fuerte.symbol == 'Bs F'
+    assert bolivar_fuerte.symbol_ahead
+    assert bolivar_fuerte.symbol_separator == '\u00A0'
     assert bolivar_fuerte.__hash__() == hash((decimal, 'VEF', '937'))
     assert bolivar_fuerte.__repr__() == (
         'BolivarFuerte(amount: -100, '
         'alpha_code: "VEF", '
         'symbol: "Bs F", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "937", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert bolivar_fuerte.__str__() == 'Bs F-100,00'
+    assert bolivar_fuerte.__str__() == 'Bs F -100,00'
 
 
 def test_bolivar_fuerte_custom():
@@ -76,7 +84,9 @@ def test_bolivar_fuerte_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert bolivar_fuerte.amount == decimal
     assert bolivar_fuerte.numeric_code == '937'
@@ -86,11 +96,15 @@ def test_bolivar_fuerte_custom():
     assert bolivar_fuerte.grouping_sign == ','
     assert bolivar_fuerte.international
     assert bolivar_fuerte.symbol == 'Bs F'
+    assert not bolivar_fuerte.symbol_ahead
+    assert bolivar_fuerte.symbol_separator == '_'
     assert bolivar_fuerte.__hash__() == hash((decimal, 'VEF', '937'))
     assert bolivar_fuerte.__repr__() == (
         'BolivarFuerte(amount: 1000, '
         'alpha_code: "VEF", '
         'symbol: "Bs F", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "937", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_bolivar_fuerte_changed():
             AttributeError,
             match='can\'t set attribute'):
         bolivar_fuerte.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        bolivar_fuerte.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        bolivar_fuerte.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_bolivar_fuerte_math_add():
                    'fuerte.BolivarFuerte\'> '
                    'and <class \'str\'>.')):
         _ = bolivar_fuerte_one.__add__('1.00')
-    assert (bolivar_fuerte_one + bolivar_fuerte_two) == bolivar_fuerte_three
+    assert (
+        bolivar_fuerte_one +
+        bolivar_fuerte_two) == bolivar_fuerte_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = BolivarFuerte(amount=1000)
+def test_bolivar_fuerte_slots():
+    """test_bolivar_fuerte_slots."""
+    bolivar_fuerte = BolivarFuerte(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'BolivarFuerte\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        bolivar_fuerte.new_variable = 'fail'  # pylint: disable=assigning-non-slot

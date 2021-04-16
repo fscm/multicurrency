@@ -30,11 +30,15 @@ def test_cayman_islands_dollar():
     assert cayman_islands_dollar.grouping_sign == ','
     assert not cayman_islands_dollar.international
     assert cayman_islands_dollar.symbol == '$'
+    assert cayman_islands_dollar.symbol_ahead
+    assert cayman_islands_dollar.symbol_separator == ''
     assert cayman_islands_dollar.__hash__() == hash((decimal, 'KYD', '136'))
     assert cayman_islands_dollar.__repr__() == (
         'CaymanIslandsDollar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "KYD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "136", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -55,11 +59,15 @@ def test_cayman_islands_dollar_negative():
     assert cayman_islands_dollar.grouping_sign == ','
     assert not cayman_islands_dollar.international
     assert cayman_islands_dollar.symbol == '$'
+    assert cayman_islands_dollar.symbol_ahead
+    assert cayman_islands_dollar.symbol_separator == ''
     assert cayman_islands_dollar.__hash__() == hash((decimal, 'KYD', '136'))
     assert cayman_islands_dollar.__repr__() == (
         'CaymanIslandsDollar(amount: -100, '
         'alpha_code: "KYD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "136", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -76,7 +84,9 @@ def test_cayman_islands_dollar_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert cayman_islands_dollar.amount == decimal
     assert cayman_islands_dollar.numeric_code == '136'
@@ -86,17 +96,21 @@ def test_cayman_islands_dollar_custom():
     assert cayman_islands_dollar.grouping_sign == '.'
     assert cayman_islands_dollar.international
     assert cayman_islands_dollar.symbol == '$'
+    assert not cayman_islands_dollar.symbol_ahead
+    assert cayman_islands_dollar.symbol_separator == '_'
     assert cayman_islands_dollar.__hash__() == hash((decimal, 'KYD', '136'))
     assert cayman_islands_dollar.__repr__() == (
         'CaymanIslandsDollar(amount: 1000, '
         'alpha_code: "KYD", '
         'symbol: "$", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "136", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert cayman_islands_dollar.__str__() == 'KYD 1.000,00000'
+    assert cayman_islands_dollar.__str__() == 'KYD 1,000.00000'
 
 
 def test_cayman_islands_dollar_changed():
@@ -114,6 +128,14 @@ def test_cayman_islands_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         cayman_islands_dollar.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cayman_islands_dollar.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cayman_islands_dollar.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_cayman_islands_dollar_math_add():
                    'dollar.CaymanIslandsDollar\'> '
                    'and <class \'str\'>.')):
         _ = cayman_islands_dollar_one.__add__('1.00')
-    assert (cayman_islands_dollar_one + cayman_islands_dollar_two) == cayman_islands_dollar_three
+    assert (
+        cayman_islands_dollar_one +
+        cayman_islands_dollar_two) == cayman_islands_dollar_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = CaymanIslandsDollar(amount=1000)
+def test_cayman_islands_dollar_slots():
+    """test_cayman_islands_dollar_slots."""
+    cayman_islands_dollar = CaymanIslandsDollar(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'CaymanIslandsDollar\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        cayman_islands_dollar.new_variable = 'fail'  # pylint: disable=assigning-non-slot

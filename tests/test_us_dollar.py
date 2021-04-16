@@ -30,11 +30,15 @@ def test_us_dollar():
     assert us_dollar.grouping_sign == ','
     assert not us_dollar.international
     assert us_dollar.symbol == '$'
+    assert us_dollar.symbol_ahead
+    assert us_dollar.symbol_separator == ''
     assert us_dollar.__hash__() == hash((decimal, 'USD', '840'))
     assert us_dollar.__repr__() == (
         'USDollar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "USD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "840", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -55,11 +59,15 @@ def test_us_dollar_negative():
     assert us_dollar.grouping_sign == ','
     assert not us_dollar.international
     assert us_dollar.symbol == '$'
+    assert us_dollar.symbol_ahead
+    assert us_dollar.symbol_separator == ''
     assert us_dollar.__hash__() == hash((decimal, 'USD', '840'))
     assert us_dollar.__repr__() == (
         'USDollar(amount: -100, '
         'alpha_code: "USD", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "840", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -76,7 +84,9 @@ def test_us_dollar_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert us_dollar.amount == decimal
     assert us_dollar.numeric_code == '840'
@@ -86,17 +96,21 @@ def test_us_dollar_custom():
     assert us_dollar.grouping_sign == '.'
     assert us_dollar.international
     assert us_dollar.symbol == '$'
+    assert not us_dollar.symbol_ahead
+    assert us_dollar.symbol_separator == '_'
     assert us_dollar.__hash__() == hash((decimal, 'USD', '840'))
     assert us_dollar.__repr__() == (
         'USDollar(amount: 1000, '
         'alpha_code: "USD", '
         'symbol: "$", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "840", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert us_dollar.__str__() == 'USD 1.000,00000'
+    assert us_dollar.__str__() == 'USD 1,000.00000'
 
 
 def test_us_dollar_changed():
@@ -114,6 +128,14 @@ def test_us_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         us_dollar.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        us_dollar.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        us_dollar.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_us_dollar_math_add():
                    'dollar.USDollar\'> '
                    'and <class \'str\'>.')):
         _ = us_dollar_one.__add__('1.00')
-    assert (us_dollar_one + us_dollar_two) == us_dollar_three
+    assert (
+        us_dollar_one +
+        us_dollar_two) == us_dollar_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = USDollar(amount=1000)
+def test_us_dollar_slots():
+    """test_us_dollar_slots."""
+    us_dollar = USDollar(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'USDollar\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        us_dollar.new_variable = 'fail'  # pylint: disable=assigning-non-slot

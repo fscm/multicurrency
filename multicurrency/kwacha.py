@@ -17,9 +17,10 @@ class Kwacha(Currency):
     Simple usage example:
 
         >>> from multicurrency import Kwacha
-        >>> kwacha = Kwacha(amount=1)
+        >>> kwacha = Kwacha(
+        ...     amount=123456.789)
         >>> print(kwacha)
-        MK1,00
+        MK 123,456.79
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -27,11 +28,15 @@ class Kwacha(Currency):
         amount (Union[int, float, Decimal]): Represented value.
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
-        decimal_sign (str, optional): Decimal symbol. Defaults to ','.
-        grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -39,10 +44,12 @@ class Kwacha(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 2,
-            decimal_sign: Optional[str] = ',',
-            grouping_sign: Optional[str] = '.',
-            international: bool = False,
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'Kwacha':
         """Class creator.
 
@@ -55,6 +62,8 @@ class Kwacha(Currency):
             alpha_code='MWK',
             numeric_code='454',
             symbol='MK',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -67,9 +76,10 @@ class ZambianKwacha(Currency):
     Simple usage example:
 
         >>> from multicurrency import ZambianKwacha
-        >>> zambian_kwacha = ZambianKwacha(amount=1)
+        >>> zambian_kwacha = ZambianKwacha(
+        ...     amount=123456.789)
         >>> print(zambian_kwacha)
-        ZK1,00
+        ZK 123,456.79
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -77,11 +87,15 @@ class ZambianKwacha(Currency):
         amount (Union[int, float, Decimal]): Represented value.
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
-        decimal_sign (str, optional): Decimal symbol. Defaults to ','.
-        grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -89,10 +103,12 @@ class ZambianKwacha(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 2,
-            decimal_sign: Optional[str] = ',',
-            grouping_sign: Optional[str] = '.',
-            international: bool = False,
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'ZambianKwacha':
         """Class creator.
 
@@ -105,6 +121,8 @@ class ZambianKwacha(Currency):
             alpha_code='ZMW',
             numeric_code='967',
             symbol='ZK',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

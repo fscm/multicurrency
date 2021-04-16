@@ -27,20 +27,24 @@ def test_malagasy_ariary():
     assert malagasy_ariary.alpha_code == 'MGA'
     assert malagasy_ariary.decimal_places == 0
     assert malagasy_ariary.decimal_sign == ','
-    assert malagasy_ariary.grouping_sign == '.'
+    assert malagasy_ariary.grouping_sign == '\u202F'
     assert not malagasy_ariary.international
-    assert malagasy_ariary.symbol == ''
+    assert malagasy_ariary.symbol == 'Ar'
+    assert not malagasy_ariary.symbol_ahead
+    assert malagasy_ariary.symbol_separator == '\u00A0'
     assert malagasy_ariary.__hash__() == hash((decimal, 'MGA', '969'))
     assert malagasy_ariary.__repr__() == (
         'MalagasyAriary(amount: 0.1428571428571428571428571429, '
         'alpha_code: "MGA", '
-        'symbol: "", '
+        'symbol: "Ar", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "969", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert malagasy_ariary.__str__() == '0'
+    assert malagasy_ariary.__str__() == '0 Ar'
 
 
 def test_malagasy_ariary_negative():
@@ -52,20 +56,24 @@ def test_malagasy_ariary_negative():
     assert malagasy_ariary.alpha_code == 'MGA'
     assert malagasy_ariary.decimal_places == 0
     assert malagasy_ariary.decimal_sign == ','
-    assert malagasy_ariary.grouping_sign == '.'
+    assert malagasy_ariary.grouping_sign == '\u202F'
     assert not malagasy_ariary.international
-    assert malagasy_ariary.symbol == ''
+    assert malagasy_ariary.symbol == 'Ar'
+    assert not malagasy_ariary.symbol_ahead
+    assert malagasy_ariary.symbol_separator == '\u00A0'
     assert malagasy_ariary.__hash__() == hash((decimal, 'MGA', '969'))
     assert malagasy_ariary.__repr__() == (
         'MalagasyAriary(amount: -100, '
         'alpha_code: "MGA", '
-        'symbol: "", '
+        'symbol: "Ar", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "969", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert malagasy_ariary.__str__() == '-100'
+    assert malagasy_ariary.__str__() == '-100 Ar'
 
 
 def test_malagasy_ariary_custom():
@@ -74,26 +82,32 @@ def test_malagasy_ariary_custom():
     malagasy_ariary = MalagasyAriary(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
+        decimal_sign='\u202F',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert malagasy_ariary.amount == decimal
     assert malagasy_ariary.numeric_code == '969'
     assert malagasy_ariary.alpha_code == 'MGA'
     assert malagasy_ariary.decimal_places == 5
-    assert malagasy_ariary.decimal_sign == '.'
+    assert malagasy_ariary.decimal_sign == '\u202F'
     assert malagasy_ariary.grouping_sign == ','
     assert malagasy_ariary.international
-    assert malagasy_ariary.symbol == ''
+    assert malagasy_ariary.symbol == 'Ar'
+    assert not malagasy_ariary.symbol_ahead
+    assert malagasy_ariary.symbol_separator == '_'
     assert malagasy_ariary.__hash__() == hash((decimal, 'MGA', '969'))
     assert malagasy_ariary.__repr__() == (
         'MalagasyAriary(amount: 1000, '
         'alpha_code: "MGA", '
-        'symbol: "", '
+        'symbol: "Ar", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "969", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
+        'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
         'international: True)')
     assert malagasy_ariary.__str__() == 'MGA 1,000.00000'
@@ -114,6 +128,14 @@ def test_malagasy_ariary_changed():
             AttributeError,
             match='can\'t set attribute'):
         malagasy_ariary.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        malagasy_ariary.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        malagasy_ariary.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_malagasy_ariary_math_add():
                    'ariary.MalagasyAriary\'> '
                    'and <class \'str\'>.')):
         _ = malagasy_ariary_one.__add__('1.00')
-    assert (malagasy_ariary_one + malagasy_ariary_two) == malagasy_ariary_three
+    assert (
+        malagasy_ariary_one +
+        malagasy_ariary_two) == malagasy_ariary_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = MalagasyAriary(amount=1000)
+def test_malagasy_ariary_slots():
+    """test_malagasy_ariary_slots."""
+    malagasy_ariary = MalagasyAriary(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'MalagasyAriary\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        malagasy_ariary.new_variable = 'fail'  # pylint: disable=assigning-non-slot

@@ -30,17 +30,21 @@ def test_moroccan_dirham():
     assert moroccan_dirham.grouping_sign == '.'
     assert not moroccan_dirham.international
     assert moroccan_dirham.symbol == 'د.م.'
+    assert not moroccan_dirham.symbol_ahead
+    assert moroccan_dirham.symbol_separator == '\u00A0'
     assert moroccan_dirham.__hash__() == hash((decimal, 'MAD', '504'))
     assert moroccan_dirham.__repr__() == (
         'MoroccanDirham(amount: 0.1428571428571428571428571429, '
         'alpha_code: "MAD", '
         'symbol: "د.م.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "504", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert moroccan_dirham.__str__() == 'د.م.0,14'
+    assert moroccan_dirham.__str__() == '0,14 د.م.'
 
 
 def test_moroccan_dirham_negative():
@@ -55,17 +59,21 @@ def test_moroccan_dirham_negative():
     assert moroccan_dirham.grouping_sign == '.'
     assert not moroccan_dirham.international
     assert moroccan_dirham.symbol == 'د.م.'
+    assert not moroccan_dirham.symbol_ahead
+    assert moroccan_dirham.symbol_separator == '\u00A0'
     assert moroccan_dirham.__hash__() == hash((decimal, 'MAD', '504'))
     assert moroccan_dirham.__repr__() == (
         'MoroccanDirham(amount: -100, '
         'alpha_code: "MAD", '
         'symbol: "د.م.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "504", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert moroccan_dirham.__str__() == 'د.م.-100,00'
+    assert moroccan_dirham.__str__() == '-100,00 د.م.'
 
 
 def test_moroccan_dirham_custom():
@@ -76,7 +84,9 @@ def test_moroccan_dirham_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert moroccan_dirham.amount == decimal
     assert moroccan_dirham.numeric_code == '504'
@@ -86,11 +96,15 @@ def test_moroccan_dirham_custom():
     assert moroccan_dirham.grouping_sign == ','
     assert moroccan_dirham.international
     assert moroccan_dirham.symbol == 'د.م.'
+    assert not moroccan_dirham.symbol_ahead
+    assert moroccan_dirham.symbol_separator == '_'
     assert moroccan_dirham.__hash__() == hash((decimal, 'MAD', '504'))
     assert moroccan_dirham.__repr__() == (
         'MoroccanDirham(amount: 1000, '
         'alpha_code: "MAD", '
         'symbol: "د.م.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "504", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_moroccan_dirham_changed():
             AttributeError,
             match='can\'t set attribute'):
         moroccan_dirham.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        moroccan_dirham.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        moroccan_dirham.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_moroccan_dirham_math_add():
                    'dirham.MoroccanDirham\'> '
                    'and <class \'str\'>.')):
         _ = moroccan_dirham_one.__add__('1.00')
-    assert (moroccan_dirham_one + moroccan_dirham_two) == moroccan_dirham_three
+    assert (
+        moroccan_dirham_one +
+        moroccan_dirham_two) == moroccan_dirham_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = MoroccanDirham(amount=1000)
+def test_moroccan_dirham_slots():
+    """test_moroccan_dirham_slots."""
+    moroccan_dirham = MoroccanDirham(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'MoroccanDirham\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        moroccan_dirham.new_variable = 'fail'  # pylint: disable=assigning-non-slot

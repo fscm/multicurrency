@@ -29,18 +29,22 @@ def test_jordanian_dinar():
     assert jordanian_dinar.decimal_sign == '.'
     assert jordanian_dinar.grouping_sign == ','
     assert not jordanian_dinar.international
-    assert jordanian_dinar.symbol == 'د.ا'
+    assert jordanian_dinar.symbol == 'د.أ.'
+    assert jordanian_dinar.symbol_ahead
+    assert jordanian_dinar.symbol_separator == '\u00A0'
     assert jordanian_dinar.__hash__() == hash((decimal, 'JOD', '400'))
     assert jordanian_dinar.__repr__() == (
         'JordanianDinar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "JOD", '
-        'symbol: "د.ا", '
+        'symbol: "د.أ.", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "400", '
         'decimal_places: "3", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert jordanian_dinar.__str__() == 'د.ا0.143'
+    assert jordanian_dinar.__str__() == 'د.أ. 0.143'
 
 
 def test_jordanian_dinar_negative():
@@ -54,18 +58,22 @@ def test_jordanian_dinar_negative():
     assert jordanian_dinar.decimal_sign == '.'
     assert jordanian_dinar.grouping_sign == ','
     assert not jordanian_dinar.international
-    assert jordanian_dinar.symbol == 'د.ا'
+    assert jordanian_dinar.symbol == 'د.أ.'
+    assert jordanian_dinar.symbol_ahead
+    assert jordanian_dinar.symbol_separator == '\u00A0'
     assert jordanian_dinar.__hash__() == hash((decimal, 'JOD', '400'))
     assert jordanian_dinar.__repr__() == (
         'JordanianDinar(amount: -100, '
         'alpha_code: "JOD", '
-        'symbol: "د.ا", '
+        'symbol: "د.أ.", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "400", '
         'decimal_places: "3", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert jordanian_dinar.__str__() == 'د.ا-100.000'
+    assert jordanian_dinar.__str__() == 'د.أ. -100.000'
 
 
 def test_jordanian_dinar_custom():
@@ -76,7 +84,9 @@ def test_jordanian_dinar_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert jordanian_dinar.amount == decimal
     assert jordanian_dinar.numeric_code == '400'
@@ -85,18 +95,22 @@ def test_jordanian_dinar_custom():
     assert jordanian_dinar.decimal_sign == ','
     assert jordanian_dinar.grouping_sign == '.'
     assert jordanian_dinar.international
-    assert jordanian_dinar.symbol == 'د.ا'
+    assert jordanian_dinar.symbol == 'د.أ.'
+    assert not jordanian_dinar.symbol_ahead
+    assert jordanian_dinar.symbol_separator == '_'
     assert jordanian_dinar.__hash__() == hash((decimal, 'JOD', '400'))
     assert jordanian_dinar.__repr__() == (
         'JordanianDinar(amount: 1000, '
         'alpha_code: "JOD", '
-        'symbol: "د.ا", '
+        'symbol: "د.أ.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "400", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert jordanian_dinar.__str__() == 'JOD 1.000,00000'
+    assert jordanian_dinar.__str__() == 'JOD 1,000.00000'
 
 
 def test_jordanian_dinar_changed():
@@ -114,6 +128,14 @@ def test_jordanian_dinar_changed():
             AttributeError,
             match='can\'t set attribute'):
         jordanian_dinar.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        jordanian_dinar.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        jordanian_dinar.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_jordanian_dinar_math_add():
                    'dinar.JordanianDinar\'> '
                    'and <class \'str\'>.')):
         _ = jordanian_dinar_one.__add__('1.00')
-    assert (jordanian_dinar_one + jordanian_dinar_two) == jordanian_dinar_three
+    assert (
+        jordanian_dinar_one +
+        jordanian_dinar_two) == jordanian_dinar_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = JordanianDinar(amount=1000)
+def test_jordanian_dinar_slots():
+    """test_jordanian_dinar_slots."""
+    jordanian_dinar = JordanianDinar(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'JordanianDinar\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        jordanian_dinar.new_variable = 'fail'  # pylint: disable=assigning-non-slot

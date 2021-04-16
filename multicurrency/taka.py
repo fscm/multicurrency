@@ -17,9 +17,10 @@ class Taka(Currency):
     Simple usage example:
 
         >>> from multicurrency import Taka
-        >>> taka = Taka(amount=1)
+        >>> taka = Taka(
+        ...     amount=123456.789)
         >>> print(taka)
-        ৳1.00
+        123,456.79,৳
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -32,6 +33,10 @@ class Taka(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ','.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to False.
     """
 
     __slots__ = []
@@ -39,10 +44,12 @@ class Taka(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 2,
+            decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
             grouping_sign: Optional[str] = ',',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = False,
+            symbol_separator: Optional[str] = ',',
             **other) -> 'Taka':
         """Class creator.
 
@@ -55,6 +62,8 @@ class Taka(Currency):
             alpha_code='BDT',
             numeric_code='050',
             symbol='৳',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

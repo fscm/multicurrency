@@ -17,9 +17,10 @@ class IndianRupee(Currency):
     Simple usage example:
 
         >>> from multicurrency import IndianRupee
-        >>> indian_rupee = IndianRupee(amount=1)
+        >>> indian_rupee = IndianRupee(
+        ...     amount=123456.789)
         >>> print(indian_rupee)
-        ₹1.00
+        ₹123,456.79
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -32,6 +33,10 @@ class IndianRupee(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -39,10 +44,12 @@ class IndianRupee(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 2,
+            decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
             grouping_sign: Optional[str] = ',',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
             **other) -> 'IndianRupee':
         """Class creator.
 
@@ -55,6 +62,8 @@ class IndianRupee(Currency):
             alpha_code='INR',
             numeric_code='356',
             symbol='₹',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -67,9 +76,10 @@ class SriLankaRupee(Currency):
     Simple usage example:
 
         >>> from multicurrency import SriLankaRupee
-        >>> sri_lanka_rupee = SriLankaRupee(amount=1)
+        >>> sri_lanka_rupee = SriLankaRupee(
+        ...     amount=123456.789)
         >>> print(sri_lanka_rupee)
-        Rs1,00
+        රු. 123,456.79
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -77,11 +87,15 @@ class SriLankaRupee(Currency):
         amount (Union[int, float, Decimal]): Represented value.
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
-        decimal_sign (str, optional): Decimal symbol. Defaults to ','.
-        grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -89,10 +103,12 @@ class SriLankaRupee(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 2,
-            decimal_sign: Optional[str] = ',',
-            grouping_sign: Optional[str] = '.',
-            international: bool = False,
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'SriLankaRupee':
         """Class creator.
 
@@ -104,7 +120,9 @@ class SriLankaRupee(Currency):
             amount=amount,
             alpha_code='LKR',
             numeric_code='144',
-            symbol='Rs',
+            symbol='රු.',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -117,9 +135,10 @@ class MauritiusRupee(Currency):
     Simple usage example:
 
         >>> from multicurrency import MauritiusRupee
-        >>> mauritius_rupee = MauritiusRupee(amount=1)
+        >>> mauritius_rupee = MauritiusRupee(
+        ...     amount=123456.789)
         >>> print(mauritius_rupee)
-        ₨1.00
+        ₨ 123,456.79
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -132,6 +151,10 @@ class MauritiusRupee(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -139,10 +162,12 @@ class MauritiusRupee(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 2,
+            decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
             grouping_sign: Optional[str] = ',',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'MauritiusRupee':
         """Class creator.
 
@@ -155,6 +180,8 @@ class MauritiusRupee(Currency):
             alpha_code='MUR',
             numeric_code='480',
             symbol='₨',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -167,9 +194,10 @@ class NepaleseRupee(Currency):
     Simple usage example:
 
         >>> from multicurrency import NepaleseRupee
-        >>> nepalese_rupee = NepaleseRupee(amount=1)
+        >>> nepalese_rupee = NepaleseRupee(
+        ...     amount=123456.789)
         >>> print(nepalese_rupee)
-        ₨1.00
+        नेरू 123,456.79
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -182,6 +210,10 @@ class NepaleseRupee(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -189,10 +221,12 @@ class NepaleseRupee(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 2,
+            decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
             grouping_sign: Optional[str] = ',',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'NepaleseRupee':
         """Class creator.
 
@@ -204,7 +238,9 @@ class NepaleseRupee(Currency):
             amount=amount,
             alpha_code='NPR',
             numeric_code='524',
-            symbol='₨',
+            symbol='नेरू',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -217,9 +253,10 @@ class PakistanRupee(Currency):
     Simple usage example:
 
         >>> from multicurrency import PakistanRupee
-        >>> pakistan_rupee = PakistanRupee(amount=1)
+        >>> pakistan_rupee = PakistanRupee(
+        ...     amount=123456.789)
         >>> print(pakistan_rupee)
-        ₨1.00
+        ₨ 123,456.79
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -232,6 +269,10 @@ class PakistanRupee(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -239,10 +280,12 @@ class PakistanRupee(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 2,
+            decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
             grouping_sign: Optional[str] = ',',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'PakistanRupee':
         """Class creator.
 
@@ -255,6 +298,8 @@ class PakistanRupee(Currency):
             alpha_code='PKR',
             numeric_code='586',
             symbol='₨',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -267,9 +312,10 @@ class SeychellesRupee(Currency):
     Simple usage example:
 
         >>> from multicurrency import SeychellesRupee
-        >>> seychelles_rupee = SeychellesRupee(amount=1)
+        >>> seychelles_rupee = SeychellesRupee(
+        ...     amount=123456.789)
         >>> print(seychelles_rupee)
-        ₨1,00
+        ₨ 123,456.79
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -277,11 +323,15 @@ class SeychellesRupee(Currency):
         amount (Union[int, float, Decimal]): Represented value.
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
-        decimal_sign (str, optional): Decimal symbol. Defaults to ','.
-        grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -289,10 +339,12 @@ class SeychellesRupee(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 2,
-            decimal_sign: Optional[str] = ',',
-            grouping_sign: Optional[str] = '.',
-            international: bool = False,
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'SeychellesRupee':
         """Class creator.
 
@@ -305,6 +357,8 @@ class SeychellesRupee(Currency):
             alpha_code='SCR',
             numeric_code='690',
             symbol='₨',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

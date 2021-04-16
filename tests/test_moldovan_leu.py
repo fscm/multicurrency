@@ -30,17 +30,21 @@ def test_moldovan_leu():
     assert moldovan_leu.grouping_sign == '.'
     assert not moldovan_leu.international
     assert moldovan_leu.symbol == 'L'
+    assert not moldovan_leu.symbol_ahead
+    assert moldovan_leu.symbol_separator == '\u00A0'
     assert moldovan_leu.__hash__() == hash((decimal, 'MDL', '498'))
     assert moldovan_leu.__repr__() == (
         'MoldovanLeu(amount: 0.1428571428571428571428571429, '
         'alpha_code: "MDL", '
         'symbol: "L", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "498", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert moldovan_leu.__str__() == 'L0,14'
+    assert moldovan_leu.__str__() == '0,14 L'
 
 
 def test_moldovan_leu_negative():
@@ -55,17 +59,21 @@ def test_moldovan_leu_negative():
     assert moldovan_leu.grouping_sign == '.'
     assert not moldovan_leu.international
     assert moldovan_leu.symbol == 'L'
+    assert not moldovan_leu.symbol_ahead
+    assert moldovan_leu.symbol_separator == '\u00A0'
     assert moldovan_leu.__hash__() == hash((decimal, 'MDL', '498'))
     assert moldovan_leu.__repr__() == (
         'MoldovanLeu(amount: -100, '
         'alpha_code: "MDL", '
         'symbol: "L", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "498", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert moldovan_leu.__str__() == 'L-100,00'
+    assert moldovan_leu.__str__() == '-100,00 L'
 
 
 def test_moldovan_leu_custom():
@@ -76,7 +84,9 @@ def test_moldovan_leu_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert moldovan_leu.amount == decimal
     assert moldovan_leu.numeric_code == '498'
@@ -86,11 +96,15 @@ def test_moldovan_leu_custom():
     assert moldovan_leu.grouping_sign == ','
     assert moldovan_leu.international
     assert moldovan_leu.symbol == 'L'
+    assert not moldovan_leu.symbol_ahead
+    assert moldovan_leu.symbol_separator == '_'
     assert moldovan_leu.__hash__() == hash((decimal, 'MDL', '498'))
     assert moldovan_leu.__repr__() == (
         'MoldovanLeu(amount: 1000, '
         'alpha_code: "MDL", '
         'symbol: "L", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "498", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_moldovan_leu_changed():
             AttributeError,
             match='can\'t set attribute'):
         moldovan_leu.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        moldovan_leu.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        moldovan_leu.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_moldovan_leu_math_add():
                    'leu.MoldovanLeu\'> '
                    'and <class \'str\'>.')):
         _ = moldovan_leu_one.__add__('1.00')
-    assert (moldovan_leu_one + moldovan_leu_two) == moldovan_leu_three
+    assert (
+        moldovan_leu_one +
+        moldovan_leu_two) == moldovan_leu_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = MoldovanLeu(amount=1000)
+def test_moldovan_leu_slots():
+    """test_moldovan_leu_slots."""
+    moldovan_leu = MoldovanLeu(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'MoldovanLeu\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        moldovan_leu.new_variable = 'fail'  # pylint: disable=assigning-non-slot

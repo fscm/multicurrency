@@ -30,17 +30,21 @@ def test_rupiah():
     assert rupiah.grouping_sign == '.'
     assert not rupiah.international
     assert rupiah.symbol == 'Rp'
+    assert rupiah.symbol_ahead
+    assert rupiah.symbol_separator == '\u00A0'
     assert rupiah.__hash__() == hash((decimal, 'IDR', '360'))
     assert rupiah.__repr__() == (
         'Rupiah(amount: 0.1428571428571428571428571429, '
         'alpha_code: "IDR", '
         'symbol: "Rp", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "360", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert rupiah.__str__() == 'Rp0,14'
+    assert rupiah.__str__() == 'Rp 0,14'
 
 
 def test_rupiah_negative():
@@ -55,17 +59,21 @@ def test_rupiah_negative():
     assert rupiah.grouping_sign == '.'
     assert not rupiah.international
     assert rupiah.symbol == 'Rp'
+    assert rupiah.symbol_ahead
+    assert rupiah.symbol_separator == '\u00A0'
     assert rupiah.__hash__() == hash((decimal, 'IDR', '360'))
     assert rupiah.__repr__() == (
         'Rupiah(amount: -100, '
         'alpha_code: "IDR", '
         'symbol: "Rp", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "360", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert rupiah.__str__() == 'Rp-100,00'
+    assert rupiah.__str__() == 'Rp -100,00'
 
 
 def test_rupiah_custom():
@@ -76,7 +84,9 @@ def test_rupiah_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert rupiah.amount == decimal
     assert rupiah.numeric_code == '360'
@@ -86,11 +96,15 @@ def test_rupiah_custom():
     assert rupiah.grouping_sign == ','
     assert rupiah.international
     assert rupiah.symbol == 'Rp'
+    assert not rupiah.symbol_ahead
+    assert rupiah.symbol_separator == '_'
     assert rupiah.__hash__() == hash((decimal, 'IDR', '360'))
     assert rupiah.__repr__() == (
         'Rupiah(amount: 1000, '
         'alpha_code: "IDR", '
         'symbol: "Rp", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "360", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_rupiah_changed():
             AttributeError,
             match='can\'t set attribute'):
         rupiah.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        rupiah.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        rupiah.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_rupiah_math_add():
                    'rupiah.Rupiah\'> '
                    'and <class \'str\'>.')):
         _ = rupiah_one.__add__('1.00')
-    assert (rupiah_one + rupiah_two) == rupiah_three
+    assert (
+        rupiah_one +
+        rupiah_two) == rupiah_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Rupiah(amount=1000)
+def test_rupiah_slots():
+    """test_rupiah_slots."""
+    rupiah = Rupiah(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Rupiah\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        rupiah.new_variable = 'fail'  # pylint: disable=assigning-non-slot

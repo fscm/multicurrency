@@ -29,18 +29,22 @@ def test_ouguiya():
     assert ouguiya.decimal_sign == ','
     assert ouguiya.grouping_sign == '.'
     assert not ouguiya.international
-    assert ouguiya.symbol == 'UM'
+    assert ouguiya.symbol == 'أ.م'
+    assert not ouguiya.symbol_ahead
+    assert ouguiya.symbol_separator == '\u00A0'
     assert ouguiya.__hash__() == hash((decimal, 'MRU', '929'))
     assert ouguiya.__repr__() == (
         'Ouguiya(amount: 0.1428571428571428571428571429, '
         'alpha_code: "MRU", '
-        'symbol: "UM", '
+        'symbol: "أ.م", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "929", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert ouguiya.__str__() == 'UM0,14'
+    assert ouguiya.__str__() == '0,14 أ.م'
 
 
 def test_ouguiya_negative():
@@ -54,18 +58,22 @@ def test_ouguiya_negative():
     assert ouguiya.decimal_sign == ','
     assert ouguiya.grouping_sign == '.'
     assert not ouguiya.international
-    assert ouguiya.symbol == 'UM'
+    assert ouguiya.symbol == 'أ.م'
+    assert not ouguiya.symbol_ahead
+    assert ouguiya.symbol_separator == '\u00A0'
     assert ouguiya.__hash__() == hash((decimal, 'MRU', '929'))
     assert ouguiya.__repr__() == (
         'Ouguiya(amount: -100, '
         'alpha_code: "MRU", '
-        'symbol: "UM", '
+        'symbol: "أ.م", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "929", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert ouguiya.__str__() == 'UM-100,00'
+    assert ouguiya.__str__() == '-100,00 أ.م'
 
 
 def test_ouguiya_custom():
@@ -76,7 +84,9 @@ def test_ouguiya_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert ouguiya.amount == decimal
     assert ouguiya.numeric_code == '929'
@@ -85,12 +95,16 @@ def test_ouguiya_custom():
     assert ouguiya.decimal_sign == '.'
     assert ouguiya.grouping_sign == ','
     assert ouguiya.international
-    assert ouguiya.symbol == 'UM'
+    assert ouguiya.symbol == 'أ.م'
+    assert not ouguiya.symbol_ahead
+    assert ouguiya.symbol_separator == '_'
     assert ouguiya.__hash__() == hash((decimal, 'MRU', '929'))
     assert ouguiya.__repr__() == (
         'Ouguiya(amount: 1000, '
         'alpha_code: "MRU", '
-        'symbol: "UM", '
+        'symbol: "أ.م", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "929", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_ouguiya_changed():
             AttributeError,
             match='can\'t set attribute'):
         ouguiya.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        ouguiya.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        ouguiya.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_ouguiya_math_add():
                    'ouguiya.Ouguiya\'> '
                    'and <class \'str\'>.')):
         _ = ouguiya_one.__add__('1.00')
-    assert (ouguiya_one + ouguiya_two) == ouguiya_three
+    assert (
+        ouguiya_one +
+        ouguiya_two) == ouguiya_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Ouguiya(amount=1000)
+def test_ouguiya_slots():
+    """test_ouguiya_slots."""
+    ouguiya = Ouguiya(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Ouguiya\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        ouguiya.new_variable = 'fail'  # pylint: disable=assigning-non-slot

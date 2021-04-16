@@ -26,21 +26,25 @@ def test_falkland_islands_pound():
     assert falkland_islands_pound.numeric_code == '238'
     assert falkland_islands_pound.alpha_code == 'FKP'
     assert falkland_islands_pound.decimal_places == 2
-    assert falkland_islands_pound.decimal_sign == ','
-    assert falkland_islands_pound.grouping_sign == '.'
+    assert falkland_islands_pound.decimal_sign == '.'
+    assert falkland_islands_pound.grouping_sign == ','
     assert not falkland_islands_pound.international
     assert falkland_islands_pound.symbol == '£'
+    assert falkland_islands_pound.symbol_ahead
+    assert falkland_islands_pound.symbol_separator == ''
     assert falkland_islands_pound.__hash__() == hash((decimal, 'FKP', '238'))
     assert falkland_islands_pound.__repr__() == (
         'FalklandIslandsPound(amount: 0.1428571428571428571428571429, '
         'alpha_code: "FKP", '
         'symbol: "£", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "238", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert falkland_islands_pound.__str__() == '£0,14'
+    assert falkland_islands_pound.__str__() == '£0.14'
 
 
 def test_falkland_islands_pound_negative():
@@ -51,21 +55,25 @@ def test_falkland_islands_pound_negative():
     assert falkland_islands_pound.numeric_code == '238'
     assert falkland_islands_pound.alpha_code == 'FKP'
     assert falkland_islands_pound.decimal_places == 2
-    assert falkland_islands_pound.decimal_sign == ','
-    assert falkland_islands_pound.grouping_sign == '.'
+    assert falkland_islands_pound.decimal_sign == '.'
+    assert falkland_islands_pound.grouping_sign == ','
     assert not falkland_islands_pound.international
     assert falkland_islands_pound.symbol == '£'
+    assert falkland_islands_pound.symbol_ahead
+    assert falkland_islands_pound.symbol_separator == ''
     assert falkland_islands_pound.__hash__() == hash((decimal, 'FKP', '238'))
     assert falkland_islands_pound.__repr__() == (
         'FalklandIslandsPound(amount: -100, '
         'alpha_code: "FKP", '
         'symbol: "£", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "238", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert falkland_islands_pound.__str__() == '£-100,00'
+    assert falkland_islands_pound.__str__() == '£-100.00'
 
 
 def test_falkland_islands_pound_custom():
@@ -74,27 +82,33 @@ def test_falkland_islands_pound_custom():
     falkland_islands_pound = FalklandIslandsPound(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert falkland_islands_pound.amount == decimal
     assert falkland_islands_pound.numeric_code == '238'
     assert falkland_islands_pound.alpha_code == 'FKP'
     assert falkland_islands_pound.decimal_places == 5
-    assert falkland_islands_pound.decimal_sign == '.'
-    assert falkland_islands_pound.grouping_sign == ','
+    assert falkland_islands_pound.decimal_sign == ','
+    assert falkland_islands_pound.grouping_sign == '.'
     assert falkland_islands_pound.international
     assert falkland_islands_pound.symbol == '£'
+    assert not falkland_islands_pound.symbol_ahead
+    assert falkland_islands_pound.symbol_separator == '_'
     assert falkland_islands_pound.__hash__() == hash((decimal, 'FKP', '238'))
     assert falkland_islands_pound.__repr__() == (
         'FalklandIslandsPound(amount: 1000, '
         'alpha_code: "FKP", '
         'symbol: "£", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "238", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert falkland_islands_pound.__str__() == 'FKP 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_falkland_islands_pound_changed():
             AttributeError,
             match='can\'t set attribute'):
         falkland_islands_pound.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        falkland_islands_pound.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        falkland_islands_pound.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_falkland_islands_pound_math_add():
                    'pound.FalklandIslandsPound\'> '
                    'and <class \'str\'>.')):
         _ = falkland_islands_pound_one.__add__('1.00')
-    assert (falkland_islands_pound_one + falkland_islands_pound_two) == falkland_islands_pound_three
+    assert (
+        falkland_islands_pound_one +
+        falkland_islands_pound_two) == falkland_islands_pound_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = FalklandIslandsPound(amount=1000)
+def test_falkland_islands_pound_slots():
+    """test_falkland_islands_pound_slots."""
+    falkland_islands_pound = FalklandIslandsPound(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'FalklandIslandsPound\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        falkland_islands_pound.new_variable = 'fail'  # pylint: disable=assigning-non-slot

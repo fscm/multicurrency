@@ -26,21 +26,25 @@ def test_naira():
     assert naira.numeric_code == '566'
     assert naira.alpha_code == 'NGN'
     assert naira.decimal_places == 2
-    assert naira.decimal_sign == ','
-    assert naira.grouping_sign == '.'
+    assert naira.decimal_sign == '.'
+    assert naira.grouping_sign == ','
     assert not naira.international
     assert naira.symbol == '₦'
+    assert naira.symbol_ahead
+    assert naira.symbol_separator == ''
     assert naira.__hash__() == hash((decimal, 'NGN', '566'))
     assert naira.__repr__() == (
         'Naira(amount: 0.1428571428571428571428571429, '
         'alpha_code: "NGN", '
         'symbol: "₦", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "566", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert naira.__str__() == '₦0,14'
+    assert naira.__str__() == '₦0.14'
 
 
 def test_naira_negative():
@@ -51,21 +55,25 @@ def test_naira_negative():
     assert naira.numeric_code == '566'
     assert naira.alpha_code == 'NGN'
     assert naira.decimal_places == 2
-    assert naira.decimal_sign == ','
-    assert naira.grouping_sign == '.'
+    assert naira.decimal_sign == '.'
+    assert naira.grouping_sign == ','
     assert not naira.international
     assert naira.symbol == '₦'
+    assert naira.symbol_ahead
+    assert naira.symbol_separator == ''
     assert naira.__hash__() == hash((decimal, 'NGN', '566'))
     assert naira.__repr__() == (
         'Naira(amount: -100, '
         'alpha_code: "NGN", '
         'symbol: "₦", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "566", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert naira.__str__() == '₦-100,00'
+    assert naira.__str__() == '₦-100.00'
 
 
 def test_naira_custom():
@@ -74,27 +82,33 @@ def test_naira_custom():
     naira = Naira(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert naira.amount == decimal
     assert naira.numeric_code == '566'
     assert naira.alpha_code == 'NGN'
     assert naira.decimal_places == 5
-    assert naira.decimal_sign == '.'
-    assert naira.grouping_sign == ','
+    assert naira.decimal_sign == ','
+    assert naira.grouping_sign == '.'
     assert naira.international
     assert naira.symbol == '₦'
+    assert not naira.symbol_ahead
+    assert naira.symbol_separator == '_'
     assert naira.__hash__() == hash((decimal, 'NGN', '566'))
     assert naira.__repr__() == (
         'Naira(amount: 1000, '
         'alpha_code: "NGN", '
         'symbol: "₦", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "566", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert naira.__str__() == 'NGN 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_naira_changed():
             AttributeError,
             match='can\'t set attribute'):
         naira.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        naira.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        naira.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_naira_math_add():
                    'naira.Naira\'> '
                    'and <class \'str\'>.')):
         _ = naira_one.__add__('1.00')
-    assert (naira_one + naira_two) == naira_three
+    assert (
+        naira_one +
+        naira_two) == naira_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Naira(amount=1000)
+def test_naira_slots():
+    """test_naira_slots."""
+    naira = Naira(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Naira\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        naira.new_variable = 'fail'  # pylint: disable=assigning-non-slot

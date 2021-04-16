@@ -30,17 +30,21 @@ def test_lilangeni():
     assert lilangeni.grouping_sign == ','
     assert not lilangeni.international
     assert lilangeni.symbol == 'L'
+    assert lilangeni.symbol_ahead
+    assert lilangeni.symbol_separator == '\u00A0'
     assert lilangeni.__hash__() == hash((decimal, 'SZL', '748'))
     assert lilangeni.__repr__() == (
         'Lilangeni(amount: 0.1428571428571428571428571429, '
         'alpha_code: "SZL", '
         'symbol: "L", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "748", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert lilangeni.__str__() == 'L0.14'
+    assert lilangeni.__str__() == 'L 0.14'
 
 
 def test_lilangeni_negative():
@@ -55,17 +59,21 @@ def test_lilangeni_negative():
     assert lilangeni.grouping_sign == ','
     assert not lilangeni.international
     assert lilangeni.symbol == 'L'
+    assert lilangeni.symbol_ahead
+    assert lilangeni.symbol_separator == '\u00A0'
     assert lilangeni.__hash__() == hash((decimal, 'SZL', '748'))
     assert lilangeni.__repr__() == (
         'Lilangeni(amount: -100, '
         'alpha_code: "SZL", '
         'symbol: "L", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "748", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert lilangeni.__str__() == 'L-100.00'
+    assert lilangeni.__str__() == 'L -100.00'
 
 
 def test_lilangeni_custom():
@@ -76,7 +84,9 @@ def test_lilangeni_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert lilangeni.amount == decimal
     assert lilangeni.numeric_code == '748'
@@ -86,17 +96,21 @@ def test_lilangeni_custom():
     assert lilangeni.grouping_sign == '.'
     assert lilangeni.international
     assert lilangeni.symbol == 'L'
+    assert not lilangeni.symbol_ahead
+    assert lilangeni.symbol_separator == '_'
     assert lilangeni.__hash__() == hash((decimal, 'SZL', '748'))
     assert lilangeni.__repr__() == (
         'Lilangeni(amount: 1000, '
         'alpha_code: "SZL", '
         'symbol: "L", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "748", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert lilangeni.__str__() == 'SZL 1.000,00000'
+    assert lilangeni.__str__() == 'SZL 1,000.00000'
 
 
 def test_lilangeni_changed():
@@ -114,6 +128,14 @@ def test_lilangeni_changed():
             AttributeError,
             match='can\'t set attribute'):
         lilangeni.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        lilangeni.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        lilangeni.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_lilangeni_math_add():
                    'lilangeni.Lilangeni\'> '
                    'and <class \'str\'>.')):
         _ = lilangeni_one.__add__('1.00')
-    assert (lilangeni_one + lilangeni_two) == lilangeni_three
+    assert (
+        lilangeni_one +
+        lilangeni_two) == lilangeni_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Lilangeni(amount=1000)
+def test_lilangeni_slots():
+    """test_lilangeni_slots."""
+    lilangeni = Lilangeni(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Lilangeni\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        lilangeni.new_variable = 'fail'  # pylint: disable=assigning-non-slot

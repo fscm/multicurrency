@@ -30,11 +30,15 @@ def test_baht():
     assert baht.grouping_sign == ','
     assert not baht.international
     assert baht.symbol == '฿'
+    assert baht.symbol_ahead
+    assert baht.symbol_separator == ''
     assert baht.__hash__() == hash((decimal, 'THB', '764'))
     assert baht.__repr__() == (
         'Baht(amount: 0.1428571428571428571428571429, '
         'alpha_code: "THB", '
         'symbol: "฿", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "764", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -55,11 +59,15 @@ def test_baht_negative():
     assert baht.grouping_sign == ','
     assert not baht.international
     assert baht.symbol == '฿'
+    assert baht.symbol_ahead
+    assert baht.symbol_separator == ''
     assert baht.__hash__() == hash((decimal, 'THB', '764'))
     assert baht.__repr__() == (
         'Baht(amount: -100, '
         'alpha_code: "THB", '
         'symbol: "฿", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "764", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -76,7 +84,9 @@ def test_baht_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert baht.amount == decimal
     assert baht.numeric_code == '764'
@@ -86,17 +96,21 @@ def test_baht_custom():
     assert baht.grouping_sign == '.'
     assert baht.international
     assert baht.symbol == '฿'
+    assert not baht.symbol_ahead
+    assert baht.symbol_separator == '_'
     assert baht.__hash__() == hash((decimal, 'THB', '764'))
     assert baht.__repr__() == (
         'Baht(amount: 1000, '
         'alpha_code: "THB", '
         'symbol: "฿", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "764", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert baht.__str__() == 'THB 1.000,00000'
+    assert baht.__str__() == 'THB 1,000.00000'
 
 
 def test_baht_changed():
@@ -114,6 +128,14 @@ def test_baht_changed():
             AttributeError,
             match='can\'t set attribute'):
         baht.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        baht.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        baht.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_baht_math_add():
                    'baht.Baht\'> '
                    'and <class \'str\'>.')):
         _ = baht_one.__add__('1.00')
-    assert (baht_one + baht_two) == baht_three
+    assert (
+        baht_one +
+        baht_two) == baht_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Baht(amount=1000)
+def test_baht_slots():
+    """test_baht_slots."""
+    baht = Baht(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Baht\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        baht.new_variable = 'fail'  # pylint: disable=assigning-non-slot

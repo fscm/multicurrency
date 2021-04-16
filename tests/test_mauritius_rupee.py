@@ -30,17 +30,21 @@ def test_mauritius_rupee():
     assert mauritius_rupee.grouping_sign == ','
     assert not mauritius_rupee.international
     assert mauritius_rupee.symbol == '₨'
+    assert mauritius_rupee.symbol_ahead
+    assert mauritius_rupee.symbol_separator == '\u00A0'
     assert mauritius_rupee.__hash__() == hash((decimal, 'MUR', '480'))
     assert mauritius_rupee.__repr__() == (
         'MauritiusRupee(amount: 0.1428571428571428571428571429, '
         'alpha_code: "MUR", '
         'symbol: "₨", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "480", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert mauritius_rupee.__str__() == '₨0.14'
+    assert mauritius_rupee.__str__() == '₨ 0.14'
 
 
 def test_mauritius_rupee_negative():
@@ -55,17 +59,21 @@ def test_mauritius_rupee_negative():
     assert mauritius_rupee.grouping_sign == ','
     assert not mauritius_rupee.international
     assert mauritius_rupee.symbol == '₨'
+    assert mauritius_rupee.symbol_ahead
+    assert mauritius_rupee.symbol_separator == '\u00A0'
     assert mauritius_rupee.__hash__() == hash((decimal, 'MUR', '480'))
     assert mauritius_rupee.__repr__() == (
         'MauritiusRupee(amount: -100, '
         'alpha_code: "MUR", '
         'symbol: "₨", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "480", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert mauritius_rupee.__str__() == '₨-100.00'
+    assert mauritius_rupee.__str__() == '₨ -100.00'
 
 
 def test_mauritius_rupee_custom():
@@ -76,7 +84,9 @@ def test_mauritius_rupee_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert mauritius_rupee.amount == decimal
     assert mauritius_rupee.numeric_code == '480'
@@ -86,17 +96,21 @@ def test_mauritius_rupee_custom():
     assert mauritius_rupee.grouping_sign == '.'
     assert mauritius_rupee.international
     assert mauritius_rupee.symbol == '₨'
+    assert not mauritius_rupee.symbol_ahead
+    assert mauritius_rupee.symbol_separator == '_'
     assert mauritius_rupee.__hash__() == hash((decimal, 'MUR', '480'))
     assert mauritius_rupee.__repr__() == (
         'MauritiusRupee(amount: 1000, '
         'alpha_code: "MUR", '
         'symbol: "₨", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "480", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert mauritius_rupee.__str__() == 'MUR 1.000,00000'
+    assert mauritius_rupee.__str__() == 'MUR 1,000.00000'
 
 
 def test_mauritius_rupee_changed():
@@ -114,6 +128,14 @@ def test_mauritius_rupee_changed():
             AttributeError,
             match='can\'t set attribute'):
         mauritius_rupee.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        mauritius_rupee.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        mauritius_rupee.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_mauritius_rupee_math_add():
                    'rupee.MauritiusRupee\'> '
                    'and <class \'str\'>.')):
         _ = mauritius_rupee_one.__add__('1.00')
-    assert (mauritius_rupee_one + mauritius_rupee_two) == mauritius_rupee_three
+    assert (
+        mauritius_rupee_one +
+        mauritius_rupee_two) == mauritius_rupee_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = MauritiusRupee(amount=1000)
+def test_mauritius_rupee_slots():
+    """test_mauritius_rupee_slots."""
+    mauritius_rupee = MauritiusRupee(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'MauritiusRupee\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        mauritius_rupee.new_variable = 'fail'  # pylint: disable=assigning-non-slot

@@ -26,21 +26,25 @@ def test_denar():
     assert denar.numeric_code == '807'
     assert denar.alpha_code == 'MKD'
     assert denar.decimal_places == 2
-    assert denar.decimal_sign == '.'
-    assert denar.grouping_sign == ','
+    assert denar.decimal_sign == ','
+    assert denar.grouping_sign == '.'
     assert not denar.international
-    assert denar.symbol == 'ден'
+    assert denar.symbol == 'ден.'
+    assert not denar.symbol_ahead
+    assert denar.symbol_separator == '\u00A0'
     assert denar.__hash__() == hash((decimal, 'MKD', '807'))
     assert denar.__repr__() == (
         'Denar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "MKD", '
-        'symbol: "ден", '
+        'symbol: "ден.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "807", '
         'decimal_places: "2", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: False)')
-    assert denar.__str__() == 'ден0.14'
+    assert denar.__str__() == '0,14 ден.'
 
 
 def test_denar_negative():
@@ -51,21 +55,25 @@ def test_denar_negative():
     assert denar.numeric_code == '807'
     assert denar.alpha_code == 'MKD'
     assert denar.decimal_places == 2
-    assert denar.decimal_sign == '.'
-    assert denar.grouping_sign == ','
+    assert denar.decimal_sign == ','
+    assert denar.grouping_sign == '.'
     assert not denar.international
-    assert denar.symbol == 'ден'
+    assert denar.symbol == 'ден.'
+    assert not denar.symbol_ahead
+    assert denar.symbol_separator == '\u00A0'
     assert denar.__hash__() == hash((decimal, 'MKD', '807'))
     assert denar.__repr__() == (
         'Denar(amount: -100, '
         'alpha_code: "MKD", '
-        'symbol: "ден", '
+        'symbol: "ден.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "807", '
         'decimal_places: "2", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: False)')
-    assert denar.__str__() == 'ден-100.00'
+    assert denar.__str__() == '-100,00 ден.'
 
 
 def test_denar_custom():
@@ -74,29 +82,35 @@ def test_denar_custom():
     denar = Denar(
         amount=amount,
         decimal_places=5,
-        decimal_sign=',',
-        grouping_sign='.',
-        international=True)
+        decimal_sign='.',
+        grouping_sign=',',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert denar.amount == decimal
     assert denar.numeric_code == '807'
     assert denar.alpha_code == 'MKD'
     assert denar.decimal_places == 5
-    assert denar.decimal_sign == ','
-    assert denar.grouping_sign == '.'
+    assert denar.decimal_sign == '.'
+    assert denar.grouping_sign == ','
     assert denar.international
-    assert denar.symbol == 'ден'
+    assert denar.symbol == 'ден.'
+    assert not denar.symbol_ahead
+    assert denar.symbol_separator == '_'
     assert denar.__hash__() == hash((decimal, 'MKD', '807'))
     assert denar.__repr__() == (
         'Denar(amount: 1000, '
         'alpha_code: "MKD", '
-        'symbol: "ден", '
+        'symbol: "ден.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "807", '
         'decimal_places: "5", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: True)')
-    assert denar.__str__() == 'MKD 1.000,00000'
+    assert denar.__str__() == 'MKD 1,000.00000'
 
 
 def test_denar_changed():
@@ -114,6 +128,14 @@ def test_denar_changed():
             AttributeError,
             match='can\'t set attribute'):
         denar.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        denar.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        denar.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_denar_math_add():
                    'denar.Denar\'> '
                    'and <class \'str\'>.')):
         _ = denar_one.__add__('1.00')
-    assert (denar_one + denar_two) == denar_three
+    assert (
+        denar_one +
+        denar_two) == denar_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Denar(amount=1000)
+def test_denar_slots():
+    """test_denar_slots."""
+    denar = Denar(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Denar\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        denar.new_variable = 'fail'  # pylint: disable=assigning-non-slot

@@ -26,21 +26,25 @@ def test_quetzal():
     assert quetzal.numeric_code == '320'
     assert quetzal.alpha_code == 'GTQ'
     assert quetzal.decimal_places == 2
-    assert quetzal.decimal_sign == ','
-    assert quetzal.grouping_sign == '.'
+    assert quetzal.decimal_sign == '.'
+    assert quetzal.grouping_sign == ','
     assert not quetzal.international
     assert quetzal.symbol == 'Q'
+    assert quetzal.symbol_ahead
+    assert quetzal.symbol_separator == '\u00A0'
     assert quetzal.__hash__() == hash((decimal, 'GTQ', '320'))
     assert quetzal.__repr__() == (
         'Quetzal(amount: 0.1428571428571428571428571429, '
         'alpha_code: "GTQ", '
         'symbol: "Q", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "320", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert quetzal.__str__() == 'Q0,14'
+    assert quetzal.__str__() == 'Q 0.14'
 
 
 def test_quetzal_negative():
@@ -51,21 +55,25 @@ def test_quetzal_negative():
     assert quetzal.numeric_code == '320'
     assert quetzal.alpha_code == 'GTQ'
     assert quetzal.decimal_places == 2
-    assert quetzal.decimal_sign == ','
-    assert quetzal.grouping_sign == '.'
+    assert quetzal.decimal_sign == '.'
+    assert quetzal.grouping_sign == ','
     assert not quetzal.international
     assert quetzal.symbol == 'Q'
+    assert quetzal.symbol_ahead
+    assert quetzal.symbol_separator == '\u00A0'
     assert quetzal.__hash__() == hash((decimal, 'GTQ', '320'))
     assert quetzal.__repr__() == (
         'Quetzal(amount: -100, '
         'alpha_code: "GTQ", '
         'symbol: "Q", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "320", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert quetzal.__str__() == 'Q-100,00'
+    assert quetzal.__str__() == 'Q -100.00'
 
 
 def test_quetzal_custom():
@@ -74,27 +82,33 @@ def test_quetzal_custom():
     quetzal = Quetzal(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert quetzal.amount == decimal
     assert quetzal.numeric_code == '320'
     assert quetzal.alpha_code == 'GTQ'
     assert quetzal.decimal_places == 5
-    assert quetzal.decimal_sign == '.'
-    assert quetzal.grouping_sign == ','
+    assert quetzal.decimal_sign == ','
+    assert quetzal.grouping_sign == '.'
     assert quetzal.international
     assert quetzal.symbol == 'Q'
+    assert not quetzal.symbol_ahead
+    assert quetzal.symbol_separator == '_'
     assert quetzal.__hash__() == hash((decimal, 'GTQ', '320'))
     assert quetzal.__repr__() == (
         'Quetzal(amount: 1000, '
         'alpha_code: "GTQ", '
         'symbol: "Q", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "320", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert quetzal.__str__() == 'GTQ 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_quetzal_changed():
             AttributeError,
             match='can\'t set attribute'):
         quetzal.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        quetzal.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        quetzal.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_quetzal_math_add():
                    'quetzal.Quetzal\'> '
                    'and <class \'str\'>.')):
         _ = quetzal_one.__add__('1.00')
-    assert (quetzal_one + quetzal_two) == quetzal_three
+    assert (
+        quetzal_one +
+        quetzal_two) == quetzal_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Quetzal(amount=1000)
+def test_quetzal_slots():
+    """test_quetzal_slots."""
+    quetzal = Quetzal(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Quetzal\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        quetzal.new_variable = 'fail'  # pylint: disable=assigning-non-slot

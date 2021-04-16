@@ -17,9 +17,10 @@ class BahrainiDinar(Currency):
     Simple usage example:
 
         >>> from multicurrency import BahrainiDinar
-        >>> bahraini_dinar = BahrainiDinar(amount=1)
+        >>> bahraini_dinar = BahrainiDinar(
+        ...     amount=123456.789)
         >>> print(bahraini_dinar)
-        ب.د1.000
+        123,456.789 د.ب.
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -32,6 +33,10 @@ class BahrainiDinar(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to False.
     """
 
     __slots__ = []
@@ -39,10 +44,12 @@ class BahrainiDinar(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 3,
+            decimal_places: Optional[int] = 3,
             decimal_sign: Optional[str] = '.',
             grouping_sign: Optional[str] = ',',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = False,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'BahrainiDinar':
         """Class creator.
 
@@ -54,7 +61,9 @@ class BahrainiDinar(Currency):
             amount=amount,
             alpha_code='BHD',
             numeric_code='048',
-            symbol='ب.د',
+            symbol='د.ب.',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -67,9 +76,10 @@ class AlgerianDinar(Currency):
     Simple usage example:
 
         >>> from multicurrency import AlgerianDinar
-        >>> algerian_dinar = AlgerianDinar(amount=1)
+        >>> algerian_dinar = AlgerianDinar(
+        ...     amount=123456.789)
         >>> print(algerian_dinar)
-        د.ج1,00
+        123.456,79 د.ج
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -82,6 +92,10 @@ class AlgerianDinar(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to False.
     """
 
     __slots__ = []
@@ -89,10 +103,12 @@ class AlgerianDinar(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 2,
+            decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
             grouping_sign: Optional[str] = '.',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = False,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'AlgerianDinar':
         """Class creator.
 
@@ -105,6 +121,8 @@ class AlgerianDinar(Currency):
             alpha_code='DZD',
             numeric_code='012',
             symbol='د.ج',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -117,9 +135,10 @@ class IraqiDinar(Currency):
     Simple usage example:
 
         >>> from multicurrency import IraqiDinar
-        >>> iraqi_dinar = IraqiDinar(amount=1)
+        >>> iraqi_dinar = IraqiDinar(
+        ...     amount=123456.789)
         >>> print(iraqi_dinar)
-        ع.د1,000
+        د.ع. 123.456,789
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -132,6 +151,10 @@ class IraqiDinar(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -139,10 +162,12 @@ class IraqiDinar(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 3,
+            decimal_places: Optional[int] = 3,
             decimal_sign: Optional[str] = ',',
             grouping_sign: Optional[str] = '.',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'IraqiDinar':
         """Class creator.
 
@@ -154,7 +179,9 @@ class IraqiDinar(Currency):
             amount=amount,
             alpha_code='IQD',
             numeric_code='368',
-            symbol='ع.د',
+            symbol='د.ع.',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -167,9 +194,10 @@ class JordanianDinar(Currency):
     Simple usage example:
 
         >>> from multicurrency import JordanianDinar
-        >>> jordanian_dinar = JordanianDinar(amount=1)
+        >>> jordanian_dinar = JordanianDinar(
+        ...     amount=123456.789)
         >>> print(jordanian_dinar)
-        د.ا1.000
+        د.أ. 123,456.789
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -182,6 +210,10 @@ class JordanianDinar(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -189,10 +221,12 @@ class JordanianDinar(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 3,
+            decimal_places: Optional[int] = 3,
             decimal_sign: Optional[str] = '.',
             grouping_sign: Optional[str] = ',',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'JordanianDinar':
         """Class creator.
 
@@ -204,7 +238,9 @@ class JordanianDinar(Currency):
             amount=amount,
             alpha_code='JOD',
             numeric_code='400',
-            symbol='د.ا',
+            symbol='د.أ.',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -217,9 +253,10 @@ class KuwaitiDinar(Currency):
     Simple usage example:
 
         >>> from multicurrency import KuwaitiDinar
-        >>> kuwaiti_dinar = KuwaitiDinar(amount=1)
+        >>> kuwaiti_dinar = KuwaitiDinar(
+        ...     amount=123456.789)
         >>> print(kuwaiti_dinar)
-        د.ك1.000
+        د.ك. 123,456.789
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -232,6 +269,10 @@ class KuwaitiDinar(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -239,10 +280,12 @@ class KuwaitiDinar(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 3,
+            decimal_places: Optional[int] = 3,
             decimal_sign: Optional[str] = '.',
             grouping_sign: Optional[str] = ',',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'KuwaitiDinar':
         """Class creator.
 
@@ -254,7 +297,9 @@ class KuwaitiDinar(Currency):
             amount=amount,
             alpha_code='KWD',
             numeric_code='414',
-            symbol='د.ك',
+            symbol='د.ك.',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -267,9 +312,10 @@ class LibyanDinar(Currency):
     Simple usage example:
 
         >>> from multicurrency import LibyanDinar
-        >>> libyan_dinar = LibyanDinar(amount=1)
+        >>> libyan_dinar = LibyanDinar(
+        ...     amount=123456.789)
         >>> print(libyan_dinar)
-        ل.د1,000
+        ل.د 123.456,789
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -282,6 +328,10 @@ class LibyanDinar(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -289,10 +339,12 @@ class LibyanDinar(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 3,
+            decimal_places: Optional[int] = 3,
             decimal_sign: Optional[str] = ',',
             grouping_sign: Optional[str] = '.',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'LibyanDinar':
         """Class creator.
 
@@ -305,21 +357,24 @@ class LibyanDinar(Currency):
             alpha_code='LYD',
             numeric_code='434',
             symbol='ل.د',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
             international=international)
 
 
-class SerbianDinar(Currency):
-    """Serbian Dinar currency representation.
+class SerbianDinarXK(Currency):
+    """Serbian Dinar XK currency representation.
 
     Simple usage example:
 
-        >>> from multicurrency import SerbianDinar
-        >>> serbian_dinar = SerbianDinar(amount=1)
-        >>> print(serbian_dinar)
-        din1,00
+        >>> from multicurrency import SerbianDinarXK
+        >>> serbian_dinar_xk = SerbianDinarXK(
+        ...     amount=123456.789)
+        >>> print(serbian_dinar_xk)
+        123.456,79 дин
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -332,6 +387,10 @@ class SerbianDinar(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to False.
     """
 
     __slots__ = []
@@ -339,22 +398,85 @@ class SerbianDinar(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 2,
+            decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
             grouping_sign: Optional[str] = '.',
-            international: bool = False,
-            **other) -> 'SerbianDinar':
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = False,
+            symbol_separator: Optional[str] = '\u00A0',
+            **other) -> 'SerbianDinarXK':
         """Class creator.
 
         Returns:
-            SerbianDinar: new opbject.
+            SerbianDinarXK: new opbject.
         """
         return Currency.__new__(
             cls,
             amount=amount,
             alpha_code='RSD',
             numeric_code='941',
-            symbol='din',
+            symbol='дин',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_sign=grouping_sign,
+            international=international)
+
+
+class SerbianDinarSR(Currency):
+    """Serbian Dinar SR currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import SerbianDinarSR
+        >>> serbian_dinar_sr = SerbianDinarSR(
+        ...     amount=123456.789)
+        >>> print(serbian_dinar_sr)
+        123 456,79 дин
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_sign (str, optional): Grouping symbol. Defaults to ' '.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to False.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = ',',
+            grouping_sign: Optional[str] = '\u202F',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = False,
+            symbol_separator: Optional[str] = '\u00A0',
+            **other) -> 'SerbianDinarSR':
+        """Class creator.
+
+        Returns:
+            SerbianDinarSR: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='RSD',
+            numeric_code='941',
+            symbol='дин',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
@@ -367,9 +489,10 @@ class TunisianDinar(Currency):
     Simple usage example:
 
         >>> from multicurrency import TunisianDinar
-        >>> tunisian_dinar = TunisianDinar(amount=1)
+        >>> tunisian_dinar = TunisianDinar(
+        ...     amount=123456.789)
         >>> print(tunisian_dinar)
-        د.ت1,000
+        د.ت. 123.456,789
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -382,6 +505,10 @@ class TunisianDinar(Currency):
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -389,10 +516,12 @@ class TunisianDinar(Currency):
     def __new__(  # pylint: disable=signature-differs,disable=unused-argument
             cls,
             amount: Union[int, float, Decimal],
-            decimal_places: int = 3,
+            decimal_places: Optional[int] = 3,
             decimal_sign: Optional[str] = ',',
             grouping_sign: Optional[str] = '.',
-            international: bool = False,
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'TunisianDinar':
         """Class creator.
 
@@ -404,7 +533,9 @@ class TunisianDinar(Currency):
             amount=amount,
             alpha_code='TND',
             numeric_code='788',
-            symbol='د.ت',
+            symbol='د.ت.',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,

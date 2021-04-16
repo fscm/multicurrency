@@ -30,17 +30,21 @@ def test_vatu():
     assert vatu.grouping_sign == ','
     assert not vatu.international
     assert vatu.symbol == 'Vt'
+    assert vatu.symbol_ahead
+    assert vatu.symbol_separator == '\u00A0'
     assert vatu.__hash__() == hash((decimal, 'VUV', '548'))
     assert vatu.__repr__() == (
         'Vatu(amount: 0.1428571428571428571428571429, '
         'alpha_code: "VUV", '
         'symbol: "Vt", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "548", '
         'decimal_places: "0", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert vatu.__str__() == 'Vt0'
+    assert vatu.__str__() == 'Vt 0'
 
 
 def test_vatu_negative():
@@ -55,17 +59,21 @@ def test_vatu_negative():
     assert vatu.grouping_sign == ','
     assert not vatu.international
     assert vatu.symbol == 'Vt'
+    assert vatu.symbol_ahead
+    assert vatu.symbol_separator == '\u00A0'
     assert vatu.__hash__() == hash((decimal, 'VUV', '548'))
     assert vatu.__repr__() == (
         'Vatu(amount: -100, '
         'alpha_code: "VUV", '
         'symbol: "Vt", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "548", '
         'decimal_places: "0", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert vatu.__str__() == 'Vt-100'
+    assert vatu.__str__() == 'Vt -100'
 
 
 def test_vatu_custom():
@@ -76,7 +84,9 @@ def test_vatu_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert vatu.amount == decimal
     assert vatu.numeric_code == '548'
@@ -86,17 +96,21 @@ def test_vatu_custom():
     assert vatu.grouping_sign == '.'
     assert vatu.international
     assert vatu.symbol == 'Vt'
+    assert not vatu.symbol_ahead
+    assert vatu.symbol_separator == '_'
     assert vatu.__hash__() == hash((decimal, 'VUV', '548'))
     assert vatu.__repr__() == (
         'Vatu(amount: 1000, '
         'alpha_code: "VUV", '
         'symbol: "Vt", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "548", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert vatu.__str__() == 'VUV 1.000,00000'
+    assert vatu.__str__() == 'VUV 1,000.00000'
 
 
 def test_vatu_changed():
@@ -114,6 +128,14 @@ def test_vatu_changed():
             AttributeError,
             match='can\'t set attribute'):
         vatu.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        vatu.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        vatu.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_vatu_math_add():
                    'vatu.Vatu\'> '
                    'and <class \'str\'>.')):
         _ = vatu_one.__add__('1.00')
-    assert (vatu_one + vatu_two) == vatu_three
+    assert (
+        vatu_one +
+        vatu_two) == vatu_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Vatu(amount=1000)
+def test_vatu_slots():
+    """test_vatu_slots."""
+    vatu = Vatu(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Vatu\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        vatu.new_variable = 'fail'  # pylint: disable=assigning-non-slot

@@ -26,21 +26,25 @@ def test_uganda_shilling():
     assert uganda_shilling.numeric_code == '800'
     assert uganda_shilling.alpha_code == 'UGX'
     assert uganda_shilling.decimal_places == 0
-    assert uganda_shilling.decimal_sign == ','
-    assert uganda_shilling.grouping_sign == '.'
+    assert uganda_shilling.decimal_sign == '.'
+    assert uganda_shilling.grouping_sign == ','
     assert not uganda_shilling.international
-    assert uganda_shilling.symbol == 'Sh'
+    assert uganda_shilling.symbol == 'USh'
+    assert uganda_shilling.symbol_ahead
+    assert uganda_shilling.symbol_separator == '\u00A0'
     assert uganda_shilling.__hash__() == hash((decimal, 'UGX', '800'))
     assert uganda_shilling.__repr__() == (
         'UgandaShilling(amount: 0.1428571428571428571428571429, '
         'alpha_code: "UGX", '
-        'symbol: "Sh", '
+        'symbol: "USh", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "800", '
         'decimal_places: "0", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert uganda_shilling.__str__() == 'Sh0'
+    assert uganda_shilling.__str__() == 'USh 0'
 
 
 def test_uganda_shilling_negative():
@@ -51,21 +55,25 @@ def test_uganda_shilling_negative():
     assert uganda_shilling.numeric_code == '800'
     assert uganda_shilling.alpha_code == 'UGX'
     assert uganda_shilling.decimal_places == 0
-    assert uganda_shilling.decimal_sign == ','
-    assert uganda_shilling.grouping_sign == '.'
+    assert uganda_shilling.decimal_sign == '.'
+    assert uganda_shilling.grouping_sign == ','
     assert not uganda_shilling.international
-    assert uganda_shilling.symbol == 'Sh'
+    assert uganda_shilling.symbol == 'USh'
+    assert uganda_shilling.symbol_ahead
+    assert uganda_shilling.symbol_separator == '\u00A0'
     assert uganda_shilling.__hash__() == hash((decimal, 'UGX', '800'))
     assert uganda_shilling.__repr__() == (
         'UgandaShilling(amount: -100, '
         'alpha_code: "UGX", '
-        'symbol: "Sh", '
+        'symbol: "USh", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "800", '
         'decimal_places: "0", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert uganda_shilling.__str__() == 'Sh-100'
+    assert uganda_shilling.__str__() == 'USh -100'
 
 
 def test_uganda_shilling_custom():
@@ -74,27 +82,33 @@ def test_uganda_shilling_custom():
     uganda_shilling = UgandaShilling(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert uganda_shilling.amount == decimal
     assert uganda_shilling.numeric_code == '800'
     assert uganda_shilling.alpha_code == 'UGX'
     assert uganda_shilling.decimal_places == 5
-    assert uganda_shilling.decimal_sign == '.'
-    assert uganda_shilling.grouping_sign == ','
+    assert uganda_shilling.decimal_sign == ','
+    assert uganda_shilling.grouping_sign == '.'
     assert uganda_shilling.international
-    assert uganda_shilling.symbol == 'Sh'
+    assert uganda_shilling.symbol == 'USh'
+    assert not uganda_shilling.symbol_ahead
+    assert uganda_shilling.symbol_separator == '_'
     assert uganda_shilling.__hash__() == hash((decimal, 'UGX', '800'))
     assert uganda_shilling.__repr__() == (
         'UgandaShilling(amount: 1000, '
         'alpha_code: "UGX", '
-        'symbol: "Sh", '
+        'symbol: "USh", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "800", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert uganda_shilling.__str__() == 'UGX 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_uganda_shilling_changed():
             AttributeError,
             match='can\'t set attribute'):
         uganda_shilling.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        uganda_shilling.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        uganda_shilling.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_uganda_shilling_math_add():
                    'shilling.UgandaShilling\'> '
                    'and <class \'str\'>.')):
         _ = uganda_shilling_one.__add__('1.00')
-    assert (uganda_shilling_one + uganda_shilling_two) == uganda_shilling_three
+    assert (
+        uganda_shilling_one +
+        uganda_shilling_two) == uganda_shilling_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = UgandaShilling(amount=1000)
+def test_uganda_shilling_slots():
+    """test_uganda_shilling_slots."""
+    uganda_shilling = UgandaShilling(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'UgandaShilling\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        uganda_shilling.new_variable = 'fail'  # pylint: disable=assigning-non-slot

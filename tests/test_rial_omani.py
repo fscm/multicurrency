@@ -30,17 +30,21 @@ def test_rial_omani():
     assert rial_omani.grouping_sign == ','
     assert not rial_omani.international
     assert rial_omani.symbol == 'ر.ع.'
+    assert not rial_omani.symbol_ahead
+    assert rial_omani.symbol_separator == '\u00A0'
     assert rial_omani.__hash__() == hash((decimal, 'OMR', '512'))
     assert rial_omani.__repr__() == (
         'RialOmani(amount: 0.1428571428571428571428571429, '
         'alpha_code: "OMR", '
         'symbol: "ر.ع.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "512", '
         'decimal_places: "3", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert rial_omani.__str__() == 'ر.ع.0.143'
+    assert rial_omani.__str__() == '0.143 ر.ع.'
 
 
 def test_rial_omani_negative():
@@ -55,17 +59,21 @@ def test_rial_omani_negative():
     assert rial_omani.grouping_sign == ','
     assert not rial_omani.international
     assert rial_omani.symbol == 'ر.ع.'
+    assert not rial_omani.symbol_ahead
+    assert rial_omani.symbol_separator == '\u00A0'
     assert rial_omani.__hash__() == hash((decimal, 'OMR', '512'))
     assert rial_omani.__repr__() == (
         'RialOmani(amount: -100, '
         'alpha_code: "OMR", '
         'symbol: "ر.ع.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "512", '
         'decimal_places: "3", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert rial_omani.__str__() == 'ر.ع.-100.000'
+    assert rial_omani.__str__() == '-100.000 ر.ع.'
 
 
 def test_rial_omani_custom():
@@ -76,7 +84,9 @@ def test_rial_omani_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert rial_omani.amount == decimal
     assert rial_omani.numeric_code == '512'
@@ -86,17 +96,21 @@ def test_rial_omani_custom():
     assert rial_omani.grouping_sign == '.'
     assert rial_omani.international
     assert rial_omani.symbol == 'ر.ع.'
+    assert not rial_omani.symbol_ahead
+    assert rial_omani.symbol_separator == '_'
     assert rial_omani.__hash__() == hash((decimal, 'OMR', '512'))
     assert rial_omani.__repr__() == (
         'RialOmani(amount: 1000, '
         'alpha_code: "OMR", '
         'symbol: "ر.ع.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "512", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert rial_omani.__str__() == 'OMR 1.000,00000'
+    assert rial_omani.__str__() == 'OMR 1,000.00000'
 
 
 def test_rial_omani_changed():
@@ -114,6 +128,14 @@ def test_rial_omani_changed():
             AttributeError,
             match='can\'t set attribute'):
         rial_omani.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        rial_omani.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        rial_omani.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_rial_omani_math_add():
                    'rial.RialOmani\'> '
                    'and <class \'str\'>.')):
         _ = rial_omani_one.__add__('1.00')
-    assert (rial_omani_one + rial_omani_two) == rial_omani_three
+    assert (
+        rial_omani_one +
+        rial_omani_two) == rial_omani_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = RialOmani(amount=1000)
+def test_rial_omani_slots():
+    """test_rial_omani_slots."""
+    rial_omani = RialOmani(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'RialOmani\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        rial_omani.new_variable = 'fail'  # pylint: disable=assigning-non-slot

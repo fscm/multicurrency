@@ -30,17 +30,21 @@ def test_brazilian_real():
     assert brazilian_real.grouping_sign == '.'
     assert not brazilian_real.international
     assert brazilian_real.symbol == 'R$'
+    assert brazilian_real.symbol_ahead
+    assert brazilian_real.symbol_separator == '\u00A0'
     assert brazilian_real.__hash__() == hash((decimal, 'BRL', '986'))
     assert brazilian_real.__repr__() == (
         'BrazilianReal(amount: 0.1428571428571428571428571429, '
         'alpha_code: "BRL", '
         'symbol: "R$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "986", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert brazilian_real.__str__() == 'R$0,14'
+    assert brazilian_real.__str__() == 'R$ 0,14'
 
 
 def test_brazilian_real_negative():
@@ -55,17 +59,21 @@ def test_brazilian_real_negative():
     assert brazilian_real.grouping_sign == '.'
     assert not brazilian_real.international
     assert brazilian_real.symbol == 'R$'
+    assert brazilian_real.symbol_ahead
+    assert brazilian_real.symbol_separator == '\u00A0'
     assert brazilian_real.__hash__() == hash((decimal, 'BRL', '986'))
     assert brazilian_real.__repr__() == (
         'BrazilianReal(amount: -100, '
         'alpha_code: "BRL", '
         'symbol: "R$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "986", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert brazilian_real.__str__() == 'R$-100,00'
+    assert brazilian_real.__str__() == 'R$ -100,00'
 
 
 def test_brazilian_real_custom():
@@ -76,7 +84,9 @@ def test_brazilian_real_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert brazilian_real.amount == decimal
     assert brazilian_real.numeric_code == '986'
@@ -86,11 +96,15 @@ def test_brazilian_real_custom():
     assert brazilian_real.grouping_sign == ','
     assert brazilian_real.international
     assert brazilian_real.symbol == 'R$'
+    assert not brazilian_real.symbol_ahead
+    assert brazilian_real.symbol_separator == '_'
     assert brazilian_real.__hash__() == hash((decimal, 'BRL', '986'))
     assert brazilian_real.__repr__() == (
         'BrazilianReal(amount: 1000, '
         'alpha_code: "BRL", '
         'symbol: "R$", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "986", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_brazilian_real_changed():
             AttributeError,
             match='can\'t set attribute'):
         brazilian_real.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        brazilian_real.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        brazilian_real.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_brazilian_real_math_add():
                    'real.BrazilianReal\'> '
                    'and <class \'str\'>.')):
         _ = brazilian_real_one.__add__('1.00')
-    assert (brazilian_real_one + brazilian_real_two) == brazilian_real_three
+    assert (
+        brazilian_real_one +
+        brazilian_real_two) == brazilian_real_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = BrazilianReal(amount=1000)
+def test_brazilian_real_slots():
+    """test_brazilian_real_slots."""
+    brazilian_real = BrazilianReal(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'BrazilianReal\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        brazilian_real.new_variable = 'fail'  # pylint: disable=assigning-non-slot

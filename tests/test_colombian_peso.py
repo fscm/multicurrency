@@ -30,17 +30,21 @@ def test_colombian_peso():
     assert colombian_peso.grouping_sign == '.'
     assert not colombian_peso.international
     assert colombian_peso.symbol == '$'
+    assert colombian_peso.symbol_ahead
+    assert colombian_peso.symbol_separator == '\u00A0'
     assert colombian_peso.__hash__() == hash((decimal, 'COP', '170'))
     assert colombian_peso.__repr__() == (
         'ColombianPeso(amount: 0.1428571428571428571428571429, '
         'alpha_code: "COP", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "170", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert colombian_peso.__str__() == '$0,14'
+    assert colombian_peso.__str__() == '$ 0,14'
 
 
 def test_colombian_peso_negative():
@@ -55,17 +59,21 @@ def test_colombian_peso_negative():
     assert colombian_peso.grouping_sign == '.'
     assert not colombian_peso.international
     assert colombian_peso.symbol == '$'
+    assert colombian_peso.symbol_ahead
+    assert colombian_peso.symbol_separator == '\u00A0'
     assert colombian_peso.__hash__() == hash((decimal, 'COP', '170'))
     assert colombian_peso.__repr__() == (
         'ColombianPeso(amount: -100, '
         'alpha_code: "COP", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "170", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert colombian_peso.__str__() == '$-100,00'
+    assert colombian_peso.__str__() == '$ -100,00'
 
 
 def test_colombian_peso_custom():
@@ -76,7 +84,9 @@ def test_colombian_peso_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert colombian_peso.amount == decimal
     assert colombian_peso.numeric_code == '170'
@@ -86,11 +96,15 @@ def test_colombian_peso_custom():
     assert colombian_peso.grouping_sign == ','
     assert colombian_peso.international
     assert colombian_peso.symbol == '$'
+    assert not colombian_peso.symbol_ahead
+    assert colombian_peso.symbol_separator == '_'
     assert colombian_peso.__hash__() == hash((decimal, 'COP', '170'))
     assert colombian_peso.__repr__() == (
         'ColombianPeso(amount: 1000, '
         'alpha_code: "COP", '
         'symbol: "$", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "170", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_colombian_peso_changed():
             AttributeError,
             match='can\'t set attribute'):
         colombian_peso.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        colombian_peso.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        colombian_peso.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_colombian_peso_math_add():
                    'peso.ColombianPeso\'> '
                    'and <class \'str\'>.')):
         _ = colombian_peso_one.__add__('1.00')
-    assert (colombian_peso_one + colombian_peso_two) == colombian_peso_three
+    assert (
+        colombian_peso_one +
+        colombian_peso_two) == colombian_peso_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = ColombianPeso(amount=1000)
+def test_colombian_peso_slots():
+    """test_colombian_peso_slots."""
+    colombian_peso = ColombianPeso(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'ColombianPeso\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        colombian_peso.new_variable = 'fail'  # pylint: disable=assigning-non-slot

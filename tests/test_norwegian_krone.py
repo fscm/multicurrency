@@ -27,20 +27,24 @@ def test_norwegian_krone():
     assert norwegian_krone.alpha_code == 'NOK'
     assert norwegian_krone.decimal_places == 2
     assert norwegian_krone.decimal_sign == ','
-    assert norwegian_krone.grouping_sign == '.'
+    assert norwegian_krone.grouping_sign == '\u202F'
     assert not norwegian_krone.international
     assert norwegian_krone.symbol == 'kr'
+    assert norwegian_krone.symbol_ahead
+    assert norwegian_krone.symbol_separator == '\u00A0'
     assert norwegian_krone.__hash__() == hash((decimal, 'NOK', '578'))
     assert norwegian_krone.__repr__() == (
         'NorwegianKrone(amount: 0.1428571428571428571428571429, '
         'alpha_code: "NOK", '
         'symbol: "kr", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "578", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert norwegian_krone.__str__() == 'kr0,14'
+    assert norwegian_krone.__str__() == 'kr 0,14'
 
 
 def test_norwegian_krone_negative():
@@ -52,20 +56,24 @@ def test_norwegian_krone_negative():
     assert norwegian_krone.alpha_code == 'NOK'
     assert norwegian_krone.decimal_places == 2
     assert norwegian_krone.decimal_sign == ','
-    assert norwegian_krone.grouping_sign == '.'
+    assert norwegian_krone.grouping_sign == '\u202F'
     assert not norwegian_krone.international
     assert norwegian_krone.symbol == 'kr'
+    assert norwegian_krone.symbol_ahead
+    assert norwegian_krone.symbol_separator == '\u00A0'
     assert norwegian_krone.__hash__() == hash((decimal, 'NOK', '578'))
     assert norwegian_krone.__repr__() == (
         'NorwegianKrone(amount: -100, '
         'alpha_code: "NOK", '
         'symbol: "kr", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "578", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert norwegian_krone.__str__() == 'kr-100,00'
+    assert norwegian_krone.__str__() == 'kr -100,00'
 
 
 def test_norwegian_krone_custom():
@@ -74,26 +82,32 @@ def test_norwegian_krone_custom():
     norwegian_krone = NorwegianKrone(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
+        decimal_sign='\u202F',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert norwegian_krone.amount == decimal
     assert norwegian_krone.numeric_code == '578'
     assert norwegian_krone.alpha_code == 'NOK'
     assert norwegian_krone.decimal_places == 5
-    assert norwegian_krone.decimal_sign == '.'
+    assert norwegian_krone.decimal_sign == '\u202F'
     assert norwegian_krone.grouping_sign == ','
     assert norwegian_krone.international
     assert norwegian_krone.symbol == 'kr'
+    assert not norwegian_krone.symbol_ahead
+    assert norwegian_krone.symbol_separator == '_'
     assert norwegian_krone.__hash__() == hash((decimal, 'NOK', '578'))
     assert norwegian_krone.__repr__() == (
         'NorwegianKrone(amount: 1000, '
         'alpha_code: "NOK", '
         'symbol: "kr", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "578", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
+        'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
         'international: True)')
     assert norwegian_krone.__str__() == 'NOK 1,000.00000'
@@ -114,6 +128,14 @@ def test_norwegian_krone_changed():
             AttributeError,
             match='can\'t set attribute'):
         norwegian_krone.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        norwegian_krone.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        norwegian_krone.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_norwegian_krone_math_add():
                    'krone.NorwegianKrone\'> '
                    'and <class \'str\'>.')):
         _ = norwegian_krone_one.__add__('1.00')
-    assert (norwegian_krone_one + norwegian_krone_two) == norwegian_krone_three
+    assert (
+        norwegian_krone_one +
+        norwegian_krone_two) == norwegian_krone_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = NorwegianKrone(amount=1000)
+def test_norwegian_krone_slots():
+    """test_norwegian_krone_slots."""
+    norwegian_krone = NorwegianKrone(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'NorwegianKrone\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        norwegian_krone.new_variable = 'fail'  # pylint: disable=assigning-non-slot

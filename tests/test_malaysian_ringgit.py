@@ -30,17 +30,21 @@ def test_malaysian_ringgit():
     assert malaysian_ringgit.grouping_sign == ','
     assert not malaysian_ringgit.international
     assert malaysian_ringgit.symbol == 'RM'
+    assert malaysian_ringgit.symbol_ahead
+    assert malaysian_ringgit.symbol_separator == '\u00A0'
     assert malaysian_ringgit.__hash__() == hash((decimal, 'MYR', '458'))
     assert malaysian_ringgit.__repr__() == (
         'MalaysianRinggit(amount: 0.1428571428571428571428571429, '
         'alpha_code: "MYR", '
         'symbol: "RM", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "458", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert malaysian_ringgit.__str__() == 'RM0.14'
+    assert malaysian_ringgit.__str__() == 'RM 0.14'
 
 
 def test_malaysian_ringgit_negative():
@@ -55,17 +59,21 @@ def test_malaysian_ringgit_negative():
     assert malaysian_ringgit.grouping_sign == ','
     assert not malaysian_ringgit.international
     assert malaysian_ringgit.symbol == 'RM'
+    assert malaysian_ringgit.symbol_ahead
+    assert malaysian_ringgit.symbol_separator == '\u00A0'
     assert malaysian_ringgit.__hash__() == hash((decimal, 'MYR', '458'))
     assert malaysian_ringgit.__repr__() == (
         'MalaysianRinggit(amount: -100, '
         'alpha_code: "MYR", '
         'symbol: "RM", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "458", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert malaysian_ringgit.__str__() == 'RM-100.00'
+    assert malaysian_ringgit.__str__() == 'RM -100.00'
 
 
 def test_malaysian_ringgit_custom():
@@ -76,7 +84,9 @@ def test_malaysian_ringgit_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert malaysian_ringgit.amount == decimal
     assert malaysian_ringgit.numeric_code == '458'
@@ -86,17 +96,21 @@ def test_malaysian_ringgit_custom():
     assert malaysian_ringgit.grouping_sign == '.'
     assert malaysian_ringgit.international
     assert malaysian_ringgit.symbol == 'RM'
+    assert not malaysian_ringgit.symbol_ahead
+    assert malaysian_ringgit.symbol_separator == '_'
     assert malaysian_ringgit.__hash__() == hash((decimal, 'MYR', '458'))
     assert malaysian_ringgit.__repr__() == (
         'MalaysianRinggit(amount: 1000, '
         'alpha_code: "MYR", '
         'symbol: "RM", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "458", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert malaysian_ringgit.__str__() == 'MYR 1.000,00000'
+    assert malaysian_ringgit.__str__() == 'MYR 1,000.00000'
 
 
 def test_malaysian_ringgit_changed():
@@ -114,6 +128,14 @@ def test_malaysian_ringgit_changed():
             AttributeError,
             match='can\'t set attribute'):
         malaysian_ringgit.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        malaysian_ringgit.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        malaysian_ringgit.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_malaysian_ringgit_math_add():
                    'ringgit.MalaysianRinggit\'> '
                    'and <class \'str\'>.')):
         _ = malaysian_ringgit_one.__add__('1.00')
-    assert (malaysian_ringgit_one + malaysian_ringgit_two) == malaysian_ringgit_three
+    assert (
+        malaysian_ringgit_one +
+        malaysian_ringgit_two) == malaysian_ringgit_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = MalaysianRinggit(amount=1000)
+def test_malaysian_ringgit_slots():
+    """test_malaysian_ringgit_slots."""
+    malaysian_ringgit = MalaysianRinggit(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'MalaysianRinggit\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        malaysian_ringgit.new_variable = 'fail'  # pylint: disable=assigning-non-slot

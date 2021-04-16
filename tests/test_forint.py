@@ -27,20 +27,24 @@ def test_forint():
     assert forint.alpha_code == 'HUF'
     assert forint.decimal_places == 0
     assert forint.decimal_sign == ','
-    assert forint.grouping_sign == '.'
+    assert forint.grouping_sign == '\u202F'
     assert not forint.international
     assert forint.symbol == 'Ft'
+    assert not forint.symbol_ahead
+    assert forint.symbol_separator == '\u00A0'
     assert forint.__hash__() == hash((decimal, 'HUF', '348'))
     assert forint.__repr__() == (
         'Forint(amount: 0.1428571428571428571428571429, '
         'alpha_code: "HUF", '
         'symbol: "Ft", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "348", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert forint.__str__() == 'Ft0'
+    assert forint.__str__() == '0 Ft'
 
 
 def test_forint_negative():
@@ -52,20 +56,24 @@ def test_forint_negative():
     assert forint.alpha_code == 'HUF'
     assert forint.decimal_places == 0
     assert forint.decimal_sign == ','
-    assert forint.grouping_sign == '.'
+    assert forint.grouping_sign == '\u202F'
     assert not forint.international
     assert forint.symbol == 'Ft'
+    assert not forint.symbol_ahead
+    assert forint.symbol_separator == '\u00A0'
     assert forint.__hash__() == hash((decimal, 'HUF', '348'))
     assert forint.__repr__() == (
         'Forint(amount: -100, '
         'alpha_code: "HUF", '
         'symbol: "Ft", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "348", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'grouping_sign: "\u202F", '
         'international: False)')
-    assert forint.__str__() == 'Ft-100'
+    assert forint.__str__() == '-100 Ft'
 
 
 def test_forint_custom():
@@ -74,26 +82,32 @@ def test_forint_custom():
     forint = Forint(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
+        decimal_sign='\u202F',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert forint.amount == decimal
     assert forint.numeric_code == '348'
     assert forint.alpha_code == 'HUF'
     assert forint.decimal_places == 5
-    assert forint.decimal_sign == '.'
+    assert forint.decimal_sign == '\u202F'
     assert forint.grouping_sign == ','
     assert forint.international
     assert forint.symbol == 'Ft'
+    assert not forint.symbol_ahead
+    assert forint.symbol_separator == '_'
     assert forint.__hash__() == hash((decimal, 'HUF', '348'))
     assert forint.__repr__() == (
         'Forint(amount: 1000, '
         'alpha_code: "HUF", '
         'symbol: "Ft", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "348", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
+        'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
         'international: True)')
     assert forint.__str__() == 'HUF 1,000.00000'
@@ -114,6 +128,14 @@ def test_forint_changed():
             AttributeError,
             match='can\'t set attribute'):
         forint.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        forint.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        forint.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_forint_math_add():
                    'forint.Forint\'> '
                    'and <class \'str\'>.')):
         _ = forint_one.__add__('1.00')
-    assert (forint_one + forint_two) == forint_three
+    assert (
+        forint_one +
+        forint_two) == forint_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Forint(amount=1000)
+def test_forint_slots():
+    """test_forint_slots."""
+    forint = Forint(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Forint\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        forint.new_variable = 'fail'  # pylint: disable=assigning-non-slot

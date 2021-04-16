@@ -26,21 +26,25 @@ def test_dalasi():
     assert dalasi.numeric_code == '270'
     assert dalasi.alpha_code == 'GMD'
     assert dalasi.decimal_places == 2
-    assert dalasi.decimal_sign == ','
-    assert dalasi.grouping_sign == '.'
+    assert dalasi.decimal_sign == '.'
+    assert dalasi.grouping_sign == ','
     assert not dalasi.international
     assert dalasi.symbol == 'D'
+    assert dalasi.symbol_ahead
+    assert dalasi.symbol_separator == '\u00A0'
     assert dalasi.__hash__() == hash((decimal, 'GMD', '270'))
     assert dalasi.__repr__() == (
         'Dalasi(amount: 0.1428571428571428571428571429, '
         'alpha_code: "GMD", '
         'symbol: "D", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "270", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert dalasi.__str__() == 'D0,14'
+    assert dalasi.__str__() == 'D 0.14'
 
 
 def test_dalasi_negative():
@@ -51,21 +55,25 @@ def test_dalasi_negative():
     assert dalasi.numeric_code == '270'
     assert dalasi.alpha_code == 'GMD'
     assert dalasi.decimal_places == 2
-    assert dalasi.decimal_sign == ','
-    assert dalasi.grouping_sign == '.'
+    assert dalasi.decimal_sign == '.'
+    assert dalasi.grouping_sign == ','
     assert not dalasi.international
     assert dalasi.symbol == 'D'
+    assert dalasi.symbol_ahead
+    assert dalasi.symbol_separator == '\u00A0'
     assert dalasi.__hash__() == hash((decimal, 'GMD', '270'))
     assert dalasi.__repr__() == (
         'Dalasi(amount: -100, '
         'alpha_code: "GMD", '
         'symbol: "D", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "270", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert dalasi.__str__() == 'D-100,00'
+    assert dalasi.__str__() == 'D -100.00'
 
 
 def test_dalasi_custom():
@@ -74,27 +82,33 @@ def test_dalasi_custom():
     dalasi = Dalasi(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert dalasi.amount == decimal
     assert dalasi.numeric_code == '270'
     assert dalasi.alpha_code == 'GMD'
     assert dalasi.decimal_places == 5
-    assert dalasi.decimal_sign == '.'
-    assert dalasi.grouping_sign == ','
+    assert dalasi.decimal_sign == ','
+    assert dalasi.grouping_sign == '.'
     assert dalasi.international
     assert dalasi.symbol == 'D'
+    assert not dalasi.symbol_ahead
+    assert dalasi.symbol_separator == '_'
     assert dalasi.__hash__() == hash((decimal, 'GMD', '270'))
     assert dalasi.__repr__() == (
         'Dalasi(amount: 1000, '
         'alpha_code: "GMD", '
         'symbol: "D", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "270", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert dalasi.__str__() == 'GMD 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_dalasi_changed():
             AttributeError,
             match='can\'t set attribute'):
         dalasi.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        dalasi.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        dalasi.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_dalasi_math_add():
                    'dalasi.Dalasi\'> '
                    'and <class \'str\'>.')):
         _ = dalasi_one.__add__('1.00')
-    assert (dalasi_one + dalasi_two) == dalasi_three
+    assert (
+        dalasi_one +
+        dalasi_two) == dalasi_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Dalasi(amount=1000)
+def test_dalasi_slots():
+    """test_dalasi_slots."""
+    dalasi = Dalasi(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Dalasi\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        dalasi.new_variable = 'fail'  # pylint: disable=assigning-non-slot

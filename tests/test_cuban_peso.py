@@ -30,11 +30,15 @@ def test_cuban_peso():
     assert cuban_peso.grouping_sign == ','
     assert not cuban_peso.international
     assert cuban_peso.symbol == '$'
+    assert cuban_peso.symbol_ahead
+    assert cuban_peso.symbol_separator == ''
     assert cuban_peso.__hash__() == hash((decimal, 'CUP', '192'))
     assert cuban_peso.__repr__() == (
         'CubanPeso(amount: 0.1428571428571428571428571429, '
         'alpha_code: "CUP", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "192", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -55,11 +59,15 @@ def test_cuban_peso_negative():
     assert cuban_peso.grouping_sign == ','
     assert not cuban_peso.international
     assert cuban_peso.symbol == '$'
+    assert cuban_peso.symbol_ahead
+    assert cuban_peso.symbol_separator == ''
     assert cuban_peso.__hash__() == hash((decimal, 'CUP', '192'))
     assert cuban_peso.__repr__() == (
         'CubanPeso(amount: -100, '
         'alpha_code: "CUP", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "192", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -76,7 +84,9 @@ def test_cuban_peso_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert cuban_peso.amount == decimal
     assert cuban_peso.numeric_code == '192'
@@ -86,17 +96,21 @@ def test_cuban_peso_custom():
     assert cuban_peso.grouping_sign == '.'
     assert cuban_peso.international
     assert cuban_peso.symbol == '$'
+    assert not cuban_peso.symbol_ahead
+    assert cuban_peso.symbol_separator == '_'
     assert cuban_peso.__hash__() == hash((decimal, 'CUP', '192'))
     assert cuban_peso.__repr__() == (
         'CubanPeso(amount: 1000, '
         'alpha_code: "CUP", '
         'symbol: "$", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "192", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert cuban_peso.__str__() == 'CUP 1.000,00000'
+    assert cuban_peso.__str__() == 'CUP 1,000.00000'
 
 
 def test_cuban_peso_changed():
@@ -114,6 +128,14 @@ def test_cuban_peso_changed():
             AttributeError,
             match='can\'t set attribute'):
         cuban_peso.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cuban_peso.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cuban_peso.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_cuban_peso_math_add():
                    'peso.CubanPeso\'> '
                    'and <class \'str\'>.')):
         _ = cuban_peso_one.__add__('1.00')
-    assert (cuban_peso_one + cuban_peso_two) == cuban_peso_three
+    assert (
+        cuban_peso_one +
+        cuban_peso_two) == cuban_peso_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = CubanPeso(amount=1000)
+def test_cuban_peso_slots():
+    """test_cuban_peso_slots."""
+    cuban_peso = CubanPeso(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'CubanPeso\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        cuban_peso.new_variable = 'fail'  # pylint: disable=assigning-non-slot

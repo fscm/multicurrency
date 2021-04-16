@@ -29,18 +29,22 @@ def test_uae_dirham():
     assert uae_dirham.decimal_sign == '.'
     assert uae_dirham.grouping_sign == ','
     assert not uae_dirham.international
-    assert uae_dirham.symbol == 'د.إ'
+    assert uae_dirham.symbol == 'د.إ.'
+    assert not uae_dirham.symbol_ahead
+    assert uae_dirham.symbol_separator == '\u00A0'
     assert uae_dirham.__hash__() == hash((decimal, 'AED', '784'))
     assert uae_dirham.__repr__() == (
         'UAEDirham(amount: 0.1428571428571428571428571429, '
         'alpha_code: "AED", '
-        'symbol: "د.إ", '
+        'symbol: "د.إ.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "784", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert uae_dirham.__str__() == 'د.إ0.14'
+    assert uae_dirham.__str__() == '0.14 د.إ.'
 
 
 def test_uae_dirham_negative():
@@ -54,18 +58,22 @@ def test_uae_dirham_negative():
     assert uae_dirham.decimal_sign == '.'
     assert uae_dirham.grouping_sign == ','
     assert not uae_dirham.international
-    assert uae_dirham.symbol == 'د.إ'
+    assert uae_dirham.symbol == 'د.إ.'
+    assert not uae_dirham.symbol_ahead
+    assert uae_dirham.symbol_separator == '\u00A0'
     assert uae_dirham.__hash__() == hash((decimal, 'AED', '784'))
     assert uae_dirham.__repr__() == (
         'UAEDirham(amount: -100, '
         'alpha_code: "AED", '
-        'symbol: "د.إ", '
+        'symbol: "د.إ.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "784", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert uae_dirham.__str__() == 'د.إ-100.00'
+    assert uae_dirham.__str__() == '-100.00 د.إ.'
 
 
 def test_uae_dirham_custom():
@@ -76,7 +84,9 @@ def test_uae_dirham_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert uae_dirham.amount == decimal
     assert uae_dirham.numeric_code == '784'
@@ -85,18 +95,22 @@ def test_uae_dirham_custom():
     assert uae_dirham.decimal_sign == ','
     assert uae_dirham.grouping_sign == '.'
     assert uae_dirham.international
-    assert uae_dirham.symbol == 'د.إ'
+    assert uae_dirham.symbol == 'د.إ.'
+    assert not uae_dirham.symbol_ahead
+    assert uae_dirham.symbol_separator == '_'
     assert uae_dirham.__hash__() == hash((decimal, 'AED', '784'))
     assert uae_dirham.__repr__() == (
         'UAEDirham(amount: 1000, '
         'alpha_code: "AED", '
-        'symbol: "د.إ", '
+        'symbol: "د.إ.", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "784", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert uae_dirham.__str__() == 'AED 1.000,00000'
+    assert uae_dirham.__str__() == 'AED 1,000.00000'
 
 
 def test_uae_dirham_changed():
@@ -114,6 +128,14 @@ def test_uae_dirham_changed():
             AttributeError,
             match='can\'t set attribute'):
         uae_dirham.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        uae_dirham.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        uae_dirham.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_uae_dirham_math_add():
                    'dirham.UAEDirham\'> '
                    'and <class \'str\'>.')):
         _ = uae_dirham_one.__add__('1.00')
-    assert (uae_dirham_one + uae_dirham_two) == uae_dirham_three
+    assert (
+        uae_dirham_one +
+        uae_dirham_two) == uae_dirham_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = UAEDirham(amount=1000)
+def test_uae_dirham_slots():
+    """test_uae_dirham_slots."""
+    uae_dirham = UAEDirham(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'UAEDirham\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        uae_dirham.new_variable = 'fail'  # pylint: disable=assigning-non-slot

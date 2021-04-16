@@ -30,17 +30,21 @@ def test_argentine_peso():
     assert argentine_peso.grouping_sign == '.'
     assert not argentine_peso.international
     assert argentine_peso.symbol == '$'
+    assert argentine_peso.symbol_ahead
+    assert argentine_peso.symbol_separator == '\u00A0'
     assert argentine_peso.__hash__() == hash((decimal, 'ARS', '032'))
     assert argentine_peso.__repr__() == (
         'ArgentinePeso(amount: 0.1428571428571428571428571429, '
         'alpha_code: "ARS", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "032", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert argentine_peso.__str__() == '$0,14'
+    assert argentine_peso.__str__() == '$ 0,14'
 
 
 def test_argentine_peso_negative():
@@ -55,17 +59,21 @@ def test_argentine_peso_negative():
     assert argentine_peso.grouping_sign == '.'
     assert not argentine_peso.international
     assert argentine_peso.symbol == '$'
+    assert argentine_peso.symbol_ahead
+    assert argentine_peso.symbol_separator == '\u00A0'
     assert argentine_peso.__hash__() == hash((decimal, 'ARS', '032'))
     assert argentine_peso.__repr__() == (
         'ArgentinePeso(amount: -100, '
         'alpha_code: "ARS", '
         'symbol: "$", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "032", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: False)')
-    assert argentine_peso.__str__() == '$-100,00'
+    assert argentine_peso.__str__() == '$ -100,00'
 
 
 def test_argentine_peso_custom():
@@ -76,7 +84,9 @@ def test_argentine_peso_custom():
         decimal_places=5,
         decimal_sign='.',
         grouping_sign=',',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert argentine_peso.amount == decimal
     assert argentine_peso.numeric_code == '032'
@@ -86,11 +96,15 @@ def test_argentine_peso_custom():
     assert argentine_peso.grouping_sign == ','
     assert argentine_peso.international
     assert argentine_peso.symbol == '$'
+    assert not argentine_peso.symbol_ahead
+    assert argentine_peso.symbol_separator == '_'
     assert argentine_peso.__hash__() == hash((decimal, 'ARS', '032'))
     assert argentine_peso.__repr__() == (
         'ArgentinePeso(amount: 1000, '
         'alpha_code: "ARS", '
         'symbol: "$", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "032", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
@@ -114,6 +128,14 @@ def test_argentine_peso_changed():
             AttributeError,
             match='can\'t set attribute'):
         argentine_peso.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        argentine_peso.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        argentine_peso.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_argentine_peso_math_add():
                    'peso.ArgentinePeso\'> '
                    'and <class \'str\'>.')):
         _ = argentine_peso_one.__add__('1.00')
-    assert (argentine_peso_one + argentine_peso_two) == argentine_peso_three
+    assert (
+        argentine_peso_one +
+        argentine_peso_two) == argentine_peso_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = ArgentinePeso(amount=1000)
+def test_argentine_peso_slots():
+    """test_argentine_peso_slots."""
+    argentine_peso = ArgentinePeso(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'ArgentinePeso\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        argentine_peso.new_variable = 'fail'  # pylint: disable=assigning-non-slot

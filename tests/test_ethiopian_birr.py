@@ -26,21 +26,25 @@ def test_ethiopian_birr():
     assert ethiopian_birr.numeric_code == '230'
     assert ethiopian_birr.alpha_code == 'ETB'
     assert ethiopian_birr.decimal_places == 2
-    assert ethiopian_birr.decimal_sign == ','
-    assert ethiopian_birr.grouping_sign == '.'
+    assert ethiopian_birr.decimal_sign == '.'
+    assert ethiopian_birr.grouping_sign == ','
     assert not ethiopian_birr.international
-    assert ethiopian_birr.symbol == ''
+    assert ethiopian_birr.symbol == 'ብር'
+    assert ethiopian_birr.symbol_ahead
+    assert ethiopian_birr.symbol_separator == '\u00A0'
     assert ethiopian_birr.__hash__() == hash((decimal, 'ETB', '230'))
     assert ethiopian_birr.__repr__() == (
         'EthiopianBirr(amount: 0.1428571428571428571428571429, '
         'alpha_code: "ETB", '
-        'symbol: "", '
+        'symbol: "ብር", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "230", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert ethiopian_birr.__str__() == '0,14'
+    assert ethiopian_birr.__str__() == 'ብር 0.14'
 
 
 def test_ethiopian_birr_negative():
@@ -51,21 +55,25 @@ def test_ethiopian_birr_negative():
     assert ethiopian_birr.numeric_code == '230'
     assert ethiopian_birr.alpha_code == 'ETB'
     assert ethiopian_birr.decimal_places == 2
-    assert ethiopian_birr.decimal_sign == ','
-    assert ethiopian_birr.grouping_sign == '.'
+    assert ethiopian_birr.decimal_sign == '.'
+    assert ethiopian_birr.grouping_sign == ','
     assert not ethiopian_birr.international
-    assert ethiopian_birr.symbol == ''
+    assert ethiopian_birr.symbol == 'ብር'
+    assert ethiopian_birr.symbol_ahead
+    assert ethiopian_birr.symbol_separator == '\u00A0'
     assert ethiopian_birr.__hash__() == hash((decimal, 'ETB', '230'))
     assert ethiopian_birr.__repr__() == (
         'EthiopianBirr(amount: -100, '
         'alpha_code: "ETB", '
-        'symbol: "", '
+        'symbol: "ብር", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "230", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert ethiopian_birr.__str__() == '-100,00'
+    assert ethiopian_birr.__str__() == 'ብር -100.00'
 
 
 def test_ethiopian_birr_custom():
@@ -74,27 +82,33 @@ def test_ethiopian_birr_custom():
     ethiopian_birr = EthiopianBirr(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert ethiopian_birr.amount == decimal
     assert ethiopian_birr.numeric_code == '230'
     assert ethiopian_birr.alpha_code == 'ETB'
     assert ethiopian_birr.decimal_places == 5
-    assert ethiopian_birr.decimal_sign == '.'
-    assert ethiopian_birr.grouping_sign == ','
+    assert ethiopian_birr.decimal_sign == ','
+    assert ethiopian_birr.grouping_sign == '.'
     assert ethiopian_birr.international
-    assert ethiopian_birr.symbol == ''
+    assert ethiopian_birr.symbol == 'ብር'
+    assert not ethiopian_birr.symbol_ahead
+    assert ethiopian_birr.symbol_separator == '_'
     assert ethiopian_birr.__hash__() == hash((decimal, 'ETB', '230'))
     assert ethiopian_birr.__repr__() == (
         'EthiopianBirr(amount: 1000, '
         'alpha_code: "ETB", '
-        'symbol: "", '
+        'symbol: "ብር", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "230", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert ethiopian_birr.__str__() == 'ETB 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_ethiopian_birr_changed():
             AttributeError,
             match='can\'t set attribute'):
         ethiopian_birr.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        ethiopian_birr.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        ethiopian_birr.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_ethiopian_birr_math_add():
                    'birr.EthiopianBirr\'> '
                    'and <class \'str\'>.')):
         _ = ethiopian_birr_one.__add__('1.00')
-    assert (ethiopian_birr_one + ethiopian_birr_two) == ethiopian_birr_three
+    assert (
+        ethiopian_birr_one +
+        ethiopian_birr_two) == ethiopian_birr_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = EthiopianBirr(amount=1000)
+def test_ethiopian_birr_slots():
+    """test_ethiopian_birr_slots."""
+    ethiopian_birr = EthiopianBirr(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'EthiopianBirr\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        ethiopian_birr.new_variable = 'fail'  # pylint: disable=assigning-non-slot

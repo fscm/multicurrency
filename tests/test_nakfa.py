@@ -26,21 +26,25 @@ def test_nakfa():
     assert nakfa.numeric_code == '232'
     assert nakfa.alpha_code == 'ERN'
     assert nakfa.decimal_places == 2
-    assert nakfa.decimal_sign == ','
-    assert nakfa.grouping_sign == '.'
+    assert nakfa.decimal_sign == '.'
+    assert nakfa.grouping_sign == ','
     assert not nakfa.international
     assert nakfa.symbol == 'Nfk'
+    assert nakfa.symbol_ahead
+    assert nakfa.symbol_separator == '\u00A0'
     assert nakfa.__hash__() == hash((decimal, 'ERN', '232'))
     assert nakfa.__repr__() == (
         'Nakfa(amount: 0.1428571428571428571428571429, '
         'alpha_code: "ERN", '
         'symbol: "Nfk", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "232", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert nakfa.__str__() == 'Nfk0,14'
+    assert nakfa.__str__() == 'Nfk 0.14'
 
 
 def test_nakfa_negative():
@@ -51,21 +55,25 @@ def test_nakfa_negative():
     assert nakfa.numeric_code == '232'
     assert nakfa.alpha_code == 'ERN'
     assert nakfa.decimal_places == 2
-    assert nakfa.decimal_sign == ','
-    assert nakfa.grouping_sign == '.'
+    assert nakfa.decimal_sign == '.'
+    assert nakfa.grouping_sign == ','
     assert not nakfa.international
     assert nakfa.symbol == 'Nfk'
+    assert nakfa.symbol_ahead
+    assert nakfa.symbol_separator == '\u00A0'
     assert nakfa.__hash__() == hash((decimal, 'ERN', '232'))
     assert nakfa.__repr__() == (
         'Nakfa(amount: -100, '
         'alpha_code: "ERN", '
         'symbol: "Nfk", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "232", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert nakfa.__str__() == 'Nfk-100,00'
+    assert nakfa.__str__() == 'Nfk -100.00'
 
 
 def test_nakfa_custom():
@@ -74,27 +82,33 @@ def test_nakfa_custom():
     nakfa = Nakfa(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert nakfa.amount == decimal
     assert nakfa.numeric_code == '232'
     assert nakfa.alpha_code == 'ERN'
     assert nakfa.decimal_places == 5
-    assert nakfa.decimal_sign == '.'
-    assert nakfa.grouping_sign == ','
+    assert nakfa.decimal_sign == ','
+    assert nakfa.grouping_sign == '.'
     assert nakfa.international
     assert nakfa.symbol == 'Nfk'
+    assert not nakfa.symbol_ahead
+    assert nakfa.symbol_separator == '_'
     assert nakfa.__hash__() == hash((decimal, 'ERN', '232'))
     assert nakfa.__repr__() == (
         'Nakfa(amount: 1000, '
         'alpha_code: "ERN", '
         'symbol: "Nfk", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "232", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert nakfa.__str__() == 'ERN 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_nakfa_changed():
             AttributeError,
             match='can\'t set attribute'):
         nakfa.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        nakfa.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        nakfa.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_nakfa_math_add():
                    'nakfa.Nakfa\'> '
                    'and <class \'str\'>.')):
         _ = nakfa_one.__add__('1.00')
-    assert (nakfa_one + nakfa_two) == nakfa_three
+    assert (
+        nakfa_one +
+        nakfa_two) == nakfa_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Nakfa(amount=1000)
+def test_nakfa_slots():
+    """test_nakfa_slots."""
+    nakfa = Nakfa(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Nakfa\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        nakfa.new_variable = 'fail'  # pylint: disable=assigning-non-slot

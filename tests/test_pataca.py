@@ -26,21 +26,25 @@ def test_pataca():
     assert pataca.numeric_code == '446'
     assert pataca.alpha_code == 'MOP'
     assert pataca.decimal_places == 2
-    assert pataca.decimal_sign == ','
-    assert pataca.grouping_sign == '.'
+    assert pataca.decimal_sign == '.'
+    assert pataca.grouping_sign == ','
     assert not pataca.international
     assert pataca.symbol == 'P'
+    assert pataca.symbol_ahead
+    assert pataca.symbol_separator == '\u00A0'
     assert pataca.__hash__() == hash((decimal, 'MOP', '446'))
     assert pataca.__repr__() == (
         'Pataca(amount: 0.1428571428571428571428571429, '
         'alpha_code: "MOP", '
         'symbol: "P", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "446", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert pataca.__str__() == 'P0,14'
+    assert pataca.__str__() == 'P 0.14'
 
 
 def test_pataca_negative():
@@ -51,21 +55,25 @@ def test_pataca_negative():
     assert pataca.numeric_code == '446'
     assert pataca.alpha_code == 'MOP'
     assert pataca.decimal_places == 2
-    assert pataca.decimal_sign == ','
-    assert pataca.grouping_sign == '.'
+    assert pataca.decimal_sign == '.'
+    assert pataca.grouping_sign == ','
     assert not pataca.international
     assert pataca.symbol == 'P'
+    assert pataca.symbol_ahead
+    assert pataca.symbol_separator == '\u00A0'
     assert pataca.__hash__() == hash((decimal, 'MOP', '446'))
     assert pataca.__repr__() == (
         'Pataca(amount: -100, '
         'alpha_code: "MOP", '
         'symbol: "P", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "446", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert pataca.__str__() == 'P-100,00'
+    assert pataca.__str__() == 'P -100.00'
 
 
 def test_pataca_custom():
@@ -74,27 +82,33 @@ def test_pataca_custom():
     pataca = Pataca(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert pataca.amount == decimal
     assert pataca.numeric_code == '446'
     assert pataca.alpha_code == 'MOP'
     assert pataca.decimal_places == 5
-    assert pataca.decimal_sign == '.'
-    assert pataca.grouping_sign == ','
+    assert pataca.decimal_sign == ','
+    assert pataca.grouping_sign == '.'
     assert pataca.international
     assert pataca.symbol == 'P'
+    assert not pataca.symbol_ahead
+    assert pataca.symbol_separator == '_'
     assert pataca.__hash__() == hash((decimal, 'MOP', '446'))
     assert pataca.__repr__() == (
         'Pataca(amount: 1000, '
         'alpha_code: "MOP", '
         'symbol: "P", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "446", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert pataca.__str__() == 'MOP 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_pataca_changed():
             AttributeError,
             match='can\'t set attribute'):
         pataca.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        pataca.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        pataca.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_pataca_math_add():
                    'pataca.Pataca\'> '
                    'and <class \'str\'>.')):
         _ = pataca_one.__add__('1.00')
-    assert (pataca_one + pataca_two) == pataca_three
+    assert (
+        pataca_one +
+        pataca_two) == pataca_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Pataca(amount=1000)
+def test_pataca_slots():
+    """test_pataca_slots."""
+    pataca = Pataca(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Pataca\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        pataca.new_variable = 'fail'  # pylint: disable=assigning-non-slot

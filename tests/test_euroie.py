@@ -30,11 +30,15 @@ def test_euroie():
     assert euroie.grouping_sign == ','
     assert not euroie.international
     assert euroie.symbol == '€'
+    assert euroie.symbol_ahead
+    assert euroie.symbol_separator == ''
     assert euroie.__hash__() == hash((decimal, 'EUR', '978'))
     assert euroie.__repr__() == (
         'EuroIE(amount: 0.1428571428571428571428571429, '
         'alpha_code: "EUR", '
         'symbol: "€", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -55,11 +59,15 @@ def test_euroie_negative():
     assert euroie.grouping_sign == ','
     assert not euroie.international
     assert euroie.symbol == '€'
+    assert euroie.symbol_ahead
+    assert euroie.symbol_separator == ''
     assert euroie.__hash__() == hash((decimal, 'EUR', '978'))
     assert euroie.__repr__() == (
         'EuroIE(amount: -100, '
         'alpha_code: "EUR", '
         'symbol: "€", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -76,7 +84,9 @@ def test_euroie_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert euroie.amount == decimal
     assert euroie.numeric_code == '978'
@@ -86,17 +96,21 @@ def test_euroie_custom():
     assert euroie.grouping_sign == '.'
     assert euroie.international
     assert euroie.symbol == '€'
+    assert not euroie.symbol_ahead
+    assert euroie.symbol_separator == '_'
     assert euroie.__hash__() == hash((decimal, 'EUR', '978'))
     assert euroie.__repr__() == (
         'EuroIE(amount: 1000, '
         'alpha_code: "EUR", '
         'symbol: "€", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "978", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert euroie.__str__() == 'EUR 1.000,00000'
+    assert euroie.__str__() == 'EUR 1,000.00000'
 
 
 def test_euroie_changed():
@@ -114,6 +128,14 @@ def test_euroie_changed():
             AttributeError,
             match='can\'t set attribute'):
         euroie.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        euroie.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        euroie.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_euroie_math_add():
                    'euro.EuroIE\'> '
                    'and <class \'str\'>.')):
         _ = euroie_one.__add__('1.00')
-    assert (euroie_one + euroie_two) == euroie_three
+    assert (
+        euroie_one +
+        euroie_two) == euroie_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = EuroIE(amount=1000)
+def test_euroie_slots():
+    """test_euroie_slots."""
+    euroie = EuroIE(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'EuroIE\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        euroie.new_variable = 'fail'  # pylint: disable=assigning-non-slot

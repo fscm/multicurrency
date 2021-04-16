@@ -26,21 +26,25 @@ def test_somoni():
     assert somoni.numeric_code == '972'
     assert somoni.alpha_code == 'TJS'
     assert somoni.decimal_places == 2
-    assert somoni.decimal_sign == ','
-    assert somoni.grouping_sign == '.'
+    assert somoni.decimal_sign == '.'
+    assert somoni.grouping_sign == ','
     assert not somoni.international
     assert somoni.symbol == 'ЅМ'
+    assert somoni.symbol_ahead
+    assert somoni.symbol_separator == '\u00A0'
     assert somoni.__hash__() == hash((decimal, 'TJS', '972'))
     assert somoni.__repr__() == (
         'Somoni(amount: 0.1428571428571428571428571429, '
         'alpha_code: "TJS", '
         'symbol: "ЅМ", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "972", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert somoni.__str__() == 'ЅМ0,14'
+    assert somoni.__str__() == 'ЅМ 0.14'
 
 
 def test_somoni_negative():
@@ -51,21 +55,25 @@ def test_somoni_negative():
     assert somoni.numeric_code == '972'
     assert somoni.alpha_code == 'TJS'
     assert somoni.decimal_places == 2
-    assert somoni.decimal_sign == ','
-    assert somoni.grouping_sign == '.'
+    assert somoni.decimal_sign == '.'
+    assert somoni.grouping_sign == ','
     assert not somoni.international
     assert somoni.symbol == 'ЅМ'
+    assert somoni.symbol_ahead
+    assert somoni.symbol_separator == '\u00A0'
     assert somoni.__hash__() == hash((decimal, 'TJS', '972'))
     assert somoni.__repr__() == (
         'Somoni(amount: -100, '
         'alpha_code: "TJS", '
         'symbol: "ЅМ", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "972", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: ".", '
+        'grouping_sign: ",", '
         'international: False)')
-    assert somoni.__str__() == 'ЅМ-100,00'
+    assert somoni.__str__() == 'ЅМ -100.00'
 
 
 def test_somoni_custom():
@@ -74,27 +82,33 @@ def test_somoni_custom():
     somoni = Somoni(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
-        international=True)
+        decimal_sign=',',
+        grouping_sign='.',
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert somoni.amount == decimal
     assert somoni.numeric_code == '972'
     assert somoni.alpha_code == 'TJS'
     assert somoni.decimal_places == 5
-    assert somoni.decimal_sign == '.'
-    assert somoni.grouping_sign == ','
+    assert somoni.decimal_sign == ','
+    assert somoni.grouping_sign == '.'
     assert somoni.international
     assert somoni.symbol == 'ЅМ'
+    assert not somoni.symbol_ahead
+    assert somoni.symbol_separator == '_'
     assert somoni.__hash__() == hash((decimal, 'TJS', '972'))
     assert somoni.__repr__() == (
         'Somoni(amount: 1000, '
         'alpha_code: "TJS", '
         'symbol: "ЅМ", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "972", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
         'international: True)')
     assert somoni.__str__() == 'TJS 1,000.00000'
 
@@ -114,6 +128,14 @@ def test_somoni_changed():
             AttributeError,
             match='can\'t set attribute'):
         somoni.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        somoni.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        somoni.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_somoni_math_add():
                    'somoni.Somoni\'> '
                    'and <class \'str\'>.')):
         _ = somoni_one.__add__('1.00')
-    assert (somoni_one + somoni_two) == somoni_three
+    assert (
+        somoni_one +
+        somoni_two) == somoni_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = Somoni(amount=1000)
+def test_somoni_slots():
+    """test_somoni_slots."""
+    somoni = Somoni(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'Somoni\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        somoni.new_variable = 'fail'  # pylint: disable=assigning-non-slot

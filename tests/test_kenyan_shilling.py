@@ -29,18 +29,22 @@ def test_kenyan_shilling():
     assert kenyan_shilling.decimal_sign == '.'
     assert kenyan_shilling.grouping_sign == ','
     assert not kenyan_shilling.international
-    assert kenyan_shilling.symbol == 'Sh'
+    assert kenyan_shilling.symbol == 'Ksh'
+    assert kenyan_shilling.symbol_ahead
+    assert kenyan_shilling.symbol_separator == '\u00A0'
     assert kenyan_shilling.__hash__() == hash((decimal, 'KES', '404'))
     assert kenyan_shilling.__repr__() == (
         'KenyanShilling(amount: 0.1428571428571428571428571429, '
         'alpha_code: "KES", '
-        'symbol: "Sh", '
+        'symbol: "Ksh", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "404", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert kenyan_shilling.__str__() == 'Sh0.14'
+    assert kenyan_shilling.__str__() == 'Ksh 0.14'
 
 
 def test_kenyan_shilling_negative():
@@ -54,18 +58,22 @@ def test_kenyan_shilling_negative():
     assert kenyan_shilling.decimal_sign == '.'
     assert kenyan_shilling.grouping_sign == ','
     assert not kenyan_shilling.international
-    assert kenyan_shilling.symbol == 'Sh'
+    assert kenyan_shilling.symbol == 'Ksh'
+    assert kenyan_shilling.symbol_ahead
+    assert kenyan_shilling.symbol_separator == '\u00A0'
     assert kenyan_shilling.__hash__() == hash((decimal, 'KES', '404'))
     assert kenyan_shilling.__repr__() == (
         'KenyanShilling(amount: -100, '
         'alpha_code: "KES", '
-        'symbol: "Sh", '
+        'symbol: "Ksh", '
+        'symbol_ahead: True, '
+        'symbol_separator: "\u00A0", '
         'numeric_code: "404", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'international: False)')
-    assert kenyan_shilling.__str__() == 'Sh-100.00'
+    assert kenyan_shilling.__str__() == 'Ksh -100.00'
 
 
 def test_kenyan_shilling_custom():
@@ -76,7 +84,9 @@ def test_kenyan_shilling_custom():
         decimal_places=5,
         decimal_sign=',',
         grouping_sign='.',
-        international=True)
+        international=True,
+        symbol_ahead=False,
+        symbol_separator='_')
     decimal = CONTEXT.create_decimal(amount)
     assert kenyan_shilling.amount == decimal
     assert kenyan_shilling.numeric_code == '404'
@@ -85,18 +95,22 @@ def test_kenyan_shilling_custom():
     assert kenyan_shilling.decimal_sign == ','
     assert kenyan_shilling.grouping_sign == '.'
     assert kenyan_shilling.international
-    assert kenyan_shilling.symbol == 'Sh'
+    assert kenyan_shilling.symbol == 'Ksh'
+    assert not kenyan_shilling.symbol_ahead
+    assert kenyan_shilling.symbol_separator == '_'
     assert kenyan_shilling.__hash__() == hash((decimal, 'KES', '404'))
     assert kenyan_shilling.__repr__() == (
         'KenyanShilling(amount: 1000, '
         'alpha_code: "KES", '
-        'symbol: "Sh", '
+        'symbol: "Ksh", '
+        'symbol_ahead: False, '
+        'symbol_separator: "_", '
         'numeric_code: "404", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
         'international: True)')
-    assert kenyan_shilling.__str__() == 'KES 1.000,00000'
+    assert kenyan_shilling.__str__() == 'KES 1,000.00000'
 
 
 def test_kenyan_shilling_changed():
@@ -114,6 +128,14 @@ def test_kenyan_shilling_changed():
             AttributeError,
             match='can\'t set attribute'):
         kenyan_shilling.symbol = '€'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        kenyan_shilling.symbol_ahead = False
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        kenyan_shilling.symbol_separator = '_'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -152,15 +174,17 @@ def test_kenyan_shilling_math_add():
                    'shilling.KenyanShilling\'> '
                    'and <class \'str\'>.')):
         _ = kenyan_shilling_one.__add__('1.00')
-    assert (kenyan_shilling_one + kenyan_shilling_two) == kenyan_shilling_three
+    assert (
+        kenyan_shilling_one +
+        kenyan_shilling_two) == kenyan_shilling_three
 
 
-def test_currency_slots():
-    """test_currency_slots."""
-    euro = KenyanShilling(amount=1000)
+def test_kenyan_shilling_slots():
+    """test_kenyan_shilling_slots."""
+    kenyan_shilling = KenyanShilling(amount=1000)
     with raises(
             AttributeError,
             match=(
                 '\'KenyanShilling\' '
                 'object has no attribute \'new_variable\'')):
-        euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
+        kenyan_shilling.new_variable = 'fail'  # pylint: disable=assigning-non-slot
