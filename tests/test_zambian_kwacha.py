@@ -32,6 +32,7 @@ def test_zambian_kwacha():
     assert zambian_kwacha.symbol == 'ZK'
     assert zambian_kwacha.symbol_ahead
     assert zambian_kwacha.symbol_separator == '\u00A0'
+    assert zambian_kwacha.convertion == ''
     assert zambian_kwacha.__hash__() == hash((decimal, 'ZMW', '967'))
     assert zambian_kwacha.__repr__() == (
         'ZambianKwacha(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_zambian_kwacha():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert zambian_kwacha.__str__() == 'ZK 0.14'
 
@@ -61,6 +63,7 @@ def test_zambian_kwacha_negative():
     assert zambian_kwacha.symbol == 'ZK'
     assert zambian_kwacha.symbol_ahead
     assert zambian_kwacha.symbol_separator == '\u00A0'
+    assert zambian_kwacha.convertion == ''
     assert zambian_kwacha.__hash__() == hash((decimal, 'ZMW', '967'))
     assert zambian_kwacha.__repr__() == (
         'ZambianKwacha(amount: -100, '
@@ -72,6 +75,7 @@ def test_zambian_kwacha_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert zambian_kwacha.__str__() == 'ZK -100.00'
 
@@ -98,6 +102,7 @@ def test_zambian_kwacha_custom():
     assert zambian_kwacha.symbol == 'ZK'
     assert not zambian_kwacha.symbol_ahead
     assert zambian_kwacha.symbol_separator == '_'
+    assert zambian_kwacha.convertion == ''
     assert zambian_kwacha.__hash__() == hash((decimal, 'ZMW', '967'))
     assert zambian_kwacha.__repr__() == (
         'ZambianKwacha(amount: 1000, '
@@ -109,6 +114,7 @@ def test_zambian_kwacha_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert zambian_kwacha.__str__() == 'ZMW 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_zambian_kwacha_changed():
             AttributeError,
             match='can\'t set attribute'):
         zambian_kwacha.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        zambian_kwacha.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -32,6 +32,7 @@ def test_cedi():
     assert cedi.symbol == '₵'
     assert cedi.symbol_ahead
     assert cedi.symbol_separator == ''
+    assert cedi.convertion == ''
     assert cedi.__hash__() == hash((decimal, 'GHS', '936'))
     assert cedi.__repr__() == (
         'Cedi(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_cedi():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert cedi.__str__() == '₵0.14'
 
@@ -61,6 +63,7 @@ def test_cedi_negative():
     assert cedi.symbol == '₵'
     assert cedi.symbol_ahead
     assert cedi.symbol_separator == ''
+    assert cedi.convertion == ''
     assert cedi.__hash__() == hash((decimal, 'GHS', '936'))
     assert cedi.__repr__() == (
         'Cedi(amount: -100, '
@@ -72,6 +75,7 @@ def test_cedi_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert cedi.__str__() == '₵-100.00'
 
@@ -98,6 +102,7 @@ def test_cedi_custom():
     assert cedi.symbol == '₵'
     assert not cedi.symbol_ahead
     assert cedi.symbol_separator == '_'
+    assert cedi.convertion == ''
     assert cedi.__hash__() == hash((decimal, 'GHS', '936'))
     assert cedi.__repr__() == (
         'Cedi(amount: 1000, '
@@ -109,6 +114,7 @@ def test_cedi_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert cedi.__str__() == 'GHS 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_cedi_changed():
             AttributeError,
             match='can\'t set attribute'):
         cedi.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cedi.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

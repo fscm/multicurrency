@@ -20,7 +20,7 @@ class EgyptianPound(Currency):
         >>> egyptian_pound = EgyptianPound(
         ...     amount=123456.789)
         >>> print(egyptian_pound)
-        ج.م. 123,456.79
+        ج.م ١٢٣٬٤٥٦٫٧٩
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -28,8 +28,8 @@ class EgyptianPound(Currency):
         amount (Union[int, float, Decimal]): Represented value.
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
-        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
-        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        decimal_sign (str, optional): Decimal symbol. Defaults to '٫'.
+        grouping_sign (str, optional): Grouping symbol. Defaults to '٬'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
@@ -45,8 +45,8 @@ class EgyptianPound(Currency):
             cls,
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
-            decimal_sign: Optional[str] = '.',
-            grouping_sign: Optional[str] = ',',
+            decimal_sign: Optional[str] = '\u066B',
+            grouping_sign: Optional[str] = '\u066C',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
@@ -61,12 +61,13 @@ class EgyptianPound(Currency):
             amount=amount,
             alpha_code='EGP',
             numeric_code='818',
-            symbol='ج.م.',
+            symbol='ج.م',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='٠١٢٣٤٥٦٧٨٩-\u066C\u066B',
             international=international)
 
 
@@ -126,6 +127,7 @@ class FalklandIslandsPound(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -185,6 +187,7 @@ class PoundSterling(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -244,6 +247,7 @@ class GibraltarPound(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -256,7 +260,7 @@ class LebanesePound(Currency):
         >>> lebanese_pound = LebanesePound(
         ...     amount=123456.789)
         >>> print(lebanese_pound)
-        ل.ل. 123,457
+        ل.ل ١٢٣٬٤٥٧
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -264,8 +268,8 @@ class LebanesePound(Currency):
         amount (Union[int, float, Decimal]): Represented value.
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 0,
-        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
-        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        decimal_sign (str, optional): Decimal symbol. Defaults to '٫'.
+        grouping_sign (str, optional): Grouping symbol. Defaults to '٬'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
@@ -281,8 +285,8 @@ class LebanesePound(Currency):
             cls,
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 0,
-            decimal_sign: Optional[str] = '.',
-            grouping_sign: Optional[str] = ',',
+            decimal_sign: Optional[str] = '\u066B',
+            grouping_sign: Optional[str] = '\u066C',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
@@ -297,12 +301,13 @@ class LebanesePound(Currency):
             amount=amount,
             alpha_code='LBP',
             numeric_code='422',
-            symbol='ل.ل.',
+            symbol='ل.ل',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='٠١٢٣٤٥٦٧٨٩-\u066C\u066B',
             international=international)
 
 
@@ -315,7 +320,7 @@ class SudanesePound(Currency):
         >>> sudanese_pound = SudanesePound(
         ...     amount=123456.789)
         >>> print(sudanese_pound)
-        123.456,79 ج.س
+        ١٢٣٬٤٥٦٫٧٩ ج.س
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -323,8 +328,8 @@ class SudanesePound(Currency):
         amount (Union[int, float, Decimal]): Represented value.
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
-        decimal_sign (str, optional): Decimal symbol. Defaults to ','.
-        grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
+        decimal_sign (str, optional): Decimal symbol. Defaults to '٫'.
+        grouping_sign (str, optional): Grouping symbol. Defaults to '٬'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
@@ -340,8 +345,8 @@ class SudanesePound(Currency):
             cls,
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
-            decimal_sign: Optional[str] = ',',
-            grouping_sign: Optional[str] = '.',
+            decimal_sign: Optional[str] = '\u066B',
+            grouping_sign: Optional[str] = '\u066C',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
@@ -362,6 +367,7 @@ class SudanesePound(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='٠١٢٣٤٥٦٧٨٩-\u066C\u066B',
             international=international)
 
 
@@ -421,6 +427,7 @@ class SaintHelenaPound(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -433,7 +440,7 @@ class SyrianPound(Currency):
         >>> syrian_pound = SyrianPound(
         ...     amount=123456.789)
         >>> print(syrian_pound)
-        123.456,79 ل.س.
+        ١٢٣٬٤٥٦٫٧٩ ل.س
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -441,8 +448,8 @@ class SyrianPound(Currency):
         amount (Union[int, float, Decimal]): Represented value.
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
-        decimal_sign (str, optional): Decimal symbol. Defaults to ','.
-        grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
+        decimal_sign (str, optional): Decimal symbol. Defaults to '٫'.
+        grouping_sign (str, optional): Grouping symbol. Defaults to '٬'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
@@ -458,8 +465,8 @@ class SyrianPound(Currency):
             cls,
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
-            decimal_sign: Optional[str] = ',',
-            grouping_sign: Optional[str] = '.',
+            decimal_sign: Optional[str] = '\u066B',
+            grouping_sign: Optional[str] = '\u066C',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
@@ -474,10 +481,11 @@ class SyrianPound(Currency):
             amount=amount,
             alpha_code='SYP',
             numeric_code='760',
-            symbol='ل.س.',
+            symbol='ل.س',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='٠١٢٣٤٥٦٧٨٩-\u066C\u066B',
             international=international)

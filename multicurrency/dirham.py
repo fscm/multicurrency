@@ -20,7 +20,7 @@ class UAEDirham(Currency):
         >>> uae_dirham = UAEDirham(
         ...     amount=123456.789)
         >>> print(uae_dirham)
-        123,456.79 د.إ.
+        ١٢٣٬٤٥٦٫٧٩ د.إ
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -28,8 +28,8 @@ class UAEDirham(Currency):
         amount (Union[int, float, Decimal]): Represented value.
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
-        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
-        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        decimal_sign (str, optional): Decimal symbol. Defaults to '٫'.
+        grouping_sign (str, optional): Grouping symbol. Defaults to '٬'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
@@ -45,8 +45,8 @@ class UAEDirham(Currency):
             cls,
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
-            decimal_sign: Optional[str] = '.',
-            grouping_sign: Optional[str] = ',',
+            decimal_sign: Optional[str] = '\u066B',
+            grouping_sign: Optional[str] = '\u066C',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
@@ -61,12 +61,13 @@ class UAEDirham(Currency):
             amount=amount,
             alpha_code='AED',
             numeric_code='784',
-            symbol='د.إ.',
+            symbol='د.إ',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='٠١٢٣٤٥٦٧٨٩-\u066C\u066B',
             international=international)
 
 
@@ -79,7 +80,7 @@ class MoroccanDirham(Currency):
         >>> moroccan_dirham = MoroccanDirham(
         ...     amount=123456.789)
         >>> print(moroccan_dirham)
-        123.456,79 د.م.
+        ١٢٣٬٤٥٦٫٧٩ د.م.
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -87,8 +88,8 @@ class MoroccanDirham(Currency):
         amount (Union[int, float, Decimal]): Represented value.
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
-        decimal_sign (str, optional): Decimal symbol. Defaults to ','.
-        grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
+        decimal_sign (str, optional): Decimal symbol. Defaults to '٫'.
+        grouping_sign (str, optional): Grouping symbol. Defaults to '٬'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
@@ -104,8 +105,8 @@ class MoroccanDirham(Currency):
             cls,
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
-            decimal_sign: Optional[str] = ',',
-            grouping_sign: Optional[str] = '.',
+            decimal_sign: Optional[str] = '\u066B',
+            grouping_sign: Optional[str] = '\u066C',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
@@ -126,4 +127,5 @@ class MoroccanDirham(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='٠١٢٣٤٥٦٧٨٩-\u066C\u066B',
             international=international)

@@ -32,6 +32,7 @@ def test_kyat():
     assert kyat.symbol == 'K'
     assert not kyat.symbol_ahead
     assert kyat.symbol_separator == '\u00A0'
+    assert kyat.convertion == '၀၁၂၃၄၅၆၇၈၉-,.'
     assert kyat.__hash__() == hash((decimal, 'MMK', '104'))
     assert kyat.__repr__() == (
         'Kyat(amount: 0.1428571428571428571428571429, '
@@ -43,8 +44,9 @@ def test_kyat():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "၀၁၂၃၄၅၆၇၈၉-,.", '
         'international: False)')
-    assert kyat.__str__() == '0.14 K'
+    assert kyat.__str__() == '၀.၁၄ K'
 
 
 def test_kyat_negative():
@@ -61,6 +63,7 @@ def test_kyat_negative():
     assert kyat.symbol == 'K'
     assert not kyat.symbol_ahead
     assert kyat.symbol_separator == '\u00A0'
+    assert kyat.convertion == '၀၁၂၃၄၅၆၇၈၉-,.'
     assert kyat.__hash__() == hash((decimal, 'MMK', '104'))
     assert kyat.__repr__() == (
         'Kyat(amount: -100, '
@@ -72,8 +75,9 @@ def test_kyat_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "၀၁၂၃၄၅၆၇၈၉-,.", '
         'international: False)')
-    assert kyat.__str__() == '-100.00 K'
+    assert kyat.__str__() == '-၁၀၀.၀၀ K'
 
 
 def test_kyat_custom():
@@ -98,6 +102,7 @@ def test_kyat_custom():
     assert kyat.symbol == 'K'
     assert not kyat.symbol_ahead
     assert kyat.symbol_separator == '_'
+    assert kyat.convertion == '၀၁၂၃၄၅၆၇၈၉-,.'
     assert kyat.__hash__() == hash((decimal, 'MMK', '104'))
     assert kyat.__repr__() == (
         'Kyat(amount: 1000, '
@@ -109,6 +114,7 @@ def test_kyat_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "၀၁၂၃၄၅၆၇၈၉-,.", '
         'international: True)')
     assert kyat.__str__() == 'MMK 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_kyat_changed():
             AttributeError,
             match='can\'t set attribute'):
         kyat.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        kyat.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

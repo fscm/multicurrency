@@ -20,7 +20,7 @@ class IranianRial(Currency):
         >>> iranian_rial = IranianRial(
         ...     amount=123456.789)
         >>> print(iranian_rial)
-        123.456,79 ﷼
+        ۱۲۳٬۴۵۶٫۷۹ ﷼
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -28,8 +28,8 @@ class IranianRial(Currency):
         amount (Union[int, float, Decimal]): Represented value.
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
-        decimal_sign (str, optional): Decimal symbol. Defaults to ','.
-        grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
+        decimal_sign (str, optional): Decimal symbol. Defaults to '٫'.
+        grouping_sign (str, optional): Grouping symbol. Defaults to '٬'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
@@ -45,8 +45,8 @@ class IranianRial(Currency):
             cls,
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
-            decimal_sign: Optional[str] = ',',
-            grouping_sign: Optional[str] = '.',
+            decimal_sign: Optional[str] = '\u066B',
+            grouping_sign: Optional[str] = '\u066C',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
@@ -67,6 +67,7 @@ class IranianRial(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='۰۱۲۳۴۵۶۷۸۹-\u066C\u066B',
             international=international)
 
 
@@ -79,7 +80,7 @@ class RialOmani(Currency):
         >>> rial_omani = RialOmani(
         ...     amount=123456.789)
         >>> print(rial_omani)
-        123,456.789 ر.ع.
+        ١٢٣٬٤٥٦٫٧٨٩ ر.ع.
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -87,8 +88,8 @@ class RialOmani(Currency):
         amount (Union[int, float, Decimal]): Represented value.
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 3,
-        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
-        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        decimal_sign (str, optional): Decimal symbol. Defaults to '٫'.
+        grouping_sign (str, optional): Grouping symbol. Defaults to '٬'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
@@ -104,8 +105,8 @@ class RialOmani(Currency):
             cls,
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 3,
-            decimal_sign: Optional[str] = '.',
-            grouping_sign: Optional[str] = ',',
+            decimal_sign: Optional[str] = '\u066B',
+            grouping_sign: Optional[str] = '\u066C',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
@@ -126,6 +127,7 @@ class RialOmani(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='٠١٢٣٤٥٦٧٨٩-\u066C\u066B',
             international=international)
 
 
@@ -138,7 +140,7 @@ class QatariRial(Currency):
         >>> qatari_rial = QatariRial(
         ...     amount=123456.789)
         >>> print(qatari_rial)
-        123.456,79 ر.ق.
+        ١٢٣٬٤٥٦٫٧٩ ر.ق
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -146,8 +148,8 @@ class QatariRial(Currency):
         amount (Union[int, float, Decimal]): Represented value.
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
-        decimal_sign (str, optional): Decimal symbol. Defaults to ','.
-        grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
+        decimal_sign (str, optional): Decimal symbol. Defaults to '٫'.
+        grouping_sign (str, optional): Grouping symbol. Defaults to '٬'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
@@ -163,8 +165,8 @@ class QatariRial(Currency):
             cls,
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
-            decimal_sign: Optional[str] = ',',
-            grouping_sign: Optional[str] = '.',
+            decimal_sign: Optional[str] = '\u066B',
+            grouping_sign: Optional[str] = '\u066C',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
@@ -179,12 +181,13 @@ class QatariRial(Currency):
             amount=amount,
             alpha_code='QAR',
             numeric_code='634',
-            symbol='ر.ق.',
+            symbol='ر.ق',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='٠١٢٣٤٥٦٧٨٩-\u066C\u066B',
             international=international)
 
 
@@ -197,7 +200,7 @@ class YemeniRial(Currency):
         >>> yemeni_rial = YemeniRial(
         ...     amount=123456.789)
         >>> print(yemeni_rial)
-        123.456,79 ﷼
+        ١٢٣٬٤٥٦٫٧٩ ﷼
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -205,8 +208,8 @@ class YemeniRial(Currency):
         amount (Union[int, float, Decimal]): Represented value.
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
-        decimal_sign (str, optional): Decimal symbol. Defaults to ','.
-        grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
+        decimal_sign (str, optional): Decimal symbol. Defaults to '٫'.
+        grouping_sign (str, optional): Grouping symbol. Defaults to '٬'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
@@ -222,8 +225,8 @@ class YemeniRial(Currency):
             cls,
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
-            decimal_sign: Optional[str] = ',',
-            grouping_sign: Optional[str] = '.',
+            decimal_sign: Optional[str] = '\u066B',
+            grouping_sign: Optional[str] = '\u066C',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
@@ -244,4 +247,5 @@ class YemeniRial(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='٠١٢٣٤٥٦٧٨٩-\u066C\u066B',
             international=international)

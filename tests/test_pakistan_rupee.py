@@ -32,6 +32,7 @@ def test_pakistan_rupee():
     assert pakistan_rupee.symbol == '₨'
     assert pakistan_rupee.symbol_ahead
     assert pakistan_rupee.symbol_separator == '\u00A0'
+    assert pakistan_rupee.convertion == ''
     assert pakistan_rupee.__hash__() == hash((decimal, 'PKR', '586'))
     assert pakistan_rupee.__repr__() == (
         'PakistanRupee(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_pakistan_rupee():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert pakistan_rupee.__str__() == '₨ 0.14'
 
@@ -61,6 +63,7 @@ def test_pakistan_rupee_negative():
     assert pakistan_rupee.symbol == '₨'
     assert pakistan_rupee.symbol_ahead
     assert pakistan_rupee.symbol_separator == '\u00A0'
+    assert pakistan_rupee.convertion == ''
     assert pakistan_rupee.__hash__() == hash((decimal, 'PKR', '586'))
     assert pakistan_rupee.__repr__() == (
         'PakistanRupee(amount: -100, '
@@ -72,6 +75,7 @@ def test_pakistan_rupee_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert pakistan_rupee.__str__() == '₨ -100.00'
 
@@ -98,6 +102,7 @@ def test_pakistan_rupee_custom():
     assert pakistan_rupee.symbol == '₨'
     assert not pakistan_rupee.symbol_ahead
     assert pakistan_rupee.symbol_separator == '_'
+    assert pakistan_rupee.convertion == ''
     assert pakistan_rupee.__hash__() == hash((decimal, 'PKR', '586'))
     assert pakistan_rupee.__repr__() == (
         'PakistanRupee(amount: 1000, '
@@ -109,6 +114,7 @@ def test_pakistan_rupee_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert pakistan_rupee.__str__() == 'PKR 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_pakistan_rupee_changed():
             AttributeError,
             match='can\'t set attribute'):
         pakistan_rupee.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        pakistan_rupee.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -32,6 +32,7 @@ def test_north_korean_won():
     assert north_korean_won.symbol == '₩'
     assert north_korean_won.symbol_ahead
     assert north_korean_won.symbol_separator == '\u00A0'
+    assert north_korean_won.convertion == ''
     assert north_korean_won.__hash__() == hash((decimal, 'KPW', '408'))
     assert north_korean_won.__repr__() == (
         'NorthKoreanWon(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_north_korean_won():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert north_korean_won.__str__() == '₩ 0.14'
 
@@ -61,6 +63,7 @@ def test_north_korean_won_negative():
     assert north_korean_won.symbol == '₩'
     assert north_korean_won.symbol_ahead
     assert north_korean_won.symbol_separator == '\u00A0'
+    assert north_korean_won.convertion == ''
     assert north_korean_won.__hash__() == hash((decimal, 'KPW', '408'))
     assert north_korean_won.__repr__() == (
         'NorthKoreanWon(amount: -100, '
@@ -72,6 +75,7 @@ def test_north_korean_won_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert north_korean_won.__str__() == '₩ -100.00'
 
@@ -98,6 +102,7 @@ def test_north_korean_won_custom():
     assert north_korean_won.symbol == '₩'
     assert not north_korean_won.symbol_ahead
     assert north_korean_won.symbol_separator == '_'
+    assert north_korean_won.convertion == ''
     assert north_korean_won.__hash__() == hash((decimal, 'KPW', '408'))
     assert north_korean_won.__repr__() == (
         'NorthKoreanWon(amount: 1000, '
@@ -109,6 +114,7 @@ def test_north_korean_won_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert north_korean_won.__str__() == 'KPW 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_north_korean_won_changed():
             AttributeError,
             match='can\'t set attribute'):
         north_korean_won.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        north_korean_won.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

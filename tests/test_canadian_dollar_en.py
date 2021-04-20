@@ -32,6 +32,7 @@ def test_canadian_dollar_en():
     assert canadian_dollar_en.symbol == '$'
     assert canadian_dollar_en.symbol_ahead
     assert canadian_dollar_en.symbol_separator == ''
+    assert canadian_dollar_en.convertion == ''
     assert canadian_dollar_en.__hash__() == hash((decimal, 'CAD', '124'))
     assert canadian_dollar_en.__repr__() == (
         'CanadianDollarEN(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_canadian_dollar_en():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert canadian_dollar_en.__str__() == '$0.14'
 
@@ -61,6 +63,7 @@ def test_canadian_dollar_en_negative():
     assert canadian_dollar_en.symbol == '$'
     assert canadian_dollar_en.symbol_ahead
     assert canadian_dollar_en.symbol_separator == ''
+    assert canadian_dollar_en.convertion == ''
     assert canadian_dollar_en.__hash__() == hash((decimal, 'CAD', '124'))
     assert canadian_dollar_en.__repr__() == (
         'CanadianDollarEN(amount: -100, '
@@ -72,6 +75,7 @@ def test_canadian_dollar_en_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert canadian_dollar_en.__str__() == '$-100.00'
 
@@ -98,6 +102,7 @@ def test_canadian_dollar_en_custom():
     assert canadian_dollar_en.symbol == '$'
     assert not canadian_dollar_en.symbol_ahead
     assert canadian_dollar_en.symbol_separator == '_'
+    assert canadian_dollar_en.convertion == ''
     assert canadian_dollar_en.__hash__() == hash((decimal, 'CAD', '124'))
     assert canadian_dollar_en.__repr__() == (
         'CanadianDollarEN(amount: 1000, '
@@ -109,6 +114,7 @@ def test_canadian_dollar_en_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert canadian_dollar_en.__str__() == 'CAD 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_canadian_dollar_en_changed():
             AttributeError,
             match='can\'t set attribute'):
         canadian_dollar_en.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        canadian_dollar_en.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

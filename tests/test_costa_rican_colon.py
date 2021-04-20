@@ -32,6 +32,7 @@ def test_costa_rican_colon():
     assert costa_rican_colon.symbol == '₡'
     assert costa_rican_colon.symbol_ahead
     assert costa_rican_colon.symbol_separator == ''
+    assert costa_rican_colon.convertion == ''
     assert costa_rican_colon.__hash__() == hash((decimal, 'CRC', '188'))
     assert costa_rican_colon.__repr__() == (
         'CostaRicanColon(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_costa_rican_colon():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert costa_rican_colon.__str__() == '₡0,14'
 
@@ -61,6 +63,7 @@ def test_costa_rican_colon_negative():
     assert costa_rican_colon.symbol == '₡'
     assert costa_rican_colon.symbol_ahead
     assert costa_rican_colon.symbol_separator == ''
+    assert costa_rican_colon.convertion == ''
     assert costa_rican_colon.__hash__() == hash((decimal, 'CRC', '188'))
     assert costa_rican_colon.__repr__() == (
         'CostaRicanColon(amount: -100, '
@@ -72,6 +75,7 @@ def test_costa_rican_colon_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert costa_rican_colon.__str__() == '₡-100,00'
 
@@ -98,6 +102,7 @@ def test_costa_rican_colon_custom():
     assert costa_rican_colon.symbol == '₡'
     assert not costa_rican_colon.symbol_ahead
     assert costa_rican_colon.symbol_separator == '_'
+    assert costa_rican_colon.convertion == ''
     assert costa_rican_colon.__hash__() == hash((decimal, 'CRC', '188'))
     assert costa_rican_colon.__repr__() == (
         'CostaRicanColon(amount: 1000, '
@@ -109,6 +114,7 @@ def test_costa_rican_colon_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert costa_rican_colon.__str__() == 'CRC 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_costa_rican_colon_changed():
             AttributeError,
             match='can\'t set attribute'):
         costa_rican_colon.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        costa_rican_colon.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

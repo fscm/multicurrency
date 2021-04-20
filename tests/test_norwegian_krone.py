@@ -32,6 +32,7 @@ def test_norwegian_krone():
     assert norwegian_krone.symbol == 'kr'
     assert norwegian_krone.symbol_ahead
     assert norwegian_krone.symbol_separator == '\u00A0'
+    assert norwegian_krone.convertion == ''
     assert norwegian_krone.__hash__() == hash((decimal, 'NOK', '578'))
     assert norwegian_krone.__repr__() == (
         'NorwegianKrone(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_norwegian_krone():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert norwegian_krone.__str__() == 'kr 0,14'
 
@@ -61,6 +63,7 @@ def test_norwegian_krone_negative():
     assert norwegian_krone.symbol == 'kr'
     assert norwegian_krone.symbol_ahead
     assert norwegian_krone.symbol_separator == '\u00A0'
+    assert norwegian_krone.convertion == ''
     assert norwegian_krone.__hash__() == hash((decimal, 'NOK', '578'))
     assert norwegian_krone.__repr__() == (
         'NorwegianKrone(amount: -100, '
@@ -72,6 +75,7 @@ def test_norwegian_krone_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert norwegian_krone.__str__() == 'kr -100,00'
 
@@ -98,6 +102,7 @@ def test_norwegian_krone_custom():
     assert norwegian_krone.symbol == 'kr'
     assert not norwegian_krone.symbol_ahead
     assert norwegian_krone.symbol_separator == '_'
+    assert norwegian_krone.convertion == ''
     assert norwegian_krone.__hash__() == hash((decimal, 'NOK', '578'))
     assert norwegian_krone.__repr__() == (
         'NorwegianKrone(amount: 1000, '
@@ -109,6 +114,7 @@ def test_norwegian_krone_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert norwegian_krone.__str__() == 'NOK 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_norwegian_krone_changed():
             AttributeError,
             match='can\'t set attribute'):
         norwegian_krone.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        norwegian_krone.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

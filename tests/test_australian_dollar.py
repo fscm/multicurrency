@@ -32,6 +32,7 @@ def test_australian_dollar():
     assert australian_dollar.symbol == '$'
     assert australian_dollar.symbol_ahead
     assert australian_dollar.symbol_separator == ''
+    assert australian_dollar.convertion == ''
     assert australian_dollar.__hash__() == hash((decimal, 'AUD', '036'))
     assert australian_dollar.__repr__() == (
         'AustralianDollar(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_australian_dollar():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert australian_dollar.__str__() == '$0.14'
 
@@ -61,6 +63,7 @@ def test_australian_dollar_negative():
     assert australian_dollar.symbol == '$'
     assert australian_dollar.symbol_ahead
     assert australian_dollar.symbol_separator == ''
+    assert australian_dollar.convertion == ''
     assert australian_dollar.__hash__() == hash((decimal, 'AUD', '036'))
     assert australian_dollar.__repr__() == (
         'AustralianDollar(amount: -100, '
@@ -72,6 +75,7 @@ def test_australian_dollar_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert australian_dollar.__str__() == '$-100.00'
 
@@ -98,6 +102,7 @@ def test_australian_dollar_custom():
     assert australian_dollar.symbol == '$'
     assert not australian_dollar.symbol_ahead
     assert australian_dollar.symbol_separator == '_'
+    assert australian_dollar.convertion == ''
     assert australian_dollar.__hash__() == hash((decimal, 'AUD', '036'))
     assert australian_dollar.__repr__() == (
         'AustralianDollar(amount: 1000, '
@@ -109,6 +114,7 @@ def test_australian_dollar_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert australian_dollar.__str__() == 'AUD 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_australian_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         australian_dollar.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        australian_dollar.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

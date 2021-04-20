@@ -275,6 +275,13 @@ class Currency:
     The `decimal_places` value must be greater or equal to 0 (zero).
     Negative values will be converter to 0 (zero).
 
+    The `convertion` string, when set, will be used to replace the
+    Western Arabic numerals - as well as the symbols - with the
+    equivalent ones on the currency language. The must must be created
+    with the numbers from 0 (zero) to 9 (nine), the minus sign, the
+    grouping sign, and the decimal sign - without any separation mark
+    (e.g.: '0123456789-,.').
+
     Args:
         amount (Union[int, float, Decimal]): Represented value.
         alpha_code (str, optionsl): Represented currency alpha code.
@@ -294,11 +301,15 @@ class Currency:
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
+        convertion (str, optional): String with the numbers from 0 to 9
+            followed by the minus ('-') sign, the 'grouping sign', and
+            the 'decimal sign'. Defaults to ''.
     """
 
     __slots__ = [
         '_alpha_code',
         '_amount',
+        '_convertion',
         '_decimal_places',
         '_decimal_sign',
         '_grouping_sign',
@@ -319,6 +330,7 @@ class Currency:
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
             grouping_sign: Optional[str] = ',',
+            convertion: Optional[str] = '',
             international: Optional[bool] = False) -> 'Currency':
         """Class creator.
 
@@ -336,6 +348,7 @@ class Currency:
         self._symbol = symbol
         self._symbol_ahead = symbol_ahead
         self._symbol_separator = symbol_separator
+        self._convertion = convertion
         return self
 
     def __abs__(self) -> 'Currency':
@@ -357,6 +370,7 @@ class Currency:
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
             international=self._international)
 
     def __add__(self, other: Any) -> 'Currency':
@@ -388,6 +402,7 @@ class Currency:
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
             international=self._international)
 
     def __bool__(self) -> bool:
@@ -414,6 +429,7 @@ class Currency:
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
             international=self._international)
 
     def __copy__(self) -> 'Currency':
@@ -432,6 +448,7 @@ class Currency:
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
             international=self._international)
 
     def __divmod__(self, other: Any) -> tuple['Currency', 'Currency']:
@@ -466,6 +483,7 @@ class Currency:
                 decimal_places=self._decimal_places,
                 decimal_sign=self._decimal_sign,
                 grouping_sign=self._grouping_sign,
+                convertion=self._convertion,
                 international=self._international),
             self.__class__(
                 amount=remainder,
@@ -477,6 +495,7 @@ class Currency:
                 decimal_places=self._decimal_places,
                 decimal_sign=self._decimal_sign,
                 grouping_sign=self._grouping_sign,
+                convertion=self._convertion,
                 international=self._international))
 
     def __eq__(self, other: Any) -> bool:
@@ -519,6 +538,7 @@ class Currency:
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
             international=self._international)
 
     def __floordiv__(self, other: Any) -> 'Currency':
@@ -551,6 +571,7 @@ class Currency:
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
             international=self._international)
 
     def __ge__(self, other: Any) -> bool:
@@ -684,6 +705,7 @@ class Currency:
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
             international=self._international)
 
     def __mul__(self, other: Any) -> 'Currency':
@@ -711,6 +733,7 @@ class Currency:
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
             international=self._international)
 
     def __ne__(self, other: Any) -> bool:
@@ -740,6 +763,7 @@ class Currency:
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
             international=self._international)
 
     def __pos__(self) -> 'Currency':
@@ -758,6 +782,7 @@ class Currency:
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
             international=self._international)
 
     def __reduce__(self) -> tuple[type, tuple[Any, ...]]:
@@ -779,6 +804,7 @@ class Currency:
                 self._decimal_places,
                 self._decimal_sign,
                 self._grouping_sign,
+                self._convertion,
                 self._international))
 
     def __repr__(self) -> str:
@@ -798,6 +824,7 @@ class Currency:
             f'decimal_places: "{self._decimal_places}", '
             f'decimal_sign: "{self._decimal_sign}", '
             f'grouping_sign: "{self._grouping_sign}", '
+            f'convertion: "{self._convertion}", '
             f'international: {self._international})')
 
     def __round__(self, precision: Optional[int] = None) -> 'Currency':
@@ -820,6 +847,7 @@ class Currency:
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
             international=self._international)
 
     def __str__(self) -> str:
@@ -832,8 +860,12 @@ class Currency:
         converted = f'{round(self._amount, p):,.{p}f}'
         if self._international:
             return f'{self._alpha_code} {converted}'
-        converted = converted.replace('.', 'X').replace(
-            ',', self._grouping_sign).replace('X', self._decimal_sign)
+        if self._convertion:
+            t = dict(zip('0123456789-,.', self._convertion))
+            converted = ''.join([t[c] for c in converted])
+        else:
+            converted = converted.replace('.', 'X').replace(
+                ',', self._grouping_sign).replace('X', self._decimal_sign)
         if self._symbol_ahead:
             return f'{self._symbol}{self._symbol_separator}{converted}'
         return f'{converted}{self._symbol_separator}{self._symbol}'
@@ -867,6 +899,7 @@ class Currency:
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
             international=self._international)
 
     def __truediv__(self, other: Any) -> 'Currency':
@@ -898,6 +931,7 @@ class Currency:
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
             international=self._international)
 
     __rmul__: 'Currency' = __mul__
@@ -927,8 +961,12 @@ class Currency:
         converted = f'{round(self._amount, p):,.{p}f}'
         if self._international:
             return f'{self._alpha_code} {converted}'
-        converted = converted.replace('.', 'X').replace(
-            ',', self._grouping_sign).replace('X', self._decimal_sign)
+        if self._convertion:
+            t = dict(zip('0123456789-,.', self._convertion))
+            converted = ''.join([t[c] for c in converted])
+        else:
+            converted = converted.replace('.', 'X').replace(
+                ',', self._grouping_sign).replace('X', self._decimal_sign)
         if self._symbol_ahead:
             return f'{self._symbol}{self._symbol_separator}{converted}'
         return f'{converted}{self._symbol_separator}{self._symbol}'
@@ -947,6 +985,11 @@ class Currency:
     def alpha_code(self) -> str:
         """str: alpha_code."""
         return self._alpha_code
+
+    @property
+    def convertion(self) -> str:
+        """str: convertion."""
+        return self._convertion
 
     @property
     def decimal_places(self) -> int:

@@ -40,6 +40,7 @@ currency = Currency(
     decimal_places=2,
     decimal_sign=',',
     grouping_sign='.',
+    convertion='',
     international=True)
 
 
@@ -58,6 +59,7 @@ def test_currency_default():
     assert default.symbol == ''
     assert default.symbol_ahead
     assert default.symbol_separator == ''
+    assert default.convertion == ''
     assert default.__hash__() == hash((decimal, '', '0'))
     assert default.__repr__() == (
         'Currency(amount: 0.1428571428571428571428571429, '
@@ -69,6 +71,7 @@ def test_currency_default():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert default.__str__() == '0.14'
 
@@ -87,6 +90,7 @@ def test_currency_negative():
     assert default.symbol == ''
     assert default.symbol_ahead
     assert default.symbol_separator == ''
+    assert default.convertion == ''
     assert default.__hash__() == hash((decimal, '', '0'))
     assert default.__repr__() == (
         'Currency(amount: -100, '
@@ -98,6 +102,7 @@ def test_currency_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert default.__str__() == '-100.00'
 
@@ -115,6 +120,7 @@ def test_currency_custom():
         decimal_places=2,
         decimal_sign=',',
         grouping_sign='.',
+        convertion='0123456789-,.',
         international=True)
     decimal = CONTEXT.create_decimal(amount)
     assert euro.amount == decimal
@@ -127,6 +133,7 @@ def test_currency_custom():
     assert euro.symbol == '€'
     assert not euro.symbol_ahead
     assert euro.symbol_separator == '\u00A0'
+    assert euro.convertion == '0123456789-,.'
     assert euro.__hash__() == hash((decimal, 'EUR', '978'))
     assert euro.__repr__() == (
         'Currency(amount: 1000, '
@@ -138,6 +145,7 @@ def test_currency_custom():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "0123456789-,.", '
         'international: True)')
     assert euro.__str__() == 'EUR 1,000.00'
 
@@ -164,6 +172,29 @@ def test_currency_decimal_places():
     assert euro.pstr(1) == '1,000.0\u00A0€'
 
 
+def test_currency_convertion():
+    """test_currency_convertion."""
+    euro = Currency(
+        amount=123456789,
+        alpha_code='EUR',
+        symbol='€',
+        symbol_ahead=False,
+        symbol_separator='\u00A0',
+        numeric_code='978',
+        decimal_places=2,
+        convertion='zabcdefghi-,.')
+    assert euro.numeric_code == '978'
+    assert euro.alpha_code == 'EUR'
+    assert euro.decimal_places == 2
+    assert not euro.symbol_ahead
+    assert euro.symbol_separator == '\u00A0'
+    assert not euro.international
+    assert euro.__str__() == 'abc,def,ghi.zz\u00A0€'
+    assert euro.pstr(-2) == 'abc,def,ghi\u00A0€'
+    assert euro.pstr(0) == 'abc,def,ghi\u00A0€'
+    assert euro.pstr(1) == 'abc,def,ghi.z\u00A0€'
+
+
 def test_currency_changed():
     """test_currency_changed."""
     euro = Currency(amount=1000)
@@ -175,6 +206,10 @@ def test_currency_changed():
             AttributeError,
             match='can\'t set attribute'):
         euro.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        euro.convertion = '0123456789-,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -471,6 +506,7 @@ def test_currency_copy():
     assert new_currency.symbol == '€'
     assert new_currency.symbol_ahead
     assert new_currency.symbol_separator == ''
+    assert new_currency.convertion == ''
     assert new_currency.__repr__() == (
         'Currency(amount: 0.1428571428571428571428571429, '
         'alpha_code: "EUR", '
@@ -481,6 +517,7 @@ def test_currency_copy():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert new_currency.__str__() == 'EUR 0.14'
 

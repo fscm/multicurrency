@@ -32,6 +32,7 @@ def test_riel():
     assert riel.symbol == '៛'
     assert not riel.symbol_ahead
     assert riel.symbol_separator == ''
+    assert riel.convertion == ''
     assert riel.__hash__() == hash((decimal, 'KHR', '116'))
     assert riel.__repr__() == (
         'Riel(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_riel():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert riel.__str__() == '0,14៛'
 
@@ -61,6 +63,7 @@ def test_riel_negative():
     assert riel.symbol == '៛'
     assert not riel.symbol_ahead
     assert riel.symbol_separator == ''
+    assert riel.convertion == ''
     assert riel.__hash__() == hash((decimal, 'KHR', '116'))
     assert riel.__repr__() == (
         'Riel(amount: -100, '
@@ -72,6 +75,7 @@ def test_riel_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert riel.__str__() == '-100,00៛'
 
@@ -98,6 +102,7 @@ def test_riel_custom():
     assert riel.symbol == '៛'
     assert not riel.symbol_ahead
     assert riel.symbol_separator == '_'
+    assert riel.convertion == ''
     assert riel.__hash__() == hash((decimal, 'KHR', '116'))
     assert riel.__repr__() == (
         'Riel(amount: 1000, '
@@ -109,6 +114,7 @@ def test_riel_custom():
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert riel.__str__() == 'KHR 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_riel_changed():
             AttributeError,
             match='can\'t set attribute'):
         riel.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        riel.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

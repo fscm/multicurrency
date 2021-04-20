@@ -32,6 +32,7 @@ def test_leone():
     assert leone.symbol == 'Le'
     assert leone.symbol_ahead
     assert leone.symbol_separator == '\u00A0'
+    assert leone.convertion == ''
     assert leone.__hash__() == hash((decimal, 'SLL', '694'))
     assert leone.__repr__() == (
         'Leone(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_leone():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert leone.__str__() == 'Le 0.14'
 
@@ -61,6 +63,7 @@ def test_leone_negative():
     assert leone.symbol == 'Le'
     assert leone.symbol_ahead
     assert leone.symbol_separator == '\u00A0'
+    assert leone.convertion == ''
     assert leone.__hash__() == hash((decimal, 'SLL', '694'))
     assert leone.__repr__() == (
         'Leone(amount: -100, '
@@ -72,6 +75,7 @@ def test_leone_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert leone.__str__() == 'Le -100.00'
 
@@ -98,6 +102,7 @@ def test_leone_custom():
     assert leone.symbol == 'Le'
     assert not leone.symbol_ahead
     assert leone.symbol_separator == '_'
+    assert leone.convertion == ''
     assert leone.__hash__() == hash((decimal, 'SLL', '694'))
     assert leone.__repr__() == (
         'Leone(amount: 1000, '
@@ -109,6 +114,7 @@ def test_leone_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert leone.__str__() == 'SLL 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_leone_changed():
             AttributeError,
             match='can\'t set attribute'):
         leone.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        leone.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

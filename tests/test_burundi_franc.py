@@ -32,6 +32,7 @@ def test_burundi_franc():
     assert burundi_franc.symbol == '₣'
     assert not burundi_franc.symbol_ahead
     assert burundi_franc.symbol_separator == '\u00A0'
+    assert burundi_franc.convertion == ''
     assert burundi_franc.__hash__() == hash((decimal, 'BIF', '108'))
     assert burundi_franc.__repr__() == (
         'BurundiFranc(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_burundi_franc():
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert burundi_franc.__str__() == '0 ₣'
 
@@ -61,6 +63,7 @@ def test_burundi_franc_negative():
     assert burundi_franc.symbol == '₣'
     assert not burundi_franc.symbol_ahead
     assert burundi_franc.symbol_separator == '\u00A0'
+    assert burundi_franc.convertion == ''
     assert burundi_franc.__hash__() == hash((decimal, 'BIF', '108'))
     assert burundi_franc.__repr__() == (
         'BurundiFranc(amount: -100, '
@@ -72,6 +75,7 @@ def test_burundi_franc_negative():
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert burundi_franc.__str__() == '-100 ₣'
 
@@ -98,6 +102,7 @@ def test_burundi_franc_custom():
     assert burundi_franc.symbol == '₣'
     assert not burundi_franc.symbol_ahead
     assert burundi_franc.symbol_separator == '_'
+    assert burundi_franc.convertion == ''
     assert burundi_franc.__hash__() == hash((decimal, 'BIF', '108'))
     assert burundi_franc.__repr__() == (
         'BurundiFranc(amount: 1000, '
@@ -109,6 +114,7 @@ def test_burundi_franc_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert burundi_franc.__str__() == 'BIF 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_burundi_franc_changed():
             AttributeError,
             match='can\'t set attribute'):
         burundi_franc.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        burundi_franc.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

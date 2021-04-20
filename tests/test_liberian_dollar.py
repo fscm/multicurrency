@@ -32,6 +32,7 @@ def test_liberian_dollar():
     assert liberian_dollar.symbol == '$'
     assert liberian_dollar.symbol_ahead
     assert liberian_dollar.symbol_separator == ''
+    assert liberian_dollar.convertion == ''
     assert liberian_dollar.__hash__() == hash((decimal, 'LRD', '430'))
     assert liberian_dollar.__repr__() == (
         'LiberianDollar(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_liberian_dollar():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert liberian_dollar.__str__() == '$0.14'
 
@@ -61,6 +63,7 @@ def test_liberian_dollar_negative():
     assert liberian_dollar.symbol == '$'
     assert liberian_dollar.symbol_ahead
     assert liberian_dollar.symbol_separator == ''
+    assert liberian_dollar.convertion == ''
     assert liberian_dollar.__hash__() == hash((decimal, 'LRD', '430'))
     assert liberian_dollar.__repr__() == (
         'LiberianDollar(amount: -100, '
@@ -72,6 +75,7 @@ def test_liberian_dollar_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert liberian_dollar.__str__() == '$-100.00'
 
@@ -98,6 +102,7 @@ def test_liberian_dollar_custom():
     assert liberian_dollar.symbol == '$'
     assert not liberian_dollar.symbol_ahead
     assert liberian_dollar.symbol_separator == '_'
+    assert liberian_dollar.convertion == ''
     assert liberian_dollar.__hash__() == hash((decimal, 'LRD', '430'))
     assert liberian_dollar.__repr__() == (
         'LiberianDollar(amount: 1000, '
@@ -109,6 +114,7 @@ def test_liberian_dollar_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert liberian_dollar.__str__() == 'LRD 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_liberian_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         liberian_dollar.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        liberian_dollar.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

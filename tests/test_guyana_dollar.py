@@ -32,6 +32,7 @@ def test_guyana_dollar():
     assert guyana_dollar.symbol == '$'
     assert guyana_dollar.symbol_ahead
     assert guyana_dollar.symbol_separator == ''
+    assert guyana_dollar.convertion == ''
     assert guyana_dollar.__hash__() == hash((decimal, 'GYD', '328'))
     assert guyana_dollar.__repr__() == (
         'GuyanaDollar(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_guyana_dollar():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert guyana_dollar.__str__() == '$0.14'
 
@@ -61,6 +63,7 @@ def test_guyana_dollar_negative():
     assert guyana_dollar.symbol == '$'
     assert guyana_dollar.symbol_ahead
     assert guyana_dollar.symbol_separator == ''
+    assert guyana_dollar.convertion == ''
     assert guyana_dollar.__hash__() == hash((decimal, 'GYD', '328'))
     assert guyana_dollar.__repr__() == (
         'GuyanaDollar(amount: -100, '
@@ -72,6 +75,7 @@ def test_guyana_dollar_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert guyana_dollar.__str__() == '$-100.00'
 
@@ -98,6 +102,7 @@ def test_guyana_dollar_custom():
     assert guyana_dollar.symbol == '$'
     assert not guyana_dollar.symbol_ahead
     assert guyana_dollar.symbol_separator == '_'
+    assert guyana_dollar.convertion == ''
     assert guyana_dollar.__hash__() == hash((decimal, 'GYD', '328'))
     assert guyana_dollar.__repr__() == (
         'GuyanaDollar(amount: 1000, '
@@ -109,6 +114,7 @@ def test_guyana_dollar_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert guyana_dollar.__str__() == 'GYD 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_guyana_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         guyana_dollar.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        guyana_dollar.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

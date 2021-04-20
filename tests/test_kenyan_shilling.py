@@ -32,6 +32,7 @@ def test_kenyan_shilling():
     assert kenyan_shilling.symbol == 'Ksh'
     assert kenyan_shilling.symbol_ahead
     assert kenyan_shilling.symbol_separator == '\u00A0'
+    assert kenyan_shilling.convertion == ''
     assert kenyan_shilling.__hash__() == hash((decimal, 'KES', '404'))
     assert kenyan_shilling.__repr__() == (
         'KenyanShilling(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_kenyan_shilling():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert kenyan_shilling.__str__() == 'Ksh 0.14'
 
@@ -61,6 +63,7 @@ def test_kenyan_shilling_negative():
     assert kenyan_shilling.symbol == 'Ksh'
     assert kenyan_shilling.symbol_ahead
     assert kenyan_shilling.symbol_separator == '\u00A0'
+    assert kenyan_shilling.convertion == ''
     assert kenyan_shilling.__hash__() == hash((decimal, 'KES', '404'))
     assert kenyan_shilling.__repr__() == (
         'KenyanShilling(amount: -100, '
@@ -72,6 +75,7 @@ def test_kenyan_shilling_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert kenyan_shilling.__str__() == 'Ksh -100.00'
 
@@ -98,6 +102,7 @@ def test_kenyan_shilling_custom():
     assert kenyan_shilling.symbol == 'Ksh'
     assert not kenyan_shilling.symbol_ahead
     assert kenyan_shilling.symbol_separator == '_'
+    assert kenyan_shilling.convertion == ''
     assert kenyan_shilling.__hash__() == hash((decimal, 'KES', '404'))
     assert kenyan_shilling.__repr__() == (
         'KenyanShilling(amount: 1000, '
@@ -109,6 +114,7 @@ def test_kenyan_shilling_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert kenyan_shilling.__str__() == 'KES 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_kenyan_shilling_changed():
             AttributeError,
             match='can\'t set attribute'):
         kenyan_shilling.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        kenyan_shilling.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

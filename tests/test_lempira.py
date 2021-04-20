@@ -32,6 +32,7 @@ def test_lempira():
     assert lempira.symbol == 'L'
     assert lempira.symbol_ahead
     assert lempira.symbol_separator == '\u00A0'
+    assert lempira.convertion == ''
     assert lempira.__hash__() == hash((decimal, 'HNL', '340'))
     assert lempira.__repr__() == (
         'Lempira(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_lempira():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert lempira.__str__() == 'L 0.14'
 
@@ -61,6 +63,7 @@ def test_lempira_negative():
     assert lempira.symbol == 'L'
     assert lempira.symbol_ahead
     assert lempira.symbol_separator == '\u00A0'
+    assert lempira.convertion == ''
     assert lempira.__hash__() == hash((decimal, 'HNL', '340'))
     assert lempira.__repr__() == (
         'Lempira(amount: -100, '
@@ -72,6 +75,7 @@ def test_lempira_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert lempira.__str__() == 'L -100.00'
 
@@ -98,6 +102,7 @@ def test_lempira_custom():
     assert lempira.symbol == 'L'
     assert not lempira.symbol_ahead
     assert lempira.symbol_separator == '_'
+    assert lempira.convertion == ''
     assert lempira.__hash__() == hash((decimal, 'HNL', '340'))
     assert lempira.__repr__() == (
         'Lempira(amount: 1000, '
@@ -109,6 +114,7 @@ def test_lempira_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert lempira.__str__() == 'HNL 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_lempira_changed():
             AttributeError,
             match='can\'t set attribute'):
         lempira.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        lempira.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

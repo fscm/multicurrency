@@ -32,6 +32,7 @@ def test_guinea_franc():
     assert guinea_franc.symbol == '₣'
     assert not guinea_franc.symbol_ahead
     assert guinea_franc.symbol_separator == '\u00A0'
+    assert guinea_franc.convertion == ''
     assert guinea_franc.__hash__() == hash((decimal, 'GNF', '324'))
     assert guinea_franc.__repr__() == (
         'GuineaFranc(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_guinea_franc():
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert guinea_franc.__str__() == '0 ₣'
 
@@ -61,6 +63,7 @@ def test_guinea_franc_negative():
     assert guinea_franc.symbol == '₣'
     assert not guinea_franc.symbol_ahead
     assert guinea_franc.symbol_separator == '\u00A0'
+    assert guinea_franc.convertion == ''
     assert guinea_franc.__hash__() == hash((decimal, 'GNF', '324'))
     assert guinea_franc.__repr__() == (
         'GuineaFranc(amount: -100, '
@@ -72,6 +75,7 @@ def test_guinea_franc_negative():
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert guinea_franc.__str__() == '-100 ₣'
 
@@ -98,6 +102,7 @@ def test_guinea_franc_custom():
     assert guinea_franc.symbol == '₣'
     assert not guinea_franc.symbol_ahead
     assert guinea_franc.symbol_separator == '_'
+    assert guinea_franc.convertion == ''
     assert guinea_franc.__hash__() == hash((decimal, 'GNF', '324'))
     assert guinea_franc.__repr__() == (
         'GuineaFranc(amount: 1000, '
@@ -109,6 +114,7 @@ def test_guinea_franc_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert guinea_franc.__str__() == 'GNF 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_guinea_franc_changed():
             AttributeError,
             match='can\'t set attribute'):
         guinea_franc.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        guinea_franc.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

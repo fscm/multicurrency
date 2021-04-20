@@ -32,6 +32,7 @@ def test_euroxk():
     assert euroxk.symbol == '€'
     assert not euroxk.symbol_ahead
     assert euroxk.symbol_separator == '\u00A0'
+    assert euroxk.convertion == ''
     assert euroxk.__hash__() == hash((decimal, 'EUR', '978'))
     assert euroxk.__repr__() == (
         'EuroXK(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_euroxk():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert euroxk.__str__() == '0,14 €'
 
@@ -61,6 +63,7 @@ def test_euroxk_negative():
     assert euroxk.symbol == '€'
     assert not euroxk.symbol_ahead
     assert euroxk.symbol_separator == '\u00A0'
+    assert euroxk.convertion == ''
     assert euroxk.__hash__() == hash((decimal, 'EUR', '978'))
     assert euroxk.__repr__() == (
         'EuroXK(amount: -100, '
@@ -72,6 +75,7 @@ def test_euroxk_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert euroxk.__str__() == '-100,00 €'
 
@@ -98,6 +102,7 @@ def test_euroxk_custom():
     assert euroxk.symbol == '€'
     assert not euroxk.symbol_ahead
     assert euroxk.symbol_separator == '_'
+    assert euroxk.convertion == ''
     assert euroxk.__hash__() == hash((decimal, 'EUR', '978'))
     assert euroxk.__repr__() == (
         'EuroXK(amount: 1000, '
@@ -109,6 +114,7 @@ def test_euroxk_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert euroxk.__str__() == 'EUR 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_euroxk_changed():
             AttributeError,
             match='can\'t set attribute'):
         euroxk.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        euroxk.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -32,6 +32,7 @@ def test_saint_helena_pound():
     assert saint_helena_pound.symbol == '£'
     assert saint_helena_pound.symbol_ahead
     assert saint_helena_pound.symbol_separator == ''
+    assert saint_helena_pound.convertion == ''
     assert saint_helena_pound.__hash__() == hash((decimal, 'SHP', '654'))
     assert saint_helena_pound.__repr__() == (
         'SaintHelenaPound(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_saint_helena_pound():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert saint_helena_pound.__str__() == '£0.14'
 
@@ -61,6 +63,7 @@ def test_saint_helena_pound_negative():
     assert saint_helena_pound.symbol == '£'
     assert saint_helena_pound.symbol_ahead
     assert saint_helena_pound.symbol_separator == ''
+    assert saint_helena_pound.convertion == ''
     assert saint_helena_pound.__hash__() == hash((decimal, 'SHP', '654'))
     assert saint_helena_pound.__repr__() == (
         'SaintHelenaPound(amount: -100, '
@@ -72,6 +75,7 @@ def test_saint_helena_pound_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert saint_helena_pound.__str__() == '£-100.00'
 
@@ -98,6 +102,7 @@ def test_saint_helena_pound_custom():
     assert saint_helena_pound.symbol == '£'
     assert not saint_helena_pound.symbol_ahead
     assert saint_helena_pound.symbol_separator == '_'
+    assert saint_helena_pound.convertion == ''
     assert saint_helena_pound.__hash__() == hash((decimal, 'SHP', '654'))
     assert saint_helena_pound.__repr__() == (
         'SaintHelenaPound(amount: 1000, '
@@ -109,6 +114,7 @@ def test_saint_helena_pound_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert saint_helena_pound.__str__() == 'SHP 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_saint_helena_pound_changed():
             AttributeError,
             match='can\'t set attribute'):
         saint_helena_pound.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        saint_helena_pound.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

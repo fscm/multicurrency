@@ -32,6 +32,7 @@ def test_naira():
     assert naira.symbol == '₦'
     assert naira.symbol_ahead
     assert naira.symbol_separator == ''
+    assert naira.convertion == ''
     assert naira.__hash__() == hash((decimal, 'NGN', '566'))
     assert naira.__repr__() == (
         'Naira(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_naira():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert naira.__str__() == '₦0.14'
 
@@ -61,6 +63,7 @@ def test_naira_negative():
     assert naira.symbol == '₦'
     assert naira.symbol_ahead
     assert naira.symbol_separator == ''
+    assert naira.convertion == ''
     assert naira.__hash__() == hash((decimal, 'NGN', '566'))
     assert naira.__repr__() == (
         'Naira(amount: -100, '
@@ -72,6 +75,7 @@ def test_naira_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert naira.__str__() == '₦-100.00'
 
@@ -98,6 +102,7 @@ def test_naira_custom():
     assert naira.symbol == '₦'
     assert not naira.symbol_ahead
     assert naira.symbol_separator == '_'
+    assert naira.convertion == ''
     assert naira.__hash__() == hash((decimal, 'NGN', '566'))
     assert naira.__repr__() == (
         'Naira(amount: 1000, '
@@ -109,6 +114,7 @@ def test_naira_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert naira.__str__() == 'NGN 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_naira_changed():
             AttributeError,
             match='can\'t set attribute'):
         naira.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        naira.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

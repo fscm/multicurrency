@@ -32,6 +32,7 @@ def test_malaysian_ringgit():
     assert malaysian_ringgit.symbol == 'RM'
     assert malaysian_ringgit.symbol_ahead
     assert malaysian_ringgit.symbol_separator == '\u00A0'
+    assert malaysian_ringgit.convertion == ''
     assert malaysian_ringgit.__hash__() == hash((decimal, 'MYR', '458'))
     assert malaysian_ringgit.__repr__() == (
         'MalaysianRinggit(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_malaysian_ringgit():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert malaysian_ringgit.__str__() == 'RM 0.14'
 
@@ -61,6 +63,7 @@ def test_malaysian_ringgit_negative():
     assert malaysian_ringgit.symbol == 'RM'
     assert malaysian_ringgit.symbol_ahead
     assert malaysian_ringgit.symbol_separator == '\u00A0'
+    assert malaysian_ringgit.convertion == ''
     assert malaysian_ringgit.__hash__() == hash((decimal, 'MYR', '458'))
     assert malaysian_ringgit.__repr__() == (
         'MalaysianRinggit(amount: -100, '
@@ -72,6 +75,7 @@ def test_malaysian_ringgit_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert malaysian_ringgit.__str__() == 'RM -100.00'
 
@@ -98,6 +102,7 @@ def test_malaysian_ringgit_custom():
     assert malaysian_ringgit.symbol == 'RM'
     assert not malaysian_ringgit.symbol_ahead
     assert malaysian_ringgit.symbol_separator == '_'
+    assert malaysian_ringgit.convertion == ''
     assert malaysian_ringgit.__hash__() == hash((decimal, 'MYR', '458'))
     assert malaysian_ringgit.__repr__() == (
         'MalaysianRinggit(amount: 1000, '
@@ -109,6 +114,7 @@ def test_malaysian_ringgit_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert malaysian_ringgit.__str__() == 'MYR 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_malaysian_ringgit_changed():
             AttributeError,
             match='can\'t set attribute'):
         malaysian_ringgit.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        malaysian_ringgit.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

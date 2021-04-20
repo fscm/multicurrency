@@ -67,6 +67,7 @@ class AustralianDollar(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -126,6 +127,7 @@ class BarbadosDollar(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -185,6 +187,7 @@ class BermudianDollar(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -244,6 +247,7 @@ class BruneiDollar(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -303,6 +307,7 @@ class BahamianDollar(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -362,6 +367,7 @@ class BelizeDollar(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -421,6 +427,7 @@ class CanadianDollarEN(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -480,6 +487,7 @@ class CanadianDollarFR(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -539,6 +547,7 @@ class FijiDollar(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -598,6 +607,7 @@ class GuyanaDollar(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -657,6 +667,7 @@ class HongKongDollar(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -716,6 +727,7 @@ class JamaicanDollar(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -775,6 +787,7 @@ class CaymanIslandsDollar(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -834,6 +847,7 @@ class LiberianDollar(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -893,6 +907,7 @@ class NamibiaDollar(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -952,6 +967,7 @@ class NewZealandDollar(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -1011,6 +1027,7 @@ class SolomonIslandsDollar(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -1070,6 +1087,7 @@ class SingaporeDollar(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -1129,6 +1147,7 @@ class SurinameDollar(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -1188,6 +1207,7 @@ class TrinidadandTobagoDollar(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -1247,6 +1267,7 @@ class TaiwanDollar(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -1306,6 +1327,7 @@ class USDollar(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -1365,6 +1387,7 @@ class EastCaribbeanDollar(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -1424,4 +1447,5 @@ class ZimbabweDollar(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)

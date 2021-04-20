@@ -67,6 +67,7 @@ class ArgentinePeso(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -126,6 +127,7 @@ class ChileanPeso(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -185,6 +187,7 @@ class ColombianPeso(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -244,6 +247,7 @@ class CubanPeso(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -303,6 +307,7 @@ class DominicanPeso(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -362,6 +367,7 @@ class MexicanPeso(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -421,6 +427,7 @@ class PhilippinePeso(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -480,4 +487,5 @@ class PesoUruguayo(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)

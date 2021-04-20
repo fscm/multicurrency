@@ -32,6 +32,7 @@ def test_metical():
     assert metical.symbol == 'MTn'
     assert not metical.symbol_ahead
     assert metical.symbol_separator == '\u00A0'
+    assert metical.convertion == ''
     assert metical.__hash__() == hash((decimal, 'MZN', '943'))
     assert metical.__repr__() == (
         'Metical(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_metical():
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert metical.__str__() == '0 MTn'
 
@@ -61,6 +63,7 @@ def test_metical_negative():
     assert metical.symbol == 'MTn'
     assert not metical.symbol_ahead
     assert metical.symbol_separator == '\u00A0'
+    assert metical.convertion == ''
     assert metical.__hash__() == hash((decimal, 'MZN', '943'))
     assert metical.__repr__() == (
         'Metical(amount: -100, '
@@ -72,6 +75,7 @@ def test_metical_negative():
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert metical.__str__() == '-100 MTn'
 
@@ -98,6 +102,7 @@ def test_metical_custom():
     assert metical.symbol == 'MTn'
     assert not metical.symbol_ahead
     assert metical.symbol_separator == '_'
+    assert metical.convertion == ''
     assert metical.__hash__() == hash((decimal, 'MZN', '943'))
     assert metical.__repr__() == (
         'Metical(amount: 1000, '
@@ -109,6 +114,7 @@ def test_metical_custom():
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert metical.__str__() == 'MZN 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_metical_changed():
             AttributeError,
             match='can\'t set attribute'):
         metical.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        metical.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

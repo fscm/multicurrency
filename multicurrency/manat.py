@@ -20,7 +20,7 @@ class AzerbaijanianManat(Currency):
         >>> azerbaijanian_manat = AzerbaijanianManat(
         ...     amount=123456.789)
         >>> print(azerbaijanian_manat)
-        123.456,79 ман
+        123.456,79 ₼
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -61,12 +61,13 @@ class AzerbaijanianManat(Currency):
             amount=amount,
             alpha_code='AZN',
             numeric_code='944',
-            symbol='ман',
+            symbol='₼',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -126,4 +127,5 @@ class Manat(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)

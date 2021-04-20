@@ -32,6 +32,7 @@ def test_vatu():
     assert vatu.symbol == 'Vt'
     assert vatu.symbol_ahead
     assert vatu.symbol_separator == '\u00A0'
+    assert vatu.convertion == ''
     assert vatu.__hash__() == hash((decimal, 'VUV', '548'))
     assert vatu.__repr__() == (
         'Vatu(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_vatu():
         'decimal_places: "0", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert vatu.__str__() == 'Vt 0'
 
@@ -61,6 +63,7 @@ def test_vatu_negative():
     assert vatu.symbol == 'Vt'
     assert vatu.symbol_ahead
     assert vatu.symbol_separator == '\u00A0'
+    assert vatu.convertion == ''
     assert vatu.__hash__() == hash((decimal, 'VUV', '548'))
     assert vatu.__repr__() == (
         'Vatu(amount: -100, '
@@ -72,6 +75,7 @@ def test_vatu_negative():
         'decimal_places: "0", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert vatu.__str__() == 'Vt -100'
 
@@ -98,6 +102,7 @@ def test_vatu_custom():
     assert vatu.symbol == 'Vt'
     assert not vatu.symbol_ahead
     assert vatu.symbol_separator == '_'
+    assert vatu.convertion == ''
     assert vatu.__hash__() == hash((decimal, 'VUV', '548'))
     assert vatu.__repr__() == (
         'Vatu(amount: 1000, '
@@ -109,6 +114,7 @@ def test_vatu_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert vatu.__str__() == 'VUV 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_vatu_changed():
             AttributeError,
             match='can\'t set attribute'):
         vatu.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        vatu.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

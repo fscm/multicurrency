@@ -26,12 +26,13 @@ def test_moroccan_dirham():
     assert moroccan_dirham.numeric_code == '504'
     assert moroccan_dirham.alpha_code == 'MAD'
     assert moroccan_dirham.decimal_places == 2
-    assert moroccan_dirham.decimal_sign == ','
-    assert moroccan_dirham.grouping_sign == '.'
+    assert moroccan_dirham.decimal_sign == '\u066B'
+    assert moroccan_dirham.grouping_sign == '\u066C'
     assert not moroccan_dirham.international
     assert moroccan_dirham.symbol == 'د.م.'
     assert not moroccan_dirham.symbol_ahead
     assert moroccan_dirham.symbol_separator == '\u00A0'
+    assert moroccan_dirham.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
     assert moroccan_dirham.__hash__() == hash((decimal, 'MAD', '504'))
     assert moroccan_dirham.__repr__() == (
         'MoroccanDirham(amount: 0.1428571428571428571428571429, '
@@ -41,10 +42,11 @@ def test_moroccan_dirham():
         'symbol_separator: "\u00A0", '
         'numeric_code: "504", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: "\u066B", '
+        'grouping_sign: "\u066C", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
         'international: False)')
-    assert moroccan_dirham.__str__() == '0,14 د.م.'
+    assert moroccan_dirham.__str__() == '٠٫١٤ د.م.'
 
 
 def test_moroccan_dirham_negative():
@@ -55,12 +57,13 @@ def test_moroccan_dirham_negative():
     assert moroccan_dirham.numeric_code == '504'
     assert moroccan_dirham.alpha_code == 'MAD'
     assert moroccan_dirham.decimal_places == 2
-    assert moroccan_dirham.decimal_sign == ','
-    assert moroccan_dirham.grouping_sign == '.'
+    assert moroccan_dirham.decimal_sign == '\u066B'
+    assert moroccan_dirham.grouping_sign == '\u066C'
     assert not moroccan_dirham.international
     assert moroccan_dirham.symbol == 'د.م.'
     assert not moroccan_dirham.symbol_ahead
     assert moroccan_dirham.symbol_separator == '\u00A0'
+    assert moroccan_dirham.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
     assert moroccan_dirham.__hash__() == hash((decimal, 'MAD', '504'))
     assert moroccan_dirham.__repr__() == (
         'MoroccanDirham(amount: -100, '
@@ -70,10 +73,11 @@ def test_moroccan_dirham_negative():
         'symbol_separator: "\u00A0", '
         'numeric_code: "504", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: "\u066B", '
+        'grouping_sign: "\u066C", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
         'international: False)')
-    assert moroccan_dirham.__str__() == '-100,00 د.م.'
+    assert moroccan_dirham.__str__() == '-١٠٠٫٠٠ د.م.'
 
 
 def test_moroccan_dirham_custom():
@@ -82,8 +86,8 @@ def test_moroccan_dirham_custom():
     moroccan_dirham = MoroccanDirham(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
+        decimal_sign='\u066C',
+        grouping_sign='\u066B',
         international=True,
         symbol_ahead=False,
         symbol_separator='_')
@@ -92,12 +96,13 @@ def test_moroccan_dirham_custom():
     assert moroccan_dirham.numeric_code == '504'
     assert moroccan_dirham.alpha_code == 'MAD'
     assert moroccan_dirham.decimal_places == 5
-    assert moroccan_dirham.decimal_sign == '.'
-    assert moroccan_dirham.grouping_sign == ','
+    assert moroccan_dirham.decimal_sign == '\u066C'
+    assert moroccan_dirham.grouping_sign == '\u066B'
     assert moroccan_dirham.international
     assert moroccan_dirham.symbol == 'د.م.'
     assert not moroccan_dirham.symbol_ahead
     assert moroccan_dirham.symbol_separator == '_'
+    assert moroccan_dirham.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
     assert moroccan_dirham.__hash__() == hash((decimal, 'MAD', '504'))
     assert moroccan_dirham.__repr__() == (
         'MoroccanDirham(amount: 1000, '
@@ -107,8 +112,9 @@ def test_moroccan_dirham_custom():
         'symbol_separator: "_", '
         'numeric_code: "504", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: "\u066C", '
+        'grouping_sign: "\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
         'international: True)')
     assert moroccan_dirham.__str__() == 'MAD 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_moroccan_dirham_changed():
             AttributeError,
             match='can\'t set attribute'):
         moroccan_dirham.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        moroccan_dirham.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

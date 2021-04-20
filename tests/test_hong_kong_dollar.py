@@ -32,6 +32,7 @@ def test_hong_kong_dollar():
     assert hong_kong_dollar.symbol == '$'
     assert hong_kong_dollar.symbol_ahead
     assert hong_kong_dollar.symbol_separator == ''
+    assert hong_kong_dollar.convertion == ''
     assert hong_kong_dollar.__hash__() == hash((decimal, 'HKD', '344'))
     assert hong_kong_dollar.__repr__() == (
         'HongKongDollar(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_hong_kong_dollar():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert hong_kong_dollar.__str__() == '$0.14'
 
@@ -61,6 +63,7 @@ def test_hong_kong_dollar_negative():
     assert hong_kong_dollar.symbol == '$'
     assert hong_kong_dollar.symbol_ahead
     assert hong_kong_dollar.symbol_separator == ''
+    assert hong_kong_dollar.convertion == ''
     assert hong_kong_dollar.__hash__() == hash((decimal, 'HKD', '344'))
     assert hong_kong_dollar.__repr__() == (
         'HongKongDollar(amount: -100, '
@@ -72,6 +75,7 @@ def test_hong_kong_dollar_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert hong_kong_dollar.__str__() == '$-100.00'
 
@@ -98,6 +102,7 @@ def test_hong_kong_dollar_custom():
     assert hong_kong_dollar.symbol == '$'
     assert not hong_kong_dollar.symbol_ahead
     assert hong_kong_dollar.symbol_separator == '_'
+    assert hong_kong_dollar.convertion == ''
     assert hong_kong_dollar.__hash__() == hash((decimal, 'HKD', '344'))
     assert hong_kong_dollar.__repr__() == (
         'HongKongDollar(amount: 1000, '
@@ -109,6 +114,7 @@ def test_hong_kong_dollar_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert hong_kong_dollar.__str__() == 'HKD 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_hong_kong_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         hong_kong_dollar.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        hong_kong_dollar.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

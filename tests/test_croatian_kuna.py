@@ -32,6 +32,7 @@ def test_croatian_kuna():
     assert croatian_kuna.symbol == 'Kn'
     assert not croatian_kuna.symbol_ahead
     assert croatian_kuna.symbol_separator == '\u00A0'
+    assert croatian_kuna.convertion == ''
     assert croatian_kuna.__hash__() == hash((decimal, 'HRK', '191'))
     assert croatian_kuna.__repr__() == (
         'CroatianKuna(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_croatian_kuna():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert croatian_kuna.__str__() == '0,14 Kn'
 
@@ -61,6 +63,7 @@ def test_croatian_kuna_negative():
     assert croatian_kuna.symbol == 'Kn'
     assert not croatian_kuna.symbol_ahead
     assert croatian_kuna.symbol_separator == '\u00A0'
+    assert croatian_kuna.convertion == ''
     assert croatian_kuna.__hash__() == hash((decimal, 'HRK', '191'))
     assert croatian_kuna.__repr__() == (
         'CroatianKuna(amount: -100, '
@@ -72,6 +75,7 @@ def test_croatian_kuna_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert croatian_kuna.__str__() == '-100,00 Kn'
 
@@ -98,6 +102,7 @@ def test_croatian_kuna_custom():
     assert croatian_kuna.symbol == 'Kn'
     assert not croatian_kuna.symbol_ahead
     assert croatian_kuna.symbol_separator == '_'
+    assert croatian_kuna.convertion == ''
     assert croatian_kuna.__hash__() == hash((decimal, 'HRK', '191'))
     assert croatian_kuna.__repr__() == (
         'CroatianKuna(amount: 1000, '
@@ -109,6 +114,7 @@ def test_croatian_kuna_custom():
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert croatian_kuna.__str__() == 'HRK 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_croatian_kuna_changed():
             AttributeError,
             match='can\'t set attribute'):
         croatian_kuna.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        croatian_kuna.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

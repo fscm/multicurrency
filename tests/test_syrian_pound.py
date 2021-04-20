@@ -26,25 +26,27 @@ def test_syrian_pound():
     assert syrian_pound.numeric_code == '760'
     assert syrian_pound.alpha_code == 'SYP'
     assert syrian_pound.decimal_places == 2
-    assert syrian_pound.decimal_sign == ','
-    assert syrian_pound.grouping_sign == '.'
+    assert syrian_pound.decimal_sign == '\u066B'
+    assert syrian_pound.grouping_sign == '\u066C'
     assert not syrian_pound.international
-    assert syrian_pound.symbol == 'ل.س.'
+    assert syrian_pound.symbol == 'ل.س'
     assert not syrian_pound.symbol_ahead
     assert syrian_pound.symbol_separator == '\u00A0'
+    assert syrian_pound.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
     assert syrian_pound.__hash__() == hash((decimal, 'SYP', '760'))
     assert syrian_pound.__repr__() == (
         'SyrianPound(amount: 0.1428571428571428571428571429, '
         'alpha_code: "SYP", '
-        'symbol: "ل.س.", '
+        'symbol: "ل.س", '
         'symbol_ahead: False, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "760", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: "\u066B", '
+        'grouping_sign: "\u066C", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
         'international: False)')
-    assert syrian_pound.__str__() == '0,14 ل.س.'
+    assert syrian_pound.__str__() == '٠٫١٤ ل.س'
 
 
 def test_syrian_pound_negative():
@@ -55,25 +57,27 @@ def test_syrian_pound_negative():
     assert syrian_pound.numeric_code == '760'
     assert syrian_pound.alpha_code == 'SYP'
     assert syrian_pound.decimal_places == 2
-    assert syrian_pound.decimal_sign == ','
-    assert syrian_pound.grouping_sign == '.'
+    assert syrian_pound.decimal_sign == '\u066B'
+    assert syrian_pound.grouping_sign == '\u066C'
     assert not syrian_pound.international
-    assert syrian_pound.symbol == 'ل.س.'
+    assert syrian_pound.symbol == 'ل.س'
     assert not syrian_pound.symbol_ahead
     assert syrian_pound.symbol_separator == '\u00A0'
+    assert syrian_pound.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
     assert syrian_pound.__hash__() == hash((decimal, 'SYP', '760'))
     assert syrian_pound.__repr__() == (
         'SyrianPound(amount: -100, '
         'alpha_code: "SYP", '
-        'symbol: "ل.س.", '
+        'symbol: "ل.س", '
         'symbol_ahead: False, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "760", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: "\u066B", '
+        'grouping_sign: "\u066C", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
         'international: False)')
-    assert syrian_pound.__str__() == '-100,00 ل.س.'
+    assert syrian_pound.__str__() == '-١٠٠٫٠٠ ل.س'
 
 
 def test_syrian_pound_custom():
@@ -82,8 +86,8 @@ def test_syrian_pound_custom():
     syrian_pound = SyrianPound(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
+        decimal_sign='\u066C',
+        grouping_sign='\u066B',
         international=True,
         symbol_ahead=False,
         symbol_separator='_')
@@ -92,23 +96,25 @@ def test_syrian_pound_custom():
     assert syrian_pound.numeric_code == '760'
     assert syrian_pound.alpha_code == 'SYP'
     assert syrian_pound.decimal_places == 5
-    assert syrian_pound.decimal_sign == '.'
-    assert syrian_pound.grouping_sign == ','
+    assert syrian_pound.decimal_sign == '\u066C'
+    assert syrian_pound.grouping_sign == '\u066B'
     assert syrian_pound.international
-    assert syrian_pound.symbol == 'ل.س.'
+    assert syrian_pound.symbol == 'ل.س'
     assert not syrian_pound.symbol_ahead
     assert syrian_pound.symbol_separator == '_'
+    assert syrian_pound.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
     assert syrian_pound.__hash__() == hash((decimal, 'SYP', '760'))
     assert syrian_pound.__repr__() == (
         'SyrianPound(amount: 1000, '
         'alpha_code: "SYP", '
-        'symbol: "ل.س.", '
+        'symbol: "ل.س", '
         'symbol_ahead: False, '
         'symbol_separator: "_", '
         'numeric_code: "760", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: "\u066C", '
+        'grouping_sign: "\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
         'international: True)')
     assert syrian_pound.__str__() == 'SYP 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_syrian_pound_changed():
             AttributeError,
             match='can\'t set attribute'):
         syrian_pound.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        syrian_pound.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

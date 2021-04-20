@@ -32,6 +32,7 @@ def test_somali_shilling():
     assert somali_shilling.symbol == 'Sh'
     assert somali_shilling.symbol_ahead
     assert somali_shilling.symbol_separator == '\u00A0'
+    assert somali_shilling.convertion == ''
     assert somali_shilling.__hash__() == hash((decimal, 'SOS', '706'))
     assert somali_shilling.__repr__() == (
         'SomaliShilling(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_somali_shilling():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert somali_shilling.__str__() == 'Sh 0.14'
 
@@ -61,6 +63,7 @@ def test_somali_shilling_negative():
     assert somali_shilling.symbol == 'Sh'
     assert somali_shilling.symbol_ahead
     assert somali_shilling.symbol_separator == '\u00A0'
+    assert somali_shilling.convertion == ''
     assert somali_shilling.__hash__() == hash((decimal, 'SOS', '706'))
     assert somali_shilling.__repr__() == (
         'SomaliShilling(amount: -100, '
@@ -72,6 +75,7 @@ def test_somali_shilling_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert somali_shilling.__str__() == 'Sh -100.00'
 
@@ -98,6 +102,7 @@ def test_somali_shilling_custom():
     assert somali_shilling.symbol == 'Sh'
     assert not somali_shilling.symbol_ahead
     assert somali_shilling.symbol_separator == '_'
+    assert somali_shilling.convertion == ''
     assert somali_shilling.__hash__() == hash((decimal, 'SOS', '706'))
     assert somali_shilling.__repr__() == (
         'SomaliShilling(amount: 1000, '
@@ -109,6 +114,7 @@ def test_somali_shilling_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert somali_shilling.__str__() == 'SOS 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_somali_shilling_changed():
             AttributeError,
             match='can\'t set attribute'):
         somali_shilling.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        somali_shilling.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

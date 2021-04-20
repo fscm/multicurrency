@@ -32,6 +32,7 @@ def test_suriname_dollar():
     assert suriname_dollar.symbol == '$'
     assert suriname_dollar.symbol_ahead
     assert suriname_dollar.symbol_separator == '\u00A0'
+    assert suriname_dollar.convertion == ''
     assert suriname_dollar.__hash__() == hash((decimal, 'SRD', '968'))
     assert suriname_dollar.__repr__() == (
         'SurinameDollar(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_suriname_dollar():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert suriname_dollar.__str__() == '$ 0,14'
 
@@ -61,6 +63,7 @@ def test_suriname_dollar_negative():
     assert suriname_dollar.symbol == '$'
     assert suriname_dollar.symbol_ahead
     assert suriname_dollar.symbol_separator == '\u00A0'
+    assert suriname_dollar.convertion == ''
     assert suriname_dollar.__hash__() == hash((decimal, 'SRD', '968'))
     assert suriname_dollar.__repr__() == (
         'SurinameDollar(amount: -100, '
@@ -72,6 +75,7 @@ def test_suriname_dollar_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert suriname_dollar.__str__() == '$ -100,00'
 
@@ -98,6 +102,7 @@ def test_suriname_dollar_custom():
     assert suriname_dollar.symbol == '$'
     assert not suriname_dollar.symbol_ahead
     assert suriname_dollar.symbol_separator == '_'
+    assert suriname_dollar.convertion == ''
     assert suriname_dollar.__hash__() == hash((decimal, 'SRD', '968'))
     assert suriname_dollar.__repr__() == (
         'SurinameDollar(amount: 1000, '
@@ -109,6 +114,7 @@ def test_suriname_dollar_custom():
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert suriname_dollar.__str__() == 'SRD 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_suriname_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         suriname_dollar.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        suriname_dollar.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

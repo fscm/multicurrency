@@ -32,6 +32,7 @@ def test_dong():
     assert dong.symbol == '₫'
     assert not dong.symbol_ahead
     assert dong.symbol_separator == '\u00A0'
+    assert dong.convertion == ''
     assert dong.__hash__() == hash((decimal, 'VND', '704'))
     assert dong.__repr__() == (
         'Dong(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_dong():
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert dong.__str__() == '0 ₫'
 
@@ -61,6 +63,7 @@ def test_dong_negative():
     assert dong.symbol == '₫'
     assert not dong.symbol_ahead
     assert dong.symbol_separator == '\u00A0'
+    assert dong.convertion == ''
     assert dong.__hash__() == hash((decimal, 'VND', '704'))
     assert dong.__repr__() == (
         'Dong(amount: -100, '
@@ -72,6 +75,7 @@ def test_dong_negative():
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert dong.__str__() == '-100 ₫'
 
@@ -98,6 +102,7 @@ def test_dong_custom():
     assert dong.symbol == '₫'
     assert not dong.symbol_ahead
     assert dong.symbol_separator == '_'
+    assert dong.convertion == ''
     assert dong.__hash__() == hash((decimal, 'VND', '704'))
     assert dong.__repr__() == (
         'Dong(amount: 1000, '
@@ -109,6 +114,7 @@ def test_dong_custom():
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert dong.__str__() == 'VND 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_dong_changed():
             AttributeError,
             match='can\'t set attribute'):
         dong.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        dong.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

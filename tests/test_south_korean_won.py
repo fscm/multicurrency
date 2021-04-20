@@ -32,6 +32,7 @@ def test_south_korean_won():
     assert south_korean_won.symbol == '₩'
     assert south_korean_won.symbol_ahead
     assert south_korean_won.symbol_separator == ''
+    assert south_korean_won.convertion == ''
     assert south_korean_won.__hash__() == hash((decimal, 'KRW', '410'))
     assert south_korean_won.__repr__() == (
         'SouthKoreanWon(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_south_korean_won():
         'decimal_places: "0", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert south_korean_won.__str__() == '₩0'
 
@@ -61,6 +63,7 @@ def test_south_korean_won_negative():
     assert south_korean_won.symbol == '₩'
     assert south_korean_won.symbol_ahead
     assert south_korean_won.symbol_separator == ''
+    assert south_korean_won.convertion == ''
     assert south_korean_won.__hash__() == hash((decimal, 'KRW', '410'))
     assert south_korean_won.__repr__() == (
         'SouthKoreanWon(amount: -100, '
@@ -72,6 +75,7 @@ def test_south_korean_won_negative():
         'decimal_places: "0", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert south_korean_won.__str__() == '₩-100'
 
@@ -98,6 +102,7 @@ def test_south_korean_won_custom():
     assert south_korean_won.symbol == '₩'
     assert not south_korean_won.symbol_ahead
     assert south_korean_won.symbol_separator == '_'
+    assert south_korean_won.convertion == ''
     assert south_korean_won.__hash__() == hash((decimal, 'KRW', '410'))
     assert south_korean_won.__repr__() == (
         'SouthKoreanWon(amount: 1000, '
@@ -109,6 +114,7 @@ def test_south_korean_won_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert south_korean_won.__str__() == 'KRW 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_south_korean_won_changed():
             AttributeError,
             match='can\'t set attribute'):
         south_korean_won.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        south_korean_won.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

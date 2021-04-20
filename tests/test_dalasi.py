@@ -32,6 +32,7 @@ def test_dalasi():
     assert dalasi.symbol == 'D'
     assert dalasi.symbol_ahead
     assert dalasi.symbol_separator == '\u00A0'
+    assert dalasi.convertion == ''
     assert dalasi.__hash__() == hash((decimal, 'GMD', '270'))
     assert dalasi.__repr__() == (
         'Dalasi(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_dalasi():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert dalasi.__str__() == 'D 0.14'
 
@@ -61,6 +63,7 @@ def test_dalasi_negative():
     assert dalasi.symbol == 'D'
     assert dalasi.symbol_ahead
     assert dalasi.symbol_separator == '\u00A0'
+    assert dalasi.convertion == ''
     assert dalasi.__hash__() == hash((decimal, 'GMD', '270'))
     assert dalasi.__repr__() == (
         'Dalasi(amount: -100, '
@@ -72,6 +75,7 @@ def test_dalasi_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert dalasi.__str__() == 'D -100.00'
 
@@ -98,6 +102,7 @@ def test_dalasi_custom():
     assert dalasi.symbol == 'D'
     assert not dalasi.symbol_ahead
     assert dalasi.symbol_separator == '_'
+    assert dalasi.convertion == ''
     assert dalasi.__hash__() == hash((decimal, 'GMD', '270'))
     assert dalasi.__repr__() == (
         'Dalasi(amount: 1000, '
@@ -109,6 +114,7 @@ def test_dalasi_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert dalasi.__str__() == 'GMD 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_dalasi_changed():
             AttributeError,
             match='can\'t set attribute'):
         dalasi.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        dalasi.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

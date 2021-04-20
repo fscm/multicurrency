@@ -67,6 +67,7 @@ class BurundiFranc(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -126,6 +127,7 @@ class CongoleseFranc(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -185,6 +187,7 @@ class SwissFranc(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -244,6 +247,7 @@ class DjiboutiFranc(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -303,6 +307,7 @@ class GuineaFranc(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -362,6 +367,7 @@ class RwandaFranc(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -421,6 +427,7 @@ class CFAFrancBCEAO(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -480,6 +487,7 @@ class CFAFrancBEAC(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -539,4 +547,5 @@ class CFPFranc(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)

@@ -20,7 +20,7 @@ class Ngultrum(Currency):
         >>> ngultrum = Ngultrum(
         ...     amount=123456.789)
         >>> print(ngultrum)
-        Nu. 123,456.79
+        Nu. ༡༢༣,༤༥༦.༧༩
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -67,4 +67,5 @@ class Ngultrum(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='༠༡༢༣༤༥༦༧༨༩-,.',
             international=international)

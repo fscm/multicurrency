@@ -20,7 +20,7 @@ class BulgarianLev(Currency):
         >>> bulgarian_lev = BulgarianLev(
         ...     amount=123456.789)
         >>> print(bulgarian_lev)
-        123456,79 лв.
+        123456,79 лв
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -61,10 +61,11 @@ class BulgarianLev(Currency):
             amount=amount,
             alpha_code='BGN',
             numeric_code='975',
-            symbol='лв.',
+            symbol='лв',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)

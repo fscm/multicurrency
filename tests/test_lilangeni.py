@@ -32,6 +32,7 @@ def test_lilangeni():
     assert lilangeni.symbol == 'L'
     assert lilangeni.symbol_ahead
     assert lilangeni.symbol_separator == '\u00A0'
+    assert lilangeni.convertion == ''
     assert lilangeni.__hash__() == hash((decimal, 'SZL', '748'))
     assert lilangeni.__repr__() == (
         'Lilangeni(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_lilangeni():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert lilangeni.__str__() == 'L 0.14'
 
@@ -61,6 +63,7 @@ def test_lilangeni_negative():
     assert lilangeni.symbol == 'L'
     assert lilangeni.symbol_ahead
     assert lilangeni.symbol_separator == '\u00A0'
+    assert lilangeni.convertion == ''
     assert lilangeni.__hash__() == hash((decimal, 'SZL', '748'))
     assert lilangeni.__repr__() == (
         'Lilangeni(amount: -100, '
@@ -72,6 +75,7 @@ def test_lilangeni_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert lilangeni.__str__() == 'L -100.00'
 
@@ -98,6 +102,7 @@ def test_lilangeni_custom():
     assert lilangeni.symbol == 'L'
     assert not lilangeni.symbol_ahead
     assert lilangeni.symbol_separator == '_'
+    assert lilangeni.convertion == ''
     assert lilangeni.__hash__() == hash((decimal, 'SZL', '748'))
     assert lilangeni.__repr__() == (
         'Lilangeni(amount: 1000, '
@@ -109,6 +114,7 @@ def test_lilangeni_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert lilangeni.__str__() == 'SZL 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_lilangeni_changed():
             AttributeError,
             match='can\'t set attribute'):
         lilangeni.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        lilangeni.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

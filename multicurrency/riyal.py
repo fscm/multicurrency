@@ -20,7 +20,7 @@ class SaudiRiyal(Currency):
         >>> saudi_riyal = SaudiRiyal(
         ...     amount=123456.789)
         >>> print(saudi_riyal)
-        123,456.79 ر.س.
+        ١٢٣٬٤٥٦٫٧٩ ر.س
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -28,8 +28,8 @@ class SaudiRiyal(Currency):
         amount (Union[int, float, Decimal]): Represented value.
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
-        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
-        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        decimal_sign (str, optional): Decimal symbol. Defaults to '٫'.
+        grouping_sign (str, optional): Grouping symbol. Defaults to '٬'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
@@ -45,8 +45,8 @@ class SaudiRiyal(Currency):
             cls,
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
-            decimal_sign: Optional[str] = '.',
-            grouping_sign: Optional[str] = ',',
+            decimal_sign: Optional[str] = '\u066B',
+            grouping_sign: Optional[str] = '\u066C',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
@@ -61,10 +61,11 @@ class SaudiRiyal(Currency):
             amount=amount,
             alpha_code='SAR',
             numeric_code='682',
-            symbol='ر.س.',
+            symbol='ر.س',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='٠١٢٣٤٥٦٧٨٩-\u066C\u066B',
             international=international)

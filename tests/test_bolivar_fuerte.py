@@ -29,22 +29,24 @@ def test_bolivar_fuerte():
     assert bolivar_fuerte.decimal_sign == ','
     assert bolivar_fuerte.grouping_sign == '.'
     assert not bolivar_fuerte.international
-    assert bolivar_fuerte.symbol == 'Bs F'
+    assert bolivar_fuerte.symbol == 'Bs.F'
     assert bolivar_fuerte.symbol_ahead
     assert bolivar_fuerte.symbol_separator == '\u00A0'
+    assert bolivar_fuerte.convertion == ''
     assert bolivar_fuerte.__hash__() == hash((decimal, 'VEF', '937'))
     assert bolivar_fuerte.__repr__() == (
         'BolivarFuerte(amount: 0.1428571428571428571428571429, '
         'alpha_code: "VEF", '
-        'symbol: "Bs F", '
+        'symbol: "Bs.F", '
         'symbol_ahead: True, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "937", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
-    assert bolivar_fuerte.__str__() == 'Bs F 0,14'
+    assert bolivar_fuerte.__str__() == 'Bs.F 0,14'
 
 
 def test_bolivar_fuerte_negative():
@@ -58,22 +60,24 @@ def test_bolivar_fuerte_negative():
     assert bolivar_fuerte.decimal_sign == ','
     assert bolivar_fuerte.grouping_sign == '.'
     assert not bolivar_fuerte.international
-    assert bolivar_fuerte.symbol == 'Bs F'
+    assert bolivar_fuerte.symbol == 'Bs.F'
     assert bolivar_fuerte.symbol_ahead
     assert bolivar_fuerte.symbol_separator == '\u00A0'
+    assert bolivar_fuerte.convertion == ''
     assert bolivar_fuerte.__hash__() == hash((decimal, 'VEF', '937'))
     assert bolivar_fuerte.__repr__() == (
         'BolivarFuerte(amount: -100, '
         'alpha_code: "VEF", '
-        'symbol: "Bs F", '
+        'symbol: "Bs.F", '
         'symbol_ahead: True, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "937", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
-    assert bolivar_fuerte.__str__() == 'Bs F -100,00'
+    assert bolivar_fuerte.__str__() == 'Bs.F -100,00'
 
 
 def test_bolivar_fuerte_custom():
@@ -95,20 +99,22 @@ def test_bolivar_fuerte_custom():
     assert bolivar_fuerte.decimal_sign == '.'
     assert bolivar_fuerte.grouping_sign == ','
     assert bolivar_fuerte.international
-    assert bolivar_fuerte.symbol == 'Bs F'
+    assert bolivar_fuerte.symbol == 'Bs.F'
     assert not bolivar_fuerte.symbol_ahead
     assert bolivar_fuerte.symbol_separator == '_'
+    assert bolivar_fuerte.convertion == ''
     assert bolivar_fuerte.__hash__() == hash((decimal, 'VEF', '937'))
     assert bolivar_fuerte.__repr__() == (
         'BolivarFuerte(amount: 1000, '
         'alpha_code: "VEF", '
-        'symbol: "Bs F", '
+        'symbol: "Bs.F", '
         'symbol_ahead: False, '
         'symbol_separator: "_", '
         'numeric_code: "937", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert bolivar_fuerte.__str__() == 'VEF 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_bolivar_fuerte_changed():
             AttributeError,
             match='can\'t set attribute'):
         bolivar_fuerte.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        bolivar_fuerte.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

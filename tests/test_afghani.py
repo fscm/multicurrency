@@ -26,25 +26,27 @@ def test_afghani():
     assert afghani.numeric_code == '971'
     assert afghani.alpha_code == 'AFN'
     assert afghani.decimal_places == 2
-    assert afghani.decimal_sign == ','
-    assert afghani.grouping_sign == '.'
+    assert afghani.decimal_sign == '\u066B'
+    assert afghani.grouping_sign == '\u066C'
     assert not afghani.international
-    assert afghani.symbol == 'Af'
+    assert afghani.symbol == '؋'
     assert afghani.symbol_ahead
     assert afghani.symbol_separator == '\u00A0'
+    assert afghani.convertion == '۰۱۲۳۴۵۶۷۸۹-\u066C\u066B'
     assert afghani.__hash__() == hash((decimal, 'AFN', '971'))
     assert afghani.__repr__() == (
         'Afghani(amount: 0.1428571428571428571428571429, '
         'alpha_code: "AFN", '
-        'symbol: "Af", '
+        'symbol: "؋", '
         'symbol_ahead: True, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "971", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: "\u066B", '
+        'grouping_sign: "\u066C", '
+        'convertion: "۰۱۲۳۴۵۶۷۸۹-\u066C\u066B", '
         'international: False)')
-    assert afghani.__str__() == 'Af 0,14'
+    assert afghani.__str__() == '؋ ۰٫۱۴'
 
 
 def test_afghani_negative():
@@ -55,25 +57,27 @@ def test_afghani_negative():
     assert afghani.numeric_code == '971'
     assert afghani.alpha_code == 'AFN'
     assert afghani.decimal_places == 2
-    assert afghani.decimal_sign == ','
-    assert afghani.grouping_sign == '.'
+    assert afghani.decimal_sign == '\u066B'
+    assert afghani.grouping_sign == '\u066C'
     assert not afghani.international
-    assert afghani.symbol == 'Af'
+    assert afghani.symbol == '؋'
     assert afghani.symbol_ahead
     assert afghani.symbol_separator == '\u00A0'
+    assert afghani.convertion == '۰۱۲۳۴۵۶۷۸۹-\u066C\u066B'
     assert afghani.__hash__() == hash((decimal, 'AFN', '971'))
     assert afghani.__repr__() == (
         'Afghani(amount: -100, '
         'alpha_code: "AFN", '
-        'symbol: "Af", '
+        'symbol: "؋", '
         'symbol_ahead: True, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "971", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: "\u066B", '
+        'grouping_sign: "\u066C", '
+        'convertion: "۰۱۲۳۴۵۶۷۸۹-\u066C\u066B", '
         'international: False)')
-    assert afghani.__str__() == 'Af -100,00'
+    assert afghani.__str__() == '؋ -۱۰۰٫۰۰'
 
 
 def test_afghani_custom():
@@ -82,8 +86,8 @@ def test_afghani_custom():
     afghani = Afghani(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
+        decimal_sign='\u066C',
+        grouping_sign='\u066B',
         international=True,
         symbol_ahead=False,
         symbol_separator='_')
@@ -92,23 +96,25 @@ def test_afghani_custom():
     assert afghani.numeric_code == '971'
     assert afghani.alpha_code == 'AFN'
     assert afghani.decimal_places == 5
-    assert afghani.decimal_sign == '.'
-    assert afghani.grouping_sign == ','
+    assert afghani.decimal_sign == '\u066C'
+    assert afghani.grouping_sign == '\u066B'
     assert afghani.international
-    assert afghani.symbol == 'Af'
+    assert afghani.symbol == '؋'
     assert not afghani.symbol_ahead
     assert afghani.symbol_separator == '_'
+    assert afghani.convertion == '۰۱۲۳۴۵۶۷۸۹-\u066C\u066B'
     assert afghani.__hash__() == hash((decimal, 'AFN', '971'))
     assert afghani.__repr__() == (
         'Afghani(amount: 1000, '
         'alpha_code: "AFN", '
-        'symbol: "Af", '
+        'symbol: "؋", '
         'symbol_ahead: False, '
         'symbol_separator: "_", '
         'numeric_code: "971", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: "\u066C", '
+        'grouping_sign: "\u066B", '
+        'convertion: "۰۱۲۳۴۵۶۷۸۹-\u066C\u066B", '
         'international: True)')
     assert afghani.__str__() == 'AFN 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_afghani_changed():
             AttributeError,
             match='can\'t set attribute'):
         afghani.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        afghani.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

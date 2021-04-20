@@ -32,6 +32,7 @@ def test_malagasy_ariary():
     assert malagasy_ariary.symbol == 'Ar'
     assert not malagasy_ariary.symbol_ahead
     assert malagasy_ariary.symbol_separator == '\u00A0'
+    assert malagasy_ariary.convertion == ''
     assert malagasy_ariary.__hash__() == hash((decimal, 'MGA', '969'))
     assert malagasy_ariary.__repr__() == (
         'MalagasyAriary(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_malagasy_ariary():
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert malagasy_ariary.__str__() == '0 Ar'
 
@@ -61,6 +63,7 @@ def test_malagasy_ariary_negative():
     assert malagasy_ariary.symbol == 'Ar'
     assert not malagasy_ariary.symbol_ahead
     assert malagasy_ariary.symbol_separator == '\u00A0'
+    assert malagasy_ariary.convertion == ''
     assert malagasy_ariary.__hash__() == hash((decimal, 'MGA', '969'))
     assert malagasy_ariary.__repr__() == (
         'MalagasyAriary(amount: -100, '
@@ -72,6 +75,7 @@ def test_malagasy_ariary_negative():
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert malagasy_ariary.__str__() == '-100 Ar'
 
@@ -98,6 +102,7 @@ def test_malagasy_ariary_custom():
     assert malagasy_ariary.symbol == 'Ar'
     assert not malagasy_ariary.symbol_ahead
     assert malagasy_ariary.symbol_separator == '_'
+    assert malagasy_ariary.convertion == ''
     assert malagasy_ariary.__hash__() == hash((decimal, 'MGA', '969'))
     assert malagasy_ariary.__repr__() == (
         'MalagasyAriary(amount: 1000, '
@@ -109,6 +114,7 @@ def test_malagasy_ariary_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert malagasy_ariary.__str__() == 'MGA 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_malagasy_ariary_changed():
             AttributeError,
             match='can\'t set attribute'):
         malagasy_ariary.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        malagasy_ariary.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

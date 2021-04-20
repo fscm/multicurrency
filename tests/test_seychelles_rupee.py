@@ -32,6 +32,7 @@ def test_seychelles_rupee():
     assert seychelles_rupee.symbol == '₨'
     assert seychelles_rupee.symbol_ahead
     assert seychelles_rupee.symbol_separator == '\u00A0'
+    assert seychelles_rupee.convertion == ''
     assert seychelles_rupee.__hash__() == hash((decimal, 'SCR', '690'))
     assert seychelles_rupee.__repr__() == (
         'SeychellesRupee(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_seychelles_rupee():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert seychelles_rupee.__str__() == '₨ 0.14'
 
@@ -61,6 +63,7 @@ def test_seychelles_rupee_negative():
     assert seychelles_rupee.symbol == '₨'
     assert seychelles_rupee.symbol_ahead
     assert seychelles_rupee.symbol_separator == '\u00A0'
+    assert seychelles_rupee.convertion == ''
     assert seychelles_rupee.__hash__() == hash((decimal, 'SCR', '690'))
     assert seychelles_rupee.__repr__() == (
         'SeychellesRupee(amount: -100, '
@@ -72,6 +75,7 @@ def test_seychelles_rupee_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert seychelles_rupee.__str__() == '₨ -100.00'
 
@@ -98,6 +102,7 @@ def test_seychelles_rupee_custom():
     assert seychelles_rupee.symbol == '₨'
     assert not seychelles_rupee.symbol_ahead
     assert seychelles_rupee.symbol_separator == '_'
+    assert seychelles_rupee.convertion == ''
     assert seychelles_rupee.__hash__() == hash((decimal, 'SCR', '690'))
     assert seychelles_rupee.__repr__() == (
         'SeychellesRupee(amount: 1000, '
@@ -109,6 +114,7 @@ def test_seychelles_rupee_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert seychelles_rupee.__str__() == 'SCR 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_seychelles_rupee_changed():
             AttributeError,
             match='can\'t set attribute'):
         seychelles_rupee.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        seychelles_rupee.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

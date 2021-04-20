@@ -29,22 +29,24 @@ def test_bulgarian_lev():
     assert bulgarian_lev.decimal_sign == ','
     assert bulgarian_lev.grouping_sign == ''
     assert not bulgarian_lev.international
-    assert bulgarian_lev.symbol == 'лв.'
+    assert bulgarian_lev.symbol == 'лв'
     assert not bulgarian_lev.symbol_ahead
     assert bulgarian_lev.symbol_separator == '\u00A0'
+    assert bulgarian_lev.convertion == ''
     assert bulgarian_lev.__hash__() == hash((decimal, 'BGN', '975'))
     assert bulgarian_lev.__repr__() == (
         'BulgarianLev(amount: 0.1428571428571428571428571429, '
         'alpha_code: "BGN", '
-        'symbol: "лв.", '
+        'symbol: "лв", '
         'symbol_ahead: False, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "975", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "", '
+        'convertion: "", '
         'international: False)')
-    assert bulgarian_lev.__str__() == '0,14 лв.'
+    assert bulgarian_lev.__str__() == '0,14 лв'
 
 
 def test_bulgarian_lev_negative():
@@ -58,22 +60,24 @@ def test_bulgarian_lev_negative():
     assert bulgarian_lev.decimal_sign == ','
     assert bulgarian_lev.grouping_sign == ''
     assert not bulgarian_lev.international
-    assert bulgarian_lev.symbol == 'лв.'
+    assert bulgarian_lev.symbol == 'лв'
     assert not bulgarian_lev.symbol_ahead
     assert bulgarian_lev.symbol_separator == '\u00A0'
+    assert bulgarian_lev.convertion == ''
     assert bulgarian_lev.__hash__() == hash((decimal, 'BGN', '975'))
     assert bulgarian_lev.__repr__() == (
         'BulgarianLev(amount: -100, '
         'alpha_code: "BGN", '
-        'symbol: "лв.", '
+        'symbol: "лв", '
         'symbol_ahead: False, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "975", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "", '
+        'convertion: "", '
         'international: False)')
-    assert bulgarian_lev.__str__() == '-100,00 лв.'
+    assert bulgarian_lev.__str__() == '-100,00 лв'
 
 
 def test_bulgarian_lev_custom():
@@ -95,20 +99,22 @@ def test_bulgarian_lev_custom():
     assert bulgarian_lev.decimal_sign == ''
     assert bulgarian_lev.grouping_sign == ','
     assert bulgarian_lev.international
-    assert bulgarian_lev.symbol == 'лв.'
+    assert bulgarian_lev.symbol == 'лв'
     assert not bulgarian_lev.symbol_ahead
     assert bulgarian_lev.symbol_separator == '_'
+    assert bulgarian_lev.convertion == ''
     assert bulgarian_lev.__hash__() == hash((decimal, 'BGN', '975'))
     assert bulgarian_lev.__repr__() == (
         'BulgarianLev(amount: 1000, '
         'alpha_code: "BGN", '
-        'symbol: "лв.", '
+        'symbol: "лв", '
         'symbol_ahead: False, '
         'symbol_separator: "_", '
         'numeric_code: "975", '
         'decimal_places: "5", '
         'decimal_sign: "", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert bulgarian_lev.__str__() == 'BGN 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_bulgarian_lev_changed():
             AttributeError,
             match='can\'t set attribute'):
         bulgarian_lev.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        bulgarian_lev.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

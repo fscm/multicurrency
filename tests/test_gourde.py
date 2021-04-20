@@ -32,6 +32,7 @@ def test_gourde():
     assert gourde.symbol == 'G'
     assert gourde.symbol_ahead
     assert gourde.symbol_separator == '\u00A0'
+    assert gourde.convertion == ''
     assert gourde.__hash__() == hash((decimal, 'HTG', '332'))
     assert gourde.__repr__() == (
         'Gourde(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_gourde():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert gourde.__str__() == 'G 0.14'
 
@@ -61,6 +63,7 @@ def test_gourde_negative():
     assert gourde.symbol == 'G'
     assert gourde.symbol_ahead
     assert gourde.symbol_separator == '\u00A0'
+    assert gourde.convertion == ''
     assert gourde.__hash__() == hash((decimal, 'HTG', '332'))
     assert gourde.__repr__() == (
         'Gourde(amount: -100, '
@@ -72,6 +75,7 @@ def test_gourde_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert gourde.__str__() == 'G -100.00'
 
@@ -98,6 +102,7 @@ def test_gourde_custom():
     assert gourde.symbol == 'G'
     assert not gourde.symbol_ahead
     assert gourde.symbol_separator == '_'
+    assert gourde.convertion == ''
     assert gourde.__hash__() == hash((decimal, 'HTG', '332'))
     assert gourde.__repr__() == (
         'Gourde(amount: 1000, '
@@ -109,6 +114,7 @@ def test_gourde_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert gourde.__str__() == 'HTG 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_gourde_changed():
             AttributeError,
             match='can\'t set attribute'):
         gourde.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        gourde.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -32,6 +32,7 @@ def test_euromt():
     assert euromt.symbol == '€'
     assert euromt.symbol_ahead
     assert euromt.symbol_separator == ''
+    assert euromt.convertion == ''
     assert euromt.__hash__() == hash((decimal, 'EUR', '978'))
     assert euromt.__repr__() == (
         'EuroMT(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_euromt():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert euromt.__str__() == '€0.14'
 
@@ -61,6 +63,7 @@ def test_euromt_negative():
     assert euromt.symbol == '€'
     assert euromt.symbol_ahead
     assert euromt.symbol_separator == ''
+    assert euromt.convertion == ''
     assert euromt.__hash__() == hash((decimal, 'EUR', '978'))
     assert euromt.__repr__() == (
         'EuroMT(amount: -100, '
@@ -72,6 +75,7 @@ def test_euromt_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert euromt.__str__() == '€-100.00'
 
@@ -98,6 +102,7 @@ def test_euromt_custom():
     assert euromt.symbol == '€'
     assert not euromt.symbol_ahead
     assert euromt.symbol_separator == '_'
+    assert euromt.convertion == ''
     assert euromt.__hash__() == hash((decimal, 'EUR', '978'))
     assert euromt.__repr__() == (
         'EuroMT(amount: 1000, '
@@ -109,6 +114,7 @@ def test_euromt_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert euromt.__str__() == 'EUR 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_euromt_changed():
             AttributeError,
             match='can\'t set attribute'):
         euromt.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        euromt.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

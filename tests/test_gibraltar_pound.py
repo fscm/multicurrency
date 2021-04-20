@@ -32,6 +32,7 @@ def test_gibraltar_pound():
     assert gibraltar_pound.symbol == '£'
     assert gibraltar_pound.symbol_ahead
     assert gibraltar_pound.symbol_separator == ''
+    assert gibraltar_pound.convertion == ''
     assert gibraltar_pound.__hash__() == hash((decimal, 'GIP', '292'))
     assert gibraltar_pound.__repr__() == (
         'GibraltarPound(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_gibraltar_pound():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert gibraltar_pound.__str__() == '£0.14'
 
@@ -61,6 +63,7 @@ def test_gibraltar_pound_negative():
     assert gibraltar_pound.symbol == '£'
     assert gibraltar_pound.symbol_ahead
     assert gibraltar_pound.symbol_separator == ''
+    assert gibraltar_pound.convertion == ''
     assert gibraltar_pound.__hash__() == hash((decimal, 'GIP', '292'))
     assert gibraltar_pound.__repr__() == (
         'GibraltarPound(amount: -100, '
@@ -72,6 +75,7 @@ def test_gibraltar_pound_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert gibraltar_pound.__str__() == '£-100.00'
 
@@ -98,6 +102,7 @@ def test_gibraltar_pound_custom():
     assert gibraltar_pound.symbol == '£'
     assert not gibraltar_pound.symbol_ahead
     assert gibraltar_pound.symbol_separator == '_'
+    assert gibraltar_pound.convertion == ''
     assert gibraltar_pound.__hash__() == hash((decimal, 'GIP', '292'))
     assert gibraltar_pound.__repr__() == (
         'GibraltarPound(amount: 1000, '
@@ -109,6 +114,7 @@ def test_gibraltar_pound_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert gibraltar_pound.__str__() == 'GIP 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_gibraltar_pound_changed():
             AttributeError,
             match='can\'t set attribute'):
         gibraltar_pound.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        gibraltar_pound.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

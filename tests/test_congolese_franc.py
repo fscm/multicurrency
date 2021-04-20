@@ -32,6 +32,7 @@ def test_congolese_franc():
     assert congolese_franc.symbol == '₣'
     assert not congolese_franc.symbol_ahead
     assert congolese_franc.symbol_separator == '\u00A0'
+    assert congolese_franc.convertion == ''
     assert congolese_franc.__hash__() == hash((decimal, 'CDF', '976'))
     assert congolese_franc.__repr__() == (
         'CongoleseFranc(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_congolese_franc():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert congolese_franc.__str__() == '0,14 ₣'
 
@@ -61,6 +63,7 @@ def test_congolese_franc_negative():
     assert congolese_franc.symbol == '₣'
     assert not congolese_franc.symbol_ahead
     assert congolese_franc.symbol_separator == '\u00A0'
+    assert congolese_franc.convertion == ''
     assert congolese_franc.__hash__() == hash((decimal, 'CDF', '976'))
     assert congolese_franc.__repr__() == (
         'CongoleseFranc(amount: -100, '
@@ -72,6 +75,7 @@ def test_congolese_franc_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert congolese_franc.__str__() == '-100,00 ₣'
 
@@ -98,6 +102,7 @@ def test_congolese_franc_custom():
     assert congolese_franc.symbol == '₣'
     assert not congolese_franc.symbol_ahead
     assert congolese_franc.symbol_separator == '_'
+    assert congolese_franc.convertion == ''
     assert congolese_franc.__hash__() == hash((decimal, 'CDF', '976'))
     assert congolese_franc.__repr__() == (
         'CongoleseFranc(amount: 1000, '
@@ -109,6 +114,7 @@ def test_congolese_franc_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert congolese_franc.__str__() == 'CDF 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_congolese_franc_changed():
             AttributeError,
             match='can\'t set attribute'):
         congolese_franc.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        congolese_franc.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

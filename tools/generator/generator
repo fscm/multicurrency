@@ -30,13 +30,14 @@ separated by a coma (',') and in the following order:
     * "Grouping Sign"
     * "Symbol Separator"
     * "Symbol Ahead"
+    * "Convertion"
 
 `currency.csv` file example:
 
-    "Currency","Symbol","Digital Code","Class","Name","Country","Decimal Places","Decimal Sign","Grouping Sign","Symbol Separator","Symbol Ahead"
-    "AFN","Af","971","Afghani","Afghani","Afghanistan","2",",",".","\u00A0","True"
-    "ALL","Lekë","008","Lek","Lek","Albania","2",",","\u202F","\u00A0","False"
-    "AMD","Դ","051","Dram","Armenian Dram","Armenia","2",",","\u202F","\u00A0","False"
+    "Currency","Symbol","Digital Code","Class","Name","Country","Decimal Places","Decimal Sign","Grouping Sign","Symbol Separator","Symbol Ahead","Convertion"
+    "AFN","Af","971","Afghani","Afghani","Afghanistan","2",",",".","\u00A0","True",""
+    "ALL","Lekë","008","Lek","Lek","Albania","2",",","\u202F","\u00A0","False",""
+    "AMD","Դ","051","Dram","Armenian Dram","Armenia","2",",","\u202F","\u00A0","False",""
 """
 
 import csv
@@ -79,7 +80,7 @@ with open(f'{workfolder}/{CURRENCY_TESTS}', 'r') as file_in_tests:
     text_tests = file_in_tests.read()
 
 
-def format(
+def _format(
         _amount,
         _decimal_places,
         _alpha_code,
@@ -88,14 +89,20 @@ def format(
         _symbol,
         _symbol_ahead,
         _symbol_separator,
+        _convertion,
         _international=False):
     _converted = f'{round(_amount, _decimal_places):,.{_decimal_places}f}'
     _grouping_sign = bytes(_grouping_sign, 'utf-8').decode('unicode_escape')
     _symbol_separator = bytes(_symbol_separator, 'utf-8').decode('unicode_escape')
     if _international:
         return f'{_alpha_code} {_converted}'
-    _converted = _converted.replace('.', 'X').replace(
-        ',', _grouping_sign).replace('X', _decimal_sign)
+    if _convertion:
+        _t = dict(zip('0123456789-,.', re.sub(r'\\u[0-9a-fA-F]{4}', lambda x:eval('"' + x.group() + '"'), _convertion)))
+        #_t = dict(zip('0123456789-,.', _convertion))
+        _converted = ''.join([_t[c] for c in _converted])
+    else:
+        _converted = _converted.replace('.', 'X').replace(
+            ',', _grouping_sign).replace('X', _decimal_sign)
     if _symbol_ahead:
         return f'{_symbol}{_symbol_separator}{_converted}'
     return f'{_converted}{_symbol_separator}{_symbol}'
@@ -150,7 +157,7 @@ with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
             '__SYMBOL_AHEAD__': currency['symbol_ahead'],
             '__SYMBOL_AHEAD_ALT__': '' if bool(
                 eval(currency['symbol_ahead'])) else 'not ',
-            '__EXAMPLE_OUTPUT__': format(
+            '__EXAMPLE_OUTPUT__': _format(
                 example,
                 int(currency['decimal_places']),
                 currency['currency'],
@@ -158,8 +165,9 @@ with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
                 currency['decimal_sign'],
                 currency['symbol'],
                 eval(currency['symbol_ahead']),
-                currency['symbol_separator']),
-            '__EXAMPLE_1DIV7__': format(
+                currency['symbol_separator'],
+                currency['convertion']),
+            '__EXAMPLE_1DIV7__': _format(
                 decimal,
                 int(currency['decimal_places']),
                 currency['currency'],
@@ -167,8 +175,9 @@ with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
                 currency['decimal_sign'],
                 currency['symbol'],
                 eval(currency['symbol_ahead']),
-                currency['symbol_separator']),
-            '__EXAMPLE_NEGATIVE__': format(
+                currency['symbol_separator'],
+                currency['convertion']),
+            '__EXAMPLE_NEGATIVE__': _format(
                 negative,
                 int(currency['decimal_places']),
                 currency['currency'],
@@ -176,8 +185,9 @@ with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
                 currency['decimal_sign'],
                 currency['symbol'],
                 eval(currency['symbol_ahead']),
-                currency['symbol_separator']),
-            '__EXAMPLE_CUSTOM__': format(
+                currency['symbol_separator'],
+                currency['convertion']),
+            '__EXAMPLE_CUSTOM__': _format(
                 custom,
                 5,
                 currency['currency'],
@@ -186,7 +196,9 @@ with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
                 currency['symbol'],
                 False,
                 '_',
-                True)})
+                '',
+                True),
+            '__CONVERTION__': currency['convertion']})
 
 
 print('Creating currency types...')
@@ -223,6 +235,7 @@ for currency_module in currencies:
 print()
 print('Generating __init__.py file data...')
 all_classes = []
+
 print()
 print('Imports:')
 for currency_module, data in sorted(currencies.items()):
@@ -244,12 +257,18 @@ for currency_module, data in currencies.items():
     for _, values in data['currencies'].items():
         currency_class = values['__CURRENCY_CLASS__']
         eg_locale = values['__EXAMPLE_OUTPUT__']
-        eg_international = format(
+        eg_international = _format(
                 example, int(values['__DECIMAL_PLACES__']),
-                values['__CURRENCY__'], '', '', '', False, '', True)
+                values['__CURRENCY__'], '', '', '', False, '', '', True)
         supported.append((
-            currency_class,
-            '`'+f"multicurrency.{currency_module}.{currency_class}"'`'+f' ({eg_locale} | {eg_international})'))
-supported_sorted = [c for _, c in sorted(supported)]
+            currency_class, (
+            '`'+f"multicurrency.{currency_module}.{currency_class}"'`'+f' ({eg_locale} | {eg_international})',
+            f'`{currency_class}` ({eg_locale} | {eg_international})')))
+supported_sorted = [c[0] for _, c in sorted(supported)]
+print(',\n'.join(supported_sorted))
+
+print()
+print('readme supported currencies:')
+supported_sorted = [c[1] for _, c in sorted(supported)]
 print(',\n'.join(supported_sorted))
 print()

@@ -32,6 +32,7 @@ def test_eurosm():
     assert eurosm.symbol == '€'
     assert not eurosm.symbol_ahead
     assert eurosm.symbol_separator == '\u00A0'
+    assert eurosm.convertion == ''
     assert eurosm.__hash__() == hash((decimal, 'EUR', '978'))
     assert eurosm.__repr__() == (
         'EuroSM(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_eurosm():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert eurosm.__str__() == '0,14 €'
 
@@ -61,6 +63,7 @@ def test_eurosm_negative():
     assert eurosm.symbol == '€'
     assert not eurosm.symbol_ahead
     assert eurosm.symbol_separator == '\u00A0'
+    assert eurosm.convertion == ''
     assert eurosm.__hash__() == hash((decimal, 'EUR', '978'))
     assert eurosm.__repr__() == (
         'EuroSM(amount: -100, '
@@ -72,6 +75,7 @@ def test_eurosm_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert eurosm.__str__() == '-100,00 €'
 
@@ -98,6 +102,7 @@ def test_eurosm_custom():
     assert eurosm.symbol == '€'
     assert not eurosm.symbol_ahead
     assert eurosm.symbol_separator == '_'
+    assert eurosm.convertion == ''
     assert eurosm.__hash__() == hash((decimal, 'EUR', '978'))
     assert eurosm.__repr__() == (
         'EuroSM(amount: 1000, '
@@ -109,6 +114,7 @@ def test_eurosm_custom():
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert eurosm.__str__() == 'EUR 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_eurosm_changed():
             AttributeError,
             match='can\'t set attribute'):
         eurosm.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        eurosm.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

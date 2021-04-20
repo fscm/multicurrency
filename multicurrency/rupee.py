@@ -67,6 +67,7 @@ class IndianRupee(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -126,6 +127,7 @@ class SriLankaRupee(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -185,6 +187,7 @@ class MauritiusRupee(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -197,7 +200,7 @@ class NepaleseRupee(Currency):
         >>> nepalese_rupee = NepaleseRupee(
         ...     amount=123456.789)
         >>> print(nepalese_rupee)
-        नेरू 123,456.79
+        नेरू १२३,४५६.७९
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -244,6 +247,7 @@ class NepaleseRupee(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='०१२३४५६७८९-,.',
             international=international)
 
 
@@ -303,6 +307,7 @@ class PakistanRupee(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -362,4 +367,5 @@ class SeychellesRupee(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)

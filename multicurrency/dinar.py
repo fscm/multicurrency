@@ -20,7 +20,7 @@ class BahrainiDinar(Currency):
         >>> bahraini_dinar = BahrainiDinar(
         ...     amount=123456.789)
         >>> print(bahraini_dinar)
-        123,456.789 د.ب.
+        ١٢٣٬٤٥٦٫٧٨٩ ب.د
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -28,8 +28,8 @@ class BahrainiDinar(Currency):
         amount (Union[int, float, Decimal]): Represented value.
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 3,
-        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
-        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        decimal_sign (str, optional): Decimal symbol. Defaults to '٫'.
+        grouping_sign (str, optional): Grouping symbol. Defaults to '٬'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
@@ -45,8 +45,8 @@ class BahrainiDinar(Currency):
             cls,
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 3,
-            decimal_sign: Optional[str] = '.',
-            grouping_sign: Optional[str] = ',',
+            decimal_sign: Optional[str] = '\u066B',
+            grouping_sign: Optional[str] = '\u066C',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
@@ -61,12 +61,13 @@ class BahrainiDinar(Currency):
             amount=amount,
             alpha_code='BHD',
             numeric_code='048',
-            symbol='د.ب.',
+            symbol='ب.د',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='٠١٢٣٤٥٦٧٨٩-\u066C\u066B',
             international=international)
 
 
@@ -126,6 +127,7 @@ class AlgerianDinar(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -138,7 +140,7 @@ class IraqiDinar(Currency):
         >>> iraqi_dinar = IraqiDinar(
         ...     amount=123456.789)
         >>> print(iraqi_dinar)
-        د.ع. 123.456,789
+        ع.د ١٢٣٬٤٥٦٫٧٨٩
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -146,8 +148,8 @@ class IraqiDinar(Currency):
         amount (Union[int, float, Decimal]): Represented value.
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 3,
-        decimal_sign (str, optional): Decimal symbol. Defaults to ','.
-        grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
+        decimal_sign (str, optional): Decimal symbol. Defaults to '٫'.
+        grouping_sign (str, optional): Grouping symbol. Defaults to '٬'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
@@ -163,8 +165,8 @@ class IraqiDinar(Currency):
             cls,
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 3,
-            decimal_sign: Optional[str] = ',',
-            grouping_sign: Optional[str] = '.',
+            decimal_sign: Optional[str] = '\u066B',
+            grouping_sign: Optional[str] = '\u066C',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
@@ -179,12 +181,13 @@ class IraqiDinar(Currency):
             amount=amount,
             alpha_code='IQD',
             numeric_code='368',
-            symbol='د.ع.',
+            symbol='ع.د',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='٠١٢٣٤٥٦٧٨٩-\u066C\u066B',
             international=international)
 
 
@@ -197,7 +200,7 @@ class JordanianDinar(Currency):
         >>> jordanian_dinar = JordanianDinar(
         ...     amount=123456.789)
         >>> print(jordanian_dinar)
-        د.أ. 123,456.789
+        د.ا ١٢٣٬٤٥٦٫٧٨٩
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -205,8 +208,8 @@ class JordanianDinar(Currency):
         amount (Union[int, float, Decimal]): Represented value.
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 3,
-        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
-        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        decimal_sign (str, optional): Decimal symbol. Defaults to '٫'.
+        grouping_sign (str, optional): Grouping symbol. Defaults to '٬'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
@@ -222,8 +225,8 @@ class JordanianDinar(Currency):
             cls,
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 3,
-            decimal_sign: Optional[str] = '.',
-            grouping_sign: Optional[str] = ',',
+            decimal_sign: Optional[str] = '\u066B',
+            grouping_sign: Optional[str] = '\u066C',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
@@ -238,12 +241,13 @@ class JordanianDinar(Currency):
             amount=amount,
             alpha_code='JOD',
             numeric_code='400',
-            symbol='د.أ.',
+            symbol='د.ا',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='٠١٢٣٤٥٦٧٨٩-\u066C\u066B',
             international=international)
 
 
@@ -256,7 +260,7 @@ class KuwaitiDinar(Currency):
         >>> kuwaiti_dinar = KuwaitiDinar(
         ...     amount=123456.789)
         >>> print(kuwaiti_dinar)
-        د.ك. 123,456.789
+        د.ك ١٢٣٬٤٥٦٫٧٨٩
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -264,8 +268,8 @@ class KuwaitiDinar(Currency):
         amount (Union[int, float, Decimal]): Represented value.
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 3,
-        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
-        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        decimal_sign (str, optional): Decimal symbol. Defaults to '٫'.
+        grouping_sign (str, optional): Grouping symbol. Defaults to '٬'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
@@ -281,8 +285,8 @@ class KuwaitiDinar(Currency):
             cls,
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 3,
-            decimal_sign: Optional[str] = '.',
-            grouping_sign: Optional[str] = ',',
+            decimal_sign: Optional[str] = '\u066B',
+            grouping_sign: Optional[str] = '\u066C',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
@@ -297,12 +301,13 @@ class KuwaitiDinar(Currency):
             amount=amount,
             alpha_code='KWD',
             numeric_code='414',
-            symbol='د.ك.',
+            symbol='د.ك',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='٠١٢٣٤٥٦٧٨٩-\u066C\u066B',
             international=international)
 
 
@@ -362,6 +367,7 @@ class LibyanDinar(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -421,6 +427,7 @@ class SerbianDinarXK(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -480,6 +487,7 @@ class SerbianDinarSR(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -492,7 +500,7 @@ class TunisianDinar(Currency):
         >>> tunisian_dinar = TunisianDinar(
         ...     amount=123456.789)
         >>> print(tunisian_dinar)
-        د.ت. 123.456,789
+        د.ت 123.456,789
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -533,10 +541,11 @@ class TunisianDinar(Currency):
             amount=amount,
             alpha_code='TND',
             numeric_code='788',
-            symbol='د.ت.',
+            symbol='د.ت',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)

@@ -32,6 +32,7 @@ def test_algerian_dinar():
     assert algerian_dinar.symbol == 'د.ج'
     assert not algerian_dinar.symbol_ahead
     assert algerian_dinar.symbol_separator == '\u00A0'
+    assert algerian_dinar.convertion == ''
     assert algerian_dinar.__hash__() == hash((decimal, 'DZD', '012'))
     assert algerian_dinar.__repr__() == (
         'AlgerianDinar(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_algerian_dinar():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert algerian_dinar.__str__() == '0,14 د.ج'
 
@@ -61,6 +63,7 @@ def test_algerian_dinar_negative():
     assert algerian_dinar.symbol == 'د.ج'
     assert not algerian_dinar.symbol_ahead
     assert algerian_dinar.symbol_separator == '\u00A0'
+    assert algerian_dinar.convertion == ''
     assert algerian_dinar.__hash__() == hash((decimal, 'DZD', '012'))
     assert algerian_dinar.__repr__() == (
         'AlgerianDinar(amount: -100, '
@@ -72,6 +75,7 @@ def test_algerian_dinar_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert algerian_dinar.__str__() == '-100,00 د.ج'
 
@@ -98,6 +102,7 @@ def test_algerian_dinar_custom():
     assert algerian_dinar.symbol == 'د.ج'
     assert not algerian_dinar.symbol_ahead
     assert algerian_dinar.symbol_separator == '_'
+    assert algerian_dinar.convertion == ''
     assert algerian_dinar.__hash__() == hash((decimal, 'DZD', '012'))
     assert algerian_dinar.__repr__() == (
         'AlgerianDinar(amount: 1000, '
@@ -109,6 +114,7 @@ def test_algerian_dinar_custom():
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert algerian_dinar.__str__() == 'DZD 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_algerian_dinar_changed():
             AttributeError,
             match='can\'t set attribute'):
         algerian_dinar.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        algerian_dinar.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

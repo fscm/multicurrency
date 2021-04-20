@@ -32,6 +32,7 @@ def test_boliviano():
     assert boliviano.symbol == 'Bs.'
     assert boliviano.symbol_ahead
     assert boliviano.symbol_separator == '\u00A0'
+    assert boliviano.convertion == ''
     assert boliviano.__hash__() == hash((decimal, 'BOB', '068'))
     assert boliviano.__repr__() == (
         'Boliviano(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_boliviano():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert boliviano.__str__() == 'Bs. 0,14'
 
@@ -61,6 +63,7 @@ def test_boliviano_negative():
     assert boliviano.symbol == 'Bs.'
     assert boliviano.symbol_ahead
     assert boliviano.symbol_separator == '\u00A0'
+    assert boliviano.convertion == ''
     assert boliviano.__hash__() == hash((decimal, 'BOB', '068'))
     assert boliviano.__repr__() == (
         'Boliviano(amount: -100, '
@@ -72,6 +75,7 @@ def test_boliviano_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert boliviano.__str__() == 'Bs. -100,00'
 
@@ -98,6 +102,7 @@ def test_boliviano_custom():
     assert boliviano.symbol == 'Bs.'
     assert not boliviano.symbol_ahead
     assert boliviano.symbol_separator == '_'
+    assert boliviano.convertion == ''
     assert boliviano.__hash__() == hash((decimal, 'BOB', '068'))
     assert boliviano.__repr__() == (
         'Boliviano(amount: 1000, '
@@ -109,6 +114,7 @@ def test_boliviano_custom():
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert boliviano.__str__() == 'BOB 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_boliviano_changed():
             AttributeError,
             match='can\'t set attribute'):
         boliviano.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        boliviano.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

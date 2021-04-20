@@ -20,7 +20,7 @@ class Kyat(Currency):
         >>> kyat = Kyat(
         ...     amount=123456.789)
         >>> print(kyat)
-        123,456.79 K
+        ၁၂၃,၄၅၆.၇၉ K
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -67,4 +67,5 @@ class Kyat(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='၀၁၂၃၄၅၆၇၈၉-,.',
             international=international)

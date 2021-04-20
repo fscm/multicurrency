@@ -26,25 +26,27 @@ def test_iraqi_dinar():
     assert iraqi_dinar.numeric_code == '368'
     assert iraqi_dinar.alpha_code == 'IQD'
     assert iraqi_dinar.decimal_places == 3
-    assert iraqi_dinar.decimal_sign == ','
-    assert iraqi_dinar.grouping_sign == '.'
+    assert iraqi_dinar.decimal_sign == '\u066B'
+    assert iraqi_dinar.grouping_sign == '\u066C'
     assert not iraqi_dinar.international
-    assert iraqi_dinar.symbol == 'د.ع.'
+    assert iraqi_dinar.symbol == 'ع.د'
     assert iraqi_dinar.symbol_ahead
     assert iraqi_dinar.symbol_separator == '\u00A0'
+    assert iraqi_dinar.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
     assert iraqi_dinar.__hash__() == hash((decimal, 'IQD', '368'))
     assert iraqi_dinar.__repr__() == (
         'IraqiDinar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "IQD", '
-        'symbol: "د.ع.", '
+        'symbol: "ع.د", '
         'symbol_ahead: True, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "368", '
         'decimal_places: "3", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: "\u066B", '
+        'grouping_sign: "\u066C", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
         'international: False)')
-    assert iraqi_dinar.__str__() == 'د.ع. 0,143'
+    assert iraqi_dinar.__str__() == 'ع.د ٠٫١٤٣'
 
 
 def test_iraqi_dinar_negative():
@@ -55,25 +57,27 @@ def test_iraqi_dinar_negative():
     assert iraqi_dinar.numeric_code == '368'
     assert iraqi_dinar.alpha_code == 'IQD'
     assert iraqi_dinar.decimal_places == 3
-    assert iraqi_dinar.decimal_sign == ','
-    assert iraqi_dinar.grouping_sign == '.'
+    assert iraqi_dinar.decimal_sign == '\u066B'
+    assert iraqi_dinar.grouping_sign == '\u066C'
     assert not iraqi_dinar.international
-    assert iraqi_dinar.symbol == 'د.ع.'
+    assert iraqi_dinar.symbol == 'ع.د'
     assert iraqi_dinar.symbol_ahead
     assert iraqi_dinar.symbol_separator == '\u00A0'
+    assert iraqi_dinar.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
     assert iraqi_dinar.__hash__() == hash((decimal, 'IQD', '368'))
     assert iraqi_dinar.__repr__() == (
         'IraqiDinar(amount: -100, '
         'alpha_code: "IQD", '
-        'symbol: "د.ع.", '
+        'symbol: "ع.د", '
         'symbol_ahead: True, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "368", '
         'decimal_places: "3", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: "\u066B", '
+        'grouping_sign: "\u066C", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
         'international: False)')
-    assert iraqi_dinar.__str__() == 'د.ع. -100,000'
+    assert iraqi_dinar.__str__() == 'ع.د -١٠٠٫٠٠٠'
 
 
 def test_iraqi_dinar_custom():
@@ -82,8 +86,8 @@ def test_iraqi_dinar_custom():
     iraqi_dinar = IraqiDinar(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
+        decimal_sign='\u066C',
+        grouping_sign='\u066B',
         international=True,
         symbol_ahead=False,
         symbol_separator='_')
@@ -92,23 +96,25 @@ def test_iraqi_dinar_custom():
     assert iraqi_dinar.numeric_code == '368'
     assert iraqi_dinar.alpha_code == 'IQD'
     assert iraqi_dinar.decimal_places == 5
-    assert iraqi_dinar.decimal_sign == '.'
-    assert iraqi_dinar.grouping_sign == ','
+    assert iraqi_dinar.decimal_sign == '\u066C'
+    assert iraqi_dinar.grouping_sign == '\u066B'
     assert iraqi_dinar.international
-    assert iraqi_dinar.symbol == 'د.ع.'
+    assert iraqi_dinar.symbol == 'ع.د'
     assert not iraqi_dinar.symbol_ahead
     assert iraqi_dinar.symbol_separator == '_'
+    assert iraqi_dinar.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
     assert iraqi_dinar.__hash__() == hash((decimal, 'IQD', '368'))
     assert iraqi_dinar.__repr__() == (
         'IraqiDinar(amount: 1000, '
         'alpha_code: "IQD", '
-        'symbol: "د.ع.", '
+        'symbol: "ع.د", '
         'symbol_ahead: False, '
         'symbol_separator: "_", '
         'numeric_code: "368", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: "\u066C", '
+        'grouping_sign: "\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
         'international: True)')
     assert iraqi_dinar.__str__() == 'IQD 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_iraqi_dinar_changed():
             AttributeError,
             match='can\'t set attribute'):
         iraqi_dinar.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        iraqi_dinar.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

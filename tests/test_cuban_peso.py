@@ -32,6 +32,7 @@ def test_cuban_peso():
     assert cuban_peso.symbol == '$'
     assert cuban_peso.symbol_ahead
     assert cuban_peso.symbol_separator == ''
+    assert cuban_peso.convertion == ''
     assert cuban_peso.__hash__() == hash((decimal, 'CUP', '192'))
     assert cuban_peso.__repr__() == (
         'CubanPeso(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_cuban_peso():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert cuban_peso.__str__() == '$0.14'
 
@@ -61,6 +63,7 @@ def test_cuban_peso_negative():
     assert cuban_peso.symbol == '$'
     assert cuban_peso.symbol_ahead
     assert cuban_peso.symbol_separator == ''
+    assert cuban_peso.convertion == ''
     assert cuban_peso.__hash__() == hash((decimal, 'CUP', '192'))
     assert cuban_peso.__repr__() == (
         'CubanPeso(amount: -100, '
@@ -72,6 +75,7 @@ def test_cuban_peso_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert cuban_peso.__str__() == '$-100.00'
 
@@ -98,6 +102,7 @@ def test_cuban_peso_custom():
     assert cuban_peso.symbol == '$'
     assert not cuban_peso.symbol_ahead
     assert cuban_peso.symbol_separator == '_'
+    assert cuban_peso.convertion == ''
     assert cuban_peso.__hash__() == hash((decimal, 'CUP', '192'))
     assert cuban_peso.__repr__() == (
         'CubanPeso(amount: 1000, '
@@ -109,6 +114,7 @@ def test_cuban_peso_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert cuban_peso.__str__() == 'CUP 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_cuban_peso_changed():
             AttributeError,
             match='can\'t set attribute'):
         cuban_peso.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cuban_peso.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

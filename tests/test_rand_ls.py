@@ -32,6 +32,7 @@ def test_rand_ls():
     assert rand_ls.symbol == 'R'
     assert rand_ls.symbol_ahead
     assert rand_ls.symbol_separator == '\u00A0'
+    assert rand_ls.convertion == ''
     assert rand_ls.__hash__() == hash((decimal, 'ZAR', '710'))
     assert rand_ls.__repr__() == (
         'RandLS(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_rand_ls():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert rand_ls.__str__() == 'R 0.14'
 
@@ -61,6 +63,7 @@ def test_rand_ls_negative():
     assert rand_ls.symbol == 'R'
     assert rand_ls.symbol_ahead
     assert rand_ls.symbol_separator == '\u00A0'
+    assert rand_ls.convertion == ''
     assert rand_ls.__hash__() == hash((decimal, 'ZAR', '710'))
     assert rand_ls.__repr__() == (
         'RandLS(amount: -100, '
@@ -72,6 +75,7 @@ def test_rand_ls_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert rand_ls.__str__() == 'R -100.00'
 
@@ -98,6 +102,7 @@ def test_rand_ls_custom():
     assert rand_ls.symbol == 'R'
     assert not rand_ls.symbol_ahead
     assert rand_ls.symbol_separator == '_'
+    assert rand_ls.convertion == ''
     assert rand_ls.__hash__() == hash((decimal, 'ZAR', '710'))
     assert rand_ls.__repr__() == (
         'RandLS(amount: 1000, '
@@ -109,6 +114,7 @@ def test_rand_ls_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert rand_ls.__str__() == 'ZAR 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_rand_ls_changed():
             AttributeError,
             match='can\'t set attribute'):
         rand_ls.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        rand_ls.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

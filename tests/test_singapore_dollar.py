@@ -32,6 +32,7 @@ def test_singapore_dollar():
     assert singapore_dollar.symbol == '$'
     assert singapore_dollar.symbol_ahead
     assert singapore_dollar.symbol_separator == ''
+    assert singapore_dollar.convertion == ''
     assert singapore_dollar.__hash__() == hash((decimal, 'SGD', '702'))
     assert singapore_dollar.__repr__() == (
         'SingaporeDollar(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_singapore_dollar():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert singapore_dollar.__str__() == '$0.14'
 
@@ -61,6 +63,7 @@ def test_singapore_dollar_negative():
     assert singapore_dollar.symbol == '$'
     assert singapore_dollar.symbol_ahead
     assert singapore_dollar.symbol_separator == ''
+    assert singapore_dollar.convertion == ''
     assert singapore_dollar.__hash__() == hash((decimal, 'SGD', '702'))
     assert singapore_dollar.__repr__() == (
         'SingaporeDollar(amount: -100, '
@@ -72,6 +75,7 @@ def test_singapore_dollar_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert singapore_dollar.__str__() == '$-100.00'
 
@@ -98,6 +102,7 @@ def test_singapore_dollar_custom():
     assert singapore_dollar.symbol == '$'
     assert not singapore_dollar.symbol_ahead
     assert singapore_dollar.symbol_separator == '_'
+    assert singapore_dollar.convertion == ''
     assert singapore_dollar.__hash__() == hash((decimal, 'SGD', '702'))
     assert singapore_dollar.__repr__() == (
         'SingaporeDollar(amount: 1000, '
@@ -109,6 +114,7 @@ def test_singapore_dollar_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert singapore_dollar.__str__() == 'SGD 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_singapore_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         singapore_dollar.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        singapore_dollar.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

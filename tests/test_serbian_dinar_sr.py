@@ -32,6 +32,7 @@ def test_serbian_dinar_sr():
     assert serbian_dinar_sr.symbol == 'дин'
     assert not serbian_dinar_sr.symbol_ahead
     assert serbian_dinar_sr.symbol_separator == '\u00A0'
+    assert serbian_dinar_sr.convertion == ''
     assert serbian_dinar_sr.__hash__() == hash((decimal, 'RSD', '941'))
     assert serbian_dinar_sr.__repr__() == (
         'SerbianDinarSR(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_serbian_dinar_sr():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert serbian_dinar_sr.__str__() == '0,14 дин'
 
@@ -61,6 +63,7 @@ def test_serbian_dinar_sr_negative():
     assert serbian_dinar_sr.symbol == 'дин'
     assert not serbian_dinar_sr.symbol_ahead
     assert serbian_dinar_sr.symbol_separator == '\u00A0'
+    assert serbian_dinar_sr.convertion == ''
     assert serbian_dinar_sr.__hash__() == hash((decimal, 'RSD', '941'))
     assert serbian_dinar_sr.__repr__() == (
         'SerbianDinarSR(amount: -100, '
@@ -72,6 +75,7 @@ def test_serbian_dinar_sr_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert serbian_dinar_sr.__str__() == '-100,00 дин'
 
@@ -98,6 +102,7 @@ def test_serbian_dinar_sr_custom():
     assert serbian_dinar_sr.symbol == 'дин'
     assert not serbian_dinar_sr.symbol_ahead
     assert serbian_dinar_sr.symbol_separator == '_'
+    assert serbian_dinar_sr.convertion == ''
     assert serbian_dinar_sr.__hash__() == hash((decimal, 'RSD', '941'))
     assert serbian_dinar_sr.__repr__() == (
         'SerbianDinarSR(amount: 1000, '
@@ -109,6 +114,7 @@ def test_serbian_dinar_sr_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert serbian_dinar_sr.__str__() == 'RSD 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_serbian_dinar_sr_changed():
             AttributeError,
             match='can\'t set attribute'):
         serbian_dinar_sr.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        serbian_dinar_sr.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

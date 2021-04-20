@@ -32,6 +32,7 @@ def test_tenge():
     assert tenge.symbol == '〒'
     assert not tenge.symbol_ahead
     assert tenge.symbol_separator == '\u00A0'
+    assert tenge.convertion == ''
     assert tenge.__hash__() == hash((decimal, 'KZT', '398'))
     assert tenge.__repr__() == (
         'Tenge(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_tenge():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert tenge.__str__() == '0,14 〒'
 
@@ -61,6 +63,7 @@ def test_tenge_negative():
     assert tenge.symbol == '〒'
     assert not tenge.symbol_ahead
     assert tenge.symbol_separator == '\u00A0'
+    assert tenge.convertion == ''
     assert tenge.__hash__() == hash((decimal, 'KZT', '398'))
     assert tenge.__repr__() == (
         'Tenge(amount: -100, '
@@ -72,6 +75,7 @@ def test_tenge_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert tenge.__str__() == '-100,00 〒'
 
@@ -98,6 +102,7 @@ def test_tenge_custom():
     assert tenge.symbol == '〒'
     assert not tenge.symbol_ahead
     assert tenge.symbol_separator == '_'
+    assert tenge.convertion == ''
     assert tenge.__hash__() == hash((decimal, 'KZT', '398'))
     assert tenge.__repr__() == (
         'Tenge(amount: 1000, '
@@ -109,6 +114,7 @@ def test_tenge_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert tenge.__str__() == 'KZT 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_tenge_changed():
             AttributeError,
             match='can\'t set attribute'):
         tenge.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        tenge.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

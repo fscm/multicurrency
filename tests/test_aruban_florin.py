@@ -32,6 +32,7 @@ def test_aruban_florin():
     assert aruban_florin.symbol == 'ƒ'
     assert aruban_florin.symbol_ahead
     assert aruban_florin.symbol_separator == ''
+    assert aruban_florin.convertion == ''
     assert aruban_florin.__hash__() == hash((decimal, 'AWG', '533'))
     assert aruban_florin.__repr__() == (
         'ArubanFlorin(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_aruban_florin():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert aruban_florin.__str__() == 'ƒ0.14'
 
@@ -61,6 +63,7 @@ def test_aruban_florin_negative():
     assert aruban_florin.symbol == 'ƒ'
     assert aruban_florin.symbol_ahead
     assert aruban_florin.symbol_separator == ''
+    assert aruban_florin.convertion == ''
     assert aruban_florin.__hash__() == hash((decimal, 'AWG', '533'))
     assert aruban_florin.__repr__() == (
         'ArubanFlorin(amount: -100, '
@@ -72,6 +75,7 @@ def test_aruban_florin_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert aruban_florin.__str__() == 'ƒ-100.00'
 
@@ -98,6 +102,7 @@ def test_aruban_florin_custom():
     assert aruban_florin.symbol == 'ƒ'
     assert not aruban_florin.symbol_ahead
     assert aruban_florin.symbol_separator == '_'
+    assert aruban_florin.convertion == ''
     assert aruban_florin.__hash__() == hash((decimal, 'AWG', '533'))
     assert aruban_florin.__repr__() == (
         'ArubanFlorin(amount: 1000, '
@@ -109,6 +114,7 @@ def test_aruban_florin_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert aruban_florin.__str__() == 'AWG 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_aruban_florin_changed():
             AttributeError,
             match='can\'t set attribute'):
         aruban_florin.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        aruban_florin.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

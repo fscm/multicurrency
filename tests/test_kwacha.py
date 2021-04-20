@@ -32,6 +32,7 @@ def test_kwacha():
     assert kwacha.symbol == 'MK'
     assert kwacha.symbol_ahead
     assert kwacha.symbol_separator == '\u00A0'
+    assert kwacha.convertion == ''
     assert kwacha.__hash__() == hash((decimal, 'MWK', '454'))
     assert kwacha.__repr__() == (
         'Kwacha(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_kwacha():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert kwacha.__str__() == 'MK 0.14'
 
@@ -61,6 +63,7 @@ def test_kwacha_negative():
     assert kwacha.symbol == 'MK'
     assert kwacha.symbol_ahead
     assert kwacha.symbol_separator == '\u00A0'
+    assert kwacha.convertion == ''
     assert kwacha.__hash__() == hash((decimal, 'MWK', '454'))
     assert kwacha.__repr__() == (
         'Kwacha(amount: -100, '
@@ -72,6 +75,7 @@ def test_kwacha_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert kwacha.__str__() == 'MK -100.00'
 
@@ -98,6 +102,7 @@ def test_kwacha_custom():
     assert kwacha.symbol == 'MK'
     assert not kwacha.symbol_ahead
     assert kwacha.symbol_separator == '_'
+    assert kwacha.convertion == ''
     assert kwacha.__hash__() == hash((decimal, 'MWK', '454'))
     assert kwacha.__repr__() == (
         'Kwacha(amount: 1000, '
@@ -109,6 +114,7 @@ def test_kwacha_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert kwacha.__str__() == 'MWK 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_kwacha_changed():
             AttributeError,
             match='can\'t set attribute'):
         kwacha.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        kwacha.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

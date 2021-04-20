@@ -26,25 +26,27 @@ def test_bahraini_dinar():
     assert bahraini_dinar.numeric_code == '048'
     assert bahraini_dinar.alpha_code == 'BHD'
     assert bahraini_dinar.decimal_places == 3
-    assert bahraini_dinar.decimal_sign == '.'
-    assert bahraini_dinar.grouping_sign == ','
+    assert bahraini_dinar.decimal_sign == '\u066B'
+    assert bahraini_dinar.grouping_sign == '\u066C'
     assert not bahraini_dinar.international
-    assert bahraini_dinar.symbol == 'د.ب.'
+    assert bahraini_dinar.symbol == 'ب.د'
     assert not bahraini_dinar.symbol_ahead
     assert bahraini_dinar.symbol_separator == '\u00A0'
+    assert bahraini_dinar.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
     assert bahraini_dinar.__hash__() == hash((decimal, 'BHD', '048'))
     assert bahraini_dinar.__repr__() == (
         'BahrainiDinar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "BHD", '
-        'symbol: "د.ب.", '
+        'symbol: "ب.د", '
         'symbol_ahead: False, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "048", '
         'decimal_places: "3", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: "\u066B", '
+        'grouping_sign: "\u066C", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
         'international: False)')
-    assert bahraini_dinar.__str__() == '0.143 د.ب.'
+    assert bahraini_dinar.__str__() == '٠٫١٤٣ ب.د'
 
 
 def test_bahraini_dinar_negative():
@@ -55,25 +57,27 @@ def test_bahraini_dinar_negative():
     assert bahraini_dinar.numeric_code == '048'
     assert bahraini_dinar.alpha_code == 'BHD'
     assert bahraini_dinar.decimal_places == 3
-    assert bahraini_dinar.decimal_sign == '.'
-    assert bahraini_dinar.grouping_sign == ','
+    assert bahraini_dinar.decimal_sign == '\u066B'
+    assert bahraini_dinar.grouping_sign == '\u066C'
     assert not bahraini_dinar.international
-    assert bahraini_dinar.symbol == 'د.ب.'
+    assert bahraini_dinar.symbol == 'ب.د'
     assert not bahraini_dinar.symbol_ahead
     assert bahraini_dinar.symbol_separator == '\u00A0'
+    assert bahraini_dinar.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
     assert bahraini_dinar.__hash__() == hash((decimal, 'BHD', '048'))
     assert bahraini_dinar.__repr__() == (
         'BahrainiDinar(amount: -100, '
         'alpha_code: "BHD", '
-        'symbol: "د.ب.", '
+        'symbol: "ب.د", '
         'symbol_ahead: False, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "048", '
         'decimal_places: "3", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: "\u066B", '
+        'grouping_sign: "\u066C", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
         'international: False)')
-    assert bahraini_dinar.__str__() == '-100.000 د.ب.'
+    assert bahraini_dinar.__str__() == '-١٠٠٫٠٠٠ ب.د'
 
 
 def test_bahraini_dinar_custom():
@@ -82,8 +86,8 @@ def test_bahraini_dinar_custom():
     bahraini_dinar = BahrainiDinar(
         amount=amount,
         decimal_places=5,
-        decimal_sign=',',
-        grouping_sign='.',
+        decimal_sign='\u066C',
+        grouping_sign='\u066B',
         international=True,
         symbol_ahead=False,
         symbol_separator='_')
@@ -92,23 +96,25 @@ def test_bahraini_dinar_custom():
     assert bahraini_dinar.numeric_code == '048'
     assert bahraini_dinar.alpha_code == 'BHD'
     assert bahraini_dinar.decimal_places == 5
-    assert bahraini_dinar.decimal_sign == ','
-    assert bahraini_dinar.grouping_sign == '.'
+    assert bahraini_dinar.decimal_sign == '\u066C'
+    assert bahraini_dinar.grouping_sign == '\u066B'
     assert bahraini_dinar.international
-    assert bahraini_dinar.symbol == 'د.ب.'
+    assert bahraini_dinar.symbol == 'ب.د'
     assert not bahraini_dinar.symbol_ahead
     assert bahraini_dinar.symbol_separator == '_'
+    assert bahraini_dinar.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
     assert bahraini_dinar.__hash__() == hash((decimal, 'BHD', '048'))
     assert bahraini_dinar.__repr__() == (
         'BahrainiDinar(amount: 1000, '
         'alpha_code: "BHD", '
-        'symbol: "د.ب.", '
+        'symbol: "ب.د", '
         'symbol_ahead: False, '
         'symbol_separator: "_", '
         'numeric_code: "048", '
         'decimal_places: "5", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: "\u066C", '
+        'grouping_sign: "\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
         'international: True)')
     assert bahraini_dinar.__str__() == 'BHD 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_bahraini_dinar_changed():
             AttributeError,
             match='can\'t set attribute'):
         bahraini_dinar.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        bahraini_dinar.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

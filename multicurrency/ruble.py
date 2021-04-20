@@ -67,6 +67,7 @@ class BelarusianRuble(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -79,7 +80,7 @@ class RussianRuble(Currency):
         >>> russian_ruble = RussianRuble(
         ...     amount=123456.789)
         >>> print(russian_ruble)
-        123 456,79 р.
+        123 456,79 ₽
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -120,10 +121,11 @@ class RussianRuble(Currency):
             amount=amount,
             alpha_code='RUB',
             numeric_code='643',
-            symbol='р.',
+            symbol='₽',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)

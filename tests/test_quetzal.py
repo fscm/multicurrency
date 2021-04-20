@@ -32,6 +32,7 @@ def test_quetzal():
     assert quetzal.symbol == 'Q'
     assert quetzal.symbol_ahead
     assert quetzal.symbol_separator == '\u00A0'
+    assert quetzal.convertion == ''
     assert quetzal.__hash__() == hash((decimal, 'GTQ', '320'))
     assert quetzal.__repr__() == (
         'Quetzal(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_quetzal():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert quetzal.__str__() == 'Q 0.14'
 
@@ -61,6 +63,7 @@ def test_quetzal_negative():
     assert quetzal.symbol == 'Q'
     assert quetzal.symbol_ahead
     assert quetzal.symbol_separator == '\u00A0'
+    assert quetzal.convertion == ''
     assert quetzal.__hash__() == hash((decimal, 'GTQ', '320'))
     assert quetzal.__repr__() == (
         'Quetzal(amount: -100, '
@@ -72,6 +75,7 @@ def test_quetzal_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert quetzal.__str__() == 'Q -100.00'
 
@@ -98,6 +102,7 @@ def test_quetzal_custom():
     assert quetzal.symbol == 'Q'
     assert not quetzal.symbol_ahead
     assert quetzal.symbol_separator == '_'
+    assert quetzal.convertion == ''
     assert quetzal.__hash__() == hash((decimal, 'GTQ', '320'))
     assert quetzal.__repr__() == (
         'Quetzal(amount: 1000, '
@@ -109,6 +114,7 @@ def test_quetzal_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert quetzal.__str__() == 'GTQ 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_quetzal_changed():
             AttributeError,
             match='can\'t set attribute'):
         quetzal.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        quetzal.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

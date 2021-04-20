@@ -32,6 +32,7 @@ def test_guarani():
     assert guarani.symbol == '₲'
     assert guarani.symbol_ahead
     assert guarani.symbol_separator == '\u00A0'
+    assert guarani.convertion == ''
     assert guarani.__hash__() == hash((decimal, 'PYG', '600'))
     assert guarani.__repr__() == (
         'Guarani(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_guarani():
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert guarani.__str__() == '₲ 0'
 
@@ -61,6 +63,7 @@ def test_guarani_negative():
     assert guarani.symbol == '₲'
     assert guarani.symbol_ahead
     assert guarani.symbol_separator == '\u00A0'
+    assert guarani.convertion == ''
     assert guarani.__hash__() == hash((decimal, 'PYG', '600'))
     assert guarani.__repr__() == (
         'Guarani(amount: -100, '
@@ -72,6 +75,7 @@ def test_guarani_negative():
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert guarani.__str__() == '₲ -100'
 
@@ -98,6 +102,7 @@ def test_guarani_custom():
     assert guarani.symbol == '₲'
     assert not guarani.symbol_ahead
     assert guarani.symbol_separator == '_'
+    assert guarani.convertion == ''
     assert guarani.__hash__() == hash((decimal, 'PYG', '600'))
     assert guarani.__repr__() == (
         'Guarani(amount: 1000, '
@@ -109,6 +114,7 @@ def test_guarani_custom():
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert guarani.__str__() == 'PYG 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_guarani_changed():
             AttributeError,
             match='can\'t set attribute'):
         guarani.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        guarani.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

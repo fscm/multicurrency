@@ -32,6 +32,7 @@ def test_armenian_dram():
     assert armenian_dram.symbol == 'Դ'
     assert not armenian_dram.symbol_ahead
     assert armenian_dram.symbol_separator == '\u00A0'
+    assert armenian_dram.convertion == ''
     assert armenian_dram.__hash__() == hash((decimal, 'AMD', '051'))
     assert armenian_dram.__repr__() == (
         'ArmenianDram(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_armenian_dram():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert armenian_dram.__str__() == '0,14 Դ'
 
@@ -61,6 +63,7 @@ def test_armenian_dram_negative():
     assert armenian_dram.symbol == 'Դ'
     assert not armenian_dram.symbol_ahead
     assert armenian_dram.symbol_separator == '\u00A0'
+    assert armenian_dram.convertion == ''
     assert armenian_dram.__hash__() == hash((decimal, 'AMD', '051'))
     assert armenian_dram.__repr__() == (
         'ArmenianDram(amount: -100, '
@@ -72,6 +75,7 @@ def test_armenian_dram_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert armenian_dram.__str__() == '-100,00 Դ'
 
@@ -98,6 +102,7 @@ def test_armenian_dram_custom():
     assert armenian_dram.symbol == 'Դ'
     assert not armenian_dram.symbol_ahead
     assert armenian_dram.symbol_separator == '_'
+    assert armenian_dram.convertion == ''
     assert armenian_dram.__hash__() == hash((decimal, 'AMD', '051'))
     assert armenian_dram.__repr__() == (
         'ArmenianDram(amount: 1000, '
@@ -109,6 +114,7 @@ def test_armenian_dram_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert armenian_dram.__str__() == 'AMD 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_armenian_dram_changed():
             AttributeError,
             match='can\'t set attribute'):
         armenian_dram.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        armenian_dram.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -26,12 +26,13 @@ def test_ouguiya():
     assert ouguiya.numeric_code == '929'
     assert ouguiya.alpha_code == 'MRU'
     assert ouguiya.decimal_places == 2
-    assert ouguiya.decimal_sign == ','
-    assert ouguiya.grouping_sign == '.'
+    assert ouguiya.decimal_sign == '\u066B'
+    assert ouguiya.grouping_sign == '\u066C'
     assert not ouguiya.international
     assert ouguiya.symbol == 'أ.م'
     assert not ouguiya.symbol_ahead
     assert ouguiya.symbol_separator == '\u00A0'
+    assert ouguiya.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
     assert ouguiya.__hash__() == hash((decimal, 'MRU', '929'))
     assert ouguiya.__repr__() == (
         'Ouguiya(amount: 0.1428571428571428571428571429, '
@@ -41,10 +42,11 @@ def test_ouguiya():
         'symbol_separator: "\u00A0", '
         'numeric_code: "929", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: "\u066B", '
+        'grouping_sign: "\u066C", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
         'international: False)')
-    assert ouguiya.__str__() == '0,14 أ.م'
+    assert ouguiya.__str__() == '٠٫١٤ أ.م'
 
 
 def test_ouguiya_negative():
@@ -55,12 +57,13 @@ def test_ouguiya_negative():
     assert ouguiya.numeric_code == '929'
     assert ouguiya.alpha_code == 'MRU'
     assert ouguiya.decimal_places == 2
-    assert ouguiya.decimal_sign == ','
-    assert ouguiya.grouping_sign == '.'
+    assert ouguiya.decimal_sign == '\u066B'
+    assert ouguiya.grouping_sign == '\u066C'
     assert not ouguiya.international
     assert ouguiya.symbol == 'أ.م'
     assert not ouguiya.symbol_ahead
     assert ouguiya.symbol_separator == '\u00A0'
+    assert ouguiya.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
     assert ouguiya.__hash__() == hash((decimal, 'MRU', '929'))
     assert ouguiya.__repr__() == (
         'Ouguiya(amount: -100, '
@@ -70,10 +73,11 @@ def test_ouguiya_negative():
         'symbol_separator: "\u00A0", '
         'numeric_code: "929", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: "\u066B", '
+        'grouping_sign: "\u066C", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
         'international: False)')
-    assert ouguiya.__str__() == '-100,00 أ.م'
+    assert ouguiya.__str__() == '-١٠٠٫٠٠ أ.م'
 
 
 def test_ouguiya_custom():
@@ -82,8 +86,8 @@ def test_ouguiya_custom():
     ouguiya = Ouguiya(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
+        decimal_sign='\u066C',
+        grouping_sign='\u066B',
         international=True,
         symbol_ahead=False,
         symbol_separator='_')
@@ -92,12 +96,13 @@ def test_ouguiya_custom():
     assert ouguiya.numeric_code == '929'
     assert ouguiya.alpha_code == 'MRU'
     assert ouguiya.decimal_places == 5
-    assert ouguiya.decimal_sign == '.'
-    assert ouguiya.grouping_sign == ','
+    assert ouguiya.decimal_sign == '\u066C'
+    assert ouguiya.grouping_sign == '\u066B'
     assert ouguiya.international
     assert ouguiya.symbol == 'أ.م'
     assert not ouguiya.symbol_ahead
     assert ouguiya.symbol_separator == '_'
+    assert ouguiya.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
     assert ouguiya.__hash__() == hash((decimal, 'MRU', '929'))
     assert ouguiya.__repr__() == (
         'Ouguiya(amount: 1000, '
@@ -107,8 +112,9 @@ def test_ouguiya_custom():
         'symbol_separator: "_", '
         'numeric_code: "929", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: "\u066C", '
+        'grouping_sign: "\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
         'international: True)')
     assert ouguiya.__str__() == 'MRU 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_ouguiya_changed():
             AttributeError,
             match='can\'t set attribute'):
         ouguiya.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        ouguiya.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -32,6 +32,7 @@ def test_brazilian_real():
     assert brazilian_real.symbol == 'R$'
     assert brazilian_real.symbol_ahead
     assert brazilian_real.symbol_separator == '\u00A0'
+    assert brazilian_real.convertion == ''
     assert brazilian_real.__hash__() == hash((decimal, 'BRL', '986'))
     assert brazilian_real.__repr__() == (
         'BrazilianReal(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_brazilian_real():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert brazilian_real.__str__() == 'R$ 0,14'
 
@@ -61,6 +63,7 @@ def test_brazilian_real_negative():
     assert brazilian_real.symbol == 'R$'
     assert brazilian_real.symbol_ahead
     assert brazilian_real.symbol_separator == '\u00A0'
+    assert brazilian_real.convertion == ''
     assert brazilian_real.__hash__() == hash((decimal, 'BRL', '986'))
     assert brazilian_real.__repr__() == (
         'BrazilianReal(amount: -100, '
@@ -72,6 +75,7 @@ def test_brazilian_real_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert brazilian_real.__str__() == 'R$ -100,00'
 
@@ -98,6 +102,7 @@ def test_brazilian_real_custom():
     assert brazilian_real.symbol == 'R$'
     assert not brazilian_real.symbol_ahead
     assert brazilian_real.symbol_separator == '_'
+    assert brazilian_real.convertion == ''
     assert brazilian_real.__hash__() == hash((decimal, 'BRL', '986'))
     assert brazilian_real.__repr__() == (
         'BrazilianReal(amount: 1000, '
@@ -109,6 +114,7 @@ def test_brazilian_real_custom():
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert brazilian_real.__str__() == 'BRL 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_brazilian_real_changed():
             AttributeError,
             match='can\'t set attribute'):
         brazilian_real.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        brazilian_real.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

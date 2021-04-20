@@ -32,6 +32,7 @@ def test_dobra():
     assert dobra.symbol == 'Db'
     assert not dobra.symbol_ahead
     assert dobra.symbol_separator == '\u00A0'
+    assert dobra.convertion == ''
     assert dobra.__hash__() == hash((decimal, 'STN', '930'))
     assert dobra.__repr__() == (
         'Dobra(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_dobra():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert dobra.__str__() == '0,14 Db'
 
@@ -61,6 +63,7 @@ def test_dobra_negative():
     assert dobra.symbol == 'Db'
     assert not dobra.symbol_ahead
     assert dobra.symbol_separator == '\u00A0'
+    assert dobra.convertion == ''
     assert dobra.__hash__() == hash((decimal, 'STN', '930'))
     assert dobra.__repr__() == (
         'Dobra(amount: -100, '
@@ -72,6 +75,7 @@ def test_dobra_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert dobra.__str__() == '-100,00 Db'
 
@@ -98,6 +102,7 @@ def test_dobra_custom():
     assert dobra.symbol == 'Db'
     assert not dobra.symbol_ahead
     assert dobra.symbol_separator == '_'
+    assert dobra.convertion == ''
     assert dobra.__hash__() == hash((decimal, 'STN', '930'))
     assert dobra.__repr__() == (
         'Dobra(amount: 1000, '
@@ -109,6 +114,7 @@ def test_dobra_custom():
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert dobra.__str__() == 'STN 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_dobra_changed():
             AttributeError,
             match='can\'t set attribute'):
         dobra.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        dobra.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

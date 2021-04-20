@@ -26,25 +26,27 @@ def test_qatari_rial():
     assert qatari_rial.numeric_code == '634'
     assert qatari_rial.alpha_code == 'QAR'
     assert qatari_rial.decimal_places == 2
-    assert qatari_rial.decimal_sign == ','
-    assert qatari_rial.grouping_sign == '.'
+    assert qatari_rial.decimal_sign == '\u066B'
+    assert qatari_rial.grouping_sign == '\u066C'
     assert not qatari_rial.international
-    assert qatari_rial.symbol == 'ر.ق.'
+    assert qatari_rial.symbol == 'ر.ق'
     assert not qatari_rial.symbol_ahead
     assert qatari_rial.symbol_separator == '\u00A0'
+    assert qatari_rial.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
     assert qatari_rial.__hash__() == hash((decimal, 'QAR', '634'))
     assert qatari_rial.__repr__() == (
         'QatariRial(amount: 0.1428571428571428571428571429, '
         'alpha_code: "QAR", '
-        'symbol: "ر.ق.", '
+        'symbol: "ر.ق", '
         'symbol_ahead: False, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "634", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: "\u066B", '
+        'grouping_sign: "\u066C", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
         'international: False)')
-    assert qatari_rial.__str__() == '0,14 ر.ق.'
+    assert qatari_rial.__str__() == '٠٫١٤ ر.ق'
 
 
 def test_qatari_rial_negative():
@@ -55,25 +57,27 @@ def test_qatari_rial_negative():
     assert qatari_rial.numeric_code == '634'
     assert qatari_rial.alpha_code == 'QAR'
     assert qatari_rial.decimal_places == 2
-    assert qatari_rial.decimal_sign == ','
-    assert qatari_rial.grouping_sign == '.'
+    assert qatari_rial.decimal_sign == '\u066B'
+    assert qatari_rial.grouping_sign == '\u066C'
     assert not qatari_rial.international
-    assert qatari_rial.symbol == 'ر.ق.'
+    assert qatari_rial.symbol == 'ر.ق'
     assert not qatari_rial.symbol_ahead
     assert qatari_rial.symbol_separator == '\u00A0'
+    assert qatari_rial.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
     assert qatari_rial.__hash__() == hash((decimal, 'QAR', '634'))
     assert qatari_rial.__repr__() == (
         'QatariRial(amount: -100, '
         'alpha_code: "QAR", '
-        'symbol: "ر.ق.", '
+        'symbol: "ر.ق", '
         'symbol_ahead: False, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "634", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: "\u066B", '
+        'grouping_sign: "\u066C", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
         'international: False)')
-    assert qatari_rial.__str__() == '-100,00 ر.ق.'
+    assert qatari_rial.__str__() == '-١٠٠٫٠٠ ر.ق'
 
 
 def test_qatari_rial_custom():
@@ -82,8 +86,8 @@ def test_qatari_rial_custom():
     qatari_rial = QatariRial(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
+        decimal_sign='\u066C',
+        grouping_sign='\u066B',
         international=True,
         symbol_ahead=False,
         symbol_separator='_')
@@ -92,23 +96,25 @@ def test_qatari_rial_custom():
     assert qatari_rial.numeric_code == '634'
     assert qatari_rial.alpha_code == 'QAR'
     assert qatari_rial.decimal_places == 5
-    assert qatari_rial.decimal_sign == '.'
-    assert qatari_rial.grouping_sign == ','
+    assert qatari_rial.decimal_sign == '\u066C'
+    assert qatari_rial.grouping_sign == '\u066B'
     assert qatari_rial.international
-    assert qatari_rial.symbol == 'ر.ق.'
+    assert qatari_rial.symbol == 'ر.ق'
     assert not qatari_rial.symbol_ahead
     assert qatari_rial.symbol_separator == '_'
+    assert qatari_rial.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
     assert qatari_rial.__hash__() == hash((decimal, 'QAR', '634'))
     assert qatari_rial.__repr__() == (
         'QatariRial(amount: 1000, '
         'alpha_code: "QAR", '
-        'symbol: "ر.ق.", '
+        'symbol: "ر.ق", '
         'symbol_ahead: False, '
         'symbol_separator: "_", '
         'numeric_code: "634", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: "\u066C", '
+        'grouping_sign: "\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
         'international: True)')
     assert qatari_rial.__str__() == 'QAR 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_qatari_rial_changed():
             AttributeError,
             match='can\'t set attribute'):
         qatari_rial.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        qatari_rial.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -32,6 +32,7 @@ def test_denar():
     assert denar.symbol == 'ден.'
     assert not denar.symbol_ahead
     assert denar.symbol_separator == '\u00A0'
+    assert denar.convertion == ''
     assert denar.__hash__() == hash((decimal, 'MKD', '807'))
     assert denar.__repr__() == (
         'Denar(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_denar():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert denar.__str__() == '0,14 ден.'
 
@@ -61,6 +63,7 @@ def test_denar_negative():
     assert denar.symbol == 'ден.'
     assert not denar.symbol_ahead
     assert denar.symbol_separator == '\u00A0'
+    assert denar.convertion == ''
     assert denar.__hash__() == hash((decimal, 'MKD', '807'))
     assert denar.__repr__() == (
         'Denar(amount: -100, '
@@ -72,6 +75,7 @@ def test_denar_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert denar.__str__() == '-100,00 ден.'
 
@@ -98,6 +102,7 @@ def test_denar_custom():
     assert denar.symbol == 'ден.'
     assert not denar.symbol_ahead
     assert denar.symbol_separator == '_'
+    assert denar.convertion == ''
     assert denar.__hash__() == hash((decimal, 'MKD', '807'))
     assert denar.__repr__() == (
         'Denar(amount: 1000, '
@@ -109,6 +114,7 @@ def test_denar_custom():
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert denar.__str__() == 'MKD 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_denar_changed():
             AttributeError,
             match='can\'t set attribute'):
         denar.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        denar.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

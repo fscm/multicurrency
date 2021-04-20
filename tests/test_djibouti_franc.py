@@ -32,6 +32,7 @@ def test_djibouti_franc():
     assert djibouti_franc.symbol == '₣'
     assert not djibouti_franc.symbol_ahead
     assert djibouti_franc.symbol_separator == '\u00A0'
+    assert djibouti_franc.convertion == ''
     assert djibouti_franc.__hash__() == hash((decimal, 'DJF', '262'))
     assert djibouti_franc.__repr__() == (
         'DjiboutiFranc(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_djibouti_franc():
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert djibouti_franc.__str__() == '0 ₣'
 
@@ -61,6 +63,7 @@ def test_djibouti_franc_negative():
     assert djibouti_franc.symbol == '₣'
     assert not djibouti_franc.symbol_ahead
     assert djibouti_franc.symbol_separator == '\u00A0'
+    assert djibouti_franc.convertion == ''
     assert djibouti_franc.__hash__() == hash((decimal, 'DJF', '262'))
     assert djibouti_franc.__repr__() == (
         'DjiboutiFranc(amount: -100, '
@@ -72,6 +75,7 @@ def test_djibouti_franc_negative():
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert djibouti_franc.__str__() == '-100 ₣'
 
@@ -98,6 +102,7 @@ def test_djibouti_franc_custom():
     assert djibouti_franc.symbol == '₣'
     assert not djibouti_franc.symbol_ahead
     assert djibouti_franc.symbol_separator == '_'
+    assert djibouti_franc.convertion == ''
     assert djibouti_franc.__hash__() == hash((decimal, 'DJF', '262'))
     assert djibouti_franc.__repr__() == (
         'DjiboutiFranc(amount: 1000, '
@@ -109,6 +114,7 @@ def test_djibouti_franc_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert djibouti_franc.__str__() == 'DJF 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_djibouti_franc_changed():
             AttributeError,
             match='can\'t set attribute'):
         djibouti_franc.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        djibouti_franc.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

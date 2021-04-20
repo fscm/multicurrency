@@ -32,6 +32,7 @@ def test_iceland_krona():
     assert iceland_krona.symbol == 'Kr'
     assert not iceland_krona.symbol_ahead
     assert iceland_krona.symbol_separator == '\u00A0'
+    assert iceland_krona.convertion == ''
     assert iceland_krona.__hash__() == hash((decimal, 'ISK', '352'))
     assert iceland_krona.__repr__() == (
         'IcelandKrona(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_iceland_krona():
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert iceland_krona.__str__() == '0 Kr'
 
@@ -61,6 +63,7 @@ def test_iceland_krona_negative():
     assert iceland_krona.symbol == 'Kr'
     assert not iceland_krona.symbol_ahead
     assert iceland_krona.symbol_separator == '\u00A0'
+    assert iceland_krona.convertion == ''
     assert iceland_krona.__hash__() == hash((decimal, 'ISK', '352'))
     assert iceland_krona.__repr__() == (
         'IcelandKrona(amount: -100, '
@@ -72,6 +75,7 @@ def test_iceland_krona_negative():
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert iceland_krona.__str__() == '-100 Kr'
 
@@ -98,6 +102,7 @@ def test_iceland_krona_custom():
     assert iceland_krona.symbol == 'Kr'
     assert not iceland_krona.symbol_ahead
     assert iceland_krona.symbol_separator == '_'
+    assert iceland_krona.convertion == ''
     assert iceland_krona.__hash__() == hash((decimal, 'ISK', '352'))
     assert iceland_krona.__repr__() == (
         'IcelandKrona(amount: 1000, '
@@ -109,6 +114,7 @@ def test_iceland_krona_custom():
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert iceland_krona.__str__() == 'ISK 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_iceland_krona_changed():
             AttributeError,
             match='can\'t set attribute'):
         iceland_krona.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        iceland_krona.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

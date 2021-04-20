@@ -32,6 +32,7 @@ def test_cfp_franc():
     assert cfp_franc.symbol == '₣'
     assert not cfp_franc.symbol_ahead
     assert cfp_franc.symbol_separator == '\u00A0'
+    assert cfp_franc.convertion == ''
     assert cfp_franc.__hash__() == hash((decimal, 'XPF', '953'))
     assert cfp_franc.__repr__() == (
         'CFPFranc(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_cfp_franc():
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert cfp_franc.__str__() == '0 ₣'
 
@@ -61,6 +63,7 @@ def test_cfp_franc_negative():
     assert cfp_franc.symbol == '₣'
     assert not cfp_franc.symbol_ahead
     assert cfp_franc.symbol_separator == '\u00A0'
+    assert cfp_franc.convertion == ''
     assert cfp_franc.__hash__() == hash((decimal, 'XPF', '953'))
     assert cfp_franc.__repr__() == (
         'CFPFranc(amount: -100, '
@@ -72,6 +75,7 @@ def test_cfp_franc_negative():
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert cfp_franc.__str__() == '-100 ₣'
 
@@ -98,6 +102,7 @@ def test_cfp_franc_custom():
     assert cfp_franc.symbol == '₣'
     assert not cfp_franc.symbol_ahead
     assert cfp_franc.symbol_separator == '_'
+    assert cfp_franc.convertion == ''
     assert cfp_franc.__hash__() == hash((decimal, 'XPF', '953'))
     assert cfp_franc.__repr__() == (
         'CFPFranc(amount: 1000, '
@@ -109,6 +114,7 @@ def test_cfp_franc_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert cfp_franc.__str__() == 'XPF 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_cfp_franc_changed():
             AttributeError,
             match='can\'t set attribute'):
         cfp_franc.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cfp_franc.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

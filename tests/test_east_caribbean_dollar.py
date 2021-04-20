@@ -32,6 +32,7 @@ def test_east_caribbean_dollar():
     assert east_caribbean_dollar.symbol == '$'
     assert east_caribbean_dollar.symbol_ahead
     assert east_caribbean_dollar.symbol_separator == ''
+    assert east_caribbean_dollar.convertion == ''
     assert east_caribbean_dollar.__hash__() == hash((decimal, 'XCD', '951'))
     assert east_caribbean_dollar.__repr__() == (
         'EastCaribbeanDollar(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_east_caribbean_dollar():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert east_caribbean_dollar.__str__() == '$0.14'
 
@@ -61,6 +63,7 @@ def test_east_caribbean_dollar_negative():
     assert east_caribbean_dollar.symbol == '$'
     assert east_caribbean_dollar.symbol_ahead
     assert east_caribbean_dollar.symbol_separator == ''
+    assert east_caribbean_dollar.convertion == ''
     assert east_caribbean_dollar.__hash__() == hash((decimal, 'XCD', '951'))
     assert east_caribbean_dollar.__repr__() == (
         'EastCaribbeanDollar(amount: -100, '
@@ -72,6 +75,7 @@ def test_east_caribbean_dollar_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert east_caribbean_dollar.__str__() == '$-100.00'
 
@@ -98,6 +102,7 @@ def test_east_caribbean_dollar_custom():
     assert east_caribbean_dollar.symbol == '$'
     assert not east_caribbean_dollar.symbol_ahead
     assert east_caribbean_dollar.symbol_separator == '_'
+    assert east_caribbean_dollar.convertion == ''
     assert east_caribbean_dollar.__hash__() == hash((decimal, 'XCD', '951'))
     assert east_caribbean_dollar.__repr__() == (
         'EastCaribbeanDollar(amount: 1000, '
@@ -109,6 +114,7 @@ def test_east_caribbean_dollar_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert east_caribbean_dollar.__str__() == 'XCD 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_east_caribbean_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         east_caribbean_dollar.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        east_caribbean_dollar.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

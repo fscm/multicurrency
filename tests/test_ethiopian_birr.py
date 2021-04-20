@@ -32,6 +32,7 @@ def test_ethiopian_birr():
     assert ethiopian_birr.symbol == 'ብር'
     assert ethiopian_birr.symbol_ahead
     assert ethiopian_birr.symbol_separator == '\u00A0'
+    assert ethiopian_birr.convertion == ''
     assert ethiopian_birr.__hash__() == hash((decimal, 'ETB', '230'))
     assert ethiopian_birr.__repr__() == (
         'EthiopianBirr(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_ethiopian_birr():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert ethiopian_birr.__str__() == 'ብር 0.14'
 
@@ -61,6 +63,7 @@ def test_ethiopian_birr_negative():
     assert ethiopian_birr.symbol == 'ብር'
     assert ethiopian_birr.symbol_ahead
     assert ethiopian_birr.symbol_separator == '\u00A0'
+    assert ethiopian_birr.convertion == ''
     assert ethiopian_birr.__hash__() == hash((decimal, 'ETB', '230'))
     assert ethiopian_birr.__repr__() == (
         'EthiopianBirr(amount: -100, '
@@ -72,6 +75,7 @@ def test_ethiopian_birr_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert ethiopian_birr.__str__() == 'ብር -100.00'
 
@@ -98,6 +102,7 @@ def test_ethiopian_birr_custom():
     assert ethiopian_birr.symbol == 'ብር'
     assert not ethiopian_birr.symbol_ahead
     assert ethiopian_birr.symbol_separator == '_'
+    assert ethiopian_birr.convertion == ''
     assert ethiopian_birr.__hash__() == hash((decimal, 'ETB', '230'))
     assert ethiopian_birr.__repr__() == (
         'EthiopianBirr(amount: 1000, '
@@ -109,6 +114,7 @@ def test_ethiopian_birr_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert ethiopian_birr.__str__() == 'ETB 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_ethiopian_birr_changed():
             AttributeError,
             match='can\'t set attribute'):
         ethiopian_birr.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        ethiopian_birr.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

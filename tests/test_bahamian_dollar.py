@@ -32,6 +32,7 @@ def test_bahamian_dollar():
     assert bahamian_dollar.symbol == '$'
     assert bahamian_dollar.symbol_ahead
     assert bahamian_dollar.symbol_separator == ''
+    assert bahamian_dollar.convertion == ''
     assert bahamian_dollar.__hash__() == hash((decimal, 'BSD', '044'))
     assert bahamian_dollar.__repr__() == (
         'BahamianDollar(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_bahamian_dollar():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert bahamian_dollar.__str__() == '$0.14'
 
@@ -61,6 +63,7 @@ def test_bahamian_dollar_negative():
     assert bahamian_dollar.symbol == '$'
     assert bahamian_dollar.symbol_ahead
     assert bahamian_dollar.symbol_separator == ''
+    assert bahamian_dollar.convertion == ''
     assert bahamian_dollar.__hash__() == hash((decimal, 'BSD', '044'))
     assert bahamian_dollar.__repr__() == (
         'BahamianDollar(amount: -100, '
@@ -72,6 +75,7 @@ def test_bahamian_dollar_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert bahamian_dollar.__str__() == '$-100.00'
 
@@ -98,6 +102,7 @@ def test_bahamian_dollar_custom():
     assert bahamian_dollar.symbol == '$'
     assert not bahamian_dollar.symbol_ahead
     assert bahamian_dollar.symbol_separator == '_'
+    assert bahamian_dollar.convertion == ''
     assert bahamian_dollar.__hash__() == hash((decimal, 'BSD', '044'))
     assert bahamian_dollar.__repr__() == (
         'BahamianDollar(amount: 1000, '
@@ -109,6 +114,7 @@ def test_bahamian_dollar_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert bahamian_dollar.__str__() == 'BSD 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_bahamian_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         bahamian_dollar.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        bahamian_dollar.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

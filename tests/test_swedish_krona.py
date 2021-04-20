@@ -32,6 +32,7 @@ def test_swedish_krona():
     assert swedish_krona.symbol == 'kr'
     assert not swedish_krona.symbol_ahead
     assert swedish_krona.symbol_separator == '\u00A0'
+    assert swedish_krona.convertion == ''
     assert swedish_krona.__hash__() == hash((decimal, 'SEK', '752'))
     assert swedish_krona.__repr__() == (
         'SwedishKrona(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_swedish_krona():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert swedish_krona.__str__() == '0,14 kr'
 
@@ -61,6 +63,7 @@ def test_swedish_krona_negative():
     assert swedish_krona.symbol == 'kr'
     assert not swedish_krona.symbol_ahead
     assert swedish_krona.symbol_separator == '\u00A0'
+    assert swedish_krona.convertion == ''
     assert swedish_krona.__hash__() == hash((decimal, 'SEK', '752'))
     assert swedish_krona.__repr__() == (
         'SwedishKrona(amount: -100, '
@@ -72,6 +75,7 @@ def test_swedish_krona_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert swedish_krona.__str__() == '-100,00 kr'
 
@@ -98,6 +102,7 @@ def test_swedish_krona_custom():
     assert swedish_krona.symbol == 'kr'
     assert not swedish_krona.symbol_ahead
     assert swedish_krona.symbol_separator == '_'
+    assert swedish_krona.convertion == ''
     assert swedish_krona.__hash__() == hash((decimal, 'SEK', '752'))
     assert swedish_krona.__repr__() == (
         'SwedishKrona(amount: 1000, '
@@ -109,6 +114,7 @@ def test_swedish_krona_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert swedish_krona.__str__() == 'SEK 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_swedish_krona_changed():
             AttributeError,
             match='can\'t set attribute'):
         swedish_krona.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        swedish_krona.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

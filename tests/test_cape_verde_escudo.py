@@ -32,6 +32,7 @@ def test_cape_verde_escudo():
     assert cape_verde_escudo.symbol == ''
     assert not cape_verde_escudo.symbol_ahead
     assert cape_verde_escudo.symbol_separator == ''
+    assert cape_verde_escudo.convertion == ''
     assert cape_verde_escudo.__hash__() == hash((decimal, 'CVE', '132'))
     assert cape_verde_escudo.__repr__() == (
         'CapeVerdeEscudo(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_cape_verde_escudo():
         'decimal_places: "2", '
         'decimal_sign: "$", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert cape_verde_escudo.__str__() == '0$14'
 
@@ -61,6 +63,7 @@ def test_cape_verde_escudo_negative():
     assert cape_verde_escudo.symbol == ''
     assert not cape_verde_escudo.symbol_ahead
     assert cape_verde_escudo.symbol_separator == ''
+    assert cape_verde_escudo.convertion == ''
     assert cape_verde_escudo.__hash__() == hash((decimal, 'CVE', '132'))
     assert cape_verde_escudo.__repr__() == (
         'CapeVerdeEscudo(amount: -100, '
@@ -72,6 +75,7 @@ def test_cape_verde_escudo_negative():
         'decimal_places: "2", '
         'decimal_sign: "$", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert cape_verde_escudo.__str__() == '-100$00'
 
@@ -98,6 +102,7 @@ def test_cape_verde_escudo_custom():
     assert cape_verde_escudo.symbol == ''
     assert not cape_verde_escudo.symbol_ahead
     assert cape_verde_escudo.symbol_separator == '_'
+    assert cape_verde_escudo.convertion == ''
     assert cape_verde_escudo.__hash__() == hash((decimal, 'CVE', '132'))
     assert cape_verde_escudo.__repr__() == (
         'CapeVerdeEscudo(amount: 1000, '
@@ -109,6 +114,7 @@ def test_cape_verde_escudo_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
         'grouping_sign: "$", '
+        'convertion: "", '
         'international: True)')
     assert cape_verde_escudo.__str__() == 'CVE 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_cape_verde_escudo_changed():
             AttributeError,
             match='can\'t set attribute'):
         cape_verde_escudo.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cape_verde_escudo.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

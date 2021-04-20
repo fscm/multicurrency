@@ -32,6 +32,7 @@ def test_tanzanian_shilling():
     assert tanzanian_shilling.symbol == 'TSh'
     assert tanzanian_shilling.symbol_ahead
     assert tanzanian_shilling.symbol_separator == '\u00A0'
+    assert tanzanian_shilling.convertion == ''
     assert tanzanian_shilling.__hash__() == hash((decimal, 'TZS', '834'))
     assert tanzanian_shilling.__repr__() == (
         'TanzanianShilling(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_tanzanian_shilling():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert tanzanian_shilling.__str__() == 'TSh 0.14'
 
@@ -61,6 +63,7 @@ def test_tanzanian_shilling_negative():
     assert tanzanian_shilling.symbol == 'TSh'
     assert tanzanian_shilling.symbol_ahead
     assert tanzanian_shilling.symbol_separator == '\u00A0'
+    assert tanzanian_shilling.convertion == ''
     assert tanzanian_shilling.__hash__() == hash((decimal, 'TZS', '834'))
     assert tanzanian_shilling.__repr__() == (
         'TanzanianShilling(amount: -100, '
@@ -72,6 +75,7 @@ def test_tanzanian_shilling_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert tanzanian_shilling.__str__() == 'TSh -100.00'
 
@@ -98,6 +102,7 @@ def test_tanzanian_shilling_custom():
     assert tanzanian_shilling.symbol == 'TSh'
     assert not tanzanian_shilling.symbol_ahead
     assert tanzanian_shilling.symbol_separator == '_'
+    assert tanzanian_shilling.convertion == ''
     assert tanzanian_shilling.__hash__() == hash((decimal, 'TZS', '834'))
     assert tanzanian_shilling.__repr__() == (
         'TanzanianShilling(amount: 1000, '
@@ -109,6 +114,7 @@ def test_tanzanian_shilling_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert tanzanian_shilling.__str__() == 'TZS 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_tanzanian_shilling_changed():
             AttributeError,
             match='can\'t set attribute'):
         tanzanian_shilling.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        tanzanian_shilling.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

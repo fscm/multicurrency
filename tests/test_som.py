@@ -32,6 +32,7 @@ def test_som():
     assert som.symbol == 'Лв'
     assert not som.symbol_ahead
     assert som.symbol_separator == '\u00A0'
+    assert som.convertion == ''
     assert som.__hash__() == hash((decimal, 'KGS', '417'))
     assert som.__repr__() == (
         'Som(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_som():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert som.__str__() == '0,14 Лв'
 
@@ -61,6 +63,7 @@ def test_som_negative():
     assert som.symbol == 'Лв'
     assert not som.symbol_ahead
     assert som.symbol_separator == '\u00A0'
+    assert som.convertion == ''
     assert som.__hash__() == hash((decimal, 'KGS', '417'))
     assert som.__repr__() == (
         'Som(amount: -100, '
@@ -72,6 +75,7 @@ def test_som_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert som.__str__() == '-100,00 Лв'
 
@@ -98,6 +102,7 @@ def test_som_custom():
     assert som.symbol == 'Лв'
     assert not som.symbol_ahead
     assert som.symbol_separator == '_'
+    assert som.convertion == ''
     assert som.__hash__() == hash((decimal, 'KGS', '417'))
     assert som.__repr__() == (
         'Som(amount: 1000, '
@@ -109,6 +114,7 @@ def test_som_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert som.__str__() == 'KGS 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_som_changed():
             AttributeError,
             match='can\'t set attribute'):
         som.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        som.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -32,6 +32,7 @@ def test_dominican_peso():
     assert dominican_peso.symbol == '$'
     assert dominican_peso.symbol_ahead
     assert dominican_peso.symbol_separator == ''
+    assert dominican_peso.convertion == ''
     assert dominican_peso.__hash__() == hash((decimal, 'DOP', '214'))
     assert dominican_peso.__repr__() == (
         'DominicanPeso(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_dominican_peso():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert dominican_peso.__str__() == '$0.14'
 
@@ -61,6 +63,7 @@ def test_dominican_peso_negative():
     assert dominican_peso.symbol == '$'
     assert dominican_peso.symbol_ahead
     assert dominican_peso.symbol_separator == ''
+    assert dominican_peso.convertion == ''
     assert dominican_peso.__hash__() == hash((decimal, 'DOP', '214'))
     assert dominican_peso.__repr__() == (
         'DominicanPeso(amount: -100, '
@@ -72,6 +75,7 @@ def test_dominican_peso_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert dominican_peso.__str__() == '$-100.00'
 
@@ -98,6 +102,7 @@ def test_dominican_peso_custom():
     assert dominican_peso.symbol == '$'
     assert not dominican_peso.symbol_ahead
     assert dominican_peso.symbol_separator == '_'
+    assert dominican_peso.convertion == ''
     assert dominican_peso.__hash__() == hash((decimal, 'DOP', '214'))
     assert dominican_peso.__repr__() == (
         'DominicanPeso(amount: 1000, '
@@ -109,6 +114,7 @@ def test_dominican_peso_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert dominican_peso.__str__() == 'DOP 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_dominican_peso_changed():
             AttributeError,
             match='can\'t set attribute'):
         dominican_peso.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        dominican_peso.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

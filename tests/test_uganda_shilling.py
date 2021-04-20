@@ -32,6 +32,7 @@ def test_uganda_shilling():
     assert uganda_shilling.symbol == 'USh'
     assert uganda_shilling.symbol_ahead
     assert uganda_shilling.symbol_separator == '\u00A0'
+    assert uganda_shilling.convertion == ''
     assert uganda_shilling.__hash__() == hash((decimal, 'UGX', '800'))
     assert uganda_shilling.__repr__() == (
         'UgandaShilling(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_uganda_shilling():
         'decimal_places: "0", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert uganda_shilling.__str__() == 'USh 0'
 
@@ -61,6 +63,7 @@ def test_uganda_shilling_negative():
     assert uganda_shilling.symbol == 'USh'
     assert uganda_shilling.symbol_ahead
     assert uganda_shilling.symbol_separator == '\u00A0'
+    assert uganda_shilling.convertion == ''
     assert uganda_shilling.__hash__() == hash((decimal, 'UGX', '800'))
     assert uganda_shilling.__repr__() == (
         'UgandaShilling(amount: -100, '
@@ -72,6 +75,7 @@ def test_uganda_shilling_negative():
         'decimal_places: "0", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert uganda_shilling.__str__() == 'USh -100'
 
@@ -98,6 +102,7 @@ def test_uganda_shilling_custom():
     assert uganda_shilling.symbol == 'USh'
     assert not uganda_shilling.symbol_ahead
     assert uganda_shilling.symbol_separator == '_'
+    assert uganda_shilling.convertion == ''
     assert uganda_shilling.__hash__() == hash((decimal, 'UGX', '800'))
     assert uganda_shilling.__repr__() == (
         'UgandaShilling(amount: 1000, '
@@ -109,6 +114,7 @@ def test_uganda_shilling_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert uganda_shilling.__str__() == 'UGX 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_uganda_shilling_changed():
             AttributeError,
             match='can\'t set attribute'):
         uganda_shilling.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        uganda_shilling.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

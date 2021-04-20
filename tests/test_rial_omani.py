@@ -26,12 +26,13 @@ def test_rial_omani():
     assert rial_omani.numeric_code == '512'
     assert rial_omani.alpha_code == 'OMR'
     assert rial_omani.decimal_places == 3
-    assert rial_omani.decimal_sign == '.'
-    assert rial_omani.grouping_sign == ','
+    assert rial_omani.decimal_sign == '\u066B'
+    assert rial_omani.grouping_sign == '\u066C'
     assert not rial_omani.international
     assert rial_omani.symbol == 'ر.ع.'
     assert not rial_omani.symbol_ahead
     assert rial_omani.symbol_separator == '\u00A0'
+    assert rial_omani.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
     assert rial_omani.__hash__() == hash((decimal, 'OMR', '512'))
     assert rial_omani.__repr__() == (
         'RialOmani(amount: 0.1428571428571428571428571429, '
@@ -41,10 +42,11 @@ def test_rial_omani():
         'symbol_separator: "\u00A0", '
         'numeric_code: "512", '
         'decimal_places: "3", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: "\u066B", '
+        'grouping_sign: "\u066C", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
         'international: False)')
-    assert rial_omani.__str__() == '0.143 ر.ع.'
+    assert rial_omani.__str__() == '٠٫١٤٣ ر.ع.'
 
 
 def test_rial_omani_negative():
@@ -55,12 +57,13 @@ def test_rial_omani_negative():
     assert rial_omani.numeric_code == '512'
     assert rial_omani.alpha_code == 'OMR'
     assert rial_omani.decimal_places == 3
-    assert rial_omani.decimal_sign == '.'
-    assert rial_omani.grouping_sign == ','
+    assert rial_omani.decimal_sign == '\u066B'
+    assert rial_omani.grouping_sign == '\u066C'
     assert not rial_omani.international
     assert rial_omani.symbol == 'ر.ع.'
     assert not rial_omani.symbol_ahead
     assert rial_omani.symbol_separator == '\u00A0'
+    assert rial_omani.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
     assert rial_omani.__hash__() == hash((decimal, 'OMR', '512'))
     assert rial_omani.__repr__() == (
         'RialOmani(amount: -100, '
@@ -70,10 +73,11 @@ def test_rial_omani_negative():
         'symbol_separator: "\u00A0", '
         'numeric_code: "512", '
         'decimal_places: "3", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: "\u066B", '
+        'grouping_sign: "\u066C", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
         'international: False)')
-    assert rial_omani.__str__() == '-100.000 ر.ع.'
+    assert rial_omani.__str__() == '-١٠٠٫٠٠٠ ر.ع.'
 
 
 def test_rial_omani_custom():
@@ -82,8 +86,8 @@ def test_rial_omani_custom():
     rial_omani = RialOmani(
         amount=amount,
         decimal_places=5,
-        decimal_sign=',',
-        grouping_sign='.',
+        decimal_sign='\u066C',
+        grouping_sign='\u066B',
         international=True,
         symbol_ahead=False,
         symbol_separator='_')
@@ -92,12 +96,13 @@ def test_rial_omani_custom():
     assert rial_omani.numeric_code == '512'
     assert rial_omani.alpha_code == 'OMR'
     assert rial_omani.decimal_places == 5
-    assert rial_omani.decimal_sign == ','
-    assert rial_omani.grouping_sign == '.'
+    assert rial_omani.decimal_sign == '\u066C'
+    assert rial_omani.grouping_sign == '\u066B'
     assert rial_omani.international
     assert rial_omani.symbol == 'ر.ع.'
     assert not rial_omani.symbol_ahead
     assert rial_omani.symbol_separator == '_'
+    assert rial_omani.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
     assert rial_omani.__hash__() == hash((decimal, 'OMR', '512'))
     assert rial_omani.__repr__() == (
         'RialOmani(amount: 1000, '
@@ -107,8 +112,9 @@ def test_rial_omani_custom():
         'symbol_separator: "_", '
         'numeric_code: "512", '
         'decimal_places: "5", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: "\u066C", '
+        'grouping_sign: "\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
         'international: True)')
     assert rial_omani.__str__() == 'OMR 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_rial_omani_changed():
             AttributeError,
             match='can\'t set attribute'):
         rial_omani.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        rial_omani.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

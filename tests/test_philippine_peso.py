@@ -32,6 +32,7 @@ def test_philippine_peso():
     assert philippine_peso.symbol == '₱'
     assert philippine_peso.symbol_ahead
     assert philippine_peso.symbol_separator == ''
+    assert philippine_peso.convertion == ''
     assert philippine_peso.__hash__() == hash((decimal, 'PHP', '608'))
     assert philippine_peso.__repr__() == (
         'PhilippinePeso(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_philippine_peso():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert philippine_peso.__str__() == '₱0.14'
 
@@ -61,6 +63,7 @@ def test_philippine_peso_negative():
     assert philippine_peso.symbol == '₱'
     assert philippine_peso.symbol_ahead
     assert philippine_peso.symbol_separator == ''
+    assert philippine_peso.convertion == ''
     assert philippine_peso.__hash__() == hash((decimal, 'PHP', '608'))
     assert philippine_peso.__repr__() == (
         'PhilippinePeso(amount: -100, '
@@ -72,6 +75,7 @@ def test_philippine_peso_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert philippine_peso.__str__() == '₱-100.00'
 
@@ -98,6 +102,7 @@ def test_philippine_peso_custom():
     assert philippine_peso.symbol == '₱'
     assert not philippine_peso.symbol_ahead
     assert philippine_peso.symbol_separator == '_'
+    assert philippine_peso.convertion == ''
     assert philippine_peso.__hash__() == hash((decimal, 'PHP', '608'))
     assert philippine_peso.__repr__() == (
         'PhilippinePeso(amount: 1000, '
@@ -109,6 +114,7 @@ def test_philippine_peso_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert philippine_peso.__str__() == 'PHP 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_philippine_peso_changed():
             AttributeError,
             match='can\'t set attribute'):
         philippine_peso.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        philippine_peso.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -32,6 +32,7 @@ def test_peso_uruguayo():
     assert peso_uruguayo.symbol == '$'
     assert peso_uruguayo.symbol_ahead
     assert peso_uruguayo.symbol_separator == '\u00A0'
+    assert peso_uruguayo.convertion == ''
     assert peso_uruguayo.__hash__() == hash((decimal, 'UYU', '858'))
     assert peso_uruguayo.__repr__() == (
         'PesoUruguayo(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_peso_uruguayo():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert peso_uruguayo.__str__() == '$ 0,14'
 
@@ -61,6 +63,7 @@ def test_peso_uruguayo_negative():
     assert peso_uruguayo.symbol == '$'
     assert peso_uruguayo.symbol_ahead
     assert peso_uruguayo.symbol_separator == '\u00A0'
+    assert peso_uruguayo.convertion == ''
     assert peso_uruguayo.__hash__() == hash((decimal, 'UYU', '858'))
     assert peso_uruguayo.__repr__() == (
         'PesoUruguayo(amount: -100, '
@@ -72,6 +75,7 @@ def test_peso_uruguayo_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert peso_uruguayo.__str__() == '$ -100,00'
 
@@ -98,6 +102,7 @@ def test_peso_uruguayo_custom():
     assert peso_uruguayo.symbol == '$'
     assert not peso_uruguayo.symbol_ahead
     assert peso_uruguayo.symbol_separator == '_'
+    assert peso_uruguayo.convertion == ''
     assert peso_uruguayo.__hash__() == hash((decimal, 'UYU', '858'))
     assert peso_uruguayo.__repr__() == (
         'PesoUruguayo(amount: 1000, '
@@ -109,6 +114,7 @@ def test_peso_uruguayo_custom():
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert peso_uruguayo.__str__() == 'UYU 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_peso_uruguayo_changed():
             AttributeError,
             match='can\'t set attribute'):
         peso_uruguayo.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        peso_uruguayo.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -32,6 +32,7 @@ def test_nuevo_sol():
     assert nuevo_sol.symbol == 'S/.'
     assert nuevo_sol.symbol_ahead
     assert nuevo_sol.symbol_separator == '\u00A0'
+    assert nuevo_sol.convertion == ''
     assert nuevo_sol.__hash__() == hash((decimal, 'PEN', '604'))
     assert nuevo_sol.__repr__() == (
         'NuevoSol(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_nuevo_sol():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert nuevo_sol.__str__() == 'S/. 0.14'
 
@@ -61,6 +63,7 @@ def test_nuevo_sol_negative():
     assert nuevo_sol.symbol == 'S/.'
     assert nuevo_sol.symbol_ahead
     assert nuevo_sol.symbol_separator == '\u00A0'
+    assert nuevo_sol.convertion == ''
     assert nuevo_sol.__hash__() == hash((decimal, 'PEN', '604'))
     assert nuevo_sol.__repr__() == (
         'NuevoSol(amount: -100, '
@@ -72,6 +75,7 @@ def test_nuevo_sol_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert nuevo_sol.__str__() == 'S/. -100.00'
 
@@ -98,6 +102,7 @@ def test_nuevo_sol_custom():
     assert nuevo_sol.symbol == 'S/.'
     assert not nuevo_sol.symbol_ahead
     assert nuevo_sol.symbol_separator == '_'
+    assert nuevo_sol.convertion == ''
     assert nuevo_sol.__hash__() == hash((decimal, 'PEN', '604'))
     assert nuevo_sol.__repr__() == (
         'NuevoSol(amount: 1000, '
@@ -109,6 +114,7 @@ def test_nuevo_sol_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert nuevo_sol.__str__() == 'PEN 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_nuevo_sol_changed():
             AttributeError,
             match='can\'t set attribute'):
         nuevo_sol.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        nuevo_sol.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

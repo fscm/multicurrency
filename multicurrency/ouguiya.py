@@ -20,7 +20,7 @@ class Ouguiya(Currency):
         >>> ouguiya = Ouguiya(
         ...     amount=123456.789)
         >>> print(ouguiya)
-        123.456,79 أ.م
+        ١٢٣٬٤٥٦٫٧٩ أ.م
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -28,8 +28,8 @@ class Ouguiya(Currency):
         amount (Union[int, float, Decimal]): Represented value.
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
-        decimal_sign (str, optional): Decimal symbol. Defaults to ','.
-        grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
+        decimal_sign (str, optional): Decimal symbol. Defaults to '٫'.
+        grouping_sign (str, optional): Grouping symbol. Defaults to '٬'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
             False.
@@ -45,8 +45,8 @@ class Ouguiya(Currency):
             cls,
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
-            decimal_sign: Optional[str] = ',',
-            grouping_sign: Optional[str] = '.',
+            decimal_sign: Optional[str] = '\u066B',
+            grouping_sign: Optional[str] = '\u066C',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
@@ -67,4 +67,5 @@ class Ouguiya(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='٠١٢٣٤٥٦٧٨٩-\u066C\u066B',
             international=international)

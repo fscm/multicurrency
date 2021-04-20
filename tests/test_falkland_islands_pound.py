@@ -32,6 +32,7 @@ def test_falkland_islands_pound():
     assert falkland_islands_pound.symbol == '£'
     assert falkland_islands_pound.symbol_ahead
     assert falkland_islands_pound.symbol_separator == ''
+    assert falkland_islands_pound.convertion == ''
     assert falkland_islands_pound.__hash__() == hash((decimal, 'FKP', '238'))
     assert falkland_islands_pound.__repr__() == (
         'FalklandIslandsPound(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_falkland_islands_pound():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert falkland_islands_pound.__str__() == '£0.14'
 
@@ -61,6 +63,7 @@ def test_falkland_islands_pound_negative():
     assert falkland_islands_pound.symbol == '£'
     assert falkland_islands_pound.symbol_ahead
     assert falkland_islands_pound.symbol_separator == ''
+    assert falkland_islands_pound.convertion == ''
     assert falkland_islands_pound.__hash__() == hash((decimal, 'FKP', '238'))
     assert falkland_islands_pound.__repr__() == (
         'FalklandIslandsPound(amount: -100, '
@@ -72,6 +75,7 @@ def test_falkland_islands_pound_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert falkland_islands_pound.__str__() == '£-100.00'
 
@@ -98,6 +102,7 @@ def test_falkland_islands_pound_custom():
     assert falkland_islands_pound.symbol == '£'
     assert not falkland_islands_pound.symbol_ahead
     assert falkland_islands_pound.symbol_separator == '_'
+    assert falkland_islands_pound.convertion == ''
     assert falkland_islands_pound.__hash__() == hash((decimal, 'FKP', '238'))
     assert falkland_islands_pound.__repr__() == (
         'FalklandIslandsPound(amount: 1000, '
@@ -109,6 +114,7 @@ def test_falkland_islands_pound_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert falkland_islands_pound.__str__() == 'FKP 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_falkland_islands_pound_changed():
             AttributeError,
             match='can\'t set attribute'):
         falkland_islands_pound.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        falkland_islands_pound.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

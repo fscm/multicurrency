@@ -32,6 +32,7 @@ def test_kina():
     assert kina.symbol == 'K'
     assert kina.symbol_ahead
     assert kina.symbol_separator == '\u00A0'
+    assert kina.convertion == ''
     assert kina.__hash__() == hash((decimal, 'PGK', '598'))
     assert kina.__repr__() == (
         'Kina(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_kina():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert kina.__str__() == 'K 0.14'
 
@@ -61,6 +63,7 @@ def test_kina_negative():
     assert kina.symbol == 'K'
     assert kina.symbol_ahead
     assert kina.symbol_separator == '\u00A0'
+    assert kina.convertion == ''
     assert kina.__hash__() == hash((decimal, 'PGK', '598'))
     assert kina.__repr__() == (
         'Kina(amount: -100, '
@@ -72,6 +75,7 @@ def test_kina_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert kina.__str__() == 'K -100.00'
 
@@ -98,6 +102,7 @@ def test_kina_custom():
     assert kina.symbol == 'K'
     assert not kina.symbol_ahead
     assert kina.symbol_separator == '_'
+    assert kina.convertion == ''
     assert kina.__hash__() == hash((decimal, 'PGK', '598'))
     assert kina.__repr__() == (
         'Kina(amount: 1000, '
@@ -109,6 +114,7 @@ def test_kina_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert kina.__str__() == 'PGK 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_kina_changed():
             AttributeError,
             match='can\'t set attribute'):
         kina.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        kina.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

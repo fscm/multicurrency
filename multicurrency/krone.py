@@ -20,7 +20,7 @@ class DanishKrone(Currency):
         >>> danish_krone = DanishKrone(
         ...     amount=123456.789)
         >>> print(danish_krone)
-        123.456,79 kr.
+        123.456,79 kr
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -61,12 +61,13 @@ class DanishKrone(Currency):
             amount=amount,
             alpha_code='DKK',
             numeric_code='208',
-            symbol='kr.',
+            symbol='kr',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)
 
 
@@ -126,4 +127,5 @@ class NorwegianKrone(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
+            convertion='',
             international=international)

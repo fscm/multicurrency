@@ -32,6 +32,7 @@ def test_colombian_peso():
     assert colombian_peso.symbol == '$'
     assert colombian_peso.symbol_ahead
     assert colombian_peso.symbol_separator == '\u00A0'
+    assert colombian_peso.convertion == ''
     assert colombian_peso.__hash__() == hash((decimal, 'COP', '170'))
     assert colombian_peso.__repr__() == (
         'ColombianPeso(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_colombian_peso():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert colombian_peso.__str__() == '$ 0,14'
 
@@ -61,6 +63,7 @@ def test_colombian_peso_negative():
     assert colombian_peso.symbol == '$'
     assert colombian_peso.symbol_ahead
     assert colombian_peso.symbol_separator == '\u00A0'
+    assert colombian_peso.convertion == ''
     assert colombian_peso.__hash__() == hash((decimal, 'COP', '170'))
     assert colombian_peso.__repr__() == (
         'ColombianPeso(amount: -100, '
@@ -72,6 +75,7 @@ def test_colombian_peso_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert colombian_peso.__str__() == '$ -100,00'
 
@@ -98,6 +102,7 @@ def test_colombian_peso_custom():
     assert colombian_peso.symbol == '$'
     assert not colombian_peso.symbol_ahead
     assert colombian_peso.symbol_separator == '_'
+    assert colombian_peso.convertion == ''
     assert colombian_peso.__hash__() == hash((decimal, 'COP', '170'))
     assert colombian_peso.__repr__() == (
         'ColombianPeso(amount: 1000, '
@@ -109,6 +114,7 @@ def test_colombian_peso_custom():
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert colombian_peso.__str__() == 'COP 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_colombian_peso_changed():
             AttributeError,
             match='can\'t set attribute'):
         colombian_peso.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        colombian_peso.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

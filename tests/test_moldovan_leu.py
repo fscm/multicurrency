@@ -32,6 +32,7 @@ def test_moldovan_leu():
     assert moldovan_leu.symbol == 'L'
     assert not moldovan_leu.symbol_ahead
     assert moldovan_leu.symbol_separator == '\u00A0'
+    assert moldovan_leu.convertion == ''
     assert moldovan_leu.__hash__() == hash((decimal, 'MDL', '498'))
     assert moldovan_leu.__repr__() == (
         'MoldovanLeu(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_moldovan_leu():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert moldovan_leu.__str__() == '0,14 L'
 
@@ -61,6 +63,7 @@ def test_moldovan_leu_negative():
     assert moldovan_leu.symbol == 'L'
     assert not moldovan_leu.symbol_ahead
     assert moldovan_leu.symbol_separator == '\u00A0'
+    assert moldovan_leu.convertion == ''
     assert moldovan_leu.__hash__() == hash((decimal, 'MDL', '498'))
     assert moldovan_leu.__repr__() == (
         'MoldovanLeu(amount: -100, '
@@ -72,6 +75,7 @@ def test_moldovan_leu_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert moldovan_leu.__str__() == '-100,00 L'
 
@@ -98,6 +102,7 @@ def test_moldovan_leu_custom():
     assert moldovan_leu.symbol == 'L'
     assert not moldovan_leu.symbol_ahead
     assert moldovan_leu.symbol_separator == '_'
+    assert moldovan_leu.convertion == ''
     assert moldovan_leu.__hash__() == hash((decimal, 'MDL', '498'))
     assert moldovan_leu.__repr__() == (
         'MoldovanLeu(amount: 1000, '
@@ -109,6 +114,7 @@ def test_moldovan_leu_custom():
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert moldovan_leu.__str__() == 'MDL 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_moldovan_leu_changed():
             AttributeError,
             match='can\'t set attribute'):
         moldovan_leu.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        moldovan_leu.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

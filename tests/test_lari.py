@@ -32,6 +32,7 @@ def test_lari():
     assert lari.symbol == 'ლ'
     assert not lari.symbol_ahead
     assert lari.symbol_separator == '\u00A0'
+    assert lari.convertion == ''
     assert lari.__hash__() == hash((decimal, 'GEL', '981'))
     assert lari.__repr__() == (
         'Lari(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_lari():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert lari.__str__() == '0,14 ლ'
 
@@ -61,6 +63,7 @@ def test_lari_negative():
     assert lari.symbol == 'ლ'
     assert not lari.symbol_ahead
     assert lari.symbol_separator == '\u00A0'
+    assert lari.convertion == ''
     assert lari.__hash__() == hash((decimal, 'GEL', '981'))
     assert lari.__repr__() == (
         'Lari(amount: -100, '
@@ -72,6 +75,7 @@ def test_lari_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert lari.__str__() == '-100,00 ლ'
 
@@ -98,6 +102,7 @@ def test_lari_custom():
     assert lari.symbol == 'ლ'
     assert not lari.symbol_ahead
     assert lari.symbol_separator == '_'
+    assert lari.convertion == ''
     assert lari.__hash__() == hash((decimal, 'GEL', '981'))
     assert lari.__repr__() == (
         'Lari(amount: 1000, '
@@ -109,6 +114,7 @@ def test_lari_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert lari.__str__() == 'GEL 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_lari_changed():
             AttributeError,
             match='can\'t set attribute'):
         lari.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        lari.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

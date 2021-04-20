@@ -32,6 +32,7 @@ def test_euro():
     assert euro.symbol == '€'
     assert not euro.symbol_ahead
     assert euro.symbol_separator == '\u00A0'
+    assert euro.convertion == ''
     assert euro.__hash__() == hash((decimal, 'EUR', '978'))
     assert euro.__repr__() == (
         'Euro(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_euro():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert euro.__str__() == '0,14 €'
 
@@ -61,6 +63,7 @@ def test_euro_negative():
     assert euro.symbol == '€'
     assert not euro.symbol_ahead
     assert euro.symbol_separator == '\u00A0'
+    assert euro.convertion == ''
     assert euro.__hash__() == hash((decimal, 'EUR', '978'))
     assert euro.__repr__() == (
         'Euro(amount: -100, '
@@ -72,6 +75,7 @@ def test_euro_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert euro.__str__() == '-100,00 €'
 
@@ -98,6 +102,7 @@ def test_euro_custom():
     assert euro.symbol == '€'
     assert not euro.symbol_ahead
     assert euro.symbol_separator == '_'
+    assert euro.convertion == ''
     assert euro.__hash__() == hash((decimal, 'EUR', '978'))
     assert euro.__repr__() == (
         'Euro(amount: 1000, '
@@ -109,6 +114,7 @@ def test_euro_custom():
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert euro.__str__() == 'EUR 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_euro_changed():
             AttributeError,
             match='can\'t set attribute'):
         euro.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        euro.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -32,6 +32,7 @@ def test___CURRENCY_VARIABLE__():
     assert __CURRENCY_VARIABLE__.symbol == '__SYMBOL__'
     assert __SYMBOL_AHEAD_ALT____CURRENCY_VARIABLE__.symbol_ahead
     assert __CURRENCY_VARIABLE__.symbol_separator == '__SYMBOL_SEPARATOR__'
+    assert __CURRENCY_VARIABLE__.convertion == '__CONVERTION__'
     assert __CURRENCY_VARIABLE__.__hash__() == hash((decimal, '__CURRENCY__', '__CODE__'))
     assert __CURRENCY_VARIABLE__.__repr__() == (
         '__CURRENCY_CLASS__(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test___CURRENCY_VARIABLE__():
         'decimal_places: "__DECIMAL_PLACES__", '
         'decimal_sign: "__DECIMAL_SIGN__", '
         'grouping_sign: "__GROUPING_SIGN_ALT__", '
+        'convertion: "__CONVERTION__", '
         'international: False)')
     assert __CURRENCY_VARIABLE__.__str__() == '__EXAMPLE_1DIV7__'
 
@@ -61,6 +63,7 @@ def test___CURRENCY_VARIABLE___negative():
     assert __CURRENCY_VARIABLE__.symbol == '__SYMBOL__'
     assert __SYMBOL_AHEAD_ALT____CURRENCY_VARIABLE__.symbol_ahead
     assert __CURRENCY_VARIABLE__.symbol_separator == '__SYMBOL_SEPARATOR__'
+    assert __CURRENCY_VARIABLE__.convertion == '__CONVERTION__'
     assert __CURRENCY_VARIABLE__.__hash__() == hash((decimal, '__CURRENCY__', '__CODE__'))
     assert __CURRENCY_VARIABLE__.__repr__() == (
         '__CURRENCY_CLASS__(amount: -100, '
@@ -72,6 +75,7 @@ def test___CURRENCY_VARIABLE___negative():
         'decimal_places: "__DECIMAL_PLACES__", '
         'decimal_sign: "__DECIMAL_SIGN__", '
         'grouping_sign: "__GROUPING_SIGN_ALT__", '
+        'convertion: "__CONVERTION__", '
         'international: False)')
     assert __CURRENCY_VARIABLE__.__str__() == '__EXAMPLE_NEGATIVE__'
 
@@ -98,6 +102,7 @@ def test___CURRENCY_VARIABLE___custom():
     assert __CURRENCY_VARIABLE__.symbol == '__SYMBOL__'
     assert not __CURRENCY_VARIABLE__.symbol_ahead
     assert __CURRENCY_VARIABLE__.symbol_separator == '_'
+    assert __CURRENCY_VARIABLE__.convertion == '__CONVERTION__'
     assert __CURRENCY_VARIABLE__.__hash__() == hash((decimal, '__CURRENCY__', '__CODE__'))
     assert __CURRENCY_VARIABLE__.__repr__() == (
         '__CURRENCY_CLASS__(amount: 1000, '
@@ -109,6 +114,7 @@ def test___CURRENCY_VARIABLE___custom():
         'decimal_places: "5", '
         'decimal_sign: "__GROUPING_SIGN_ALT__", '
         'grouping_sign: "__DECIMAL_SIGN__", '
+        'convertion: "__CONVERTION__", '
         'international: True)')
     assert __CURRENCY_VARIABLE__.__str__() == '__EXAMPLE_CUSTOM__'
 
@@ -124,6 +130,10 @@ def test___CURRENCY_VARIABLE___changed():
             AttributeError,
             match='can\'t set attribute'):
         __CURRENCY_VARIABLE__.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        __CURRENCY_VARIABLE__.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

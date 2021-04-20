@@ -32,6 +32,7 @@ def test_rand_za():
     assert rand_za.symbol == 'R'
     assert rand_za.symbol_ahead
     assert rand_za.symbol_separator == '\u00A0'
+    assert rand_za.convertion == ''
     assert rand_za.__hash__() == hash((decimal, 'ZAR', '710'))
     assert rand_za.__repr__() == (
         'RandZA(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_rand_za():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert rand_za.__str__() == 'R 0.14'
 
@@ -61,6 +63,7 @@ def test_rand_za_negative():
     assert rand_za.symbol == 'R'
     assert rand_za.symbol_ahead
     assert rand_za.symbol_separator == '\u00A0'
+    assert rand_za.convertion == ''
     assert rand_za.__hash__() == hash((decimal, 'ZAR', '710'))
     assert rand_za.__repr__() == (
         'RandZA(amount: -100, '
@@ -72,6 +75,7 @@ def test_rand_za_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert rand_za.__str__() == 'R -100.00'
 
@@ -98,6 +102,7 @@ def test_rand_za_custom():
     assert rand_za.symbol == 'R'
     assert not rand_za.symbol_ahead
     assert rand_za.symbol_separator == '_'
+    assert rand_za.convertion == ''
     assert rand_za.__hash__() == hash((decimal, 'ZAR', '710'))
     assert rand_za.__repr__() == (
         'RandZA(amount: 1000, '
@@ -109,6 +114,7 @@ def test_rand_za_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert rand_za.__str__() == 'ZAR 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_rand_za_changed():
             AttributeError,
             match='can\'t set attribute'):
         rand_za.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        rand_za.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

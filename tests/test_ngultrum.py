@@ -32,6 +32,7 @@ def test_ngultrum():
     assert ngultrum.symbol == 'Nu.'
     assert ngultrum.symbol_ahead
     assert ngultrum.symbol_separator == '\u00A0'
+    assert ngultrum.convertion == '༠༡༢༣༤༥༦༧༨༩-,.'
     assert ngultrum.__hash__() == hash((decimal, 'BTN', '064'))
     assert ngultrum.__repr__() == (
         'Ngultrum(amount: 0.1428571428571428571428571429, '
@@ -43,8 +44,9 @@ def test_ngultrum():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "༠༡༢༣༤༥༦༧༨༩-,.", '
         'international: False)')
-    assert ngultrum.__str__() == 'Nu. 0.14'
+    assert ngultrum.__str__() == 'Nu. ༠.༡༤'
 
 
 def test_ngultrum_negative():
@@ -61,6 +63,7 @@ def test_ngultrum_negative():
     assert ngultrum.symbol == 'Nu.'
     assert ngultrum.symbol_ahead
     assert ngultrum.symbol_separator == '\u00A0'
+    assert ngultrum.convertion == '༠༡༢༣༤༥༦༧༨༩-,.'
     assert ngultrum.__hash__() == hash((decimal, 'BTN', '064'))
     assert ngultrum.__repr__() == (
         'Ngultrum(amount: -100, '
@@ -72,8 +75,9 @@ def test_ngultrum_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "༠༡༢༣༤༥༦༧༨༩-,.", '
         'international: False)')
-    assert ngultrum.__str__() == 'Nu. -100.00'
+    assert ngultrum.__str__() == 'Nu. -༡༠༠.༠༠'
 
 
 def test_ngultrum_custom():
@@ -98,6 +102,7 @@ def test_ngultrum_custom():
     assert ngultrum.symbol == 'Nu.'
     assert not ngultrum.symbol_ahead
     assert ngultrum.symbol_separator == '_'
+    assert ngultrum.convertion == '༠༡༢༣༤༥༦༧༨༩-,.'
     assert ngultrum.__hash__() == hash((decimal, 'BTN', '064'))
     assert ngultrum.__repr__() == (
         'Ngultrum(amount: 1000, '
@@ -109,6 +114,7 @@ def test_ngultrum_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "༠༡༢༣༤༥༦༧༨༩-,.", '
         'international: True)')
     assert ngultrum.__str__() == 'BTN 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_ngultrum_changed():
             AttributeError,
             match='can\'t set attribute'):
         ngultrum.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        ngultrum.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

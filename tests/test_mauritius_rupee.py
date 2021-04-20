@@ -32,6 +32,7 @@ def test_mauritius_rupee():
     assert mauritius_rupee.symbol == '₨'
     assert mauritius_rupee.symbol_ahead
     assert mauritius_rupee.symbol_separator == '\u00A0'
+    assert mauritius_rupee.convertion == ''
     assert mauritius_rupee.__hash__() == hash((decimal, 'MUR', '480'))
     assert mauritius_rupee.__repr__() == (
         'MauritiusRupee(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_mauritius_rupee():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert mauritius_rupee.__str__() == '₨ 0.14'
 
@@ -61,6 +63,7 @@ def test_mauritius_rupee_negative():
     assert mauritius_rupee.symbol == '₨'
     assert mauritius_rupee.symbol_ahead
     assert mauritius_rupee.symbol_separator == '\u00A0'
+    assert mauritius_rupee.convertion == ''
     assert mauritius_rupee.__hash__() == hash((decimal, 'MUR', '480'))
     assert mauritius_rupee.__repr__() == (
         'MauritiusRupee(amount: -100, '
@@ -72,6 +75,7 @@ def test_mauritius_rupee_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert mauritius_rupee.__str__() == '₨ -100.00'
 
@@ -98,6 +102,7 @@ def test_mauritius_rupee_custom():
     assert mauritius_rupee.symbol == '₨'
     assert not mauritius_rupee.symbol_ahead
     assert mauritius_rupee.symbol_separator == '_'
+    assert mauritius_rupee.convertion == ''
     assert mauritius_rupee.__hash__() == hash((decimal, 'MUR', '480'))
     assert mauritius_rupee.__repr__() == (
         'MauritiusRupee(amount: 1000, '
@@ -109,6 +114,7 @@ def test_mauritius_rupee_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert mauritius_rupee.__str__() == 'MUR 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_mauritius_rupee_changed():
             AttributeError,
             match='can\'t set attribute'):
         mauritius_rupee.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        mauritius_rupee.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

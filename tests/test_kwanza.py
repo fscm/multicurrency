@@ -32,6 +32,7 @@ def test_kwanza():
     assert kwanza.symbol == 'Kz'
     assert not kwanza.symbol_ahead
     assert kwanza.symbol_separator == '\u00A0'
+    assert kwanza.convertion == ''
     assert kwanza.__hash__() == hash((decimal, 'AOA', '973'))
     assert kwanza.__repr__() == (
         'Kwanza(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_kwanza():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert kwanza.__str__() == '0,14 Kz'
 
@@ -61,6 +63,7 @@ def test_kwanza_negative():
     assert kwanza.symbol == 'Kz'
     assert not kwanza.symbol_ahead
     assert kwanza.symbol_separator == '\u00A0'
+    assert kwanza.convertion == ''
     assert kwanza.__hash__() == hash((decimal, 'AOA', '973'))
     assert kwanza.__repr__() == (
         'Kwanza(amount: -100, '
@@ -72,6 +75,7 @@ def test_kwanza_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert kwanza.__str__() == '-100,00 Kz'
 
@@ -98,6 +102,7 @@ def test_kwanza_custom():
     assert kwanza.symbol == 'Kz'
     assert not kwanza.symbol_ahead
     assert kwanza.symbol_separator == '_'
+    assert kwanza.convertion == ''
     assert kwanza.__hash__() == hash((decimal, 'AOA', '973'))
     assert kwanza.__repr__() == (
         'Kwanza(amount: 1000, '
@@ -109,6 +114,7 @@ def test_kwanza_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert kwanza.__str__() == 'AOA 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_kwanza_changed():
             AttributeError,
             match='can\'t set attribute'):
         kwanza.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        kwanza.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

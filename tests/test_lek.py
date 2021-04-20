@@ -29,22 +29,24 @@ def test_lek():
     assert lek.decimal_sign == ','
     assert lek.grouping_sign == '\u202F'
     assert not lek.international
-    assert lek.symbol == 'Lekë'
+    assert lek.symbol == 'L'
     assert not lek.symbol_ahead
     assert lek.symbol_separator == '\u00A0'
+    assert lek.convertion == ''
     assert lek.__hash__() == hash((decimal, 'ALL', '008'))
     assert lek.__repr__() == (
         'Lek(amount: 0.1428571428571428571428571429, '
         'alpha_code: "ALL", '
-        'symbol: "Lekë", '
+        'symbol: "L", '
         'symbol_ahead: False, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "008", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
-    assert lek.__str__() == '0,14 Lekë'
+    assert lek.__str__() == '0,14 L'
 
 
 def test_lek_negative():
@@ -58,22 +60,24 @@ def test_lek_negative():
     assert lek.decimal_sign == ','
     assert lek.grouping_sign == '\u202F'
     assert not lek.international
-    assert lek.symbol == 'Lekë'
+    assert lek.symbol == 'L'
     assert not lek.symbol_ahead
     assert lek.symbol_separator == '\u00A0'
+    assert lek.convertion == ''
     assert lek.__hash__() == hash((decimal, 'ALL', '008'))
     assert lek.__repr__() == (
         'Lek(amount: -100, '
         'alpha_code: "ALL", '
-        'symbol: "Lekë", '
+        'symbol: "L", '
         'symbol_ahead: False, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "008", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
-    assert lek.__str__() == '-100,00 Lekë'
+    assert lek.__str__() == '-100,00 L'
 
 
 def test_lek_custom():
@@ -95,20 +99,22 @@ def test_lek_custom():
     assert lek.decimal_sign == '\u202F'
     assert lek.grouping_sign == ','
     assert lek.international
-    assert lek.symbol == 'Lekë'
+    assert lek.symbol == 'L'
     assert not lek.symbol_ahead
     assert lek.symbol_separator == '_'
+    assert lek.convertion == ''
     assert lek.__hash__() == hash((decimal, 'ALL', '008'))
     assert lek.__repr__() == (
         'Lek(amount: 1000, '
         'alpha_code: "ALL", '
-        'symbol: "Lekë", '
+        'symbol: "L", '
         'symbol_ahead: False, '
         'symbol_separator: "_", '
         'numeric_code: "008", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert lek.__str__() == 'ALL 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_lek_changed():
             AttributeError,
             match='can\'t set attribute'):
         lek.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        lek.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

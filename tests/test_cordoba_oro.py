@@ -32,6 +32,7 @@ def test_cordoba_oro():
     assert cordoba_oro.symbol == 'C$'
     assert cordoba_oro.symbol_ahead
     assert cordoba_oro.symbol_separator == ''
+    assert cordoba_oro.convertion == ''
     assert cordoba_oro.__hash__() == hash((decimal, 'NIO', '558'))
     assert cordoba_oro.__repr__() == (
         'CordobaOro(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_cordoba_oro():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert cordoba_oro.__str__() == 'C$0.14'
 
@@ -61,6 +63,7 @@ def test_cordoba_oro_negative():
     assert cordoba_oro.symbol == 'C$'
     assert cordoba_oro.symbol_ahead
     assert cordoba_oro.symbol_separator == ''
+    assert cordoba_oro.convertion == ''
     assert cordoba_oro.__hash__() == hash((decimal, 'NIO', '558'))
     assert cordoba_oro.__repr__() == (
         'CordobaOro(amount: -100, '
@@ -72,6 +75,7 @@ def test_cordoba_oro_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert cordoba_oro.__str__() == 'C$-100.00'
 
@@ -98,6 +102,7 @@ def test_cordoba_oro_custom():
     assert cordoba_oro.symbol == 'C$'
     assert not cordoba_oro.symbol_ahead
     assert cordoba_oro.symbol_separator == '_'
+    assert cordoba_oro.convertion == ''
     assert cordoba_oro.__hash__() == hash((decimal, 'NIO', '558'))
     assert cordoba_oro.__repr__() == (
         'CordobaOro(amount: 1000, '
@@ -109,6 +114,7 @@ def test_cordoba_oro_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert cordoba_oro.__str__() == 'NIO 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_cordoba_oro_changed():
             AttributeError,
             match='can\'t set attribute'):
         cordoba_oro.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cordoba_oro.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

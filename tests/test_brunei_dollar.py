@@ -32,6 +32,7 @@ def test_brunei_dollar():
     assert brunei_dollar.symbol == '$'
     assert brunei_dollar.symbol_ahead
     assert brunei_dollar.symbol_separator == '\u00A0'
+    assert brunei_dollar.convertion == ''
     assert brunei_dollar.__hash__() == hash((decimal, 'BND', '096'))
     assert brunei_dollar.__repr__() == (
         'BruneiDollar(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_brunei_dollar():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert brunei_dollar.__str__() == '$ 0,14'
 
@@ -61,6 +63,7 @@ def test_brunei_dollar_negative():
     assert brunei_dollar.symbol == '$'
     assert brunei_dollar.symbol_ahead
     assert brunei_dollar.symbol_separator == '\u00A0'
+    assert brunei_dollar.convertion == ''
     assert brunei_dollar.__hash__() == hash((decimal, 'BND', '096'))
     assert brunei_dollar.__repr__() == (
         'BruneiDollar(amount: -100, '
@@ -72,6 +75,7 @@ def test_brunei_dollar_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert brunei_dollar.__str__() == '$ -100,00'
 
@@ -98,6 +102,7 @@ def test_brunei_dollar_custom():
     assert brunei_dollar.symbol == '$'
     assert not brunei_dollar.symbol_ahead
     assert brunei_dollar.symbol_separator == '_'
+    assert brunei_dollar.convertion == ''
     assert brunei_dollar.__hash__() == hash((decimal, 'BND', '096'))
     assert brunei_dollar.__repr__() == (
         'BruneiDollar(amount: 1000, '
@@ -109,6 +114,7 @@ def test_brunei_dollar_custom():
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert brunei_dollar.__str__() == 'BND 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_brunei_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         brunei_dollar.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        brunei_dollar.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

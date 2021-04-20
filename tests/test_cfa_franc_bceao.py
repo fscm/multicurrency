@@ -32,6 +32,7 @@ def test_cfa_franc_bceao():
     assert cfa_franc_bceao.symbol == '₣'
     assert not cfa_franc_bceao.symbol_ahead
     assert cfa_franc_bceao.symbol_separator == '\u00A0'
+    assert cfa_franc_bceao.convertion == ''
     assert cfa_franc_bceao.__hash__() == hash((decimal, 'XOF', '952'))
     assert cfa_franc_bceao.__repr__() == (
         'CFAFrancBCEAO(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_cfa_franc_bceao():
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert cfa_franc_bceao.__str__() == '0 ₣'
 
@@ -61,6 +63,7 @@ def test_cfa_franc_bceao_negative():
     assert cfa_franc_bceao.symbol == '₣'
     assert not cfa_franc_bceao.symbol_ahead
     assert cfa_franc_bceao.symbol_separator == '\u00A0'
+    assert cfa_franc_bceao.convertion == ''
     assert cfa_franc_bceao.__hash__() == hash((decimal, 'XOF', '952'))
     assert cfa_franc_bceao.__repr__() == (
         'CFAFrancBCEAO(amount: -100, '
@@ -72,6 +75,7 @@ def test_cfa_franc_bceao_negative():
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert cfa_franc_bceao.__str__() == '-100 ₣'
 
@@ -98,6 +102,7 @@ def test_cfa_franc_bceao_custom():
     assert cfa_franc_bceao.symbol == '₣'
     assert not cfa_franc_bceao.symbol_ahead
     assert cfa_franc_bceao.symbol_separator == '_'
+    assert cfa_franc_bceao.convertion == ''
     assert cfa_franc_bceao.__hash__() == hash((decimal, 'XOF', '952'))
     assert cfa_franc_bceao.__repr__() == (
         'CFAFrancBCEAO(amount: 1000, '
@@ -109,6 +114,7 @@ def test_cfa_franc_bceao_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert cfa_franc_bceao.__str__() == 'XOF 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_cfa_franc_bceao_changed():
             AttributeError,
             match='can\'t set attribute'):
         cfa_franc_bceao.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cfa_franc_bceao.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

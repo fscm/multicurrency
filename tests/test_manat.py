@@ -32,6 +32,7 @@ def test_manat():
     assert manat.symbol == 'm'
     assert not manat.symbol_ahead
     assert manat.symbol_separator == '\u00A0'
+    assert manat.convertion == ''
     assert manat.__hash__() == hash((decimal, 'TMT', '934'))
     assert manat.__repr__() == (
         'Manat(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_manat():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert manat.__str__() == '0,14 m'
 
@@ -61,6 +63,7 @@ def test_manat_negative():
     assert manat.symbol == 'm'
     assert not manat.symbol_ahead
     assert manat.symbol_separator == '\u00A0'
+    assert manat.convertion == ''
     assert manat.__hash__() == hash((decimal, 'TMT', '934'))
     assert manat.__repr__() == (
         'Manat(amount: -100, '
@@ -72,6 +75,7 @@ def test_manat_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert manat.__str__() == '-100,00 m'
 
@@ -98,6 +102,7 @@ def test_manat_custom():
     assert manat.symbol == 'm'
     assert not manat.symbol_ahead
     assert manat.symbol_separator == '_'
+    assert manat.convertion == ''
     assert manat.__hash__() == hash((decimal, 'TMT', '934'))
     assert manat.__repr__() == (
         'Manat(amount: 1000, '
@@ -109,6 +114,7 @@ def test_manat_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert manat.__str__() == 'TMT 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_manat_changed():
             AttributeError,
             match='can\'t set attribute'):
         manat.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        manat.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

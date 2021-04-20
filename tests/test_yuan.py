@@ -32,6 +32,7 @@ def test_yuan():
     assert yuan.symbol == '¥'
     assert yuan.symbol_ahead
     assert yuan.symbol_separator == ''
+    assert yuan.convertion == ''
     assert yuan.__hash__() == hash((decimal, 'CNY', '156'))
     assert yuan.__repr__() == (
         'Yuan(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_yuan():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert yuan.__str__() == '¥0.14'
 
@@ -61,6 +63,7 @@ def test_yuan_negative():
     assert yuan.symbol == '¥'
     assert yuan.symbol_ahead
     assert yuan.symbol_separator == ''
+    assert yuan.convertion == ''
     assert yuan.__hash__() == hash((decimal, 'CNY', '156'))
     assert yuan.__repr__() == (
         'Yuan(amount: -100, '
@@ -72,6 +75,7 @@ def test_yuan_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert yuan.__str__() == '¥-100.00'
 
@@ -98,6 +102,7 @@ def test_yuan_custom():
     assert yuan.symbol == '¥'
     assert not yuan.symbol_ahead
     assert yuan.symbol_separator == '_'
+    assert yuan.convertion == ''
     assert yuan.__hash__() == hash((decimal, 'CNY', '156'))
     assert yuan.__repr__() == (
         'Yuan(amount: 1000, '
@@ -109,6 +114,7 @@ def test_yuan_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert yuan.__str__() == 'CNY 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_yuan_changed():
             AttributeError,
             match='can\'t set attribute'):
         yuan.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        yuan.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

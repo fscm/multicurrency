@@ -32,6 +32,7 @@ def test_rufiyaa():
     assert rufiyaa.symbol == 'ރ.'
     assert rufiyaa.symbol_ahead
     assert rufiyaa.symbol_separator == '\u00A0'
+    assert rufiyaa.convertion == ''
     assert rufiyaa.__hash__() == hash((decimal, 'MVR', '462'))
     assert rufiyaa.__repr__() == (
         'Rufiyaa(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_rufiyaa():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert rufiyaa.__str__() == 'ރ. 0.14'
 
@@ -61,6 +63,7 @@ def test_rufiyaa_negative():
     assert rufiyaa.symbol == 'ރ.'
     assert rufiyaa.symbol_ahead
     assert rufiyaa.symbol_separator == '\u00A0'
+    assert rufiyaa.convertion == ''
     assert rufiyaa.__hash__() == hash((decimal, 'MVR', '462'))
     assert rufiyaa.__repr__() == (
         'Rufiyaa(amount: -100, '
@@ -72,6 +75,7 @@ def test_rufiyaa_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert rufiyaa.__str__() == 'ރ. -100.00'
 
@@ -98,6 +102,7 @@ def test_rufiyaa_custom():
     assert rufiyaa.symbol == 'ރ.'
     assert not rufiyaa.symbol_ahead
     assert rufiyaa.symbol_separator == '_'
+    assert rufiyaa.convertion == ''
     assert rufiyaa.__hash__() == hash((decimal, 'MVR', '462'))
     assert rufiyaa.__repr__() == (
         'Rufiyaa(amount: 1000, '
@@ -109,6 +114,7 @@ def test_rufiyaa_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert rufiyaa.__str__() == 'MVR 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_rufiyaa_changed():
             AttributeError,
             match='can\'t set attribute'):
         rufiyaa.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        rufiyaa.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -32,6 +32,7 @@ def test_pula():
     assert pula.symbol == 'P'
     assert pula.symbol_ahead
     assert pula.symbol_separator == '\u00A0'
+    assert pula.convertion == ''
     assert pula.__hash__() == hash((decimal, 'BWP', '072'))
     assert pula.__repr__() == (
         'Pula(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_pula():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert pula.__str__() == 'P 0.14'
 
@@ -61,6 +63,7 @@ def test_pula_negative():
     assert pula.symbol == 'P'
     assert pula.symbol_ahead
     assert pula.symbol_separator == '\u00A0'
+    assert pula.convertion == ''
     assert pula.__hash__() == hash((decimal, 'BWP', '072'))
     assert pula.__repr__() == (
         'Pula(amount: -100, '
@@ -72,6 +75,7 @@ def test_pula_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert pula.__str__() == 'P -100.00'
 
@@ -98,6 +102,7 @@ def test_pula_custom():
     assert pula.symbol == 'P'
     assert not pula.symbol_ahead
     assert pula.symbol_separator == '_'
+    assert pula.convertion == ''
     assert pula.__hash__() == hash((decimal, 'BWP', '072'))
     assert pula.__repr__() == (
         'Pula(amount: 1000, '
@@ -109,6 +114,7 @@ def test_pula_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert pula.__str__() == 'BWP 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_pula_changed():
             AttributeError,
             match='can\'t set attribute'):
         pula.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        pula.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -32,6 +32,7 @@ def test_czech_koruna():
     assert czech_koruna.symbol == 'Kč'
     assert not czech_koruna.symbol_ahead
     assert czech_koruna.symbol_separator == '\u00A0'
+    assert czech_koruna.convertion == ''
     assert czech_koruna.__hash__() == hash((decimal, 'CZK', '203'))
     assert czech_koruna.__repr__() == (
         'CzechKoruna(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_czech_koruna():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert czech_koruna.__str__() == '0,14 Kč'
 
@@ -61,6 +63,7 @@ def test_czech_koruna_negative():
     assert czech_koruna.symbol == 'Kč'
     assert not czech_koruna.symbol_ahead
     assert czech_koruna.symbol_separator == '\u00A0'
+    assert czech_koruna.convertion == ''
     assert czech_koruna.__hash__() == hash((decimal, 'CZK', '203'))
     assert czech_koruna.__repr__() == (
         'CzechKoruna(amount: -100, '
@@ -72,6 +75,7 @@ def test_czech_koruna_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert czech_koruna.__str__() == '-100,00 Kč'
 
@@ -98,6 +102,7 @@ def test_czech_koruna_custom():
     assert czech_koruna.symbol == 'Kč'
     assert not czech_koruna.symbol_ahead
     assert czech_koruna.symbol_separator == '_'
+    assert czech_koruna.convertion == ''
     assert czech_koruna.__hash__() == hash((decimal, 'CZK', '203'))
     assert czech_koruna.__repr__() == (
         'CzechKoruna(amount: 1000, '
@@ -109,6 +114,7 @@ def test_czech_koruna_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert czech_koruna.__str__() == 'CZK 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_czech_koruna_changed():
             AttributeError,
             match='can\'t set attribute'):
         czech_koruna.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        czech_koruna.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

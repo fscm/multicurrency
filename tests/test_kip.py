@@ -32,6 +32,7 @@ def test_kip():
     assert kip.symbol == '₭'
     assert kip.symbol_ahead
     assert kip.symbol_separator == ''
+    assert kip.convertion == ''
     assert kip.__hash__() == hash((decimal, 'LAK', '418'))
     assert kip.__repr__() == (
         'Kip(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_kip():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert kip.__str__() == '₭0,14'
 
@@ -61,6 +63,7 @@ def test_kip_negative():
     assert kip.symbol == '₭'
     assert kip.symbol_ahead
     assert kip.symbol_separator == ''
+    assert kip.convertion == ''
     assert kip.__hash__() == hash((decimal, 'LAK', '418'))
     assert kip.__repr__() == (
         'Kip(amount: -100, '
@@ -72,6 +75,7 @@ def test_kip_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert kip.__str__() == '₭-100,00'
 
@@ -98,6 +102,7 @@ def test_kip_custom():
     assert kip.symbol == '₭'
     assert not kip.symbol_ahead
     assert kip.symbol_separator == '_'
+    assert kip.convertion == ''
     assert kip.__hash__() == hash((decimal, 'LAK', '418'))
     assert kip.__repr__() == (
         'Kip(amount: 1000, '
@@ -109,6 +114,7 @@ def test_kip_custom():
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert kip.__str__() == 'LAK 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_kip_changed():
             AttributeError,
             match='can\'t set attribute'):
         kip.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        kip.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

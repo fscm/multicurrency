@@ -32,6 +32,7 @@ def test_tugrik():
     assert tugrik.symbol == '₮'
     assert tugrik.symbol_ahead
     assert tugrik.symbol_separator == '\u00A0'
+    assert tugrik.convertion == ''
     assert tugrik.__hash__() == hash((decimal, 'MNT', '496'))
     assert tugrik.__repr__() == (
         'Tugrik(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_tugrik():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert tugrik.__str__() == '₮ 0.14'
 
@@ -61,6 +63,7 @@ def test_tugrik_negative():
     assert tugrik.symbol == '₮'
     assert tugrik.symbol_ahead
     assert tugrik.symbol_separator == '\u00A0'
+    assert tugrik.convertion == ''
     assert tugrik.__hash__() == hash((decimal, 'MNT', '496'))
     assert tugrik.__repr__() == (
         'Tugrik(amount: -100, '
@@ -72,6 +75,7 @@ def test_tugrik_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert tugrik.__str__() == '₮ -100.00'
 
@@ -98,6 +102,7 @@ def test_tugrik_custom():
     assert tugrik.symbol == '₮'
     assert not tugrik.symbol_ahead
     assert tugrik.symbol_separator == '_'
+    assert tugrik.convertion == ''
     assert tugrik.__hash__() == hash((decimal, 'MNT', '496'))
     assert tugrik.__repr__() == (
         'Tugrik(amount: 1000, '
@@ -109,6 +114,7 @@ def test_tugrik_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert tugrik.__str__() == 'MNT 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_tugrik_changed():
             AttributeError,
             match='can\'t set attribute'):
         tugrik.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        tugrik.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

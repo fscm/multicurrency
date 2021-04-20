@@ -32,6 +32,7 @@ def test_libyan_dinar():
     assert libyan_dinar.symbol == 'ل.د'
     assert libyan_dinar.symbol_ahead
     assert libyan_dinar.symbol_separator == '\u00A0'
+    assert libyan_dinar.convertion == ''
     assert libyan_dinar.__hash__() == hash((decimal, 'LYD', '434'))
     assert libyan_dinar.__repr__() == (
         'LibyanDinar(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_libyan_dinar():
         'decimal_places: "3", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert libyan_dinar.__str__() == 'ل.د 0,143'
 
@@ -61,6 +63,7 @@ def test_libyan_dinar_negative():
     assert libyan_dinar.symbol == 'ل.د'
     assert libyan_dinar.symbol_ahead
     assert libyan_dinar.symbol_separator == '\u00A0'
+    assert libyan_dinar.convertion == ''
     assert libyan_dinar.__hash__() == hash((decimal, 'LYD', '434'))
     assert libyan_dinar.__repr__() == (
         'LibyanDinar(amount: -100, '
@@ -72,6 +75,7 @@ def test_libyan_dinar_negative():
         'decimal_places: "3", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert libyan_dinar.__str__() == 'ل.د -100,000'
 
@@ -98,6 +102,7 @@ def test_libyan_dinar_custom():
     assert libyan_dinar.symbol == 'ل.د'
     assert not libyan_dinar.symbol_ahead
     assert libyan_dinar.symbol_separator == '_'
+    assert libyan_dinar.convertion == ''
     assert libyan_dinar.__hash__() == hash((decimal, 'LYD', '434'))
     assert libyan_dinar.__repr__() == (
         'LibyanDinar(amount: 1000, '
@@ -109,6 +114,7 @@ def test_libyan_dinar_custom():
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert libyan_dinar.__str__() == 'LYD 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_libyan_dinar_changed():
             AttributeError,
             match='can\'t set attribute'):
         libyan_dinar.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        libyan_dinar.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

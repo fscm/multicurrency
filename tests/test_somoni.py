@@ -32,6 +32,7 @@ def test_somoni():
     assert somoni.symbol == 'ЅМ'
     assert somoni.symbol_ahead
     assert somoni.symbol_separator == '\u00A0'
+    assert somoni.convertion == ''
     assert somoni.__hash__() == hash((decimal, 'TJS', '972'))
     assert somoni.__repr__() == (
         'Somoni(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_somoni():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert somoni.__str__() == 'ЅМ 0.14'
 
@@ -61,6 +63,7 @@ def test_somoni_negative():
     assert somoni.symbol == 'ЅМ'
     assert somoni.symbol_ahead
     assert somoni.symbol_separator == '\u00A0'
+    assert somoni.convertion == ''
     assert somoni.__hash__() == hash((decimal, 'TJS', '972'))
     assert somoni.__repr__() == (
         'Somoni(amount: -100, '
@@ -72,6 +75,7 @@ def test_somoni_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert somoni.__str__() == 'ЅМ -100.00'
 
@@ -98,6 +102,7 @@ def test_somoni_custom():
     assert somoni.symbol == 'ЅМ'
     assert not somoni.symbol_ahead
     assert somoni.symbol_separator == '_'
+    assert somoni.convertion == ''
     assert somoni.__hash__() == hash((decimal, 'TJS', '972'))
     assert somoni.__repr__() == (
         'Somoni(amount: 1000, '
@@ -109,6 +114,7 @@ def test_somoni_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert somoni.__str__() == 'TJS 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_somoni_changed():
             AttributeError,
             match='can\'t set attribute'):
         somoni.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        somoni.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

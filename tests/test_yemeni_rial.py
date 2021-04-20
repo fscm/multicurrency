@@ -26,12 +26,13 @@ def test_yemeni_rial():
     assert yemeni_rial.numeric_code == '886'
     assert yemeni_rial.alpha_code == 'YER'
     assert yemeni_rial.decimal_places == 2
-    assert yemeni_rial.decimal_sign == ','
-    assert yemeni_rial.grouping_sign == '.'
+    assert yemeni_rial.decimal_sign == '\u066B'
+    assert yemeni_rial.grouping_sign == '\u066C'
     assert not yemeni_rial.international
     assert yemeni_rial.symbol == '﷼'
     assert not yemeni_rial.symbol_ahead
     assert yemeni_rial.symbol_separator == '\u00A0'
+    assert yemeni_rial.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
     assert yemeni_rial.__hash__() == hash((decimal, 'YER', '886'))
     assert yemeni_rial.__repr__() == (
         'YemeniRial(amount: 0.1428571428571428571428571429, '
@@ -41,10 +42,11 @@ def test_yemeni_rial():
         'symbol_separator: "\u00A0", '
         'numeric_code: "886", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: "\u066B", '
+        'grouping_sign: "\u066C", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
         'international: False)')
-    assert yemeni_rial.__str__() == '0,14 ﷼'
+    assert yemeni_rial.__str__() == '٠٫١٤ ﷼'
 
 
 def test_yemeni_rial_negative():
@@ -55,12 +57,13 @@ def test_yemeni_rial_negative():
     assert yemeni_rial.numeric_code == '886'
     assert yemeni_rial.alpha_code == 'YER'
     assert yemeni_rial.decimal_places == 2
-    assert yemeni_rial.decimal_sign == ','
-    assert yemeni_rial.grouping_sign == '.'
+    assert yemeni_rial.decimal_sign == '\u066B'
+    assert yemeni_rial.grouping_sign == '\u066C'
     assert not yemeni_rial.international
     assert yemeni_rial.symbol == '﷼'
     assert not yemeni_rial.symbol_ahead
     assert yemeni_rial.symbol_separator == '\u00A0'
+    assert yemeni_rial.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
     assert yemeni_rial.__hash__() == hash((decimal, 'YER', '886'))
     assert yemeni_rial.__repr__() == (
         'YemeniRial(amount: -100, '
@@ -70,10 +73,11 @@ def test_yemeni_rial_negative():
         'symbol_separator: "\u00A0", '
         'numeric_code: "886", '
         'decimal_places: "2", '
-        'decimal_sign: ",", '
-        'grouping_sign: ".", '
+        'decimal_sign: "\u066B", '
+        'grouping_sign: "\u066C", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
         'international: False)')
-    assert yemeni_rial.__str__() == '-100,00 ﷼'
+    assert yemeni_rial.__str__() == '-١٠٠٫٠٠ ﷼'
 
 
 def test_yemeni_rial_custom():
@@ -82,8 +86,8 @@ def test_yemeni_rial_custom():
     yemeni_rial = YemeniRial(
         amount=amount,
         decimal_places=5,
-        decimal_sign='.',
-        grouping_sign=',',
+        decimal_sign='\u066C',
+        grouping_sign='\u066B',
         international=True,
         symbol_ahead=False,
         symbol_separator='_')
@@ -92,12 +96,13 @@ def test_yemeni_rial_custom():
     assert yemeni_rial.numeric_code == '886'
     assert yemeni_rial.alpha_code == 'YER'
     assert yemeni_rial.decimal_places == 5
-    assert yemeni_rial.decimal_sign == '.'
-    assert yemeni_rial.grouping_sign == ','
+    assert yemeni_rial.decimal_sign == '\u066C'
+    assert yemeni_rial.grouping_sign == '\u066B'
     assert yemeni_rial.international
     assert yemeni_rial.symbol == '﷼'
     assert not yemeni_rial.symbol_ahead
     assert yemeni_rial.symbol_separator == '_'
+    assert yemeni_rial.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
     assert yemeni_rial.__hash__() == hash((decimal, 'YER', '886'))
     assert yemeni_rial.__repr__() == (
         'YemeniRial(amount: 1000, '
@@ -107,8 +112,9 @@ def test_yemeni_rial_custom():
         'symbol_separator: "_", '
         'numeric_code: "886", '
         'decimal_places: "5", '
-        'decimal_sign: ".", '
-        'grouping_sign: ",", '
+        'decimal_sign: "\u066C", '
+        'grouping_sign: "\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
         'international: True)')
     assert yemeni_rial.__str__() == 'YER 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_yemeni_rial_changed():
             AttributeError,
             match='can\'t set attribute'):
         yemeni_rial.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        yemeni_rial.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

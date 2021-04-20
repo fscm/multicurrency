@@ -32,6 +32,7 @@ def test_turkish_lira():
     assert turkish_lira.symbol == '₤'
     assert turkish_lira.symbol_ahead
     assert turkish_lira.symbol_separator == ''
+    assert turkish_lira.convertion == ''
     assert turkish_lira.__hash__() == hash((decimal, 'TRY', '949'))
     assert turkish_lira.__repr__() == (
         'TurkishLira(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_turkish_lira():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert turkish_lira.__str__() == '₤0,14'
 
@@ -61,6 +63,7 @@ def test_turkish_lira_negative():
     assert turkish_lira.symbol == '₤'
     assert turkish_lira.symbol_ahead
     assert turkish_lira.symbol_separator == ''
+    assert turkish_lira.convertion == ''
     assert turkish_lira.__hash__() == hash((decimal, 'TRY', '949'))
     assert turkish_lira.__repr__() == (
         'TurkishLira(amount: -100, '
@@ -72,6 +75,7 @@ def test_turkish_lira_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert turkish_lira.__str__() == '₤-100,00'
 
@@ -98,6 +102,7 @@ def test_turkish_lira_custom():
     assert turkish_lira.symbol == '₤'
     assert not turkish_lira.symbol_ahead
     assert turkish_lira.symbol_separator == '_'
+    assert turkish_lira.convertion == ''
     assert turkish_lira.__hash__() == hash((decimal, 'TRY', '949'))
     assert turkish_lira.__repr__() == (
         'TurkishLira(amount: 1000, '
@@ -109,6 +114,7 @@ def test_turkish_lira_custom():
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert turkish_lira.__str__() == 'TRY 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_turkish_lira_changed():
             AttributeError,
             match='can\'t set attribute'):
         turkish_lira.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        turkish_lira.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -32,6 +32,7 @@ def test_indian_rupee():
     assert indian_rupee.symbol == '₹'
     assert indian_rupee.symbol_ahead
     assert indian_rupee.symbol_separator == ''
+    assert indian_rupee.convertion == ''
     assert indian_rupee.__hash__() == hash((decimal, 'INR', '356'))
     assert indian_rupee.__repr__() == (
         'IndianRupee(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_indian_rupee():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert indian_rupee.__str__() == '₹0.14'
 
@@ -61,6 +63,7 @@ def test_indian_rupee_negative():
     assert indian_rupee.symbol == '₹'
     assert indian_rupee.symbol_ahead
     assert indian_rupee.symbol_separator == ''
+    assert indian_rupee.convertion == ''
     assert indian_rupee.__hash__() == hash((decimal, 'INR', '356'))
     assert indian_rupee.__repr__() == (
         'IndianRupee(amount: -100, '
@@ -72,6 +75,7 @@ def test_indian_rupee_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert indian_rupee.__str__() == '₹-100.00'
 
@@ -98,6 +102,7 @@ def test_indian_rupee_custom():
     assert indian_rupee.symbol == '₹'
     assert not indian_rupee.symbol_ahead
     assert indian_rupee.symbol_separator == '_'
+    assert indian_rupee.convertion == ''
     assert indian_rupee.__hash__() == hash((decimal, 'INR', '356'))
     assert indian_rupee.__repr__() == (
         'IndianRupee(amount: 1000, '
@@ -109,6 +114,7 @@ def test_indian_rupee_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert indian_rupee.__str__() == 'INR 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_indian_rupee_changed():
             AttributeError,
             match='can\'t set attribute'):
         indian_rupee.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        indian_rupee.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

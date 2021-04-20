@@ -32,6 +32,7 @@ def test_balboa():
     assert balboa.symbol == 'B/.'
     assert balboa.symbol_ahead
     assert balboa.symbol_separator == '\u00A0'
+    assert balboa.convertion == ''
     assert balboa.__hash__() == hash((decimal, 'PAB', '590'))
     assert balboa.__repr__() == (
         'Balboa(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_balboa():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert balboa.__str__() == 'B/. 0.14'
 
@@ -61,6 +63,7 @@ def test_balboa_negative():
     assert balboa.symbol == 'B/.'
     assert balboa.symbol_ahead
     assert balboa.symbol_separator == '\u00A0'
+    assert balboa.convertion == ''
     assert balboa.__hash__() == hash((decimal, 'PAB', '590'))
     assert balboa.__repr__() == (
         'Balboa(amount: -100, '
@@ -72,6 +75,7 @@ def test_balboa_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert balboa.__str__() == 'B/. -100.00'
 
@@ -98,6 +102,7 @@ def test_balboa_custom():
     assert balboa.symbol == 'B/.'
     assert not balboa.symbol_ahead
     assert balboa.symbol_separator == '_'
+    assert balboa.convertion == ''
     assert balboa.__hash__() == hash((decimal, 'PAB', '590'))
     assert balboa.__repr__() == (
         'Balboa(amount: 1000, '
@@ -109,6 +114,7 @@ def test_balboa_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert balboa.__str__() == 'PAB 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_balboa_changed():
             AttributeError,
             match='can\'t set attribute'):
         balboa.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        balboa.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -32,6 +32,7 @@ def test_tala():
     assert tala.symbol == 'T'
     assert tala.symbol_ahead
     assert tala.symbol_separator == '\u00A0'
+    assert tala.convertion == ''
     assert tala.__hash__() == hash((decimal, 'WST', '882'))
     assert tala.__repr__() == (
         'Tala(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_tala():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert tala.__str__() == 'T 0.14'
 
@@ -61,6 +63,7 @@ def test_tala_negative():
     assert tala.symbol == 'T'
     assert tala.symbol_ahead
     assert tala.symbol_separator == '\u00A0'
+    assert tala.convertion == ''
     assert tala.__hash__() == hash((decimal, 'WST', '882'))
     assert tala.__repr__() == (
         'Tala(amount: -100, '
@@ -72,6 +75,7 @@ def test_tala_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert tala.__str__() == 'T -100.00'
 
@@ -98,6 +102,7 @@ def test_tala_custom():
     assert tala.symbol == 'T'
     assert not tala.symbol_ahead
     assert tala.symbol_separator == '_'
+    assert tala.convertion == ''
     assert tala.__hash__() == hash((decimal, 'WST', '882'))
     assert tala.__repr__() == (
         'Tala(amount: 1000, '
@@ -109,6 +114,7 @@ def test_tala_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert tala.__str__() == 'WST 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_tala_changed():
             AttributeError,
             match='can\'t set attribute'):
         tala.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        tala.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

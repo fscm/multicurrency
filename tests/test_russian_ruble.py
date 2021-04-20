@@ -29,22 +29,24 @@ def test_russian_ruble():
     assert russian_ruble.decimal_sign == ','
     assert russian_ruble.grouping_sign == '\u202F'
     assert not russian_ruble.international
-    assert russian_ruble.symbol == 'р.'
+    assert russian_ruble.symbol == '₽'
     assert not russian_ruble.symbol_ahead
     assert russian_ruble.symbol_separator == '\u00A0'
+    assert russian_ruble.convertion == ''
     assert russian_ruble.__hash__() == hash((decimal, 'RUB', '643'))
     assert russian_ruble.__repr__() == (
         'RussianRuble(amount: 0.1428571428571428571428571429, '
         'alpha_code: "RUB", '
-        'symbol: "р.", '
+        'symbol: "₽", '
         'symbol_ahead: False, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "643", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
-    assert russian_ruble.__str__() == '0,14 р.'
+    assert russian_ruble.__str__() == '0,14 ₽'
 
 
 def test_russian_ruble_negative():
@@ -58,22 +60,24 @@ def test_russian_ruble_negative():
     assert russian_ruble.decimal_sign == ','
     assert russian_ruble.grouping_sign == '\u202F'
     assert not russian_ruble.international
-    assert russian_ruble.symbol == 'р.'
+    assert russian_ruble.symbol == '₽'
     assert not russian_ruble.symbol_ahead
     assert russian_ruble.symbol_separator == '\u00A0'
+    assert russian_ruble.convertion == ''
     assert russian_ruble.__hash__() == hash((decimal, 'RUB', '643'))
     assert russian_ruble.__repr__() == (
         'RussianRuble(amount: -100, '
         'alpha_code: "RUB", '
-        'symbol: "р.", '
+        'symbol: "₽", '
         'symbol_ahead: False, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "643", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
-    assert russian_ruble.__str__() == '-100,00 р.'
+    assert russian_ruble.__str__() == '-100,00 ₽'
 
 
 def test_russian_ruble_custom():
@@ -95,20 +99,22 @@ def test_russian_ruble_custom():
     assert russian_ruble.decimal_sign == '\u202F'
     assert russian_ruble.grouping_sign == ','
     assert russian_ruble.international
-    assert russian_ruble.symbol == 'р.'
+    assert russian_ruble.symbol == '₽'
     assert not russian_ruble.symbol_ahead
     assert russian_ruble.symbol_separator == '_'
+    assert russian_ruble.convertion == ''
     assert russian_ruble.__hash__() == hash((decimal, 'RUB', '643'))
     assert russian_ruble.__repr__() == (
         'RussianRuble(amount: 1000, '
         'alpha_code: "RUB", '
-        'symbol: "р.", '
+        'symbol: "₽", '
         'symbol_ahead: False, '
         'symbol_separator: "_", '
         'numeric_code: "643", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert russian_ruble.__str__() == 'RUB 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_russian_ruble_changed():
             AttributeError,
             match='can\'t set attribute'):
         russian_ruble.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        russian_ruble.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

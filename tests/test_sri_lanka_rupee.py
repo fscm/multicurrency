@@ -32,6 +32,7 @@ def test_sri_lanka_rupee():
     assert sri_lanka_rupee.symbol == 'රු.'
     assert sri_lanka_rupee.symbol_ahead
     assert sri_lanka_rupee.symbol_separator == '\u00A0'
+    assert sri_lanka_rupee.convertion == ''
     assert sri_lanka_rupee.__hash__() == hash((decimal, 'LKR', '144'))
     assert sri_lanka_rupee.__repr__() == (
         'SriLankaRupee(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_sri_lanka_rupee():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert sri_lanka_rupee.__str__() == 'රු. 0.14'
 
@@ -61,6 +63,7 @@ def test_sri_lanka_rupee_negative():
     assert sri_lanka_rupee.symbol == 'රු.'
     assert sri_lanka_rupee.symbol_ahead
     assert sri_lanka_rupee.symbol_separator == '\u00A0'
+    assert sri_lanka_rupee.convertion == ''
     assert sri_lanka_rupee.__hash__() == hash((decimal, 'LKR', '144'))
     assert sri_lanka_rupee.__repr__() == (
         'SriLankaRupee(amount: -100, '
@@ -72,6 +75,7 @@ def test_sri_lanka_rupee_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert sri_lanka_rupee.__str__() == 'රු. -100.00'
 
@@ -98,6 +102,7 @@ def test_sri_lanka_rupee_custom():
     assert sri_lanka_rupee.symbol == 'රු.'
     assert not sri_lanka_rupee.symbol_ahead
     assert sri_lanka_rupee.symbol_separator == '_'
+    assert sri_lanka_rupee.convertion == ''
     assert sri_lanka_rupee.__hash__() == hash((decimal, 'LKR', '144'))
     assert sri_lanka_rupee.__repr__() == (
         'SriLankaRupee(amount: 1000, '
@@ -109,6 +114,7 @@ def test_sri_lanka_rupee_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert sri_lanka_rupee.__str__() == 'LKR 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_sri_lanka_rupee_changed():
             AttributeError,
             match='can\'t set attribute'):
         sri_lanka_rupee.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        sri_lanka_rupee.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

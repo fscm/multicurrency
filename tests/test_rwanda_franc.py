@@ -32,6 +32,7 @@ def test_rwanda_franc():
     assert rwanda_franc.symbol == '₣'
     assert rwanda_franc.symbol_ahead
     assert rwanda_franc.symbol_separator == '\u00A0'
+    assert rwanda_franc.convertion == ''
     assert rwanda_franc.__hash__() == hash((decimal, 'RWF', '646'))
     assert rwanda_franc.__repr__() == (
         'RwandaFranc(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_rwanda_franc():
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert rwanda_franc.__str__() == '₣ 0'
 
@@ -61,6 +63,7 @@ def test_rwanda_franc_negative():
     assert rwanda_franc.symbol == '₣'
     assert rwanda_franc.symbol_ahead
     assert rwanda_franc.symbol_separator == '\u00A0'
+    assert rwanda_franc.convertion == ''
     assert rwanda_franc.__hash__() == hash((decimal, 'RWF', '646'))
     assert rwanda_franc.__repr__() == (
         'RwandaFranc(amount: -100, '
@@ -72,6 +75,7 @@ def test_rwanda_franc_negative():
         'decimal_places: "0", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: False)')
     assert rwanda_franc.__str__() == '₣ -100'
 
@@ -98,6 +102,7 @@ def test_rwanda_franc_custom():
     assert rwanda_franc.symbol == '₣'
     assert not rwanda_franc.symbol_ahead
     assert rwanda_franc.symbol_separator == '_'
+    assert rwanda_franc.convertion == ''
     assert rwanda_franc.__hash__() == hash((decimal, 'RWF', '646'))
     assert rwanda_franc.__repr__() == (
         'RwandaFranc(amount: 1000, '
@@ -109,6 +114,7 @@ def test_rwanda_franc_custom():
         'decimal_places: "5", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert rwanda_franc.__str__() == 'RWF 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_rwanda_franc_changed():
             AttributeError,
             match='can\'t set attribute'):
         rwanda_franc.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        rwanda_franc.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

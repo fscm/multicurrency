@@ -32,6 +32,7 @@ def test_belarusian_ruble():
     assert belarusian_ruble.symbol == 'Br'
     assert not belarusian_ruble.symbol_ahead
     assert belarusian_ruble.symbol_separator == '\u00A0'
+    assert belarusian_ruble.convertion == ''
     assert belarusian_ruble.__hash__() == hash((decimal, 'BYN', '933'))
     assert belarusian_ruble.__repr__() == (
         'BelarusianRuble(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_belarusian_ruble():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert belarusian_ruble.__str__() == '0,14 Br'
 
@@ -61,6 +63,7 @@ def test_belarusian_ruble_negative():
     assert belarusian_ruble.symbol == 'Br'
     assert not belarusian_ruble.symbol_ahead
     assert belarusian_ruble.symbol_separator == '\u00A0'
+    assert belarusian_ruble.convertion == ''
     assert belarusian_ruble.__hash__() == hash((decimal, 'BYN', '933'))
     assert belarusian_ruble.__repr__() == (
         'BelarusianRuble(amount: -100, '
@@ -72,6 +75,7 @@ def test_belarusian_ruble_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert belarusian_ruble.__str__() == '-100,00 Br'
 
@@ -98,6 +102,7 @@ def test_belarusian_ruble_custom():
     assert belarusian_ruble.symbol == 'Br'
     assert not belarusian_ruble.symbol_ahead
     assert belarusian_ruble.symbol_separator == '_'
+    assert belarusian_ruble.convertion == ''
     assert belarusian_ruble.__hash__() == hash((decimal, 'BYN', '933'))
     assert belarusian_ruble.__repr__() == (
         'BelarusianRuble(amount: 1000, '
@@ -109,6 +114,7 @@ def test_belarusian_ruble_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert belarusian_ruble.__str__() == 'BYN 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_belarusian_ruble_changed():
             AttributeError,
             match='can\'t set attribute'):
         belarusian_ruble.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        belarusian_ruble.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

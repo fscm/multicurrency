@@ -32,6 +32,7 @@ def test_nakfa():
     assert nakfa.symbol == 'Nfk'
     assert nakfa.symbol_ahead
     assert nakfa.symbol_separator == '\u00A0'
+    assert nakfa.convertion == ''
     assert nakfa.__hash__() == hash((decimal, 'ERN', '232'))
     assert nakfa.__repr__() == (
         'Nakfa(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_nakfa():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert nakfa.__str__() == 'Nfk 0.14'
 
@@ -61,6 +63,7 @@ def test_nakfa_negative():
     assert nakfa.symbol == 'Nfk'
     assert nakfa.symbol_ahead
     assert nakfa.symbol_separator == '\u00A0'
+    assert nakfa.convertion == ''
     assert nakfa.__hash__() == hash((decimal, 'ERN', '232'))
     assert nakfa.__repr__() == (
         'Nakfa(amount: -100, '
@@ -72,6 +75,7 @@ def test_nakfa_negative():
         'decimal_places: "2", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: False)')
     assert nakfa.__str__() == 'Nfk -100.00'
 
@@ -98,6 +102,7 @@ def test_nakfa_custom():
     assert nakfa.symbol == 'Nfk'
     assert not nakfa.symbol_ahead
     assert nakfa.symbol_separator == '_'
+    assert nakfa.convertion == ''
     assert nakfa.__hash__() == hash((decimal, 'ERN', '232'))
     assert nakfa.__repr__() == (
         'Nakfa(amount: 1000, '
@@ -109,6 +114,7 @@ def test_nakfa_custom():
         'decimal_places: "5", '
         'decimal_sign: ",", '
         'grouping_sign: ".", '
+        'convertion: "", '
         'international: True)')
     assert nakfa.__str__() == 'ERN 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_nakfa_changed():
             AttributeError,
             match='can\'t set attribute'):
         nakfa.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        nakfa.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

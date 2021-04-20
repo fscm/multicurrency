@@ -32,6 +32,7 @@ def test_pzloty():
     assert pzloty.symbol == 'zł'
     assert not pzloty.symbol_ahead
     assert pzloty.symbol_separator == '\u00A0'
+    assert pzloty.convertion == ''
     assert pzloty.__hash__() == hash((decimal, 'PLN', '985'))
     assert pzloty.__repr__() == (
         'PZloty(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_pzloty():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert pzloty.__str__() == '0,14 zł'
 
@@ -61,6 +63,7 @@ def test_pzloty_negative():
     assert pzloty.symbol == 'zł'
     assert not pzloty.symbol_ahead
     assert pzloty.symbol_separator == '\u00A0'
+    assert pzloty.convertion == ''
     assert pzloty.__hash__() == hash((decimal, 'PLN', '985'))
     assert pzloty.__repr__() == (
         'PZloty(amount: -100, '
@@ -72,6 +75,7 @@ def test_pzloty_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert pzloty.__str__() == '-100,00 zł'
 
@@ -98,6 +102,7 @@ def test_pzloty_custom():
     assert pzloty.symbol == 'zł'
     assert not pzloty.symbol_ahead
     assert pzloty.symbol_separator == '_'
+    assert pzloty.convertion == ''
     assert pzloty.__hash__() == hash((decimal, 'PLN', '985'))
     assert pzloty.__repr__() == (
         'PZloty(amount: 1000, '
@@ -109,6 +114,7 @@ def test_pzloty_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert pzloty.__str__() == 'PLN 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_pzloty_changed():
             AttributeError,
             match='can\'t set attribute'):
         pzloty.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        pzloty.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -32,6 +32,7 @@ def test_uzbekistan_sum():
     assert uzbekistan_sum.symbol == 'сўм'
     assert not uzbekistan_sum.symbol_ahead
     assert uzbekistan_sum.symbol_separator == '\u00A0'
+    assert uzbekistan_sum.convertion == ''
     assert uzbekistan_sum.__hash__() == hash((decimal, 'UZS', '860'))
     assert uzbekistan_sum.__repr__() == (
         'UzbekistanSum(amount: 0.1428571428571428571428571429, '
@@ -43,6 +44,7 @@ def test_uzbekistan_sum():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert uzbekistan_sum.__str__() == '0,14 сўм'
 
@@ -61,6 +63,7 @@ def test_uzbekistan_sum_negative():
     assert uzbekistan_sum.symbol == 'сўм'
     assert not uzbekistan_sum.symbol_ahead
     assert uzbekistan_sum.symbol_separator == '\u00A0'
+    assert uzbekistan_sum.convertion == ''
     assert uzbekistan_sum.__hash__() == hash((decimal, 'UZS', '860'))
     assert uzbekistan_sum.__repr__() == (
         'UzbekistanSum(amount: -100, '
@@ -72,6 +75,7 @@ def test_uzbekistan_sum_negative():
         'decimal_places: "2", '
         'decimal_sign: ",", '
         'grouping_sign: "\u202F", '
+        'convertion: "", '
         'international: False)')
     assert uzbekistan_sum.__str__() == '-100,00 сўм'
 
@@ -98,6 +102,7 @@ def test_uzbekistan_sum_custom():
     assert uzbekistan_sum.symbol == 'сўм'
     assert not uzbekistan_sum.symbol_ahead
     assert uzbekistan_sum.symbol_separator == '_'
+    assert uzbekistan_sum.convertion == ''
     assert uzbekistan_sum.__hash__() == hash((decimal, 'UZS', '860'))
     assert uzbekistan_sum.__repr__() == (
         'UzbekistanSum(amount: 1000, '
@@ -109,6 +114,7 @@ def test_uzbekistan_sum_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
         'grouping_sign: ",", '
+        'convertion: "", '
         'international: True)')
     assert uzbekistan_sum.__str__() == 'UZS 1,000.00000'
 
@@ -124,6 +130,10 @@ def test_uzbekistan_sum_changed():
             AttributeError,
             match='can\'t set attribute'):
         uzbekistan_sum.alpha_code = 'EUR'
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        uzbekistan_sum.convertion = '0123456789,.'
     with raises(
             AttributeError,
             match='can\'t set attribute'):
