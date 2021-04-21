@@ -32,7 +32,7 @@ def test_afghani():
     assert afghani.symbol == '؋'
     assert afghani.symbol_ahead
     assert afghani.symbol_separator == '\u00A0'
-    assert afghani.convertion == '۰۱۲۳۴۵۶۷۸۹-\u066C\u066B'
+    assert afghani.convertion == '۰۱۲۳۴۵۶۷۸۹-'
     assert afghani.__hash__() == hash((decimal, 'AFN', '971'))
     assert afghani.__repr__() == (
         'Afghani(amount: 0.1428571428571428571428571429, '
@@ -44,7 +44,7 @@ def test_afghani():
         'decimal_places: "2", '
         'decimal_sign: "\u066B", '
         'grouping_sign: "\u066C", '
-        'convertion: "۰۱۲۳۴۵۶۷۸۹-\u066C\u066B", '
+        'convertion: "۰۱۲۳۴۵۶۷۸۹-", '
         'international: False)')
     assert afghani.__str__() == '؋ ۰٫۱۴'
 
@@ -63,7 +63,7 @@ def test_afghani_negative():
     assert afghani.symbol == '؋'
     assert afghani.symbol_ahead
     assert afghani.symbol_separator == '\u00A0'
-    assert afghani.convertion == '۰۱۲۳۴۵۶۷۸۹-\u066C\u066B'
+    assert afghani.convertion == '۰۱۲۳۴۵۶۷۸۹-'
     assert afghani.__hash__() == hash((decimal, 'AFN', '971'))
     assert afghani.__repr__() == (
         'Afghani(amount: -100, '
@@ -75,7 +75,7 @@ def test_afghani_negative():
         'decimal_places: "2", '
         'decimal_sign: "\u066B", '
         'grouping_sign: "\u066C", '
-        'convertion: "۰۱۲۳۴۵۶۷۸۹-\u066C\u066B", '
+        'convertion: "۰۱۲۳۴۵۶۷۸۹-", '
         'international: False)')
     assert afghani.__str__() == '؋ -۱۰۰٫۰۰'
 
@@ -102,7 +102,7 @@ def test_afghani_custom():
     assert afghani.symbol == '؋'
     assert not afghani.symbol_ahead
     assert afghani.symbol_separator == '_'
-    assert afghani.convertion == '۰۱۲۳۴۵۶۷۸۹-\u066C\u066B'
+    assert afghani.convertion == '۰۱۲۳۴۵۶۷۸۹-'
     assert afghani.__hash__() == hash((decimal, 'AFN', '971'))
     assert afghani.__repr__() == (
         'Afghani(amount: 1000, '
@@ -114,7 +114,7 @@ def test_afghani_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u066C", '
         'grouping_sign: "\u066B", '
-        'convertion: "۰۱۲۳۴۵۶۷۸۹-\u066C\u066B", '
+        'convertion: "۰۱۲۳۴۵۶۷۸۹-", '
         'international: True)')
     assert afghani.__str__() == 'AFN 1,000.00000'
 

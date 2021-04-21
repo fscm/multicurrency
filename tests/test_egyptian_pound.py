@@ -32,7 +32,7 @@ def test_egyptian_pound():
     assert egyptian_pound.symbol == 'ج.م'
     assert egyptian_pound.symbol_ahead
     assert egyptian_pound.symbol_separator == '\u00A0'
-    assert egyptian_pound.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
+    assert egyptian_pound.convertion == '٠١٢٣٤٥٦٧٨٩-'
     assert egyptian_pound.__hash__() == hash((decimal, 'EGP', '818'))
     assert egyptian_pound.__repr__() == (
         'EgyptianPound(amount: 0.1428571428571428571428571429, '
@@ -44,7 +44,7 @@ def test_egyptian_pound():
         'decimal_places: "2", '
         'decimal_sign: "\u066B", '
         'grouping_sign: "\u066C", '
-        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
     assert egyptian_pound.__str__() == 'ج.م ٠٫١٤'
 
@@ -63,7 +63,7 @@ def test_egyptian_pound_negative():
     assert egyptian_pound.symbol == 'ج.م'
     assert egyptian_pound.symbol_ahead
     assert egyptian_pound.symbol_separator == '\u00A0'
-    assert egyptian_pound.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
+    assert egyptian_pound.convertion == '٠١٢٣٤٥٦٧٨٩-'
     assert egyptian_pound.__hash__() == hash((decimal, 'EGP', '818'))
     assert egyptian_pound.__repr__() == (
         'EgyptianPound(amount: -100, '
@@ -75,7 +75,7 @@ def test_egyptian_pound_negative():
         'decimal_places: "2", '
         'decimal_sign: "\u066B", '
         'grouping_sign: "\u066C", '
-        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
     assert egyptian_pound.__str__() == 'ج.م -١٠٠٫٠٠'
 
@@ -102,7 +102,7 @@ def test_egyptian_pound_custom():
     assert egyptian_pound.symbol == 'ج.م'
     assert not egyptian_pound.symbol_ahead
     assert egyptian_pound.symbol_separator == '_'
-    assert egyptian_pound.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
+    assert egyptian_pound.convertion == '٠١٢٣٤٥٦٧٨٩-'
     assert egyptian_pound.__hash__() == hash((decimal, 'EGP', '818'))
     assert egyptian_pound.__repr__() == (
         'EgyptianPound(amount: 1000, '
@@ -114,7 +114,7 @@ def test_egyptian_pound_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u066C", '
         'grouping_sign: "\u066B", '
-        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: True)')
     assert egyptian_pound.__str__() == 'EGP 1,000.00000'
 

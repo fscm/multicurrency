@@ -32,7 +32,7 @@ def test_ouguiya():
     assert ouguiya.symbol == 'أ.م'
     assert not ouguiya.symbol_ahead
     assert ouguiya.symbol_separator == '\u00A0'
-    assert ouguiya.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
+    assert ouguiya.convertion == '٠١٢٣٤٥٦٧٨٩-'
     assert ouguiya.__hash__() == hash((decimal, 'MRU', '929'))
     assert ouguiya.__repr__() == (
         'Ouguiya(amount: 0.1428571428571428571428571429, '
@@ -44,7 +44,7 @@ def test_ouguiya():
         'decimal_places: "2", '
         'decimal_sign: "\u066B", '
         'grouping_sign: "\u066C", '
-        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
     assert ouguiya.__str__() == '٠٫١٤ أ.م'
 
@@ -63,7 +63,7 @@ def test_ouguiya_negative():
     assert ouguiya.symbol == 'أ.م'
     assert not ouguiya.symbol_ahead
     assert ouguiya.symbol_separator == '\u00A0'
-    assert ouguiya.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
+    assert ouguiya.convertion == '٠١٢٣٤٥٦٧٨٩-'
     assert ouguiya.__hash__() == hash((decimal, 'MRU', '929'))
     assert ouguiya.__repr__() == (
         'Ouguiya(amount: -100, '
@@ -75,7 +75,7 @@ def test_ouguiya_negative():
         'decimal_places: "2", '
         'decimal_sign: "\u066B", '
         'grouping_sign: "\u066C", '
-        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
     assert ouguiya.__str__() == '-١٠٠٫٠٠ أ.م'
 
@@ -102,7 +102,7 @@ def test_ouguiya_custom():
     assert ouguiya.symbol == 'أ.م'
     assert not ouguiya.symbol_ahead
     assert ouguiya.symbol_separator == '_'
-    assert ouguiya.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
+    assert ouguiya.convertion == '٠١٢٣٤٥٦٧٨٩-'
     assert ouguiya.__hash__() == hash((decimal, 'MRU', '929'))
     assert ouguiya.__repr__() == (
         'Ouguiya(amount: 1000, '
@@ -114,7 +114,7 @@ def test_ouguiya_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u066C", '
         'grouping_sign: "\u066B", '
-        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: True)')
     assert ouguiya.__str__() == 'MRU 1,000.00000'
 

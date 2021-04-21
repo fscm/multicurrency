@@ -32,7 +32,7 @@ def test_rial_omani():
     assert rial_omani.symbol == 'ر.ع.'
     assert not rial_omani.symbol_ahead
     assert rial_omani.symbol_separator == '\u00A0'
-    assert rial_omani.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
+    assert rial_omani.convertion == '٠١٢٣٤٥٦٧٨٩-'
     assert rial_omani.__hash__() == hash((decimal, 'OMR', '512'))
     assert rial_omani.__repr__() == (
         'RialOmani(amount: 0.1428571428571428571428571429, '
@@ -44,7 +44,7 @@ def test_rial_omani():
         'decimal_places: "3", '
         'decimal_sign: "\u066B", '
         'grouping_sign: "\u066C", '
-        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
     assert rial_omani.__str__() == '٠٫١٤٣ ر.ع.'
 
@@ -63,7 +63,7 @@ def test_rial_omani_negative():
     assert rial_omani.symbol == 'ر.ع.'
     assert not rial_omani.symbol_ahead
     assert rial_omani.symbol_separator == '\u00A0'
-    assert rial_omani.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
+    assert rial_omani.convertion == '٠١٢٣٤٥٦٧٨٩-'
     assert rial_omani.__hash__() == hash((decimal, 'OMR', '512'))
     assert rial_omani.__repr__() == (
         'RialOmani(amount: -100, '
@@ -75,7 +75,7 @@ def test_rial_omani_negative():
         'decimal_places: "3", '
         'decimal_sign: "\u066B", '
         'grouping_sign: "\u066C", '
-        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
     assert rial_omani.__str__() == '-١٠٠٫٠٠٠ ر.ع.'
 
@@ -102,7 +102,7 @@ def test_rial_omani_custom():
     assert rial_omani.symbol == 'ر.ع.'
     assert not rial_omani.symbol_ahead
     assert rial_omani.symbol_separator == '_'
-    assert rial_omani.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
+    assert rial_omani.convertion == '٠١٢٣٤٥٦٧٨٩-'
     assert rial_omani.__hash__() == hash((decimal, 'OMR', '512'))
     assert rial_omani.__repr__() == (
         'RialOmani(amount: 1000, '
@@ -114,7 +114,7 @@ def test_rial_omani_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u066C", '
         'grouping_sign: "\u066B", '
-        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: True)')
     assert rial_omani.__str__() == 'OMR 1,000.00000'
 

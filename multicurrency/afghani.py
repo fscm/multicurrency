@@ -67,5 +67,5 @@ class Afghani(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
-            convertion='۰۱۲۳۴۵۶۷۸۹-\u066C\u066B',
+            convertion='۰۱۲۳۴۵۶۷۸۹-',
             international=international)

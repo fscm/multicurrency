@@ -32,7 +32,7 @@ def test_sudanese_pound():
     assert sudanese_pound.symbol == 'ج.س'
     assert not sudanese_pound.symbol_ahead
     assert sudanese_pound.symbol_separator == '\u00A0'
-    assert sudanese_pound.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
+    assert sudanese_pound.convertion == '٠١٢٣٤٥٦٧٨٩-'
     assert sudanese_pound.__hash__() == hash((decimal, 'SDG', '938'))
     assert sudanese_pound.__repr__() == (
         'SudanesePound(amount: 0.1428571428571428571428571429, '
@@ -44,7 +44,7 @@ def test_sudanese_pound():
         'decimal_places: "2", '
         'decimal_sign: "\u066B", '
         'grouping_sign: "\u066C", '
-        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
     assert sudanese_pound.__str__() == '٠٫١٤ ج.س'
 
@@ -63,7 +63,7 @@ def test_sudanese_pound_negative():
     assert sudanese_pound.symbol == 'ج.س'
     assert not sudanese_pound.symbol_ahead
     assert sudanese_pound.symbol_separator == '\u00A0'
-    assert sudanese_pound.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
+    assert sudanese_pound.convertion == '٠١٢٣٤٥٦٧٨٩-'
     assert sudanese_pound.__hash__() == hash((decimal, 'SDG', '938'))
     assert sudanese_pound.__repr__() == (
         'SudanesePound(amount: -100, '
@@ -75,7 +75,7 @@ def test_sudanese_pound_negative():
         'decimal_places: "2", '
         'decimal_sign: "\u066B", '
         'grouping_sign: "\u066C", '
-        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
     assert sudanese_pound.__str__() == '-١٠٠٫٠٠ ج.س'
 
@@ -102,7 +102,7 @@ def test_sudanese_pound_custom():
     assert sudanese_pound.symbol == 'ج.س'
     assert not sudanese_pound.symbol_ahead
     assert sudanese_pound.symbol_separator == '_'
-    assert sudanese_pound.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
+    assert sudanese_pound.convertion == '٠١٢٣٤٥٦٧٨٩-'
     assert sudanese_pound.__hash__() == hash((decimal, 'SDG', '938'))
     assert sudanese_pound.__repr__() == (
         'SudanesePound(amount: 1000, '
@@ -114,7 +114,7 @@ def test_sudanese_pound_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u066C", '
         'grouping_sign: "\u066B", '
-        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: True)')
     assert sudanese_pound.__str__() == 'SDG 1,000.00000'
 

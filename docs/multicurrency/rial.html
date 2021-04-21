@@ -35,7 +35,7 @@
 <dl>
 <dt id="multicurrency.rial.IranianRial"><code class="flex name class">
 <span>class <span class="ident">IranianRial</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '٫', grouping_sign: Optional[str] = '٬', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Iranian Rial currency representation.</p>
@@ -44,7 +44,7 @@
 &gt;&gt;&gt; iranian_rial = IranianRial(
 ...     amount=123456.789)
 &gt;&gt;&gt; print(iranian_rial)
-123.456,79 ﷼
+۱۲۳٬۴۵۶٫۷۹ ﷼
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -55,9 +55,9 @@
 <dd>Number of decimal places for the
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Decimal symbol. Defaults to ','.</dd>
+<dd>Decimal symbol. Defaults to '٫'.</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Grouping symbol. Defaults to '.'.</dd>
+<dd>Grouping symbol. Defaults to '٬'.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
 <dd>Identifies the currency using
 the 'currency' value instead of the 'symbol'. Defaults to
@@ -79,6 +79,7 @@ value. False otherwise. Defaults to False.</dd>
 <ul class="hlist">
 <li><code><a title="multicurrency.currency.Currency.alpha_code" href="currency.html#multicurrency.currency.Currency.alpha_code">alpha_code</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.amount" href="currency.html#multicurrency.currency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
@@ -95,7 +96,7 @@ value. False otherwise. Defaults to False.</dd>
 </dd>
 <dt id="multicurrency.rial.QatariRial"><code class="flex name class">
 <span>class <span class="ident">QatariRial</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '٫', grouping_sign: Optional[str] = '٬', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Qatari Rial currency representation.</p>
@@ -104,7 +105,7 @@ value. False otherwise. Defaults to False.</dd>
 &gt;&gt;&gt; qatari_rial = QatariRial(
 ...     amount=123456.789)
 &gt;&gt;&gt; print(qatari_rial)
-123.456,79 ر.ق.
+١٢٣٬٤٥٦٫٧٩ ر.ق
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -115,9 +116,9 @@ value. False otherwise. Defaults to False.</dd>
 <dd>Number of decimal places for the
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Decimal symbol. Defaults to ','.</dd>
+<dd>Decimal symbol. Defaults to '٫'.</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Grouping symbol. Defaults to '.'.</dd>
+<dd>Grouping symbol. Defaults to '٬'.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
 <dd>Identifies the currency using
 the 'currency' value instead of the 'symbol'. Defaults to
@@ -139,6 +140,7 @@ value. False otherwise. Defaults to False.</dd>
 <ul class="hlist">
 <li><code><a title="multicurrency.currency.Currency.alpha_code" href="currency.html#multicurrency.currency.Currency.alpha_code">alpha_code</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.amount" href="currency.html#multicurrency.currency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
@@ -155,7 +157,7 @@ value. False otherwise. Defaults to False.</dd>
 </dd>
 <dt id="multicurrency.rial.RialOmani"><code class="flex name class">
 <span>class <span class="ident">RialOmani</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 3, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 3, decimal_sign: Optional[str] = '٫', grouping_sign: Optional[str] = '٬', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Rial Omani currency representation.</p>
@@ -164,7 +166,7 @@ value. False otherwise. Defaults to False.</dd>
 &gt;&gt;&gt; rial_omani = RialOmani(
 ...     amount=123456.789)
 &gt;&gt;&gt; print(rial_omani)
-123,456.789 ر.ع.
+١٢٣٬٤٥٦٫٧٨٩ ر.ع.
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -175,9 +177,9 @@ value. False otherwise. Defaults to False.</dd>
 <dd>Number of decimal places for the
 currency representation. Defaults to 3,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Decimal symbol. Defaults to '.'.</dd>
+<dd>Decimal symbol. Defaults to '٫'.</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Grouping symbol. Defaults to ','.</dd>
+<dd>Grouping symbol. Defaults to '٬'.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
 <dd>Identifies the currency using
 the 'currency' value instead of the 'symbol'. Defaults to
@@ -199,6 +201,7 @@ value. False otherwise. Defaults to False.</dd>
 <ul class="hlist">
 <li><code><a title="multicurrency.currency.Currency.alpha_code" href="currency.html#multicurrency.currency.Currency.alpha_code">alpha_code</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.amount" href="currency.html#multicurrency.currency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
@@ -215,7 +218,7 @@ value. False otherwise. Defaults to False.</dd>
 </dd>
 <dt id="multicurrency.rial.YemeniRial"><code class="flex name class">
 <span>class <span class="ident">YemeniRial</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '٫', grouping_sign: Optional[str] = '٬', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Yemeni Rial currency representation.</p>
@@ -224,7 +227,7 @@ value. False otherwise. Defaults to False.</dd>
 &gt;&gt;&gt; yemeni_rial = YemeniRial(
 ...     amount=123456.789)
 &gt;&gt;&gt; print(yemeni_rial)
-123.456,79 ﷼
+١٢٣٬٤٥٦٫٧٩ ﷼
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -235,9 +238,9 @@ value. False otherwise. Defaults to False.</dd>
 <dd>Number of decimal places for the
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Decimal symbol. Defaults to ','.</dd>
+<dd>Decimal symbol. Defaults to '٫'.</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Grouping symbol. Defaults to '.'.</dd>
+<dd>Grouping symbol. Defaults to '٬'.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
 <dd>Identifies the currency using
 the 'currency' value instead of the 'symbol'. Defaults to
@@ -259,6 +262,7 @@ value. False otherwise. Defaults to False.</dd>
 <ul class="hlist">
 <li><code><a title="multicurrency.currency.Currency.alpha_code" href="currency.html#multicurrency.currency.Currency.alpha_code">alpha_code</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.amount" href="currency.html#multicurrency.currency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>

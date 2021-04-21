@@ -32,7 +32,7 @@ def test_qatari_rial():
     assert qatari_rial.symbol == 'ر.ق'
     assert not qatari_rial.symbol_ahead
     assert qatari_rial.symbol_separator == '\u00A0'
-    assert qatari_rial.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
+    assert qatari_rial.convertion == '٠١٢٣٤٥٦٧٨٩-'
     assert qatari_rial.__hash__() == hash((decimal, 'QAR', '634'))
     assert qatari_rial.__repr__() == (
         'QatariRial(amount: 0.1428571428571428571428571429, '
@@ -44,7 +44,7 @@ def test_qatari_rial():
         'decimal_places: "2", '
         'decimal_sign: "\u066B", '
         'grouping_sign: "\u066C", '
-        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
     assert qatari_rial.__str__() == '٠٫١٤ ر.ق'
 
@@ -63,7 +63,7 @@ def test_qatari_rial_negative():
     assert qatari_rial.symbol == 'ر.ق'
     assert not qatari_rial.symbol_ahead
     assert qatari_rial.symbol_separator == '\u00A0'
-    assert qatari_rial.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
+    assert qatari_rial.convertion == '٠١٢٣٤٥٦٧٨٩-'
     assert qatari_rial.__hash__() == hash((decimal, 'QAR', '634'))
     assert qatari_rial.__repr__() == (
         'QatariRial(amount: -100, '
@@ -75,7 +75,7 @@ def test_qatari_rial_negative():
         'decimal_places: "2", '
         'decimal_sign: "\u066B", '
         'grouping_sign: "\u066C", '
-        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
     assert qatari_rial.__str__() == '-١٠٠٫٠٠ ر.ق'
 
@@ -102,7 +102,7 @@ def test_qatari_rial_custom():
     assert qatari_rial.symbol == 'ر.ق'
     assert not qatari_rial.symbol_ahead
     assert qatari_rial.symbol_separator == '_'
-    assert qatari_rial.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
+    assert qatari_rial.convertion == '٠١٢٣٤٥٦٧٨٩-'
     assert qatari_rial.__hash__() == hash((decimal, 'QAR', '634'))
     assert qatari_rial.__repr__() == (
         'QatariRial(amount: 1000, '
@@ -114,7 +114,7 @@ def test_qatari_rial_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u066C", '
         'grouping_sign: "\u066B", '
-        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: True)')
     assert qatari_rial.__str__() == 'QAR 1,000.00000'
 

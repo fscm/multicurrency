@@ -67,7 +67,7 @@ class IranianRial(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
-            convertion='۰۱۲۳۴۵۶۷۸۹-\u066C\u066B',
+            convertion='۰۱۲۳۴۵۶۷۸۹-',
             international=international)
 
 
@@ -127,7 +127,7 @@ class RialOmani(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
-            convertion='٠١٢٣٤٥٦٧٨٩-\u066C\u066B',
+            convertion='٠١٢٣٤٥٦٧٨٩-',
             international=international)
 
 
@@ -187,7 +187,7 @@ class QatariRial(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
-            convertion='٠١٢٣٤٥٦٧٨٩-\u066C\u066B',
+            convertion='٠١٢٣٤٥٦٧٨٩-',
             international=international)
 
 
@@ -247,5 +247,5 @@ class YemeniRial(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
-            convertion='٠١٢٣٤٥٦٧٨٩-\u066C\u066B',
+            convertion='٠١٢٣٤٥٦٧٨٩-',
             international=international)

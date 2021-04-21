@@ -5,6 +5,7 @@
 # author: Frederico Martins <http://github.com/fscm>
 # license: SPDX-License-Identifier: MIT
 
+# pylint: disable=line-too-long
 """Currency generator.
 
 Creates specific versions of Currency based on the info present on the
@@ -35,9 +36,9 @@ separated by a coma (',') and in the following order:
 `currency.csv` file example:
 
     "Currency","Symbol","Digital Code","Class","Name","Country","Decimal Places","Decimal Sign","Grouping Sign","Symbol Separator","Symbol Ahead","Convertion"
-    "AFN","Af","971","Afghani","Afghani","Afghanistan","2",",",".","\u00A0","True",""
-    "ALL","Lekë","008","Lek","Lek","Albania","2",",","\u202F","\u00A0","False",""
-    "AMD","Դ","051","Dram","Armenian Dram","Armenia","2",",","\u202F","\u00A0","False",""
+    "AFN","؋","971","Afghani","Afghani","Afghanistan","2","\u066B","\u066C","\u00A0","True","۰۱۲۳۴۵۶۷۸۹-"
+    "AUD","$","036","Dollar","Australian Dollar","Australia","2",".",",","","True",""
+    "BDT","৳","050","Taka","Taka","Bangladesh","2",".",",","","False","০১২৩৪৫৬৭৮৯-"
 """
 
 import csv
@@ -97,12 +98,13 @@ def _format(
     if _international:
         return f'{_alpha_code} {_converted}'
     if _convertion:
-        _t = dict(zip('0123456789-,.', re.sub(r'\\u[0-9a-fA-F]{4}', lambda x:eval('"' + x.group() + '"'), _convertion)))
+        _c = re.sub(r'\\u[0-9a-fA-F]{4}', lambda x:eval('"' + x.group() + '"'), _convertion)
+        _t = dict(zip('0123456789-,.', _c))
         #_t = dict(zip('0123456789-,.', _convertion))
-        _converted = ''.join([_t[c] for c in _converted])
-    else:
-        _converted = _converted.replace('.', 'X').replace(
-            ',', _grouping_sign).replace('X', _decimal_sign)
+        _converted = ''.join([_t.get(c, c) for c in _converted])
+    _d = re.sub(r'\\u[0-9a-fA-F]{4}', lambda x:eval('"' + x.group() + '"'), _decimal_sign)
+    _g = re.sub(r'\\u[0-9a-fA-F]{4}', lambda x:eval('"' + x.group() + '"'), _grouping_sign)
+    _converted = _converted.replace('.', 'X').replace(',', _g).replace('X', _d)
     if _symbol_ahead:
         return f'{_symbol}{_symbol_separator}{_converted}'
     return f'{_converted}{_symbol_separator}{_symbol}'
@@ -262,7 +264,8 @@ for currency_module, data in currencies.items():
                 values['__CURRENCY__'], '', '', '', False, '', '', True)
         supported.append((
             currency_class, (
-            '`'+f"multicurrency.{currency_module}.{currency_class}"'`'+f' ({eg_locale} | {eg_international})',
+            f'`multicurrency.{currency_module}.{currency_class}` ({eg_locale} | {eg_international})',
+#            '`'+f"multicurrency.{currency_module}.{currency_class}"'`'+f' ({eg_locale} | {eg_international})',
             f'`{currency_class}` ({eg_locale} | {eg_international})')))
 supported_sorted = [c[0] for _, c in sorted(supported)]
 print(',\n'.join(supported_sorted))
@@ -272,3 +275,4 @@ print('readme supported currencies:')
 supported_sorted = [c[1] for _, c in sorted(supported)]
 print(',\n'.join(supported_sorted))
 print()
+# pylint: enable=line-too-long

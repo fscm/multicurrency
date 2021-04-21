@@ -236,7 +236,7 @@ resutls.</p>
 <dl>
 <dt id="multicurrency.currency.Currency"><code class="flex name class">
 <span>class <span class="ident">Currency</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], alpha_code: Optional[str] = '', numeric_code: Optional[str] = '0', symbol: Optional[str] = '', symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '', decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: Optional[bool] = False)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], alpha_code: Optional[str] = '', numeric_code: Optional[str] = '0', symbol: Optional[str] = '', symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '', decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', convertion: Optional[str] = '', international: Optional[bool] = False)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Currency representation.</p>
@@ -259,6 +259,11 @@ represented language.</p>
 printing out the value.</p>
 <p>The <code>decimal_places</code> value must be greater or equal to 0 (zero).
 Negative values will be converter to 0 (zero).</p>
+<p>The <code>convertion</code> string, when set, will be used to replace the
+Western Arabic numerals - as well as the symbols - with the
+equivalent ones on the currency language. The string must be
+created with the numbers from 0 (zero) to 9 (nine) followed by the
+minus sign without any separation mark (e.g.: '0123456789-').</p>
 <h2 id="args">Args</h2>
 <dl>
 <dt><strong><code>amount</code></strong> :&ensp;<code>Union[int, float, Decimal]</code></dt>
@@ -289,6 +294,9 @@ currency representation. Defaults to 2,</dd>
 <dd>Identifies the currency using
 the 'currency' value instead of the 'symbol'. Defaults to
 False.</dd>
+<dt><strong><code>convertion</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>String with the numbers from 0 to 9
+followed by the minus ('-') sign. Defaults to ''.</dd>
 </dl></div>
 <h3>Subclasses</h3>
 <ul class="hlist">
@@ -484,6 +492,10 @@ False.</dd>
 <dd>
 <div class="desc"><p>Decimal: amount.</p></div>
 </dd>
+<dt id="multicurrency.currency.Currency.convertion"><code class="name">var <span class="ident">convertion</span> : str</code></dt>
+<dd>
+<div class="desc"><p>str: convertion.</p></div>
+</dd>
 <dt id="multicurrency.currency.Currency.decimal_places"><code class="name">var <span class="ident">decimal_places</span> : int</code></dt>
 <dd>
 <div class="desc"><p>int: decimal_places.</p></div>
@@ -599,6 +611,7 @@ Values lower than 0 (zero) will be converted to 0
 <ul class="two-column">
 <li><code><a title="multicurrency.currency.Currency.alpha_code" href="#multicurrency.currency.Currency.alpha_code">alpha_code</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.amount" href="#multicurrency.currency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.convertion" href="#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>

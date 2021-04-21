@@ -32,7 +32,7 @@ def test_iraqi_dinar():
     assert iraqi_dinar.symbol == 'ع.د'
     assert iraqi_dinar.symbol_ahead
     assert iraqi_dinar.symbol_separator == '\u00A0'
-    assert iraqi_dinar.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
+    assert iraqi_dinar.convertion == '٠١٢٣٤٥٦٧٨٩-'
     assert iraqi_dinar.__hash__() == hash((decimal, 'IQD', '368'))
     assert iraqi_dinar.__repr__() == (
         'IraqiDinar(amount: 0.1428571428571428571428571429, '
@@ -44,7 +44,7 @@ def test_iraqi_dinar():
         'decimal_places: "3", '
         'decimal_sign: "\u066B", '
         'grouping_sign: "\u066C", '
-        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
     assert iraqi_dinar.__str__() == 'ع.د ٠٫١٤٣'
 
@@ -63,7 +63,7 @@ def test_iraqi_dinar_negative():
     assert iraqi_dinar.symbol == 'ع.د'
     assert iraqi_dinar.symbol_ahead
     assert iraqi_dinar.symbol_separator == '\u00A0'
-    assert iraqi_dinar.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
+    assert iraqi_dinar.convertion == '٠١٢٣٤٥٦٧٨٩-'
     assert iraqi_dinar.__hash__() == hash((decimal, 'IQD', '368'))
     assert iraqi_dinar.__repr__() == (
         'IraqiDinar(amount: -100, '
@@ -75,7 +75,7 @@ def test_iraqi_dinar_negative():
         'decimal_places: "3", '
         'decimal_sign: "\u066B", '
         'grouping_sign: "\u066C", '
-        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
     assert iraqi_dinar.__str__() == 'ع.د -١٠٠٫٠٠٠'
 
@@ -102,7 +102,7 @@ def test_iraqi_dinar_custom():
     assert iraqi_dinar.symbol == 'ع.د'
     assert not iraqi_dinar.symbol_ahead
     assert iraqi_dinar.symbol_separator == '_'
-    assert iraqi_dinar.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
+    assert iraqi_dinar.convertion == '٠١٢٣٤٥٦٧٨٩-'
     assert iraqi_dinar.__hash__() == hash((decimal, 'IQD', '368'))
     assert iraqi_dinar.__repr__() == (
         'IraqiDinar(amount: 1000, '
@@ -114,7 +114,7 @@ def test_iraqi_dinar_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u066C", '
         'grouping_sign: "\u066B", '
-        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: True)')
     assert iraqi_dinar.__str__() == 'IQD 1,000.00000'
 

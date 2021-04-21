@@ -67,5 +67,5 @@ class Ouguiya(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
-            convertion='٠١٢٣٤٥٦٧٨٩-\u066C\u066B',
+            convertion='٠١٢٣٤٥٦٧٨٩-',
             international=international)

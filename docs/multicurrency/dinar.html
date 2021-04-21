@@ -79,6 +79,7 @@ value. False otherwise. Defaults to False.</dd>
 <ul class="hlist">
 <li><code><a title="multicurrency.currency.Currency.alpha_code" href="currency.html#multicurrency.currency.Currency.alpha_code">alpha_code</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.amount" href="currency.html#multicurrency.currency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
@@ -95,7 +96,7 @@ value. False otherwise. Defaults to False.</dd>
 </dd>
 <dt id="multicurrency.dinar.BahrainiDinar"><code class="flex name class">
 <span>class <span class="ident">BahrainiDinar</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 3, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 3, decimal_sign: Optional[str] = '٫', grouping_sign: Optional[str] = '٬', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Bahraini Dinar currency representation.</p>
@@ -104,7 +105,7 @@ value. False otherwise. Defaults to False.</dd>
 &gt;&gt;&gt; bahraini_dinar = BahrainiDinar(
 ...     amount=123456.789)
 &gt;&gt;&gt; print(bahraini_dinar)
-123,456.789 د.ب.
+١٢٣٬٤٥٦٫٧٨٩ ب.د
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -115,9 +116,9 @@ value. False otherwise. Defaults to False.</dd>
 <dd>Number of decimal places for the
 currency representation. Defaults to 3,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Decimal symbol. Defaults to '.'.</dd>
+<dd>Decimal symbol. Defaults to '٫'.</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Grouping symbol. Defaults to ','.</dd>
+<dd>Grouping symbol. Defaults to '٬'.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
 <dd>Identifies the currency using
 the 'currency' value instead of the 'symbol'. Defaults to
@@ -139,6 +140,7 @@ value. False otherwise. Defaults to False.</dd>
 <ul class="hlist">
 <li><code><a title="multicurrency.currency.Currency.alpha_code" href="currency.html#multicurrency.currency.Currency.alpha_code">alpha_code</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.amount" href="currency.html#multicurrency.currency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
@@ -155,7 +157,7 @@ value. False otherwise. Defaults to False.</dd>
 </dd>
 <dt id="multicurrency.dinar.IraqiDinar"><code class="flex name class">
 <span>class <span class="ident">IraqiDinar</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 3, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 3, decimal_sign: Optional[str] = '٫', grouping_sign: Optional[str] = '٬', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Iraqi Dinar currency representation.</p>
@@ -164,7 +166,7 @@ value. False otherwise. Defaults to False.</dd>
 &gt;&gt;&gt; iraqi_dinar = IraqiDinar(
 ...     amount=123456.789)
 &gt;&gt;&gt; print(iraqi_dinar)
-د.ع. 123.456,789
+ع.د ١٢٣٬٤٥٦٫٧٨٩
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -175,9 +177,9 @@ value. False otherwise. Defaults to False.</dd>
 <dd>Number of decimal places for the
 currency representation. Defaults to 3,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Decimal symbol. Defaults to ','.</dd>
+<dd>Decimal symbol. Defaults to '٫'.</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Grouping symbol. Defaults to '.'.</dd>
+<dd>Grouping symbol. Defaults to '٬'.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
 <dd>Identifies the currency using
 the 'currency' value instead of the 'symbol'. Defaults to
@@ -199,6 +201,7 @@ value. False otherwise. Defaults to True.</dd>
 <ul class="hlist">
 <li><code><a title="multicurrency.currency.Currency.alpha_code" href="currency.html#multicurrency.currency.Currency.alpha_code">alpha_code</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.amount" href="currency.html#multicurrency.currency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
@@ -215,7 +218,7 @@ value. False otherwise. Defaults to True.</dd>
 </dd>
 <dt id="multicurrency.dinar.JordanianDinar"><code class="flex name class">
 <span>class <span class="ident">JordanianDinar</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 3, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 3, decimal_sign: Optional[str] = '٫', grouping_sign: Optional[str] = '٬', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Jordanian Dinar currency representation.</p>
@@ -224,7 +227,7 @@ value. False otherwise. Defaults to True.</dd>
 &gt;&gt;&gt; jordanian_dinar = JordanianDinar(
 ...     amount=123456.789)
 &gt;&gt;&gt; print(jordanian_dinar)
-د.أ. 123,456.789
+د.ا ١٢٣٬٤٥٦٫٧٨٩
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -235,9 +238,9 @@ value. False otherwise. Defaults to True.</dd>
 <dd>Number of decimal places for the
 currency representation. Defaults to 3,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Decimal symbol. Defaults to '.'.</dd>
+<dd>Decimal symbol. Defaults to '٫'.</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Grouping symbol. Defaults to ','.</dd>
+<dd>Grouping symbol. Defaults to '٬'.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
 <dd>Identifies the currency using
 the 'currency' value instead of the 'symbol'. Defaults to
@@ -259,6 +262,7 @@ value. False otherwise. Defaults to True.</dd>
 <ul class="hlist">
 <li><code><a title="multicurrency.currency.Currency.alpha_code" href="currency.html#multicurrency.currency.Currency.alpha_code">alpha_code</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.amount" href="currency.html#multicurrency.currency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
@@ -275,7 +279,7 @@ value. False otherwise. Defaults to True.</dd>
 </dd>
 <dt id="multicurrency.dinar.KuwaitiDinar"><code class="flex name class">
 <span>class <span class="ident">KuwaitiDinar</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 3, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 3, decimal_sign: Optional[str] = '٫', grouping_sign: Optional[str] = '٬', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Kuwaiti Dinar currency representation.</p>
@@ -284,7 +288,7 @@ value. False otherwise. Defaults to True.</dd>
 &gt;&gt;&gt; kuwaiti_dinar = KuwaitiDinar(
 ...     amount=123456.789)
 &gt;&gt;&gt; print(kuwaiti_dinar)
-د.ك. 123,456.789
+د.ك ١٢٣٬٤٥٦٫٧٨٩
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -295,9 +299,9 @@ value. False otherwise. Defaults to True.</dd>
 <dd>Number of decimal places for the
 currency representation. Defaults to 3,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Decimal symbol. Defaults to '.'.</dd>
+<dd>Decimal symbol. Defaults to '٫'.</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Grouping symbol. Defaults to ','.</dd>
+<dd>Grouping symbol. Defaults to '٬'.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
 <dd>Identifies the currency using
 the 'currency' value instead of the 'symbol'. Defaults to
@@ -319,6 +323,7 @@ value. False otherwise. Defaults to True.</dd>
 <ul class="hlist">
 <li><code><a title="multicurrency.currency.Currency.alpha_code" href="currency.html#multicurrency.currency.Currency.alpha_code">alpha_code</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.amount" href="currency.html#multicurrency.currency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
@@ -379,6 +384,7 @@ value. False otherwise. Defaults to True.</dd>
 <ul class="hlist">
 <li><code><a title="multicurrency.currency.Currency.alpha_code" href="currency.html#multicurrency.currency.Currency.alpha_code">alpha_code</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.amount" href="currency.html#multicurrency.currency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
@@ -439,6 +445,7 @@ value. False otherwise. Defaults to False.</dd>
 <ul class="hlist">
 <li><code><a title="multicurrency.currency.Currency.alpha_code" href="currency.html#multicurrency.currency.Currency.alpha_code">alpha_code</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.amount" href="currency.html#multicurrency.currency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
@@ -499,6 +506,7 @@ value. False otherwise. Defaults to False.</dd>
 <ul class="hlist">
 <li><code><a title="multicurrency.currency.Currency.alpha_code" href="currency.html#multicurrency.currency.Currency.alpha_code">alpha_code</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.amount" href="currency.html#multicurrency.currency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
@@ -524,7 +532,7 @@ value. False otherwise. Defaults to False.</dd>
 &gt;&gt;&gt; tunisian_dinar = TunisianDinar(
 ...     amount=123456.789)
 &gt;&gt;&gt; print(tunisian_dinar)
-د.ت. 123.456,789
+د.ت 123.456,789
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -559,6 +567,7 @@ value. False otherwise. Defaults to True.</dd>
 <ul class="hlist">
 <li><code><a title="multicurrency.currency.Currency.alpha_code" href="currency.html#multicurrency.currency.Currency.alpha_code">alpha_code</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.amount" href="currency.html#multicurrency.currency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>

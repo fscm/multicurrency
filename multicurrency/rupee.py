@@ -247,7 +247,7 @@ class NepaleseRupee(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
-            convertion='०१२३४५६७८९-,.',
+            convertion='०१२३४५६७८९-',
             international=international)
 
 

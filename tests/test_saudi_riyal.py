@@ -32,7 +32,7 @@ def test_saudi_riyal():
     assert saudi_riyal.symbol == 'ر.س'
     assert not saudi_riyal.symbol_ahead
     assert saudi_riyal.symbol_separator == '\u00A0'
-    assert saudi_riyal.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
+    assert saudi_riyal.convertion == '٠١٢٣٤٥٦٧٨٩-'
     assert saudi_riyal.__hash__() == hash((decimal, 'SAR', '682'))
     assert saudi_riyal.__repr__() == (
         'SaudiRiyal(amount: 0.1428571428571428571428571429, '
@@ -44,7 +44,7 @@ def test_saudi_riyal():
         'decimal_places: "2", '
         'decimal_sign: "\u066B", '
         'grouping_sign: "\u066C", '
-        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
     assert saudi_riyal.__str__() == '٠٫١٤ ر.س'
 
@@ -63,7 +63,7 @@ def test_saudi_riyal_negative():
     assert saudi_riyal.symbol == 'ر.س'
     assert not saudi_riyal.symbol_ahead
     assert saudi_riyal.symbol_separator == '\u00A0'
-    assert saudi_riyal.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
+    assert saudi_riyal.convertion == '٠١٢٣٤٥٦٧٨٩-'
     assert saudi_riyal.__hash__() == hash((decimal, 'SAR', '682'))
     assert saudi_riyal.__repr__() == (
         'SaudiRiyal(amount: -100, '
@@ -75,7 +75,7 @@ def test_saudi_riyal_negative():
         'decimal_places: "2", '
         'decimal_sign: "\u066B", '
         'grouping_sign: "\u066C", '
-        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
     assert saudi_riyal.__str__() == '-١٠٠٫٠٠ ر.س'
 
@@ -102,7 +102,7 @@ def test_saudi_riyal_custom():
     assert saudi_riyal.symbol == 'ر.س'
     assert not saudi_riyal.symbol_ahead
     assert saudi_riyal.symbol_separator == '_'
-    assert saudi_riyal.convertion == '٠١٢٣٤٥٦٧٨٩-\u066C\u066B'
+    assert saudi_riyal.convertion == '٠١٢٣٤٥٦٧٨٩-'
     assert saudi_riyal.__hash__() == hash((decimal, 'SAR', '682'))
     assert saudi_riyal.__repr__() == (
         'SaudiRiyal(amount: 1000, '
@@ -114,7 +114,7 @@ def test_saudi_riyal_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u066C", '
         'grouping_sign: "\u066B", '
-        'convertion: "٠١٢٣٤٥٦٧٨٩-\u066C\u066B", '
+        'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: True)')
     assert saudi_riyal.__str__() == 'SAR 1,000.00000'
 

@@ -32,7 +32,7 @@ def test_iranian_rial():
     assert iranian_rial.symbol == '﷼'
     assert not iranian_rial.symbol_ahead
     assert iranian_rial.symbol_separator == '\u00A0'
-    assert iranian_rial.convertion == '۰۱۲۳۴۵۶۷۸۹-\u066C\u066B'
+    assert iranian_rial.convertion == '۰۱۲۳۴۵۶۷۸۹-'
     assert iranian_rial.__hash__() == hash((decimal, 'IRR', '364'))
     assert iranian_rial.__repr__() == (
         'IranianRial(amount: 0.1428571428571428571428571429, '
@@ -44,7 +44,7 @@ def test_iranian_rial():
         'decimal_places: "2", '
         'decimal_sign: "\u066B", '
         'grouping_sign: "\u066C", '
-        'convertion: "۰۱۲۳۴۵۶۷۸۹-\u066C\u066B", '
+        'convertion: "۰۱۲۳۴۵۶۷۸۹-", '
         'international: False)')
     assert iranian_rial.__str__() == '۰٫۱۴ ﷼'
 
@@ -63,7 +63,7 @@ def test_iranian_rial_negative():
     assert iranian_rial.symbol == '﷼'
     assert not iranian_rial.symbol_ahead
     assert iranian_rial.symbol_separator == '\u00A0'
-    assert iranian_rial.convertion == '۰۱۲۳۴۵۶۷۸۹-\u066C\u066B'
+    assert iranian_rial.convertion == '۰۱۲۳۴۵۶۷۸۹-'
     assert iranian_rial.__hash__() == hash((decimal, 'IRR', '364'))
     assert iranian_rial.__repr__() == (
         'IranianRial(amount: -100, '
@@ -75,7 +75,7 @@ def test_iranian_rial_negative():
         'decimal_places: "2", '
         'decimal_sign: "\u066B", '
         'grouping_sign: "\u066C", '
-        'convertion: "۰۱۲۳۴۵۶۷۸۹-\u066C\u066B", '
+        'convertion: "۰۱۲۳۴۵۶۷۸۹-", '
         'international: False)')
     assert iranian_rial.__str__() == '-۱۰۰٫۰۰ ﷼'
 
@@ -102,7 +102,7 @@ def test_iranian_rial_custom():
     assert iranian_rial.symbol == '﷼'
     assert not iranian_rial.symbol_ahead
     assert iranian_rial.symbol_separator == '_'
-    assert iranian_rial.convertion == '۰۱۲۳۴۵۶۷۸۹-\u066C\u066B'
+    assert iranian_rial.convertion == '۰۱۲۳۴۵۶۷۸۹-'
     assert iranian_rial.__hash__() == hash((decimal, 'IRR', '364'))
     assert iranian_rial.__repr__() == (
         'IranianRial(amount: 1000, '
@@ -114,7 +114,7 @@ def test_iranian_rial_custom():
         'decimal_places: "5", '
         'decimal_sign: "\u066C", '
         'grouping_sign: "\u066B", '
-        'convertion: "۰۱۲۳۴۵۶۷۸۹-\u066C\u066B", '
+        'convertion: "۰۱۲۳۴۵۶۷۸۹-", '
         'international: True)')
     assert iranian_rial.__str__() == 'IRR 1,000.00000'
 

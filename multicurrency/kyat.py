@@ -67,5 +67,5 @@ class Kyat(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
-            convertion='၀၁၂၃၄၅၆၇၈၉-,.',
+            convertion='၀၁၂၃၄၅၆၇၈၉-',
             international=international)

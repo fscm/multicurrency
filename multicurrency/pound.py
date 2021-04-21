@@ -67,7 +67,7 @@ class EgyptianPound(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
-            convertion='٠١٢٣٤٥٦٧٨٩-\u066C\u066B',
+            convertion='٠١٢٣٤٥٦٧٨٩-',
             international=international)
 
 
@@ -307,7 +307,7 @@ class LebanesePound(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
-            convertion='٠١٢٣٤٥٦٧٨٩-\u066C\u066B',
+            convertion='٠١٢٣٤٥٦٧٨٩-',
             international=international)
 
 
@@ -367,7 +367,7 @@ class SudanesePound(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
-            convertion='٠١٢٣٤٥٦٧٨٩-\u066C\u066B',
+            convertion='٠١٢٣٤٥٦٧٨٩-',
             international=international)
 
 
@@ -487,5 +487,5 @@ class SyrianPound(Currency):
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_sign=grouping_sign,
-            convertion='٠١٢٣٤٥٦٧٨٩-\u066C\u066B',
+            convertion='٠١٢٣٤٥٦٧٨٩-',
             international=international)
