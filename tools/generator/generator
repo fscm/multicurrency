@@ -5,7 +5,7 @@
 # author: Frederico Martins <http://github.com/fscm>
 # license: SPDX-License-Identifier: MIT
 
-# pylint: disable=line-too-long
+# pylint: disable=eval-used,invalid-name,line-too-long
 """Currency generator.
 
 Creates specific versions of Currency based on the info present on the
@@ -81,7 +81,7 @@ with open(f'{workfolder}/{CURRENCY_TESTS}', 'r') as file_in_tests:
     text_tests = file_in_tests.read()
 
 
-def _format(
+def _format( # pylint: disable=missing-return-doc,missing-return-type-doc
         _amount,
         _decimal_places,
         _alpha_code,
@@ -212,7 +212,7 @@ for currency_module in currencies:
         re_values = dict((re.escape(k), v) for k,v in values.items())
         comp_values = re.compile('|'.join(re_values.keys()))
         out_text = out_text + comp_values.sub(
-            lambda l: re_values[re.escape(l.group(0))], text_class)
+            lambda l: re_values[re.escape(l.group(0))], text_class) # pylint: disable=cell-var-from-loop
     with open(
             f'{workfolder}/_multicurrency/{currency_module}.py',
             'w+') as file_out:
@@ -265,7 +265,6 @@ for currency_module, data in currencies.items():
         supported.append((
             currency_class, (
             f'`multicurrency.{currency_module}.{currency_class}` ({eg_locale} | {eg_international})',
-#            '`'+f"multicurrency.{currency_module}.{currency_class}"'`'+f' ({eg_locale} | {eg_international})',
             f'`{currency_class}` ({eg_locale} | {eg_international})')))
 supported_sorted = [c[0] for _, c in sorted(supported)]
 print(',\n'.join(supported_sorted))
@@ -275,4 +274,4 @@ print('readme supported currencies:')
 supported_sorted = [c[1] for _, c in sorted(supported)]
 print(',\n'.join(supported_sorted))
 print()
-# pylint: enable=line-too-long
+# pylint: enable=eval-used,invalid-name,line-too-long
