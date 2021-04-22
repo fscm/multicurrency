@@ -87,6 +87,7 @@ endif
 clean-doc:
 	@echo "Cleaning documentation..."
 	@rm -rf "$(PROJECT_DIR)/docs/$(PACKAGE_NAME)"
+	@rm -rf "$(PROJECT_DIR)/docs"/*.html
 
 .PHONY: dev _dev
 _dev:
@@ -118,6 +119,8 @@ ifdef VIRTUAL_ENV
 	@echo "Generating documentation..."
 	@$(PDOC) --force --html --config show_source_code=False \
 		--output-dir "$(PROJECT_DIR)/docs" "$(PROJECT_DIR)/$(PACKAGE_NAME)"
+	@mv "$(PROJECT_DIR)/docs/$(PACKAGE_NAME)"/*.html "$(PROJECT_DIR)/docs/"
+	@rm -rf "$(PROJECT_DIR)/docs/$(PACKAGE_NAME)"
 else
 	@echo "venv not enabled."
 	@echo "Run 'source $(PROJECT_DIR)/venv/bin/activate' to enable the venv."

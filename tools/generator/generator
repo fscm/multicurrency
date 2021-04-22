@@ -264,7 +264,7 @@ for currency_module, data in currencies.items():
                 values['__CURRENCY__'], '', '', '', False, '', '', True)
         supported.append((
             currency_class, (
-            f'`multicurrency.{currency_module}.{currency_class}` ({eg_locale} | {eg_international})',
+            f'* `multicurrency.{currency_module}.{currency_class}` ({eg_locale} | {eg_international})',
             f'`{currency_class}` ({eg_locale} | {eg_international})')))
 supported_sorted = [c[0] for _, c in sorted(supported)]
 print(',\n'.join(supported_sorted))
