@@ -52,14 +52,14 @@ object with the desired settings.
 ...     amount=1000,
 ...     alpha_code='XBT',
 ...     numeric_code='0',
-...     symbol='Ƀ',
+...     symbol='₿',
 ...     symbol_ahead=True,
 ...     symbol_separator='',
 ...     decimal_places=8,
 ...     decimal_sign='.',
 ...     grouping_sign=',')
 >>> print(bitcoin)
-Ƀ1,000.00000000
+₿1,000.00000000
 ```
 
 To help working with unsupported currencies the settings can be defined in a
@@ -70,7 +70,7 @@ dictionary and used when needed:
 >>> settings = {
 ...     'alpha_code':'XBT',
 ...     'numeric_code':'0',
-...     'symbol':'Ƀ',
+...     'symbol':'₿',
 ...     'symbol_ahead':True,
 ...     'symbol_separator':'',
 ...     'decimal_places':8,
@@ -78,7 +78,7 @@ dictionary and used when needed:
 ...     'grouping_sign':','}
 >>> bitcoin = Currency(1000, **settings)
 >>> print(bitcoin)
-Ƀ1,000.00000000
+₿1,000.00000000
 ```
 
 Currencies can also be represented with the ISO 4217 three-letter code instead
