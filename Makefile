@@ -1,204 +1,183 @@
-PACKAGE_NAME := multicurrency
+# Project Macros                                        Project Macros --------
 MAKEFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
 PROJECT_DIR := $(realpath $(dir $(MAKEFILE_PATH)))
-PDOC := pdoc3
+PACKAGE_NAME := $(notdir $(PROJECT_DIR))
+
+# Tools
 AUTOPEP := autopep8
+PDOC := pdoc3
 PIP := pip3
 PYLINT := pylint
 PYTEST := pytest
 PYTHON := python3
-REQUIREMENTS := requirements.txt
-REQUIREMENTS_DEV := autopep8 build mypy pdoc3 pylint pytest pytest-cov pytest-mock twine
-SHELL := /bin/sh
 STUBGEN := stubgen
-#SOURCES := $(wildcard "$(PROJECT_DIR)/$(PACKAGE_NAME)"/*.py)
 TWINE := twine
 
-PYTHON_LIBS = "$(wildcard $(PROJECT_DIR)/venv/lib/python*)/site-packages"
+# Shell                                                          Shell --------
+SHELL := /bin/sh
 
+# Python Macros                                          Python Macros --------
+REQUIREMENTS := requirements.txt
+REQUIREMENTS_DEV := autopep8 build mypy pdoc3 pylint pytest pytest-cov \
+	pytest-mock twine
+SOURCE_DIR := $(PROJECT_DIR)/src
+SOURCE_FILES := $(wildcard $(SOURCE_DIR)/$(PACKAGE_NAME)/*.py)
+VENV_DIR := $(PROJECT_DIR)/venv
+
+PYTHON_LIBS = $(wildcard $(VENV_DIR)/lib/python*)/site-packages
+
+# Rules                                                          Rules --------
 .NOTPARALLEL:
 
 .ONESHELL:
 
-.PHONY: default
+.PHONY: default all
+.PHONY: clean clean-all clean-build clean-cache clean-dev clean-docs clean-stubs
+.PHONY: dev autopep8 docs lint stubs tests tests-verbose
+.PHONY: build publish publish-test
+
+# Project Targets                                      Project Targets --------
+# -- default                                                       default ----
 default: help
 
-.PHONY: all
-all: stubs autopep8 lint doc tests build
+# -- all                                                               all ----
+all: stubs autopep8 lint docs tests build
 
-.PHONY: autopep8
-autopep8:
-ifdef VIRTUAL_ENV
-	@echo "Formating code..."
-	@$(AUTOPEP) --aggressive --aggressive --in-place --recursive \
-		--global-config "$(PROJECT_DIR)"/.pep8 "$(PROJECT_DIR)/$(PACKAGE_NAME)"
-	@echo "Formating tests..."
-	@$(AUTOPEP) --aggressive --aggressive --in-place --recursive \
-		--global-config "$(PROJECT_DIR)"/.pep8 "$(PROJECT_DIR)/tests"
-else
-	@echo "venv not enabled."
-	@echo "Run 'source $(PROJECT_DIR)/venv/bin/activate' to enable the venv."
-endif
+# Cleaning Targets                                    Cleaning Targets --------
+# -- clean                                                           clean ----
+clean: clean-build clean-cache
 
-.PHONY: build
-build:
-ifdef VIRTUAL_ENV
-  ifeq (,$(wildcard $(PROJECT_DIR)/build))
-	@echo "Building wheel..."
-	@cd "$(PROJECT_DIR)"
-	@$(PYTHON) -m build
-  else
-	@echo "Previous build detected."
-	@echo "Run 'make clean-build' to remove it first."
-  endif
-else
-	@echo "venv not enabled."
-	@echo "Run 'source $(PROJECT_DIR)/venv/bin/activate' to enable the venv."
-endif
+# -- clean all                                                   clean all ----
+clean-all: clean-build clean-cache clean-stubs clean-docs clean-dev
 
-.PHONY: clean clean-all clean-build clean-cache clean-dev clean-doc
-clean: clean-cache clean-dev
-
-clean-all: clean-build clean-cache clean-dev clean-doc
-
+# -- clean build                                               clean build ----
 clean-build:
 	@echo "Cleaning build artifacts..."
 	@rm -rf "$(PROJECT_DIR)"/build \
 		"$(PROJECT_DIR)"/dist \
 		"$(PROJECT_DIR)"/*.egg-info
 
+# -- clean cache                                               clean cache ----
 clean-cache:
 	@echo "Cleaning cache..."
 	@rm -rf "$(PROJECT_DIR)"/.mypy_cache \
 		"$(PROJECT_DIR)"/.pytest_cache \
-		"$(PROJECT_DIR)/$(PACKAGE_NAME)"/__pycache__ \
+		"$(SOURCE_DIR)/$(PACKAGE_NAME)"/__pycache__ \
 		"$(PROJECT_DIR)"/tests/__pycache__ \
 		"$(PROJECT_DIR)"/.coverage
+	@find "$(VENV_DIR)" -type f -name "*.pyc" -delete
 
+# -- clean dev                                                   clean dev ----
 clean-dev:
-ifndef VIRTUAL_ENV
-	@echo "Cleaning venv..."
+	@echo "Deleting the 'venv'..."
 	@rm -rf "$(PROJECT_DIR)"/venv/*
-else
-	@echo "venv enabled."
-	@echo "Run 'deactivate' to disable the venv first."
+ifdef VIRTUAL_ENV
+	@echo
+	@echo "!! Python venv active. !!"
+	@echo "Deactivate it using the following command:"
+	@echo "deactivate"
+	@echo
 endif
 
-clean-doc:
+# -- clean docs                                                 clean docs ----
+clean-docs:
 	@echo "Cleaning documentation..."
 	@rm -rf "$(PROJECT_DIR)/docs/$(PACKAGE_NAME)"
 	@rm -rf "$(PROJECT_DIR)/docs"/*.html
 
-.PHONY: dev _dev
-_dev:
-ifndef VIRTUAL_ENV
-  ifeq (,$(wildcard $(PROJECT_DIR)/venv/created))
-	@echo "Creating 'venv'..."
-	@$(PYTHON) -m venv "$(PROJECT_DIR)"/venv/
-	@date > "$(PROJECT_DIR)/venv/created"
+# -- clean stubs                                               clean stubs ----
+clean-stubs:
+	@echo "Deleting stubs..."
+	@rm -rf "$(SOURCE_DIR)"/$(PACKAGE_NAME)/*.pyi
+
+# Python Targets                                        Python Targets --------
+# -- venv                                                             venv ----
+$(VENV_DIR)/bin/activate: $(PROJECT_DIR)/$(REQUIREMENTS)
+	@echo "Creating the 'venv'..."
+	@$(PYTHON) -m venv "$(VENV_DIR)"
 	@echo "Instaling requirements..."
-	@source "$(PROJECT_DIR)"/venv/bin/activate; \
-		$(PIP) --quiet install --upgrade --requirement \
+	@"$(VENV_DIR)"/bin/$(PIP) --quiet install --upgrade --requirement \
 		"$(PROJECT_DIR)/$(REQUIREMENTS)" $(REQUIREMENTS_DEV)
-  else
-	@echo "'venv' already created."
-	@echo "Run 'make clean-dev' to remove it first."
-  endif
-else
-	@echo "venv enabled."
-	@echo "Run 'deactivate' to disable the venv first."
+
+# -- dev                                                               dev ----
+dev: $(VENV_DIR)/bin/activate
+ifeq (,$(wildcard $(PYTHON_LIBS)/$(PACKAGE_NAME).pth))
+	@echo "Adding the project to Python libs..."
+	@echo "$(PROJECT_DIR)/src" > "$(PYTHON_LIBS)/$(PACKAGE_NAME).pth"
 endif
 
-dev: _dev
-	@echo "Adding project to Python..."
-	@echo "$(PROJECT_DIR)" > "$(PYTHON_LIBS)/$(PACKAGE_NAME).pth"
+# -- autopep8                                                     autopep8 ----
+autopep8: $(VENV_DIR)/bin/activate
+	@echo "Formating code..."
+	@"$(VENV_DIR)"/bin/$(AUTOPEP) --aggressive --aggressive --in-place \
+		--recursive --global-config "$(PROJECT_DIR)"/.pep8 \
+		"$(SOURCE_DIR)/$(PACKAGE_NAME)"
+	@echo "Formating tests..."
+	@"$(VENV_DIR)"/bin/$(AUTOPEP) --aggressive --aggressive --in-place \
+		--recursive --global-config "$(PROJECT_DIR)"/.pep8 \
+		"$(PROJECT_DIR)/tests"
 
-.PHONY: doc
-doc:
-ifdef VIRTUAL_ENV
+# -- docs                                                             docs ----
+docs: $(VENV_DIR)/bin/activate
 	@echo "Generating documentation..."
-	@$(PDOC) --force --html --config show_source_code=False \
-		--output-dir "$(PROJECT_DIR)/docs" "$(PROJECT_DIR)/$(PACKAGE_NAME)"
+	@"$(VENV_DIR)"/bin/$(PDOC) --force --html --config show_source_code=False \
+		--output-dir "$(PROJECT_DIR)/docs" "$(SOURCE_DIR)/$(PACKAGE_NAME)"
 	@mv "$(PROJECT_DIR)/docs/$(PACKAGE_NAME)"/*.html "$(PROJECT_DIR)/docs/"
 	@rm -rf "$(PROJECT_DIR)/docs/$(PACKAGE_NAME)"
-else
-	@echo "venv not enabled."
-	@echo "Run 'source $(PROJECT_DIR)/venv/bin/activate' to enable the venv."
-endif
 
-.PHONY: lint
-lint:
-ifdef VIRTUAL_ENV
+# -- lint                                                             lint ----
+lint: $(VENV_DIR)/bin/activate
 	@echo "Checking the code..."
-	@$(PYLINT) -v --exit-zero --rcfile "$(PROJECT_DIR)/.pylintrc" \
-		"$(PROJECT_DIR)/$(PACKAGE_NAME)"
-else
-	@echo "venv not enabled."
-	@echo "Run 'source $(PROJECT_DIR)/venv/bin/activate' to enable the venv."
-endif
+	@"$(VENV_DIR)"/bin/$(PYLINT) --verbose --exit-zero \
+		--rcfile "$(PROJECT_DIR)/.pylintrc" \
+		"$(SOURCE_DIR)/$(PACKAGE_NAME)"
 
-.PHONY: publish publish-test
-publish:
-ifdef VIRTUAL_ENV
-  ifeq (,$(wildcard $(PROJECT_DIR)/dist))
-	@echo "Packages not found."
-	@echo "Run 'make build' first to create them."
-  else
-	@echo "Publishing to 'pypi.org'..."
-	@$(TWINE) upload "$(PROJECT_DIR)"/dist/*
-  endif
-else
-	@echo "venv not enabled."
-	@echo "Run 'source $(PROJECT_DIR)/venv/bin/activate' to enable the venv."
-endif
-
-publish-test:
-ifdef VIRTUAL_ENV
-  ifeq (,$(wildcard $(PROJECT_DIR)/dist))
-	@echo "Packages not found."
-	@echo "Run 'make build' first to create them."
-  else
-	@echo "Publishing to test.pypi.org..."
-	@$(TWINE) upload --repository testpypi "$(PROJECT_DIR)"/dist/*
-  endif
-else
-	@echo "venv not enabled."
-	@echo "Run 'source $(PROJECT_DIR)/venv/bin/activate' to enable the venv."
-endif
-
-.PHONY: stubs
-stubs:
-ifdef VIRTUAL_ENV
+# -- stubs                                                           stubs ----
+stubs: $(VENV_DIR)/bin/activate
 	@echo "Generating stubs..."
-	@$(STUBGEN) --export-less --package "$(PACKAGE_NAME)" \
-		--search-path "$(PROJECT_DIR)" --output .
-else
-	@echo "venv not enabled."
-	@echo "Run 'source $(PROJECT_DIR)/venv/bin/activate' to enable the venv."
-endif
+	@"$(VENV_DIR)"/bin/$(STUBGEN) --export-less --package "$(PACKAGE_NAME)" \
+		--search-path "$(SOURCE_DIR)" --output $(SOURCE_DIR)
 
-.PHONY: tests tests-debug
-tests:
-ifdef VIRTUAL_ENV
+# -- tests                                                           tests ----
+tests: $(VENV_DIR)/bin/activate
 	@echo "Running tests..."
+	@"$(VENV_DIR)"/bin/$(PYTEST) --quiet --no-header --color=auto \
+		--rootdir="$(PROJECT_DIR)"
+
+tests-verbose: $(VENV_DIR)/bin/activate
+	@echo "Running tests (verbose mode)..."
+	@"$(VENV_DIR)"/bin/$(PYTEST) --verbose --cache-clear --color=auto \
+		--capture=tee-sys --rootdir="$(PROJECT_DIR)"
+
+# Build Targets                                          Build Targets --------
+# -- build                                                           build ----
+build: $(VENV_DIR)/bin/activate clean-build
+	@echo "Building wheel..."
 	@cd "$(PROJECT_DIR)"
-	@$(PYTEST) --color=auto --quiet
+	@"$(VENV_DIR)"/bin/$(PYTHON) -m build
+
+# -- publish                                                       publish ----
+publish: $(VENV_DIR)/bin/activate
+ifeq (,$(wildcard $(PROJECT_DIR)/dist))
+	@echo "Packages not found."
+	@echo "Run 'make build' first to create them."
 else
-	@echo "venv not enabled."
-	@echo "Run 'source $(PROJECT_DIR)/venv/bin/activate' to enable the venv."
+	@echo "Publishing to 'pypi.org'..."
+	@"$(VENV_DIR)"/bin/$(TWINE) upload "$(PROJECT_DIR)"/dist/*
 endif
 
-tests-verbose:
-ifdef VIRTUAL_ENV
-	@echo "Running tests..."
-	@cd "$(PROJECT_DIR)"
-	@$(PYTEST) --cache-clear --color=auto --capture=tee-sys --verbose
+publish-test: $(VENV_DIR)/bin/activate
+ifeq (,$(wildcard $(PROJECT_DIR)/dist))
+	@echo "Packages not found."
+	@echo "Run 'make build' first to create them."
 else
-	@echo "venv not enabled."
-	@echo "Run 'source $(PROJECT_DIR)/venv/bin/activate' to enable the venv."
+	@echo "Publishing to test.pypi.org..."
+	@"$(VENV_DIR)"/bin/$(TWINE) upload --repository testpypi \
+		"$(PROJECT_DIR)"/dist/*
 endif
 
-.PHONY: help
+# Help Targets                                            Help Targets --------
+# -- help                                                             help ----
 help:
 	@echo "make <option>"
 	@echo
@@ -206,25 +185,27 @@ help:
 	@echo "  autopep8"
 	@echo "      Format the code."
 	@echo "  clean"
-	@echo "      Cleans the development environment."
+	@echo "      Cleans the project caches and builds."
 	@echo "  clean-all"
 	@echo "      Cleans everything."
 	@echo "  clean-cache"
 	@echo "      Cleans all Python (and tools) caches."
 	@echo "  clean-dev"
-	@echo "      Removes the entire dev environment."
-	@echo "  clean-doc"
+	@echo "      Removes the entire dev environment (venv)."
+	@echo "  clean-docs"
 	@echo "      Removes the documentation."
 	@echo "  dev"
-	@echo "      Prepares the dev environment for this project (including venv)."
-	@echo "  doc"
-	@echo "      Create project documentation."
+	@echo "      Creates the dev environment for this project (including venv)."
+	@echo "  docs"
+	@echo "      Creates the project documentation."
 	@echo "  lint"
 	@echo "      Check the project for code smells."
 	@echo "  stubs"
 	@echo "      Generates stubs for the project."
 	@echo "  tests"
 	@echo "      Runs the tests."
+	@echo "  tests-verbose"
+	@echo "      Runs the tests in verbose mode."
 	@echo
 	@echo "build options:"
 	@echo "  build"
