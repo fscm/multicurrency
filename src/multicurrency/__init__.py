@@ -268,8 +268,8 @@ instead of the `symbol`.
 
 ## Precision
 
-The multicurrency library has a user alterable precision (defaulting to 28
-places) which can be as large as needed for a given problem:
+The multicurrency library has a user alterable precision (defaulting to
+28 places) which can be as large as needed for a given problem:
 
     >>> from multicurrency import CurrencyContext, Euro
     >>> for precision in [1, 2, 3, 4, 5, 6]:

@@ -224,10 +224,12 @@ Args:
         * ROUND_CEILING: Round towards Infinity.
         * ROUND_DOWN: Round towards zero.
         * ROUND_FLOOR: Round towards negative Infinity.
-        * ROUND_HALF_DOWN: Round to nearest with ties going towards zero.
+        * ROUND_HALF_DOWN: Round to nearest with ties going towards
+            zero.
         * ROUND_HALF_EVEN: Round to nearest with ties going to nearest
             even integer.
-        * ROUND_HALF_UP: Round to nearest with ties going away from zero.
+        * ROUND_HALF_UP: Round to nearest with ties going away from
+            zero.
         * ROUND_UP: Round away from zero.
         * ROUND_05UP: Round away from zero if last digit after rounding
             towards zero would have been 0 or 5; otherwise round
@@ -871,7 +873,8 @@ class Currency:
         """Subtract `other` from this.
 
         Args:
-            other (multicurrency.currency.Currency): Currency to subtract.
+            other (multicurrency.currency.Currency): Currency to
+                subtract.
 
         Returns:
             Currency: result of the subtraction operation.
