@@ -1,4 +1,4 @@
-# Project Macros                                        Project Macros --------
+# Project Macros/Variables                    Project Macros/Variables --------
 MAKEFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
 PROJECT_DIR := $(realpath $(dir $(MAKEFILE_PATH)))
 PACKAGE_NAME := $(notdir $(PROJECT_DIR))
@@ -16,7 +16,7 @@ TWINE := twine
 # Shell                                                          Shell --------
 SHELL := /bin/sh
 
-# Python Macros                                          Python Macros --------
+# Python Macros/Variables                      Python Macros/Variables --------
 REQUIREMENTS := requirements.txt
 REQUIREMENTS_DEV := autopep8 build mypy pdoc3 pylint pytest pytest-cov \
 	pytest-mock twine
@@ -101,10 +101,8 @@ $(VENV_DIR)/bin/activate: $(PROJECT_DIR)/$(REQUIREMENTS)
 
 # -- dev                                                               dev ----
 dev: $(VENV_DIR)/bin/activate
-ifeq (,$(wildcard $(PYTHON_LIBS)/$(PACKAGE_NAME).pth))
 	@echo "Adding the project to Python libs..."
 	@echo "$(PROJECT_DIR)/src" > "$(PYTHON_LIBS)/$(PACKAGE_NAME).pth"
-endif
 
 # -- autopep8                                                     autopep8 ----
 autopep8: $(VENV_DIR)/bin/activate
