@@ -20,7 +20,7 @@ SHELL := /bin/sh
 REQUIREMENTS := requirements.txt
 REQUIREMENTS_DEV := autopep8 build mypy pdoc3 pylint pytest pytest-cov \
 	pytest-mock twine
-SOURCE_DIR := $(PROJECT_DIR)/src
+SOURCE_DIR := $(PROJECT_DIR)
 SOURCE_FILES := $(wildcard $(SOURCE_DIR)/$(PACKAGE_NAME)/*.py)
 VENV_DIR := $(PROJECT_DIR)/venv
 
