@@ -18,8 +18,7 @@ SHELL := /bin/sh
 
 # Python Macros/Variables                      Python Macros/Variables --------
 REQUIREMENTS := requirements.txt
-REQUIREMENTS_DEV := autopep8 build mypy pdoc3 pylint pytest pytest-cov \
-	pytest-mock twine
+REQUIREMENTS_DEV := requirements-dev.txt
 SOURCE_DIR := $(PROJECT_DIR)
 SOURCE_FILES := $(wildcard $(SOURCE_DIR)/$(PACKAGE_NAME)/*.py)
 VENV_DIR := $(PROJECT_DIR)/venv
@@ -96,8 +95,9 @@ $(VENV_DIR)/bin/activate: $(PROJECT_DIR)/$(REQUIREMENTS)
 	@echo "Creating the 'venv'..."
 	@$(PYTHON) -m venv "$(VENV_DIR)"
 	@echo "Instaling requirements..."
-	@"$(VENV_DIR)"/bin/$(PIP) --quiet install --upgrade --requirement \
-		"$(PROJECT_DIR)/$(REQUIREMENTS)" $(REQUIREMENTS_DEV)
+	@"$(VENV_DIR)"/bin/$(PIP) --quiet install --upgrade \
+		--requirement "$(PROJECT_DIR)/$(REQUIREMENTS)" \
+		--requirement "$(PROJECT_DIR)/$(REQUIREMENTS_DEV)"
 
 # -- dev                                                               dev ----
 dev: $(VENV_DIR)/bin/activate

@@ -11,6 +11,9 @@ from setuptools import setup
 from multicurrency import (
     __author__, __license__, __project__, __version__)
 
+with open('requirements.txt', 'r', encoding='utf-8') as r:
+    dependencies = [p.strip() for p in r if not p.strip().startswith('#')]
+
 if __name__ == '__main__':
     setup(
         author=__author__,
@@ -23,7 +26,8 @@ if __name__ == '__main__':
             'Topic :: Software Development :: Libraries',
             'Typing :: Typed'],
         description=('Currency representation library.'),
-        install_requires=[],
+        entry_points={},
+        install_requires=dependencies,
         license=__license__,
         long_description=open('README.md', 'r', encoding='utf-8').read(),
         long_description_content_type='text/markdown',
@@ -32,5 +36,4 @@ if __name__ == '__main__':
         package_data={'': ['LICENSE'], __project__: ['py.typed', '*.pyi']},
         python_requires='~=3.9',
         url='https://github.com/fscm/multicurrency',
-        version=__version__,
-        scripts=[])
+        version=__version__)
