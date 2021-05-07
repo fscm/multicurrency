@@ -93,7 +93,7 @@ clean-stubs:
 # -- venv                                                             venv ----
 $(VENV_DIR)/bin/activate: $(PROJECT_DIR)/$(REQUIREMENTS)
 	@echo "Creating the 'venv'..."
-	@$(PYTHON) -m venv "$(VENV_DIR)"
+	@$(PYTHON) -m venv --upgrade-deps "$(VENV_DIR)"
 	@echo "Instaling requirements..."
 	@"$(VENV_DIR)"/bin/$(PIP) --quiet install --upgrade \
 		--requirement "$(PROJECT_DIR)/$(REQUIREMENTS)" \
@@ -103,6 +103,15 @@ $(VENV_DIR)/bin/activate: $(PROJECT_DIR)/$(REQUIREMENTS)
 dev: $(VENV_DIR)/bin/activate
 	@echo "Adding the project to Python libs..."
 	@echo "$(PROJECT_DIR)/src" > "$(PYTHON_LIBS)/$(PACKAGE_NAME).pth"
+
+# -- dev-upgrade                                               dev-upgrade ----
+dev-upgrade:
+ifeq (,$(wildcard $(VENV_DIR)/bin/activate))
+	@echo "No 'venv' found. Create one first with 'make dev'."
+else
+	@echo "Upgrading the 'venv'..."
+	@$(PYTHON) -m venv --upgrade "$(VENV_DIR)"
+endif
 
 # -- autopep8                                                     autopep8 ----
 autopep8: $(VENV_DIR)/bin/activate
@@ -194,6 +203,8 @@ help:
 	@echo "      Removes the documentation."
 	@echo "  dev"
 	@echo "      Creates the dev environment for this project (including venv)."
+	@echo "  dev-upgrade"
+	@echo "      Upgrades the dev environment to the current Python version."
 	@echo "  docs"
 	@echo "      Creates the project documentation."
 	@echo "  lint"
