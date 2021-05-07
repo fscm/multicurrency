@@ -153,8 +153,8 @@ tests: $(VENV_DIR)/bin/activate
 
 tests-verbose: $(VENV_DIR)/bin/activate
 	@echo "Running tests (verbose mode)..."
-	@"$(VENV_DIR)"/bin/$(PYTEST) --verbose --cache-clear --color=auto \
-		--capture=tee-sys --rootdir="$(PROJECT_DIR)"
+	@"$(VENV_DIR)"/bin/$(PYTEST) --verbose --verbose --cache-clear \
+		--color=auto --capture=tee-sys --rootdir="$(PROJECT_DIR)"
 
 # Build Targets                                          Build Targets --------
 # -- build                                                           build ----
