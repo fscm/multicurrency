@@ -1,5 +1,20 @@
 # Changelog
 
+## [v0.5.0](https://github.com/fscm/multicurrency/tree/v0.5.0) (2021-05-10)
+
+### [changes](https://github.com/fscm/multicurrency/compare/v0.4.0...v0.5.0)
+
+* added '__rsub__' method and tests
+* added '__deepcopy__' method and tests
+* fix: 'Makefile' issue with project lib path
+* added  extra verbose arg to the 'Makefile' 'tests-v
+* dev-upgrade added to 'Makefile'
+* dev requirements changed to a file (requirements-dev.txt)
+* '.gitignore' file updated
+* feature: 'Changelog.md' file added
+* fix: fixed 'Makefile' issue with 'dev' target
+* documentation update
+
 ## [v0.4.0](https://github.com/fscm/multicurrency/tree/v0.4.0) (2021-04-22)
 
 ### [changes](https://github.com/fscm/multicurrency/compare/v0.3.0...v0.4.0)
