@@ -514,7 +514,7 @@ def test_currency_copy():
     """test_currency_copy."""
     new_currency = currency.__copy__()
     assert new_currency == currency
-    assert not new_currency is currency
+    assert new_currency is not currency
     assert new_currency.numeric_code == '978'
     assert new_currency.alpha_code == 'EUR'
     assert new_currency.decimal_places == 2
@@ -544,7 +544,7 @@ def test_currency_deepcopy():
     """test_currency_deepcopy."""
     new_currency = currency.__deepcopy__()
     assert new_currency == currency
-    assert not new_currency is currency
+    assert new_currency is not currency
     assert new_currency.numeric_code == '978'
     assert new_currency.alpha_code == 'EUR'
     assert new_currency.decimal_places == 2
