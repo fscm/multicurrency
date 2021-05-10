@@ -934,6 +934,7 @@ class Currency:
             convertion=self._convertion,
             international=self._international)
 
+    __deepcopy__: 'Currency' = __copy__
     __rmul__: 'Currency' = __mul__
 
     def is_signed(self) -> bool:

@@ -497,6 +497,37 @@ def test_currency_copy():
     """test_currency_copy."""
     new_currency = currency.__copy__()
     assert new_currency == currency
+    assert not new_currency is currency
+    assert new_currency.numeric_code == '978'
+    assert new_currency.alpha_code == 'EUR'
+    assert new_currency.decimal_places == 2
+    assert new_currency.decimal_sign == ','
+    assert new_currency.grouping_sign == '.'
+    assert new_currency.international
+    assert new_currency.symbol == '€'
+    assert new_currency.symbol_ahead
+    assert new_currency.symbol_separator == ''
+    assert new_currency.convertion == ''
+    assert new_currency.__repr__() == (
+        'Currency(amount: 0.1428571428571428571428571429, '
+        'alpha_code: "EUR", '
+        'symbol: "€", '
+        'symbol_ahead: True, '
+        'symbol_separator: "", '
+        'numeric_code: "978", '
+        'decimal_places: "2", '
+        'decimal_sign: ",", '
+        'grouping_sign: ".", '
+        'convertion: "", '
+        'international: True)')
+    assert new_currency.__str__() == 'EUR 0.14'
+
+
+def test_currency_deepcopy():
+    """test_currency_deepcopy."""
+    new_currency = currency.__deepcopy__()
+    assert new_currency == currency
+    assert not new_currency is currency
     assert new_currency.numeric_code == '978'
     assert new_currency.alpha_code == 'EUR'
     assert new_currency.decimal_places == 2
