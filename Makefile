@@ -102,7 +102,7 @@ $(VENV_DIR)/bin/activate: $(PROJECT_DIR)/$(REQUIREMENTS)
 # -- dev                                                               dev ----
 dev: $(VENV_DIR)/bin/activate
 	@echo "Adding the project to Python libs..."
-	@echo "$(PROJECT_DIR)/src" > "$(PYTHON_LIBS)/$(PACKAGE_NAME).pth"
+	@echo "$(SOURCE_DIR)" > "$(PYTHON_LIBS)/$(PACKAGE_NAME).pth"
 
 # -- dev-upgrade                                               dev-upgrade ----
 dev-upgrade:
