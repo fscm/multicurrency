@@ -850,6 +850,39 @@ class Currency:
             convertion=self._convertion,
             international=self._international)
 
+    def __rsub__(self, other: Any) -> 'Currency':
+        """Subtract this from `other`.
+
+        Args:
+            other (multicurrency.currency.Currency): Currency to
+                subtract from.
+
+        Returns:
+            Currency: result of the subtraction operation.
+
+        Raises:
+            CurrencyTypeException: If `other` not instance of
+                'Currency'.
+            CurrencyMismatchException: If `other.alpha_code` is
+                differente from `alpha_code`.
+        """
+        if not isinstance(other, self.__class__):
+            raise CurrencyTypeException(other, self)
+        if self._alpha_code != other.alpha_code:
+            raise CurrencyMismatchException(other.alpha_code, self._alpha_code)
+        return self.__class__(
+            amount=other.amount - self._amount,
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
+            symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
+            decimal_places=self._decimal_places,
+            decimal_sign=self._decimal_sign,
+            grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
+            international=self._international)
+
     def __str__(self) -> str:
         """String value of this class.
 

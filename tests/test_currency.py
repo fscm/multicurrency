@@ -440,6 +440,23 @@ def test_currency_math_mul_rmul():
     assert currency_euro_one.__mul__(3) == currency_euro_three
 
 
+def test_currency_math_rsub():
+    """test_currency_math_rsub."""
+    with raises(
+            CurrencyMismatchException,
+            match='unsupported operation between currency USD and EUR.'):
+        _ = currency_euro_one.__rsub__(currency_usd_one)
+    with raises(
+            CurrencyTypeException,
+            match=('unsupported operation between <class \'str\'> and '
+                   '<class \'multicurrency.currency.Currency\'>.')):
+        _ = currency_euro_one.__rsub__('1.00')
+    assert (currency_euro_one.__rsub__(currency_euro_three)) == (
+        currency_euro_two)
+    assert currency_euro_negative_one.__rsub__(
+        currency_euro_negative_three) == currency_euro_negative_two
+
+
 def test_currency_math_sub():
     """test_currency_math_sub."""
     with raises(
