@@ -2,12 +2,14 @@
 tools/generator/_multicurrency/*
 tools/generator/_tests/*
 venv/*
+.venv/*
 !.gitkeep
 
 # Python
 .cache
 .coverage
 .coverage.*
+.env
 .mypy_cache/
 .pytest_cache/
 __pycache__/

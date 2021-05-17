@@ -1,3 +1,9 @@
+# -*- coding: UTF-8 -*-
+#
+# copyright: 2020-2021, Frederico Martins
+# author: Frederico Martins <http://github.com/fscm>
+# license: SPDX-License-Identifier: MIT
+
 # Project Macros/Variables                    Project Macros/Variables --------
 MAKEFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
 PROJECT_DIR := $(realpath $(dir $(MAKEFILE_PATH)))
@@ -21,7 +27,7 @@ REQUIREMENTS := requirements.txt
 REQUIREMENTS_DEV := requirements-dev.txt
 SOURCE_DIR := $(PROJECT_DIR)
 SOURCE_FILES := $(wildcard $(SOURCE_DIR)/$(PACKAGE_NAME)/*.py)
-VENV_DIR := $(PROJECT_DIR)/venv
+VENV_DIR := $(PROJECT_DIR)/.venv
 
 PYTHON_LIBS = $(wildcard $(VENV_DIR)/lib/python*)/site-packages
 
@@ -61,15 +67,14 @@ clean-cache:
 	@echo "Cleaning cache..."
 	@rm -rf "$(PROJECT_DIR)"/.mypy_cache \
 		"$(PROJECT_DIR)"/.pytest_cache \
-		"$(SOURCE_DIR)/$(PACKAGE_NAME)"/__pycache__ \
-		"$(PROJECT_DIR)"/tests/__pycache__ \
 		"$(PROJECT_DIR)"/.coverage
-	@find "$(VENV_DIR)" -type f -name "*.pyc" -delete
+	@find "$(PROJECT_DIR)" -type f -name "*.py[co]" -delete \
+		-o -type d -name "__pycache__" -delete
 
 # -- clean dev                                                   clean dev ----
 clean-dev:
 	@echo "Deleting the 'venv'..."
-	@rm -rf "$(PROJECT_DIR)"/venv/*
+	@rm -rf "$(VENV_DIR)"/*
 ifdef VIRTUAL_ENV
 	@echo
 	@echo "!! Python venv active. !!"
