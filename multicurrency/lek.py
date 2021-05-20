@@ -20,7 +20,7 @@ class Lek(Currency):
         >>> lek = Lek(
         ...     amount=123456.789)
         >>> print(lek)
-        123 456,79 L
+        123 456,79 Lek
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -61,7 +61,7 @@ class Lek(Currency):
             amount=amount,
             alpha_code='ALL',
             numeric_code='008',
-            symbol='L',
+            symbol='Lek',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,

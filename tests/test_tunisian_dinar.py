@@ -29,7 +29,7 @@ def test_tunisian_dinar():
     assert tunisian_dinar.decimal_sign == ','
     assert tunisian_dinar.grouping_sign == '.'
     assert not tunisian_dinar.international
-    assert tunisian_dinar.symbol == 'د.ت'
+    assert tunisian_dinar.symbol == 'د.ت.'
     assert tunisian_dinar.symbol_ahead
     assert tunisian_dinar.symbol_separator == '\u00A0'
     assert tunisian_dinar.convertion == ''
@@ -37,7 +37,7 @@ def test_tunisian_dinar():
     assert tunisian_dinar.__repr__() == (
         'TunisianDinar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "TND", '
-        'symbol: "د.ت", '
+        'symbol: "د.ت.", '
         'symbol_ahead: True, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "788", '
@@ -46,7 +46,7 @@ def test_tunisian_dinar():
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
-    assert tunisian_dinar.__str__() == 'د.ت 0,143'
+    assert tunisian_dinar.__str__() == 'د.ت. 0,143'
 
 
 def test_tunisian_dinar_negative():
@@ -60,7 +60,7 @@ def test_tunisian_dinar_negative():
     assert tunisian_dinar.decimal_sign == ','
     assert tunisian_dinar.grouping_sign == '.'
     assert not tunisian_dinar.international
-    assert tunisian_dinar.symbol == 'د.ت'
+    assert tunisian_dinar.symbol == 'د.ت.'
     assert tunisian_dinar.symbol_ahead
     assert tunisian_dinar.symbol_separator == '\u00A0'
     assert tunisian_dinar.convertion == ''
@@ -68,7 +68,7 @@ def test_tunisian_dinar_negative():
     assert tunisian_dinar.__repr__() == (
         'TunisianDinar(amount: -100, '
         'alpha_code: "TND", '
-        'symbol: "د.ت", '
+        'symbol: "د.ت.", '
         'symbol_ahead: True, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "788", '
@@ -77,7 +77,7 @@ def test_tunisian_dinar_negative():
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
-    assert tunisian_dinar.__str__() == 'د.ت -100,000'
+    assert tunisian_dinar.__str__() == 'د.ت. -100,000'
 
 
 def test_tunisian_dinar_custom():
@@ -99,7 +99,7 @@ def test_tunisian_dinar_custom():
     assert tunisian_dinar.decimal_sign == '.'
     assert tunisian_dinar.grouping_sign == ','
     assert tunisian_dinar.international
-    assert tunisian_dinar.symbol == 'د.ت'
+    assert tunisian_dinar.symbol == 'د.ت.'
     assert not tunisian_dinar.symbol_ahead
     assert tunisian_dinar.symbol_separator == '_'
     assert tunisian_dinar.convertion == ''
@@ -107,7 +107,7 @@ def test_tunisian_dinar_custom():
     assert tunisian_dinar.__repr__() == (
         'TunisianDinar(amount: 1000, '
         'alpha_code: "TND", '
-        'symbol: "د.ت", '
+        'symbol: "د.ت.", '
         'symbol_ahead: False, '
         'symbol_separator: "_", '
         'numeric_code: "788", '

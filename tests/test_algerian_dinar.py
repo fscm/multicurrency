@@ -29,7 +29,7 @@ def test_algerian_dinar():
     assert algerian_dinar.decimal_sign == ','
     assert algerian_dinar.grouping_sign == '.'
     assert not algerian_dinar.international
-    assert algerian_dinar.symbol == 'د.ج'
+    assert algerian_dinar.symbol == 'د.ج.'
     assert not algerian_dinar.symbol_ahead
     assert algerian_dinar.symbol_separator == '\u00A0'
     assert algerian_dinar.convertion == ''
@@ -37,7 +37,7 @@ def test_algerian_dinar():
     assert algerian_dinar.__repr__() == (
         'AlgerianDinar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "DZD", '
-        'symbol: "د.ج", '
+        'symbol: "د.ج.", '
         'symbol_ahead: False, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "012", '
@@ -46,7 +46,7 @@ def test_algerian_dinar():
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
-    assert algerian_dinar.__str__() == '0,14 د.ج'
+    assert algerian_dinar.__str__() == '0,14 د.ج.'
 
 
 def test_algerian_dinar_negative():
@@ -60,7 +60,7 @@ def test_algerian_dinar_negative():
     assert algerian_dinar.decimal_sign == ','
     assert algerian_dinar.grouping_sign == '.'
     assert not algerian_dinar.international
-    assert algerian_dinar.symbol == 'د.ج'
+    assert algerian_dinar.symbol == 'د.ج.'
     assert not algerian_dinar.symbol_ahead
     assert algerian_dinar.symbol_separator == '\u00A0'
     assert algerian_dinar.convertion == ''
@@ -68,7 +68,7 @@ def test_algerian_dinar_negative():
     assert algerian_dinar.__repr__() == (
         'AlgerianDinar(amount: -100, '
         'alpha_code: "DZD", '
-        'symbol: "د.ج", '
+        'symbol: "د.ج.", '
         'symbol_ahead: False, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "012", '
@@ -77,7 +77,7 @@ def test_algerian_dinar_negative():
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
-    assert algerian_dinar.__str__() == '-100,00 د.ج'
+    assert algerian_dinar.__str__() == '-100,00 د.ج.'
 
 
 def test_algerian_dinar_custom():
@@ -99,7 +99,7 @@ def test_algerian_dinar_custom():
     assert algerian_dinar.decimal_sign == '.'
     assert algerian_dinar.grouping_sign == ','
     assert algerian_dinar.international
-    assert algerian_dinar.symbol == 'د.ج'
+    assert algerian_dinar.symbol == 'د.ج.'
     assert not algerian_dinar.symbol_ahead
     assert algerian_dinar.symbol_separator == '_'
     assert algerian_dinar.convertion == ''
@@ -107,7 +107,7 @@ def test_algerian_dinar_custom():
     assert algerian_dinar.__repr__() == (
         'AlgerianDinar(amount: 1000, '
         'alpha_code: "DZD", '
-        'symbol: "د.ج", '
+        'symbol: "د.ج.", '
         'symbol_ahead: False, '
         'symbol_separator: "_", '
         'numeric_code: "012", '

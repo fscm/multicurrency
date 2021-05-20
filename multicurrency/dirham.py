@@ -20,7 +20,7 @@ class UAEDirham(Currency):
         >>> uae_dirham = UAEDirham(
         ...     amount=123456.789)
         >>> print(uae_dirham)
-        ١٢٣٬٤٥٦٫٧٩ د.إ
+        د.إ. ١٢٣٬٤٥٦٫٧٩
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -36,7 +36,7 @@ class UAEDirham(Currency):
         symbol_separator (str, optional): Separation between the symbol
             and the value. Defaults to ' '.
         symbol_ahead (bool, optional): True if symbol goes ahead of the
-            value. False otherwise. Defaults to False.
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -48,7 +48,7 @@ class UAEDirham(Currency):
             decimal_sign: Optional[str] = '\u066B',
             grouping_sign: Optional[str] = '\u066C',
             international: Optional[bool] = False,
-            symbol_ahead: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'UAEDirham':
         """Class creator.
@@ -61,7 +61,7 @@ class UAEDirham(Currency):
             amount=amount,
             alpha_code='AED',
             numeric_code='784',
-            symbol='د.إ',
+            symbol='د.إ.',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
@@ -80,7 +80,7 @@ class MoroccanDirham(Currency):
         >>> moroccan_dirham = MoroccanDirham(
         ...     amount=123456.789)
         >>> print(moroccan_dirham)
-        ١٢٣٬٤٥٦٫٧٩ د.م.
+        د.م. ١٢٣٬٤٥٦٫٧٩
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -96,7 +96,7 @@ class MoroccanDirham(Currency):
         symbol_separator (str, optional): Separation between the symbol
             and the value. Defaults to ' '.
         symbol_ahead (bool, optional): True if symbol goes ahead of the
-            value. False otherwise. Defaults to False.
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -108,7 +108,7 @@ class MoroccanDirham(Currency):
             decimal_sign: Optional[str] = '\u066B',
             grouping_sign: Optional[str] = '\u066C',
             international: Optional[bool] = False,
-            symbol_ahead: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'MoroccanDirham':
         """Class creator.

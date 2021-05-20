@@ -29,7 +29,7 @@ def test_egyptian_pound():
     assert egyptian_pound.decimal_sign == '\u066B'
     assert egyptian_pound.grouping_sign == '\u066C'
     assert not egyptian_pound.international
-    assert egyptian_pound.symbol == 'ج.م'
+    assert egyptian_pound.symbol == 'ج.م.'
     assert egyptian_pound.symbol_ahead
     assert egyptian_pound.symbol_separator == '\u00A0'
     assert egyptian_pound.convertion == '٠١٢٣٤٥٦٧٨٩-'
@@ -37,7 +37,7 @@ def test_egyptian_pound():
     assert egyptian_pound.__repr__() == (
         'EgyptianPound(amount: 0.1428571428571428571428571429, '
         'alpha_code: "EGP", '
-        'symbol: "ج.م", '
+        'symbol: "ج.م.", '
         'symbol_ahead: True, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "818", '
@@ -46,7 +46,7 @@ def test_egyptian_pound():
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
-    assert egyptian_pound.__str__() == 'ج.م ٠٫١٤'
+    assert egyptian_pound.__str__() == 'ج.م. ٠٫١٤'
 
 
 def test_egyptian_pound_negative():
@@ -60,7 +60,7 @@ def test_egyptian_pound_negative():
     assert egyptian_pound.decimal_sign == '\u066B'
     assert egyptian_pound.grouping_sign == '\u066C'
     assert not egyptian_pound.international
-    assert egyptian_pound.symbol == 'ج.م'
+    assert egyptian_pound.symbol == 'ج.م.'
     assert egyptian_pound.symbol_ahead
     assert egyptian_pound.symbol_separator == '\u00A0'
     assert egyptian_pound.convertion == '٠١٢٣٤٥٦٧٨٩-'
@@ -68,7 +68,7 @@ def test_egyptian_pound_negative():
     assert egyptian_pound.__repr__() == (
         'EgyptianPound(amount: -100, '
         'alpha_code: "EGP", '
-        'symbol: "ج.م", '
+        'symbol: "ج.م.", '
         'symbol_ahead: True, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "818", '
@@ -77,7 +77,7 @@ def test_egyptian_pound_negative():
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
-    assert egyptian_pound.__str__() == 'ج.م -١٠٠٫٠٠'
+    assert egyptian_pound.__str__() == 'ج.م. -١٠٠٫٠٠'
 
 
 def test_egyptian_pound_custom():
@@ -99,7 +99,7 @@ def test_egyptian_pound_custom():
     assert egyptian_pound.decimal_sign == '\u066C'
     assert egyptian_pound.grouping_sign == '\u066B'
     assert egyptian_pound.international
-    assert egyptian_pound.symbol == 'ج.م'
+    assert egyptian_pound.symbol == 'ج.م.'
     assert not egyptian_pound.symbol_ahead
     assert egyptian_pound.symbol_separator == '_'
     assert egyptian_pound.convertion == '٠١٢٣٤٥٦٧٨٩-'
@@ -107,7 +107,7 @@ def test_egyptian_pound_custom():
     assert egyptian_pound.__repr__() == (
         'EgyptianPound(amount: 1000, '
         'alpha_code: "EGP", '
-        'symbol: "ج.م", '
+        'symbol: "ج.م.", '
         'symbol_ahead: False, '
         'symbol_separator: "_", '
         'numeric_code: "818", '

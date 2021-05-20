@@ -29,16 +29,16 @@ def test_uae_dirham():
     assert uae_dirham.decimal_sign == '\u066B'
     assert uae_dirham.grouping_sign == '\u066C'
     assert not uae_dirham.international
-    assert uae_dirham.symbol == 'د.إ'
-    assert not uae_dirham.symbol_ahead
+    assert uae_dirham.symbol == 'د.إ.'
+    assert uae_dirham.symbol_ahead
     assert uae_dirham.symbol_separator == '\u00A0'
     assert uae_dirham.convertion == '٠١٢٣٤٥٦٧٨٩-'
     assert uae_dirham.__hash__() == hash((decimal, 'AED', '784'))
     assert uae_dirham.__repr__() == (
         'UAEDirham(amount: 0.1428571428571428571428571429, '
         'alpha_code: "AED", '
-        'symbol: "د.إ", '
-        'symbol_ahead: False, '
+        'symbol: "د.إ.", '
+        'symbol_ahead: True, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "784", '
         'decimal_places: "2", '
@@ -46,7 +46,7 @@ def test_uae_dirham():
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
-    assert uae_dirham.__str__() == '٠٫١٤ د.إ'
+    assert uae_dirham.__str__() == 'د.إ. ٠٫١٤'
 
 
 def test_uae_dirham_negative():
@@ -60,16 +60,16 @@ def test_uae_dirham_negative():
     assert uae_dirham.decimal_sign == '\u066B'
     assert uae_dirham.grouping_sign == '\u066C'
     assert not uae_dirham.international
-    assert uae_dirham.symbol == 'د.إ'
-    assert not uae_dirham.symbol_ahead
+    assert uae_dirham.symbol == 'د.إ.'
+    assert uae_dirham.symbol_ahead
     assert uae_dirham.symbol_separator == '\u00A0'
     assert uae_dirham.convertion == '٠١٢٣٤٥٦٧٨٩-'
     assert uae_dirham.__hash__() == hash((decimal, 'AED', '784'))
     assert uae_dirham.__repr__() == (
         'UAEDirham(amount: -100, '
         'alpha_code: "AED", '
-        'symbol: "د.إ", '
-        'symbol_ahead: False, '
+        'symbol: "د.إ.", '
+        'symbol_ahead: True, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "784", '
         'decimal_places: "2", '
@@ -77,7 +77,7 @@ def test_uae_dirham_negative():
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
-    assert uae_dirham.__str__() == '-١٠٠٫٠٠ د.إ'
+    assert uae_dirham.__str__() == 'د.إ. -١٠٠٫٠٠'
 
 
 def test_uae_dirham_custom():
@@ -99,7 +99,7 @@ def test_uae_dirham_custom():
     assert uae_dirham.decimal_sign == '\u066C'
     assert uae_dirham.grouping_sign == '\u066B'
     assert uae_dirham.international
-    assert uae_dirham.symbol == 'د.إ'
+    assert uae_dirham.symbol == 'د.إ.'
     assert not uae_dirham.symbol_ahead
     assert uae_dirham.symbol_separator == '_'
     assert uae_dirham.convertion == '٠١٢٣٤٥٦٧٨٩-'
@@ -107,7 +107,7 @@ def test_uae_dirham_custom():
     assert uae_dirham.__repr__() == (
         'UAEDirham(amount: 1000, '
         'alpha_code: "AED", '
-        'symbol: "د.إ", '
+        'symbol: "د.إ.", '
         'symbol_ahead: False, '
         'symbol_separator: "_", '
         'numeric_code: "784", '

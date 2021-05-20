@@ -29,7 +29,7 @@ def test_serbian_dinar_sr():
     assert serbian_dinar_sr.decimal_sign == ','
     assert serbian_dinar_sr.grouping_sign == '\u202F'
     assert not serbian_dinar_sr.international
-    assert serbian_dinar_sr.symbol == 'дин'
+    assert serbian_dinar_sr.symbol == 'дин.'
     assert not serbian_dinar_sr.symbol_ahead
     assert serbian_dinar_sr.symbol_separator == '\u00A0'
     assert serbian_dinar_sr.convertion == ''
@@ -37,7 +37,7 @@ def test_serbian_dinar_sr():
     assert serbian_dinar_sr.__repr__() == (
         'SerbianDinarSR(amount: 0.1428571428571428571428571429, '
         'alpha_code: "RSD", '
-        'symbol: "дин", '
+        'symbol: "дин.", '
         'symbol_ahead: False, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "941", '
@@ -46,7 +46,7 @@ def test_serbian_dinar_sr():
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
-    assert serbian_dinar_sr.__str__() == '0,14 дин'
+    assert serbian_dinar_sr.__str__() == '0,14 дин.'
 
 
 def test_serbian_dinar_sr_negative():
@@ -60,7 +60,7 @@ def test_serbian_dinar_sr_negative():
     assert serbian_dinar_sr.decimal_sign == ','
     assert serbian_dinar_sr.grouping_sign == '\u202F'
     assert not serbian_dinar_sr.international
-    assert serbian_dinar_sr.symbol == 'дин'
+    assert serbian_dinar_sr.symbol == 'дин.'
     assert not serbian_dinar_sr.symbol_ahead
     assert serbian_dinar_sr.symbol_separator == '\u00A0'
     assert serbian_dinar_sr.convertion == ''
@@ -68,7 +68,7 @@ def test_serbian_dinar_sr_negative():
     assert serbian_dinar_sr.__repr__() == (
         'SerbianDinarSR(amount: -100, '
         'alpha_code: "RSD", '
-        'symbol: "дин", '
+        'symbol: "дин.", '
         'symbol_ahead: False, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "941", '
@@ -77,7 +77,7 @@ def test_serbian_dinar_sr_negative():
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
-    assert serbian_dinar_sr.__str__() == '-100,00 дин'
+    assert serbian_dinar_sr.__str__() == '-100,00 дин.'
 
 
 def test_serbian_dinar_sr_custom():
@@ -99,7 +99,7 @@ def test_serbian_dinar_sr_custom():
     assert serbian_dinar_sr.decimal_sign == '\u202F'
     assert serbian_dinar_sr.grouping_sign == ','
     assert serbian_dinar_sr.international
-    assert serbian_dinar_sr.symbol == 'дин'
+    assert serbian_dinar_sr.symbol == 'дин.'
     assert not serbian_dinar_sr.symbol_ahead
     assert serbian_dinar_sr.symbol_separator == '_'
     assert serbian_dinar_sr.convertion == ''
@@ -107,7 +107,7 @@ def test_serbian_dinar_sr_custom():
     assert serbian_dinar_sr.__repr__() == (
         'SerbianDinarSR(amount: 1000, '
         'alpha_code: "RSD", '
-        'symbol: "дин", '
+        'symbol: "дин.", '
         'symbol_ahead: False, '
         'symbol_separator: "_", '
         'numeric_code: "941", '

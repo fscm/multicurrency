@@ -20,7 +20,7 @@ class BahrainiDinar(Currency):
         >>> bahraini_dinar = BahrainiDinar(
         ...     amount=123456.789)
         >>> print(bahraini_dinar)
-        ١٢٣٬٤٥٦٫٧٨٩ ب.د
+        د.ب. ١٢٣٬٤٥٦٫٧٨٩
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -36,7 +36,7 @@ class BahrainiDinar(Currency):
         symbol_separator (str, optional): Separation between the symbol
             and the value. Defaults to ' '.
         symbol_ahead (bool, optional): True if symbol goes ahead of the
-            value. False otherwise. Defaults to False.
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -48,7 +48,7 @@ class BahrainiDinar(Currency):
             decimal_sign: Optional[str] = '\u066B',
             grouping_sign: Optional[str] = '\u066C',
             international: Optional[bool] = False,
-            symbol_ahead: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'BahrainiDinar':
         """Class creator.
@@ -61,7 +61,7 @@ class BahrainiDinar(Currency):
             amount=amount,
             alpha_code='BHD',
             numeric_code='048',
-            symbol='ب.د',
+            symbol='د.ب.',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
@@ -80,7 +80,7 @@ class AlgerianDinar(Currency):
         >>> algerian_dinar = AlgerianDinar(
         ...     amount=123456.789)
         >>> print(algerian_dinar)
-        123.456,79 د.ج
+        123.456,79 د.ج.
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -121,7 +121,7 @@ class AlgerianDinar(Currency):
             amount=amount,
             alpha_code='DZD',
             numeric_code='012',
-            symbol='د.ج',
+            symbol='د.ج.',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
@@ -140,7 +140,7 @@ class IraqiDinar(Currency):
         >>> iraqi_dinar = IraqiDinar(
         ...     amount=123456.789)
         >>> print(iraqi_dinar)
-        ع.د ١٢٣٬٤٥٦٫٧٨٩
+        د.ع. ١٢٣٬٤٥٦٫٧٨٩
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -181,7 +181,7 @@ class IraqiDinar(Currency):
             amount=amount,
             alpha_code='IQD',
             numeric_code='368',
-            symbol='ع.د',
+            symbol='د.ع.',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
@@ -200,7 +200,7 @@ class JordanianDinar(Currency):
         >>> jordanian_dinar = JordanianDinar(
         ...     amount=123456.789)
         >>> print(jordanian_dinar)
-        د.ا ١٢٣٬٤٥٦٫٧٨٩
+        د.أ. ١٢٣٬٤٥٦٫٧٨٩
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -241,7 +241,7 @@ class JordanianDinar(Currency):
             amount=amount,
             alpha_code='JOD',
             numeric_code='400',
-            symbol='د.ا',
+            symbol='د.أ.',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
@@ -260,7 +260,7 @@ class KuwaitiDinar(Currency):
         >>> kuwaiti_dinar = KuwaitiDinar(
         ...     amount=123456.789)
         >>> print(kuwaiti_dinar)
-        د.ك ١٢٣٬٤٥٦٫٧٨٩
+        د.ك. ١٢٣٬٤٥٦٫٧٨٩
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -301,7 +301,7 @@ class KuwaitiDinar(Currency):
             amount=amount,
             alpha_code='KWD',
             numeric_code='414',
-            symbol='د.ك',
+            symbol='د.ك.',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
@@ -320,7 +320,7 @@ class LibyanDinar(Currency):
         >>> libyan_dinar = LibyanDinar(
         ...     amount=123456.789)
         >>> print(libyan_dinar)
-        ل.د 123.456,789
+        د.ل. 123.456,789
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -361,7 +361,7 @@ class LibyanDinar(Currency):
             amount=amount,
             alpha_code='LYD',
             numeric_code='434',
-            symbol='ل.د',
+            symbol='د.ل.',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
@@ -380,7 +380,7 @@ class SerbianDinarXK(Currency):
         >>> serbian_dinar_xk = SerbianDinarXK(
         ...     amount=123456.789)
         >>> print(serbian_dinar_xk)
-        123.456,79 дин
+        123.456,79 дин.
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -421,7 +421,7 @@ class SerbianDinarXK(Currency):
             amount=amount,
             alpha_code='RSD',
             numeric_code='941',
-            symbol='дин',
+            symbol='дин.',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
@@ -440,7 +440,7 @@ class SerbianDinarSR(Currency):
         >>> serbian_dinar_sr = SerbianDinarSR(
         ...     amount=123456.789)
         >>> print(serbian_dinar_sr)
-        123 456,79 дин
+        123 456,79 дин.
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -481,7 +481,7 @@ class SerbianDinarSR(Currency):
             amount=amount,
             alpha_code='RSD',
             numeric_code='941',
-            symbol='дин',
+            symbol='дин.',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
@@ -500,7 +500,7 @@ class TunisianDinar(Currency):
         >>> tunisian_dinar = TunisianDinar(
         ...     amount=123456.789)
         >>> print(tunisian_dinar)
-        د.ت 123.456,789
+        د.ت. 123.456,789
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -541,7 +541,7 @@ class TunisianDinar(Currency):
             amount=amount,
             alpha_code='TND',
             numeric_code='788',
-            symbol='د.ت',
+            symbol='د.ت.',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,

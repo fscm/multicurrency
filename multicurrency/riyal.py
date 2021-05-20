@@ -20,7 +20,7 @@ class SaudiRiyal(Currency):
         >>> saudi_riyal = SaudiRiyal(
         ...     amount=123456.789)
         >>> print(saudi_riyal)
-        ١٢٣٬٤٥٦٫٧٩ ر.س
+        ر.س. ١٢٣٬٤٥٦٫٧٩
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -36,7 +36,7 @@ class SaudiRiyal(Currency):
         symbol_separator (str, optional): Separation between the symbol
             and the value. Defaults to ' '.
         symbol_ahead (bool, optional): True if symbol goes ahead of the
-            value. False otherwise. Defaults to False.
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -48,7 +48,7 @@ class SaudiRiyal(Currency):
             decimal_sign: Optional[str] = '\u066B',
             grouping_sign: Optional[str] = '\u066C',
             international: Optional[bool] = False,
-            symbol_ahead: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'SaudiRiyal':
         """Class creator.
@@ -61,7 +61,7 @@ class SaudiRiyal(Currency):
             amount=amount,
             alpha_code='SAR',
             numeric_code='682',
-            symbol='ر.س',
+            symbol='ر.س.',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,

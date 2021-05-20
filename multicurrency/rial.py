@@ -80,7 +80,7 @@ class RialOmani(Currency):
         >>> rial_omani = RialOmani(
         ...     amount=123456.789)
         >>> print(rial_omani)
-        ١٢٣٬٤٥٦٫٧٨٩ ر.ع.
+        ر.ع. ١٢٣٬٤٥٦٫٧٨٩
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -96,7 +96,7 @@ class RialOmani(Currency):
         symbol_separator (str, optional): Separation between the symbol
             and the value. Defaults to ' '.
         symbol_ahead (bool, optional): True if symbol goes ahead of the
-            value. False otherwise. Defaults to False.
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -108,7 +108,7 @@ class RialOmani(Currency):
             decimal_sign: Optional[str] = '\u066B',
             grouping_sign: Optional[str] = '\u066C',
             international: Optional[bool] = False,
-            symbol_ahead: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'RialOmani':
         """Class creator.
@@ -140,7 +140,7 @@ class QatariRial(Currency):
         >>> qatari_rial = QatariRial(
         ...     amount=123456.789)
         >>> print(qatari_rial)
-        ١٢٣٬٤٥٦٫٧٩ ر.ق
+        ر.ق. ١٢٣٬٤٥٦٫٧٩
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -156,7 +156,7 @@ class QatariRial(Currency):
         symbol_separator (str, optional): Separation between the symbol
             and the value. Defaults to ' '.
         symbol_ahead (bool, optional): True if symbol goes ahead of the
-            value. False otherwise. Defaults to False.
+            value. False otherwise. Defaults to True.
     """
 
     __slots__ = []
@@ -168,7 +168,7 @@ class QatariRial(Currency):
             decimal_sign: Optional[str] = '\u066B',
             grouping_sign: Optional[str] = '\u066C',
             international: Optional[bool] = False,
-            symbol_ahead: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
             **other) -> 'QatariRial':
         """Class creator.
@@ -181,7 +181,7 @@ class QatariRial(Currency):
             amount=amount,
             alpha_code='QAR',
             numeric_code='634',
-            symbol='ر.ق',
+            symbol='ر.ق.',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,

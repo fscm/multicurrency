@@ -30,7 +30,7 @@ def test_rial_omani():
     assert rial_omani.grouping_sign == '\u066C'
     assert not rial_omani.international
     assert rial_omani.symbol == 'ر.ع.'
-    assert not rial_omani.symbol_ahead
+    assert rial_omani.symbol_ahead
     assert rial_omani.symbol_separator == '\u00A0'
     assert rial_omani.convertion == '٠١٢٣٤٥٦٧٨٩-'
     assert rial_omani.__hash__() == hash((decimal, 'OMR', '512'))
@@ -38,7 +38,7 @@ def test_rial_omani():
         'RialOmani(amount: 0.1428571428571428571428571429, '
         'alpha_code: "OMR", '
         'symbol: "ر.ع.", '
-        'symbol_ahead: False, '
+        'symbol_ahead: True, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "512", '
         'decimal_places: "3", '
@@ -46,7 +46,7 @@ def test_rial_omani():
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
-    assert rial_omani.__str__() == '٠٫١٤٣ ر.ع.'
+    assert rial_omani.__str__() == 'ر.ع. ٠٫١٤٣'
 
 
 def test_rial_omani_negative():
@@ -61,7 +61,7 @@ def test_rial_omani_negative():
     assert rial_omani.grouping_sign == '\u066C'
     assert not rial_omani.international
     assert rial_omani.symbol == 'ر.ع.'
-    assert not rial_omani.symbol_ahead
+    assert rial_omani.symbol_ahead
     assert rial_omani.symbol_separator == '\u00A0'
     assert rial_omani.convertion == '٠١٢٣٤٥٦٧٨٩-'
     assert rial_omani.__hash__() == hash((decimal, 'OMR', '512'))
@@ -69,7 +69,7 @@ def test_rial_omani_negative():
         'RialOmani(amount: -100, '
         'alpha_code: "OMR", '
         'symbol: "ر.ع.", '
-        'symbol_ahead: False, '
+        'symbol_ahead: True, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "512", '
         'decimal_places: "3", '
@@ -77,7 +77,7 @@ def test_rial_omani_negative():
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
-    assert rial_omani.__str__() == '-١٠٠٫٠٠٠ ر.ع.'
+    assert rial_omani.__str__() == 'ر.ع. -١٠٠٫٠٠٠'
 
 
 def test_rial_omani_custom():

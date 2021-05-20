@@ -20,7 +20,7 @@ class BolivarFuerte(Currency):
         >>> bolivar_fuerte = BolivarFuerte(
         ...     amount=123456.789)
         >>> print(bolivar_fuerte)
-        Bs.F 123.456,79
+        Bs.F. 123.456,79
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -61,7 +61,7 @@ class BolivarFuerte(Currency):
             amount=amount,
             alpha_code='VEF',
             numeric_code='937',
-            symbol='Bs.F',
+            symbol='Bs.F.',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,

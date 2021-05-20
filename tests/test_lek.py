@@ -29,7 +29,7 @@ def test_lek():
     assert lek.decimal_sign == ','
     assert lek.grouping_sign == '\u202F'
     assert not lek.international
-    assert lek.symbol == 'L'
+    assert lek.symbol == 'Lek'
     assert not lek.symbol_ahead
     assert lek.symbol_separator == '\u00A0'
     assert lek.convertion == ''
@@ -37,7 +37,7 @@ def test_lek():
     assert lek.__repr__() == (
         'Lek(amount: 0.1428571428571428571428571429, '
         'alpha_code: "ALL", '
-        'symbol: "L", '
+        'symbol: "Lek", '
         'symbol_ahead: False, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "008", '
@@ -46,7 +46,7 @@ def test_lek():
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
-    assert lek.__str__() == '0,14 L'
+    assert lek.__str__() == '0,14 Lek'
 
 
 def test_lek_negative():
@@ -60,7 +60,7 @@ def test_lek_negative():
     assert lek.decimal_sign == ','
     assert lek.grouping_sign == '\u202F'
     assert not lek.international
-    assert lek.symbol == 'L'
+    assert lek.symbol == 'Lek'
     assert not lek.symbol_ahead
     assert lek.symbol_separator == '\u00A0'
     assert lek.convertion == ''
@@ -68,7 +68,7 @@ def test_lek_negative():
     assert lek.__repr__() == (
         'Lek(amount: -100, '
         'alpha_code: "ALL", '
-        'symbol: "L", '
+        'symbol: "Lek", '
         'symbol_ahead: False, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "008", '
@@ -77,7 +77,7 @@ def test_lek_negative():
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
-    assert lek.__str__() == '-100,00 L'
+    assert lek.__str__() == '-100,00 Lek'
 
 
 def test_lek_custom():
@@ -99,7 +99,7 @@ def test_lek_custom():
     assert lek.decimal_sign == '\u202F'
     assert lek.grouping_sign == ','
     assert lek.international
-    assert lek.symbol == 'L'
+    assert lek.symbol == 'Lek'
     assert not lek.symbol_ahead
     assert lek.symbol_separator == '_'
     assert lek.convertion == ''
@@ -107,7 +107,7 @@ def test_lek_custom():
     assert lek.__repr__() == (
         'Lek(amount: 1000, '
         'alpha_code: "ALL", '
-        'symbol: "L", '
+        'symbol: "Lek", '
         'symbol_ahead: False, '
         'symbol_separator: "_", '
         'numeric_code: "008", '

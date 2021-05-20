@@ -29,7 +29,7 @@ def test_libyan_dinar():
     assert libyan_dinar.decimal_sign == ','
     assert libyan_dinar.grouping_sign == '.'
     assert not libyan_dinar.international
-    assert libyan_dinar.symbol == 'ل.د'
+    assert libyan_dinar.symbol == 'د.ل.'
     assert libyan_dinar.symbol_ahead
     assert libyan_dinar.symbol_separator == '\u00A0'
     assert libyan_dinar.convertion == ''
@@ -37,7 +37,7 @@ def test_libyan_dinar():
     assert libyan_dinar.__repr__() == (
         'LibyanDinar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "LYD", '
-        'symbol: "ل.د", '
+        'symbol: "د.ل.", '
         'symbol_ahead: True, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "434", '
@@ -46,7 +46,7 @@ def test_libyan_dinar():
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
-    assert libyan_dinar.__str__() == 'ل.د 0,143'
+    assert libyan_dinar.__str__() == 'د.ل. 0,143'
 
 
 def test_libyan_dinar_negative():
@@ -60,7 +60,7 @@ def test_libyan_dinar_negative():
     assert libyan_dinar.decimal_sign == ','
     assert libyan_dinar.grouping_sign == '.'
     assert not libyan_dinar.international
-    assert libyan_dinar.symbol == 'ل.د'
+    assert libyan_dinar.symbol == 'د.ل.'
     assert libyan_dinar.symbol_ahead
     assert libyan_dinar.symbol_separator == '\u00A0'
     assert libyan_dinar.convertion == ''
@@ -68,7 +68,7 @@ def test_libyan_dinar_negative():
     assert libyan_dinar.__repr__() == (
         'LibyanDinar(amount: -100, '
         'alpha_code: "LYD", '
-        'symbol: "ل.د", '
+        'symbol: "د.ل.", '
         'symbol_ahead: True, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "434", '
@@ -77,7 +77,7 @@ def test_libyan_dinar_negative():
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
-    assert libyan_dinar.__str__() == 'ل.د -100,000'
+    assert libyan_dinar.__str__() == 'د.ل. -100,000'
 
 
 def test_libyan_dinar_custom():
@@ -99,7 +99,7 @@ def test_libyan_dinar_custom():
     assert libyan_dinar.decimal_sign == '.'
     assert libyan_dinar.grouping_sign == ','
     assert libyan_dinar.international
-    assert libyan_dinar.symbol == 'ل.د'
+    assert libyan_dinar.symbol == 'د.ل.'
     assert not libyan_dinar.symbol_ahead
     assert libyan_dinar.symbol_separator == '_'
     assert libyan_dinar.convertion == ''
@@ -107,7 +107,7 @@ def test_libyan_dinar_custom():
     assert libyan_dinar.__repr__() == (
         'LibyanDinar(amount: 1000, '
         'alpha_code: "LYD", '
-        'symbol: "ل.د", '
+        'symbol: "د.ل.", '
         'symbol_ahead: False, '
         'symbol_separator: "_", '
         'numeric_code: "434", '

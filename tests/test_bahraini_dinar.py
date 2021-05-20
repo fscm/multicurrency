@@ -29,16 +29,16 @@ def test_bahraini_dinar():
     assert bahraini_dinar.decimal_sign == '\u066B'
     assert bahraini_dinar.grouping_sign == '\u066C'
     assert not bahraini_dinar.international
-    assert bahraini_dinar.symbol == 'ب.د'
-    assert not bahraini_dinar.symbol_ahead
+    assert bahraini_dinar.symbol == 'د.ب.'
+    assert bahraini_dinar.symbol_ahead
     assert bahraini_dinar.symbol_separator == '\u00A0'
     assert bahraini_dinar.convertion == '٠١٢٣٤٥٦٧٨٩-'
     assert bahraini_dinar.__hash__() == hash((decimal, 'BHD', '048'))
     assert bahraini_dinar.__repr__() == (
         'BahrainiDinar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "BHD", '
-        'symbol: "ب.د", '
-        'symbol_ahead: False, '
+        'symbol: "د.ب.", '
+        'symbol_ahead: True, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "048", '
         'decimal_places: "3", '
@@ -46,7 +46,7 @@ def test_bahraini_dinar():
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
-    assert bahraini_dinar.__str__() == '٠٫١٤٣ ب.د'
+    assert bahraini_dinar.__str__() == 'د.ب. ٠٫١٤٣'
 
 
 def test_bahraini_dinar_negative():
@@ -60,16 +60,16 @@ def test_bahraini_dinar_negative():
     assert bahraini_dinar.decimal_sign == '\u066B'
     assert bahraini_dinar.grouping_sign == '\u066C'
     assert not bahraini_dinar.international
-    assert bahraini_dinar.symbol == 'ب.د'
-    assert not bahraini_dinar.symbol_ahead
+    assert bahraini_dinar.symbol == 'د.ب.'
+    assert bahraini_dinar.symbol_ahead
     assert bahraini_dinar.symbol_separator == '\u00A0'
     assert bahraini_dinar.convertion == '٠١٢٣٤٥٦٧٨٩-'
     assert bahraini_dinar.__hash__() == hash((decimal, 'BHD', '048'))
     assert bahraini_dinar.__repr__() == (
         'BahrainiDinar(amount: -100, '
         'alpha_code: "BHD", '
-        'symbol: "ب.د", '
-        'symbol_ahead: False, '
+        'symbol: "د.ب.", '
+        'symbol_ahead: True, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "048", '
         'decimal_places: "3", '
@@ -77,7 +77,7 @@ def test_bahraini_dinar_negative():
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
-    assert bahraini_dinar.__str__() == '-١٠٠٫٠٠٠ ب.د'
+    assert bahraini_dinar.__str__() == 'د.ب. -١٠٠٫٠٠٠'
 
 
 def test_bahraini_dinar_custom():
@@ -99,7 +99,7 @@ def test_bahraini_dinar_custom():
     assert bahraini_dinar.decimal_sign == '\u066C'
     assert bahraini_dinar.grouping_sign == '\u066B'
     assert bahraini_dinar.international
-    assert bahraini_dinar.symbol == 'ب.د'
+    assert bahraini_dinar.symbol == 'د.ب.'
     assert not bahraini_dinar.symbol_ahead
     assert bahraini_dinar.symbol_separator == '_'
     assert bahraini_dinar.convertion == '٠١٢٣٤٥٦٧٨٩-'
@@ -107,7 +107,7 @@ def test_bahraini_dinar_custom():
     assert bahraini_dinar.__repr__() == (
         'BahrainiDinar(amount: 1000, '
         'alpha_code: "BHD", '
-        'symbol: "ب.د", '
+        'symbol: "د.ب.", '
         'symbol_ahead: False, '
         'symbol_separator: "_", '
         'numeric_code: "048", '

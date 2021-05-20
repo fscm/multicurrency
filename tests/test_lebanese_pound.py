@@ -29,7 +29,7 @@ def test_lebanese_pound():
     assert lebanese_pound.decimal_sign == '\u066B'
     assert lebanese_pound.grouping_sign == '\u066C'
     assert not lebanese_pound.international
-    assert lebanese_pound.symbol == 'ل.ل'
+    assert lebanese_pound.symbol == 'ل.ل.'
     assert lebanese_pound.symbol_ahead
     assert lebanese_pound.symbol_separator == '\u00A0'
     assert lebanese_pound.convertion == '٠١٢٣٤٥٦٧٨٩-'
@@ -37,7 +37,7 @@ def test_lebanese_pound():
     assert lebanese_pound.__repr__() == (
         'LebanesePound(amount: 0.1428571428571428571428571429, '
         'alpha_code: "LBP", '
-        'symbol: "ل.ل", '
+        'symbol: "ل.ل.", '
         'symbol_ahead: True, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "422", '
@@ -46,7 +46,7 @@ def test_lebanese_pound():
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
-    assert lebanese_pound.__str__() == 'ل.ل ٠'
+    assert lebanese_pound.__str__() == 'ل.ل. ٠'
 
 
 def test_lebanese_pound_negative():
@@ -60,7 +60,7 @@ def test_lebanese_pound_negative():
     assert lebanese_pound.decimal_sign == '\u066B'
     assert lebanese_pound.grouping_sign == '\u066C'
     assert not lebanese_pound.international
-    assert lebanese_pound.symbol == 'ل.ل'
+    assert lebanese_pound.symbol == 'ل.ل.'
     assert lebanese_pound.symbol_ahead
     assert lebanese_pound.symbol_separator == '\u00A0'
     assert lebanese_pound.convertion == '٠١٢٣٤٥٦٧٨٩-'
@@ -68,7 +68,7 @@ def test_lebanese_pound_negative():
     assert lebanese_pound.__repr__() == (
         'LebanesePound(amount: -100, '
         'alpha_code: "LBP", '
-        'symbol: "ل.ل", '
+        'symbol: "ل.ل.", '
         'symbol_ahead: True, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "422", '
@@ -77,7 +77,7 @@ def test_lebanese_pound_negative():
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
-    assert lebanese_pound.__str__() == 'ل.ل -١٠٠'
+    assert lebanese_pound.__str__() == 'ل.ل. -١٠٠'
 
 
 def test_lebanese_pound_custom():
@@ -99,7 +99,7 @@ def test_lebanese_pound_custom():
     assert lebanese_pound.decimal_sign == '\u066C'
     assert lebanese_pound.grouping_sign == '\u066B'
     assert lebanese_pound.international
-    assert lebanese_pound.symbol == 'ل.ل'
+    assert lebanese_pound.symbol == 'ل.ل.'
     assert not lebanese_pound.symbol_ahead
     assert lebanese_pound.symbol_separator == '_'
     assert lebanese_pound.convertion == '٠١٢٣٤٥٦٧٨٩-'
@@ -107,7 +107,7 @@ def test_lebanese_pound_custom():
     assert lebanese_pound.__repr__() == (
         'LebanesePound(amount: 1000, '
         'alpha_code: "LBP", '
-        'symbol: "ل.ل", '
+        'symbol: "ل.ل.", '
         'symbol_ahead: False, '
         'symbol_separator: "_", '
         'numeric_code: "422", '

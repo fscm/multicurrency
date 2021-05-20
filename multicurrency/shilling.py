@@ -80,7 +80,7 @@ class SomaliShilling(Currency):
         >>> somali_shilling = SomaliShilling(
         ...     amount=123456.789)
         >>> print(somali_shilling)
-        Sh 123,456.79
+        SSh 123,456.79
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -121,7 +121,7 @@ class SomaliShilling(Currency):
             amount=amount,
             alpha_code='SOS',
             numeric_code='706',
-            symbol='Sh',
+            symbol='SSh',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,

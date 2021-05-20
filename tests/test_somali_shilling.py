@@ -29,7 +29,7 @@ def test_somali_shilling():
     assert somali_shilling.decimal_sign == '.'
     assert somali_shilling.grouping_sign == ','
     assert not somali_shilling.international
-    assert somali_shilling.symbol == 'Sh'
+    assert somali_shilling.symbol == 'SSh'
     assert somali_shilling.symbol_ahead
     assert somali_shilling.symbol_separator == '\u00A0'
     assert somali_shilling.convertion == ''
@@ -37,7 +37,7 @@ def test_somali_shilling():
     assert somali_shilling.__repr__() == (
         'SomaliShilling(amount: 0.1428571428571428571428571429, '
         'alpha_code: "SOS", '
-        'symbol: "Sh", '
+        'symbol: "SSh", '
         'symbol_ahead: True, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "706", '
@@ -46,7 +46,7 @@ def test_somali_shilling():
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
-    assert somali_shilling.__str__() == 'Sh 0.14'
+    assert somali_shilling.__str__() == 'SSh 0.14'
 
 
 def test_somali_shilling_negative():
@@ -60,7 +60,7 @@ def test_somali_shilling_negative():
     assert somali_shilling.decimal_sign == '.'
     assert somali_shilling.grouping_sign == ','
     assert not somali_shilling.international
-    assert somali_shilling.symbol == 'Sh'
+    assert somali_shilling.symbol == 'SSh'
     assert somali_shilling.symbol_ahead
     assert somali_shilling.symbol_separator == '\u00A0'
     assert somali_shilling.convertion == ''
@@ -68,7 +68,7 @@ def test_somali_shilling_negative():
     assert somali_shilling.__repr__() == (
         'SomaliShilling(amount: -100, '
         'alpha_code: "SOS", '
-        'symbol: "Sh", '
+        'symbol: "SSh", '
         'symbol_ahead: True, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "706", '
@@ -77,7 +77,7 @@ def test_somali_shilling_negative():
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
-    assert somali_shilling.__str__() == 'Sh -100.00'
+    assert somali_shilling.__str__() == 'SSh -100.00'
 
 
 def test_somali_shilling_custom():
@@ -99,7 +99,7 @@ def test_somali_shilling_custom():
     assert somali_shilling.decimal_sign == ','
     assert somali_shilling.grouping_sign == '.'
     assert somali_shilling.international
-    assert somali_shilling.symbol == 'Sh'
+    assert somali_shilling.symbol == 'SSh'
     assert not somali_shilling.symbol_ahead
     assert somali_shilling.symbol_separator == '_'
     assert somali_shilling.convertion == ''
@@ -107,7 +107,7 @@ def test_somali_shilling_custom():
     assert somali_shilling.__repr__() == (
         'SomaliShilling(amount: 1000, '
         'alpha_code: "SOS", '
-        'symbol: "Sh", '
+        'symbol: "SSh", '
         'symbol_ahead: False, '
         'symbol_separator: "_", '
         'numeric_code: "706", '

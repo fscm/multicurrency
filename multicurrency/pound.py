@@ -20,7 +20,7 @@ class EgyptianPound(Currency):
         >>> egyptian_pound = EgyptianPound(
         ...     amount=123456.789)
         >>> print(egyptian_pound)
-        ج.م ١٢٣٬٤٥٦٫٧٩
+        ج.م. ١٢٣٬٤٥٦٫٧٩
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -61,7 +61,7 @@ class EgyptianPound(Currency):
             amount=amount,
             alpha_code='EGP',
             numeric_code='818',
-            symbol='ج.م',
+            symbol='ج.م.',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
@@ -260,7 +260,7 @@ class LebanesePound(Currency):
         >>> lebanese_pound = LebanesePound(
         ...     amount=123456.789)
         >>> print(lebanese_pound)
-        ل.ل ١٢٣٬٤٥٧
+        ل.ل. ١٢٣٬٤٥٧
 
     For more details see `multicurrency.currency.Currency` .
 
@@ -301,7 +301,7 @@ class LebanesePound(Currency):
             amount=amount,
             alpha_code='LBP',
             numeric_code='422',
-            symbol='ل.ل',
+            symbol='ل.ل.',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,

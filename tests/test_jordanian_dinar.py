@@ -29,7 +29,7 @@ def test_jordanian_dinar():
     assert jordanian_dinar.decimal_sign == '\u066B'
     assert jordanian_dinar.grouping_sign == '\u066C'
     assert not jordanian_dinar.international
-    assert jordanian_dinar.symbol == 'د.ا'
+    assert jordanian_dinar.symbol == 'د.أ.'
     assert jordanian_dinar.symbol_ahead
     assert jordanian_dinar.symbol_separator == '\u00A0'
     assert jordanian_dinar.convertion == '٠١٢٣٤٥٦٧٨٩-'
@@ -37,7 +37,7 @@ def test_jordanian_dinar():
     assert jordanian_dinar.__repr__() == (
         'JordanianDinar(amount: 0.1428571428571428571428571429, '
         'alpha_code: "JOD", '
-        'symbol: "د.ا", '
+        'symbol: "د.أ.", '
         'symbol_ahead: True, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "400", '
@@ -46,7 +46,7 @@ def test_jordanian_dinar():
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
-    assert jordanian_dinar.__str__() == 'د.ا ٠٫١٤٣'
+    assert jordanian_dinar.__str__() == 'د.أ. ٠٫١٤٣'
 
 
 def test_jordanian_dinar_negative():
@@ -60,7 +60,7 @@ def test_jordanian_dinar_negative():
     assert jordanian_dinar.decimal_sign == '\u066B'
     assert jordanian_dinar.grouping_sign == '\u066C'
     assert not jordanian_dinar.international
-    assert jordanian_dinar.symbol == 'د.ا'
+    assert jordanian_dinar.symbol == 'د.أ.'
     assert jordanian_dinar.symbol_ahead
     assert jordanian_dinar.symbol_separator == '\u00A0'
     assert jordanian_dinar.convertion == '٠١٢٣٤٥٦٧٨٩-'
@@ -68,7 +68,7 @@ def test_jordanian_dinar_negative():
     assert jordanian_dinar.__repr__() == (
         'JordanianDinar(amount: -100, '
         'alpha_code: "JOD", '
-        'symbol: "د.ا", '
+        'symbol: "د.أ.", '
         'symbol_ahead: True, '
         'symbol_separator: "\u00A0", '
         'numeric_code: "400", '
@@ -77,7 +77,7 @@ def test_jordanian_dinar_negative():
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
-    assert jordanian_dinar.__str__() == 'د.ا -١٠٠٫٠٠٠'
+    assert jordanian_dinar.__str__() == 'د.أ. -١٠٠٫٠٠٠'
 
 
 def test_jordanian_dinar_custom():
@@ -99,7 +99,7 @@ def test_jordanian_dinar_custom():
     assert jordanian_dinar.decimal_sign == '\u066C'
     assert jordanian_dinar.grouping_sign == '\u066B'
     assert jordanian_dinar.international
-    assert jordanian_dinar.symbol == 'د.ا'
+    assert jordanian_dinar.symbol == 'د.أ.'
     assert not jordanian_dinar.symbol_ahead
     assert jordanian_dinar.symbol_separator == '_'
     assert jordanian_dinar.convertion == '٠١٢٣٤٥٦٧٨٩-'
@@ -107,7 +107,7 @@ def test_jordanian_dinar_custom():
     assert jordanian_dinar.__repr__() == (
         'JordanianDinar(amount: 1000, '
         'alpha_code: "JOD", '
-        'symbol: "د.ا", '
+        'symbol: "د.أ.", '
         'symbol_ahead: False, '
         'symbol_separator: "_", '
         'numeric_code: "400", '
