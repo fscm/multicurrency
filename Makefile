@@ -18,6 +18,7 @@ PYTEST := pytest
 PYTHON := python3
 STUBGEN := stubgen
 TWINE := twine
+VERMIN := vermin
 
 # Shell                                                          Shell --------
 SHELL := /bin/sh
@@ -38,7 +39,7 @@ PYTHON_LIBS = $(wildcard $(VENV_DIR)/lib/python*)/site-packages
 
 .PHONY: default all
 .PHONY: clean clean-all clean-build clean-cache clean-dev clean-docs clean-stubs
-.PHONY: dev autopep8 docs lint stubs tests tests-verbose
+.PHONY: dev autopep8 docs lint minversion stubs tests tests-verbose
 .PHONY: build publish publish-test
 
 # Project Targets                                      Project Targets --------
@@ -60,7 +61,7 @@ clean-build:
 	@echo "Cleaning build artifacts..."
 	@rm -rf "$(PROJECT_DIR)"/build \
 		"$(PROJECT_DIR)"/dist \
-		"$(PROJECT_DIR)"/*.egg-info
+		"$(SOURCE_DIR)"/*.egg-info
 
 # -- clean cache                                               clean cache ----
 clean-cache:
@@ -144,6 +145,11 @@ lint: $(VENV_DIR)/bin/activate
 		--rcfile "$(PROJECT_DIR)/.pylintrc" \
 		"$(SOURCE_DIR)/$(PACKAGE_NAME)"
 
+# -- minversion                                                 minversion ----
+minversion: $(VENV_DIR)/bin/activate
+	@echo "Finding minimum Python version..."
+	@"$(VENV_DIR)"/bin/$(VERMIN) --quiet "$(SOURCE_DIR)/$(PACKAGE_NAME)"
+
 # -- stubs                                                           stubs ----
 stubs: $(VENV_DIR)/bin/activate
 	@echo "Generating stubs..."
@@ -214,6 +220,8 @@ help:
 	@echo "      Creates the project documentation."
 	@echo "  lint"
 	@echo "      Check the project for code smells."
+	@echo "  minversion"
+	@echo "      Calculates Python minimum version required."
 	@echo "  stubs"
 	@echo "      Generates stubs for the project."
 	@echo "  tests"
