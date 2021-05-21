@@ -96,7 +96,7 @@ value. False otherwise. Defaults to False.</dd>
 </dd>
 <dt id="multicurrency.rial.QatariRial"><code class="flex name class">
 <span>class <span class="ident">QatariRial</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '٫', grouping_sign: Optional[str] = '٬', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '٫', grouping_sign: Optional[str] = '٬', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Qatari Rial currency representation.</p>
@@ -105,7 +105,7 @@ value. False otherwise. Defaults to False.</dd>
 &gt;&gt;&gt; qatari_rial = QatariRial(
 ...     amount=123456.789)
 &gt;&gt;&gt; print(qatari_rial)
-١٢٣٬٤٥٦٫٧٩ ر.ق
+ر.ق. ١٢٣٬٤٥٦٫٧٩
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -128,7 +128,7 @@ False.</dd>
 and the value. Defaults to ' '.</dd>
 <dt><strong><code>symbol_ahead</code></strong> :&ensp;<code>bool</code>, optional</dt>
 <dd>True if symbol goes ahead of the
-value. False otherwise. Defaults to False.</dd>
+value. False otherwise. Defaults to True.</dd>
 </dl></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
@@ -157,7 +157,7 @@ value. False otherwise. Defaults to False.</dd>
 </dd>
 <dt id="multicurrency.rial.RialOmani"><code class="flex name class">
 <span>class <span class="ident">RialOmani</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 3, decimal_sign: Optional[str] = '٫', grouping_sign: Optional[str] = '٬', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 3, decimal_sign: Optional[str] = '٫', grouping_sign: Optional[str] = '٬', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Rial Omani currency representation.</p>
@@ -166,7 +166,7 @@ value. False otherwise. Defaults to False.</dd>
 &gt;&gt;&gt; rial_omani = RialOmani(
 ...     amount=123456.789)
 &gt;&gt;&gt; print(rial_omani)
-١٢٣٬٤٥٦٫٧٨٩ ر.ع.
+ر.ع. ١٢٣٬٤٥٦٫٧٨٩
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -189,7 +189,7 @@ False.</dd>
 and the value. Defaults to ' '.</dd>
 <dt><strong><code>symbol_ahead</code></strong> :&ensp;<code>bool</code>, optional</dt>
 <dd>True if symbol goes ahead of the
-value. False otherwise. Defaults to False.</dd>
+value. False otherwise. Defaults to True.</dd>
 </dl></div>
 <h3>Ancestors</h3>
 <ul class="hlist">

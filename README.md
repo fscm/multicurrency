@@ -541,6 +541,16 @@ List of supported currencies (and default format):
 * `ZambianKwacha` (ZK 123,456.79 | ZMW 123,456.79),
 * `ZimbabweDollar` ($ 123,456.79 | ZWL 123,456.79)
 
+List of supported cryptocurrencies (and default format):
+
+* `Bitcoin` (₿123,456.78900000 | XBT 123,456.78900000),
+* `EOS` (ε123,456.7890 | EOS 123,456.7890),
+* `Monero` (ɱ123,456.789000000000 | XMR 123,456.789000000000),
+* `Ripple` (✕123,456.789000 | XRP 123,456.789000),
+* `StellarLumens` (*123,456.78900 | XLM 123,456.78900),
+* `Tezos` (ꜩ123,456.789000 | XTZ 123,456.789000),
+* `Zcash` (ⓩ123,456.78900000 | ZEC 123,456.78900000),
+
 ## Build (from source)
 
 [GNU make](https://www.gnu.org/software/make/manual/make.html) is used to

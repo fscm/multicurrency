@@ -26,6 +26,10 @@ supports several different currencies.
 The currencies supported by this module were created with information
 (alphabetic code, numeric code, and minor unit size) from ISO-4217.
 
+.. note::
+    Cryptocurrencies are not represented in the ISO-4217. Information on
+    cryptocurrencies was collected on other sources.
+
 ## Supported Currencies
 
 List of supported currencies (and default format):
@@ -211,6 +215,16 @@ List of supported currencies (and default format):
 * `multicurrency.yuan.Yuan` (¥123,456.79 | CNY 123,456.79),
 * `multicurrency.kwacha.ZambianKwacha` (ZK 123,456.79 | ZMW 123,456.79),
 * `multicurrency.dollar.ZimbabweDollar` ($ 123,456.79 | ZWL 123,456.79)
+
+List of supported cryptocurrencies (and default format):
+
+* `multicurrency.crypto.Bitcoin` (₿123,456.78900000 | XBT 123,456.78900000),
+* `multicurrency.crypto.EOS` (ε123,456.7890 | EOS 123,456.7890),
+* `multicurrency.crypto.Monero` (ɱ123,456.789000000000 | XMR 123,456.789000000000),
+* `multicurrency.crypto.Ripple` (✕123,456.789000 | XRP 123,456.789000),
+* `multicurrency.crypto.StellarLumens` (*123,456.78900 | XLM 123,456.78900),
+* `multicurrency.crypto.Tezos` (ꜩ123,456.789000 | XTZ 123,456.789000),
+* `multicurrency.crypto.Zcash` (ⓩ123,456.78900000 | ZEC 123,456.78900000),
 
 ## Usage
 
@@ -509,6 +523,14 @@ from .birr import EthiopianBirr
 from .boliviano import Boliviano
 from .cedi import Cedi
 from .colon import CostaRicanColon
+from .crypto import (
+    EOS,
+    Bitcoin,
+    StellarLumens,
+    Monero,
+    Ripple,
+    Tezos,
+    Zcash)
 from .dalasi import Dalasi
 from .denar import Denar
 from .dinar import (
@@ -708,6 +730,7 @@ __all__ = [
     'CurrencyException',
     'CurrencyInvalidDivision',
     'CurrencyInvalidMultiplication',
+    'CurrencyInvalidOperation',
     'CurrencyMismatchException',
     'CurrencyTypeException',
     'Afghani',
@@ -890,7 +913,14 @@ __all__ = [
     'Yen',
     'Yuan',
     'ZambianKwacha',
-    'ZimbabweDollar']
+    'ZimbabweDollar',
+    'Bitcoin',
+    'EOS',
+    'Monero',
+    'Ripple',
+    'StellarLumens',
+    'Tezos',
+    'Zcash']
 
 
 __author__: Final[str] = 'Frederico Martins'

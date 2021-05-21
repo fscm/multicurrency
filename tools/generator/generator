@@ -116,6 +116,8 @@ with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
     headers = [
         f'{h.lower().replace(" ", "_")}' for h in next(csv_reader, None)]
     for record in csv_reader:
+        if len(record) == 0:
+            continue
         currency = dict(zip(headers, record))
         currency_class = comp_underscore.sub(
             lambda l: re_nospace[re.escape(l.group(0))],

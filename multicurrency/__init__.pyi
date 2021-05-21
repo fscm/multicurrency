@@ -6,6 +6,7 @@ from .birr import EthiopianBirr as EthiopianBirr
 from .boliviano import Boliviano as Boliviano
 from .cedi import Cedi as Cedi
 from .colon import CostaRicanColon as CostaRicanColon
+from .crypto import Bitcoin as Bitcoin, EOS as EOS, Monero as Monero, Ripple as Ripple, StellarLumens as StellarLumens, Tezos as Tezos, Zcash as Zcash
 from .currency import Currency as Currency, CurrencyContext as CurrencyContext
 from .dalasi import Dalasi as Dalasi
 from .denar import Denar as Denar
@@ -17,7 +18,7 @@ from .dong import Dong as Dong
 from .dram import ArmenianDram as ArmenianDram
 from .escudo import CapeVerdeEscudo as CapeVerdeEscudo
 from .euro import Euro as Euro, EuroAD as EuroAD, EuroAT as EuroAT, EuroBE as EuroBE, EuroCY as EuroCY, EuroDE as EuroDE, EuroEE as EuroEE, EuroES as EuroES, EuroFI as EuroFI, EuroFR as EuroFR, EuroGR as EuroGR, EuroIE as EuroIE, EuroIT as EuroIT, EuroLT as EuroLT, EuroLU as EuroLU, EuroLV as EuroLV, EuroMC as EuroMC, EuroME as EuroME, EuroMT as EuroMT, EuroNL as EuroNL, EuroPT as EuroPT, EuroSI as EuroSI, EuroSK as EuroSK, EuroSM as EuroSM, EuroVA as EuroVA, EuroXK as EuroXK
-from .exceptions import CurrencyException as CurrencyException, CurrencyInvalidDivision as CurrencyInvalidDivision, CurrencyInvalidMultiplication as CurrencyInvalidMultiplication, CurrencyMismatchException as CurrencyMismatchException, CurrencyTypeException as CurrencyTypeException
+from .exceptions import CurrencyException as CurrencyException, CurrencyInvalidDivision as CurrencyInvalidDivision, CurrencyInvalidMultiplication as CurrencyInvalidMultiplication, CurrencyInvalidOperation as CurrencyInvalidOperation, CurrencyMismatchException as CurrencyMismatchException, CurrencyTypeException as CurrencyTypeException
 from .florin import ArubanFlorin as ArubanFlorin
 from .forint import Forint as Forint
 from .franc import BurundiFranc as BurundiFranc, CFAFrancBCEAO as CFAFrancBCEAO, CFAFrancBEAC as CFAFrancBEAC, CFPFranc as CFPFranc, CongoleseFranc as CongoleseFranc, DjiboutiFranc as DjiboutiFranc, GuineaFranc as GuineaFranc, RwandaFranc as RwandaFranc, SwissFranc as SwissFranc

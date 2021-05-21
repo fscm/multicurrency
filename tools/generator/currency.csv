@@ -236,3 +236,11 @@
 "ZAR","R","710","Rand","Rand ZA","South Africa","2",".","\u202F","\u00A0","True",""
 "ZMW","ZK","967","Kwacha","Zambian Kwacha","Zambia","2",".",",","\u00A0","True",""
 "ZWL","$","932","Dollar","Zimbabwe Dollar","Zimbabwe","2",".",",","\u00A0","True",""
+
+"EOS","ε","0","Crypto","EOS","","4",".",",","","True",""
+"XBT","₿","0","Crypto","Bitcoin","","8",".",",","","True",""
+"XLM","*","0","Crypto","Stellar Lumens","","5",".",",","","True",""
+"XMR","ɱ","0","Crypto","Monero","","12",".",",","","True",""
+"XRP","✕","0","Crypto","Ripple","","6",".",",","","True",""
+"XTZ","ꜩ","0","Crypto","Tezos","","6",".",",","","True",""
+"ZEC","ⓩ","0","Crypto","Zcash","","8",".",",","","True",""

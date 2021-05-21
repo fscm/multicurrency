@@ -35,7 +35,7 @@
 <dl>
 <dt id="multicurrency.riyal.SaudiRiyal"><code class="flex name class">
 <span>class <span class="ident">SaudiRiyal</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '٫', grouping_sign: Optional[str] = '٬', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '٫', grouping_sign: Optional[str] = '٬', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Saudi Riyal currency representation.</p>
@@ -44,7 +44,7 @@
 &gt;&gt;&gt; saudi_riyal = SaudiRiyal(
 ...     amount=123456.789)
 &gt;&gt;&gt; print(saudi_riyal)
-١٢٣٬٤٥٦٫٧٩ ر.س
+ر.س. ١٢٣٬٤٥٦٫٧٩
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -67,7 +67,7 @@ False.</dd>
 and the value. Defaults to ' '.</dd>
 <dt><strong><code>symbol_ahead</code></strong> :&ensp;<code>bool</code>, optional</dt>
 <dd>True if symbol goes ahead of the
-value. False otherwise. Defaults to False.</dd>
+value. False otherwise. Defaults to True.</dd>
 </dl></div>
 <h3>Ancestors</h3>
 <ul class="hlist">

@@ -44,7 +44,7 @@
 &gt;&gt;&gt; algerian_dinar = AlgerianDinar(
 ...     amount=123456.789)
 &gt;&gt;&gt; print(algerian_dinar)
-123.456,79 د.ج
+123.456,79 د.ج.
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -96,7 +96,7 @@ value. False otherwise. Defaults to False.</dd>
 </dd>
 <dt id="multicurrency.dinar.BahrainiDinar"><code class="flex name class">
 <span>class <span class="ident">BahrainiDinar</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 3, decimal_sign: Optional[str] = '٫', grouping_sign: Optional[str] = '٬', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 3, decimal_sign: Optional[str] = '٫', grouping_sign: Optional[str] = '٬', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Bahraini Dinar currency representation.</p>
@@ -105,7 +105,7 @@ value. False otherwise. Defaults to False.</dd>
 &gt;&gt;&gt; bahraini_dinar = BahrainiDinar(
 ...     amount=123456.789)
 &gt;&gt;&gt; print(bahraini_dinar)
-١٢٣٬٤٥٦٫٧٨٩ ب.د
+د.ب. ١٢٣٬٤٥٦٫٧٨٩
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -128,7 +128,7 @@ False.</dd>
 and the value. Defaults to ' '.</dd>
 <dt><strong><code>symbol_ahead</code></strong> :&ensp;<code>bool</code>, optional</dt>
 <dd>True if symbol goes ahead of the
-value. False otherwise. Defaults to False.</dd>
+value. False otherwise. Defaults to True.</dd>
 </dl></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
@@ -166,7 +166,7 @@ value. False otherwise. Defaults to False.</dd>
 &gt;&gt;&gt; iraqi_dinar = IraqiDinar(
 ...     amount=123456.789)
 &gt;&gt;&gt; print(iraqi_dinar)
-ع.د ١٢٣٬٤٥٦٫٧٨٩
+د.ع. ١٢٣٬٤٥٦٫٧٨٩
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -227,7 +227,7 @@ value. False otherwise. Defaults to True.</dd>
 &gt;&gt;&gt; jordanian_dinar = JordanianDinar(
 ...     amount=123456.789)
 &gt;&gt;&gt; print(jordanian_dinar)
-د.ا ١٢٣٬٤٥٦٫٧٨٩
+د.أ. ١٢٣٬٤٥٦٫٧٨٩
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -288,7 +288,7 @@ value. False otherwise. Defaults to True.</dd>
 &gt;&gt;&gt; kuwaiti_dinar = KuwaitiDinar(
 ...     amount=123456.789)
 &gt;&gt;&gt; print(kuwaiti_dinar)
-د.ك ١٢٣٬٤٥٦٫٧٨٩
+د.ك. ١٢٣٬٤٥٦٫٧٨٩
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -349,7 +349,7 @@ value. False otherwise. Defaults to True.</dd>
 &gt;&gt;&gt; libyan_dinar = LibyanDinar(
 ...     amount=123456.789)
 &gt;&gt;&gt; print(libyan_dinar)
-ل.د 123.456,789
+د.ل. 123.456,789
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -410,7 +410,7 @@ value. False otherwise. Defaults to True.</dd>
 &gt;&gt;&gt; serbian_dinar_sr = SerbianDinarSR(
 ...     amount=123456.789)
 &gt;&gt;&gt; print(serbian_dinar_sr)
-123 456,79 дин
+123 456,79 дин.
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -471,7 +471,7 @@ value. False otherwise. Defaults to False.</dd>
 &gt;&gt;&gt; serbian_dinar_xk = SerbianDinarXK(
 ...     amount=123456.789)
 &gt;&gt;&gt; print(serbian_dinar_xk)
-123.456,79 дин
+123.456,79 дин.
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -532,7 +532,7 @@ value. False otherwise. Defaults to False.</dd>
 &gt;&gt;&gt; tunisian_dinar = TunisianDinar(
 ...     amount=123456.789)
 &gt;&gt;&gt; print(tunisian_dinar)
-د.ت 123.456,789
+د.ت. 123.456,789
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
