@@ -926,4 +926,4 @@ __all__ = [
 __author__: Final[str] = 'Frederico Martins'
 __license__: Final[str] = 'MIT'
 __project__: Final[str] = __package__
-__version__: Final[str] = '0.5.0'
+__version__: Final[str] = '0.6.0'

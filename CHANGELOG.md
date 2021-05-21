@@ -1,5 +1,15 @@
 # Changelog
 
+## [v0.6.0](https://github.com/fscm/multicurrency/tree/v0.6.0) (2021-05-21)
+
+### [changes](https://github.com/fscm/multicurrency/compare/v0.5.0...v0.6.0)
+
+* added support for (some) cryptocurrencies
+* currency symbols (and format) updated
+* python minimum version changed to 3.8 (from 3.9)
+* build tools updated
+* changed 'venv' folder to '.venv'
+
 ## [v0.5.0](https://github.com/fscm/multicurrency/tree/v0.5.0) (2021-05-10)
 
 ### [changes](https://github.com/fscm/multicurrency/compare/v0.4.0...v0.5.0)
