@@ -569,7 +569,7 @@ After creating the development environment activate the virtual enviroment
 that was created using the following command:
 
 ```shell
-source venv/bin/activate
+source .venv/bin/activate
 ```
 
 To build a Python package for this library use the following command:
