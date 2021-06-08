@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.7.0](https://github.com/fscm/multicurrency/tree/v0.7.0) (2021-06-08)
+
+### [changes](https://github.com/fscm/multicurrency/compare/v0.6.0...v0.7.0)
+
+* python minimum version required changed to 3.6 (from 3.9)
+
 ## [v0.6.0](https://github.com/fscm/multicurrency/tree/v0.6.0) (2021-05-21)
 
 ### [changes](https://github.com/fscm/multicurrency/compare/v0.5.0...v0.6.0)
