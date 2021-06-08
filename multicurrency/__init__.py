@@ -506,7 +506,6 @@ Several operations are supported by the several library classes.
         True
 """
 
-from typing import Final
 from .currency import Currency, CurrencyContext
 from .exceptions import (
     CurrencyException,
@@ -923,7 +922,7 @@ __all__ = [
     'Zcash']
 
 
-__author__: Final[str] = 'Frederico Martins'
-__license__: Final[str] = 'MIT'
-__project__: Final[str] = __package__
-__version__: Final[str] = '0.6.0'
+__author__: str = 'Frederico Martins'
+__license__: str = 'MIT'
+__project__: str = __package__
+__version__: str = '0.6.0'

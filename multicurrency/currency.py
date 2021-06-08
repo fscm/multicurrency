@@ -203,7 +203,7 @@ objects of the same currency.
 """
 
 from decimal import Decimal, Context
-from typing import Any, Optional, Union
+from typing import Any, Optional, Tuple, Union
 from .exceptions import (
     CurrencyInvalidDivision,
     CurrencyInvalidMultiplication,
@@ -451,7 +451,7 @@ class Currency:
             convertion=self._convertion,
             international=self._international)
 
-    def __divmod__(self, other: Any) -> tuple['Currency', 'Currency']:
+    def __divmod__(self, other: Any) -> Tuple['Currency', 'Currency']:
         """Returns a pair with the quocient and remaider of the
         division by `other`.
 
@@ -459,7 +459,7 @@ class Currency:
             other (Numerical): amount to divide by.
 
         Returns:
-            tuple['Currency', 'Currency']: quotient, remainder.
+            Tuple['Currency', 'Currency']: quotient, remainder.
 
         Raises:
             CurrencyInvalidDivision: If `other` not of types
@@ -507,11 +507,10 @@ class Currency:
         Returns:
             bool: True if equal. False otherwise.
         """
-        # if isinstance(other, Currency):
         if isinstance(other, self.__class__):
             return (
-                (self.amount == other.amount) and
-                (self._alpha_code == other.alpha_code))
+                (self._amount, self._alpha_code) ==
+                (other.amount, other.alpha_code))
         return False
 
     def __float__(self) -> float:
@@ -785,11 +784,11 @@ class Currency:
             convertion=self._convertion,
             international=self._international)
 
-    def __reduce__(self) -> tuple[type, tuple[Any, ...]]:
+    def __reduce__(self) -> Tuple[type, Tuple[Any, ...]]:
         """.
 
         Returns:
-            tuple[type, tuple[Any, ...]]: pickle representation of this
+            Tuple[type, Tuple[Any, ...]]: pickle representation of this
                 currency.
         """
         return (
@@ -889,18 +888,7 @@ class Currency:
         Returns:
             str: value
         """
-        p = self._decimal_places
-        converted = f'{round(self._amount, p):,.{p}f}'
-        if self._international:
-            return f'{self._alpha_code} {converted}'
-        if self._convertion:
-            t = dict(zip('0123456789-', self._convertion))
-            converted = ''.join([t.get(c, c) for c in converted])
-        converted = converted.replace('.', 'X').replace(
-            ',', self._grouping_sign).replace('X', self._decimal_sign)
-        if self._symbol_ahead:
-            return f'{self._symbol}{self._symbol_separator}{converted}'
-        return f'{converted}{self._symbol_separator}{self._symbol}'
+        return self.pstr(precision=self._decimal_places)
 
     def __sub__(self, other: Any) -> 'Currency':
         """Subtract `other` from this.

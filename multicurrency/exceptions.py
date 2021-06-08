@@ -6,7 +6,10 @@
 
 """Currency exceptions."""
 
-from typing import Any
+from typing import Any, TypeVar
+
+
+Currency = TypeVar('Currency')
 
 
 class CurrencyException(Exception):
@@ -21,7 +24,7 @@ class CurrencyInvalidDivision(CurrencyException, TypeError):
         second (Any): Object.
     """
 
-    def __init__(self, first: 'Currency', second: Any) -> None:
+    def __init__(self, first: Currency, second: Any) -> None:
         super().__init__(
             'division not supported between '
             f'{type(first)} and {type(second)}.')
@@ -35,7 +38,7 @@ class CurrencyInvalidMultiplication(CurrencyException, TypeError):
         second (Any): Object.
     """
 
-    def __init__(self, first: 'Currency', second: Any) -> None:
+    def __init__(self, first: Currency, second: Any) -> None:
         super().__init__(
             'multiplication not supported between '
             f'{type(first)} and {type(second)}.')

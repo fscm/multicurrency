@@ -148,7 +148,8 @@ lint: $(VENV_DIR)/bin/activate
 # -- minversion                                                 minversion ----
 minversion: $(VENV_DIR)/bin/activate
 	@echo "Finding minimum Python version..."
-	@"$(VENV_DIR)"/bin/$(VERMIN) --quiet "$(SOURCE_DIR)/$(PACKAGE_NAME)"
+	@"$(VENV_DIR)"/bin/$(VERMIN) --quiet --eval-annotations \
+		"$(SOURCE_DIR)/$(PACKAGE_NAME)"
 
 # -- stubs                                                           stubs ----
 stubs: $(VENV_DIR)/bin/activate

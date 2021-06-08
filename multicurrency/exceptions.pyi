@@ -1,4 +1,6 @@
-from typing import Any
+from typing import Any, TypeVar
+
+Currency = TypeVar('Currency')
 
 class CurrencyException(Exception): ...
 

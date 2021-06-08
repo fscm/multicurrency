@@ -29,7 +29,7 @@ if __name__ == '__main__':
             'License :: OSI Approved :: MIT License',
             'Operating System :: OS Independent',
             'Programming Language :: Python :: 3 :: Only',
-            'Programming Language :: Python :: 3.8',
+            'Programming Language :: Python :: 3.6',
             'Topic :: Software Development :: Libraries',
             'Typing :: Typed'],
         description=('Currency representation library.'),
@@ -46,6 +46,6 @@ if __name__ == '__main__':
         project_urls={
             'Documentation': 'http://fscm.github.io/multicurrency',
             'Source': 'https://github.com/fscm/multicurrency'},
-        python_requires='>=3.8, <4',
+        python_requires='>=3.6, <4',
         url='https://github.com/fscm/multicurrency',
         version=__version__)

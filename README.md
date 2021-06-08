@@ -19,7 +19,7 @@ The currencies supported by this module were created with information
 
 ## Prerequisites
 
-Python, version 3.8 or above, needs to be installed on your local computer.
+Python, version 3.6 or above, needs to be installed on your local computer.
 Python setup can be found [here](https://www.python.org/downloads/).
 
 ## Installation
