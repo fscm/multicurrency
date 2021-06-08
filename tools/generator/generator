@@ -66,6 +66,7 @@ example = CONTEXT.create_decimal('123456.789')
 negative = CONTEXT.create_decimal('-100')
 custom = CONTEXT.create_decimal('1000')
 currencies = {}
+crypto_currencies = {}
 countries = {}
 text_module = ''
 text_class = ''
@@ -136,9 +137,14 @@ with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
         _ = countries.setdefault(
             currency['country'],
             (currency['name'], f'{currency_module}.{currency_class}'))
-        t = currencies.setdefault(
-            currency_module,
-            {'name': currency['class'], 'currencies': {}})
+        if currency_module == 'crypto':
+            t = crypto_currencies.setdefault(
+                currency_module,
+                {'name': currency['class'], 'currencies': {}})
+        else:
+            t = currencies.setdefault(
+                currency_module,
+                {'name': currency['class'], 'currencies': {}})
         _ = t['currencies'].setdefault(currency_variable, {
             '__CODE__': currency['digital_code'],
             '__CURRENCY__': currency['currency'],
@@ -220,6 +226,20 @@ for currency_module in currencies:
             'w+') as file_out:
         _ = file_out.write(out_text)
         _ = file_out.truncate()
+for currency_module in crypto_currencies:
+    out_text = re.sub(
+        '__CURRENCY_MODULE__',
+        crypto_currencies[currency_module]['name'], text_module)
+    for _, values in crypto_currencies[currency_module]['currencies'].items():
+        re_values = dict((re.escape(k), v) for k,v in values.items())
+        comp_values = re.compile('|'.join(re_values.keys()))
+        out_text = out_text + comp_values.sub(
+            lambda l: re_values[re.escape(l.group(0))], text_class) # pylint: disable=cell-var-from-loop
+    with open(
+            f'{workfolder}/_multicurrency/{currency_module}.py',
+            'w+') as file_out:
+        _ = file_out.write(out_text)
+        _ = file_out.truncate()
 
 
 print('Creating currency tests...')
@@ -234,25 +254,40 @@ for currency_module in currencies:
                 f'{workfolder}/_tests/test_{currency}.py', 'w+') as file_out:
             _ = file_out.write(out_text)
             _ = file_out.truncate()
+for currency_module in crypto_currencies:
+    for currency, values in crypto_currencies[currency_module]['currencies'].items():
+        re_values = dict((re.escape(k), v) for k,v in values.items())
+        comp_values = re.compile('|'.join(re_values.keys()))
+        out_text = comp_values.sub(
+            lambda l: re_values[re.escape(l.group(0))], text_tests)
+        out_text = re.sub('__CURRENCY_MODULE__', currency_module, out_text)
+        with open(
+                f'{workfolder}/_tests/test_{currency}.py', 'w+') as file_out:
+            _ = file_out.write(out_text)
+            _ = file_out.truncate()
 
 
 print()
 print('Generating __init__.py file data...')
 all_classes = []
+all_crypto_classes = []
 
 print()
 print('Imports:')
-for currency_module, data in sorted(currencies.items()):
+for currency_module, data in sorted({**currencies, **crypto_currencies}.items()):
     classes = [data['currencies'][c]['__CURRENCY_CLASS__'] for c in data['currencies']]
     if len(classes) > 1:
         print(f'from .{currency_module} import (')
         print('    ' + ',\n    '.join(classes) + ')')
     else:
         print(f'from .{currency_module} import {classes[0]}')
-    all_classes.extend(classes)
+    if currency_module == 'crypto':
+        all_crypto_classes.extend(classes)
+    else:
+        all_classes.extend(classes)
 print()
 print('__all__:')
-print('    \'' + '\',\n    \''.join(sorted(all_classes)) + '\']')
+print('    \'' + '\',\n    \''.join(sorted(all_classes) + sorted(all_crypto_classes)) + '\']')
 
 print()
 print('docstring supported currencies:')
@@ -272,8 +307,35 @@ supported_sorted = [c[0] for _, c in sorted(supported)]
 print(',\n'.join(supported_sorted))
 
 print()
+print('docstring supported crypto currencies:')
+supported_crypto = []
+for currency_module, data in crypto_currencies.items():
+    for _, values in data['currencies'].items():
+        currency_class = values['__CURRENCY_CLASS__']
+        eg_locale = values['__EXAMPLE_OUTPUT__']
+        eg_international = _format(
+                example, int(values['__DECIMAL_PLACES__']),
+                values['__CURRENCY__'], '', '', '', False, '', '', True)
+        supported_crypto.append((
+            currency_class, (
+            f'* `multicurrency.{currency_module}.{currency_class}` ({eg_locale} | {eg_international})',
+            f'* `{currency_class}` ({eg_locale} | {eg_international})')))
+supported_crypto_sorted = [c[0] for _, c in sorted(supported_crypto)]
+print(',\n'.join(supported_crypto_sorted))
+
+print()
+print('Generating README.txt file data...')
+
+print()
 print('readme supported currencies:')
 supported_sorted = [c[1] for _, c in sorted(supported)]
 print(',\n'.join(supported_sorted))
 print()
+
+print()
+print('readme supported crypto currencies:')
+supported_crypto_sorted = [c[1] for _, c in sorted(supported_crypto)]
+print(',\n'.join(supported_crypto_sorted))
+print()
+
 # pylint: enable=eval-used,invalid-name,line-too-long
