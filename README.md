@@ -2,13 +2,6 @@
 
 Currency representation.
 
-> :warning: **WARNING**:
->
-> This module is still in Beta. Do not use it in production ready
-> applications.
->
-> Currency format (representation) is not yet fully implemented.
-
 ## Synopsis
 
 The multicurrency module provides support for currency operations. It supports

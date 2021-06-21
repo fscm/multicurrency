@@ -9,20 +9,6 @@
 The multicurrency module provides support for currency operations. It
 supports several different currencies.
 
-.. caution::
-    This module is still in Beta[^beta]. Do not use it in production
-    ready applications.
-
-    [^beta]:
-        An early version of a program or application that contains most
-        of the major features, but is not yet complete. Sometimes these
-        versions are released to the general public, for testing and
-        feedback.
-
-    Currency format (representation) is not yet implemented. Supported
-    operations are described in the `multicurrency.currency` module.
-
-
 The currencies supported by this module were created with information
 (alphabetic code, numeric code, and minor unit size) from ISO-4217.
 
