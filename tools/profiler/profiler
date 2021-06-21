@@ -18,6 +18,9 @@ from pstats import Stats
 from multicurrency import Currency
 
 
+# pylint: disable=missing-function-docstring
+# pylint: disable=missing-return-doc,missing-return-type-doc
+
 def profile(sortargs=['cumulative'], printargs=[10]):
     profiler = Profile()
     def decorator(fn):
@@ -41,9 +44,10 @@ def create_currency():
     for value in range(10_000):
         _ = Currency(
             amount=value,
-            code='978',
-            currency='EUR',
+            alpha_code='EUR',
+            numeric_code='978',
             symbol='€',
+            symbol_ahead=True,
             decimal_places=2,
             decimal_sign=',',
             grouping_sign='.',
@@ -54,16 +58,20 @@ def create_currency():
 def create_currency_string():
     currency = Currency(
         amount=0.00000001 - 10000000,
-        code='978',
-        currency='EUR',
+        alpha_code='EUR',
+        numeric_code='978',
         symbol='€',
+        symbol_ahead=True,
         decimal_places=2,
         decimal_sign=',',
         grouping_sign='.',
         international=False)
-    for value in range(10_000):
+    for _ in range(10_000):
         _ = currency.__str__()
 
 
 create_currency()
 create_currency_string()
+
+# pylint: enable=missing-return-doc,missing-return-type-doc
+# pylint: enable=missing-function-docstring
