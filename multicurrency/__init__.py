@@ -914,4 +914,4 @@ __all__ = [
 __author__: str = 'Frederico Martins'
 __license__: str = 'MIT'
 __project__: str = __package__
-__version__: str = '0.7.0'
+__version__: str = '0.8.0'

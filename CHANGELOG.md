@@ -1,5 +1,12 @@
 # Changelog
 
+## [v0.8.0](https://github.com/fscm/multicurrency/tree/v0.8.0) (2021-06-22)
+
+### [changes](https://github.com/fscm/multicurrency/compare/v0.7.0...v0.8.0)
+
+* 'Ethereum' cryptocurrency added
+* number of decimal places for the Stellar Lumens cryptocurrency changed (to 7)
+
 ## [v0.7.0](https://github.com/fscm/multicurrency/tree/v0.7.0) (2021-06-08)
 
 ### [changes](https://github.com/fscm/multicurrency/compare/v0.6.0...v0.7.0)
