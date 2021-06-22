@@ -206,11 +206,12 @@ List of supported cryptocurrencies (and default format):
 
 * `multicurrency.crypto.Bitcoin` (₿123,456.78900000 | XBT 123,456.78900000),
 * `multicurrency.crypto.EOS` (ε123,456.7890 | EOS 123,456.7890),
+* `multicurrency.crypto.Ethereum` (Ξ123,456.789000000000000000 | ETH 123,456.789000000000000000),
 * `multicurrency.crypto.Monero` (ɱ123,456.789000000000 | XMR 123,456.789000000000),
 * `multicurrency.crypto.Ripple` (✕123,456.789000 | XRP 123,456.789000),
-* `multicurrency.crypto.StellarLumens` (*123,456.78900 | XLM 123,456.78900),
+* `multicurrency.crypto.StellarLumens` (*123,456.7890000 | XLM 123,456.7890000),
 * `multicurrency.crypto.Tezos` (ꜩ123,456.789000 | XTZ 123,456.789000),
-* `multicurrency.crypto.Zcash` (ⓩ123,456.78900000 | ZEC 123,456.78900000),
+* `multicurrency.crypto.Zcash` (ⓩ123,456.78900000 | ZEC 123,456.78900000)
 
 ## Usage
 
@@ -510,6 +511,7 @@ from .cedi import Cedi
 from .colon import CostaRicanColon
 from .crypto import (
     EOS,
+    Ethereum,
     Bitcoin,
     StellarLumens,
     Monero,
@@ -901,6 +903,7 @@ __all__ = [
     'ZimbabweDollar',
     'Bitcoin',
     'EOS',
+    'Ethereum',
     'Monero',
     'Ripple',
     'StellarLumens',

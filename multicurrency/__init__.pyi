@@ -6,7 +6,7 @@ from .birr import EthiopianBirr as EthiopianBirr
 from .boliviano import Boliviano as Boliviano
 from .cedi import Cedi as Cedi
 from .colon import CostaRicanColon as CostaRicanColon
-from .crypto import Bitcoin as Bitcoin, EOS as EOS, Monero as Monero, Ripple as Ripple, StellarLumens as StellarLumens, Tezos as Tezos, Zcash as Zcash
+from .crypto import Bitcoin as Bitcoin, EOS as EOS, Ethereum as Ethereum, Monero as Monero, Ripple as Ripple, StellarLumens as StellarLumens, Tezos as Tezos, Zcash as Zcash
 from .currency import Currency as Currency, CurrencyContext as CurrencyContext
 from .dalasi import Dalasi as Dalasi
 from .denar import Denar as Denar

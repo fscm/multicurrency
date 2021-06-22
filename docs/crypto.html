@@ -155,6 +155,67 @@ value. False otherwise. Defaults to True.</dd>
 </li>
 </ul>
 </dd>
+<dt id="multicurrency.crypto.Ethereum"><code class="flex name class">
+<span>class <span class="ident">Ethereum</span></span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 18, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '', **other)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Ethereum currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import Ethereum
+&gt;&gt;&gt; ethereum = Ethereum(
+...     amount=123456.789)
+&gt;&gt;&gt; print(ethereum)
+Ξ123,456.789000000000000000
+</code></pre>
+<p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>decimal_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of decimal places for the
+currency representation. Defaults to 18,</dd>
+<dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Decimal symbol. Defaults to '.'.</dd>
+<dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Grouping symbol. Defaults to ','.</dd>
+<dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Identifies the currency using
+the 'currency' value instead of the 'symbol'. Defaults to
+False.</dd>
+<dt><strong><code>symbol_separator</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Separation between the symbol
+and the value. Defaults to ''.</dd>
+<dt><strong><code>symbol_ahead</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>True if symbol goes ahead of the
+value. False otherwise. Defaults to True.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.currency.Currency.alpha_code" href="currency.html#multicurrency.currency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.amount" href="currency.html#multicurrency.currency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.numeric_code" href="currency.html#multicurrency.currency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.pstr" href="currency.html#multicurrency.currency.Currency.pstr">pstr</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol" href="currency.html#multicurrency.currency.Currency.symbol">symbol</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_ahead" href="currency.html#multicurrency.currency.Currency.symbol_ahead">symbol_ahead</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.symbol_separator" href="currency.html#multicurrency.currency.Currency.symbol_separator">symbol_separator</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
 <dt id="multicurrency.crypto.Monero"><code class="flex name class">
 <span>class <span class="ident">Monero</span></span>
 <span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 12, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '', **other)</span>
@@ -279,7 +340,7 @@ value. False otherwise. Defaults to True.</dd>
 </dd>
 <dt id="multicurrency.crypto.StellarLumens"><code class="flex name class">
 <span>class <span class="ident">StellarLumens</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 5, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 7, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Stellar Lumens currency representation.</p>
@@ -288,7 +349,7 @@ value. False otherwise. Defaults to True.</dd>
 &gt;&gt;&gt; stellar_lumens = StellarLumens(
 ...     amount=123456.789)
 &gt;&gt;&gt; print(stellar_lumens)
-*123,456.78900
+*123,456.7890000
 </code></pre>
 <p>For more details see <code><a title="multicurrency.currency.Currency" href="currency.html#multicurrency.currency.Currency">Currency</a></code> .</p>
 <h2 id="args">Args</h2>
@@ -297,7 +358,7 @@ value. False otherwise. Defaults to True.</dd>
 <dd>Represented value.</dd>
 <dt><strong><code>decimal_places</code></strong> :&ensp;<code>int</code>, optional</dt>
 <dd>Number of decimal places for the
-currency representation. Defaults to 5,</dd>
+currency representation. Defaults to 7,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to '.'.</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
@@ -481,6 +542,9 @@ value. False otherwise. Defaults to True.</dd>
 </li>
 <li>
 <h4><code><a title="multicurrency.crypto.EOS" href="#multicurrency.crypto.EOS">EOS</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.crypto.Ethereum" href="#multicurrency.crypto.Ethereum">Ethereum</a></code></h4>
 </li>
 <li>
 <h4><code><a title="multicurrency.crypto.Monero" href="#multicurrency.crypto.Monero">Monero</a></code></h4>

@@ -25,7 +25,7 @@ def test_stellar_lumens():
     assert stellar_lumens.amount == decimal
     assert stellar_lumens.numeric_code == '0'
     assert stellar_lumens.alpha_code == 'XLM'
-    assert stellar_lumens.decimal_places == 5
+    assert stellar_lumens.decimal_places == 7
     assert stellar_lumens.decimal_sign == '.'
     assert stellar_lumens.grouping_sign == ','
     assert not stellar_lumens.international
@@ -41,12 +41,12 @@ def test_stellar_lumens():
         'symbol_ahead: True, '
         'symbol_separator: "", '
         'numeric_code: "0", '
-        'decimal_places: "5", '
+        'decimal_places: "7", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
-    assert stellar_lumens.__str__() == '*0.14286'
+    assert stellar_lumens.__str__() == '*0.1428571'
 
 
 def test_stellar_lumens_negative():
@@ -56,7 +56,7 @@ def test_stellar_lumens_negative():
     decimal = CONTEXT.create_decimal(amount)
     assert stellar_lumens.numeric_code == '0'
     assert stellar_lumens.alpha_code == 'XLM'
-    assert stellar_lumens.decimal_places == 5
+    assert stellar_lumens.decimal_places == 7
     assert stellar_lumens.decimal_sign == '.'
     assert stellar_lumens.grouping_sign == ','
     assert not stellar_lumens.international
@@ -72,12 +72,12 @@ def test_stellar_lumens_negative():
         'symbol_ahead: True, '
         'symbol_separator: "", '
         'numeric_code: "0", '
-        'decimal_places: "5", '
+        'decimal_places: "7", '
         'decimal_sign: ".", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
-    assert stellar_lumens.__str__() == '*-100.00000'
+    assert stellar_lumens.__str__() == '*-100.0000000'
 
 
 def test_stellar_lumens_custom():
