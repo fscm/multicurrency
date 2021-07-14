@@ -12,42 +12,51 @@ from multicurrency import (
     __author__, __license__, __project__, __version__)
 
 
+CLASSIFIERS =[
+    'Development Status :: 4 - Beta',
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: MIT License',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python :: 3 :: Only',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+    'Topic :: Software Development :: Libraries',
+    'Typing :: Typed']
 DESCRIPTION = 'Currency representation library.'
 KEYWORDS = ['currency', 'library', 'monetary']
+PROJECT_URLS = {
+    'Documentation': 'http://fscm.github.io/{0}'.format(__project__),
+    'Source': 'https://github.com/fscm/{0}'.format(__project__)}
+PYTHON_REQUIRES = '>=3.6, <4'
+URL = 'https://github.com/fscm/{0}'.format(__project__)
+
 
 with open('requirements.txt', 'r', encoding='utf-8') as r:
     DEPENDENCIES = [p.strip() for p in r if not p.strip().startswith('#')]
 
+with open('README.md', 'r', encoding='utf-8') as d:
+    LONG_DESCRIPTION = d.read()
+
+
 if __name__ == '__main__':
     setup(
         author=__author__,
-        classifiers=[
-            'Development Status :: 4 - Beta',
-            'Intended Audience :: Developers',
-            'License :: OSI Approved :: MIT License',
-            'Operating System :: OS Independent',
-            'Programming Language :: Python :: 3 :: Only',
-            'Programming Language :: Python :: 3',
-            'Programming Language :: Python :: 3.6',
-            'Programming Language :: Python :: 3.7',
-            'Programming Language :: Python :: 3.8',
-            'Programming Language :: Python :: 3.9',
-            'Topic :: Software Development :: Libraries',
-            'Typing :: Typed'],
+        classifiers=CLASSIFIERS,
         description=DESCRIPTION,
         entry_points={},
         install_requires=DEPENDENCIES,
         keywords=KEYWORDS,
         license=__license__,
         license_files=['LICENSE'],
-        long_description=open('README.md', 'r', encoding='utf-8').read(),
+        long_description=LONG_DESCRIPTION,
         long_description_content_type='text/markdown',
         name=__project__,
         package_data={__project__: ['py.typed', '*.pyi']},
         packages=find_packages(exclude=['tests']),
-        project_urls={
-            'Documentation': 'http://fscm.github.io/multicurrency',
-            'Source': 'https://github.com/fscm/multicurrency'},
-        python_requires='>=3.6, <4',
-        url='https://github.com/fscm/multicurrency',
+        project_urls=PROJECT_URLS,
+        python_requires=PYTHON_REQUIRES,
+        url=URL,
         version=__version__)
