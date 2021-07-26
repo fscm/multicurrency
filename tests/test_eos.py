@@ -27,6 +27,7 @@ def test_eos():
     assert eos.alpha_code == 'EOS'
     assert eos.decimal_places == 4
     assert eos.decimal_sign == '.'
+    assert eos.grouping_places == 3
     assert eos.grouping_sign == ','
     assert not eos.international
     assert eos.symbol == 'ε'
@@ -43,6 +44,7 @@ def test_eos():
         'numeric_code: "0", '
         'decimal_places: "4", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_eos_negative():
     assert eos.alpha_code == 'EOS'
     assert eos.decimal_places == 4
     assert eos.decimal_sign == '.'
+    assert eos.grouping_places == 3
     assert eos.grouping_sign == ','
     assert not eos.international
     assert eos.symbol == 'ε'
@@ -74,6 +77,7 @@ def test_eos_negative():
         'numeric_code: "0", '
         'decimal_places: "4", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_eos_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_eos_custom():
     assert eos.alpha_code == 'EOS'
     assert eos.decimal_places == 5
     assert eos.decimal_sign == ','
+    assert eos.grouping_places == 2
     assert eos.grouping_sign == '.'
     assert eos.international
     assert eos.symbol == 'ε'
@@ -113,10 +119,11 @@ def test_eos_custom():
         'numeric_code: "0", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert eos.__str__() == 'EOS 1,000.00000'
+    assert eos.__str__() == 'EOS 10,00.00000'
 
 
 def test_eos_changed():
@@ -158,6 +165,10 @@ def test_eos_changed():
             AttributeError,
             match='can\'t set attribute'):
         eos.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        eos.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

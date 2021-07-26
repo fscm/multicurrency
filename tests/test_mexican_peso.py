@@ -27,6 +27,7 @@ def test_mexican_peso():
     assert mexican_peso.alpha_code == 'MXN'
     assert mexican_peso.decimal_places == 2
     assert mexican_peso.decimal_sign == '.'
+    assert mexican_peso.grouping_places == 3
     assert mexican_peso.grouping_sign == ','
     assert not mexican_peso.international
     assert mexican_peso.symbol == '$'
@@ -43,6 +44,7 @@ def test_mexican_peso():
         'numeric_code: "484", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_mexican_peso_negative():
     assert mexican_peso.alpha_code == 'MXN'
     assert mexican_peso.decimal_places == 2
     assert mexican_peso.decimal_sign == '.'
+    assert mexican_peso.grouping_places == 3
     assert mexican_peso.grouping_sign == ','
     assert not mexican_peso.international
     assert mexican_peso.symbol == '$'
@@ -74,6 +77,7 @@ def test_mexican_peso_negative():
         'numeric_code: "484", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_mexican_peso_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_mexican_peso_custom():
     assert mexican_peso.alpha_code == 'MXN'
     assert mexican_peso.decimal_places == 5
     assert mexican_peso.decimal_sign == ','
+    assert mexican_peso.grouping_places == 2
     assert mexican_peso.grouping_sign == '.'
     assert mexican_peso.international
     assert mexican_peso.symbol == '$'
@@ -113,10 +119,11 @@ def test_mexican_peso_custom():
         'numeric_code: "484", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert mexican_peso.__str__() == 'MXN 1,000.00000'
+    assert mexican_peso.__str__() == 'MXN 10,00.00000'
 
 
 def test_mexican_peso_changed():
@@ -158,6 +165,10 @@ def test_mexican_peso_changed():
             AttributeError,
             match='can\'t set attribute'):
         mexican_peso.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        mexican_peso.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

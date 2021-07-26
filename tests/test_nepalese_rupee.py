@@ -27,6 +27,7 @@ def test_nepalese_rupee():
     assert nepalese_rupee.alpha_code == 'NPR'
     assert nepalese_rupee.decimal_places == 2
     assert nepalese_rupee.decimal_sign == '.'
+    assert nepalese_rupee.grouping_places == 3
     assert nepalese_rupee.grouping_sign == ','
     assert not nepalese_rupee.international
     assert nepalese_rupee.symbol == 'नेरू'
@@ -43,6 +44,7 @@ def test_nepalese_rupee():
         'numeric_code: "524", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "०१२३४५६७८९-", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_nepalese_rupee_negative():
     assert nepalese_rupee.alpha_code == 'NPR'
     assert nepalese_rupee.decimal_places == 2
     assert nepalese_rupee.decimal_sign == '.'
+    assert nepalese_rupee.grouping_places == 3
     assert nepalese_rupee.grouping_sign == ','
     assert not nepalese_rupee.international
     assert nepalese_rupee.symbol == 'नेरू'
@@ -74,6 +77,7 @@ def test_nepalese_rupee_negative():
         'numeric_code: "524", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "०१२३४५६७८९-", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_nepalese_rupee_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_nepalese_rupee_custom():
     assert nepalese_rupee.alpha_code == 'NPR'
     assert nepalese_rupee.decimal_places == 5
     assert nepalese_rupee.decimal_sign == ','
+    assert nepalese_rupee.grouping_places == 2
     assert nepalese_rupee.grouping_sign == '.'
     assert nepalese_rupee.international
     assert nepalese_rupee.symbol == 'नेरू'
@@ -113,10 +119,11 @@ def test_nepalese_rupee_custom():
         'numeric_code: "524", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "०१२३४५६७८९-", '
         'international: True)')
-    assert nepalese_rupee.__str__() == 'NPR 1,000.00000'
+    assert nepalese_rupee.__str__() == 'NPR 10,00.00000'
 
 
 def test_nepalese_rupee_changed():
@@ -158,6 +165,10 @@ def test_nepalese_rupee_changed():
             AttributeError,
             match='can\'t set attribute'):
         nepalese_rupee.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        nepalese_rupee.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

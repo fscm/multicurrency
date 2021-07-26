@@ -27,6 +27,7 @@ def test_cfa_franc_beac():
     assert cfa_franc_beac.alpha_code == 'XAF'
     assert cfa_franc_beac.decimal_places == 0
     assert cfa_franc_beac.decimal_sign == ','
+    assert cfa_franc_beac.grouping_places == 3
     assert cfa_franc_beac.grouping_sign == '\u202F'
     assert not cfa_franc_beac.international
     assert cfa_franc_beac.symbol == '₣'
@@ -43,6 +44,7 @@ def test_cfa_franc_beac():
         'numeric_code: "950", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_cfa_franc_beac_negative():
     assert cfa_franc_beac.alpha_code == 'XAF'
     assert cfa_franc_beac.decimal_places == 0
     assert cfa_franc_beac.decimal_sign == ','
+    assert cfa_franc_beac.grouping_places == 3
     assert cfa_franc_beac.grouping_sign == '\u202F'
     assert not cfa_franc_beac.international
     assert cfa_franc_beac.symbol == '₣'
@@ -74,6 +77,7 @@ def test_cfa_franc_beac_negative():
         'numeric_code: "950", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_cfa_franc_beac_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_cfa_franc_beac_custom():
     assert cfa_franc_beac.alpha_code == 'XAF'
     assert cfa_franc_beac.decimal_places == 5
     assert cfa_franc_beac.decimal_sign == '\u202F'
+    assert cfa_franc_beac.grouping_places == 2
     assert cfa_franc_beac.grouping_sign == ','
     assert cfa_franc_beac.international
     assert cfa_franc_beac.symbol == '₣'
@@ -113,10 +119,11 @@ def test_cfa_franc_beac_custom():
         'numeric_code: "950", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert cfa_franc_beac.__str__() == 'XAF 1,000.00000'
+    assert cfa_franc_beac.__str__() == 'XAF 10,00.00000'
 
 
 def test_cfa_franc_beac_changed():
@@ -158,6 +165,10 @@ def test_cfa_franc_beac_changed():
             AttributeError,
             match='can\'t set attribute'):
         cfa_franc_beac.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cfa_franc_beac.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -27,6 +27,7 @@ def test_jordanian_dinar():
     assert jordanian_dinar.alpha_code == 'JOD'
     assert jordanian_dinar.decimal_places == 3
     assert jordanian_dinar.decimal_sign == '\u066B'
+    assert jordanian_dinar.grouping_places == 3
     assert jordanian_dinar.grouping_sign == '\u066C'
     assert not jordanian_dinar.international
     assert jordanian_dinar.symbol == 'د.أ.'
@@ -43,6 +44,7 @@ def test_jordanian_dinar():
         'numeric_code: "400", '
         'decimal_places: "3", '
         'decimal_sign: "\u066B", '
+        'grouping_places: "3", '
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_jordanian_dinar_negative():
     assert jordanian_dinar.alpha_code == 'JOD'
     assert jordanian_dinar.decimal_places == 3
     assert jordanian_dinar.decimal_sign == '\u066B'
+    assert jordanian_dinar.grouping_places == 3
     assert jordanian_dinar.grouping_sign == '\u066C'
     assert not jordanian_dinar.international
     assert jordanian_dinar.symbol == 'د.أ.'
@@ -74,6 +77,7 @@ def test_jordanian_dinar_negative():
         'numeric_code: "400", '
         'decimal_places: "3", '
         'decimal_sign: "\u066B", '
+        'grouping_places: "3", '
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_jordanian_dinar_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u066C',
+        grouping_places=2,
         grouping_sign='\u066B',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_jordanian_dinar_custom():
     assert jordanian_dinar.alpha_code == 'JOD'
     assert jordanian_dinar.decimal_places == 5
     assert jordanian_dinar.decimal_sign == '\u066C'
+    assert jordanian_dinar.grouping_places == 2
     assert jordanian_dinar.grouping_sign == '\u066B'
     assert jordanian_dinar.international
     assert jordanian_dinar.symbol == 'د.أ.'
@@ -113,10 +119,11 @@ def test_jordanian_dinar_custom():
         'numeric_code: "400", '
         'decimal_places: "5", '
         'decimal_sign: "\u066C", '
+        'grouping_places: "2", '
         'grouping_sign: "\u066B", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: True)')
-    assert jordanian_dinar.__str__() == 'JOD 1,000.00000'
+    assert jordanian_dinar.__str__() == 'JOD 10,00.00000'
 
 
 def test_jordanian_dinar_changed():
@@ -158,6 +165,10 @@ def test_jordanian_dinar_changed():
             AttributeError,
             match='can\'t set attribute'):
         jordanian_dinar.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        jordanian_dinar.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

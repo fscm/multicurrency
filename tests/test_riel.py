@@ -27,6 +27,7 @@ def test_riel():
     assert riel.alpha_code == 'KHR'
     assert riel.decimal_places == 2
     assert riel.decimal_sign == ','
+    assert riel.grouping_places == 3
     assert riel.grouping_sign == '.'
     assert not riel.international
     assert riel.symbol == '៛'
@@ -43,6 +44,7 @@ def test_riel():
         'numeric_code: "116", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_riel_negative():
     assert riel.alpha_code == 'KHR'
     assert riel.decimal_places == 2
     assert riel.decimal_sign == ','
+    assert riel.grouping_places == 3
     assert riel.grouping_sign == '.'
     assert not riel.international
     assert riel.symbol == '៛'
@@ -74,6 +77,7 @@ def test_riel_negative():
         'numeric_code: "116", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_riel_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_riel_custom():
     assert riel.alpha_code == 'KHR'
     assert riel.decimal_places == 5
     assert riel.decimal_sign == '.'
+    assert riel.grouping_places == 2
     assert riel.grouping_sign == ','
     assert riel.international
     assert riel.symbol == '៛'
@@ -113,10 +119,11 @@ def test_riel_custom():
         'numeric_code: "116", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert riel.__str__() == 'KHR 1,000.00000'
+    assert riel.__str__() == 'KHR 10,00.00000'
 
 
 def test_riel_changed():
@@ -158,6 +165,10 @@ def test_riel_changed():
             AttributeError,
             match='can\'t set attribute'):
         riel.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        riel.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -27,6 +27,7 @@ def test_congolese_franc():
     assert congolese_franc.alpha_code == 'CDF'
     assert congolese_franc.decimal_places == 2
     assert congolese_franc.decimal_sign == ','
+    assert congolese_franc.grouping_places == 3
     assert congolese_franc.grouping_sign == '\u202F'
     assert not congolese_franc.international
     assert congolese_franc.symbol == '₣'
@@ -43,6 +44,7 @@ def test_congolese_franc():
         'numeric_code: "976", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_congolese_franc_negative():
     assert congolese_franc.alpha_code == 'CDF'
     assert congolese_franc.decimal_places == 2
     assert congolese_franc.decimal_sign == ','
+    assert congolese_franc.grouping_places == 3
     assert congolese_franc.grouping_sign == '\u202F'
     assert not congolese_franc.international
     assert congolese_franc.symbol == '₣'
@@ -74,6 +77,7 @@ def test_congolese_franc_negative():
         'numeric_code: "976", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_congolese_franc_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_congolese_franc_custom():
     assert congolese_franc.alpha_code == 'CDF'
     assert congolese_franc.decimal_places == 5
     assert congolese_franc.decimal_sign == '\u202F'
+    assert congolese_franc.grouping_places == 2
     assert congolese_franc.grouping_sign == ','
     assert congolese_franc.international
     assert congolese_franc.symbol == '₣'
@@ -113,10 +119,11 @@ def test_congolese_franc_custom():
         'numeric_code: "976", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert congolese_franc.__str__() == 'CDF 1,000.00000'
+    assert congolese_franc.__str__() == 'CDF 10,00.00000'
 
 
 def test_congolese_franc_changed():
@@ -158,6 +165,10 @@ def test_congolese_franc_changed():
             AttributeError,
             match='can\'t set attribute'):
         congolese_franc.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        congolese_franc.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

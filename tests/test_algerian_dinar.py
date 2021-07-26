@@ -27,6 +27,7 @@ def test_algerian_dinar():
     assert algerian_dinar.alpha_code == 'DZD'
     assert algerian_dinar.decimal_places == 2
     assert algerian_dinar.decimal_sign == ','
+    assert algerian_dinar.grouping_places == 3
     assert algerian_dinar.grouping_sign == '.'
     assert not algerian_dinar.international
     assert algerian_dinar.symbol == 'د.ج.'
@@ -43,6 +44,7 @@ def test_algerian_dinar():
         'numeric_code: "012", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_algerian_dinar_negative():
     assert algerian_dinar.alpha_code == 'DZD'
     assert algerian_dinar.decimal_places == 2
     assert algerian_dinar.decimal_sign == ','
+    assert algerian_dinar.grouping_places == 3
     assert algerian_dinar.grouping_sign == '.'
     assert not algerian_dinar.international
     assert algerian_dinar.symbol == 'د.ج.'
@@ -74,6 +77,7 @@ def test_algerian_dinar_negative():
         'numeric_code: "012", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_algerian_dinar_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_algerian_dinar_custom():
     assert algerian_dinar.alpha_code == 'DZD'
     assert algerian_dinar.decimal_places == 5
     assert algerian_dinar.decimal_sign == '.'
+    assert algerian_dinar.grouping_places == 2
     assert algerian_dinar.grouping_sign == ','
     assert algerian_dinar.international
     assert algerian_dinar.symbol == 'د.ج.'
@@ -113,10 +119,11 @@ def test_algerian_dinar_custom():
         'numeric_code: "012", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert algerian_dinar.__str__() == 'DZD 1,000.00000'
+    assert algerian_dinar.__str__() == 'DZD 10,00.00000'
 
 
 def test_algerian_dinar_changed():
@@ -158,6 +165,10 @@ def test_algerian_dinar_changed():
             AttributeError,
             match='can\'t set attribute'):
         algerian_dinar.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        algerian_dinar.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

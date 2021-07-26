@@ -27,6 +27,7 @@ def test_ripple():
     assert ripple.alpha_code == 'XRP'
     assert ripple.decimal_places == 6
     assert ripple.decimal_sign == '.'
+    assert ripple.grouping_places == 3
     assert ripple.grouping_sign == ','
     assert not ripple.international
     assert ripple.symbol == '✕'
@@ -43,6 +44,7 @@ def test_ripple():
         'numeric_code: "0", '
         'decimal_places: "6", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_ripple_negative():
     assert ripple.alpha_code == 'XRP'
     assert ripple.decimal_places == 6
     assert ripple.decimal_sign == '.'
+    assert ripple.grouping_places == 3
     assert ripple.grouping_sign == ','
     assert not ripple.international
     assert ripple.symbol == '✕'
@@ -74,6 +77,7 @@ def test_ripple_negative():
         'numeric_code: "0", '
         'decimal_places: "6", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_ripple_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_ripple_custom():
     assert ripple.alpha_code == 'XRP'
     assert ripple.decimal_places == 5
     assert ripple.decimal_sign == ','
+    assert ripple.grouping_places == 2
     assert ripple.grouping_sign == '.'
     assert ripple.international
     assert ripple.symbol == '✕'
@@ -113,10 +119,11 @@ def test_ripple_custom():
         'numeric_code: "0", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert ripple.__str__() == 'XRP 1,000.00000'
+    assert ripple.__str__() == 'XRP 10,00.00000'
 
 
 def test_ripple_changed():
@@ -158,6 +165,10 @@ def test_ripple_changed():
             AttributeError,
             match='can\'t set attribute'):
         ripple.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        ripple.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

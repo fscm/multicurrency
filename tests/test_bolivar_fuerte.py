@@ -27,6 +27,7 @@ def test_bolivar_fuerte():
     assert bolivar_fuerte.alpha_code == 'VEF'
     assert bolivar_fuerte.decimal_places == 2
     assert bolivar_fuerte.decimal_sign == ','
+    assert bolivar_fuerte.grouping_places == 3
     assert bolivar_fuerte.grouping_sign == '.'
     assert not bolivar_fuerte.international
     assert bolivar_fuerte.symbol == 'Bs.F.'
@@ -43,6 +44,7 @@ def test_bolivar_fuerte():
         'numeric_code: "937", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_bolivar_fuerte_negative():
     assert bolivar_fuerte.alpha_code == 'VEF'
     assert bolivar_fuerte.decimal_places == 2
     assert bolivar_fuerte.decimal_sign == ','
+    assert bolivar_fuerte.grouping_places == 3
     assert bolivar_fuerte.grouping_sign == '.'
     assert not bolivar_fuerte.international
     assert bolivar_fuerte.symbol == 'Bs.F.'
@@ -74,6 +77,7 @@ def test_bolivar_fuerte_negative():
         'numeric_code: "937", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_bolivar_fuerte_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_bolivar_fuerte_custom():
     assert bolivar_fuerte.alpha_code == 'VEF'
     assert bolivar_fuerte.decimal_places == 5
     assert bolivar_fuerte.decimal_sign == '.'
+    assert bolivar_fuerte.grouping_places == 2
     assert bolivar_fuerte.grouping_sign == ','
     assert bolivar_fuerte.international
     assert bolivar_fuerte.symbol == 'Bs.F.'
@@ -113,10 +119,11 @@ def test_bolivar_fuerte_custom():
         'numeric_code: "937", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert bolivar_fuerte.__str__() == 'VEF 1,000.00000'
+    assert bolivar_fuerte.__str__() == 'VEF 10,00.00000'
 
 
 def test_bolivar_fuerte_changed():
@@ -158,6 +165,10 @@ def test_bolivar_fuerte_changed():
             AttributeError,
             match='can\'t set attribute'):
         bolivar_fuerte.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        bolivar_fuerte.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

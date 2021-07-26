@@ -27,6 +27,7 @@ def test_bitcoin():
     assert bitcoin.alpha_code == 'XBT'
     assert bitcoin.decimal_places == 8
     assert bitcoin.decimal_sign == '.'
+    assert bitcoin.grouping_places == 3
     assert bitcoin.grouping_sign == ','
     assert not bitcoin.international
     assert bitcoin.symbol == '₿'
@@ -43,6 +44,7 @@ def test_bitcoin():
         'numeric_code: "0", '
         'decimal_places: "8", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_bitcoin_negative():
     assert bitcoin.alpha_code == 'XBT'
     assert bitcoin.decimal_places == 8
     assert bitcoin.decimal_sign == '.'
+    assert bitcoin.grouping_places == 3
     assert bitcoin.grouping_sign == ','
     assert not bitcoin.international
     assert bitcoin.symbol == '₿'
@@ -74,6 +77,7 @@ def test_bitcoin_negative():
         'numeric_code: "0", '
         'decimal_places: "8", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_bitcoin_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_bitcoin_custom():
     assert bitcoin.alpha_code == 'XBT'
     assert bitcoin.decimal_places == 5
     assert bitcoin.decimal_sign == ','
+    assert bitcoin.grouping_places == 2
     assert bitcoin.grouping_sign == '.'
     assert bitcoin.international
     assert bitcoin.symbol == '₿'
@@ -113,10 +119,11 @@ def test_bitcoin_custom():
         'numeric_code: "0", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert bitcoin.__str__() == 'XBT 1,000.00000'
+    assert bitcoin.__str__() == 'XBT 10,00.00000'
 
 
 def test_bitcoin_changed():
@@ -158,6 +165,10 @@ def test_bitcoin_changed():
             AttributeError,
             match='can\'t set attribute'):
         bitcoin.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        bitcoin.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

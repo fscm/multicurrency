@@ -29,6 +29,8 @@ class Euro(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -46,6 +48,7 @@ class Euro(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '.',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -66,6 +69,7 @@ class Euro(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -89,6 +93,8 @@ class EuroAD(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -106,6 +112,7 @@ class EuroAD(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '.',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -126,6 +133,7 @@ class EuroAD(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -149,6 +157,8 @@ class EuroAT(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -166,6 +176,7 @@ class EuroAT(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '.',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -186,6 +197,7 @@ class EuroAT(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -209,6 +221,8 @@ class EuroBE(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -226,6 +240,7 @@ class EuroBE(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '.',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -246,6 +261,7 @@ class EuroBE(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -269,6 +285,8 @@ class EuroCY(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -286,6 +304,7 @@ class EuroCY(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '.',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -306,6 +325,7 @@ class EuroCY(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -329,6 +349,8 @@ class EuroEE(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ' '.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -346,6 +368,7 @@ class EuroEE(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '\u202F',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -366,6 +389,7 @@ class EuroEE(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -389,6 +413,8 @@ class EuroFI(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ' '.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -406,6 +432,7 @@ class EuroFI(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '\u202F',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -426,6 +453,7 @@ class EuroFI(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -449,6 +477,8 @@ class EuroFR(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ' '.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -466,6 +496,7 @@ class EuroFR(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '\u202F',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -486,6 +517,7 @@ class EuroFR(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -509,6 +541,8 @@ class EuroDE(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -526,6 +560,7 @@ class EuroDE(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '.',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -546,6 +581,7 @@ class EuroDE(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -569,6 +605,8 @@ class EuroGR(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -586,6 +624,7 @@ class EuroGR(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '.',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -606,6 +645,7 @@ class EuroGR(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -629,6 +669,8 @@ class EuroIE(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -646,6 +688,7 @@ class EuroIE(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -666,6 +709,7 @@ class EuroIE(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -689,6 +733,8 @@ class EuroIT(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -706,6 +752,7 @@ class EuroIT(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '.',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -726,6 +773,7 @@ class EuroIT(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -749,6 +797,8 @@ class EuroXK(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ' '.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -766,6 +816,7 @@ class EuroXK(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '\u202F',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -786,6 +837,7 @@ class EuroXK(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -809,6 +861,8 @@ class EuroLV(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ' '.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -826,6 +880,7 @@ class EuroLV(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '\u202F',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -846,6 +901,7 @@ class EuroLV(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -869,6 +925,8 @@ class EuroLT(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ' '.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -886,6 +944,7 @@ class EuroLT(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '\u202F',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -906,6 +965,7 @@ class EuroLT(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -929,6 +989,8 @@ class EuroLU(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -946,6 +1008,7 @@ class EuroLU(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '.',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -966,6 +1029,7 @@ class EuroLU(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -989,6 +1053,8 @@ class EuroMT(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -1006,6 +1072,7 @@ class EuroMT(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -1026,6 +1093,7 @@ class EuroMT(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -1049,6 +1117,8 @@ class EuroMC(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ' '.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -1066,6 +1136,7 @@ class EuroMC(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '\u202F',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -1086,6 +1157,7 @@ class EuroMC(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -1109,6 +1181,8 @@ class EuroME(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -1126,6 +1200,7 @@ class EuroME(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '.',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -1146,6 +1221,7 @@ class EuroME(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -1169,6 +1245,8 @@ class EuroNL(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -1186,6 +1264,7 @@ class EuroNL(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '.',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -1206,6 +1285,7 @@ class EuroNL(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -1229,6 +1309,8 @@ class EuroPT(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -1246,6 +1328,7 @@ class EuroPT(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '.',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -1266,6 +1349,7 @@ class EuroPT(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -1289,6 +1373,8 @@ class EuroSM(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -1306,6 +1392,7 @@ class EuroSM(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '.',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -1326,6 +1413,7 @@ class EuroSM(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -1349,6 +1437,8 @@ class EuroSK(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ' '.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -1366,6 +1456,7 @@ class EuroSK(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '\u202F',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -1386,6 +1477,7 @@ class EuroSK(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -1409,6 +1501,8 @@ class EuroSI(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -1426,6 +1520,7 @@ class EuroSI(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '.',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -1446,6 +1541,7 @@ class EuroSI(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -1469,6 +1565,8 @@ class EuroES(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -1486,6 +1584,7 @@ class EuroES(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '.',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -1506,6 +1605,7 @@ class EuroES(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -1529,6 +1629,8 @@ class EuroVA(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -1546,6 +1648,7 @@ class EuroVA(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -1566,6 +1669,7 @@ class EuroVA(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)

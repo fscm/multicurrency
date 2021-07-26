@@ -27,6 +27,7 @@ def test_europt():
     assert europt.alpha_code == 'EUR'
     assert europt.decimal_places == 2
     assert europt.decimal_sign == ','
+    assert europt.grouping_places == 3
     assert europt.grouping_sign == '.'
     assert not europt.international
     assert europt.symbol == '€'
@@ -43,6 +44,7 @@ def test_europt():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_europt_negative():
     assert europt.alpha_code == 'EUR'
     assert europt.decimal_places == 2
     assert europt.decimal_sign == ','
+    assert europt.grouping_places == 3
     assert europt.grouping_sign == '.'
     assert not europt.international
     assert europt.symbol == '€'
@@ -74,6 +77,7 @@ def test_europt_negative():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_europt_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_europt_custom():
     assert europt.alpha_code == 'EUR'
     assert europt.decimal_places == 5
     assert europt.decimal_sign == '.'
+    assert europt.grouping_places == 2
     assert europt.grouping_sign == ','
     assert europt.international
     assert europt.symbol == '€'
@@ -113,10 +119,11 @@ def test_europt_custom():
         'numeric_code: "978", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert europt.__str__() == 'EUR 1,000.00000'
+    assert europt.__str__() == 'EUR 10,00.00000'
 
 
 def test_europt_changed():
@@ -158,6 +165,10 @@ def test_europt_changed():
             AttributeError,
             match='can\'t set attribute'):
         europt.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        europt.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

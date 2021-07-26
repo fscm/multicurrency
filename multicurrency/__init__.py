@@ -315,6 +315,119 @@ ROUND_HALF_EVEN) which can be changed as needed:
 Supported rounding methods are described on the
 `multicurrency.currency.CurrencyContext` class.
 
+## Formatting
+
+The `multicurrency.currency.Currency` class allows you to create and
+customize your own value formatting behaviors using the same
+implementation as the built-in `format()` method.
+
+The specification for the formatting feature is as follows:
+
+    [dp][ds][gs][gp][spec]
+
+The meaning of the various alignment options is as follows:
+
+| Option | Type   | Meaning                                                                               |
+|:-------|:-------|:--------------------------------------------------------------------------------------|
+| [dp]   | int+   | The number of decimal places (integer number with one or more digits).                |
+| [ds]   | str{1} | The decimal sign (single non-digit character).                                        |
+| [gs]   | str{1} | The grouping sign (single non-digit character).                                       |
+| [gp]   | int+   | The number of digits to group the number by (integer number with one or more digits). |
+| [spec] | str    | The formatting spec (a strig with the order of currency parts).                       |
+
+All fields are optional although for the first four fields when setting
+one the fields on the left of that are required to be set as well.
+
+The available string currency parts for `[spec]` are:
+
+| Part | Meaning                                                                                                                     |
+|:-----|:----------------------------------------------------------------------------------------------------------------------------|
+| %a   | The currency's amount as seen in the default representation of the currency (the numeral system of the currency's country). |
+| %A   | The currency's amount in (western) arabic numerals.                                                                         |
+| %c   | The currency's alpha code (as seen on the international representation of the currency).                                    |
+| %s   | The currency's symbol.                                                                                                      |
+| %_   | The currency's symbol separator.                                                                                            |
+
+Basic examples of how to use the `multicurrency.currency.Currency`
+formatting feature:
+
+    Using the built-in `format()` method
+
+        >>> from multicurrency import Euro
+        >>> euro = Euro(1000000*(1/7))
+        >>> format(euro, '4%a')
+        '142.857,1429'
+
+    Using the `'new' string` formating method
+
+        >>> from multicurrency import Euro
+        >>> euro = Euro(1000000*(1/7))
+        >>> '{:4%a}'.format(euro)
+        '142.857,1429'
+
+    Using the `f-string` method
+
+        >>> from multicurrency import Euro
+        >>> euro = Euro(1000000*(1/7))
+        >>> f'{euro:4%a}'
+        '142.857,1429'
+
+Some more examples of the `multicurrency.currency.Currency` formatting
+feature usage (using the `f-string` method):
+
+    >>> from multicurrency import Euro
+    >>> euro = Euro(1000000*(1/7))
+    >>> print(euro)
+    142.857,14 €
+
+    >>> print(f'{euro}')
+    142.857,14 €
+
+    >>> print(f'{euro:_}')
+    142.857_14 €
+
+    >>> print(f'{euro:.,}')
+    142,857.14 €
+
+    >>> print(f'{euro:3.,}')
+    142,857.143 €
+
+    >>> print(f'{euro:3.,2}')
+    14,28,57.143 €
+
+    >>> print(f'{euro:_2}')
+    14.28.57_14 €
+
+    >>> print(f'{euro:.,2}')
+    14,28,57.14 €
+
+    >>> print(f'{euro:3%a}')
+    142.857,143
+
+    >>> print(f'{euro:3_%a}')
+    142.857_143
+
+    >>> print(f'{euro:3#_%a}')
+    142_857#143
+
+    >>> print(f'{euro:3.,2%a}')
+    14,28,57.143
+
+    >>> print(f'{euro:3.,4%a}')
+    14,2857.143
+
+    >>> print(f'{euro:.,4%a}')
+    14,2857.14
+
+    >>> print(f'{euro:%a}')
+    142.857,14
+
+    >>> print(f'{euro:%a%_%c}')
+    142.857,14 EUR
+
+    >>> print(f'{euro:%a %c}')
+    142.857,14 EUR
+
 ## Operations
 
 Several operations are supported by the several library classes.
@@ -491,7 +604,7 @@ Several operations are supported by the several library classes.
         False
         >>> euro1 != euro2
         True
-"""
+"""  # pylint: disable=line-too-long
 
 from .currency import Currency, CurrencyContext
 from .exceptions import (
@@ -914,4 +1027,4 @@ __all__ = [
 __author__: str = 'Frederico Martins'
 __license__: str = 'MIT'
 __project__: str = __package__
-__version__: str = '0.8.0'
+__version__: str = '0.9.0'

@@ -27,6 +27,7 @@ def test_euro():
     assert euro.alpha_code == 'EUR'
     assert euro.decimal_places == 2
     assert euro.decimal_sign == ','
+    assert euro.grouping_places == 3
     assert euro.grouping_sign == '.'
     assert not euro.international
     assert euro.symbol == '€'
@@ -43,6 +44,7 @@ def test_euro():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_euro_negative():
     assert euro.alpha_code == 'EUR'
     assert euro.decimal_places == 2
     assert euro.decimal_sign == ','
+    assert euro.grouping_places == 3
     assert euro.grouping_sign == '.'
     assert not euro.international
     assert euro.symbol == '€'
@@ -74,6 +77,7 @@ def test_euro_negative():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_euro_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_euro_custom():
     assert euro.alpha_code == 'EUR'
     assert euro.decimal_places == 5
     assert euro.decimal_sign == '.'
+    assert euro.grouping_places == 2
     assert euro.grouping_sign == ','
     assert euro.international
     assert euro.symbol == '€'
@@ -113,10 +119,11 @@ def test_euro_custom():
         'numeric_code: "978", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert euro.__str__() == 'EUR 1,000.00000'
+    assert euro.__str__() == 'EUR 10,00.00000'
 
 
 def test_euro_changed():
@@ -158,6 +165,10 @@ def test_euro_changed():
             AttributeError,
             match='can\'t set attribute'):
         euro.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        euro.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

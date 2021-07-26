@@ -27,6 +27,7 @@ def test_kwanza():
     assert kwanza.alpha_code == 'AOA'
     assert kwanza.decimal_places == 2
     assert kwanza.decimal_sign == ','
+    assert kwanza.grouping_places == 3
     assert kwanza.grouping_sign == '\u202F'
     assert not kwanza.international
     assert kwanza.symbol == 'Kz'
@@ -43,6 +44,7 @@ def test_kwanza():
         'numeric_code: "973", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_kwanza_negative():
     assert kwanza.alpha_code == 'AOA'
     assert kwanza.decimal_places == 2
     assert kwanza.decimal_sign == ','
+    assert kwanza.grouping_places == 3
     assert kwanza.grouping_sign == '\u202F'
     assert not kwanza.international
     assert kwanza.symbol == 'Kz'
@@ -74,6 +77,7 @@ def test_kwanza_negative():
         'numeric_code: "973", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_kwanza_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_kwanza_custom():
     assert kwanza.alpha_code == 'AOA'
     assert kwanza.decimal_places == 5
     assert kwanza.decimal_sign == '\u202F'
+    assert kwanza.grouping_places == 2
     assert kwanza.grouping_sign == ','
     assert kwanza.international
     assert kwanza.symbol == 'Kz'
@@ -113,10 +119,11 @@ def test_kwanza_custom():
         'numeric_code: "973", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert kwanza.__str__() == 'AOA 1,000.00000'
+    assert kwanza.__str__() == 'AOA 10,00.00000'
 
 
 def test_kwanza_changed():
@@ -158,6 +165,10 @@ def test_kwanza_changed():
             AttributeError,
             match='can\'t set attribute'):
         kwanza.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        kwanza.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

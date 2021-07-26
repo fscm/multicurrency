@@ -27,6 +27,7 @@ def test___CURRENCY_VARIABLE__():
     assert __CURRENCY_VARIABLE__.alpha_code == '__CURRENCY__'
     assert __CURRENCY_VARIABLE__.decimal_places == __DECIMAL_PLACES__
     assert __CURRENCY_VARIABLE__.decimal_sign == '__DECIMAL_SIGN__'
+    assert __CURRENCY_VARIABLE__.grouping_places == __GROUPING_PLACES__
     assert __CURRENCY_VARIABLE__.grouping_sign == '__GROUPING_SIGN_ALT__'
     assert not __CURRENCY_VARIABLE__.international
     assert __CURRENCY_VARIABLE__.symbol == '__SYMBOL__'
@@ -43,6 +44,7 @@ def test___CURRENCY_VARIABLE__():
         'numeric_code: "__CODE__", '
         'decimal_places: "__DECIMAL_PLACES__", '
         'decimal_sign: "__DECIMAL_SIGN__", '
+        'grouping_places: "__GROUPING_PLACES__", '
         'grouping_sign: "__GROUPING_SIGN_ALT__", '
         'convertion: "__CONVERTION__", '
         'international: False)')
@@ -58,6 +60,7 @@ def test___CURRENCY_VARIABLE___negative():
     assert __CURRENCY_VARIABLE__.alpha_code == '__CURRENCY__'
     assert __CURRENCY_VARIABLE__.decimal_places == __DECIMAL_PLACES__
     assert __CURRENCY_VARIABLE__.decimal_sign == '__DECIMAL_SIGN__'
+    assert __CURRENCY_VARIABLE__.grouping_places == __GROUPING_PLACES__
     assert __CURRENCY_VARIABLE__.grouping_sign == '__GROUPING_SIGN_ALT__'
     assert not __CURRENCY_VARIABLE__.international
     assert __CURRENCY_VARIABLE__.symbol == '__SYMBOL__'
@@ -74,6 +77,7 @@ def test___CURRENCY_VARIABLE___negative():
         'numeric_code: "__CODE__", '
         'decimal_places: "__DECIMAL_PLACES__", '
         'decimal_sign: "__DECIMAL_SIGN__", '
+        'grouping_places: "__GROUPING_PLACES__", '
         'grouping_sign: "__GROUPING_SIGN_ALT__", '
         'convertion: "__CONVERTION__", '
         'international: False)')
@@ -87,6 +91,7 @@ def test___CURRENCY_VARIABLE___custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='__GROUPING_SIGN_ALT__',
+        grouping_places=2,
         grouping_sign='__DECIMAL_SIGN__',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test___CURRENCY_VARIABLE___custom():
     assert __CURRENCY_VARIABLE__.alpha_code == '__CURRENCY__'
     assert __CURRENCY_VARIABLE__.decimal_places == 5
     assert __CURRENCY_VARIABLE__.decimal_sign == '__GROUPING_SIGN_ALT__'
+    assert __CURRENCY_VARIABLE__.grouping_places == 2
     assert __CURRENCY_VARIABLE__.grouping_sign == '__DECIMAL_SIGN__'
     assert __CURRENCY_VARIABLE__.international
     assert __CURRENCY_VARIABLE__.symbol == '__SYMBOL__'
@@ -113,6 +119,7 @@ def test___CURRENCY_VARIABLE___custom():
         'numeric_code: "__CODE__", '
         'decimal_places: "5", '
         'decimal_sign: "__GROUPING_SIGN_ALT__", '
+        'grouping_places: "2", '
         'grouping_sign: "__DECIMAL_SIGN__", '
         'convertion: "__CONVERTION__", '
         'international: True)')
@@ -158,6 +165,10 @@ def test___CURRENCY_VARIABLE___changed():
             AttributeError,
             match='can\'t set attribute'):
         __CURRENCY_VARIABLE__.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        __CURRENCY_VARIABLE__.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

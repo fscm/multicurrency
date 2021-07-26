@@ -27,6 +27,7 @@ def test_tenge():
     assert tenge.alpha_code == 'KZT'
     assert tenge.decimal_places == 2
     assert tenge.decimal_sign == ','
+    assert tenge.grouping_places == 3
     assert tenge.grouping_sign == '\u202F'
     assert not tenge.international
     assert tenge.symbol == '〒'
@@ -43,6 +44,7 @@ def test_tenge():
         'numeric_code: "398", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_tenge_negative():
     assert tenge.alpha_code == 'KZT'
     assert tenge.decimal_places == 2
     assert tenge.decimal_sign == ','
+    assert tenge.grouping_places == 3
     assert tenge.grouping_sign == '\u202F'
     assert not tenge.international
     assert tenge.symbol == '〒'
@@ -74,6 +77,7 @@ def test_tenge_negative():
         'numeric_code: "398", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_tenge_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_tenge_custom():
     assert tenge.alpha_code == 'KZT'
     assert tenge.decimal_places == 5
     assert tenge.decimal_sign == '\u202F'
+    assert tenge.grouping_places == 2
     assert tenge.grouping_sign == ','
     assert tenge.international
     assert tenge.symbol == '〒'
@@ -113,10 +119,11 @@ def test_tenge_custom():
         'numeric_code: "398", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert tenge.__str__() == 'KZT 1,000.00000'
+    assert tenge.__str__() == 'KZT 10,00.00000'
 
 
 def test_tenge_changed():
@@ -158,6 +165,10 @@ def test_tenge_changed():
             AttributeError,
             match='can\'t set attribute'):
         tenge.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        tenge.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

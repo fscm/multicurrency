@@ -29,6 +29,8 @@ class BurundiFranc(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 0,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ' '.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -46,6 +48,7 @@ class BurundiFranc(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 0,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '\u202F',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -66,6 +69,7 @@ class BurundiFranc(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -89,6 +93,8 @@ class CongoleseFranc(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ' '.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -106,6 +112,7 @@ class CongoleseFranc(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '\u202F',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -126,6 +133,7 @@ class CongoleseFranc(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -149,6 +157,8 @@ class SwissFranc(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '''.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -166,6 +176,7 @@ class SwissFranc(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '\'',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -186,6 +197,7 @@ class SwissFranc(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -209,6 +221,8 @@ class DjiboutiFranc(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 0,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ' '.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -226,6 +240,7 @@ class DjiboutiFranc(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 0,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '\u202F',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -246,6 +261,7 @@ class DjiboutiFranc(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -269,6 +285,8 @@ class GuineaFranc(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 0,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ' '.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -286,6 +304,7 @@ class GuineaFranc(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 0,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '\u202F',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -306,6 +325,7 @@ class GuineaFranc(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -329,6 +349,8 @@ class RwandaFranc(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 0,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -346,6 +368,7 @@ class RwandaFranc(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 0,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '.',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -366,6 +389,7 @@ class RwandaFranc(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -389,6 +413,8 @@ class CFAFrancBCEAO(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 0,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ' '.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -406,6 +432,7 @@ class CFAFrancBCEAO(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 0,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '\u202F',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -426,6 +453,7 @@ class CFAFrancBCEAO(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -449,6 +477,8 @@ class CFAFrancBEAC(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 0,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ' '.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -466,6 +496,7 @@ class CFAFrancBEAC(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 0,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '\u202F',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -486,6 +517,7 @@ class CFAFrancBEAC(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -509,6 +541,8 @@ class CFPFranc(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 0,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ' '.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -526,6 +560,7 @@ class CFPFranc(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 0,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '\u202F',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -546,6 +581,7 @@ class CFPFranc(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)

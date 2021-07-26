@@ -29,6 +29,8 @@ class AustralianDollar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -46,6 +48,7 @@ class AustralianDollar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -66,6 +69,7 @@ class AustralianDollar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -89,6 +93,8 @@ class BarbadosDollar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -106,6 +112,7 @@ class BarbadosDollar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -126,6 +133,7 @@ class BarbadosDollar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -149,6 +157,8 @@ class BermudianDollar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -166,6 +176,7 @@ class BermudianDollar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -186,6 +197,7 @@ class BermudianDollar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -209,6 +221,8 @@ class BruneiDollar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -226,6 +240,7 @@ class BruneiDollar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '.',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -246,6 +261,7 @@ class BruneiDollar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -269,6 +285,8 @@ class BahamianDollar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -286,6 +304,7 @@ class BahamianDollar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -306,6 +325,7 @@ class BahamianDollar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -329,6 +349,8 @@ class BelizeDollar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -346,6 +368,7 @@ class BelizeDollar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -366,6 +389,7 @@ class BelizeDollar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -389,6 +413,8 @@ class CanadianDollarEN(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -406,6 +432,7 @@ class CanadianDollarEN(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -426,6 +453,7 @@ class CanadianDollarEN(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -449,6 +477,8 @@ class CanadianDollarFR(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ' '.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -466,6 +496,7 @@ class CanadianDollarFR(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '\u202F',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -486,6 +517,7 @@ class CanadianDollarFR(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -509,6 +541,8 @@ class FijiDollar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -526,6 +560,7 @@ class FijiDollar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -546,6 +581,7 @@ class FijiDollar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -569,6 +605,8 @@ class GuyanaDollar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -586,6 +624,7 @@ class GuyanaDollar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -606,6 +645,7 @@ class GuyanaDollar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -629,6 +669,8 @@ class HongKongDollar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -646,6 +688,7 @@ class HongKongDollar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -666,6 +709,7 @@ class HongKongDollar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -689,6 +733,8 @@ class JamaicanDollar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -706,6 +752,7 @@ class JamaicanDollar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -726,6 +773,7 @@ class JamaicanDollar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -749,6 +797,8 @@ class CaymanIslandsDollar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -766,6 +816,7 @@ class CaymanIslandsDollar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -786,6 +837,7 @@ class CaymanIslandsDollar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -809,6 +861,8 @@ class LiberianDollar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -826,6 +880,7 @@ class LiberianDollar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -846,6 +901,7 @@ class LiberianDollar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -869,6 +925,8 @@ class NamibiaDollar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -886,6 +944,7 @@ class NamibiaDollar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -906,6 +965,7 @@ class NamibiaDollar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -929,6 +989,8 @@ class NewZealandDollar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -946,6 +1008,7 @@ class NewZealandDollar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -966,6 +1029,7 @@ class NewZealandDollar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -989,6 +1053,8 @@ class SolomonIslandsDollar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -1006,6 +1072,7 @@ class SolomonIslandsDollar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -1026,6 +1093,7 @@ class SolomonIslandsDollar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -1049,6 +1117,8 @@ class SingaporeDollar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -1066,6 +1136,7 @@ class SingaporeDollar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -1086,6 +1157,7 @@ class SingaporeDollar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -1109,6 +1181,8 @@ class SurinameDollar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -1126,6 +1200,7 @@ class SurinameDollar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '.',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -1146,6 +1221,7 @@ class SurinameDollar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -1169,6 +1245,8 @@ class TrinidadandTobagoDollar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -1186,6 +1264,7 @@ class TrinidadandTobagoDollar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -1206,6 +1285,7 @@ class TrinidadandTobagoDollar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -1229,6 +1309,8 @@ class TaiwanDollar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -1246,6 +1328,7 @@ class TaiwanDollar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -1266,6 +1349,7 @@ class TaiwanDollar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -1289,6 +1373,8 @@ class USDollar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -1306,6 +1392,7 @@ class USDollar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -1326,6 +1413,7 @@ class USDollar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -1349,6 +1437,8 @@ class EastCaribbeanDollar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -1366,6 +1456,7 @@ class EastCaribbeanDollar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -1386,6 +1477,7 @@ class EastCaribbeanDollar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -1409,6 +1501,8 @@ class ZimbabweDollar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -1426,6 +1520,7 @@ class ZimbabweDollar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -1446,6 +1541,7 @@ class ZimbabweDollar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)

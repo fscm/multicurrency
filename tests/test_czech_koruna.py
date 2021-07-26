@@ -27,6 +27,7 @@ def test_czech_koruna():
     assert czech_koruna.alpha_code == 'CZK'
     assert czech_koruna.decimal_places == 2
     assert czech_koruna.decimal_sign == ','
+    assert czech_koruna.grouping_places == 3
     assert czech_koruna.grouping_sign == '\u202F'
     assert not czech_koruna.international
     assert czech_koruna.symbol == 'Kč'
@@ -43,6 +44,7 @@ def test_czech_koruna():
         'numeric_code: "203", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_czech_koruna_negative():
     assert czech_koruna.alpha_code == 'CZK'
     assert czech_koruna.decimal_places == 2
     assert czech_koruna.decimal_sign == ','
+    assert czech_koruna.grouping_places == 3
     assert czech_koruna.grouping_sign == '\u202F'
     assert not czech_koruna.international
     assert czech_koruna.symbol == 'Kč'
@@ -74,6 +77,7 @@ def test_czech_koruna_negative():
         'numeric_code: "203", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_czech_koruna_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_czech_koruna_custom():
     assert czech_koruna.alpha_code == 'CZK'
     assert czech_koruna.decimal_places == 5
     assert czech_koruna.decimal_sign == '\u202F'
+    assert czech_koruna.grouping_places == 2
     assert czech_koruna.grouping_sign == ','
     assert czech_koruna.international
     assert czech_koruna.symbol == 'Kč'
@@ -113,10 +119,11 @@ def test_czech_koruna_custom():
         'numeric_code: "203", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert czech_koruna.__str__() == 'CZK 1,000.00000'
+    assert czech_koruna.__str__() == 'CZK 10,00.00000'
 
 
 def test_czech_koruna_changed():
@@ -158,6 +165,10 @@ def test_czech_koruna_changed():
             AttributeError,
             match='can\'t set attribute'):
         czech_koruna.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        czech_koruna.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

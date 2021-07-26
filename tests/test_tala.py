@@ -27,6 +27,7 @@ def test_tala():
     assert tala.alpha_code == 'WST'
     assert tala.decimal_places == 2
     assert tala.decimal_sign == '.'
+    assert tala.grouping_places == 3
     assert tala.grouping_sign == ','
     assert not tala.international
     assert tala.symbol == 'T'
@@ -43,6 +44,7 @@ def test_tala():
         'numeric_code: "882", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_tala_negative():
     assert tala.alpha_code == 'WST'
     assert tala.decimal_places == 2
     assert tala.decimal_sign == '.'
+    assert tala.grouping_places == 3
     assert tala.grouping_sign == ','
     assert not tala.international
     assert tala.symbol == 'T'
@@ -74,6 +77,7 @@ def test_tala_negative():
         'numeric_code: "882", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_tala_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_tala_custom():
     assert tala.alpha_code == 'WST'
     assert tala.decimal_places == 5
     assert tala.decimal_sign == ','
+    assert tala.grouping_places == 2
     assert tala.grouping_sign == '.'
     assert tala.international
     assert tala.symbol == 'T'
@@ -113,10 +119,11 @@ def test_tala_custom():
         'numeric_code: "882", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert tala.__str__() == 'WST 1,000.00000'
+    assert tala.__str__() == 'WST 10,00.00000'
 
 
 def test_tala_changed():
@@ -158,6 +165,10 @@ def test_tala_changed():
             AttributeError,
             match='can\'t set attribute'):
         tala.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        tala.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

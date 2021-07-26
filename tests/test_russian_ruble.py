@@ -27,6 +27,7 @@ def test_russian_ruble():
     assert russian_ruble.alpha_code == 'RUB'
     assert russian_ruble.decimal_places == 2
     assert russian_ruble.decimal_sign == ','
+    assert russian_ruble.grouping_places == 3
     assert russian_ruble.grouping_sign == '\u202F'
     assert not russian_ruble.international
     assert russian_ruble.symbol == '₽'
@@ -43,6 +44,7 @@ def test_russian_ruble():
         'numeric_code: "643", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_russian_ruble_negative():
     assert russian_ruble.alpha_code == 'RUB'
     assert russian_ruble.decimal_places == 2
     assert russian_ruble.decimal_sign == ','
+    assert russian_ruble.grouping_places == 3
     assert russian_ruble.grouping_sign == '\u202F'
     assert not russian_ruble.international
     assert russian_ruble.symbol == '₽'
@@ -74,6 +77,7 @@ def test_russian_ruble_negative():
         'numeric_code: "643", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_russian_ruble_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_russian_ruble_custom():
     assert russian_ruble.alpha_code == 'RUB'
     assert russian_ruble.decimal_places == 5
     assert russian_ruble.decimal_sign == '\u202F'
+    assert russian_ruble.grouping_places == 2
     assert russian_ruble.grouping_sign == ','
     assert russian_ruble.international
     assert russian_ruble.symbol == '₽'
@@ -113,10 +119,11 @@ def test_russian_ruble_custom():
         'numeric_code: "643", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert russian_ruble.__str__() == 'RUB 1,000.00000'
+    assert russian_ruble.__str__() == 'RUB 10,00.00000'
 
 
 def test_russian_ruble_changed():
@@ -158,6 +165,10 @@ def test_russian_ruble_changed():
             AttributeError,
             match='can\'t set attribute'):
         russian_ruble.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        russian_ruble.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

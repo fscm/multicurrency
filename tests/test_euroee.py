@@ -27,6 +27,7 @@ def test_euroee():
     assert euroee.alpha_code == 'EUR'
     assert euroee.decimal_places == 2
     assert euroee.decimal_sign == ','
+    assert euroee.grouping_places == 3
     assert euroee.grouping_sign == '\u202F'
     assert not euroee.international
     assert euroee.symbol == '€'
@@ -43,6 +44,7 @@ def test_euroee():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_euroee_negative():
     assert euroee.alpha_code == 'EUR'
     assert euroee.decimal_places == 2
     assert euroee.decimal_sign == ','
+    assert euroee.grouping_places == 3
     assert euroee.grouping_sign == '\u202F'
     assert not euroee.international
     assert euroee.symbol == '€'
@@ -74,6 +77,7 @@ def test_euroee_negative():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_euroee_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_euroee_custom():
     assert euroee.alpha_code == 'EUR'
     assert euroee.decimal_places == 5
     assert euroee.decimal_sign == '\u202F'
+    assert euroee.grouping_places == 2
     assert euroee.grouping_sign == ','
     assert euroee.international
     assert euroee.symbol == '€'
@@ -113,10 +119,11 @@ def test_euroee_custom():
         'numeric_code: "978", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert euroee.__str__() == 'EUR 1,000.00000'
+    assert euroee.__str__() == 'EUR 10,00.00000'
 
 
 def test_euroee_changed():
@@ -158,6 +165,10 @@ def test_euroee_changed():
             AttributeError,
             match='can\'t set attribute'):
         euroee.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        euroee.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

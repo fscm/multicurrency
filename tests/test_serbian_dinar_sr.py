@@ -27,6 +27,7 @@ def test_serbian_dinar_sr():
     assert serbian_dinar_sr.alpha_code == 'RSD'
     assert serbian_dinar_sr.decimal_places == 2
     assert serbian_dinar_sr.decimal_sign == ','
+    assert serbian_dinar_sr.grouping_places == 3
     assert serbian_dinar_sr.grouping_sign == '\u202F'
     assert not serbian_dinar_sr.international
     assert serbian_dinar_sr.symbol == 'дин.'
@@ -43,6 +44,7 @@ def test_serbian_dinar_sr():
         'numeric_code: "941", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_serbian_dinar_sr_negative():
     assert serbian_dinar_sr.alpha_code == 'RSD'
     assert serbian_dinar_sr.decimal_places == 2
     assert serbian_dinar_sr.decimal_sign == ','
+    assert serbian_dinar_sr.grouping_places == 3
     assert serbian_dinar_sr.grouping_sign == '\u202F'
     assert not serbian_dinar_sr.international
     assert serbian_dinar_sr.symbol == 'дин.'
@@ -74,6 +77,7 @@ def test_serbian_dinar_sr_negative():
         'numeric_code: "941", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_serbian_dinar_sr_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_serbian_dinar_sr_custom():
     assert serbian_dinar_sr.alpha_code == 'RSD'
     assert serbian_dinar_sr.decimal_places == 5
     assert serbian_dinar_sr.decimal_sign == '\u202F'
+    assert serbian_dinar_sr.grouping_places == 2
     assert serbian_dinar_sr.grouping_sign == ','
     assert serbian_dinar_sr.international
     assert serbian_dinar_sr.symbol == 'дин.'
@@ -113,10 +119,11 @@ def test_serbian_dinar_sr_custom():
         'numeric_code: "941", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert serbian_dinar_sr.__str__() == 'RSD 1,000.00000'
+    assert serbian_dinar_sr.__str__() == 'RSD 10,00.00000'
 
 
 def test_serbian_dinar_sr_changed():
@@ -158,6 +165,10 @@ def test_serbian_dinar_sr_changed():
             AttributeError,
             match='can\'t set attribute'):
         serbian_dinar_sr.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        serbian_dinar_sr.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

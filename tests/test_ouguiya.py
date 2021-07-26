@@ -27,6 +27,7 @@ def test_ouguiya():
     assert ouguiya.alpha_code == 'MRU'
     assert ouguiya.decimal_places == 2
     assert ouguiya.decimal_sign == '\u066B'
+    assert ouguiya.grouping_places == 3
     assert ouguiya.grouping_sign == '\u066C'
     assert not ouguiya.international
     assert ouguiya.symbol == 'أ.م'
@@ -43,6 +44,7 @@ def test_ouguiya():
         'numeric_code: "929", '
         'decimal_places: "2", '
         'decimal_sign: "\u066B", '
+        'grouping_places: "3", '
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_ouguiya_negative():
     assert ouguiya.alpha_code == 'MRU'
     assert ouguiya.decimal_places == 2
     assert ouguiya.decimal_sign == '\u066B'
+    assert ouguiya.grouping_places == 3
     assert ouguiya.grouping_sign == '\u066C'
     assert not ouguiya.international
     assert ouguiya.symbol == 'أ.م'
@@ -74,6 +77,7 @@ def test_ouguiya_negative():
         'numeric_code: "929", '
         'decimal_places: "2", '
         'decimal_sign: "\u066B", '
+        'grouping_places: "3", '
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_ouguiya_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u066C',
+        grouping_places=2,
         grouping_sign='\u066B',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_ouguiya_custom():
     assert ouguiya.alpha_code == 'MRU'
     assert ouguiya.decimal_places == 5
     assert ouguiya.decimal_sign == '\u066C'
+    assert ouguiya.grouping_places == 2
     assert ouguiya.grouping_sign == '\u066B'
     assert ouguiya.international
     assert ouguiya.symbol == 'أ.م'
@@ -113,10 +119,11 @@ def test_ouguiya_custom():
         'numeric_code: "929", '
         'decimal_places: "5", '
         'decimal_sign: "\u066C", '
+        'grouping_places: "2", '
         'grouping_sign: "\u066B", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: True)')
-    assert ouguiya.__str__() == 'MRU 1,000.00000'
+    assert ouguiya.__str__() == 'MRU 10,00.00000'
 
 
 def test_ouguiya_changed():
@@ -158,6 +165,10 @@ def test_ouguiya_changed():
             AttributeError,
             match='can\'t set attribute'):
         ouguiya.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        ouguiya.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

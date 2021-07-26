@@ -27,6 +27,7 @@ def test_kuwaiti_dinar():
     assert kuwaiti_dinar.alpha_code == 'KWD'
     assert kuwaiti_dinar.decimal_places == 3
     assert kuwaiti_dinar.decimal_sign == '\u066B'
+    assert kuwaiti_dinar.grouping_places == 3
     assert kuwaiti_dinar.grouping_sign == '\u066C'
     assert not kuwaiti_dinar.international
     assert kuwaiti_dinar.symbol == 'د.ك.'
@@ -43,6 +44,7 @@ def test_kuwaiti_dinar():
         'numeric_code: "414", '
         'decimal_places: "3", '
         'decimal_sign: "\u066B", '
+        'grouping_places: "3", '
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_kuwaiti_dinar_negative():
     assert kuwaiti_dinar.alpha_code == 'KWD'
     assert kuwaiti_dinar.decimal_places == 3
     assert kuwaiti_dinar.decimal_sign == '\u066B'
+    assert kuwaiti_dinar.grouping_places == 3
     assert kuwaiti_dinar.grouping_sign == '\u066C'
     assert not kuwaiti_dinar.international
     assert kuwaiti_dinar.symbol == 'د.ك.'
@@ -74,6 +77,7 @@ def test_kuwaiti_dinar_negative():
         'numeric_code: "414", '
         'decimal_places: "3", '
         'decimal_sign: "\u066B", '
+        'grouping_places: "3", '
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_kuwaiti_dinar_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u066C',
+        grouping_places=2,
         grouping_sign='\u066B',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_kuwaiti_dinar_custom():
     assert kuwaiti_dinar.alpha_code == 'KWD'
     assert kuwaiti_dinar.decimal_places == 5
     assert kuwaiti_dinar.decimal_sign == '\u066C'
+    assert kuwaiti_dinar.grouping_places == 2
     assert kuwaiti_dinar.grouping_sign == '\u066B'
     assert kuwaiti_dinar.international
     assert kuwaiti_dinar.symbol == 'د.ك.'
@@ -113,10 +119,11 @@ def test_kuwaiti_dinar_custom():
         'numeric_code: "414", '
         'decimal_places: "5", '
         'decimal_sign: "\u066C", '
+        'grouping_places: "2", '
         'grouping_sign: "\u066B", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: True)')
-    assert kuwaiti_dinar.__str__() == 'KWD 1,000.00000'
+    assert kuwaiti_dinar.__str__() == 'KWD 10,00.00000'
 
 
 def test_kuwaiti_dinar_changed():
@@ -158,6 +165,10 @@ def test_kuwaiti_dinar_changed():
             AttributeError,
             match='can\'t set attribute'):
         kuwaiti_dinar.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        kuwaiti_dinar.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -27,6 +27,7 @@ def test_gourde():
     assert gourde.alpha_code == 'HTG'
     assert gourde.decimal_places == 2
     assert gourde.decimal_sign == '.'
+    assert gourde.grouping_places == 3
     assert gourde.grouping_sign == ','
     assert not gourde.international
     assert gourde.symbol == 'G'
@@ -43,6 +44,7 @@ def test_gourde():
         'numeric_code: "332", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_gourde_negative():
     assert gourde.alpha_code == 'HTG'
     assert gourde.decimal_places == 2
     assert gourde.decimal_sign == '.'
+    assert gourde.grouping_places == 3
     assert gourde.grouping_sign == ','
     assert not gourde.international
     assert gourde.symbol == 'G'
@@ -74,6 +77,7 @@ def test_gourde_negative():
         'numeric_code: "332", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_gourde_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_gourde_custom():
     assert gourde.alpha_code == 'HTG'
     assert gourde.decimal_places == 5
     assert gourde.decimal_sign == ','
+    assert gourde.grouping_places == 2
     assert gourde.grouping_sign == '.'
     assert gourde.international
     assert gourde.symbol == 'G'
@@ -113,10 +119,11 @@ def test_gourde_custom():
         'numeric_code: "332", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert gourde.__str__() == 'HTG 1,000.00000'
+    assert gourde.__str__() == 'HTG 10,00.00000'
 
 
 def test_gourde_changed():
@@ -158,6 +165,10 @@ def test_gourde_changed():
             AttributeError,
             match='can\'t set attribute'):
         gourde.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        gourde.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

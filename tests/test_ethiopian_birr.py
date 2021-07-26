@@ -27,6 +27,7 @@ def test_ethiopian_birr():
     assert ethiopian_birr.alpha_code == 'ETB'
     assert ethiopian_birr.decimal_places == 2
     assert ethiopian_birr.decimal_sign == '.'
+    assert ethiopian_birr.grouping_places == 3
     assert ethiopian_birr.grouping_sign == ','
     assert not ethiopian_birr.international
     assert ethiopian_birr.symbol == 'ብር'
@@ -43,6 +44,7 @@ def test_ethiopian_birr():
         'numeric_code: "230", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_ethiopian_birr_negative():
     assert ethiopian_birr.alpha_code == 'ETB'
     assert ethiopian_birr.decimal_places == 2
     assert ethiopian_birr.decimal_sign == '.'
+    assert ethiopian_birr.grouping_places == 3
     assert ethiopian_birr.grouping_sign == ','
     assert not ethiopian_birr.international
     assert ethiopian_birr.symbol == 'ብር'
@@ -74,6 +77,7 @@ def test_ethiopian_birr_negative():
         'numeric_code: "230", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_ethiopian_birr_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_ethiopian_birr_custom():
     assert ethiopian_birr.alpha_code == 'ETB'
     assert ethiopian_birr.decimal_places == 5
     assert ethiopian_birr.decimal_sign == ','
+    assert ethiopian_birr.grouping_places == 2
     assert ethiopian_birr.grouping_sign == '.'
     assert ethiopian_birr.international
     assert ethiopian_birr.symbol == 'ብር'
@@ -113,10 +119,11 @@ def test_ethiopian_birr_custom():
         'numeric_code: "230", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert ethiopian_birr.__str__() == 'ETB 1,000.00000'
+    assert ethiopian_birr.__str__() == 'ETB 10,00.00000'
 
 
 def test_ethiopian_birr_changed():
@@ -158,6 +165,10 @@ def test_ethiopian_birr_changed():
             AttributeError,
             match='can\'t set attribute'):
         ethiopian_birr.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        ethiopian_birr.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

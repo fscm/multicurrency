@@ -35,7 +35,7 @@
 <dl>
 <dt id="multicurrency.euro.Euro"><code class="flex name class">
 <span>class <span class="ident">Euro</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Euro currency representation.</p>
@@ -56,6 +56,9 @@
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to ','.</dd>
+<dt><strong><code>grouping_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of digits for grouping.
+Defaults to 3,</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to '.'.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -82,6 +85,7 @@ value. False otherwise. Defaults to False.</dd>
 <li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_places" href="currency.html#multicurrency.currency.Currency.grouping_places">grouping_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
@@ -96,7 +100,7 @@ value. False otherwise. Defaults to False.</dd>
 </dd>
 <dt id="multicurrency.euro.EuroAD"><code class="flex name class">
 <span>class <span class="ident">EuroAD</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>EuroAD currency representation.</p>
@@ -117,6 +121,9 @@ value. False otherwise. Defaults to False.</dd>
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to ','.</dd>
+<dt><strong><code>grouping_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of digits for grouping.
+Defaults to 3,</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to '.'.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -143,6 +150,7 @@ value. False otherwise. Defaults to False.</dd>
 <li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_places" href="currency.html#multicurrency.currency.Currency.grouping_places">grouping_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
@@ -157,7 +165,7 @@ value. False otherwise. Defaults to False.</dd>
 </dd>
 <dt id="multicurrency.euro.EuroAT"><code class="flex name class">
 <span>class <span class="ident">EuroAT</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>EuroAT currency representation.</p>
@@ -178,6 +186,9 @@ value. False otherwise. Defaults to False.</dd>
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to ','.</dd>
+<dt><strong><code>grouping_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of digits for grouping.
+Defaults to 3,</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to '.'.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -204,6 +215,7 @@ value. False otherwise. Defaults to True.</dd>
 <li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_places" href="currency.html#multicurrency.currency.Currency.grouping_places">grouping_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
@@ -218,7 +230,7 @@ value. False otherwise. Defaults to True.</dd>
 </dd>
 <dt id="multicurrency.euro.EuroBE"><code class="flex name class">
 <span>class <span class="ident">EuroBE</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>EuroBE currency representation.</p>
@@ -239,6 +251,9 @@ value. False otherwise. Defaults to True.</dd>
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to ','.</dd>
+<dt><strong><code>grouping_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of digits for grouping.
+Defaults to 3,</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to '.'.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -265,6 +280,7 @@ value. False otherwise. Defaults to True.</dd>
 <li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_places" href="currency.html#multicurrency.currency.Currency.grouping_places">grouping_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
@@ -279,7 +295,7 @@ value. False otherwise. Defaults to True.</dd>
 </dd>
 <dt id="multicurrency.euro.EuroCY"><code class="flex name class">
 <span>class <span class="ident">EuroCY</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>EuroCY currency representation.</p>
@@ -300,6 +316,9 @@ value. False otherwise. Defaults to True.</dd>
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to ','.</dd>
+<dt><strong><code>grouping_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of digits for grouping.
+Defaults to 3,</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to '.'.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -326,6 +345,7 @@ value. False otherwise. Defaults to False.</dd>
 <li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_places" href="currency.html#multicurrency.currency.Currency.grouping_places">grouping_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
@@ -340,7 +360,7 @@ value. False otherwise. Defaults to False.</dd>
 </dd>
 <dt id="multicurrency.euro.EuroDE"><code class="flex name class">
 <span>class <span class="ident">EuroDE</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>EuroDE currency representation.</p>
@@ -361,6 +381,9 @@ value. False otherwise. Defaults to False.</dd>
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to ','.</dd>
+<dt><strong><code>grouping_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of digits for grouping.
+Defaults to 3,</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to '.'.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -387,6 +410,7 @@ value. False otherwise. Defaults to False.</dd>
 <li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_places" href="currency.html#multicurrency.currency.Currency.grouping_places">grouping_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
@@ -401,7 +425,7 @@ value. False otherwise. Defaults to False.</dd>
 </dd>
 <dt id="multicurrency.euro.EuroEE"><code class="flex name class">
 <span>class <span class="ident">EuroEE</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '\u202f', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = '\u202f', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>EuroEE currency representation.</p>
@@ -422,6 +446,9 @@ value. False otherwise. Defaults to False.</dd>
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to ','.</dd>
+<dt><strong><code>grouping_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of digits for grouping.
+Defaults to 3,</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to ' '.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -448,6 +475,7 @@ value. False otherwise. Defaults to False.</dd>
 <li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_places" href="currency.html#multicurrency.currency.Currency.grouping_places">grouping_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
@@ -462,7 +490,7 @@ value. False otherwise. Defaults to False.</dd>
 </dd>
 <dt id="multicurrency.euro.EuroES"><code class="flex name class">
 <span>class <span class="ident">EuroES</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>EuroES currency representation.</p>
@@ -483,6 +511,9 @@ value. False otherwise. Defaults to False.</dd>
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to ','.</dd>
+<dt><strong><code>grouping_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of digits for grouping.
+Defaults to 3,</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to '.'.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -509,6 +540,7 @@ value. False otherwise. Defaults to False.</dd>
 <li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_places" href="currency.html#multicurrency.currency.Currency.grouping_places">grouping_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
@@ -523,7 +555,7 @@ value. False otherwise. Defaults to False.</dd>
 </dd>
 <dt id="multicurrency.euro.EuroFI"><code class="flex name class">
 <span>class <span class="ident">EuroFI</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '\u202f', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = '\u202f', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>EuroFI currency representation.</p>
@@ -544,6 +576,9 @@ value. False otherwise. Defaults to False.</dd>
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to ','.</dd>
+<dt><strong><code>grouping_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of digits for grouping.
+Defaults to 3,</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to ' '.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -570,6 +605,7 @@ value. False otherwise. Defaults to False.</dd>
 <li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_places" href="currency.html#multicurrency.currency.Currency.grouping_places">grouping_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
@@ -584,7 +620,7 @@ value. False otherwise. Defaults to False.</dd>
 </dd>
 <dt id="multicurrency.euro.EuroFR"><code class="flex name class">
 <span>class <span class="ident">EuroFR</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '\u202f', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = '\u202f', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>EuroFR currency representation.</p>
@@ -605,6 +641,9 @@ value. False otherwise. Defaults to False.</dd>
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to ','.</dd>
+<dt><strong><code>grouping_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of digits for grouping.
+Defaults to 3,</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to ' '.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -631,6 +670,7 @@ value. False otherwise. Defaults to False.</dd>
 <li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_places" href="currency.html#multicurrency.currency.Currency.grouping_places">grouping_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
@@ -645,7 +685,7 @@ value. False otherwise. Defaults to False.</dd>
 </dd>
 <dt id="multicurrency.euro.EuroGR"><code class="flex name class">
 <span>class <span class="ident">EuroGR</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>EuroGR currency representation.</p>
@@ -666,6 +706,9 @@ value. False otherwise. Defaults to False.</dd>
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to ','.</dd>
+<dt><strong><code>grouping_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of digits for grouping.
+Defaults to 3,</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to '.'.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -692,6 +735,7 @@ value. False otherwise. Defaults to False.</dd>
 <li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_places" href="currency.html#multicurrency.currency.Currency.grouping_places">grouping_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
@@ -706,7 +750,7 @@ value. False otherwise. Defaults to False.</dd>
 </dd>
 <dt id="multicurrency.euro.EuroIE"><code class="flex name class">
 <span>class <span class="ident">EuroIE</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '.', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = ',', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>EuroIE currency representation.</p>
@@ -727,6 +771,9 @@ value. False otherwise. Defaults to False.</dd>
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to '.'.</dd>
+<dt><strong><code>grouping_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of digits for grouping.
+Defaults to 3,</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to ','.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -753,6 +800,7 @@ value. False otherwise. Defaults to True.</dd>
 <li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_places" href="currency.html#multicurrency.currency.Currency.grouping_places">grouping_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
@@ -767,7 +815,7 @@ value. False otherwise. Defaults to True.</dd>
 </dd>
 <dt id="multicurrency.euro.EuroIT"><code class="flex name class">
 <span>class <span class="ident">EuroIT</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>EuroIT currency representation.</p>
@@ -788,6 +836,9 @@ value. False otherwise. Defaults to True.</dd>
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to ','.</dd>
+<dt><strong><code>grouping_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of digits for grouping.
+Defaults to 3,</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to '.'.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -814,6 +865,7 @@ value. False otherwise. Defaults to False.</dd>
 <li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_places" href="currency.html#multicurrency.currency.Currency.grouping_places">grouping_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
@@ -828,7 +880,7 @@ value. False otherwise. Defaults to False.</dd>
 </dd>
 <dt id="multicurrency.euro.EuroLT"><code class="flex name class">
 <span>class <span class="ident">EuroLT</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '\u202f', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = '\u202f', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>EuroLT currency representation.</p>
@@ -849,6 +901,9 @@ value. False otherwise. Defaults to False.</dd>
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to ','.</dd>
+<dt><strong><code>grouping_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of digits for grouping.
+Defaults to 3,</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to ' '.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -875,6 +930,7 @@ value. False otherwise. Defaults to False.</dd>
 <li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_places" href="currency.html#multicurrency.currency.Currency.grouping_places">grouping_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
@@ -889,7 +945,7 @@ value. False otherwise. Defaults to False.</dd>
 </dd>
 <dt id="multicurrency.euro.EuroLU"><code class="flex name class">
 <span>class <span class="ident">EuroLU</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>EuroLU currency representation.</p>
@@ -910,6 +966,9 @@ value. False otherwise. Defaults to False.</dd>
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to ','.</dd>
+<dt><strong><code>grouping_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of digits for grouping.
+Defaults to 3,</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to '.'.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -936,6 +995,7 @@ value. False otherwise. Defaults to False.</dd>
 <li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_places" href="currency.html#multicurrency.currency.Currency.grouping_places">grouping_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
@@ -950,7 +1010,7 @@ value. False otherwise. Defaults to False.</dd>
 </dd>
 <dt id="multicurrency.euro.EuroLV"><code class="flex name class">
 <span>class <span class="ident">EuroLV</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '\u202f', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = '\u202f', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>EuroLV currency representation.</p>
@@ -971,6 +1031,9 @@ value. False otherwise. Defaults to False.</dd>
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to ','.</dd>
+<dt><strong><code>grouping_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of digits for grouping.
+Defaults to 3,</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to ' '.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -997,6 +1060,7 @@ value. False otherwise. Defaults to False.</dd>
 <li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_places" href="currency.html#multicurrency.currency.Currency.grouping_places">grouping_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
@@ -1011,7 +1075,7 @@ value. False otherwise. Defaults to False.</dd>
 </dd>
 <dt id="multicurrency.euro.EuroMC"><code class="flex name class">
 <span>class <span class="ident">EuroMC</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '\u202f', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = '\u202f', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>EuroMC currency representation.</p>
@@ -1032,6 +1096,9 @@ value. False otherwise. Defaults to False.</dd>
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to ','.</dd>
+<dt><strong><code>grouping_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of digits for grouping.
+Defaults to 3,</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to ' '.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -1058,6 +1125,7 @@ value. False otherwise. Defaults to False.</dd>
 <li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_places" href="currency.html#multicurrency.currency.Currency.grouping_places">grouping_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
@@ -1072,7 +1140,7 @@ value. False otherwise. Defaults to False.</dd>
 </dd>
 <dt id="multicurrency.euro.EuroME"><code class="flex name class">
 <span>class <span class="ident">EuroME</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>EuroME currency representation.</p>
@@ -1093,6 +1161,9 @@ value. False otherwise. Defaults to False.</dd>
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to ','.</dd>
+<dt><strong><code>grouping_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of digits for grouping.
+Defaults to 3,</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to '.'.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -1119,6 +1190,7 @@ value. False otherwise. Defaults to False.</dd>
 <li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_places" href="currency.html#multicurrency.currency.Currency.grouping_places">grouping_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
@@ -1133,7 +1205,7 @@ value. False otherwise. Defaults to False.</dd>
 </dd>
 <dt id="multicurrency.euro.EuroMT"><code class="flex name class">
 <span>class <span class="ident">EuroMT</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '.', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = ',', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>EuroMT currency representation.</p>
@@ -1154,6 +1226,9 @@ value. False otherwise. Defaults to False.</dd>
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to '.'.</dd>
+<dt><strong><code>grouping_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of digits for grouping.
+Defaults to 3,</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to ','.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -1180,6 +1255,7 @@ value. False otherwise. Defaults to True.</dd>
 <li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_places" href="currency.html#multicurrency.currency.Currency.grouping_places">grouping_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
@@ -1194,7 +1270,7 @@ value. False otherwise. Defaults to True.</dd>
 </dd>
 <dt id="multicurrency.euro.EuroNL"><code class="flex name class">
 <span>class <span class="ident">EuroNL</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>EuroNL currency representation.</p>
@@ -1215,6 +1291,9 @@ value. False otherwise. Defaults to True.</dd>
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to ','.</dd>
+<dt><strong><code>grouping_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of digits for grouping.
+Defaults to 3,</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to '.'.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -1241,6 +1320,7 @@ value. False otherwise. Defaults to True.</dd>
 <li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_places" href="currency.html#multicurrency.currency.Currency.grouping_places">grouping_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
@@ -1255,7 +1335,7 @@ value. False otherwise. Defaults to True.</dd>
 </dd>
 <dt id="multicurrency.euro.EuroPT"><code class="flex name class">
 <span>class <span class="ident">EuroPT</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>EuroPT currency representation.</p>
@@ -1276,6 +1356,9 @@ value. False otherwise. Defaults to True.</dd>
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to ','.</dd>
+<dt><strong><code>grouping_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of digits for grouping.
+Defaults to 3,</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to '.'.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -1302,6 +1385,7 @@ value. False otherwise. Defaults to True.</dd>
 <li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_places" href="currency.html#multicurrency.currency.Currency.grouping_places">grouping_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
@@ -1316,7 +1400,7 @@ value. False otherwise. Defaults to True.</dd>
 </dd>
 <dt id="multicurrency.euro.EuroSI"><code class="flex name class">
 <span>class <span class="ident">EuroSI</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>EuroSI currency representation.</p>
@@ -1337,6 +1421,9 @@ value. False otherwise. Defaults to True.</dd>
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to ','.</dd>
+<dt><strong><code>grouping_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of digits for grouping.
+Defaults to 3,</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to '.'.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -1363,6 +1450,7 @@ value. False otherwise. Defaults to False.</dd>
 <li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_places" href="currency.html#multicurrency.currency.Currency.grouping_places">grouping_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
@@ -1377,7 +1465,7 @@ value. False otherwise. Defaults to False.</dd>
 </dd>
 <dt id="multicurrency.euro.EuroSK"><code class="flex name class">
 <span>class <span class="ident">EuroSK</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '\u202f', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = '\u202f', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>EuroSK currency representation.</p>
@@ -1398,6 +1486,9 @@ value. False otherwise. Defaults to False.</dd>
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to ','.</dd>
+<dt><strong><code>grouping_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of digits for grouping.
+Defaults to 3,</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to ' '.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -1424,6 +1515,7 @@ value. False otherwise. Defaults to False.</dd>
 <li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_places" href="currency.html#multicurrency.currency.Currency.grouping_places">grouping_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
@@ -1438,7 +1530,7 @@ value. False otherwise. Defaults to False.</dd>
 </dd>
 <dt id="multicurrency.euro.EuroSM"><code class="flex name class">
 <span>class <span class="ident">EuroSM</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = '.', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>EuroSM currency representation.</p>
@@ -1459,6 +1551,9 @@ value. False otherwise. Defaults to False.</dd>
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to ','.</dd>
+<dt><strong><code>grouping_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of digits for grouping.
+Defaults to 3,</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to '.'.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -1485,6 +1580,7 @@ value. False otherwise. Defaults to False.</dd>
 <li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_places" href="currency.html#multicurrency.currency.Currency.grouping_places">grouping_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
@@ -1499,7 +1595,7 @@ value. False otherwise. Defaults to False.</dd>
 </dd>
 <dt id="multicurrency.euro.EuroVA"><code class="flex name class">
 <span>class <span class="ident">EuroVA</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '.', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = ',', international: Optional[bool] = False, symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>EuroVA currency representation.</p>
@@ -1520,6 +1616,9 @@ value. False otherwise. Defaults to False.</dd>
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to '.'.</dd>
+<dt><strong><code>grouping_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of digits for grouping.
+Defaults to 3,</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to ','.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -1546,6 +1645,7 @@ value. False otherwise. Defaults to True.</dd>
 <li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_places" href="currency.html#multicurrency.currency.Currency.grouping_places">grouping_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
@@ -1560,7 +1660,7 @@ value. False otherwise. Defaults to True.</dd>
 </dd>
 <dt id="multicurrency.euro.EuroXK"><code class="flex name class">
 <span>class <span class="ident">EuroXK</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_sign: Optional[str] = '\u202f', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = ',', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = '\u202f', international: Optional[bool] = False, symbol_ahead: Optional[bool] = False, symbol_separator: Optional[str] = '\xa0', **other)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>EuroXK currency representation.</p>
@@ -1581,6 +1681,9 @@ value. False otherwise. Defaults to True.</dd>
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to ','.</dd>
+<dt><strong><code>grouping_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of digits for grouping.
+Defaults to 3,</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to ' '.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -1607,6 +1710,7 @@ value. False otherwise. Defaults to False.</dd>
 <li><code><a title="multicurrency.currency.Currency.convertion" href="currency.html#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="currency.html#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="currency.html#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_places" href="currency.html#multicurrency.currency.Currency.grouping_places">grouping_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="currency.html#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="currency.html#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="currency.html#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>

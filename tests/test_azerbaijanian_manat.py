@@ -27,6 +27,7 @@ def test_azerbaijanian_manat():
     assert azerbaijanian_manat.alpha_code == 'AZN'
     assert azerbaijanian_manat.decimal_places == 2
     assert azerbaijanian_manat.decimal_sign == ','
+    assert azerbaijanian_manat.grouping_places == 3
     assert azerbaijanian_manat.grouping_sign == '.'
     assert not azerbaijanian_manat.international
     assert azerbaijanian_manat.symbol == '₼'
@@ -43,6 +44,7 @@ def test_azerbaijanian_manat():
         'numeric_code: "944", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_azerbaijanian_manat_negative():
     assert azerbaijanian_manat.alpha_code == 'AZN'
     assert azerbaijanian_manat.decimal_places == 2
     assert azerbaijanian_manat.decimal_sign == ','
+    assert azerbaijanian_manat.grouping_places == 3
     assert azerbaijanian_manat.grouping_sign == '.'
     assert not azerbaijanian_manat.international
     assert azerbaijanian_manat.symbol == '₼'
@@ -74,6 +77,7 @@ def test_azerbaijanian_manat_negative():
         'numeric_code: "944", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_azerbaijanian_manat_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_azerbaijanian_manat_custom():
     assert azerbaijanian_manat.alpha_code == 'AZN'
     assert azerbaijanian_manat.decimal_places == 5
     assert azerbaijanian_manat.decimal_sign == '.'
+    assert azerbaijanian_manat.grouping_places == 2
     assert azerbaijanian_manat.grouping_sign == ','
     assert azerbaijanian_manat.international
     assert azerbaijanian_manat.symbol == '₼'
@@ -113,10 +119,11 @@ def test_azerbaijanian_manat_custom():
         'numeric_code: "944", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert azerbaijanian_manat.__str__() == 'AZN 1,000.00000'
+    assert azerbaijanian_manat.__str__() == 'AZN 10,00.00000'
 
 
 def test_azerbaijanian_manat_changed():
@@ -158,6 +165,10 @@ def test_azerbaijanian_manat_changed():
             AttributeError,
             match='can\'t set attribute'):
         azerbaijanian_manat.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        azerbaijanian_manat.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

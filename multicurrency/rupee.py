@@ -29,6 +29,8 @@ class IndianRupee(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -46,6 +48,7 @@ class IndianRupee(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -66,6 +69,7 @@ class IndianRupee(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -89,6 +93,8 @@ class SriLankaRupee(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -106,6 +112,7 @@ class SriLankaRupee(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -126,6 +133,7 @@ class SriLankaRupee(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -149,6 +157,8 @@ class MauritiusRupee(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -166,6 +176,7 @@ class MauritiusRupee(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -186,6 +197,7 @@ class MauritiusRupee(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -209,6 +221,8 @@ class NepaleseRupee(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -226,6 +240,7 @@ class NepaleseRupee(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -246,6 +261,7 @@ class NepaleseRupee(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='०१२३४५६७८९-',
             international=international)
@@ -269,6 +285,8 @@ class PakistanRupee(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -286,6 +304,7 @@ class PakistanRupee(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -306,6 +325,7 @@ class PakistanRupee(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -329,6 +349,8 @@ class SeychellesRupee(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -346,6 +368,7 @@ class SeychellesRupee(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -366,6 +389,7 @@ class SeychellesRupee(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)

@@ -27,6 +27,7 @@ def test_eurolv():
     assert eurolv.alpha_code == 'EUR'
     assert eurolv.decimal_places == 2
     assert eurolv.decimal_sign == ','
+    assert eurolv.grouping_places == 3
     assert eurolv.grouping_sign == '\u202F'
     assert not eurolv.international
     assert eurolv.symbol == '€'
@@ -43,6 +44,7 @@ def test_eurolv():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_eurolv_negative():
     assert eurolv.alpha_code == 'EUR'
     assert eurolv.decimal_places == 2
     assert eurolv.decimal_sign == ','
+    assert eurolv.grouping_places == 3
     assert eurolv.grouping_sign == '\u202F'
     assert not eurolv.international
     assert eurolv.symbol == '€'
@@ -74,6 +77,7 @@ def test_eurolv_negative():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_eurolv_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_eurolv_custom():
     assert eurolv.alpha_code == 'EUR'
     assert eurolv.decimal_places == 5
     assert eurolv.decimal_sign == '\u202F'
+    assert eurolv.grouping_places == 2
     assert eurolv.grouping_sign == ','
     assert eurolv.international
     assert eurolv.symbol == '€'
@@ -113,10 +119,11 @@ def test_eurolv_custom():
         'numeric_code: "978", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert eurolv.__str__() == 'EUR 1,000.00000'
+    assert eurolv.__str__() == 'EUR 10,00.00000'
 
 
 def test_eurolv_changed():
@@ -158,6 +165,10 @@ def test_eurolv_changed():
             AttributeError,
             match='can\'t set attribute'):
         eurolv.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        eurolv.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

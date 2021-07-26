@@ -27,6 +27,7 @@ def test_eurobe():
     assert eurobe.alpha_code == 'EUR'
     assert eurobe.decimal_places == 2
     assert eurobe.decimal_sign == ','
+    assert eurobe.grouping_places == 3
     assert eurobe.grouping_sign == '.'
     assert not eurobe.international
     assert eurobe.symbol == '€'
@@ -43,6 +44,7 @@ def test_eurobe():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_eurobe_negative():
     assert eurobe.alpha_code == 'EUR'
     assert eurobe.decimal_places == 2
     assert eurobe.decimal_sign == ','
+    assert eurobe.grouping_places == 3
     assert eurobe.grouping_sign == '.'
     assert not eurobe.international
     assert eurobe.symbol == '€'
@@ -74,6 +77,7 @@ def test_eurobe_negative():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_eurobe_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_eurobe_custom():
     assert eurobe.alpha_code == 'EUR'
     assert eurobe.decimal_places == 5
     assert eurobe.decimal_sign == '.'
+    assert eurobe.grouping_places == 2
     assert eurobe.grouping_sign == ','
     assert eurobe.international
     assert eurobe.symbol == '€'
@@ -113,10 +119,11 @@ def test_eurobe_custom():
         'numeric_code: "978", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert eurobe.__str__() == 'EUR 1,000.00000'
+    assert eurobe.__str__() == 'EUR 10,00.00000'
 
 
 def test_eurobe_changed():
@@ -158,6 +165,10 @@ def test_eurobe_changed():
             AttributeError,
             match='can\'t set attribute'):
         eurobe.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        eurobe.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

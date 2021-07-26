@@ -27,6 +27,7 @@ def test_yuan():
     assert yuan.alpha_code == 'CNY'
     assert yuan.decimal_places == 2
     assert yuan.decimal_sign == '.'
+    assert yuan.grouping_places == 3
     assert yuan.grouping_sign == ','
     assert not yuan.international
     assert yuan.symbol == '¥'
@@ -43,6 +44,7 @@ def test_yuan():
         'numeric_code: "156", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_yuan_negative():
     assert yuan.alpha_code == 'CNY'
     assert yuan.decimal_places == 2
     assert yuan.decimal_sign == '.'
+    assert yuan.grouping_places == 3
     assert yuan.grouping_sign == ','
     assert not yuan.international
     assert yuan.symbol == '¥'
@@ -74,6 +77,7 @@ def test_yuan_negative():
         'numeric_code: "156", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_yuan_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_yuan_custom():
     assert yuan.alpha_code == 'CNY'
     assert yuan.decimal_places == 5
     assert yuan.decimal_sign == ','
+    assert yuan.grouping_places == 2
     assert yuan.grouping_sign == '.'
     assert yuan.international
     assert yuan.symbol == '¥'
@@ -113,10 +119,11 @@ def test_yuan_custom():
         'numeric_code: "156", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert yuan.__str__() == 'CNY 1,000.00000'
+    assert yuan.__str__() == 'CNY 10,00.00000'
 
 
 def test_yuan_changed():
@@ -158,6 +165,10 @@ def test_yuan_changed():
             AttributeError,
             match='can\'t set attribute'):
         yuan.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        yuan.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

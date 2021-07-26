@@ -27,6 +27,7 @@ def test_naira():
     assert naira.alpha_code == 'NGN'
     assert naira.decimal_places == 2
     assert naira.decimal_sign == '.'
+    assert naira.grouping_places == 3
     assert naira.grouping_sign == ','
     assert not naira.international
     assert naira.symbol == '₦'
@@ -43,6 +44,7 @@ def test_naira():
         'numeric_code: "566", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_naira_negative():
     assert naira.alpha_code == 'NGN'
     assert naira.decimal_places == 2
     assert naira.decimal_sign == '.'
+    assert naira.grouping_places == 3
     assert naira.grouping_sign == ','
     assert not naira.international
     assert naira.symbol == '₦'
@@ -74,6 +77,7 @@ def test_naira_negative():
         'numeric_code: "566", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_naira_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_naira_custom():
     assert naira.alpha_code == 'NGN'
     assert naira.decimal_places == 5
     assert naira.decimal_sign == ','
+    assert naira.grouping_places == 2
     assert naira.grouping_sign == '.'
     assert naira.international
     assert naira.symbol == '₦'
@@ -113,10 +119,11 @@ def test_naira_custom():
         'numeric_code: "566", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert naira.__str__() == 'NGN 1,000.00000'
+    assert naira.__str__() == 'NGN 10,00.00000'
 
 
 def test_naira_changed():
@@ -158,6 +165,10 @@ def test_naira_changed():
             AttributeError,
             match='can\'t set attribute'):
         naira.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        naira.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

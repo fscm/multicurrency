@@ -27,6 +27,7 @@ def test_rufiyaa():
     assert rufiyaa.alpha_code == 'MVR'
     assert rufiyaa.decimal_places == 2
     assert rufiyaa.decimal_sign == '.'
+    assert rufiyaa.grouping_places == 3
     assert rufiyaa.grouping_sign == ','
     assert not rufiyaa.international
     assert rufiyaa.symbol == 'ރ.'
@@ -43,6 +44,7 @@ def test_rufiyaa():
         'numeric_code: "462", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_rufiyaa_negative():
     assert rufiyaa.alpha_code == 'MVR'
     assert rufiyaa.decimal_places == 2
     assert rufiyaa.decimal_sign == '.'
+    assert rufiyaa.grouping_places == 3
     assert rufiyaa.grouping_sign == ','
     assert not rufiyaa.international
     assert rufiyaa.symbol == 'ރ.'
@@ -74,6 +77,7 @@ def test_rufiyaa_negative():
         'numeric_code: "462", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_rufiyaa_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_rufiyaa_custom():
     assert rufiyaa.alpha_code == 'MVR'
     assert rufiyaa.decimal_places == 5
     assert rufiyaa.decimal_sign == ','
+    assert rufiyaa.grouping_places == 2
     assert rufiyaa.grouping_sign == '.'
     assert rufiyaa.international
     assert rufiyaa.symbol == 'ރ.'
@@ -113,10 +119,11 @@ def test_rufiyaa_custom():
         'numeric_code: "462", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert rufiyaa.__str__() == 'MVR 1,000.00000'
+    assert rufiyaa.__str__() == 'MVR 10,00.00000'
 
 
 def test_rufiyaa_changed():
@@ -158,6 +165,10 @@ def test_rufiyaa_changed():
             AttributeError,
             match='can\'t set attribute'):
         rufiyaa.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        rufiyaa.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

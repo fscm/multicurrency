@@ -27,6 +27,7 @@ def test_lebanese_pound():
     assert lebanese_pound.alpha_code == 'LBP'
     assert lebanese_pound.decimal_places == 0
     assert lebanese_pound.decimal_sign == '\u066B'
+    assert lebanese_pound.grouping_places == 3
     assert lebanese_pound.grouping_sign == '\u066C'
     assert not lebanese_pound.international
     assert lebanese_pound.symbol == 'ل.ل.'
@@ -43,6 +44,7 @@ def test_lebanese_pound():
         'numeric_code: "422", '
         'decimal_places: "0", '
         'decimal_sign: "\u066B", '
+        'grouping_places: "3", '
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_lebanese_pound_negative():
     assert lebanese_pound.alpha_code == 'LBP'
     assert lebanese_pound.decimal_places == 0
     assert lebanese_pound.decimal_sign == '\u066B'
+    assert lebanese_pound.grouping_places == 3
     assert lebanese_pound.grouping_sign == '\u066C'
     assert not lebanese_pound.international
     assert lebanese_pound.symbol == 'ل.ل.'
@@ -74,6 +77,7 @@ def test_lebanese_pound_negative():
         'numeric_code: "422", '
         'decimal_places: "0", '
         'decimal_sign: "\u066B", '
+        'grouping_places: "3", '
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_lebanese_pound_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u066C',
+        grouping_places=2,
         grouping_sign='\u066B',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_lebanese_pound_custom():
     assert lebanese_pound.alpha_code == 'LBP'
     assert lebanese_pound.decimal_places == 5
     assert lebanese_pound.decimal_sign == '\u066C'
+    assert lebanese_pound.grouping_places == 2
     assert lebanese_pound.grouping_sign == '\u066B'
     assert lebanese_pound.international
     assert lebanese_pound.symbol == 'ل.ل.'
@@ -113,10 +119,11 @@ def test_lebanese_pound_custom():
         'numeric_code: "422", '
         'decimal_places: "5", '
         'decimal_sign: "\u066C", '
+        'grouping_places: "2", '
         'grouping_sign: "\u066B", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: True)')
-    assert lebanese_pound.__str__() == 'LBP 1,000.00000'
+    assert lebanese_pound.__str__() == 'LBP 10,00.00000'
 
 
 def test_lebanese_pound_changed():
@@ -158,6 +165,10 @@ def test_lebanese_pound_changed():
             AttributeError,
             match='can\'t set attribute'):
         lebanese_pound.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        lebanese_pound.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

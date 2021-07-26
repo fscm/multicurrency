@@ -27,6 +27,7 @@ def test_guarani():
     assert guarani.alpha_code == 'PYG'
     assert guarani.decimal_places == 0
     assert guarani.decimal_sign == ','
+    assert guarani.grouping_places == 3
     assert guarani.grouping_sign == '.'
     assert not guarani.international
     assert guarani.symbol == '₲'
@@ -43,6 +44,7 @@ def test_guarani():
         'numeric_code: "600", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_guarani_negative():
     assert guarani.alpha_code == 'PYG'
     assert guarani.decimal_places == 0
     assert guarani.decimal_sign == ','
+    assert guarani.grouping_places == 3
     assert guarani.grouping_sign == '.'
     assert not guarani.international
     assert guarani.symbol == '₲'
@@ -74,6 +77,7 @@ def test_guarani_negative():
         'numeric_code: "600", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_guarani_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_guarani_custom():
     assert guarani.alpha_code == 'PYG'
     assert guarani.decimal_places == 5
     assert guarani.decimal_sign == '.'
+    assert guarani.grouping_places == 2
     assert guarani.grouping_sign == ','
     assert guarani.international
     assert guarani.symbol == '₲'
@@ -113,10 +119,11 @@ def test_guarani_custom():
         'numeric_code: "600", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert guarani.__str__() == 'PYG 1,000.00000'
+    assert guarani.__str__() == 'PYG 10,00.00000'
 
 
 def test_guarani_changed():
@@ -158,6 +165,10 @@ def test_guarani_changed():
             AttributeError,
             match='can\'t set attribute'):
         guarani.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        guarani.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -27,6 +27,7 @@ def test_paanga():
     assert paanga.alpha_code == 'TOP'
     assert paanga.decimal_places == 2
     assert paanga.decimal_sign == '.'
+    assert paanga.grouping_places == 3
     assert paanga.grouping_sign == ','
     assert not paanga.international
     assert paanga.symbol == 'T$'
@@ -43,6 +44,7 @@ def test_paanga():
         'numeric_code: "776", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_paanga_negative():
     assert paanga.alpha_code == 'TOP'
     assert paanga.decimal_places == 2
     assert paanga.decimal_sign == '.'
+    assert paanga.grouping_places == 3
     assert paanga.grouping_sign == ','
     assert not paanga.international
     assert paanga.symbol == 'T$'
@@ -74,6 +77,7 @@ def test_paanga_negative():
         'numeric_code: "776", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_paanga_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_paanga_custom():
     assert paanga.alpha_code == 'TOP'
     assert paanga.decimal_places == 5
     assert paanga.decimal_sign == ','
+    assert paanga.grouping_places == 2
     assert paanga.grouping_sign == '.'
     assert paanga.international
     assert paanga.symbol == 'T$'
@@ -113,10 +119,11 @@ def test_paanga_custom():
         'numeric_code: "776", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert paanga.__str__() == 'TOP 1,000.00000'
+    assert paanga.__str__() == 'TOP 10,00.00000'
 
 
 def test_paanga_changed():
@@ -158,6 +165,10 @@ def test_paanga_changed():
             AttributeError,
             match='can\'t set attribute'):
         paanga.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        paanga.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

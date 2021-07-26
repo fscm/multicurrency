@@ -27,6 +27,7 @@ def test_baht():
     assert baht.alpha_code == 'THB'
     assert baht.decimal_places == 2
     assert baht.decimal_sign == '.'
+    assert baht.grouping_places == 3
     assert baht.grouping_sign == ','
     assert not baht.international
     assert baht.symbol == '฿'
@@ -43,6 +44,7 @@ def test_baht():
         'numeric_code: "764", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_baht_negative():
     assert baht.alpha_code == 'THB'
     assert baht.decimal_places == 2
     assert baht.decimal_sign == '.'
+    assert baht.grouping_places == 3
     assert baht.grouping_sign == ','
     assert not baht.international
     assert baht.symbol == '฿'
@@ -74,6 +77,7 @@ def test_baht_negative():
         'numeric_code: "764", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_baht_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_baht_custom():
     assert baht.alpha_code == 'THB'
     assert baht.decimal_places == 5
     assert baht.decimal_sign == ','
+    assert baht.grouping_places == 2
     assert baht.grouping_sign == '.'
     assert baht.international
     assert baht.symbol == '฿'
@@ -113,10 +119,11 @@ def test_baht_custom():
         'numeric_code: "764", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert baht.__str__() == 'THB 1,000.00000'
+    assert baht.__str__() == 'THB 10,00.00000'
 
 
 def test_baht_changed():
@@ -158,6 +165,10 @@ def test_baht_changed():
             AttributeError,
             match='can\'t set attribute'):
         baht.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        baht.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

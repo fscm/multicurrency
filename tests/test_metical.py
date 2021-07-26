@@ -27,6 +27,7 @@ def test_metical():
     assert metical.alpha_code == 'MZN'
     assert metical.decimal_places == 0
     assert metical.decimal_sign == ','
+    assert metical.grouping_places == 3
     assert metical.grouping_sign == '.'
     assert not metical.international
     assert metical.symbol == 'MTn'
@@ -43,6 +44,7 @@ def test_metical():
         'numeric_code: "943", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_metical_negative():
     assert metical.alpha_code == 'MZN'
     assert metical.decimal_places == 0
     assert metical.decimal_sign == ','
+    assert metical.grouping_places == 3
     assert metical.grouping_sign == '.'
     assert not metical.international
     assert metical.symbol == 'MTn'
@@ -74,6 +77,7 @@ def test_metical_negative():
         'numeric_code: "943", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_metical_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_metical_custom():
     assert metical.alpha_code == 'MZN'
     assert metical.decimal_places == 5
     assert metical.decimal_sign == '.'
+    assert metical.grouping_places == 2
     assert metical.grouping_sign == ','
     assert metical.international
     assert metical.symbol == 'MTn'
@@ -113,10 +119,11 @@ def test_metical_custom():
         'numeric_code: "943", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert metical.__str__() == 'MZN 1,000.00000'
+    assert metical.__str__() == 'MZN 10,00.00000'
 
 
 def test_metical_changed():
@@ -158,6 +165,10 @@ def test_metical_changed():
             AttributeError,
             match='can\'t set attribute'):
         metical.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        metical.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -27,6 +27,7 @@ def test_kina():
     assert kina.alpha_code == 'PGK'
     assert kina.decimal_places == 2
     assert kina.decimal_sign == '.'
+    assert kina.grouping_places == 3
     assert kina.grouping_sign == ','
     assert not kina.international
     assert kina.symbol == 'K'
@@ -43,6 +44,7 @@ def test_kina():
         'numeric_code: "598", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_kina_negative():
     assert kina.alpha_code == 'PGK'
     assert kina.decimal_places == 2
     assert kina.decimal_sign == '.'
+    assert kina.grouping_places == 3
     assert kina.grouping_sign == ','
     assert not kina.international
     assert kina.symbol == 'K'
@@ -74,6 +77,7 @@ def test_kina_negative():
         'numeric_code: "598", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_kina_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_kina_custom():
     assert kina.alpha_code == 'PGK'
     assert kina.decimal_places == 5
     assert kina.decimal_sign == ','
+    assert kina.grouping_places == 2
     assert kina.grouping_sign == '.'
     assert kina.international
     assert kina.symbol == 'K'
@@ -113,10 +119,11 @@ def test_kina_custom():
         'numeric_code: "598", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert kina.__str__() == 'PGK 1,000.00000'
+    assert kina.__str__() == 'PGK 10,00.00000'
 
 
 def test_kina_changed():
@@ -158,6 +165,10 @@ def test_kina_changed():
             AttributeError,
             match='can\'t set attribute'):
         kina.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        kina.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -27,6 +27,7 @@ def test_tugrik():
     assert tugrik.alpha_code == 'MNT'
     assert tugrik.decimal_places == 2
     assert tugrik.decimal_sign == '.'
+    assert tugrik.grouping_places == 3
     assert tugrik.grouping_sign == ','
     assert not tugrik.international
     assert tugrik.symbol == '₮'
@@ -43,6 +44,7 @@ def test_tugrik():
         'numeric_code: "496", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_tugrik_negative():
     assert tugrik.alpha_code == 'MNT'
     assert tugrik.decimal_places == 2
     assert tugrik.decimal_sign == '.'
+    assert tugrik.grouping_places == 3
     assert tugrik.grouping_sign == ','
     assert not tugrik.international
     assert tugrik.symbol == '₮'
@@ -74,6 +77,7 @@ def test_tugrik_negative():
         'numeric_code: "496", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_tugrik_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_tugrik_custom():
     assert tugrik.alpha_code == 'MNT'
     assert tugrik.decimal_places == 5
     assert tugrik.decimal_sign == ','
+    assert tugrik.grouping_places == 2
     assert tugrik.grouping_sign == '.'
     assert tugrik.international
     assert tugrik.symbol == '₮'
@@ -113,10 +119,11 @@ def test_tugrik_custom():
         'numeric_code: "496", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert tugrik.__str__() == 'MNT 1,000.00000'
+    assert tugrik.__str__() == 'MNT 10,00.00000'
 
 
 def test_tugrik_changed():
@@ -158,6 +165,10 @@ def test_tugrik_changed():
             AttributeError,
             match='can\'t set attribute'):
         tugrik.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        tugrik.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

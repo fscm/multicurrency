@@ -27,6 +27,7 @@ def test_brazilian_real():
     assert brazilian_real.alpha_code == 'BRL'
     assert brazilian_real.decimal_places == 2
     assert brazilian_real.decimal_sign == ','
+    assert brazilian_real.grouping_places == 3
     assert brazilian_real.grouping_sign == '.'
     assert not brazilian_real.international
     assert brazilian_real.symbol == 'R$'
@@ -43,6 +44,7 @@ def test_brazilian_real():
         'numeric_code: "986", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_brazilian_real_negative():
     assert brazilian_real.alpha_code == 'BRL'
     assert brazilian_real.decimal_places == 2
     assert brazilian_real.decimal_sign == ','
+    assert brazilian_real.grouping_places == 3
     assert brazilian_real.grouping_sign == '.'
     assert not brazilian_real.international
     assert brazilian_real.symbol == 'R$'
@@ -74,6 +77,7 @@ def test_brazilian_real_negative():
         'numeric_code: "986", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_brazilian_real_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_brazilian_real_custom():
     assert brazilian_real.alpha_code == 'BRL'
     assert brazilian_real.decimal_places == 5
     assert brazilian_real.decimal_sign == '.'
+    assert brazilian_real.grouping_places == 2
     assert brazilian_real.grouping_sign == ','
     assert brazilian_real.international
     assert brazilian_real.symbol == 'R$'
@@ -113,10 +119,11 @@ def test_brazilian_real_custom():
         'numeric_code: "986", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert brazilian_real.__str__() == 'BRL 1,000.00000'
+    assert brazilian_real.__str__() == 'BRL 10,00.00000'
 
 
 def test_brazilian_real_changed():
@@ -158,6 +165,10 @@ def test_brazilian_real_changed():
             AttributeError,
             match='can\'t set attribute'):
         brazilian_real.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        brazilian_real.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

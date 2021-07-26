@@ -27,6 +27,7 @@ def test_loti():
     assert loti.alpha_code == 'LSL'
     assert loti.decimal_places == 2
     assert loti.decimal_sign == '.'
+    assert loti.grouping_places == 3
     assert loti.grouping_sign == ','
     assert not loti.international
     assert loti.symbol == 'L'
@@ -43,6 +44,7 @@ def test_loti():
         'numeric_code: "426", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_loti_negative():
     assert loti.alpha_code == 'LSL'
     assert loti.decimal_places == 2
     assert loti.decimal_sign == '.'
+    assert loti.grouping_places == 3
     assert loti.grouping_sign == ','
     assert not loti.international
     assert loti.symbol == 'L'
@@ -74,6 +77,7 @@ def test_loti_negative():
         'numeric_code: "426", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_loti_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_loti_custom():
     assert loti.alpha_code == 'LSL'
     assert loti.decimal_places == 5
     assert loti.decimal_sign == ','
+    assert loti.grouping_places == 2
     assert loti.grouping_sign == '.'
     assert loti.international
     assert loti.symbol == 'L'
@@ -113,10 +119,11 @@ def test_loti_custom():
         'numeric_code: "426", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert loti.__str__() == 'LSL 1,000.00000'
+    assert loti.__str__() == 'LSL 10,00.00000'
 
 
 def test_loti_changed():
@@ -158,6 +165,10 @@ def test_loti_changed():
             AttributeError,
             match='can\'t set attribute'):
         loti.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        loti.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

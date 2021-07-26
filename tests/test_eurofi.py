@@ -27,6 +27,7 @@ def test_eurofi():
     assert eurofi.alpha_code == 'EUR'
     assert eurofi.decimal_places == 2
     assert eurofi.decimal_sign == ','
+    assert eurofi.grouping_places == 3
     assert eurofi.grouping_sign == '\u202F'
     assert not eurofi.international
     assert eurofi.symbol == '€'
@@ -43,6 +44,7 @@ def test_eurofi():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_eurofi_negative():
     assert eurofi.alpha_code == 'EUR'
     assert eurofi.decimal_places == 2
     assert eurofi.decimal_sign == ','
+    assert eurofi.grouping_places == 3
     assert eurofi.grouping_sign == '\u202F'
     assert not eurofi.international
     assert eurofi.symbol == '€'
@@ -74,6 +77,7 @@ def test_eurofi_negative():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_eurofi_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_eurofi_custom():
     assert eurofi.alpha_code == 'EUR'
     assert eurofi.decimal_places == 5
     assert eurofi.decimal_sign == '\u202F'
+    assert eurofi.grouping_places == 2
     assert eurofi.grouping_sign == ','
     assert eurofi.international
     assert eurofi.symbol == '€'
@@ -113,10 +119,11 @@ def test_eurofi_custom():
         'numeric_code: "978", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert eurofi.__str__() == 'EUR 1,000.00000'
+    assert eurofi.__str__() == 'EUR 10,00.00000'
 
 
 def test_eurofi_changed():
@@ -158,6 +165,10 @@ def test_eurofi_changed():
             AttributeError,
             match='can\'t set attribute'):
         eurofi.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        eurofi.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -29,6 +29,8 @@ class ArgentinePeso(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -46,6 +48,7 @@ class ArgentinePeso(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '.',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -66,6 +69,7 @@ class ArgentinePeso(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -89,6 +93,8 @@ class ChileanPeso(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 0,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -106,6 +112,7 @@ class ChileanPeso(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 0,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '.',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -126,6 +133,7 @@ class ChileanPeso(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -149,6 +157,8 @@ class ColombianPeso(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -166,6 +176,7 @@ class ColombianPeso(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '.',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -186,6 +197,7 @@ class ColombianPeso(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -209,6 +221,8 @@ class CubanPeso(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -226,6 +240,7 @@ class CubanPeso(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -246,6 +261,7 @@ class CubanPeso(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -269,6 +285,8 @@ class DominicanPeso(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -286,6 +304,7 @@ class DominicanPeso(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -306,6 +325,7 @@ class DominicanPeso(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -329,6 +349,8 @@ class MexicanPeso(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -346,6 +368,7 @@ class MexicanPeso(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -366,6 +389,7 @@ class MexicanPeso(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -389,6 +413,8 @@ class PhilippinePeso(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -406,6 +432,7 @@ class PhilippinePeso(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -426,6 +453,7 @@ class PhilippinePeso(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -449,6 +477,8 @@ class PesoUruguayo(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -466,6 +496,7 @@ class PesoUruguayo(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '.',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -486,6 +517,7 @@ class PesoUruguayo(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)

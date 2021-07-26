@@ -27,6 +27,7 @@ def test_kip():
     assert kip.alpha_code == 'LAK'
     assert kip.decimal_places == 2
     assert kip.decimal_sign == ','
+    assert kip.grouping_places == 3
     assert kip.grouping_sign == '.'
     assert not kip.international
     assert kip.symbol == '₭'
@@ -43,6 +44,7 @@ def test_kip():
         'numeric_code: "418", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_kip_negative():
     assert kip.alpha_code == 'LAK'
     assert kip.decimal_places == 2
     assert kip.decimal_sign == ','
+    assert kip.grouping_places == 3
     assert kip.grouping_sign == '.'
     assert not kip.international
     assert kip.symbol == '₭'
@@ -74,6 +77,7 @@ def test_kip_negative():
         'numeric_code: "418", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_kip_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_kip_custom():
     assert kip.alpha_code == 'LAK'
     assert kip.decimal_places == 5
     assert kip.decimal_sign == '.'
+    assert kip.grouping_places == 2
     assert kip.grouping_sign == ','
     assert kip.international
     assert kip.symbol == '₭'
@@ -113,10 +119,11 @@ def test_kip_custom():
         'numeric_code: "418", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert kip.__str__() == 'LAK 1,000.00000'
+    assert kip.__str__() == 'LAK 10,00.00000'
 
 
 def test_kip_changed():
@@ -158,6 +165,10 @@ def test_kip_changed():
             AttributeError,
             match='can\'t set attribute'):
         kip.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        kip.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

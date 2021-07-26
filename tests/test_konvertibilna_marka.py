@@ -27,6 +27,7 @@ def test_konvertibilna_marka():
     assert konvertibilna_marka.alpha_code == 'BAM'
     assert konvertibilna_marka.decimal_places == 2
     assert konvertibilna_marka.decimal_sign == '.'
+    assert konvertibilna_marka.grouping_places == 3
     assert konvertibilna_marka.grouping_sign == ','
     assert not konvertibilna_marka.international
     assert konvertibilna_marka.symbol == 'КМ'
@@ -43,6 +44,7 @@ def test_konvertibilna_marka():
         'numeric_code: "977", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_konvertibilna_marka_negative():
     assert konvertibilna_marka.alpha_code == 'BAM'
     assert konvertibilna_marka.decimal_places == 2
     assert konvertibilna_marka.decimal_sign == '.'
+    assert konvertibilna_marka.grouping_places == 3
     assert konvertibilna_marka.grouping_sign == ','
     assert not konvertibilna_marka.international
     assert konvertibilna_marka.symbol == 'КМ'
@@ -74,6 +77,7 @@ def test_konvertibilna_marka_negative():
         'numeric_code: "977", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_konvertibilna_marka_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_konvertibilna_marka_custom():
     assert konvertibilna_marka.alpha_code == 'BAM'
     assert konvertibilna_marka.decimal_places == 5
     assert konvertibilna_marka.decimal_sign == ','
+    assert konvertibilna_marka.grouping_places == 2
     assert konvertibilna_marka.grouping_sign == '.'
     assert konvertibilna_marka.international
     assert konvertibilna_marka.symbol == 'КМ'
@@ -113,10 +119,11 @@ def test_konvertibilna_marka_custom():
         'numeric_code: "977", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert konvertibilna_marka.__str__() == 'BAM 1,000.00000'
+    assert konvertibilna_marka.__str__() == 'BAM 10,00.00000'
 
 
 def test_konvertibilna_marka_changed():
@@ -158,6 +165,10 @@ def test_konvertibilna_marka_changed():
             AttributeError,
             match='can\'t set attribute'):
         konvertibilna_marka.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        konvertibilna_marka.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

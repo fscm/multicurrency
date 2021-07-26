@@ -27,6 +27,7 @@ def test_cfa_franc_bceao():
     assert cfa_franc_bceao.alpha_code == 'XOF'
     assert cfa_franc_bceao.decimal_places == 0
     assert cfa_franc_bceao.decimal_sign == ','
+    assert cfa_franc_bceao.grouping_places == 3
     assert cfa_franc_bceao.grouping_sign == '\u202F'
     assert not cfa_franc_bceao.international
     assert cfa_franc_bceao.symbol == '₣'
@@ -43,6 +44,7 @@ def test_cfa_franc_bceao():
         'numeric_code: "952", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_cfa_franc_bceao_negative():
     assert cfa_franc_bceao.alpha_code == 'XOF'
     assert cfa_franc_bceao.decimal_places == 0
     assert cfa_franc_bceao.decimal_sign == ','
+    assert cfa_franc_bceao.grouping_places == 3
     assert cfa_franc_bceao.grouping_sign == '\u202F'
     assert not cfa_franc_bceao.international
     assert cfa_franc_bceao.symbol == '₣'
@@ -74,6 +77,7 @@ def test_cfa_franc_bceao_negative():
         'numeric_code: "952", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_cfa_franc_bceao_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_cfa_franc_bceao_custom():
     assert cfa_franc_bceao.alpha_code == 'XOF'
     assert cfa_franc_bceao.decimal_places == 5
     assert cfa_franc_bceao.decimal_sign == '\u202F'
+    assert cfa_franc_bceao.grouping_places == 2
     assert cfa_franc_bceao.grouping_sign == ','
     assert cfa_franc_bceao.international
     assert cfa_franc_bceao.symbol == '₣'
@@ -113,10 +119,11 @@ def test_cfa_franc_bceao_custom():
         'numeric_code: "952", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert cfa_franc_bceao.__str__() == 'XOF 1,000.00000'
+    assert cfa_franc_bceao.__str__() == 'XOF 10,00.00000'
 
 
 def test_cfa_franc_bceao_changed():
@@ -158,6 +165,10 @@ def test_cfa_franc_bceao_changed():
             AttributeError,
             match='can\'t set attribute'):
         cfa_franc_bceao.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cfa_franc_bceao.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

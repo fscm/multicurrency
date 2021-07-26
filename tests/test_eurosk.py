@@ -27,6 +27,7 @@ def test_eurosk():
     assert eurosk.alpha_code == 'EUR'
     assert eurosk.decimal_places == 2
     assert eurosk.decimal_sign == ','
+    assert eurosk.grouping_places == 3
     assert eurosk.grouping_sign == '\u202F'
     assert not eurosk.international
     assert eurosk.symbol == '€'
@@ -43,6 +44,7 @@ def test_eurosk():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_eurosk_negative():
     assert eurosk.alpha_code == 'EUR'
     assert eurosk.decimal_places == 2
     assert eurosk.decimal_sign == ','
+    assert eurosk.grouping_places == 3
     assert eurosk.grouping_sign == '\u202F'
     assert not eurosk.international
     assert eurosk.symbol == '€'
@@ -74,6 +77,7 @@ def test_eurosk_negative():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_eurosk_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_eurosk_custom():
     assert eurosk.alpha_code == 'EUR'
     assert eurosk.decimal_places == 5
     assert eurosk.decimal_sign == '\u202F'
+    assert eurosk.grouping_places == 2
     assert eurosk.grouping_sign == ','
     assert eurosk.international
     assert eurosk.symbol == '€'
@@ -113,10 +119,11 @@ def test_eurosk_custom():
         'numeric_code: "978", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert eurosk.__str__() == 'EUR 1,000.00000'
+    assert eurosk.__str__() == 'EUR 10,00.00000'
 
 
 def test_eurosk_changed():
@@ -158,6 +165,10 @@ def test_eurosk_changed():
             AttributeError,
             match='can\'t set attribute'):
         eurosk.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        eurosk.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

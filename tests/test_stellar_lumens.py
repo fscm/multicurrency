@@ -27,6 +27,7 @@ def test_stellar_lumens():
     assert stellar_lumens.alpha_code == 'XLM'
     assert stellar_lumens.decimal_places == 7
     assert stellar_lumens.decimal_sign == '.'
+    assert stellar_lumens.grouping_places == 3
     assert stellar_lumens.grouping_sign == ','
     assert not stellar_lumens.international
     assert stellar_lumens.symbol == '*'
@@ -43,6 +44,7 @@ def test_stellar_lumens():
         'numeric_code: "0", '
         'decimal_places: "7", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_stellar_lumens_negative():
     assert stellar_lumens.alpha_code == 'XLM'
     assert stellar_lumens.decimal_places == 7
     assert stellar_lumens.decimal_sign == '.'
+    assert stellar_lumens.grouping_places == 3
     assert stellar_lumens.grouping_sign == ','
     assert not stellar_lumens.international
     assert stellar_lumens.symbol == '*'
@@ -74,6 +77,7 @@ def test_stellar_lumens_negative():
         'numeric_code: "0", '
         'decimal_places: "7", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_stellar_lumens_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_stellar_lumens_custom():
     assert stellar_lumens.alpha_code == 'XLM'
     assert stellar_lumens.decimal_places == 5
     assert stellar_lumens.decimal_sign == ','
+    assert stellar_lumens.grouping_places == 2
     assert stellar_lumens.grouping_sign == '.'
     assert stellar_lumens.international
     assert stellar_lumens.symbol == '*'
@@ -113,10 +119,11 @@ def test_stellar_lumens_custom():
         'numeric_code: "0", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert stellar_lumens.__str__() == 'XLM 1,000.00000'
+    assert stellar_lumens.__str__() == 'XLM 10,00.00000'
 
 
 def test_stellar_lumens_changed():
@@ -158,6 +165,10 @@ def test_stellar_lumens_changed():
             AttributeError,
             match='can\'t set attribute'):
         stellar_lumens.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        stellar_lumens.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

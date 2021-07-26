@@ -27,6 +27,7 @@ def test_manat():
     assert manat.alpha_code == 'TMT'
     assert manat.decimal_places == 2
     assert manat.decimal_sign == ','
+    assert manat.grouping_places == 3
     assert manat.grouping_sign == '\u202F'
     assert not manat.international
     assert manat.symbol == 'm'
@@ -43,6 +44,7 @@ def test_manat():
         'numeric_code: "934", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_manat_negative():
     assert manat.alpha_code == 'TMT'
     assert manat.decimal_places == 2
     assert manat.decimal_sign == ','
+    assert manat.grouping_places == 3
     assert manat.grouping_sign == '\u202F'
     assert not manat.international
     assert manat.symbol == 'm'
@@ -74,6 +77,7 @@ def test_manat_negative():
         'numeric_code: "934", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_manat_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_manat_custom():
     assert manat.alpha_code == 'TMT'
     assert manat.decimal_places == 5
     assert manat.decimal_sign == '\u202F'
+    assert manat.grouping_places == 2
     assert manat.grouping_sign == ','
     assert manat.international
     assert manat.symbol == 'm'
@@ -113,10 +119,11 @@ def test_manat_custom():
         'numeric_code: "934", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert manat.__str__() == 'TMT 1,000.00000'
+    assert manat.__str__() == 'TMT 10,00.00000'
 
 
 def test_manat_changed():
@@ -158,6 +165,10 @@ def test_manat_changed():
             AttributeError,
             match='can\'t set attribute'):
         manat.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        manat.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

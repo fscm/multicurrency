@@ -27,6 +27,7 @@ def test_monero():
     assert monero.alpha_code == 'XMR'
     assert monero.decimal_places == 12
     assert monero.decimal_sign == '.'
+    assert monero.grouping_places == 3
     assert monero.grouping_sign == ','
     assert not monero.international
     assert monero.symbol == 'ɱ'
@@ -43,6 +44,7 @@ def test_monero():
         'numeric_code: "0", '
         'decimal_places: "12", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_monero_negative():
     assert monero.alpha_code == 'XMR'
     assert monero.decimal_places == 12
     assert monero.decimal_sign == '.'
+    assert monero.grouping_places == 3
     assert monero.grouping_sign == ','
     assert not monero.international
     assert monero.symbol == 'ɱ'
@@ -74,6 +77,7 @@ def test_monero_negative():
         'numeric_code: "0", '
         'decimal_places: "12", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_monero_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_monero_custom():
     assert monero.alpha_code == 'XMR'
     assert monero.decimal_places == 5
     assert monero.decimal_sign == ','
+    assert monero.grouping_places == 2
     assert monero.grouping_sign == '.'
     assert monero.international
     assert monero.symbol == 'ɱ'
@@ -113,10 +119,11 @@ def test_monero_custom():
         'numeric_code: "0", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert monero.__str__() == 'XMR 1,000.00000'
+    assert monero.__str__() == 'XMR 10,00.00000'
 
 
 def test_monero_changed():
@@ -158,6 +165,10 @@ def test_monero_changed():
             AttributeError,
             match='can\'t set attribute'):
         monero.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        monero.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

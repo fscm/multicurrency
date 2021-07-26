@@ -27,6 +27,7 @@ def test_hryvnia():
     assert hryvnia.alpha_code == 'UAH'
     assert hryvnia.decimal_places == 2
     assert hryvnia.decimal_sign == ','
+    assert hryvnia.grouping_places == 3
     assert hryvnia.grouping_sign == '\u202F'
     assert not hryvnia.international
     assert hryvnia.symbol == '₴'
@@ -43,6 +44,7 @@ def test_hryvnia():
         'numeric_code: "980", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_hryvnia_negative():
     assert hryvnia.alpha_code == 'UAH'
     assert hryvnia.decimal_places == 2
     assert hryvnia.decimal_sign == ','
+    assert hryvnia.grouping_places == 3
     assert hryvnia.grouping_sign == '\u202F'
     assert not hryvnia.international
     assert hryvnia.symbol == '₴'
@@ -74,6 +77,7 @@ def test_hryvnia_negative():
         'numeric_code: "980", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_hryvnia_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_hryvnia_custom():
     assert hryvnia.alpha_code == 'UAH'
     assert hryvnia.decimal_places == 5
     assert hryvnia.decimal_sign == '\u202F'
+    assert hryvnia.grouping_places == 2
     assert hryvnia.grouping_sign == ','
     assert hryvnia.international
     assert hryvnia.symbol == '₴'
@@ -113,10 +119,11 @@ def test_hryvnia_custom():
         'numeric_code: "980", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert hryvnia.__str__() == 'UAH 1,000.00000'
+    assert hryvnia.__str__() == 'UAH 10,00.00000'
 
 
 def test_hryvnia_changed():
@@ -158,6 +165,10 @@ def test_hryvnia_changed():
             AttributeError,
             match='can\'t set attribute'):
         hryvnia.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        hryvnia.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

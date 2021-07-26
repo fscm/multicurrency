@@ -27,6 +27,7 @@ def test_kyat():
     assert kyat.alpha_code == 'MMK'
     assert kyat.decimal_places == 2
     assert kyat.decimal_sign == '.'
+    assert kyat.grouping_places == 3
     assert kyat.grouping_sign == ','
     assert not kyat.international
     assert kyat.symbol == 'K'
@@ -43,6 +44,7 @@ def test_kyat():
         'numeric_code: "104", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "၀၁၂၃၄၅၆၇၈၉-", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_kyat_negative():
     assert kyat.alpha_code == 'MMK'
     assert kyat.decimal_places == 2
     assert kyat.decimal_sign == '.'
+    assert kyat.grouping_places == 3
     assert kyat.grouping_sign == ','
     assert not kyat.international
     assert kyat.symbol == 'K'
@@ -74,6 +77,7 @@ def test_kyat_negative():
         'numeric_code: "104", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "၀၁၂၃၄၅၆၇၈၉-", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_kyat_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_kyat_custom():
     assert kyat.alpha_code == 'MMK'
     assert kyat.decimal_places == 5
     assert kyat.decimal_sign == ','
+    assert kyat.grouping_places == 2
     assert kyat.grouping_sign == '.'
     assert kyat.international
     assert kyat.symbol == 'K'
@@ -113,10 +119,11 @@ def test_kyat_custom():
         'numeric_code: "104", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "၀၁၂၃၄၅၆၇၈၉-", '
         'international: True)')
-    assert kyat.__str__() == 'MMK 1,000.00000'
+    assert kyat.__str__() == 'MMK 10,00.00000'
 
 
 def test_kyat_changed():
@@ -158,6 +165,10 @@ def test_kyat_changed():
             AttributeError,
             match='can\'t set attribute'):
         kyat.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        kyat.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

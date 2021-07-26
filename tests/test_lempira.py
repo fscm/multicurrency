@@ -27,6 +27,7 @@ def test_lempira():
     assert lempira.alpha_code == 'HNL'
     assert lempira.decimal_places == 2
     assert lempira.decimal_sign == '.'
+    assert lempira.grouping_places == 3
     assert lempira.grouping_sign == ','
     assert not lempira.international
     assert lempira.symbol == 'L'
@@ -43,6 +44,7 @@ def test_lempira():
         'numeric_code: "340", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_lempira_negative():
     assert lempira.alpha_code == 'HNL'
     assert lempira.decimal_places == 2
     assert lempira.decimal_sign == '.'
+    assert lempira.grouping_places == 3
     assert lempira.grouping_sign == ','
     assert not lempira.international
     assert lempira.symbol == 'L'
@@ -74,6 +77,7 @@ def test_lempira_negative():
         'numeric_code: "340", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_lempira_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_lempira_custom():
     assert lempira.alpha_code == 'HNL'
     assert lempira.decimal_places == 5
     assert lempira.decimal_sign == ','
+    assert lempira.grouping_places == 2
     assert lempira.grouping_sign == '.'
     assert lempira.international
     assert lempira.symbol == 'L'
@@ -113,10 +119,11 @@ def test_lempira_custom():
         'numeric_code: "340", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert lempira.__str__() == 'HNL 1,000.00000'
+    assert lempira.__str__() == 'HNL 10,00.00000'
 
 
 def test_lempira_changed():
@@ -158,6 +165,10 @@ def test_lempira_changed():
             AttributeError,
             match='can\'t set attribute'):
         lempira.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        lempira.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

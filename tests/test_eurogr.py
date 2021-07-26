@@ -27,6 +27,7 @@ def test_eurogr():
     assert eurogr.alpha_code == 'EUR'
     assert eurogr.decimal_places == 2
     assert eurogr.decimal_sign == ','
+    assert eurogr.grouping_places == 3
     assert eurogr.grouping_sign == '.'
     assert not eurogr.international
     assert eurogr.symbol == '€'
@@ -43,6 +44,7 @@ def test_eurogr():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_eurogr_negative():
     assert eurogr.alpha_code == 'EUR'
     assert eurogr.decimal_places == 2
     assert eurogr.decimal_sign == ','
+    assert eurogr.grouping_places == 3
     assert eurogr.grouping_sign == '.'
     assert not eurogr.international
     assert eurogr.symbol == '€'
@@ -74,6 +77,7 @@ def test_eurogr_negative():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_eurogr_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_eurogr_custom():
     assert eurogr.alpha_code == 'EUR'
     assert eurogr.decimal_places == 5
     assert eurogr.decimal_sign == '.'
+    assert eurogr.grouping_places == 2
     assert eurogr.grouping_sign == ','
     assert eurogr.international
     assert eurogr.symbol == '€'
@@ -113,10 +119,11 @@ def test_eurogr_custom():
         'numeric_code: "978", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert eurogr.__str__() == 'EUR 1,000.00000'
+    assert eurogr.__str__() == 'EUR 10,00.00000'
 
 
 def test_eurogr_changed():
@@ -158,6 +165,10 @@ def test_eurogr_changed():
             AttributeError,
             match='can\'t set attribute'):
         eurogr.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        eurogr.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

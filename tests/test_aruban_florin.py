@@ -27,6 +27,7 @@ def test_aruban_florin():
     assert aruban_florin.alpha_code == 'AWG'
     assert aruban_florin.decimal_places == 2
     assert aruban_florin.decimal_sign == '.'
+    assert aruban_florin.grouping_places == 3
     assert aruban_florin.grouping_sign == ','
     assert not aruban_florin.international
     assert aruban_florin.symbol == 'ƒ'
@@ -43,6 +44,7 @@ def test_aruban_florin():
         'numeric_code: "533", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_aruban_florin_negative():
     assert aruban_florin.alpha_code == 'AWG'
     assert aruban_florin.decimal_places == 2
     assert aruban_florin.decimal_sign == '.'
+    assert aruban_florin.grouping_places == 3
     assert aruban_florin.grouping_sign == ','
     assert not aruban_florin.international
     assert aruban_florin.symbol == 'ƒ'
@@ -74,6 +77,7 @@ def test_aruban_florin_negative():
         'numeric_code: "533", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_aruban_florin_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_aruban_florin_custom():
     assert aruban_florin.alpha_code == 'AWG'
     assert aruban_florin.decimal_places == 5
     assert aruban_florin.decimal_sign == ','
+    assert aruban_florin.grouping_places == 2
     assert aruban_florin.grouping_sign == '.'
     assert aruban_florin.international
     assert aruban_florin.symbol == 'ƒ'
@@ -113,10 +119,11 @@ def test_aruban_florin_custom():
         'numeric_code: "533", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert aruban_florin.__str__() == 'AWG 1,000.00000'
+    assert aruban_florin.__str__() == 'AWG 10,00.00000'
 
 
 def test_aruban_florin_changed():
@@ -158,6 +165,10 @@ def test_aruban_florin_changed():
             AttributeError,
             match='can\'t set attribute'):
         aruban_florin.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        aruban_florin.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

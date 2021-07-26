@@ -27,6 +27,7 @@ def test_rupiah():
     assert rupiah.alpha_code == 'IDR'
     assert rupiah.decimal_places == 2
     assert rupiah.decimal_sign == ','
+    assert rupiah.grouping_places == 3
     assert rupiah.grouping_sign == '.'
     assert not rupiah.international
     assert rupiah.symbol == 'Rp'
@@ -43,6 +44,7 @@ def test_rupiah():
         'numeric_code: "360", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_rupiah_negative():
     assert rupiah.alpha_code == 'IDR'
     assert rupiah.decimal_places == 2
     assert rupiah.decimal_sign == ','
+    assert rupiah.grouping_places == 3
     assert rupiah.grouping_sign == '.'
     assert not rupiah.international
     assert rupiah.symbol == 'Rp'
@@ -74,6 +77,7 @@ def test_rupiah_negative():
         'numeric_code: "360", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_rupiah_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_rupiah_custom():
     assert rupiah.alpha_code == 'IDR'
     assert rupiah.decimal_places == 5
     assert rupiah.decimal_sign == '.'
+    assert rupiah.grouping_places == 2
     assert rupiah.grouping_sign == ','
     assert rupiah.international
     assert rupiah.symbol == 'Rp'
@@ -113,10 +119,11 @@ def test_rupiah_custom():
         'numeric_code: "360", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert rupiah.__str__() == 'IDR 1,000.00000'
+    assert rupiah.__str__() == 'IDR 10,00.00000'
 
 
 def test_rupiah_changed():
@@ -158,6 +165,10 @@ def test_rupiah_changed():
             AttributeError,
             match='can\'t set attribute'):
         rupiah.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        rupiah.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

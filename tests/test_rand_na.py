@@ -27,6 +27,7 @@ def test_rand_na():
     assert rand_na.alpha_code == 'ZAR'
     assert rand_na.decimal_places == 2
     assert rand_na.decimal_sign == '.'
+    assert rand_na.grouping_places == 3
     assert rand_na.grouping_sign == '\u202F'
     assert not rand_na.international
     assert rand_na.symbol == 'R'
@@ -43,6 +44,7 @@ def test_rand_na():
         'numeric_code: "710", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_rand_na_negative():
     assert rand_na.alpha_code == 'ZAR'
     assert rand_na.decimal_places == 2
     assert rand_na.decimal_sign == '.'
+    assert rand_na.grouping_places == 3
     assert rand_na.grouping_sign == '\u202F'
     assert not rand_na.international
     assert rand_na.symbol == 'R'
@@ -74,6 +77,7 @@ def test_rand_na_negative():
         'numeric_code: "710", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_rand_na_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_rand_na_custom():
     assert rand_na.alpha_code == 'ZAR'
     assert rand_na.decimal_places == 5
     assert rand_na.decimal_sign == '\u202F'
+    assert rand_na.grouping_places == 2
     assert rand_na.grouping_sign == '.'
     assert rand_na.international
     assert rand_na.symbol == 'R'
@@ -113,10 +119,11 @@ def test_rand_na_custom():
         'numeric_code: "710", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert rand_na.__str__() == 'ZAR 1,000.00000'
+    assert rand_na.__str__() == 'ZAR 10,00.00000'
 
 
 def test_rand_na_changed():
@@ -158,6 +165,10 @@ def test_rand_na_changed():
             AttributeError,
             match='can\'t set attribute'):
         rand_na.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        rand_na.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

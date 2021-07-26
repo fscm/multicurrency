@@ -29,16 +29,17 @@ separated by a coma (',') and in the following order:
     * "Decimal Places"
     * "Decimal Sign"
     * "Grouping Sign"
+    * "Grouping Places"
     * "Symbol Separator"
     * "Symbol Ahead"
     * "Convertion"
 
 `currency.csv` file example:
 
-    "Currency","Symbol","Digital Code","Class","Name","Country","Decimal Places","Decimal Sign","Grouping Sign","Symbol Separator","Symbol Ahead","Convertion"
-    "AFN","؋","971","Afghani","Afghani","Afghanistan","2","\u066B","\u066C","\u00A0","True","۰۱۲۳۴۵۶۷۸۹-"
-    "AUD","$","036","Dollar","Australian Dollar","Australia","2",".",",","","True",""
-    "BDT","৳","050","Taka","Taka","Bangladesh","2",".",",","","False","০১২৩৪৫৬৭৮৯-"
+    "Currency","Symbol","Digital Code","Class","Name","Country","Decimal Places","Decimal Sign","Grouping Sign","Grouping Places","Symbol Separator","Symbol Ahead","Convertion"
+    "AFN","؋","971","Afghani","Afghani","Afghanistan","2","\u066B","\u066C","3","\u00A0","True","۰۱۲۳۴۵۶۷۸۹-"
+    "AUD","$","036","Dollar","Australian Dollar","Australia","2",".",",","3","","True",""
+    "BDT","৳","050","Taka","Taka","Bangladesh","2",".",",","3","","False","০১২৩৪৫৬৭৮৯-"
 """
 
 import csv
@@ -85,6 +86,7 @@ with open(f'{workfolder}/{CURRENCY_TESTS}', 'r') as file_in_tests:
 def _format( # pylint: disable=missing-return-doc,missing-return-type-doc
         _amount,
         _decimal_places,
+        _grouping_places,
         _alpha_code,
         _grouping_sign,
         _decimal_sign,
@@ -93,7 +95,15 @@ def _format( # pylint: disable=missing-return-doc,missing-return-type-doc
         _symbol_separator,
         _convertion,
         _international=False):
-    _converted = f'{round(_amount, _decimal_places):,.{_decimal_places}f}'
+    #_converted = f'{round(_amount, _decimal_places):,.{_decimal_places}f}'
+    _p = max(_decimal_places, 0)
+    _rounded = str(round(_amount, _p))
+    if not _p:
+        _rounded = f'{_rounded}.'
+    _converted = re.sub(
+        rf'(\d)(?=(\d{{{_grouping_places}}})+\.)', r'\1,', _rounded)
+    if not _p:
+        _converted = _converted[:-1]
     _grouping_sign = bytes(_grouping_sign, 'utf-8').decode('unicode_escape')
     _symbol_separator = bytes(_symbol_separator, 'utf-8').decode('unicode_escape')
     if _international:
@@ -156,6 +166,7 @@ with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
             '__DECIMAL_SIGN__': currency['decimal_sign'],
             '__DECIMAL_SIGN_STR__': bytes(
                 currency['decimal_sign'], 'utf-8').decode('unicode_escape'),
+            '__GROUPING_PLACES__': currency['grouping_places'],
             '__GROUPING_SIGN__': currency['grouping_sign'],
             '__GROUPING_SIGN_STR__': bytes(
                 currency['grouping_sign'], 'utf-8').decode('unicode_escape'),
@@ -170,6 +181,7 @@ with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
             '__EXAMPLE_OUTPUT__': _format(
                 example,
                 int(currency['decimal_places']),
+                int(currency['grouping_places']),
                 currency['currency'],
                 currency['grouping_sign'],
                 currency['decimal_sign'],
@@ -180,6 +192,7 @@ with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
             '__EXAMPLE_1DIV7__': _format(
                 decimal,
                 int(currency['decimal_places']),
+                int(currency['grouping_places']),
                 currency['currency'],
                 currency['grouping_sign'],
                 currency['decimal_sign'],
@@ -190,6 +203,7 @@ with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
             '__EXAMPLE_NEGATIVE__': _format(
                 negative,
                 int(currency['decimal_places']),
+                int(currency['grouping_places']),
                 currency['currency'],
                 currency['grouping_sign'],
                 currency['decimal_sign'],
@@ -200,6 +214,7 @@ with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
             '__EXAMPLE_CUSTOM__': _format(
                 custom,
                 5,
+                2,
                 currency['currency'],
                 currency['decimal_sign'],
                 grouping_sign_alt,
@@ -298,6 +313,7 @@ for currency_module, data in currencies.items():
         eg_locale = values['__EXAMPLE_OUTPUT__']
         eg_international = _format(
                 example, int(values['__DECIMAL_PLACES__']),
+                int(values['__GROUPING_PLACES__']),
                 values['__CURRENCY__'], '', '', '', False, '', '', True)
         supported.append((
             currency_class, (
@@ -315,6 +331,7 @@ for currency_module, data in crypto_currencies.items():
         eg_locale = values['__EXAMPLE_OUTPUT__']
         eg_international = _format(
                 example, int(values['__DECIMAL_PLACES__']),
+                int(values['__GROUPING_PLACES__']),
                 values['__CURRENCY__'], '', '', '', False, '', '', True)
         supported_crypto.append((
             currency_class, (

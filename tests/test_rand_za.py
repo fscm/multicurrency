@@ -27,6 +27,7 @@ def test_rand_za():
     assert rand_za.alpha_code == 'ZAR'
     assert rand_za.decimal_places == 2
     assert rand_za.decimal_sign == '.'
+    assert rand_za.grouping_places == 3
     assert rand_za.grouping_sign == '\u202F'
     assert not rand_za.international
     assert rand_za.symbol == 'R'
@@ -43,6 +44,7 @@ def test_rand_za():
         'numeric_code: "710", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_rand_za_negative():
     assert rand_za.alpha_code == 'ZAR'
     assert rand_za.decimal_places == 2
     assert rand_za.decimal_sign == '.'
+    assert rand_za.grouping_places == 3
     assert rand_za.grouping_sign == '\u202F'
     assert not rand_za.international
     assert rand_za.symbol == 'R'
@@ -74,6 +77,7 @@ def test_rand_za_negative():
         'numeric_code: "710", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_rand_za_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_rand_za_custom():
     assert rand_za.alpha_code == 'ZAR'
     assert rand_za.decimal_places == 5
     assert rand_za.decimal_sign == '\u202F'
+    assert rand_za.grouping_places == 2
     assert rand_za.grouping_sign == '.'
     assert rand_za.international
     assert rand_za.symbol == 'R'
@@ -113,10 +119,11 @@ def test_rand_za_custom():
         'numeric_code: "710", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert rand_za.__str__() == 'ZAR 1,000.00000'
+    assert rand_za.__str__() == 'ZAR 10,00.00000'
 
 
 def test_rand_za_changed():
@@ -158,6 +165,10 @@ def test_rand_za_changed():
             AttributeError,
             match='can\'t set attribute'):
         rand_za.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        rand_za.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

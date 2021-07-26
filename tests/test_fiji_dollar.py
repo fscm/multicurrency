@@ -27,6 +27,7 @@ def test_fiji_dollar():
     assert fiji_dollar.alpha_code == 'FJD'
     assert fiji_dollar.decimal_places == 2
     assert fiji_dollar.decimal_sign == '.'
+    assert fiji_dollar.grouping_places == 3
     assert fiji_dollar.grouping_sign == ','
     assert not fiji_dollar.international
     assert fiji_dollar.symbol == '$'
@@ -43,6 +44,7 @@ def test_fiji_dollar():
         'numeric_code: "242", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_fiji_dollar_negative():
     assert fiji_dollar.alpha_code == 'FJD'
     assert fiji_dollar.decimal_places == 2
     assert fiji_dollar.decimal_sign == '.'
+    assert fiji_dollar.grouping_places == 3
     assert fiji_dollar.grouping_sign == ','
     assert not fiji_dollar.international
     assert fiji_dollar.symbol == '$'
@@ -74,6 +77,7 @@ def test_fiji_dollar_negative():
         'numeric_code: "242", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_fiji_dollar_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_fiji_dollar_custom():
     assert fiji_dollar.alpha_code == 'FJD'
     assert fiji_dollar.decimal_places == 5
     assert fiji_dollar.decimal_sign == ','
+    assert fiji_dollar.grouping_places == 2
     assert fiji_dollar.grouping_sign == '.'
     assert fiji_dollar.international
     assert fiji_dollar.symbol == '$'
@@ -113,10 +119,11 @@ def test_fiji_dollar_custom():
         'numeric_code: "242", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert fiji_dollar.__str__() == 'FJD 1,000.00000'
+    assert fiji_dollar.__str__() == 'FJD 10,00.00000'
 
 
 def test_fiji_dollar_changed():
@@ -158,6 +165,10 @@ def test_fiji_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         fiji_dollar.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        fiji_dollar.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

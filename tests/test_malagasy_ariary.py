@@ -27,6 +27,7 @@ def test_malagasy_ariary():
     assert malagasy_ariary.alpha_code == 'MGA'
     assert malagasy_ariary.decimal_places == 0
     assert malagasy_ariary.decimal_sign == ','
+    assert malagasy_ariary.grouping_places == 3
     assert malagasy_ariary.grouping_sign == '\u202F'
     assert not malagasy_ariary.international
     assert malagasy_ariary.symbol == 'Ar'
@@ -43,6 +44,7 @@ def test_malagasy_ariary():
         'numeric_code: "969", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_malagasy_ariary_negative():
     assert malagasy_ariary.alpha_code == 'MGA'
     assert malagasy_ariary.decimal_places == 0
     assert malagasy_ariary.decimal_sign == ','
+    assert malagasy_ariary.grouping_places == 3
     assert malagasy_ariary.grouping_sign == '\u202F'
     assert not malagasy_ariary.international
     assert malagasy_ariary.symbol == 'Ar'
@@ -74,6 +77,7 @@ def test_malagasy_ariary_negative():
         'numeric_code: "969", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_malagasy_ariary_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_malagasy_ariary_custom():
     assert malagasy_ariary.alpha_code == 'MGA'
     assert malagasy_ariary.decimal_places == 5
     assert malagasy_ariary.decimal_sign == '\u202F'
+    assert malagasy_ariary.grouping_places == 2
     assert malagasy_ariary.grouping_sign == ','
     assert malagasy_ariary.international
     assert malagasy_ariary.symbol == 'Ar'
@@ -113,10 +119,11 @@ def test_malagasy_ariary_custom():
         'numeric_code: "969", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert malagasy_ariary.__str__() == 'MGA 1,000.00000'
+    assert malagasy_ariary.__str__() == 'MGA 10,00.00000'
 
 
 def test_malagasy_ariary_changed():
@@ -158,6 +165,10 @@ def test_malagasy_ariary_changed():
             AttributeError,
             match='can\'t set attribute'):
         malagasy_ariary.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        malagasy_ariary.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

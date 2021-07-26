@@ -27,6 +27,7 @@ def test_balboa():
     assert balboa.alpha_code == 'PAB'
     assert balboa.decimal_places == 2
     assert balboa.decimal_sign == '.'
+    assert balboa.grouping_places == 3
     assert balboa.grouping_sign == ','
     assert not balboa.international
     assert balboa.symbol == 'B/.'
@@ -43,6 +44,7 @@ def test_balboa():
         'numeric_code: "590", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_balboa_negative():
     assert balboa.alpha_code == 'PAB'
     assert balboa.decimal_places == 2
     assert balboa.decimal_sign == '.'
+    assert balboa.grouping_places == 3
     assert balboa.grouping_sign == ','
     assert not balboa.international
     assert balboa.symbol == 'B/.'
@@ -74,6 +77,7 @@ def test_balboa_negative():
         'numeric_code: "590", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_balboa_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_balboa_custom():
     assert balboa.alpha_code == 'PAB'
     assert balboa.decimal_places == 5
     assert balboa.decimal_sign == ','
+    assert balboa.grouping_places == 2
     assert balboa.grouping_sign == '.'
     assert balboa.international
     assert balboa.symbol == 'B/.'
@@ -113,10 +119,11 @@ def test_balboa_custom():
         'numeric_code: "590", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert balboa.__str__() == 'PAB 1,000.00000'
+    assert balboa.__str__() == 'PAB 10,00.00000'
 
 
 def test_balboa_changed():
@@ -158,6 +165,10 @@ def test_balboa_changed():
             AttributeError,
             match='can\'t set attribute'):
         balboa.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        balboa.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

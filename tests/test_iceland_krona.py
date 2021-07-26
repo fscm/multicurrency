@@ -27,6 +27,7 @@ def test_iceland_krona():
     assert iceland_krona.alpha_code == 'ISK'
     assert iceland_krona.decimal_places == 0
     assert iceland_krona.decimal_sign == ','
+    assert iceland_krona.grouping_places == 3
     assert iceland_krona.grouping_sign == '.'
     assert not iceland_krona.international
     assert iceland_krona.symbol == 'Kr'
@@ -43,6 +44,7 @@ def test_iceland_krona():
         'numeric_code: "352", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_iceland_krona_negative():
     assert iceland_krona.alpha_code == 'ISK'
     assert iceland_krona.decimal_places == 0
     assert iceland_krona.decimal_sign == ','
+    assert iceland_krona.grouping_places == 3
     assert iceland_krona.grouping_sign == '.'
     assert not iceland_krona.international
     assert iceland_krona.symbol == 'Kr'
@@ -74,6 +77,7 @@ def test_iceland_krona_negative():
         'numeric_code: "352", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_iceland_krona_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_iceland_krona_custom():
     assert iceland_krona.alpha_code == 'ISK'
     assert iceland_krona.decimal_places == 5
     assert iceland_krona.decimal_sign == '.'
+    assert iceland_krona.grouping_places == 2
     assert iceland_krona.grouping_sign == ','
     assert iceland_krona.international
     assert iceland_krona.symbol == 'Kr'
@@ -113,10 +119,11 @@ def test_iceland_krona_custom():
         'numeric_code: "352", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert iceland_krona.__str__() == 'ISK 1,000.00000'
+    assert iceland_krona.__str__() == 'ISK 10,00.00000'
 
 
 def test_iceland_krona_changed():
@@ -158,6 +165,10 @@ def test_iceland_krona_changed():
             AttributeError,
             match='can\'t set attribute'):
         iceland_krona.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        iceland_krona.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

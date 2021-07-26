@@ -27,6 +27,7 @@ def test_cedi():
     assert cedi.alpha_code == 'GHS'
     assert cedi.decimal_places == 2
     assert cedi.decimal_sign == '.'
+    assert cedi.grouping_places == 3
     assert cedi.grouping_sign == ','
     assert not cedi.international
     assert cedi.symbol == '₵'
@@ -43,6 +44,7 @@ def test_cedi():
         'numeric_code: "936", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_cedi_negative():
     assert cedi.alpha_code == 'GHS'
     assert cedi.decimal_places == 2
     assert cedi.decimal_sign == '.'
+    assert cedi.grouping_places == 3
     assert cedi.grouping_sign == ','
     assert not cedi.international
     assert cedi.symbol == '₵'
@@ -74,6 +77,7 @@ def test_cedi_negative():
         'numeric_code: "936", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_cedi_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_cedi_custom():
     assert cedi.alpha_code == 'GHS'
     assert cedi.decimal_places == 5
     assert cedi.decimal_sign == ','
+    assert cedi.grouping_places == 2
     assert cedi.grouping_sign == '.'
     assert cedi.international
     assert cedi.symbol == '₵'
@@ -113,10 +119,11 @@ def test_cedi_custom():
         'numeric_code: "936", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert cedi.__str__() == 'GHS 1,000.00000'
+    assert cedi.__str__() == 'GHS 10,00.00000'
 
 
 def test_cedi_changed():
@@ -158,6 +165,10 @@ def test_cedi_changed():
             AttributeError,
             match='can\'t set attribute'):
         cedi.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cedi.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

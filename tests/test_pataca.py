@@ -27,6 +27,7 @@ def test_pataca():
     assert pataca.alpha_code == 'MOP'
     assert pataca.decimal_places == 2
     assert pataca.decimal_sign == '.'
+    assert pataca.grouping_places == 3
     assert pataca.grouping_sign == ','
     assert not pataca.international
     assert pataca.symbol == 'P'
@@ -43,6 +44,7 @@ def test_pataca():
         'numeric_code: "446", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_pataca_negative():
     assert pataca.alpha_code == 'MOP'
     assert pataca.decimal_places == 2
     assert pataca.decimal_sign == '.'
+    assert pataca.grouping_places == 3
     assert pataca.grouping_sign == ','
     assert not pataca.international
     assert pataca.symbol == 'P'
@@ -74,6 +77,7 @@ def test_pataca_negative():
         'numeric_code: "446", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_pataca_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_pataca_custom():
     assert pataca.alpha_code == 'MOP'
     assert pataca.decimal_places == 5
     assert pataca.decimal_sign == ','
+    assert pataca.grouping_places == 2
     assert pataca.grouping_sign == '.'
     assert pataca.international
     assert pataca.symbol == 'P'
@@ -113,10 +119,11 @@ def test_pataca_custom():
         'numeric_code: "446", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert pataca.__str__() == 'MOP 1,000.00000'
+    assert pataca.__str__() == 'MOP 10,00.00000'
 
 
 def test_pataca_changed():
@@ -158,6 +165,10 @@ def test_pataca_changed():
             AttributeError,
             match='can\'t set attribute'):
         pataca.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        pataca.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

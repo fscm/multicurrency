@@ -29,6 +29,8 @@ class BahrainiDinar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 3,
         decimal_sign (str, optional): Decimal symbol. Defaults to '٫'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '٬'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -46,6 +48,7 @@ class BahrainiDinar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 3,
             decimal_sign: Optional[str] = '\u066B',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '\u066C',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -66,6 +69,7 @@ class BahrainiDinar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='٠١٢٣٤٥٦٧٨٩-',
             international=international)
@@ -89,6 +93,8 @@ class AlgerianDinar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -106,6 +112,7 @@ class AlgerianDinar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '.',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -126,6 +133,7 @@ class AlgerianDinar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -149,6 +157,8 @@ class IraqiDinar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 3,
         decimal_sign (str, optional): Decimal symbol. Defaults to '٫'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '٬'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -166,6 +176,7 @@ class IraqiDinar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 3,
             decimal_sign: Optional[str] = '\u066B',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '\u066C',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -186,6 +197,7 @@ class IraqiDinar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='٠١٢٣٤٥٦٧٨٩-',
             international=international)
@@ -209,6 +221,8 @@ class JordanianDinar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 3,
         decimal_sign (str, optional): Decimal symbol. Defaults to '٫'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '٬'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -226,6 +240,7 @@ class JordanianDinar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 3,
             decimal_sign: Optional[str] = '\u066B',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '\u066C',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -246,6 +261,7 @@ class JordanianDinar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='٠١٢٣٤٥٦٧٨٩-',
             international=international)
@@ -269,6 +285,8 @@ class KuwaitiDinar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 3,
         decimal_sign (str, optional): Decimal symbol. Defaults to '٫'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '٬'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -286,6 +304,7 @@ class KuwaitiDinar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 3,
             decimal_sign: Optional[str] = '\u066B',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '\u066C',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -306,6 +325,7 @@ class KuwaitiDinar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='٠١٢٣٤٥٦٧٨٩-',
             international=international)
@@ -329,6 +349,8 @@ class LibyanDinar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 3,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -346,6 +368,7 @@ class LibyanDinar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 3,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '.',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -366,6 +389,7 @@ class LibyanDinar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -389,6 +413,8 @@ class SerbianDinarXK(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -406,6 +432,7 @@ class SerbianDinarXK(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '.',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -426,6 +453,7 @@ class SerbianDinarXK(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -449,6 +477,8 @@ class SerbianDinarSR(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ' '.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -466,6 +496,7 @@ class SerbianDinarSR(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '\u202F',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
@@ -486,6 +517,7 @@ class SerbianDinarSR(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)
@@ -509,6 +541,8 @@ class TunisianDinar(Currency):
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 3,
         decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -526,6 +560,7 @@ class TunisianDinar(Currency):
             amount: Union[int, float, Decimal],
             decimal_places: Optional[int] = 3,
             decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = '.',
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
@@ -546,6 +581,7 @@ class TunisianDinar(Currency):
             symbol_ahead=symbol_ahead,
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
             grouping_sign=grouping_sign,
             convertion='',
             international=international)

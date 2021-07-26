@@ -27,6 +27,7 @@ def test_forint():
     assert forint.alpha_code == 'HUF'
     assert forint.decimal_places == 0
     assert forint.decimal_sign == ','
+    assert forint.grouping_places == 3
     assert forint.grouping_sign == '\u202F'
     assert not forint.international
     assert forint.symbol == 'Ft'
@@ -43,6 +44,7 @@ def test_forint():
         'numeric_code: "348", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_forint_negative():
     assert forint.alpha_code == 'HUF'
     assert forint.decimal_places == 0
     assert forint.decimal_sign == ','
+    assert forint.grouping_places == 3
     assert forint.grouping_sign == '\u202F'
     assert not forint.international
     assert forint.symbol == 'Ft'
@@ -74,6 +77,7 @@ def test_forint_negative():
         'numeric_code: "348", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_forint_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_forint_custom():
     assert forint.alpha_code == 'HUF'
     assert forint.decimal_places == 5
     assert forint.decimal_sign == '\u202F'
+    assert forint.grouping_places == 2
     assert forint.grouping_sign == ','
     assert forint.international
     assert forint.symbol == 'Ft'
@@ -113,10 +119,11 @@ def test_forint_custom():
         'numeric_code: "348", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert forint.__str__() == 'HUF 1,000.00000'
+    assert forint.__str__() == 'HUF 10,00.00000'
 
 
 def test_forint_changed():
@@ -158,6 +165,10 @@ def test_forint_changed():
             AttributeError,
             match='can\'t set attribute'):
         forint.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        forint.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

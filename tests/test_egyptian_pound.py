@@ -27,6 +27,7 @@ def test_egyptian_pound():
     assert egyptian_pound.alpha_code == 'EGP'
     assert egyptian_pound.decimal_places == 2
     assert egyptian_pound.decimal_sign == '\u066B'
+    assert egyptian_pound.grouping_places == 3
     assert egyptian_pound.grouping_sign == '\u066C'
     assert not egyptian_pound.international
     assert egyptian_pound.symbol == 'ج.م.'
@@ -43,6 +44,7 @@ def test_egyptian_pound():
         'numeric_code: "818", '
         'decimal_places: "2", '
         'decimal_sign: "\u066B", '
+        'grouping_places: "3", '
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_egyptian_pound_negative():
     assert egyptian_pound.alpha_code == 'EGP'
     assert egyptian_pound.decimal_places == 2
     assert egyptian_pound.decimal_sign == '\u066B'
+    assert egyptian_pound.grouping_places == 3
     assert egyptian_pound.grouping_sign == '\u066C'
     assert not egyptian_pound.international
     assert egyptian_pound.symbol == 'ج.م.'
@@ -74,6 +77,7 @@ def test_egyptian_pound_negative():
         'numeric_code: "818", '
         'decimal_places: "2", '
         'decimal_sign: "\u066B", '
+        'grouping_places: "3", '
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_egyptian_pound_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u066C',
+        grouping_places=2,
         grouping_sign='\u066B',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_egyptian_pound_custom():
     assert egyptian_pound.alpha_code == 'EGP'
     assert egyptian_pound.decimal_places == 5
     assert egyptian_pound.decimal_sign == '\u066C'
+    assert egyptian_pound.grouping_places == 2
     assert egyptian_pound.grouping_sign == '\u066B'
     assert egyptian_pound.international
     assert egyptian_pound.symbol == 'ج.م.'
@@ -113,10 +119,11 @@ def test_egyptian_pound_custom():
         'numeric_code: "818", '
         'decimal_places: "5", '
         'decimal_sign: "\u066C", '
+        'grouping_places: "2", '
         'grouping_sign: "\u066B", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: True)')
-    assert egyptian_pound.__str__() == 'EGP 1,000.00000'
+    assert egyptian_pound.__str__() == 'EGP 10,00.00000'
 
 
 def test_egyptian_pound_changed():
@@ -158,6 +165,10 @@ def test_egyptian_pound_changed():
             AttributeError,
             match='can\'t set attribute'):
         egyptian_pound.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        egyptian_pound.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

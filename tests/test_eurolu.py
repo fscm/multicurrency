@@ -27,6 +27,7 @@ def test_eurolu():
     assert eurolu.alpha_code == 'EUR'
     assert eurolu.decimal_places == 2
     assert eurolu.decimal_sign == ','
+    assert eurolu.grouping_places == 3
     assert eurolu.grouping_sign == '.'
     assert not eurolu.international
     assert eurolu.symbol == '€'
@@ -43,6 +44,7 @@ def test_eurolu():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_eurolu_negative():
     assert eurolu.alpha_code == 'EUR'
     assert eurolu.decimal_places == 2
     assert eurolu.decimal_sign == ','
+    assert eurolu.grouping_places == 3
     assert eurolu.grouping_sign == '.'
     assert not eurolu.international
     assert eurolu.symbol == '€'
@@ -74,6 +77,7 @@ def test_eurolu_negative():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_eurolu_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_eurolu_custom():
     assert eurolu.alpha_code == 'EUR'
     assert eurolu.decimal_places == 5
     assert eurolu.decimal_sign == '.'
+    assert eurolu.grouping_places == 2
     assert eurolu.grouping_sign == ','
     assert eurolu.international
     assert eurolu.symbol == '€'
@@ -113,10 +119,11 @@ def test_eurolu_custom():
         'numeric_code: "978", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert eurolu.__str__() == 'EUR 1,000.00000'
+    assert eurolu.__str__() == 'EUR 10,00.00000'
 
 
 def test_eurolu_changed():
@@ -158,6 +165,10 @@ def test_eurolu_changed():
             AttributeError,
             match='can\'t set attribute'):
         eurolu.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        eurolu.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

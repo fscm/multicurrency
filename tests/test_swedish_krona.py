@@ -27,6 +27,7 @@ def test_swedish_krona():
     assert swedish_krona.alpha_code == 'SEK'
     assert swedish_krona.decimal_places == 2
     assert swedish_krona.decimal_sign == ','
+    assert swedish_krona.grouping_places == 3
     assert swedish_krona.grouping_sign == '\u202F'
     assert not swedish_krona.international
     assert swedish_krona.symbol == 'kr'
@@ -43,6 +44,7 @@ def test_swedish_krona():
         'numeric_code: "752", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_swedish_krona_negative():
     assert swedish_krona.alpha_code == 'SEK'
     assert swedish_krona.decimal_places == 2
     assert swedish_krona.decimal_sign == ','
+    assert swedish_krona.grouping_places == 3
     assert swedish_krona.grouping_sign == '\u202F'
     assert not swedish_krona.international
     assert swedish_krona.symbol == 'kr'
@@ -74,6 +77,7 @@ def test_swedish_krona_negative():
         'numeric_code: "752", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_swedish_krona_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_swedish_krona_custom():
     assert swedish_krona.alpha_code == 'SEK'
     assert swedish_krona.decimal_places == 5
     assert swedish_krona.decimal_sign == '\u202F'
+    assert swedish_krona.grouping_places == 2
     assert swedish_krona.grouping_sign == ','
     assert swedish_krona.international
     assert swedish_krona.symbol == 'kr'
@@ -113,10 +119,11 @@ def test_swedish_krona_custom():
         'numeric_code: "752", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert swedish_krona.__str__() == 'SEK 1,000.00000'
+    assert swedish_krona.__str__() == 'SEK 10,00.00000'
 
 
 def test_swedish_krona_changed():
@@ -158,6 +165,10 @@ def test_swedish_krona_changed():
             AttributeError,
             match='can\'t set attribute'):
         swedish_krona.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        swedish_krona.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

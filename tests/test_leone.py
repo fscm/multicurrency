@@ -27,6 +27,7 @@ def test_leone():
     assert leone.alpha_code == 'SLL'
     assert leone.decimal_places == 2
     assert leone.decimal_sign == '.'
+    assert leone.grouping_places == 3
     assert leone.grouping_sign == ','
     assert not leone.international
     assert leone.symbol == 'Le'
@@ -43,6 +44,7 @@ def test_leone():
         'numeric_code: "694", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_leone_negative():
     assert leone.alpha_code == 'SLL'
     assert leone.decimal_places == 2
     assert leone.decimal_sign == '.'
+    assert leone.grouping_places == 3
     assert leone.grouping_sign == ','
     assert not leone.international
     assert leone.symbol == 'Le'
@@ -74,6 +77,7 @@ def test_leone_negative():
         'numeric_code: "694", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_leone_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_leone_custom():
     assert leone.alpha_code == 'SLL'
     assert leone.decimal_places == 5
     assert leone.decimal_sign == ','
+    assert leone.grouping_places == 2
     assert leone.grouping_sign == '.'
     assert leone.international
     assert leone.symbol == 'Le'
@@ -113,10 +119,11 @@ def test_leone_custom():
         'numeric_code: "694", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert leone.__str__() == 'SLL 1,000.00000'
+    assert leone.__str__() == 'SLL 10,00.00000'
 
 
 def test_leone_changed():
@@ -158,6 +165,10 @@ def test_leone_changed():
             AttributeError,
             match='can\'t set attribute'):
         leone.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        leone.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -27,6 +27,7 @@ def test_pzloty():
     assert pzloty.alpha_code == 'PLN'
     assert pzloty.decimal_places == 2
     assert pzloty.decimal_sign == ','
+    assert pzloty.grouping_places == 3
     assert pzloty.grouping_sign == '\u202F'
     assert not pzloty.international
     assert pzloty.symbol == 'zł'
@@ -43,6 +44,7 @@ def test_pzloty():
         'numeric_code: "985", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_pzloty_negative():
     assert pzloty.alpha_code == 'PLN'
     assert pzloty.decimal_places == 2
     assert pzloty.decimal_sign == ','
+    assert pzloty.grouping_places == 3
     assert pzloty.grouping_sign == '\u202F'
     assert not pzloty.international
     assert pzloty.symbol == 'zł'
@@ -74,6 +77,7 @@ def test_pzloty_negative():
         'numeric_code: "985", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_pzloty_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_pzloty_custom():
     assert pzloty.alpha_code == 'PLN'
     assert pzloty.decimal_places == 5
     assert pzloty.decimal_sign == '\u202F'
+    assert pzloty.grouping_places == 2
     assert pzloty.grouping_sign == ','
     assert pzloty.international
     assert pzloty.symbol == 'zł'
@@ -113,10 +119,11 @@ def test_pzloty_custom():
         'numeric_code: "985", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert pzloty.__str__() == 'PLN 1,000.00000'
+    assert pzloty.__str__() == 'PLN 10,00.00000'
 
 
 def test_pzloty_changed():
@@ -158,6 +165,10 @@ def test_pzloty_changed():
             AttributeError,
             match='can\'t set attribute'):
         pzloty.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        pzloty.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

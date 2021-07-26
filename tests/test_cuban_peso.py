@@ -27,6 +27,7 @@ def test_cuban_peso():
     assert cuban_peso.alpha_code == 'CUP'
     assert cuban_peso.decimal_places == 2
     assert cuban_peso.decimal_sign == '.'
+    assert cuban_peso.grouping_places == 3
     assert cuban_peso.grouping_sign == ','
     assert not cuban_peso.international
     assert cuban_peso.symbol == '$'
@@ -43,6 +44,7 @@ def test_cuban_peso():
         'numeric_code: "192", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_cuban_peso_negative():
     assert cuban_peso.alpha_code == 'CUP'
     assert cuban_peso.decimal_places == 2
     assert cuban_peso.decimal_sign == '.'
+    assert cuban_peso.grouping_places == 3
     assert cuban_peso.grouping_sign == ','
     assert not cuban_peso.international
     assert cuban_peso.symbol == '$'
@@ -74,6 +77,7 @@ def test_cuban_peso_negative():
         'numeric_code: "192", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_cuban_peso_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_cuban_peso_custom():
     assert cuban_peso.alpha_code == 'CUP'
     assert cuban_peso.decimal_places == 5
     assert cuban_peso.decimal_sign == ','
+    assert cuban_peso.grouping_places == 2
     assert cuban_peso.grouping_sign == '.'
     assert cuban_peso.international
     assert cuban_peso.symbol == '$'
@@ -113,10 +119,11 @@ def test_cuban_peso_custom():
         'numeric_code: "192", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert cuban_peso.__str__() == 'CUP 1,000.00000'
+    assert cuban_peso.__str__() == 'CUP 10,00.00000'
 
 
 def test_cuban_peso_changed():
@@ -158,6 +165,10 @@ def test_cuban_peso_changed():
             AttributeError,
             match='can\'t set attribute'):
         cuban_peso.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cuban_peso.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

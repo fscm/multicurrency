@@ -27,6 +27,7 @@ def test_eurome():
     assert eurome.alpha_code == 'EUR'
     assert eurome.decimal_places == 2
     assert eurome.decimal_sign == ','
+    assert eurome.grouping_places == 3
     assert eurome.grouping_sign == '.'
     assert not eurome.international
     assert eurome.symbol == '€'
@@ -43,6 +44,7 @@ def test_eurome():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_eurome_negative():
     assert eurome.alpha_code == 'EUR'
     assert eurome.decimal_places == 2
     assert eurome.decimal_sign == ','
+    assert eurome.grouping_places == 3
     assert eurome.grouping_sign == '.'
     assert not eurome.international
     assert eurome.symbol == '€'
@@ -74,6 +77,7 @@ def test_eurome_negative():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_eurome_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_eurome_custom():
     assert eurome.alpha_code == 'EUR'
     assert eurome.decimal_places == 5
     assert eurome.decimal_sign == '.'
+    assert eurome.grouping_places == 2
     assert eurome.grouping_sign == ','
     assert eurome.international
     assert eurome.symbol == '€'
@@ -113,10 +119,11 @@ def test_eurome_custom():
         'numeric_code: "978", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert eurome.__str__() == 'EUR 1,000.00000'
+    assert eurome.__str__() == 'EUR 10,00.00000'
 
 
 def test_eurome_changed():
@@ -158,6 +165,10 @@ def test_eurome_changed():
             AttributeError,
             match='can\'t set attribute'):
         eurome.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        eurome.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

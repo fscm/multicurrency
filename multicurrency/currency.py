@@ -15,6 +15,63 @@ Simple usage example:
     >>> print(euro)
     €1.00
 
+## Formatting
+
+The `multicurrency.currency.Currency` class allows you to create and
+customize your own value formatting behaviors using the same
+implementation as the built-in `format()` method.
+
+The specification for the formatting feature is as follows:
+
+    [dp][ds][gs][gp][spec]
+
+The meaning of the various alignment options is as follows:
+
+| Option | Type   | Meaning                                                                               |
+|:-------|:-------|:--------------------------------------------------------------------------------------|
+| [dp]   | int+   | The number of decimal places (integer number with one or more digits).                |
+| [ds]   | str{1} | The decimal sign (single non-digit character).                                        |
+| [gs]   | str{1} | The grouping sign (single non-digit character).                                       |
+| [gp]   | int+   | The number of digits to group the number by (integer number with one or more digits). |
+| [spec] | str    | The formatting spec (a strig with the order of currency parts).                       |
+
+All fields are optional although for the first four fields when setting
+one the fields on the left of that are required to be set as well.
+
+The available string currency parts for `[spec]` are:
+
+| Part | Meaning                                                                                                                     |
+|:-----|:----------------------------------------------------------------------------------------------------------------------------|
+| %a   | The currency's amount as seen in the default representation of the currency (the numeral system of the currency's country). |
+| %A   | The currency's amount in (western) arabic numerals.                                                                         |
+| %c   | The currency's alpha code (as seen on the international representation of the currency).                                    |
+| %s   | The currency's symbol.                                                                                                      |
+| %_   | The currency's symbol separator.                                                                                            |
+
+Basic examples of how to use the `multicurrency.currency.Currency`
+formatting feature:
+
+    Using the built-in `format()` method
+
+        >>> from multicurrency import Euro
+        >>> euro = Euro(1000000*(1/7))
+        >>> format(euro, '4%a')
+        '142.857,1429'
+
+    Using the `'new' string` formating method
+
+        >>> from multicurrency import Euro
+        >>> euro = Euro(1000000*(1/7))
+        >>> '{:4%a}'.format(euro)
+        '142.857,1429'
+
+    Using the `f-string` method
+
+        >>> from multicurrency import Euro
+        >>> euro = Euro(1000000*(1/7))
+        >>> f'{euro:4%a}'
+        '142.857,1429'
+
 ## Supported operations
 
 Several operations are supported by the `multicurrency.currency.Currency`
@@ -200,9 +257,14 @@ objects of the same currency.
     False
     >>> c1 != c2
     True
-"""
+"""  # pylint: disable=line-too-long
 
 from decimal import Decimal, Context
+from re import (
+    escape as _escape,
+    compile as _compile,
+    match as _match,
+    sub as _sub)
 from typing import Any, Optional, Tuple, Union
 from .exceptions import (
     CurrencyInvalidDivision,
@@ -298,6 +360,8 @@ class Currency:
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
         grouping_sign (str, optional): Grouping symbol. Defaults to ','.
         international (bool, optional): Identifies the currency using
             the 'currency' value instead of the 'symbol'. Defaults to
@@ -312,6 +376,7 @@ class Currency:
         '_convertion',
         '_decimal_places',
         '_decimal_sign',
+        '_grouping_places',
         '_grouping_sign',
         '_international',
         '_numeric_code',
@@ -329,6 +394,7 @@ class Currency:
             symbol_separator: Optional[str] = '',
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
             grouping_sign: Optional[str] = ',',
             convertion: Optional[str] = '',
             international: Optional[bool] = False) -> 'Currency':
@@ -342,6 +408,7 @@ class Currency:
         self._alpha_code = alpha_code
         self._decimal_places = max(decimal_places, 0)
         self._decimal_sign = decimal_sign
+        self._grouping_places = max(grouping_places, 0)
         self._grouping_sign = grouping_sign
         self._international = international
         self._numeric_code = numeric_code
@@ -369,6 +436,7 @@ class Currency:
             symbol_separator=self._symbol_separator,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
             grouping_sign=self._grouping_sign,
             convertion=self._convertion,
             international=self._international)
@@ -401,6 +469,7 @@ class Currency:
             symbol_separator=self._symbol_separator,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
             grouping_sign=self._grouping_sign,
             convertion=self._convertion,
             international=self._international)
@@ -428,6 +497,7 @@ class Currency:
             symbol_separator=self._symbol_separator,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
             grouping_sign=self._grouping_sign,
             convertion=self._convertion,
             international=self._international)
@@ -447,6 +517,7 @@ class Currency:
             symbol_separator=self._symbol_separator,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
             grouping_sign=self._grouping_sign,
             convertion=self._convertion,
             international=self._international)
@@ -482,6 +553,7 @@ class Currency:
                 symbol_separator=self._symbol_separator,
                 decimal_places=self._decimal_places,
                 decimal_sign=self._decimal_sign,
+                grouping_places=self._grouping_places,
                 grouping_sign=self._grouping_sign,
                 convertion=self._convertion,
                 international=self._international),
@@ -494,6 +566,7 @@ class Currency:
                 symbol_separator=self._symbol_separator,
                 decimal_places=self._decimal_places,
                 decimal_sign=self._decimal_sign,
+                grouping_places=self._grouping_places,
                 grouping_sign=self._grouping_sign,
                 convertion=self._convertion,
                 international=self._international))
@@ -536,6 +609,7 @@ class Currency:
             symbol_separator=self._symbol_separator,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
             grouping_sign=self._grouping_sign,
             convertion=self._convertion,
             international=self._international)
@@ -569,9 +643,102 @@ class Currency:
             symbol_separator=self._symbol_separator,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
             grouping_sign=self._grouping_sign,
             convertion=self._convertion,
             international=self._international)
+
+    def __format__(self, fmt: str = '') -> str:
+        """Returns the result of applying the formating specs to the
+        currency value.
+
+        The formating spec is as follow:
+            '[dp][ds][gs][gp][spec]'
+
+        The fields are:
+            [dp] (int+): The number of decimal places (integer number
+                with one or more digits).
+            [ds] (char{1}): The decimal sign (single non-digit
+                character).
+            [gs] (char{1}): The grouping sign (single non-digit
+                character).
+            [gp] (int+): The number of digits to group the number by
+                (integer number with one or more digits).
+            [spec] (str): The formatting spec (a strig with the order
+                of currency parts).
+
+        The currency parts that can be used on the `spec` string are:
+            %a: The currency's amount as seen in the default
+                representation of the currency (the numeral system of
+                the currency's country).
+            %A: The currency's amount in (western) arabic numerals.
+            %c: The currency's alpha code (as seen on the international
+                representation of the currency).
+            %s: The currency's symbol.
+            %_: The currency's symbol separator.
+
+        All fields are optional although for the first four fields when
+        setting one the fields on the left of that are required to be
+        set as well.
+
+        Args:
+            fmt (str): formating spec.
+
+        Returns:
+            str: Formated currency value.
+
+        Raises:
+            TypeError: If `fmt` not of type `str`.
+            ValueError: If invalid `fmt` format.
+        """
+        if not isinstance(fmt, str):
+            raise TypeError('must be str, not {}.'.format(type(fmt).__name__))
+        if not fmt.strip():   # maybe fmt shoud be striped by default?
+            return self.__str__()
+        regxpr = (
+            r'^(?P<decimal_places>\d*)'
+            r'(?P<decimal_sign>[^\d%]?)'
+            r'(?P<grouping_sign>[^\d%]?)'
+            r'(?P<grouping_places>\d*)'
+            r'(?P<format>%.*|$)')
+        matches = _match(regxpr, fmt)
+        if not matches:
+            raise ValueError('invalid format.')
+        decimal_places = max(
+            int(matches.group('decimal_places') or self._decimal_places), 0)
+        decimal_sign = matches.group('decimal_sign') or self._decimal_sign
+        grouping_sign = matches.group('grouping_sign') or self._grouping_sign
+        grouping_places = int(
+            matches.group('grouping_places') or self._grouping_places)
+        currency_format = matches.group('format')
+        amount = _sub(
+            rf'(\d)(?=(\d{{{grouping_places or -1}}})+\.)',
+            r'\1,',
+            f'{round(self._amount, decimal_places or 1)}')
+        if decimal_places < 1:
+            amount = amount.split('.')[0]
+        converted = amount
+        if self._convertion:
+            t = dict(zip('0123456789-', self._convertion))
+            converted = ''.join([t.get(c, c) for c in converted])
+        converted = converted.replace('.', 'X').replace(
+            ',', grouping_sign).replace('X', decimal_sign)
+        if not currency_format:
+            if self._symbol_ahead:
+                return f'{self._symbol}{self._symbol_separator}{converted}'
+            return f'{converted}{self._symbol_separator}{self._symbol}'
+        rep = {
+            '%s': self._symbol,
+            '%c': self._alpha_code,
+            '%a': converted,
+            '%A': amount,
+            '%_': self._symbol_separator}
+        rep = dict((_escape(k), v) for k, v in rep.items())
+        pattern = _compile('|'.join(rep.keys()))
+        formatted = pattern.sub(
+            lambda m: rep[_escape(m.group(0))],
+            currency_format)
+        return formatted
 
     def __ge__(self, other: Any) -> bool:
         """Checks if self is greater or equal than `other`.
@@ -703,6 +870,7 @@ class Currency:
             symbol_separator=self._symbol_separator,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
             grouping_sign=self._grouping_sign,
             convertion=self._convertion,
             international=self._international)
@@ -731,6 +899,7 @@ class Currency:
             symbol_separator=self._symbol_separator,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
             grouping_sign=self._grouping_sign,
             convertion=self._convertion,
             international=self._international)
@@ -761,6 +930,7 @@ class Currency:
             symbol_separator=self._symbol_separator,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
             grouping_sign=self._grouping_sign,
             convertion=self._convertion,
             international=self._international)
@@ -780,6 +950,7 @@ class Currency:
             symbol_separator=self._symbol_separator,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
             grouping_sign=self._grouping_sign,
             convertion=self._convertion,
             international=self._international)
@@ -802,6 +973,7 @@ class Currency:
                 self._symbol_separator,
                 self._decimal_places,
                 self._decimal_sign,
+                self._grouping_places,
                 self._grouping_sign,
                 self._convertion,
                 self._international))
@@ -822,6 +994,7 @@ class Currency:
             f'numeric_code: "{self._numeric_code}", '
             f'decimal_places: "{self._decimal_places}", '
             f'decimal_sign: "{self._decimal_sign}", '
+            f'grouping_places: "{self._grouping_places}", '
             f'grouping_sign: "{self._grouping_sign}", '
             f'convertion: "{self._convertion}", '
             f'international: {self._international})')
@@ -845,6 +1018,7 @@ class Currency:
             symbol_separator=self._symbol_separator,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
             grouping_sign=self._grouping_sign,
             convertion=self._convertion,
             international=self._international)
@@ -878,6 +1052,7 @@ class Currency:
             symbol_separator=self._symbol_separator,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
             grouping_sign=self._grouping_sign,
             convertion=self._convertion,
             international=self._international)
@@ -919,6 +1094,7 @@ class Currency:
             symbol_separator=self._symbol_separator,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
             grouping_sign=self._grouping_sign,
             convertion=self._convertion,
             international=self._international)
@@ -951,6 +1127,7 @@ class Currency:
             symbol_separator=self._symbol_separator,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
             grouping_sign=self._grouping_sign,
             convertion=self._convertion,
             international=self._international)
@@ -980,7 +1157,15 @@ class Currency:
             str: value
         """
         p = max(precision, 0)
-        converted = f'{round(self._amount, p):,.{p}f}'
+        _rounded = str(round(self._amount, p))
+        if not p:
+            _rounded = f'{_rounded}.'
+        converted = _sub(
+            rf'(\d)(?=(\d{{{self._grouping_places or -1}}})+\.)',
+            r'\1,',
+            _rounded)
+        if not p:
+            converted = converted[:-1]
         if self._international:
             return f'{self._alpha_code} {converted}'
         if self._convertion:
@@ -1021,6 +1206,11 @@ class Currency:
     def decimal_sign(self) -> str:
         """str: decimal_sign."""
         return self._decimal_sign
+
+    @property
+    def grouping_places(self) -> int:
+        """int: grouping_places."""
+        return self._grouping_places
 
     @property
     def grouping_sign(self) -> str:

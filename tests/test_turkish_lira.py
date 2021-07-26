@@ -27,6 +27,7 @@ def test_turkish_lira():
     assert turkish_lira.alpha_code == 'TRY'
     assert turkish_lira.decimal_places == 2
     assert turkish_lira.decimal_sign == ','
+    assert turkish_lira.grouping_places == 3
     assert turkish_lira.grouping_sign == '.'
     assert not turkish_lira.international
     assert turkish_lira.symbol == '₤'
@@ -43,6 +44,7 @@ def test_turkish_lira():
         'numeric_code: "949", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_turkish_lira_negative():
     assert turkish_lira.alpha_code == 'TRY'
     assert turkish_lira.decimal_places == 2
     assert turkish_lira.decimal_sign == ','
+    assert turkish_lira.grouping_places == 3
     assert turkish_lira.grouping_sign == '.'
     assert not turkish_lira.international
     assert turkish_lira.symbol == '₤'
@@ -74,6 +77,7 @@ def test_turkish_lira_negative():
         'numeric_code: "949", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_turkish_lira_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_turkish_lira_custom():
     assert turkish_lira.alpha_code == 'TRY'
     assert turkish_lira.decimal_places == 5
     assert turkish_lira.decimal_sign == '.'
+    assert turkish_lira.grouping_places == 2
     assert turkish_lira.grouping_sign == ','
     assert turkish_lira.international
     assert turkish_lira.symbol == '₤'
@@ -113,10 +119,11 @@ def test_turkish_lira_custom():
         'numeric_code: "949", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert turkish_lira.__str__() == 'TRY 1,000.00000'
+    assert turkish_lira.__str__() == 'TRY 10,00.00000'
 
 
 def test_turkish_lira_changed():
@@ -158,6 +165,10 @@ def test_turkish_lira_changed():
             AttributeError,
             match='can\'t set attribute'):
         turkish_lira.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        turkish_lira.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -27,6 +27,7 @@ def test_seychelles_rupee():
     assert seychelles_rupee.alpha_code == 'SCR'
     assert seychelles_rupee.decimal_places == 2
     assert seychelles_rupee.decimal_sign == '.'
+    assert seychelles_rupee.grouping_places == 3
     assert seychelles_rupee.grouping_sign == ','
     assert not seychelles_rupee.international
     assert seychelles_rupee.symbol == '₨'
@@ -43,6 +44,7 @@ def test_seychelles_rupee():
         'numeric_code: "690", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_seychelles_rupee_negative():
     assert seychelles_rupee.alpha_code == 'SCR'
     assert seychelles_rupee.decimal_places == 2
     assert seychelles_rupee.decimal_sign == '.'
+    assert seychelles_rupee.grouping_places == 3
     assert seychelles_rupee.grouping_sign == ','
     assert not seychelles_rupee.international
     assert seychelles_rupee.symbol == '₨'
@@ -74,6 +77,7 @@ def test_seychelles_rupee_negative():
         'numeric_code: "690", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_seychelles_rupee_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_seychelles_rupee_custom():
     assert seychelles_rupee.alpha_code == 'SCR'
     assert seychelles_rupee.decimal_places == 5
     assert seychelles_rupee.decimal_sign == ','
+    assert seychelles_rupee.grouping_places == 2
     assert seychelles_rupee.grouping_sign == '.'
     assert seychelles_rupee.international
     assert seychelles_rupee.symbol == '₨'
@@ -113,10 +119,11 @@ def test_seychelles_rupee_custom():
         'numeric_code: "690", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert seychelles_rupee.__str__() == 'SCR 1,000.00000'
+    assert seychelles_rupee.__str__() == 'SCR 10,00.00000'
 
 
 def test_seychelles_rupee_changed():
@@ -158,6 +165,10 @@ def test_seychelles_rupee_changed():
             AttributeError,
             match='can\'t set attribute'):
         seychelles_rupee.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        seychelles_rupee.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

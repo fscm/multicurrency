@@ -27,6 +27,7 @@ def test_somali_shilling():
     assert somali_shilling.alpha_code == 'SOS'
     assert somali_shilling.decimal_places == 2
     assert somali_shilling.decimal_sign == '.'
+    assert somali_shilling.grouping_places == 3
     assert somali_shilling.grouping_sign == ','
     assert not somali_shilling.international
     assert somali_shilling.symbol == 'SSh'
@@ -43,6 +44,7 @@ def test_somali_shilling():
         'numeric_code: "706", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_somali_shilling_negative():
     assert somali_shilling.alpha_code == 'SOS'
     assert somali_shilling.decimal_places == 2
     assert somali_shilling.decimal_sign == '.'
+    assert somali_shilling.grouping_places == 3
     assert somali_shilling.grouping_sign == ','
     assert not somali_shilling.international
     assert somali_shilling.symbol == 'SSh'
@@ -74,6 +77,7 @@ def test_somali_shilling_negative():
         'numeric_code: "706", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_somali_shilling_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_somali_shilling_custom():
     assert somali_shilling.alpha_code == 'SOS'
     assert somali_shilling.decimal_places == 5
     assert somali_shilling.decimal_sign == ','
+    assert somali_shilling.grouping_places == 2
     assert somali_shilling.grouping_sign == '.'
     assert somali_shilling.international
     assert somali_shilling.symbol == 'SSh'
@@ -113,10 +119,11 @@ def test_somali_shilling_custom():
         'numeric_code: "706", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert somali_shilling.__str__() == 'SOS 1,000.00000'
+    assert somali_shilling.__str__() == 'SOS 10,00.00000'
 
 
 def test_somali_shilling_changed():
@@ -158,6 +165,10 @@ def test_somali_shilling_changed():
             AttributeError,
             match='can\'t set attribute'):
         somali_shilling.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        somali_shilling.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

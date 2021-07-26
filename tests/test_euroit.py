@@ -27,6 +27,7 @@ def test_euroit():
     assert euroit.alpha_code == 'EUR'
     assert euroit.decimal_places == 2
     assert euroit.decimal_sign == ','
+    assert euroit.grouping_places == 3
     assert euroit.grouping_sign == '.'
     assert not euroit.international
     assert euroit.symbol == '€'
@@ -43,6 +44,7 @@ def test_euroit():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_euroit_negative():
     assert euroit.alpha_code == 'EUR'
     assert euroit.decimal_places == 2
     assert euroit.decimal_sign == ','
+    assert euroit.grouping_places == 3
     assert euroit.grouping_sign == '.'
     assert not euroit.international
     assert euroit.symbol == '€'
@@ -74,6 +77,7 @@ def test_euroit_negative():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_euroit_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_euroit_custom():
     assert euroit.alpha_code == 'EUR'
     assert euroit.decimal_places == 5
     assert euroit.decimal_sign == '.'
+    assert euroit.grouping_places == 2
     assert euroit.grouping_sign == ','
     assert euroit.international
     assert euroit.symbol == '€'
@@ -113,10 +119,11 @@ def test_euroit_custom():
         'numeric_code: "978", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert euroit.__str__() == 'EUR 1,000.00000'
+    assert euroit.__str__() == 'EUR 10,00.00000'
 
 
 def test_euroit_changed():
@@ -158,6 +165,10 @@ def test_euroit_changed():
             AttributeError,
             match='can\'t set attribute'):
         euroit.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        euroit.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

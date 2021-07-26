@@ -27,6 +27,7 @@ def test_dobra():
     assert dobra.alpha_code == 'STN'
     assert dobra.decimal_places == 2
     assert dobra.decimal_sign == ','
+    assert dobra.grouping_places == 3
     assert dobra.grouping_sign == '.'
     assert not dobra.international
     assert dobra.symbol == 'Db'
@@ -43,6 +44,7 @@ def test_dobra():
         'numeric_code: "930", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_dobra_negative():
     assert dobra.alpha_code == 'STN'
     assert dobra.decimal_places == 2
     assert dobra.decimal_sign == ','
+    assert dobra.grouping_places == 3
     assert dobra.grouping_sign == '.'
     assert not dobra.international
     assert dobra.symbol == 'Db'
@@ -74,6 +77,7 @@ def test_dobra_negative():
         'numeric_code: "930", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_dobra_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_dobra_custom():
     assert dobra.alpha_code == 'STN'
     assert dobra.decimal_places == 5
     assert dobra.decimal_sign == '.'
+    assert dobra.grouping_places == 2
     assert dobra.grouping_sign == ','
     assert dobra.international
     assert dobra.symbol == 'Db'
@@ -113,10 +119,11 @@ def test_dobra_custom():
         'numeric_code: "930", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert dobra.__str__() == 'STN 1,000.00000'
+    assert dobra.__str__() == 'STN 10,00.00000'
 
 
 def test_dobra_changed():
@@ -158,6 +165,10 @@ def test_dobra_changed():
             AttributeError,
             match='can\'t set attribute'):
         dobra.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        dobra.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

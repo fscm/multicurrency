@@ -27,6 +27,7 @@ def test_rial_omani():
     assert rial_omani.alpha_code == 'OMR'
     assert rial_omani.decimal_places == 3
     assert rial_omani.decimal_sign == '\u066B'
+    assert rial_omani.grouping_places == 3
     assert rial_omani.grouping_sign == '\u066C'
     assert not rial_omani.international
     assert rial_omani.symbol == 'ر.ع.'
@@ -43,6 +44,7 @@ def test_rial_omani():
         'numeric_code: "512", '
         'decimal_places: "3", '
         'decimal_sign: "\u066B", '
+        'grouping_places: "3", '
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_rial_omani_negative():
     assert rial_omani.alpha_code == 'OMR'
     assert rial_omani.decimal_places == 3
     assert rial_omani.decimal_sign == '\u066B'
+    assert rial_omani.grouping_places == 3
     assert rial_omani.grouping_sign == '\u066C'
     assert not rial_omani.international
     assert rial_omani.symbol == 'ر.ع.'
@@ -74,6 +77,7 @@ def test_rial_omani_negative():
         'numeric_code: "512", '
         'decimal_places: "3", '
         'decimal_sign: "\u066B", '
+        'grouping_places: "3", '
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_rial_omani_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u066C',
+        grouping_places=2,
         grouping_sign='\u066B',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_rial_omani_custom():
     assert rial_omani.alpha_code == 'OMR'
     assert rial_omani.decimal_places == 5
     assert rial_omani.decimal_sign == '\u066C'
+    assert rial_omani.grouping_places == 2
     assert rial_omani.grouping_sign == '\u066B'
     assert rial_omani.international
     assert rial_omani.symbol == 'ر.ع.'
@@ -113,10 +119,11 @@ def test_rial_omani_custom():
         'numeric_code: "512", '
         'decimal_places: "5", '
         'decimal_sign: "\u066C", '
+        'grouping_places: "2", '
         'grouping_sign: "\u066B", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: True)')
-    assert rial_omani.__str__() == 'OMR 1,000.00000'
+    assert rial_omani.__str__() == 'OMR 10,00.00000'
 
 
 def test_rial_omani_changed():
@@ -158,6 +165,10 @@ def test_rial_omani_changed():
             AttributeError,
             match='can\'t set attribute'):
         rial_omani.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        rial_omani.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

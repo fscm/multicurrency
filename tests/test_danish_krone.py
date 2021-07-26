@@ -27,6 +27,7 @@ def test_danish_krone():
     assert danish_krone.alpha_code == 'DKK'
     assert danish_krone.decimal_places == 2
     assert danish_krone.decimal_sign == ','
+    assert danish_krone.grouping_places == 3
     assert danish_krone.grouping_sign == '.'
     assert not danish_krone.international
     assert danish_krone.symbol == 'kr'
@@ -43,6 +44,7 @@ def test_danish_krone():
         'numeric_code: "208", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_danish_krone_negative():
     assert danish_krone.alpha_code == 'DKK'
     assert danish_krone.decimal_places == 2
     assert danish_krone.decimal_sign == ','
+    assert danish_krone.grouping_places == 3
     assert danish_krone.grouping_sign == '.'
     assert not danish_krone.international
     assert danish_krone.symbol == 'kr'
@@ -74,6 +77,7 @@ def test_danish_krone_negative():
         'numeric_code: "208", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_danish_krone_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_danish_krone_custom():
     assert danish_krone.alpha_code == 'DKK'
     assert danish_krone.decimal_places == 5
     assert danish_krone.decimal_sign == '.'
+    assert danish_krone.grouping_places == 2
     assert danish_krone.grouping_sign == ','
     assert danish_krone.international
     assert danish_krone.symbol == 'kr'
@@ -113,10 +119,11 @@ def test_danish_krone_custom():
         'numeric_code: "208", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert danish_krone.__str__() == 'DKK 1,000.00000'
+    assert danish_krone.__str__() == 'DKK 10,00.00000'
 
 
 def test_danish_krone_changed():
@@ -158,6 +165,10 @@ def test_danish_krone_changed():
             AttributeError,
             match='can\'t set attribute'):
         danish_krone.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        danish_krone.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

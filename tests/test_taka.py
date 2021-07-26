@@ -27,6 +27,7 @@ def test_taka():
     assert taka.alpha_code == 'BDT'
     assert taka.decimal_places == 2
     assert taka.decimal_sign == '.'
+    assert taka.grouping_places == 3
     assert taka.grouping_sign == ','
     assert not taka.international
     assert taka.symbol == '৳'
@@ -43,6 +44,7 @@ def test_taka():
         'numeric_code: "050", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "০১২৩৪৫৬৭৮৯-,.", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_taka_negative():
     assert taka.alpha_code == 'BDT'
     assert taka.decimal_places == 2
     assert taka.decimal_sign == '.'
+    assert taka.grouping_places == 3
     assert taka.grouping_sign == ','
     assert not taka.international
     assert taka.symbol == '৳'
@@ -74,6 +77,7 @@ def test_taka_negative():
         'numeric_code: "050", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "০১২৩৪৫৬৭৮৯-,.", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_taka_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_taka_custom():
     assert taka.alpha_code == 'BDT'
     assert taka.decimal_places == 5
     assert taka.decimal_sign == ','
+    assert taka.grouping_places == 2
     assert taka.grouping_sign == '.'
     assert taka.international
     assert taka.symbol == '৳'
@@ -113,10 +119,11 @@ def test_taka_custom():
         'numeric_code: "050", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "০১২৩৪৫৬৭৮৯-,.", '
         'international: True)')
-    assert taka.__str__() == 'BDT 1,000.00000'
+    assert taka.__str__() == 'BDT 10,00.00000'
 
 
 def test_taka_changed():
@@ -158,6 +165,10 @@ def test_taka_changed():
             AttributeError,
             match='can\'t set attribute'):
         taka.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        taka.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -27,6 +27,7 @@ def test_ngultrum():
     assert ngultrum.alpha_code == 'BTN'
     assert ngultrum.decimal_places == 2
     assert ngultrum.decimal_sign == '.'
+    assert ngultrum.grouping_places == 3
     assert ngultrum.grouping_sign == ','
     assert not ngultrum.international
     assert ngultrum.symbol == 'Nu.'
@@ -43,6 +44,7 @@ def test_ngultrum():
         'numeric_code: "064", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "༠༡༢༣༤༥༦༧༨༩-", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_ngultrum_negative():
     assert ngultrum.alpha_code == 'BTN'
     assert ngultrum.decimal_places == 2
     assert ngultrum.decimal_sign == '.'
+    assert ngultrum.grouping_places == 3
     assert ngultrum.grouping_sign == ','
     assert not ngultrum.international
     assert ngultrum.symbol == 'Nu.'
@@ -74,6 +77,7 @@ def test_ngultrum_negative():
         'numeric_code: "064", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "༠༡༢༣༤༥༦༧༨༩-", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_ngultrum_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_ngultrum_custom():
     assert ngultrum.alpha_code == 'BTN'
     assert ngultrum.decimal_places == 5
     assert ngultrum.decimal_sign == ','
+    assert ngultrum.grouping_places == 2
     assert ngultrum.grouping_sign == '.'
     assert ngultrum.international
     assert ngultrum.symbol == 'Nu.'
@@ -113,10 +119,11 @@ def test_ngultrum_custom():
         'numeric_code: "064", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "༠༡༢༣༤༥༦༧༨༩-", '
         'international: True)')
-    assert ngultrum.__str__() == 'BTN 1,000.00000'
+    assert ngultrum.__str__() == 'BTN 10,00.00000'
 
 
 def test_ngultrum_changed():
@@ -158,6 +165,10 @@ def test_ngultrum_changed():
             AttributeError,
             match='can\'t set attribute'):
         ngultrum.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        ngultrum.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

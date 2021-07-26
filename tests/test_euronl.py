@@ -27,6 +27,7 @@ def test_euronl():
     assert euronl.alpha_code == 'EUR'
     assert euronl.decimal_places == 2
     assert euronl.decimal_sign == ','
+    assert euronl.grouping_places == 3
     assert euronl.grouping_sign == '.'
     assert not euronl.international
     assert euronl.symbol == '€'
@@ -43,6 +44,7 @@ def test_euronl():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_euronl_negative():
     assert euronl.alpha_code == 'EUR'
     assert euronl.decimal_places == 2
     assert euronl.decimal_sign == ','
+    assert euronl.grouping_places == 3
     assert euronl.grouping_sign == '.'
     assert not euronl.international
     assert euronl.symbol == '€'
@@ -74,6 +77,7 @@ def test_euronl_negative():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_euronl_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_euronl_custom():
     assert euronl.alpha_code == 'EUR'
     assert euronl.decimal_places == 5
     assert euronl.decimal_sign == '.'
+    assert euronl.grouping_places == 2
     assert euronl.grouping_sign == ','
     assert euronl.international
     assert euronl.symbol == '€'
@@ -113,10 +119,11 @@ def test_euronl_custom():
         'numeric_code: "978", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert euronl.__str__() == 'EUR 1,000.00000'
+    assert euronl.__str__() == 'EUR 10,00.00000'
 
 
 def test_euronl_changed():
@@ -158,6 +165,10 @@ def test_euronl_changed():
             AttributeError,
             match='can\'t set attribute'):
         euronl.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        euronl.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

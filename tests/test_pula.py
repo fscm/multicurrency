@@ -27,6 +27,7 @@ def test_pula():
     assert pula.alpha_code == 'BWP'
     assert pula.decimal_places == 2
     assert pula.decimal_sign == '.'
+    assert pula.grouping_places == 3
     assert pula.grouping_sign == ','
     assert not pula.international
     assert pula.symbol == 'P'
@@ -43,6 +44,7 @@ def test_pula():
         'numeric_code: "072", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_pula_negative():
     assert pula.alpha_code == 'BWP'
     assert pula.decimal_places == 2
     assert pula.decimal_sign == '.'
+    assert pula.grouping_places == 3
     assert pula.grouping_sign == ','
     assert not pula.international
     assert pula.symbol == 'P'
@@ -74,6 +77,7 @@ def test_pula_negative():
         'numeric_code: "072", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_pula_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_pula_custom():
     assert pula.alpha_code == 'BWP'
     assert pula.decimal_places == 5
     assert pula.decimal_sign == ','
+    assert pula.grouping_places == 2
     assert pula.grouping_sign == '.'
     assert pula.international
     assert pula.symbol == 'P'
@@ -113,10 +119,11 @@ def test_pula_custom():
         'numeric_code: "072", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert pula.__str__() == 'BWP 1,000.00000'
+    assert pula.__str__() == 'BWP 10,00.00000'
 
 
 def test_pula_changed():
@@ -158,6 +165,10 @@ def test_pula_changed():
             AttributeError,
             match='can\'t set attribute'):
         pula.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        pula.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

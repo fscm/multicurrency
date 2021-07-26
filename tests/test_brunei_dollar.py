@@ -27,6 +27,7 @@ def test_brunei_dollar():
     assert brunei_dollar.alpha_code == 'BND'
     assert brunei_dollar.decimal_places == 2
     assert brunei_dollar.decimal_sign == ','
+    assert brunei_dollar.grouping_places == 3
     assert brunei_dollar.grouping_sign == '.'
     assert not brunei_dollar.international
     assert brunei_dollar.symbol == '$'
@@ -43,6 +44,7 @@ def test_brunei_dollar():
         'numeric_code: "096", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_brunei_dollar_negative():
     assert brunei_dollar.alpha_code == 'BND'
     assert brunei_dollar.decimal_places == 2
     assert brunei_dollar.decimal_sign == ','
+    assert brunei_dollar.grouping_places == 3
     assert brunei_dollar.grouping_sign == '.'
     assert not brunei_dollar.international
     assert brunei_dollar.symbol == '$'
@@ -74,6 +77,7 @@ def test_brunei_dollar_negative():
         'numeric_code: "096", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_brunei_dollar_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_brunei_dollar_custom():
     assert brunei_dollar.alpha_code == 'BND'
     assert brunei_dollar.decimal_places == 5
     assert brunei_dollar.decimal_sign == '.'
+    assert brunei_dollar.grouping_places == 2
     assert brunei_dollar.grouping_sign == ','
     assert brunei_dollar.international
     assert brunei_dollar.symbol == '$'
@@ -113,10 +119,11 @@ def test_brunei_dollar_custom():
         'numeric_code: "096", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert brunei_dollar.__str__() == 'BND 1,000.00000'
+    assert brunei_dollar.__str__() == 'BND 10,00.00000'
 
 
 def test_brunei_dollar_changed():
@@ -158,6 +165,10 @@ def test_brunei_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         brunei_dollar.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        brunei_dollar.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

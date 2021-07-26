@@ -27,6 +27,7 @@ def test_som():
     assert som.alpha_code == 'KGS'
     assert som.decimal_places == 2
     assert som.decimal_sign == ','
+    assert som.grouping_places == 3
     assert som.grouping_sign == '\u202F'
     assert not som.international
     assert som.symbol == 'Лв'
@@ -43,6 +44,7 @@ def test_som():
         'numeric_code: "417", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_som_negative():
     assert som.alpha_code == 'KGS'
     assert som.decimal_places == 2
     assert som.decimal_sign == ','
+    assert som.grouping_places == 3
     assert som.grouping_sign == '\u202F'
     assert not som.international
     assert som.symbol == 'Лв'
@@ -74,6 +77,7 @@ def test_som_negative():
         'numeric_code: "417", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_som_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_som_custom():
     assert som.alpha_code == 'KGS'
     assert som.decimal_places == 5
     assert som.decimal_sign == '\u202F'
+    assert som.grouping_places == 2
     assert som.grouping_sign == ','
     assert som.international
     assert som.symbol == 'Лв'
@@ -113,10 +119,11 @@ def test_som_custom():
         'numeric_code: "417", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert som.__str__() == 'KGS 1,000.00000'
+    assert som.__str__() == 'KGS 10,00.00000'
 
 
 def test_som_changed():
@@ -158,6 +165,10 @@ def test_som_changed():
             AttributeError,
             match='can\'t set attribute'):
         som.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        som.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

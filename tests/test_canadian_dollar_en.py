@@ -27,6 +27,7 @@ def test_canadian_dollar_en():
     assert canadian_dollar_en.alpha_code == 'CAD'
     assert canadian_dollar_en.decimal_places == 2
     assert canadian_dollar_en.decimal_sign == '.'
+    assert canadian_dollar_en.grouping_places == 3
     assert canadian_dollar_en.grouping_sign == ','
     assert not canadian_dollar_en.international
     assert canadian_dollar_en.symbol == '$'
@@ -43,6 +44,7 @@ def test_canadian_dollar_en():
         'numeric_code: "124", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_canadian_dollar_en_negative():
     assert canadian_dollar_en.alpha_code == 'CAD'
     assert canadian_dollar_en.decimal_places == 2
     assert canadian_dollar_en.decimal_sign == '.'
+    assert canadian_dollar_en.grouping_places == 3
     assert canadian_dollar_en.grouping_sign == ','
     assert not canadian_dollar_en.international
     assert canadian_dollar_en.symbol == '$'
@@ -74,6 +77,7 @@ def test_canadian_dollar_en_negative():
         'numeric_code: "124", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_canadian_dollar_en_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_canadian_dollar_en_custom():
     assert canadian_dollar_en.alpha_code == 'CAD'
     assert canadian_dollar_en.decimal_places == 5
     assert canadian_dollar_en.decimal_sign == ','
+    assert canadian_dollar_en.grouping_places == 2
     assert canadian_dollar_en.grouping_sign == '.'
     assert canadian_dollar_en.international
     assert canadian_dollar_en.symbol == '$'
@@ -113,10 +119,11 @@ def test_canadian_dollar_en_custom():
         'numeric_code: "124", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert canadian_dollar_en.__str__() == 'CAD 1,000.00000'
+    assert canadian_dollar_en.__str__() == 'CAD 10,00.00000'
 
 
 def test_canadian_dollar_en_changed():
@@ -158,6 +165,10 @@ def test_canadian_dollar_en_changed():
             AttributeError,
             match='can\'t set attribute'):
         canadian_dollar_en.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        canadian_dollar_en.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

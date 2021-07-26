@@ -27,6 +27,7 @@ def test_lari():
     assert lari.alpha_code == 'GEL'
     assert lari.decimal_places == 2
     assert lari.decimal_sign == ','
+    assert lari.grouping_places == 3
     assert lari.grouping_sign == '\u202F'
     assert not lari.international
     assert lari.symbol == 'ლ'
@@ -43,6 +44,7 @@ def test_lari():
         'numeric_code: "981", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_lari_negative():
     assert lari.alpha_code == 'GEL'
     assert lari.decimal_places == 2
     assert lari.decimal_sign == ','
+    assert lari.grouping_places == 3
     assert lari.grouping_sign == '\u202F'
     assert not lari.international
     assert lari.symbol == 'ლ'
@@ -74,6 +77,7 @@ def test_lari_negative():
         'numeric_code: "981", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_lari_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_lari_custom():
     assert lari.alpha_code == 'GEL'
     assert lari.decimal_places == 5
     assert lari.decimal_sign == '\u202F'
+    assert lari.grouping_places == 2
     assert lari.grouping_sign == ','
     assert lari.international
     assert lari.symbol == 'ლ'
@@ -113,10 +119,11 @@ def test_lari_custom():
         'numeric_code: "981", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert lari.__str__() == 'GEL 1,000.00000'
+    assert lari.__str__() == 'GEL 10,00.00000'
 
 
 def test_lari_changed():
@@ -158,6 +165,10 @@ def test_lari_changed():
             AttributeError,
             match='can\'t set attribute'):
         lari.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        lari.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

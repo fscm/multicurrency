@@ -27,6 +27,7 @@ def test_rwanda_franc():
     assert rwanda_franc.alpha_code == 'RWF'
     assert rwanda_franc.decimal_places == 0
     assert rwanda_franc.decimal_sign == ','
+    assert rwanda_franc.grouping_places == 3
     assert rwanda_franc.grouping_sign == '.'
     assert not rwanda_franc.international
     assert rwanda_franc.symbol == '₣'
@@ -43,6 +44,7 @@ def test_rwanda_franc():
         'numeric_code: "646", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_rwanda_franc_negative():
     assert rwanda_franc.alpha_code == 'RWF'
     assert rwanda_franc.decimal_places == 0
     assert rwanda_franc.decimal_sign == ','
+    assert rwanda_franc.grouping_places == 3
     assert rwanda_franc.grouping_sign == '.'
     assert not rwanda_franc.international
     assert rwanda_franc.symbol == '₣'
@@ -74,6 +77,7 @@ def test_rwanda_franc_negative():
         'numeric_code: "646", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_rwanda_franc_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_rwanda_franc_custom():
     assert rwanda_franc.alpha_code == 'RWF'
     assert rwanda_franc.decimal_places == 5
     assert rwanda_franc.decimal_sign == '.'
+    assert rwanda_franc.grouping_places == 2
     assert rwanda_franc.grouping_sign == ','
     assert rwanda_franc.international
     assert rwanda_franc.symbol == '₣'
@@ -113,10 +119,11 @@ def test_rwanda_franc_custom():
         'numeric_code: "646", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert rwanda_franc.__str__() == 'RWF 1,000.00000'
+    assert rwanda_franc.__str__() == 'RWF 10,00.00000'
 
 
 def test_rwanda_franc_changed():
@@ -158,6 +165,10 @@ def test_rwanda_franc_changed():
             AttributeError,
             match='can\'t set attribute'):
         rwanda_franc.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        rwanda_franc.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

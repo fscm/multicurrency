@@ -27,6 +27,7 @@ def test_euroat():
     assert euroat.alpha_code == 'EUR'
     assert euroat.decimal_places == 2
     assert euroat.decimal_sign == ','
+    assert euroat.grouping_places == 3
     assert euroat.grouping_sign == '.'
     assert not euroat.international
     assert euroat.symbol == '€'
@@ -43,6 +44,7 @@ def test_euroat():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_euroat_negative():
     assert euroat.alpha_code == 'EUR'
     assert euroat.decimal_places == 2
     assert euroat.decimal_sign == ','
+    assert euroat.grouping_places == 3
     assert euroat.grouping_sign == '.'
     assert not euroat.international
     assert euroat.symbol == '€'
@@ -74,6 +77,7 @@ def test_euroat_negative():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_euroat_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_euroat_custom():
     assert euroat.alpha_code == 'EUR'
     assert euroat.decimal_places == 5
     assert euroat.decimal_sign == '.'
+    assert euroat.grouping_places == 2
     assert euroat.grouping_sign == ','
     assert euroat.international
     assert euroat.symbol == '€'
@@ -113,10 +119,11 @@ def test_euroat_custom():
         'numeric_code: "978", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert euroat.__str__() == 'EUR 1,000.00000'
+    assert euroat.__str__() == 'EUR 10,00.00000'
 
 
 def test_euroat_changed():
@@ -158,6 +165,10 @@ def test_euroat_changed():
             AttributeError,
             match='can\'t set attribute'):
         euroat.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        euroat.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

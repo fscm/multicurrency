@@ -27,6 +27,7 @@ def test_denar():
     assert denar.alpha_code == 'MKD'
     assert denar.decimal_places == 2
     assert denar.decimal_sign == ','
+    assert denar.grouping_places == 3
     assert denar.grouping_sign == '.'
     assert not denar.international
     assert denar.symbol == 'ден.'
@@ -43,6 +44,7 @@ def test_denar():
         'numeric_code: "807", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_denar_negative():
     assert denar.alpha_code == 'MKD'
     assert denar.decimal_places == 2
     assert denar.decimal_sign == ','
+    assert denar.grouping_places == 3
     assert denar.grouping_sign == '.'
     assert not denar.international
     assert denar.symbol == 'ден.'
@@ -74,6 +77,7 @@ def test_denar_negative():
         'numeric_code: "807", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_denar_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_denar_custom():
     assert denar.alpha_code == 'MKD'
     assert denar.decimal_places == 5
     assert denar.decimal_sign == '.'
+    assert denar.grouping_places == 2
     assert denar.grouping_sign == ','
     assert denar.international
     assert denar.symbol == 'ден.'
@@ -113,10 +119,11 @@ def test_denar_custom():
         'numeric_code: "807", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert denar.__str__() == 'MKD 1,000.00000'
+    assert denar.__str__() == 'MKD 10,00.00000'
 
 
 def test_denar_changed():
@@ -158,6 +165,10 @@ def test_denar_changed():
             AttributeError,
             match='can\'t set attribute'):
         denar.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        denar.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

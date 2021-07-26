@@ -27,6 +27,7 @@ def test_euromc():
     assert euromc.alpha_code == 'EUR'
     assert euromc.decimal_places == 2
     assert euromc.decimal_sign == ','
+    assert euromc.grouping_places == 3
     assert euromc.grouping_sign == '\u202F'
     assert not euromc.international
     assert euromc.symbol == '€'
@@ -43,6 +44,7 @@ def test_euromc():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_euromc_negative():
     assert euromc.alpha_code == 'EUR'
     assert euromc.decimal_places == 2
     assert euromc.decimal_sign == ','
+    assert euromc.grouping_places == 3
     assert euromc.grouping_sign == '\u202F'
     assert not euromc.international
     assert euromc.symbol == '€'
@@ -74,6 +77,7 @@ def test_euromc_negative():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_euromc_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_euromc_custom():
     assert euromc.alpha_code == 'EUR'
     assert euromc.decimal_places == 5
     assert euromc.decimal_sign == '\u202F'
+    assert euromc.grouping_places == 2
     assert euromc.grouping_sign == ','
     assert euromc.international
     assert euromc.symbol == '€'
@@ -113,10 +119,11 @@ def test_euromc_custom():
         'numeric_code: "978", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert euromc.__str__() == 'EUR 1,000.00000'
+    assert euromc.__str__() == 'EUR 10,00.00000'
 
 
 def test_euromc_changed():
@@ -158,6 +165,10 @@ def test_euromc_changed():
             AttributeError,
             match='can\'t set attribute'):
         euromc.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        euromc.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

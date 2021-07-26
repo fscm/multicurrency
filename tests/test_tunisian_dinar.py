@@ -27,6 +27,7 @@ def test_tunisian_dinar():
     assert tunisian_dinar.alpha_code == 'TND'
     assert tunisian_dinar.decimal_places == 3
     assert tunisian_dinar.decimal_sign == ','
+    assert tunisian_dinar.grouping_places == 3
     assert tunisian_dinar.grouping_sign == '.'
     assert not tunisian_dinar.international
     assert tunisian_dinar.symbol == 'د.ت.'
@@ -43,6 +44,7 @@ def test_tunisian_dinar():
         'numeric_code: "788", '
         'decimal_places: "3", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_tunisian_dinar_negative():
     assert tunisian_dinar.alpha_code == 'TND'
     assert tunisian_dinar.decimal_places == 3
     assert tunisian_dinar.decimal_sign == ','
+    assert tunisian_dinar.grouping_places == 3
     assert tunisian_dinar.grouping_sign == '.'
     assert not tunisian_dinar.international
     assert tunisian_dinar.symbol == 'د.ت.'
@@ -74,6 +77,7 @@ def test_tunisian_dinar_negative():
         'numeric_code: "788", '
         'decimal_places: "3", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_tunisian_dinar_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_tunisian_dinar_custom():
     assert tunisian_dinar.alpha_code == 'TND'
     assert tunisian_dinar.decimal_places == 5
     assert tunisian_dinar.decimal_sign == '.'
+    assert tunisian_dinar.grouping_places == 2
     assert tunisian_dinar.grouping_sign == ','
     assert tunisian_dinar.international
     assert tunisian_dinar.symbol == 'د.ت.'
@@ -113,10 +119,11 @@ def test_tunisian_dinar_custom():
         'numeric_code: "788", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert tunisian_dinar.__str__() == 'TND 1,000.00000'
+    assert tunisian_dinar.__str__() == 'TND 10,00.00000'
 
 
 def test_tunisian_dinar_changed():
@@ -158,6 +165,10 @@ def test_tunisian_dinar_changed():
             AttributeError,
             match='can\'t set attribute'):
         tunisian_dinar.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        tunisian_dinar.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

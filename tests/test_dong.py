@@ -27,6 +27,7 @@ def test_dong():
     assert dong.alpha_code == 'VND'
     assert dong.decimal_places == 0
     assert dong.decimal_sign == ','
+    assert dong.grouping_places == 3
     assert dong.grouping_sign == '.'
     assert not dong.international
     assert dong.symbol == '₫'
@@ -43,6 +44,7 @@ def test_dong():
         'numeric_code: "704", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_dong_negative():
     assert dong.alpha_code == 'VND'
     assert dong.decimal_places == 0
     assert dong.decimal_sign == ','
+    assert dong.grouping_places == 3
     assert dong.grouping_sign == '.'
     assert not dong.international
     assert dong.symbol == '₫'
@@ -74,6 +77,7 @@ def test_dong_negative():
         'numeric_code: "704", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_dong_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_dong_custom():
     assert dong.alpha_code == 'VND'
     assert dong.decimal_places == 5
     assert dong.decimal_sign == '.'
+    assert dong.grouping_places == 2
     assert dong.grouping_sign == ','
     assert dong.international
     assert dong.symbol == '₫'
@@ -113,10 +119,11 @@ def test_dong_custom():
         'numeric_code: "704", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert dong.__str__() == 'VND 1,000.00000'
+    assert dong.__str__() == 'VND 10,00.00000'
 
 
 def test_dong_changed():
@@ -158,6 +165,10 @@ def test_dong_changed():
             AttributeError,
             match='can\'t set attribute'):
         dong.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        dong.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -27,6 +27,7 @@ def test_bulgarian_lev():
     assert bulgarian_lev.alpha_code == 'BGN'
     assert bulgarian_lev.decimal_places == 2
     assert bulgarian_lev.decimal_sign == ','
+    assert bulgarian_lev.grouping_places == 3
     assert bulgarian_lev.grouping_sign == ''
     assert not bulgarian_lev.international
     assert bulgarian_lev.symbol == 'лв.'
@@ -43,6 +44,7 @@ def test_bulgarian_lev():
         'numeric_code: "975", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_bulgarian_lev_negative():
     assert bulgarian_lev.alpha_code == 'BGN'
     assert bulgarian_lev.decimal_places == 2
     assert bulgarian_lev.decimal_sign == ','
+    assert bulgarian_lev.grouping_places == 3
     assert bulgarian_lev.grouping_sign == ''
     assert not bulgarian_lev.international
     assert bulgarian_lev.symbol == 'лв.'
@@ -74,6 +77,7 @@ def test_bulgarian_lev_negative():
         'numeric_code: "975", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_bulgarian_lev_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_bulgarian_lev_custom():
     assert bulgarian_lev.alpha_code == 'BGN'
     assert bulgarian_lev.decimal_places == 5
     assert bulgarian_lev.decimal_sign == ''
+    assert bulgarian_lev.grouping_places == 2
     assert bulgarian_lev.grouping_sign == ','
     assert bulgarian_lev.international
     assert bulgarian_lev.symbol == 'лв.'
@@ -113,10 +119,11 @@ def test_bulgarian_lev_custom():
         'numeric_code: "975", '
         'decimal_places: "5", '
         'decimal_sign: "", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert bulgarian_lev.__str__() == 'BGN 1,000.00000'
+    assert bulgarian_lev.__str__() == 'BGN 10,00.00000'
 
 
 def test_bulgarian_lev_changed():
@@ -158,6 +165,10 @@ def test_bulgarian_lev_changed():
             AttributeError,
             match='can\'t set attribute'):
         bulgarian_lev.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        bulgarian_lev.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -27,6 +27,7 @@ def test_new_israeli_shekel():
     assert new_israeli_shekel.alpha_code == 'ILS'
     assert new_israeli_shekel.decimal_places == 2
     assert new_israeli_shekel.decimal_sign == '.'
+    assert new_israeli_shekel.grouping_places == 3
     assert new_israeli_shekel.grouping_sign == ','
     assert not new_israeli_shekel.international
     assert new_israeli_shekel.symbol == '₪'
@@ -43,6 +44,7 @@ def test_new_israeli_shekel():
         'numeric_code: "376", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_new_israeli_shekel_negative():
     assert new_israeli_shekel.alpha_code == 'ILS'
     assert new_israeli_shekel.decimal_places == 2
     assert new_israeli_shekel.decimal_sign == '.'
+    assert new_israeli_shekel.grouping_places == 3
     assert new_israeli_shekel.grouping_sign == ','
     assert not new_israeli_shekel.international
     assert new_israeli_shekel.symbol == '₪'
@@ -74,6 +77,7 @@ def test_new_israeli_shekel_negative():
         'numeric_code: "376", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_new_israeli_shekel_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_new_israeli_shekel_custom():
     assert new_israeli_shekel.alpha_code == 'ILS'
     assert new_israeli_shekel.decimal_places == 5
     assert new_israeli_shekel.decimal_sign == ','
+    assert new_israeli_shekel.grouping_places == 2
     assert new_israeli_shekel.grouping_sign == '.'
     assert new_israeli_shekel.international
     assert new_israeli_shekel.symbol == '₪'
@@ -113,10 +119,11 @@ def test_new_israeli_shekel_custom():
         'numeric_code: "376", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert new_israeli_shekel.__str__() == 'ILS 1,000.00000'
+    assert new_israeli_shekel.__str__() == 'ILS 10,00.00000'
 
 
 def test_new_israeli_shekel_changed():
@@ -158,6 +165,10 @@ def test_new_israeli_shekel_changed():
             AttributeError,
             match='can\'t set attribute'):
         new_israeli_shekel.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        new_israeli_shekel.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

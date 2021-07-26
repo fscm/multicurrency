@@ -27,6 +27,7 @@ def test_nakfa():
     assert nakfa.alpha_code == 'ERN'
     assert nakfa.decimal_places == 2
     assert nakfa.decimal_sign == '.'
+    assert nakfa.grouping_places == 3
     assert nakfa.grouping_sign == ','
     assert not nakfa.international
     assert nakfa.symbol == 'Nfk'
@@ -43,6 +44,7 @@ def test_nakfa():
         'numeric_code: "232", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_nakfa_negative():
     assert nakfa.alpha_code == 'ERN'
     assert nakfa.decimal_places == 2
     assert nakfa.decimal_sign == '.'
+    assert nakfa.grouping_places == 3
     assert nakfa.grouping_sign == ','
     assert not nakfa.international
     assert nakfa.symbol == 'Nfk'
@@ -74,6 +77,7 @@ def test_nakfa_negative():
         'numeric_code: "232", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_nakfa_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_nakfa_custom():
     assert nakfa.alpha_code == 'ERN'
     assert nakfa.decimal_places == 5
     assert nakfa.decimal_sign == ','
+    assert nakfa.grouping_places == 2
     assert nakfa.grouping_sign == '.'
     assert nakfa.international
     assert nakfa.symbol == 'Nfk'
@@ -113,10 +119,11 @@ def test_nakfa_custom():
         'numeric_code: "232", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert nakfa.__str__() == 'ERN 1,000.00000'
+    assert nakfa.__str__() == 'ERN 10,00.00000'
 
 
 def test_nakfa_changed():
@@ -158,6 +165,10 @@ def test_nakfa_changed():
             AttributeError,
             match='can\'t set attribute'):
         nakfa.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        nakfa.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

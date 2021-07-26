@@ -27,6 +27,7 @@ def test_lek():
     assert lek.alpha_code == 'ALL'
     assert lek.decimal_places == 2
     assert lek.decimal_sign == ','
+    assert lek.grouping_places == 3
     assert lek.grouping_sign == '\u202F'
     assert not lek.international
     assert lek.symbol == 'Lek'
@@ -43,6 +44,7 @@ def test_lek():
         'numeric_code: "008", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_lek_negative():
     assert lek.alpha_code == 'ALL'
     assert lek.decimal_places == 2
     assert lek.decimal_sign == ','
+    assert lek.grouping_places == 3
     assert lek.grouping_sign == '\u202F'
     assert not lek.international
     assert lek.symbol == 'Lek'
@@ -74,6 +77,7 @@ def test_lek_negative():
         'numeric_code: "008", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_lek_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_lek_custom():
     assert lek.alpha_code == 'ALL'
     assert lek.decimal_places == 5
     assert lek.decimal_sign == '\u202F'
+    assert lek.grouping_places == 2
     assert lek.grouping_sign == ','
     assert lek.international
     assert lek.symbol == 'Lek'
@@ -113,10 +119,11 @@ def test_lek_custom():
         'numeric_code: "008", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert lek.__str__() == 'ALL 1,000.00000'
+    assert lek.__str__() == 'ALL 10,00.00000'
 
 
 def test_lek_changed():
@@ -158,6 +165,10 @@ def test_lek_changed():
             AttributeError,
             match='can\'t set attribute'):
         lek.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        lek.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

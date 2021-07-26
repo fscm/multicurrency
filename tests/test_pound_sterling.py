@@ -27,6 +27,7 @@ def test_pound_sterling():
     assert pound_sterling.alpha_code == 'GBP'
     assert pound_sterling.decimal_places == 2
     assert pound_sterling.decimal_sign == '.'
+    assert pound_sterling.grouping_places == 3
     assert pound_sterling.grouping_sign == ','
     assert not pound_sterling.international
     assert pound_sterling.symbol == '£'
@@ -43,6 +44,7 @@ def test_pound_sterling():
         'numeric_code: "826", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_pound_sterling_negative():
     assert pound_sterling.alpha_code == 'GBP'
     assert pound_sterling.decimal_places == 2
     assert pound_sterling.decimal_sign == '.'
+    assert pound_sterling.grouping_places == 3
     assert pound_sterling.grouping_sign == ','
     assert not pound_sterling.international
     assert pound_sterling.symbol == '£'
@@ -74,6 +77,7 @@ def test_pound_sterling_negative():
         'numeric_code: "826", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_pound_sterling_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_pound_sterling_custom():
     assert pound_sterling.alpha_code == 'GBP'
     assert pound_sterling.decimal_places == 5
     assert pound_sterling.decimal_sign == ','
+    assert pound_sterling.grouping_places == 2
     assert pound_sterling.grouping_sign == '.'
     assert pound_sterling.international
     assert pound_sterling.symbol == '£'
@@ -113,10 +119,11 @@ def test_pound_sterling_custom():
         'numeric_code: "826", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert pound_sterling.__str__() == 'GBP 1,000.00000'
+    assert pound_sterling.__str__() == 'GBP 10,00.00000'
 
 
 def test_pound_sterling_changed():
@@ -158,6 +165,10 @@ def test_pound_sterling_changed():
             AttributeError,
             match='can\'t set attribute'):
         pound_sterling.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        pound_sterling.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

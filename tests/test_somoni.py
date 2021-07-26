@@ -27,6 +27,7 @@ def test_somoni():
     assert somoni.alpha_code == 'TJS'
     assert somoni.decimal_places == 2
     assert somoni.decimal_sign == '.'
+    assert somoni.grouping_places == 3
     assert somoni.grouping_sign == ','
     assert not somoni.international
     assert somoni.symbol == 'ЅМ'
@@ -43,6 +44,7 @@ def test_somoni():
         'numeric_code: "972", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_somoni_negative():
     assert somoni.alpha_code == 'TJS'
     assert somoni.decimal_places == 2
     assert somoni.decimal_sign == '.'
+    assert somoni.grouping_places == 3
     assert somoni.grouping_sign == ','
     assert not somoni.international
     assert somoni.symbol == 'ЅМ'
@@ -74,6 +77,7 @@ def test_somoni_negative():
         'numeric_code: "972", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_somoni_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_somoni_custom():
     assert somoni.alpha_code == 'TJS'
     assert somoni.decimal_places == 5
     assert somoni.decimal_sign == ','
+    assert somoni.grouping_places == 2
     assert somoni.grouping_sign == '.'
     assert somoni.international
     assert somoni.symbol == 'ЅМ'
@@ -113,10 +119,11 @@ def test_somoni_custom():
         'numeric_code: "972", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert somoni.__str__() == 'TJS 1,000.00000'
+    assert somoni.__str__() == 'TJS 10,00.00000'
 
 
 def test_somoni_changed():
@@ -158,6 +165,10 @@ def test_somoni_changed():
             AttributeError,
             match='can\'t set attribute'):
         somoni.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        somoni.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

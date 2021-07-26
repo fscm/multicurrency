@@ -27,6 +27,7 @@ def test_nuevo_sol():
     assert nuevo_sol.alpha_code == 'PEN'
     assert nuevo_sol.decimal_places == 2
     assert nuevo_sol.decimal_sign == '.'
+    assert nuevo_sol.grouping_places == 3
     assert nuevo_sol.grouping_sign == ','
     assert not nuevo_sol.international
     assert nuevo_sol.symbol == 'S/.'
@@ -43,6 +44,7 @@ def test_nuevo_sol():
         'numeric_code: "604", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_nuevo_sol_negative():
     assert nuevo_sol.alpha_code == 'PEN'
     assert nuevo_sol.decimal_places == 2
     assert nuevo_sol.decimal_sign == '.'
+    assert nuevo_sol.grouping_places == 3
     assert nuevo_sol.grouping_sign == ','
     assert not nuevo_sol.international
     assert nuevo_sol.symbol == 'S/.'
@@ -74,6 +77,7 @@ def test_nuevo_sol_negative():
         'numeric_code: "604", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_nuevo_sol_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_nuevo_sol_custom():
     assert nuevo_sol.alpha_code == 'PEN'
     assert nuevo_sol.decimal_places == 5
     assert nuevo_sol.decimal_sign == ','
+    assert nuevo_sol.grouping_places == 2
     assert nuevo_sol.grouping_sign == '.'
     assert nuevo_sol.international
     assert nuevo_sol.symbol == 'S/.'
@@ -113,10 +119,11 @@ def test_nuevo_sol_custom():
         'numeric_code: "604", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert nuevo_sol.__str__() == 'PEN 1,000.00000'
+    assert nuevo_sol.__str__() == 'PEN 10,00.00000'
 
 
 def test_nuevo_sol_changed():
@@ -158,6 +165,10 @@ def test_nuevo_sol_changed():
             AttributeError,
             match='can\'t set attribute'):
         nuevo_sol.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        nuevo_sol.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

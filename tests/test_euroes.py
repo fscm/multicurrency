@@ -27,6 +27,7 @@ def test_euroes():
     assert euroes.alpha_code == 'EUR'
     assert euroes.decimal_places == 2
     assert euroes.decimal_sign == ','
+    assert euroes.grouping_places == 3
     assert euroes.grouping_sign == '.'
     assert not euroes.international
     assert euroes.symbol == '€'
@@ -43,6 +44,7 @@ def test_euroes():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_euroes_negative():
     assert euroes.alpha_code == 'EUR'
     assert euroes.decimal_places == 2
     assert euroes.decimal_sign == ','
+    assert euroes.grouping_places == 3
     assert euroes.grouping_sign == '.'
     assert not euroes.international
     assert euroes.symbol == '€'
@@ -74,6 +77,7 @@ def test_euroes_negative():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_euroes_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_euroes_custom():
     assert euroes.alpha_code == 'EUR'
     assert euroes.decimal_places == 5
     assert euroes.decimal_sign == '.'
+    assert euroes.grouping_places == 2
     assert euroes.grouping_sign == ','
     assert euroes.international
     assert euroes.symbol == '€'
@@ -113,10 +119,11 @@ def test_euroes_custom():
         'numeric_code: "978", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert euroes.__str__() == 'EUR 1,000.00000'
+    assert euroes.__str__() == 'EUR 10,00.00000'
 
 
 def test_euroes_changed():
@@ -158,6 +165,10 @@ def test_euroes_changed():
             AttributeError,
             match='can\'t set attribute'):
         euroes.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        euroes.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

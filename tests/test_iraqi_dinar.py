@@ -27,6 +27,7 @@ def test_iraqi_dinar():
     assert iraqi_dinar.alpha_code == 'IQD'
     assert iraqi_dinar.decimal_places == 3
     assert iraqi_dinar.decimal_sign == '\u066B'
+    assert iraqi_dinar.grouping_places == 3
     assert iraqi_dinar.grouping_sign == '\u066C'
     assert not iraqi_dinar.international
     assert iraqi_dinar.symbol == 'د.ع.'
@@ -43,6 +44,7 @@ def test_iraqi_dinar():
         'numeric_code: "368", '
         'decimal_places: "3", '
         'decimal_sign: "\u066B", '
+        'grouping_places: "3", '
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_iraqi_dinar_negative():
     assert iraqi_dinar.alpha_code == 'IQD'
     assert iraqi_dinar.decimal_places == 3
     assert iraqi_dinar.decimal_sign == '\u066B'
+    assert iraqi_dinar.grouping_places == 3
     assert iraqi_dinar.grouping_sign == '\u066C'
     assert not iraqi_dinar.international
     assert iraqi_dinar.symbol == 'د.ع.'
@@ -74,6 +77,7 @@ def test_iraqi_dinar_negative():
         'numeric_code: "368", '
         'decimal_places: "3", '
         'decimal_sign: "\u066B", '
+        'grouping_places: "3", '
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_iraqi_dinar_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u066C',
+        grouping_places=2,
         grouping_sign='\u066B',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_iraqi_dinar_custom():
     assert iraqi_dinar.alpha_code == 'IQD'
     assert iraqi_dinar.decimal_places == 5
     assert iraqi_dinar.decimal_sign == '\u066C'
+    assert iraqi_dinar.grouping_places == 2
     assert iraqi_dinar.grouping_sign == '\u066B'
     assert iraqi_dinar.international
     assert iraqi_dinar.symbol == 'د.ع.'
@@ -113,10 +119,11 @@ def test_iraqi_dinar_custom():
         'numeric_code: "368", '
         'decimal_places: "5", '
         'decimal_sign: "\u066C", '
+        'grouping_places: "2", '
         'grouping_sign: "\u066B", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: True)')
-    assert iraqi_dinar.__str__() == 'IQD 1,000.00000'
+    assert iraqi_dinar.__str__() == 'IQD 10,00.00000'
 
 
 def test_iraqi_dinar_changed():
@@ -158,6 +165,10 @@ def test_iraqi_dinar_changed():
             AttributeError,
             match='can\'t set attribute'):
         iraqi_dinar.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        iraqi_dinar.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

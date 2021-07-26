@@ -27,6 +27,7 @@ def test_armenian_dram():
     assert armenian_dram.alpha_code == 'AMD'
     assert armenian_dram.decimal_places == 2
     assert armenian_dram.decimal_sign == ','
+    assert armenian_dram.grouping_places == 3
     assert armenian_dram.grouping_sign == '\u202F'
     assert not armenian_dram.international
     assert armenian_dram.symbol == 'Դ'
@@ -43,6 +44,7 @@ def test_armenian_dram():
         'numeric_code: "051", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_armenian_dram_negative():
     assert armenian_dram.alpha_code == 'AMD'
     assert armenian_dram.decimal_places == 2
     assert armenian_dram.decimal_sign == ','
+    assert armenian_dram.grouping_places == 3
     assert armenian_dram.grouping_sign == '\u202F'
     assert not armenian_dram.international
     assert armenian_dram.symbol == 'Դ'
@@ -74,6 +77,7 @@ def test_armenian_dram_negative():
         'numeric_code: "051", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_armenian_dram_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_armenian_dram_custom():
     assert armenian_dram.alpha_code == 'AMD'
     assert armenian_dram.decimal_places == 5
     assert armenian_dram.decimal_sign == '\u202F'
+    assert armenian_dram.grouping_places == 2
     assert armenian_dram.grouping_sign == ','
     assert armenian_dram.international
     assert armenian_dram.symbol == 'Դ'
@@ -113,10 +119,11 @@ def test_armenian_dram_custom():
         'numeric_code: "051", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert armenian_dram.__str__() == 'AMD 1,000.00000'
+    assert armenian_dram.__str__() == 'AMD 10,00.00000'
 
 
 def test_armenian_dram_changed():
@@ -158,6 +165,10 @@ def test_armenian_dram_changed():
             AttributeError,
             match='can\'t set attribute'):
         armenian_dram.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        armenian_dram.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

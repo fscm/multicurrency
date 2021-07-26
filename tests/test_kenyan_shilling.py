@@ -27,6 +27,7 @@ def test_kenyan_shilling():
     assert kenyan_shilling.alpha_code == 'KES'
     assert kenyan_shilling.decimal_places == 2
     assert kenyan_shilling.decimal_sign == '.'
+    assert kenyan_shilling.grouping_places == 3
     assert kenyan_shilling.grouping_sign == ','
     assert not kenyan_shilling.international
     assert kenyan_shilling.symbol == 'Ksh'
@@ -43,6 +44,7 @@ def test_kenyan_shilling():
         'numeric_code: "404", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_kenyan_shilling_negative():
     assert kenyan_shilling.alpha_code == 'KES'
     assert kenyan_shilling.decimal_places == 2
     assert kenyan_shilling.decimal_sign == '.'
+    assert kenyan_shilling.grouping_places == 3
     assert kenyan_shilling.grouping_sign == ','
     assert not kenyan_shilling.international
     assert kenyan_shilling.symbol == 'Ksh'
@@ -74,6 +77,7 @@ def test_kenyan_shilling_negative():
         'numeric_code: "404", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_kenyan_shilling_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_kenyan_shilling_custom():
     assert kenyan_shilling.alpha_code == 'KES'
     assert kenyan_shilling.decimal_places == 5
     assert kenyan_shilling.decimal_sign == ','
+    assert kenyan_shilling.grouping_places == 2
     assert kenyan_shilling.grouping_sign == '.'
     assert kenyan_shilling.international
     assert kenyan_shilling.symbol == 'Ksh'
@@ -113,10 +119,11 @@ def test_kenyan_shilling_custom():
         'numeric_code: "404", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert kenyan_shilling.__str__() == 'KES 1,000.00000'
+    assert kenyan_shilling.__str__() == 'KES 10,00.00000'
 
 
 def test_kenyan_shilling_changed():
@@ -158,6 +165,10 @@ def test_kenyan_shilling_changed():
             AttributeError,
             match='can\'t set attribute'):
         kenyan_shilling.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        kenyan_shilling.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

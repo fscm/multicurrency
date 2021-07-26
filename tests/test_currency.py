@@ -39,6 +39,7 @@ currency = Currency(
     numeric_code='978',
     decimal_places=2,
     decimal_sign=',',
+    grouping_places=3,
     grouping_sign='.',
     convertion='',
     international=True)
@@ -54,6 +55,7 @@ def test_currency_default():
     assert default.alpha_code == ''
     assert default.decimal_places == 2
     assert default.decimal_sign == '.'
+    assert default.grouping_places == 3
     assert default.grouping_sign == ','
     assert not default.international
     assert default.symbol == ''
@@ -70,6 +72,7 @@ def test_currency_default():
         'numeric_code: "0", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -101,6 +104,7 @@ def test_currency_negative():
         'numeric_code: "0", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -119,6 +123,7 @@ def test_currency_custom():
         numeric_code='978',
         decimal_places=2,
         decimal_sign=',',
+        grouping_places=3,
         grouping_sign='.',
         convertion='0123456789-,.',
         international=True)
@@ -128,6 +133,7 @@ def test_currency_custom():
     assert euro.alpha_code == 'EUR'
     assert euro.decimal_places == 2
     assert euro.decimal_sign == ','
+    assert euro.grouping_places == 3
     assert euro.grouping_sign == '.'
     assert euro.international
     assert euro.symbol == '€'
@@ -144,6 +150,7 @@ def test_currency_custom():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "0123456789-,.", '
         'international: True)')
@@ -172,6 +179,54 @@ def test_currency_decimal_places():
     assert euro.pstr(1) == '1,000.0\u00A0€'
 
 
+def test_currency_grouping_places():
+    """test_currency_grouping_places."""
+    euro = Currency(
+        amount=100000000,
+        alpha_code='EUR',
+        symbol='€',
+        symbol_ahead=False,
+        symbol_separator='\u00A0',
+        numeric_code='978',
+        decimal_places=2,
+        grouping_places=4)
+    assert euro.numeric_code == '978'
+    assert euro.alpha_code == 'EUR'
+    assert euro.decimal_places == 2
+    assert euro.grouping_places == 4
+    assert not euro.symbol_ahead
+    assert euro.symbol_separator == '\u00A0'
+    assert not euro.international
+    assert euro.__str__() == '1,0000,0000.00\u00A0€'
+    assert euro.pstr(-2) == '1,0000,0000\u00A0€'
+    assert euro.pstr(0) == '1,0000,0000\u00A0€'
+    assert euro.pstr(1) == '1,0000,0000.0\u00A0€'
+
+
+def test_currency_grouping_places_negative():
+    """test_currency_grouping_places_negative."""
+    euro = Currency(
+        amount=100000000,
+        alpha_code='EUR',
+        symbol='€',
+        symbol_ahead=False,
+        symbol_separator='\u00A0',
+        numeric_code='978',
+        decimal_places=2,
+        grouping_places=-4)
+    assert euro.numeric_code == '978'
+    assert euro.alpha_code == 'EUR'
+    assert euro.decimal_places == 2
+    assert euro.grouping_places == 0
+    assert not euro.symbol_ahead
+    assert euro.symbol_separator == '\u00A0'
+    assert not euro.international
+    assert euro.__str__() == '100000000.00\u00A0€'
+    assert euro.pstr(-2) == '100000000\u00A0€'
+    assert euro.pstr(0) == '100000000\u00A0€'
+    assert euro.pstr(1) == '100000000.0\u00A0€'
+
+
 def test_currency_convertion():
     """test_currency_convertion."""
     euro = Currency(
@@ -182,7 +237,7 @@ def test_currency_convertion():
         symbol_separator='\u00A0',
         numeric_code='978',
         decimal_places=2,
-        convertion='zabcdefghi-,.')
+        convertion='zabcdefghi-')
     assert euro.numeric_code == '978'
     assert euro.alpha_code == 'EUR'
     assert euro.decimal_places == 2
@@ -234,6 +289,10 @@ def test_currency_changed():
             AttributeError,
             match='can\'t set attribute'):
         euro.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        euro.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):
@@ -519,6 +578,7 @@ def test_currency_copy():
     assert new_currency.alpha_code == 'EUR'
     assert new_currency.decimal_places == 2
     assert new_currency.decimal_sign == ','
+    assert new_currency.grouping_places == 3
     assert new_currency.grouping_sign == '.'
     assert new_currency.international
     assert new_currency.symbol == '€'
@@ -534,6 +594,7 @@ def test_currency_copy():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
@@ -549,6 +610,7 @@ def test_currency_deepcopy():
     assert new_currency.alpha_code == 'EUR'
     assert new_currency.decimal_places == 2
     assert new_currency.decimal_sign == ','
+    assert new_currency.grouping_places == 3
     assert new_currency.grouping_sign == '.'
     assert new_currency.international
     assert new_currency.symbol == '€'
@@ -564,6 +626,7 @@ def test_currency_deepcopy():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
@@ -580,6 +643,67 @@ def test_currency_floor():
     """test_currency_floor."""
     assert math.floor(currency) == currency_euro_zero
     assert currency.__floor__() == currency_euro_zero
+
+
+def test_currency_format():
+    """test_currency_format."""
+    f_euro = Currency(
+        amount=(
+            CONTEXT.create_decimal(1) /
+            CONTEXT.create_decimal(7) *
+            1000000),
+        alpha_code='EUR',
+        symbol='€',
+        symbol_ahead=True,
+        symbol_separator='\u00A0',
+        numeric_code='978',
+        decimal_places=2,
+        decimal_sign=',',
+        grouping_places=3,
+        grouping_sign='.',
+        convertion='abcdefghij-',
+        international=False)
+    f_euro_alt = Currency(
+        amount=(
+            CONTEXT.create_decimal(1) /
+            CONTEXT.create_decimal(7) *
+            1000000),
+        alpha_code='EUR',
+        symbol='€',
+        symbol_ahead=False,
+        symbol_separator='\u00A0',
+        numeric_code='978',
+        decimal_places=2,
+        decimal_sign=',',
+        grouping_places=3,
+        grouping_sign='.',
+        convertion='',
+        international=False)
+    with raises(TypeError, match='must be str, not int.'):
+        _ = f_euro.__format__(1)
+    with raises(ValueError, match='invalid format.'):
+        _ = f_euro.__format__('a1b2')
+    assert format(f_euro, '') == f_euro.__str__()
+    assert format(f_euro, '%a') == 'bec.ifh,be'
+    assert format(f_euro, '%A') == '142,857.14'
+    assert format(f_euro, '%c') == 'EUR'
+    assert format(f_euro, '%s') == '€'
+    assert format(f_euro, '%_') == '\u00A0'
+    assert format(f_euro, '%s%_%a %A%_%c') == (
+        '€\u00A0bec.ifh,be 142,857.14\u00A0EUR')
+    assert format(f_euro, '0') == '€\u00A0bec.ifh'
+    assert format(f_euro, '3') == '€\u00A0bec.ifh,bed'
+    assert format(f_euro, '3.,') == '€\u00A0bec,ifh.bed'
+    assert format(f_euro, '3.,2') == '€\u00A0be,ci,fh.bed'
+    assert format(f_euro, '.,2') == '€\u00A0be,ci,fh.be'
+    assert format(f_euro, '3.,2%s%_%a %A%_%c') == (
+        '€\u00A0be,ci,fh.bed 14,28,57.143\u00A0EUR')
+    assert format(f_euro_alt, '') == f_euro_alt.__str__()
+    assert format(f_euro_alt, '%a') == '142.857,14'
+    assert format(f_euro_alt, '%A') == '142,857.14'
+    assert format(f_euro_alt, '%s%_%a %A%_%c') == (
+        '€\u00A0142.857,14 142,857.14\u00A0EUR')
+    assert format(f_euro_alt, '.,') == '142,857.14\u00A0€'
 
 
 def test_currency_int():

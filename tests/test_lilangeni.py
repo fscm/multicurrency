@@ -27,6 +27,7 @@ def test_lilangeni():
     assert lilangeni.alpha_code == 'SZL'
     assert lilangeni.decimal_places == 2
     assert lilangeni.decimal_sign == '.'
+    assert lilangeni.grouping_places == 3
     assert lilangeni.grouping_sign == ','
     assert not lilangeni.international
     assert lilangeni.symbol == 'L'
@@ -43,6 +44,7 @@ def test_lilangeni():
         'numeric_code: "748", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_lilangeni_negative():
     assert lilangeni.alpha_code == 'SZL'
     assert lilangeni.decimal_places == 2
     assert lilangeni.decimal_sign == '.'
+    assert lilangeni.grouping_places == 3
     assert lilangeni.grouping_sign == ','
     assert not lilangeni.international
     assert lilangeni.symbol == 'L'
@@ -74,6 +77,7 @@ def test_lilangeni_negative():
         'numeric_code: "748", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_lilangeni_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_lilangeni_custom():
     assert lilangeni.alpha_code == 'SZL'
     assert lilangeni.decimal_places == 5
     assert lilangeni.decimal_sign == ','
+    assert lilangeni.grouping_places == 2
     assert lilangeni.grouping_sign == '.'
     assert lilangeni.international
     assert lilangeni.symbol == 'L'
@@ -113,10 +119,11 @@ def test_lilangeni_custom():
         'numeric_code: "748", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert lilangeni.__str__() == 'SZL 1,000.00000'
+    assert lilangeni.__str__() == 'SZL 10,00.00000'
 
 
 def test_lilangeni_changed():
@@ -158,6 +165,10 @@ def test_lilangeni_changed():
             AttributeError,
             match='can\'t set attribute'):
         lilangeni.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        lilangeni.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

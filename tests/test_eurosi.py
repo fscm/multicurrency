@@ -27,6 +27,7 @@ def test_eurosi():
     assert eurosi.alpha_code == 'EUR'
     assert eurosi.decimal_places == 2
     assert eurosi.decimal_sign == ','
+    assert eurosi.grouping_places == 3
     assert eurosi.grouping_sign == '.'
     assert not eurosi.international
     assert eurosi.symbol == '€'
@@ -43,6 +44,7 @@ def test_eurosi():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_eurosi_negative():
     assert eurosi.alpha_code == 'EUR'
     assert eurosi.decimal_places == 2
     assert eurosi.decimal_sign == ','
+    assert eurosi.grouping_places == 3
     assert eurosi.grouping_sign == '.'
     assert not eurosi.international
     assert eurosi.symbol == '€'
@@ -74,6 +77,7 @@ def test_eurosi_negative():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_eurosi_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_eurosi_custom():
     assert eurosi.alpha_code == 'EUR'
     assert eurosi.decimal_places == 5
     assert eurosi.decimal_sign == '.'
+    assert eurosi.grouping_places == 2
     assert eurosi.grouping_sign == ','
     assert eurosi.international
     assert eurosi.symbol == '€'
@@ -113,10 +119,11 @@ def test_eurosi_custom():
         'numeric_code: "978", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert eurosi.__str__() == 'EUR 1,000.00000'
+    assert eurosi.__str__() == 'EUR 10,00.00000'
 
 
 def test_eurosi_changed():
@@ -158,6 +165,10 @@ def test_eurosi_changed():
             AttributeError,
             match='can\'t set attribute'):
         eurosi.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        eurosi.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

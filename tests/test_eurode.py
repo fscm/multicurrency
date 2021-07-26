@@ -27,6 +27,7 @@ def test_eurode():
     assert eurode.alpha_code == 'EUR'
     assert eurode.decimal_places == 2
     assert eurode.decimal_sign == ','
+    assert eurode.grouping_places == 3
     assert eurode.grouping_sign == '.'
     assert not eurode.international
     assert eurode.symbol == '€'
@@ -43,6 +44,7 @@ def test_eurode():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_eurode_negative():
     assert eurode.alpha_code == 'EUR'
     assert eurode.decimal_places == 2
     assert eurode.decimal_sign == ','
+    assert eurode.grouping_places == 3
     assert eurode.grouping_sign == '.'
     assert not eurode.international
     assert eurode.symbol == '€'
@@ -74,6 +77,7 @@ def test_eurode_negative():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_eurode_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_eurode_custom():
     assert eurode.alpha_code == 'EUR'
     assert eurode.decimal_places == 5
     assert eurode.decimal_sign == '.'
+    assert eurode.grouping_places == 2
     assert eurode.grouping_sign == ','
     assert eurode.international
     assert eurode.symbol == '€'
@@ -113,10 +119,11 @@ def test_eurode_custom():
         'numeric_code: "978", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert eurode.__str__() == 'EUR 1,000.00000'
+    assert eurode.__str__() == 'EUR 10,00.00000'
 
 
 def test_eurode_changed():
@@ -158,6 +165,10 @@ def test_eurode_changed():
             AttributeError,
             match='can\'t set attribute'):
         eurode.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        eurode.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

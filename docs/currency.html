@@ -30,6 +30,106 @@
 &gt;&gt;&gt; print(euro)
 €1.00
 </code></pre>
+<h2 id="formatting">Formatting</h2>
+<p>The <code><a title="multicurrency.currency.Currency" href="#multicurrency.currency.Currency">Currency</a></code> class allows you to create and
+customize your own value formatting behaviors using the same
+implementation as the built-in <code>format()</code> method.</p>
+<p>The specification for the formatting feature is as follows:</p>
+<pre><code>[dp][ds][gs][gp][spec]
+</code></pre>
+<p>The meaning of the various alignment options is as follows:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Option</th>
+<th align="left">Type</th>
+<th align="left">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">[dp]</td>
+<td align="left">int+</td>
+<td align="left">The number of decimal places (integer number with one or more digits).</td>
+</tr>
+<tr>
+<td align="left">[ds]</td>
+<td align="left">str{1}</td>
+<td align="left">The decimal sign (single non-digit character).</td>
+</tr>
+<tr>
+<td align="left">[gs]</td>
+<td align="left">str{1}</td>
+<td align="left">The grouping sign (single non-digit character).</td>
+</tr>
+<tr>
+<td align="left">[gp]</td>
+<td align="left">int+</td>
+<td align="left">The number of digits to group the number by (integer number with one or more digits).</td>
+</tr>
+<tr>
+<td align="left">[spec]</td>
+<td align="left">str</td>
+<td align="left">The formatting spec (a strig with the order of currency parts).</td>
+</tr>
+</tbody>
+</table>
+<p>All fields are optional although for the first four fields when setting
+one the fields on the left of that are required to be set as well.</p>
+<p>The available string currency parts for <code>[spec]</code> are:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Part</th>
+<th align="left">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">%a</td>
+<td align="left">The currency's amount as seen in the default representation of the currency (the numeral system of the currency's country).</td>
+</tr>
+<tr>
+<td align="left">%A</td>
+<td align="left">The currency's amount in (western) arabic numerals.</td>
+</tr>
+<tr>
+<td align="left">%c</td>
+<td align="left">The currency's alpha code (as seen on the international representation of the currency).</td>
+</tr>
+<tr>
+<td align="left">%s</td>
+<td align="left">The currency's symbol.</td>
+</tr>
+<tr>
+<td align="left">%_</td>
+<td align="left">The currency's symbol separator.</td>
+</tr>
+</tbody>
+</table>
+<p>Basic examples of how to use the <code><a title="multicurrency.currency.Currency" href="#multicurrency.currency.Currency">Currency</a></code>
+formatting feature:</p>
+<pre><code>Using the built-in &lt;code&gt;format()&lt;/code&gt; method
+
+    &gt;&gt;&gt; from multicurrency import Euro
+    &gt;&gt;&gt; euro = Euro(1000000*(1/7))
+    &gt;&gt;&gt; format(euro, '4%a')
+    '142.857,1429'
+
+Using the `'new' string` formating method
+
+    &gt;&gt;&gt; from multicurrency import Euro
+    &gt;&gt;&gt; euro = Euro(1000000*(1/7))
+    &gt;&gt;&gt; '{:4%a}'.format(euro)
+    '142.857,1429'
+
+Using the `f-string` method
+
+    &gt;&gt;&gt; from multicurrency import Euro
+    &gt;&gt;&gt; euro = Euro(1000000*(1/7))
+    &gt;&gt;&gt; f'{euro:4%a}'
+    '142.857,1429'
+</code></pre>
 <h2 id="supported-operations">Supported operations</h2>
 <p>Several operations are supported by the <code><a title="multicurrency.currency.Currency" href="#multicurrency.currency.Currency">Currency</a></code>
 type.</p>
@@ -238,7 +338,7 @@ resutls.</p>
 <dl>
 <dt id="multicurrency.currency.Currency"><code class="flex name class">
 <span>class <span class="ident">Currency</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], alpha_code: Optional[str] = '', numeric_code: Optional[str] = '0', symbol: Optional[str] = '', symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '', decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '.', grouping_sign: Optional[str] = ',', convertion: Optional[str] = '', international: Optional[bool] = False)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], alpha_code: Optional[str] = '', numeric_code: Optional[str] = '0', symbol: Optional[str] = '', symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '', decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '.', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = ',', convertion: Optional[str] = '', international: Optional[bool] = False)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Currency representation.</p>
@@ -290,6 +390,9 @@ value. False otherwise. Defaults to False.</dd>
 currency representation. Defaults to 2,</dd>
 <dt><strong><code>decimal_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Decimal symbol. Defaults to '.'.</dd>
+<dt><strong><code>grouping_places</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of digits for grouping.
+Defaults to 3,</dd>
 <dt><strong><code>grouping_sign</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Grouping symbol. Defaults to ','.</dd>
 <dt><strong><code>international</code></strong> :&ensp;<code>bool</code>, optional</dt>
@@ -514,6 +617,10 @@ followed by the minus ('-') sign. Defaults to ''.</dd>
 <dd>
 <div class="desc"><p>str: decimal_sign.</p></div>
 </dd>
+<dt id="multicurrency.currency.Currency.grouping_places"><code class="name">var <span class="ident">grouping_places</span> : int</code></dt>
+<dd>
+<div class="desc"><p>int: grouping_places.</p></div>
+</dd>
 <dt id="multicurrency.currency.Currency.grouping_sign"><code class="name">var <span class="ident">grouping_sign</span> : str</code></dt>
 <dd>
 <div class="desc"><p>str: grouping_sign.</p></div>
@@ -581,6 +688,7 @@ Values lower than 0 (zero) will be converted to 0
 <h1>Index</h1>
 <div class="toc">
 <ul>
+<li><a href="#formatting">Formatting</a></li>
 <li><a href="#supported-operations">Supported operations</a><ul>
 <li><a href="#absolute">Absolute</a></li>
 <li><a href="#addiction">Addiction</a></li>
@@ -624,6 +732,7 @@ Values lower than 0 (zero) will be converted to 0
 <li><code><a title="multicurrency.currency.Currency.convertion" href="#multicurrency.currency.Currency.convertion">convertion</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_places" href="#multicurrency.currency.Currency.decimal_places">decimal_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.decimal_sign" href="#multicurrency.currency.Currency.decimal_sign">decimal_sign</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.grouping_places" href="#multicurrency.currency.Currency.grouping_places">grouping_places</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>

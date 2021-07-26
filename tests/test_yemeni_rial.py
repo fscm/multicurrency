@@ -27,6 +27,7 @@ def test_yemeni_rial():
     assert yemeni_rial.alpha_code == 'YER'
     assert yemeni_rial.decimal_places == 2
     assert yemeni_rial.decimal_sign == '\u066B'
+    assert yemeni_rial.grouping_places == 3
     assert yemeni_rial.grouping_sign == '\u066C'
     assert not yemeni_rial.international
     assert yemeni_rial.symbol == '﷼'
@@ -43,6 +44,7 @@ def test_yemeni_rial():
         'numeric_code: "886", '
         'decimal_places: "2", '
         'decimal_sign: "\u066B", '
+        'grouping_places: "3", '
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_yemeni_rial_negative():
     assert yemeni_rial.alpha_code == 'YER'
     assert yemeni_rial.decimal_places == 2
     assert yemeni_rial.decimal_sign == '\u066B'
+    assert yemeni_rial.grouping_places == 3
     assert yemeni_rial.grouping_sign == '\u066C'
     assert not yemeni_rial.international
     assert yemeni_rial.symbol == '﷼'
@@ -74,6 +77,7 @@ def test_yemeni_rial_negative():
         'numeric_code: "886", '
         'decimal_places: "2", '
         'decimal_sign: "\u066B", '
+        'grouping_places: "3", '
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_yemeni_rial_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u066C',
+        grouping_places=2,
         grouping_sign='\u066B',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_yemeni_rial_custom():
     assert yemeni_rial.alpha_code == 'YER'
     assert yemeni_rial.decimal_places == 5
     assert yemeni_rial.decimal_sign == '\u066C'
+    assert yemeni_rial.grouping_places == 2
     assert yemeni_rial.grouping_sign == '\u066B'
     assert yemeni_rial.international
     assert yemeni_rial.symbol == '﷼'
@@ -113,10 +119,11 @@ def test_yemeni_rial_custom():
         'numeric_code: "886", '
         'decimal_places: "5", '
         'decimal_sign: "\u066C", '
+        'grouping_places: "2", '
         'grouping_sign: "\u066B", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: True)')
-    assert yemeni_rial.__str__() == 'YER 1,000.00000'
+    assert yemeni_rial.__str__() == 'YER 10,00.00000'
 
 
 def test_yemeni_rial_changed():
@@ -158,6 +165,10 @@ def test_yemeni_rial_changed():
             AttributeError,
             match='can\'t set attribute'):
         yemeni_rial.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        yemeni_rial.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

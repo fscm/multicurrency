@@ -27,6 +27,7 @@ def test_eurolt():
     assert eurolt.alpha_code == 'EUR'
     assert eurolt.decimal_places == 2
     assert eurolt.decimal_sign == ','
+    assert eurolt.grouping_places == 3
     assert eurolt.grouping_sign == '\u202F'
     assert not eurolt.international
     assert eurolt.symbol == '€'
@@ -43,6 +44,7 @@ def test_eurolt():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_eurolt_negative():
     assert eurolt.alpha_code == 'EUR'
     assert eurolt.decimal_places == 2
     assert eurolt.decimal_sign == ','
+    assert eurolt.grouping_places == 3
     assert eurolt.grouping_sign == '\u202F'
     assert not eurolt.international
     assert eurolt.symbol == '€'
@@ -74,6 +77,7 @@ def test_eurolt_negative():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_eurolt_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_eurolt_custom():
     assert eurolt.alpha_code == 'EUR'
     assert eurolt.decimal_places == 5
     assert eurolt.decimal_sign == '\u202F'
+    assert eurolt.grouping_places == 2
     assert eurolt.grouping_sign == ','
     assert eurolt.international
     assert eurolt.symbol == '€'
@@ -113,10 +119,11 @@ def test_eurolt_custom():
         'numeric_code: "978", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert eurolt.__str__() == 'EUR 1,000.00000'
+    assert eurolt.__str__() == 'EUR 10,00.00000'
 
 
 def test_eurolt_changed():
@@ -158,6 +165,10 @@ def test_eurolt_changed():
             AttributeError,
             match='can\'t set attribute'):
         eurolt.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        eurolt.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

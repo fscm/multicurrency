@@ -27,6 +27,7 @@ def test_cfp_franc():
     assert cfp_franc.alpha_code == 'XPF'
     assert cfp_franc.decimal_places == 0
     assert cfp_franc.decimal_sign == ','
+    assert cfp_franc.grouping_places == 3
     assert cfp_franc.grouping_sign == '\u202F'
     assert not cfp_franc.international
     assert cfp_franc.symbol == '₣'
@@ -43,6 +44,7 @@ def test_cfp_franc():
         'numeric_code: "953", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_cfp_franc_negative():
     assert cfp_franc.alpha_code == 'XPF'
     assert cfp_franc.decimal_places == 0
     assert cfp_franc.decimal_sign == ','
+    assert cfp_franc.grouping_places == 3
     assert cfp_franc.grouping_sign == '\u202F'
     assert not cfp_franc.international
     assert cfp_franc.symbol == '₣'
@@ -74,6 +77,7 @@ def test_cfp_franc_negative():
         'numeric_code: "953", '
         'decimal_places: "0", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_cfp_franc_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_cfp_franc_custom():
     assert cfp_franc.alpha_code == 'XPF'
     assert cfp_franc.decimal_places == 5
     assert cfp_franc.decimal_sign == '\u202F'
+    assert cfp_franc.grouping_places == 2
     assert cfp_franc.grouping_sign == ','
     assert cfp_franc.international
     assert cfp_franc.symbol == '₣'
@@ -113,10 +119,11 @@ def test_cfp_franc_custom():
         'numeric_code: "953", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert cfp_franc.__str__() == 'XPF 1,000.00000'
+    assert cfp_franc.__str__() == 'XPF 10,00.00000'
 
 
 def test_cfp_franc_changed():
@@ -158,6 +165,10 @@ def test_cfp_franc_changed():
             AttributeError,
             match='can\'t set attribute'):
         cfp_franc.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cfp_franc.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

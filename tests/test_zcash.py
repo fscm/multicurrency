@@ -27,6 +27,7 @@ def test_zcash():
     assert zcash.alpha_code == 'ZEC'
     assert zcash.decimal_places == 8
     assert zcash.decimal_sign == '.'
+    assert zcash.grouping_places == 3
     assert zcash.grouping_sign == ','
     assert not zcash.international
     assert zcash.symbol == 'ⓩ'
@@ -43,6 +44,7 @@ def test_zcash():
         'numeric_code: "0", '
         'decimal_places: "8", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_zcash_negative():
     assert zcash.alpha_code == 'ZEC'
     assert zcash.decimal_places == 8
     assert zcash.decimal_sign == '.'
+    assert zcash.grouping_places == 3
     assert zcash.grouping_sign == ','
     assert not zcash.international
     assert zcash.symbol == 'ⓩ'
@@ -74,6 +77,7 @@ def test_zcash_negative():
         'numeric_code: "0", '
         'decimal_places: "8", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_zcash_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_zcash_custom():
     assert zcash.alpha_code == 'ZEC'
     assert zcash.decimal_places == 5
     assert zcash.decimal_sign == ','
+    assert zcash.grouping_places == 2
     assert zcash.grouping_sign == '.'
     assert zcash.international
     assert zcash.symbol == 'ⓩ'
@@ -113,10 +119,11 @@ def test_zcash_custom():
         'numeric_code: "0", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert zcash.__str__() == 'ZEC 1,000.00000'
+    assert zcash.__str__() == 'ZEC 10,00.00000'
 
 
 def test_zcash_changed():
@@ -158,6 +165,10 @@ def test_zcash_changed():
             AttributeError,
             match='can\'t set attribute'):
         zcash.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        zcash.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

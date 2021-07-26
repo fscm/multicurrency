@@ -27,6 +27,7 @@ def test_croatian_kuna():
     assert croatian_kuna.alpha_code == 'HRK'
     assert croatian_kuna.decimal_places == 2
     assert croatian_kuna.decimal_sign == ','
+    assert croatian_kuna.grouping_places == 3
     assert croatian_kuna.grouping_sign == '.'
     assert not croatian_kuna.international
     assert croatian_kuna.symbol == 'Kn'
@@ -43,6 +44,7 @@ def test_croatian_kuna():
         'numeric_code: "191", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_croatian_kuna_negative():
     assert croatian_kuna.alpha_code == 'HRK'
     assert croatian_kuna.decimal_places == 2
     assert croatian_kuna.decimal_sign == ','
+    assert croatian_kuna.grouping_places == 3
     assert croatian_kuna.grouping_sign == '.'
     assert not croatian_kuna.international
     assert croatian_kuna.symbol == 'Kn'
@@ -74,6 +77,7 @@ def test_croatian_kuna_negative():
         'numeric_code: "191", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_croatian_kuna_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_croatian_kuna_custom():
     assert croatian_kuna.alpha_code == 'HRK'
     assert croatian_kuna.decimal_places == 5
     assert croatian_kuna.decimal_sign == '.'
+    assert croatian_kuna.grouping_places == 2
     assert croatian_kuna.grouping_sign == ','
     assert croatian_kuna.international
     assert croatian_kuna.symbol == 'Kn'
@@ -113,10 +119,11 @@ def test_croatian_kuna_custom():
         'numeric_code: "191", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert croatian_kuna.__str__() == 'HRK 1,000.00000'
+    assert croatian_kuna.__str__() == 'HRK 10,00.00000'
 
 
 def test_croatian_kuna_changed():
@@ -158,6 +165,10 @@ def test_croatian_kuna_changed():
             AttributeError,
             match='can\'t set attribute'):
         croatian_kuna.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        croatian_kuna.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

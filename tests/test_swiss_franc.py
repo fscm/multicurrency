@@ -27,6 +27,7 @@ def test_swiss_franc():
     assert swiss_franc.alpha_code == 'CHF'
     assert swiss_franc.decimal_places == 2
     assert swiss_franc.decimal_sign == '.'
+    assert swiss_franc.grouping_places == 3
     assert swiss_franc.grouping_sign == '\''
     assert not swiss_franc.international
     assert swiss_franc.symbol == '₣'
@@ -43,6 +44,7 @@ def test_swiss_franc():
         'numeric_code: "756", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: "\'", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_swiss_franc_negative():
     assert swiss_franc.alpha_code == 'CHF'
     assert swiss_franc.decimal_places == 2
     assert swiss_franc.decimal_sign == '.'
+    assert swiss_franc.grouping_places == 3
     assert swiss_franc.grouping_sign == '\''
     assert not swiss_franc.international
     assert swiss_franc.symbol == '₣'
@@ -74,6 +77,7 @@ def test_swiss_franc_negative():
         'numeric_code: "756", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: "\'", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_swiss_franc_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\'',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_swiss_franc_custom():
     assert swiss_franc.alpha_code == 'CHF'
     assert swiss_franc.decimal_places == 5
     assert swiss_franc.decimal_sign == '\''
+    assert swiss_franc.grouping_places == 2
     assert swiss_franc.grouping_sign == '.'
     assert swiss_franc.international
     assert swiss_franc.symbol == '₣'
@@ -113,10 +119,11 @@ def test_swiss_franc_custom():
         'numeric_code: "756", '
         'decimal_places: "5", '
         'decimal_sign: "\'", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert swiss_franc.__str__() == 'CHF 1,000.00000'
+    assert swiss_franc.__str__() == 'CHF 10,00.00000'
 
 
 def test_swiss_franc_changed():
@@ -158,6 +165,10 @@ def test_swiss_franc_changed():
             AttributeError,
             match='can\'t set attribute'):
         swiss_franc.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        swiss_franc.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

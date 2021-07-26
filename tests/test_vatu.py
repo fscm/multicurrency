@@ -27,6 +27,7 @@ def test_vatu():
     assert vatu.alpha_code == 'VUV'
     assert vatu.decimal_places == 0
     assert vatu.decimal_sign == '.'
+    assert vatu.grouping_places == 3
     assert vatu.grouping_sign == ','
     assert not vatu.international
     assert vatu.symbol == 'Vt'
@@ -43,6 +44,7 @@ def test_vatu():
         'numeric_code: "548", '
         'decimal_places: "0", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_vatu_negative():
     assert vatu.alpha_code == 'VUV'
     assert vatu.decimal_places == 0
     assert vatu.decimal_sign == '.'
+    assert vatu.grouping_places == 3
     assert vatu.grouping_sign == ','
     assert not vatu.international
     assert vatu.symbol == 'Vt'
@@ -74,6 +77,7 @@ def test_vatu_negative():
         'numeric_code: "548", '
         'decimal_places: "0", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_vatu_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_vatu_custom():
     assert vatu.alpha_code == 'VUV'
     assert vatu.decimal_places == 5
     assert vatu.decimal_sign == ','
+    assert vatu.grouping_places == 2
     assert vatu.grouping_sign == '.'
     assert vatu.international
     assert vatu.symbol == 'Vt'
@@ -113,10 +119,11 @@ def test_vatu_custom():
         'numeric_code: "548", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert vatu.__str__() == 'VUV 1,000.00000'
+    assert vatu.__str__() == 'VUV 10,00.00000'
 
 
 def test_vatu_changed():
@@ -158,6 +165,10 @@ def test_vatu_changed():
             AttributeError,
             match='can\'t set attribute'):
         vatu.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        vatu.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

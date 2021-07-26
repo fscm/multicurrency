@@ -27,6 +27,7 @@ def test_cordoba_oro():
     assert cordoba_oro.alpha_code == 'NIO'
     assert cordoba_oro.decimal_places == 2
     assert cordoba_oro.decimal_sign == '.'
+    assert cordoba_oro.grouping_places == 3
     assert cordoba_oro.grouping_sign == ','
     assert not cordoba_oro.international
     assert cordoba_oro.symbol == 'C$'
@@ -43,6 +44,7 @@ def test_cordoba_oro():
         'numeric_code: "558", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_cordoba_oro_negative():
     assert cordoba_oro.alpha_code == 'NIO'
     assert cordoba_oro.decimal_places == 2
     assert cordoba_oro.decimal_sign == '.'
+    assert cordoba_oro.grouping_places == 3
     assert cordoba_oro.grouping_sign == ','
     assert not cordoba_oro.international
     assert cordoba_oro.symbol == 'C$'
@@ -74,6 +77,7 @@ def test_cordoba_oro_negative():
         'numeric_code: "558", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_cordoba_oro_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_cordoba_oro_custom():
     assert cordoba_oro.alpha_code == 'NIO'
     assert cordoba_oro.decimal_places == 5
     assert cordoba_oro.decimal_sign == ','
+    assert cordoba_oro.grouping_places == 2
     assert cordoba_oro.grouping_sign == '.'
     assert cordoba_oro.international
     assert cordoba_oro.symbol == 'C$'
@@ -113,10 +119,11 @@ def test_cordoba_oro_custom():
         'numeric_code: "558", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert cordoba_oro.__str__() == 'NIO 1,000.00000'
+    assert cordoba_oro.__str__() == 'NIO 10,00.00000'
 
 
 def test_cordoba_oro_changed():
@@ -158,6 +165,10 @@ def test_cordoba_oro_changed():
             AttributeError,
             match='can\'t set attribute'):
         cordoba_oro.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cordoba_oro.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

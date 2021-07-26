@@ -27,6 +27,7 @@ def test_ethereum():
     assert ethereum.alpha_code == 'ETH'
     assert ethereum.decimal_places == 18
     assert ethereum.decimal_sign == '.'
+    assert ethereum.grouping_places == 3
     assert ethereum.grouping_sign == ','
     assert not ethereum.international
     assert ethereum.symbol == 'Ξ'
@@ -43,6 +44,7 @@ def test_ethereum():
         'numeric_code: "0", '
         'decimal_places: "18", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_ethereum_negative():
     assert ethereum.alpha_code == 'ETH'
     assert ethereum.decimal_places == 18
     assert ethereum.decimal_sign == '.'
+    assert ethereum.grouping_places == 3
     assert ethereum.grouping_sign == ','
     assert not ethereum.international
     assert ethereum.symbol == 'Ξ'
@@ -74,6 +77,7 @@ def test_ethereum_negative():
         'numeric_code: "0", '
         'decimal_places: "18", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_ethereum_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_ethereum_custom():
     assert ethereum.alpha_code == 'ETH'
     assert ethereum.decimal_places == 5
     assert ethereum.decimal_sign == ','
+    assert ethereum.grouping_places == 2
     assert ethereum.grouping_sign == '.'
     assert ethereum.international
     assert ethereum.symbol == 'Ξ'
@@ -113,10 +119,11 @@ def test_ethereum_custom():
         'numeric_code: "0", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert ethereum.__str__() == 'ETH 1,000.00000'
+    assert ethereum.__str__() == 'ETH 10,00.00000'
 
 
 def test_ethereum_changed():
@@ -158,6 +165,10 @@ def test_ethereum_changed():
             AttributeError,
             match='can\'t set attribute'):
         ethereum.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        ethereum.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -27,6 +27,7 @@ def test_peso_uruguayo():
     assert peso_uruguayo.alpha_code == 'UYU'
     assert peso_uruguayo.decimal_places == 2
     assert peso_uruguayo.decimal_sign == ','
+    assert peso_uruguayo.grouping_places == 3
     assert peso_uruguayo.grouping_sign == '.'
     assert not peso_uruguayo.international
     assert peso_uruguayo.symbol == '$'
@@ -43,6 +44,7 @@ def test_peso_uruguayo():
         'numeric_code: "858", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_peso_uruguayo_negative():
     assert peso_uruguayo.alpha_code == 'UYU'
     assert peso_uruguayo.decimal_places == 2
     assert peso_uruguayo.decimal_sign == ','
+    assert peso_uruguayo.grouping_places == 3
     assert peso_uruguayo.grouping_sign == '.'
     assert not peso_uruguayo.international
     assert peso_uruguayo.symbol == '$'
@@ -74,6 +77,7 @@ def test_peso_uruguayo_negative():
         'numeric_code: "858", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_peso_uruguayo_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_peso_uruguayo_custom():
     assert peso_uruguayo.alpha_code == 'UYU'
     assert peso_uruguayo.decimal_places == 5
     assert peso_uruguayo.decimal_sign == '.'
+    assert peso_uruguayo.grouping_places == 2
     assert peso_uruguayo.grouping_sign == ','
     assert peso_uruguayo.international
     assert peso_uruguayo.symbol == '$'
@@ -113,10 +119,11 @@ def test_peso_uruguayo_custom():
         'numeric_code: "858", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert peso_uruguayo.__str__() == 'UYU 1,000.00000'
+    assert peso_uruguayo.__str__() == 'UYU 10,00.00000'
 
 
 def test_peso_uruguayo_changed():
@@ -158,6 +165,10 @@ def test_peso_uruguayo_changed():
             AttributeError,
             match='can\'t set attribute'):
         peso_uruguayo.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        peso_uruguayo.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

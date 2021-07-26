@@ -27,6 +27,7 @@ def test_malaysian_ringgit():
     assert malaysian_ringgit.alpha_code == 'MYR'
     assert malaysian_ringgit.decimal_places == 2
     assert malaysian_ringgit.decimal_sign == '.'
+    assert malaysian_ringgit.grouping_places == 3
     assert malaysian_ringgit.grouping_sign == ','
     assert not malaysian_ringgit.international
     assert malaysian_ringgit.symbol == 'RM'
@@ -43,6 +44,7 @@ def test_malaysian_ringgit():
         'numeric_code: "458", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_malaysian_ringgit_negative():
     assert malaysian_ringgit.alpha_code == 'MYR'
     assert malaysian_ringgit.decimal_places == 2
     assert malaysian_ringgit.decimal_sign == '.'
+    assert malaysian_ringgit.grouping_places == 3
     assert malaysian_ringgit.grouping_sign == ','
     assert not malaysian_ringgit.international
     assert malaysian_ringgit.symbol == 'RM'
@@ -74,6 +77,7 @@ def test_malaysian_ringgit_negative():
         'numeric_code: "458", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_malaysian_ringgit_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_malaysian_ringgit_custom():
     assert malaysian_ringgit.alpha_code == 'MYR'
     assert malaysian_ringgit.decimal_places == 5
     assert malaysian_ringgit.decimal_sign == ','
+    assert malaysian_ringgit.grouping_places == 2
     assert malaysian_ringgit.grouping_sign == '.'
     assert malaysian_ringgit.international
     assert malaysian_ringgit.symbol == 'RM'
@@ -113,10 +119,11 @@ def test_malaysian_ringgit_custom():
         'numeric_code: "458", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert malaysian_ringgit.__str__() == 'MYR 1,000.00000'
+    assert malaysian_ringgit.__str__() == 'MYR 10,00.00000'
 
 
 def test_malaysian_ringgit_changed():
@@ -158,6 +165,10 @@ def test_malaysian_ringgit_changed():
             AttributeError,
             match='can\'t set attribute'):
         malaysian_ringgit.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        malaysian_ringgit.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

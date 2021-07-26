@@ -27,6 +27,7 @@ def test_cape_verde_escudo():
     assert cape_verde_escudo.alpha_code == 'CVE'
     assert cape_verde_escudo.decimal_places == 2
     assert cape_verde_escudo.decimal_sign == '$'
+    assert cape_verde_escudo.grouping_places == 3
     assert cape_verde_escudo.grouping_sign == '\u202F'
     assert not cape_verde_escudo.international
     assert cape_verde_escudo.symbol == ''
@@ -43,6 +44,7 @@ def test_cape_verde_escudo():
         'numeric_code: "132", '
         'decimal_places: "2", '
         'decimal_sign: "$", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_cape_verde_escudo_negative():
     assert cape_verde_escudo.alpha_code == 'CVE'
     assert cape_verde_escudo.decimal_places == 2
     assert cape_verde_escudo.decimal_sign == '$'
+    assert cape_verde_escudo.grouping_places == 3
     assert cape_verde_escudo.grouping_sign == '\u202F'
     assert not cape_verde_escudo.international
     assert cape_verde_escudo.symbol == ''
@@ -74,6 +77,7 @@ def test_cape_verde_escudo_negative():
         'numeric_code: "132", '
         'decimal_places: "2", '
         'decimal_sign: "$", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_cape_verde_escudo_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign='$',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_cape_verde_escudo_custom():
     assert cape_verde_escudo.alpha_code == 'CVE'
     assert cape_verde_escudo.decimal_places == 5
     assert cape_verde_escudo.decimal_sign == '\u202F'
+    assert cape_verde_escudo.grouping_places == 2
     assert cape_verde_escudo.grouping_sign == '$'
     assert cape_verde_escudo.international
     assert cape_verde_escudo.symbol == ''
@@ -113,10 +119,11 @@ def test_cape_verde_escudo_custom():
         'numeric_code: "132", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: "$", '
         'convertion: "", '
         'international: True)')
-    assert cape_verde_escudo.__str__() == 'CVE 1,000.00000'
+    assert cape_verde_escudo.__str__() == 'CVE 10,00.00000'
 
 
 def test_cape_verde_escudo_changed():
@@ -158,6 +165,10 @@ def test_cape_verde_escudo_changed():
             AttributeError,
             match='can\'t set attribute'):
         cape_verde_escudo.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cape_verde_escudo.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

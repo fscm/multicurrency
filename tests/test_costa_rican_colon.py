@@ -27,6 +27,7 @@ def test_costa_rican_colon():
     assert costa_rican_colon.alpha_code == 'CRC'
     assert costa_rican_colon.decimal_places == 2
     assert costa_rican_colon.decimal_sign == ','
+    assert costa_rican_colon.grouping_places == 3
     assert costa_rican_colon.grouping_sign == '\u202F'
     assert not costa_rican_colon.international
     assert costa_rican_colon.symbol == '₡'
@@ -43,6 +44,7 @@ def test_costa_rican_colon():
         'numeric_code: "188", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_costa_rican_colon_negative():
     assert costa_rican_colon.alpha_code == 'CRC'
     assert costa_rican_colon.decimal_places == 2
     assert costa_rican_colon.decimal_sign == ','
+    assert costa_rican_colon.grouping_places == 3
     assert costa_rican_colon.grouping_sign == '\u202F'
     assert not costa_rican_colon.international
     assert costa_rican_colon.symbol == '₡'
@@ -74,6 +77,7 @@ def test_costa_rican_colon_negative():
         'numeric_code: "188", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_costa_rican_colon_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_costa_rican_colon_custom():
     assert costa_rican_colon.alpha_code == 'CRC'
     assert costa_rican_colon.decimal_places == 5
     assert costa_rican_colon.decimal_sign == '\u202F'
+    assert costa_rican_colon.grouping_places == 2
     assert costa_rican_colon.grouping_sign == ','
     assert costa_rican_colon.international
     assert costa_rican_colon.symbol == '₡'
@@ -113,10 +119,11 @@ def test_costa_rican_colon_custom():
         'numeric_code: "188", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert costa_rican_colon.__str__() == 'CRC 1,000.00000'
+    assert costa_rican_colon.__str__() == 'CRC 10,00.00000'
 
 
 def test_costa_rican_colon_changed():
@@ -158,6 +165,10 @@ def test_costa_rican_colon_changed():
             AttributeError,
             match='can\'t set attribute'):
         costa_rican_colon.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        costa_rican_colon.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

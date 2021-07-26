@@ -27,6 +27,7 @@ def test_uae_dirham():
     assert uae_dirham.alpha_code == 'AED'
     assert uae_dirham.decimal_places == 2
     assert uae_dirham.decimal_sign == '\u066B'
+    assert uae_dirham.grouping_places == 3
     assert uae_dirham.grouping_sign == '\u066C'
     assert not uae_dirham.international
     assert uae_dirham.symbol == 'د.إ.'
@@ -43,6 +44,7 @@ def test_uae_dirham():
         'numeric_code: "784", '
         'decimal_places: "2", '
         'decimal_sign: "\u066B", '
+        'grouping_places: "3", '
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_uae_dirham_negative():
     assert uae_dirham.alpha_code == 'AED'
     assert uae_dirham.decimal_places == 2
     assert uae_dirham.decimal_sign == '\u066B'
+    assert uae_dirham.grouping_places == 3
     assert uae_dirham.grouping_sign == '\u066C'
     assert not uae_dirham.international
     assert uae_dirham.symbol == 'د.إ.'
@@ -74,6 +77,7 @@ def test_uae_dirham_negative():
         'numeric_code: "784", '
         'decimal_places: "2", '
         'decimal_sign: "\u066B", '
+        'grouping_places: "3", '
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_uae_dirham_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u066C',
+        grouping_places=2,
         grouping_sign='\u066B',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_uae_dirham_custom():
     assert uae_dirham.alpha_code == 'AED'
     assert uae_dirham.decimal_places == 5
     assert uae_dirham.decimal_sign == '\u066C'
+    assert uae_dirham.grouping_places == 2
     assert uae_dirham.grouping_sign == '\u066B'
     assert uae_dirham.international
     assert uae_dirham.symbol == 'د.إ.'
@@ -113,10 +119,11 @@ def test_uae_dirham_custom():
         'numeric_code: "784", '
         'decimal_places: "5", '
         'decimal_sign: "\u066C", '
+        'grouping_places: "2", '
         'grouping_sign: "\u066B", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: True)')
-    assert uae_dirham.__str__() == 'AED 1,000.00000'
+    assert uae_dirham.__str__() == 'AED 10,00.00000'
 
 
 def test_uae_dirham_changed():
@@ -158,6 +165,10 @@ def test_uae_dirham_changed():
             AttributeError,
             match='can\'t set attribute'):
         uae_dirham.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        uae_dirham.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

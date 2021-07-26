@@ -27,6 +27,7 @@ def test_leu():
     assert leu.alpha_code == 'RON'
     assert leu.decimal_places == 2
     assert leu.decimal_sign == ','
+    assert leu.grouping_places == 3
     assert leu.grouping_sign == '.'
     assert not leu.international
     assert leu.symbol == 'L'
@@ -43,6 +44,7 @@ def test_leu():
         'numeric_code: "946", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_leu_negative():
     assert leu.alpha_code == 'RON'
     assert leu.decimal_places == 2
     assert leu.decimal_sign == ','
+    assert leu.grouping_places == 3
     assert leu.grouping_sign == '.'
     assert not leu.international
     assert leu.symbol == 'L'
@@ -74,6 +77,7 @@ def test_leu_negative():
         'numeric_code: "946", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_leu_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_leu_custom():
     assert leu.alpha_code == 'RON'
     assert leu.decimal_places == 5
     assert leu.decimal_sign == '.'
+    assert leu.grouping_places == 2
     assert leu.grouping_sign == ','
     assert leu.international
     assert leu.symbol == 'L'
@@ -113,10 +119,11 @@ def test_leu_custom():
         'numeric_code: "946", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert leu.__str__() == 'RON 1,000.00000'
+    assert leu.__str__() == 'RON 10,00.00000'
 
 
 def test_leu_changed():
@@ -158,6 +165,10 @@ def test_leu_changed():
             AttributeError,
             match='can\'t set attribute'):
         leu.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        leu.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

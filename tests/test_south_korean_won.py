@@ -27,6 +27,7 @@ def test_south_korean_won():
     assert south_korean_won.alpha_code == 'KRW'
     assert south_korean_won.decimal_places == 0
     assert south_korean_won.decimal_sign == '.'
+    assert south_korean_won.grouping_places == 3
     assert south_korean_won.grouping_sign == ','
     assert not south_korean_won.international
     assert south_korean_won.symbol == '₩'
@@ -43,6 +44,7 @@ def test_south_korean_won():
         'numeric_code: "410", '
         'decimal_places: "0", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_south_korean_won_negative():
     assert south_korean_won.alpha_code == 'KRW'
     assert south_korean_won.decimal_places == 0
     assert south_korean_won.decimal_sign == '.'
+    assert south_korean_won.grouping_places == 3
     assert south_korean_won.grouping_sign == ','
     assert not south_korean_won.international
     assert south_korean_won.symbol == '₩'
@@ -74,6 +77,7 @@ def test_south_korean_won_negative():
         'numeric_code: "410", '
         'decimal_places: "0", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_south_korean_won_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_south_korean_won_custom():
     assert south_korean_won.alpha_code == 'KRW'
     assert south_korean_won.decimal_places == 5
     assert south_korean_won.decimal_sign == ','
+    assert south_korean_won.grouping_places == 2
     assert south_korean_won.grouping_sign == '.'
     assert south_korean_won.international
     assert south_korean_won.symbol == '₩'
@@ -113,10 +119,11 @@ def test_south_korean_won_custom():
         'numeric_code: "410", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert south_korean_won.__str__() == 'KRW 1,000.00000'
+    assert south_korean_won.__str__() == 'KRW 10,00.00000'
 
 
 def test_south_korean_won_changed():
@@ -158,6 +165,10 @@ def test_south_korean_won_changed():
             AttributeError,
             match='can\'t set attribute'):
         south_korean_won.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        south_korean_won.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

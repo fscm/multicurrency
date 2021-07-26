@@ -27,6 +27,7 @@ def test_dominican_peso():
     assert dominican_peso.alpha_code == 'DOP'
     assert dominican_peso.decimal_places == 2
     assert dominican_peso.decimal_sign == '.'
+    assert dominican_peso.grouping_places == 3
     assert dominican_peso.grouping_sign == ','
     assert not dominican_peso.international
     assert dominican_peso.symbol == '$'
@@ -43,6 +44,7 @@ def test_dominican_peso():
         'numeric_code: "214", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_dominican_peso_negative():
     assert dominican_peso.alpha_code == 'DOP'
     assert dominican_peso.decimal_places == 2
     assert dominican_peso.decimal_sign == '.'
+    assert dominican_peso.grouping_places == 3
     assert dominican_peso.grouping_sign == ','
     assert not dominican_peso.international
     assert dominican_peso.symbol == '$'
@@ -74,6 +77,7 @@ def test_dominican_peso_negative():
         'numeric_code: "214", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_dominican_peso_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_dominican_peso_custom():
     assert dominican_peso.alpha_code == 'DOP'
     assert dominican_peso.decimal_places == 5
     assert dominican_peso.decimal_sign == ','
+    assert dominican_peso.grouping_places == 2
     assert dominican_peso.grouping_sign == '.'
     assert dominican_peso.international
     assert dominican_peso.symbol == '$'
@@ -113,10 +119,11 @@ def test_dominican_peso_custom():
         'numeric_code: "214", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert dominican_peso.__str__() == 'DOP 1,000.00000'
+    assert dominican_peso.__str__() == 'DOP 10,00.00000'
 
 
 def test_dominican_peso_changed():
@@ -158,6 +165,10 @@ def test_dominican_peso_changed():
             AttributeError,
             match='can\'t set attribute'):
         dominican_peso.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        dominican_peso.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -27,6 +27,7 @@ def test_pakistan_rupee():
     assert pakistan_rupee.alpha_code == 'PKR'
     assert pakistan_rupee.decimal_places == 2
     assert pakistan_rupee.decimal_sign == '.'
+    assert pakistan_rupee.grouping_places == 3
     assert pakistan_rupee.grouping_sign == ','
     assert not pakistan_rupee.international
     assert pakistan_rupee.symbol == '₨'
@@ -43,6 +44,7 @@ def test_pakistan_rupee():
         'numeric_code: "586", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_pakistan_rupee_negative():
     assert pakistan_rupee.alpha_code == 'PKR'
     assert pakistan_rupee.decimal_places == 2
     assert pakistan_rupee.decimal_sign == '.'
+    assert pakistan_rupee.grouping_places == 3
     assert pakistan_rupee.grouping_sign == ','
     assert not pakistan_rupee.international
     assert pakistan_rupee.symbol == '₨'
@@ -74,6 +77,7 @@ def test_pakistan_rupee_negative():
         'numeric_code: "586", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_pakistan_rupee_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_pakistan_rupee_custom():
     assert pakistan_rupee.alpha_code == 'PKR'
     assert pakistan_rupee.decimal_places == 5
     assert pakistan_rupee.decimal_sign == ','
+    assert pakistan_rupee.grouping_places == 2
     assert pakistan_rupee.grouping_sign == '.'
     assert pakistan_rupee.international
     assert pakistan_rupee.symbol == '₨'
@@ -113,10 +119,11 @@ def test_pakistan_rupee_custom():
         'numeric_code: "586", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert pakistan_rupee.__str__() == 'PKR 1,000.00000'
+    assert pakistan_rupee.__str__() == 'PKR 10,00.00000'
 
 
 def test_pakistan_rupee_changed():
@@ -158,6 +165,10 @@ def test_pakistan_rupee_changed():
             AttributeError,
             match='can\'t set attribute'):
         pakistan_rupee.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        pakistan_rupee.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

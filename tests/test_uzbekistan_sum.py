@@ -27,6 +27,7 @@ def test_uzbekistan_sum():
     assert uzbekistan_sum.alpha_code == 'UZS'
     assert uzbekistan_sum.decimal_places == 2
     assert uzbekistan_sum.decimal_sign == ','
+    assert uzbekistan_sum.grouping_places == 3
     assert uzbekistan_sum.grouping_sign == '\u202F'
     assert not uzbekistan_sum.international
     assert uzbekistan_sum.symbol == 'сўм'
@@ -43,6 +44,7 @@ def test_uzbekistan_sum():
         'numeric_code: "860", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_uzbekistan_sum_negative():
     assert uzbekistan_sum.alpha_code == 'UZS'
     assert uzbekistan_sum.decimal_places == 2
     assert uzbekistan_sum.decimal_sign == ','
+    assert uzbekistan_sum.grouping_places == 3
     assert uzbekistan_sum.grouping_sign == '\u202F'
     assert not uzbekistan_sum.international
     assert uzbekistan_sum.symbol == 'сўм'
@@ -74,6 +77,7 @@ def test_uzbekistan_sum_negative():
         'numeric_code: "860", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_uzbekistan_sum_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_uzbekistan_sum_custom():
     assert uzbekistan_sum.alpha_code == 'UZS'
     assert uzbekistan_sum.decimal_places == 5
     assert uzbekistan_sum.decimal_sign == '\u202F'
+    assert uzbekistan_sum.grouping_places == 2
     assert uzbekistan_sum.grouping_sign == ','
     assert uzbekistan_sum.international
     assert uzbekistan_sum.symbol == 'сўм'
@@ -113,10 +119,11 @@ def test_uzbekistan_sum_custom():
         'numeric_code: "860", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert uzbekistan_sum.__str__() == 'UZS 1,000.00000'
+    assert uzbekistan_sum.__str__() == 'UZS 10,00.00000'
 
 
 def test_uzbekistan_sum_changed():
@@ -158,6 +165,10 @@ def test_uzbekistan_sum_changed():
             AttributeError,
             match='can\'t set attribute'):
         uzbekistan_sum.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        uzbekistan_sum.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

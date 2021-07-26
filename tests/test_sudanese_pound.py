@@ -27,6 +27,7 @@ def test_sudanese_pound():
     assert sudanese_pound.alpha_code == 'SDG'
     assert sudanese_pound.decimal_places == 2
     assert sudanese_pound.decimal_sign == '\u066B'
+    assert sudanese_pound.grouping_places == 3
     assert sudanese_pound.grouping_sign == '\u066C'
     assert not sudanese_pound.international
     assert sudanese_pound.symbol == 'ج.س'
@@ -43,6 +44,7 @@ def test_sudanese_pound():
         'numeric_code: "938", '
         'decimal_places: "2", '
         'decimal_sign: "\u066B", '
+        'grouping_places: "3", '
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_sudanese_pound_negative():
     assert sudanese_pound.alpha_code == 'SDG'
     assert sudanese_pound.decimal_places == 2
     assert sudanese_pound.decimal_sign == '\u066B'
+    assert sudanese_pound.grouping_places == 3
     assert sudanese_pound.grouping_sign == '\u066C'
     assert not sudanese_pound.international
     assert sudanese_pound.symbol == 'ج.س'
@@ -74,6 +77,7 @@ def test_sudanese_pound_negative():
         'numeric_code: "938", '
         'decimal_places: "2", '
         'decimal_sign: "\u066B", '
+        'grouping_places: "3", '
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_sudanese_pound_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u066C',
+        grouping_places=2,
         grouping_sign='\u066B',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_sudanese_pound_custom():
     assert sudanese_pound.alpha_code == 'SDG'
     assert sudanese_pound.decimal_places == 5
     assert sudanese_pound.decimal_sign == '\u066C'
+    assert sudanese_pound.grouping_places == 2
     assert sudanese_pound.grouping_sign == '\u066B'
     assert sudanese_pound.international
     assert sudanese_pound.symbol == 'ج.س'
@@ -113,10 +119,11 @@ def test_sudanese_pound_custom():
         'numeric_code: "938", '
         'decimal_places: "5", '
         'decimal_sign: "\u066C", '
+        'grouping_places: "2", '
         'grouping_sign: "\u066B", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: True)')
-    assert sudanese_pound.__str__() == 'SDG 1,000.00000'
+    assert sudanese_pound.__str__() == 'SDG 10,00.00000'
 
 
 def test_sudanese_pound_changed():
@@ -158,6 +165,10 @@ def test_sudanese_pound_changed():
             AttributeError,
             match='can\'t set attribute'):
         sudanese_pound.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        sudanese_pound.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

@@ -27,6 +27,7 @@ def test_cayman_islands_dollar():
     assert cayman_islands_dollar.alpha_code == 'KYD'
     assert cayman_islands_dollar.decimal_places == 2
     assert cayman_islands_dollar.decimal_sign == '.'
+    assert cayman_islands_dollar.grouping_places == 3
     assert cayman_islands_dollar.grouping_sign == ','
     assert not cayman_islands_dollar.international
     assert cayman_islands_dollar.symbol == '$'
@@ -43,6 +44,7 @@ def test_cayman_islands_dollar():
         'numeric_code: "136", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_cayman_islands_dollar_negative():
     assert cayman_islands_dollar.alpha_code == 'KYD'
     assert cayman_islands_dollar.decimal_places == 2
     assert cayman_islands_dollar.decimal_sign == '.'
+    assert cayman_islands_dollar.grouping_places == 3
     assert cayman_islands_dollar.grouping_sign == ','
     assert not cayman_islands_dollar.international
     assert cayman_islands_dollar.symbol == '$'
@@ -74,6 +77,7 @@ def test_cayman_islands_dollar_negative():
         'numeric_code: "136", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_cayman_islands_dollar_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_cayman_islands_dollar_custom():
     assert cayman_islands_dollar.alpha_code == 'KYD'
     assert cayman_islands_dollar.decimal_places == 5
     assert cayman_islands_dollar.decimal_sign == ','
+    assert cayman_islands_dollar.grouping_places == 2
     assert cayman_islands_dollar.grouping_sign == '.'
     assert cayman_islands_dollar.international
     assert cayman_islands_dollar.symbol == '$'
@@ -113,10 +119,11 @@ def test_cayman_islands_dollar_custom():
         'numeric_code: "136", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert cayman_islands_dollar.__str__() == 'KYD 1,000.00000'
+    assert cayman_islands_dollar.__str__() == 'KYD 10,00.00000'
 
 
 def test_cayman_islands_dollar_changed():
@@ -158,6 +165,10 @@ def test_cayman_islands_dollar_changed():
             AttributeError,
             match='can\'t set attribute'):
         cayman_islands_dollar.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        cayman_islands_dollar.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

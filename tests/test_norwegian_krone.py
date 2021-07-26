@@ -27,6 +27,7 @@ def test_norwegian_krone():
     assert norwegian_krone.alpha_code == 'NOK'
     assert norwegian_krone.decimal_places == 2
     assert norwegian_krone.decimal_sign == ','
+    assert norwegian_krone.grouping_places == 3
     assert norwegian_krone.grouping_sign == '\u202F'
     assert not norwegian_krone.international
     assert norwegian_krone.symbol == 'kr'
@@ -43,6 +44,7 @@ def test_norwegian_krone():
         'numeric_code: "578", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_norwegian_krone_negative():
     assert norwegian_krone.alpha_code == 'NOK'
     assert norwegian_krone.decimal_places == 2
     assert norwegian_krone.decimal_sign == ','
+    assert norwegian_krone.grouping_places == 3
     assert norwegian_krone.grouping_sign == '\u202F'
     assert not norwegian_krone.international
     assert norwegian_krone.symbol == 'kr'
@@ -74,6 +77,7 @@ def test_norwegian_krone_negative():
         'numeric_code: "578", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_norwegian_krone_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_norwegian_krone_custom():
     assert norwegian_krone.alpha_code == 'NOK'
     assert norwegian_krone.decimal_places == 5
     assert norwegian_krone.decimal_sign == '\u202F'
+    assert norwegian_krone.grouping_places == 2
     assert norwegian_krone.grouping_sign == ','
     assert norwegian_krone.international
     assert norwegian_krone.symbol == 'kr'
@@ -113,10 +119,11 @@ def test_norwegian_krone_custom():
         'numeric_code: "578", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert norwegian_krone.__str__() == 'NOK 1,000.00000'
+    assert norwegian_krone.__str__() == 'NOK 10,00.00000'
 
 
 def test_norwegian_krone_changed():
@@ -158,6 +165,10 @@ def test_norwegian_krone_changed():
             AttributeError,
             match='can\'t set attribute'):
         norwegian_krone.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        norwegian_krone.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

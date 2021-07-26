@@ -27,6 +27,7 @@ def test_gibraltar_pound():
     assert gibraltar_pound.alpha_code == 'GIP'
     assert gibraltar_pound.decimal_places == 2
     assert gibraltar_pound.decimal_sign == '.'
+    assert gibraltar_pound.grouping_places == 3
     assert gibraltar_pound.grouping_sign == ','
     assert not gibraltar_pound.international
     assert gibraltar_pound.symbol == '£'
@@ -43,6 +44,7 @@ def test_gibraltar_pound():
         'numeric_code: "292", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_gibraltar_pound_negative():
     assert gibraltar_pound.alpha_code == 'GIP'
     assert gibraltar_pound.decimal_places == 2
     assert gibraltar_pound.decimal_sign == '.'
+    assert gibraltar_pound.grouping_places == 3
     assert gibraltar_pound.grouping_sign == ','
     assert not gibraltar_pound.international
     assert gibraltar_pound.symbol == '£'
@@ -74,6 +77,7 @@ def test_gibraltar_pound_negative():
         'numeric_code: "292", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_gibraltar_pound_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_gibraltar_pound_custom():
     assert gibraltar_pound.alpha_code == 'GIP'
     assert gibraltar_pound.decimal_places == 5
     assert gibraltar_pound.decimal_sign == ','
+    assert gibraltar_pound.grouping_places == 2
     assert gibraltar_pound.grouping_sign == '.'
     assert gibraltar_pound.international
     assert gibraltar_pound.symbol == '£'
@@ -113,10 +119,11 @@ def test_gibraltar_pound_custom():
         'numeric_code: "292", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert gibraltar_pound.__str__() == 'GIP 1,000.00000'
+    assert gibraltar_pound.__str__() == 'GIP 10,00.00000'
 
 
 def test_gibraltar_pound_changed():
@@ -158,6 +165,10 @@ def test_gibraltar_pound_changed():
             AttributeError,
             match='can\'t set attribute'):
         gibraltar_pound.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        gibraltar_pound.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

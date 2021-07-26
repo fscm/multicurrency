@@ -27,6 +27,7 @@ def test_eurocy():
     assert eurocy.alpha_code == 'EUR'
     assert eurocy.decimal_places == 2
     assert eurocy.decimal_sign == ','
+    assert eurocy.grouping_places == 3
     assert eurocy.grouping_sign == '.'
     assert not eurocy.international
     assert eurocy.symbol == '€'
@@ -43,6 +44,7 @@ def test_eurocy():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_eurocy_negative():
     assert eurocy.alpha_code == 'EUR'
     assert eurocy.decimal_places == 2
     assert eurocy.decimal_sign == ','
+    assert eurocy.grouping_places == 3
     assert eurocy.grouping_sign == '.'
     assert not eurocy.international
     assert eurocy.symbol == '€'
@@ -74,6 +77,7 @@ def test_eurocy_negative():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_eurocy_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_eurocy_custom():
     assert eurocy.alpha_code == 'EUR'
     assert eurocy.decimal_places == 5
     assert eurocy.decimal_sign == '.'
+    assert eurocy.grouping_places == 2
     assert eurocy.grouping_sign == ','
     assert eurocy.international
     assert eurocy.symbol == '€'
@@ -113,10 +119,11 @@ def test_eurocy_custom():
         'numeric_code: "978", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert eurocy.__str__() == 'EUR 1,000.00000'
+    assert eurocy.__str__() == 'EUR 10,00.00000'
 
 
 def test_eurocy_changed():
@@ -158,6 +165,10 @@ def test_eurocy_changed():
             AttributeError,
             match='can\'t set attribute'):
         eurocy.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        eurocy.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

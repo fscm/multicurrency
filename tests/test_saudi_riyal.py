@@ -27,6 +27,7 @@ def test_saudi_riyal():
     assert saudi_riyal.alpha_code == 'SAR'
     assert saudi_riyal.decimal_places == 2
     assert saudi_riyal.decimal_sign == '\u066B'
+    assert saudi_riyal.grouping_places == 3
     assert saudi_riyal.grouping_sign == '\u066C'
     assert not saudi_riyal.international
     assert saudi_riyal.symbol == 'ر.س.'
@@ -43,6 +44,7 @@ def test_saudi_riyal():
         'numeric_code: "682", '
         'decimal_places: "2", '
         'decimal_sign: "\u066B", '
+        'grouping_places: "3", '
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_saudi_riyal_negative():
     assert saudi_riyal.alpha_code == 'SAR'
     assert saudi_riyal.decimal_places == 2
     assert saudi_riyal.decimal_sign == '\u066B'
+    assert saudi_riyal.grouping_places == 3
     assert saudi_riyal.grouping_sign == '\u066C'
     assert not saudi_riyal.international
     assert saudi_riyal.symbol == 'ر.س.'
@@ -74,6 +77,7 @@ def test_saudi_riyal_negative():
         'numeric_code: "682", '
         'decimal_places: "2", '
         'decimal_sign: "\u066B", '
+        'grouping_places: "3", '
         'grouping_sign: "\u066C", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_saudi_riyal_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u066C',
+        grouping_places=2,
         grouping_sign='\u066B',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_saudi_riyal_custom():
     assert saudi_riyal.alpha_code == 'SAR'
     assert saudi_riyal.decimal_places == 5
     assert saudi_riyal.decimal_sign == '\u066C'
+    assert saudi_riyal.grouping_places == 2
     assert saudi_riyal.grouping_sign == '\u066B'
     assert saudi_riyal.international
     assert saudi_riyal.symbol == 'ر.س.'
@@ -113,10 +119,11 @@ def test_saudi_riyal_custom():
         'numeric_code: "682", '
         'decimal_places: "5", '
         'decimal_sign: "\u066C", '
+        'grouping_places: "2", '
         'grouping_sign: "\u066B", '
         'convertion: "٠١٢٣٤٥٦٧٨٩-", '
         'international: True)')
-    assert saudi_riyal.__str__() == 'SAR 1,000.00000'
+    assert saudi_riyal.__str__() == 'SAR 10,00.00000'
 
 
 def test_saudi_riyal_changed():
@@ -158,6 +165,10 @@ def test_saudi_riyal_changed():
             AttributeError,
             match='can\'t set attribute'):
         saudi_riyal.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        saudi_riyal.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

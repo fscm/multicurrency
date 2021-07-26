@@ -27,6 +27,7 @@ def test_tezos():
     assert tezos.alpha_code == 'XTZ'
     assert tezos.decimal_places == 6
     assert tezos.decimal_sign == '.'
+    assert tezos.grouping_places == 3
     assert tezos.grouping_sign == ','
     assert not tezos.international
     assert tezos.symbol == 'ꜩ'
@@ -43,6 +44,7 @@ def test_tezos():
         'numeric_code: "0", '
         'decimal_places: "6", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_tezos_negative():
     assert tezos.alpha_code == 'XTZ'
     assert tezos.decimal_places == 6
     assert tezos.decimal_sign == '.'
+    assert tezos.grouping_places == 3
     assert tezos.grouping_sign == ','
     assert not tezos.international
     assert tezos.symbol == 'ꜩ'
@@ -74,6 +77,7 @@ def test_tezos_negative():
         'numeric_code: "0", '
         'decimal_places: "6", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_tezos_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_tezos_custom():
     assert tezos.alpha_code == 'XTZ'
     assert tezos.decimal_places == 5
     assert tezos.decimal_sign == ','
+    assert tezos.grouping_places == 2
     assert tezos.grouping_sign == '.'
     assert tezos.international
     assert tezos.symbol == 'ꜩ'
@@ -113,10 +119,11 @@ def test_tezos_custom():
         'numeric_code: "0", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert tezos.__str__() == 'XTZ 1,000.00000'
+    assert tezos.__str__() == 'XTZ 10,00.00000'
 
 
 def test_tezos_changed():
@@ -158,6 +165,10 @@ def test_tezos_changed():
             AttributeError,
             match='can\'t set attribute'):
         tezos.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        tezos.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

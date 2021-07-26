@@ -27,6 +27,7 @@ def test_zambian_kwacha():
     assert zambian_kwacha.alpha_code == 'ZMW'
     assert zambian_kwacha.decimal_places == 2
     assert zambian_kwacha.decimal_sign == '.'
+    assert zambian_kwacha.grouping_places == 3
     assert zambian_kwacha.grouping_sign == ','
     assert not zambian_kwacha.international
     assert zambian_kwacha.symbol == 'ZK'
@@ -43,6 +44,7 @@ def test_zambian_kwacha():
         'numeric_code: "967", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_zambian_kwacha_negative():
     assert zambian_kwacha.alpha_code == 'ZMW'
     assert zambian_kwacha.decimal_places == 2
     assert zambian_kwacha.decimal_sign == '.'
+    assert zambian_kwacha.grouping_places == 3
     assert zambian_kwacha.grouping_sign == ','
     assert not zambian_kwacha.international
     assert zambian_kwacha.symbol == 'ZK'
@@ -74,6 +77,7 @@ def test_zambian_kwacha_negative():
         'numeric_code: "967", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_zambian_kwacha_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_zambian_kwacha_custom():
     assert zambian_kwacha.alpha_code == 'ZMW'
     assert zambian_kwacha.decimal_places == 5
     assert zambian_kwacha.decimal_sign == ','
+    assert zambian_kwacha.grouping_places == 2
     assert zambian_kwacha.grouping_sign == '.'
     assert zambian_kwacha.international
     assert zambian_kwacha.symbol == 'ZK'
@@ -113,10 +119,11 @@ def test_zambian_kwacha_custom():
         'numeric_code: "967", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert zambian_kwacha.__str__() == 'ZMW 1,000.00000'
+    assert zambian_kwacha.__str__() == 'ZMW 10,00.00000'
 
 
 def test_zambian_kwacha_changed():
@@ -158,6 +165,10 @@ def test_zambian_kwacha_changed():
             AttributeError,
             match='can\'t set attribute'):
         zambian_kwacha.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        zambian_kwacha.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

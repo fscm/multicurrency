@@ -27,6 +27,7 @@ def test_eurova():
     assert eurova.alpha_code == 'EUR'
     assert eurova.decimal_places == 2
     assert eurova.decimal_sign == '.'
+    assert eurova.grouping_places == 3
     assert eurova.grouping_sign == ','
     assert not eurova.international
     assert eurova.symbol == '€'
@@ -43,6 +44,7 @@ def test_eurova():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_eurova_negative():
     assert eurova.alpha_code == 'EUR'
     assert eurova.decimal_places == 2
     assert eurova.decimal_sign == '.'
+    assert eurova.grouping_places == 3
     assert eurova.grouping_sign == ','
     assert not eurova.international
     assert eurova.symbol == '€'
@@ -74,6 +77,7 @@ def test_eurova_negative():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_eurova_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_eurova_custom():
     assert eurova.alpha_code == 'EUR'
     assert eurova.decimal_places == 5
     assert eurova.decimal_sign == ','
+    assert eurova.grouping_places == 2
     assert eurova.grouping_sign == '.'
     assert eurova.international
     assert eurova.symbol == '€'
@@ -113,10 +119,11 @@ def test_eurova_custom():
         'numeric_code: "978", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert eurova.__str__() == 'EUR 1,000.00000'
+    assert eurova.__str__() == 'EUR 10,00.00000'
 
 
 def test_eurova_changed():
@@ -158,6 +165,10 @@ def test_eurova_changed():
             AttributeError,
             match='can\'t set attribute'):
         eurova.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        eurova.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

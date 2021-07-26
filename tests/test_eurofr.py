@@ -27,6 +27,7 @@ def test_eurofr():
     assert eurofr.alpha_code == 'EUR'
     assert eurofr.decimal_places == 2
     assert eurofr.decimal_sign == ','
+    assert eurofr.grouping_places == 3
     assert eurofr.grouping_sign == '\u202F'
     assert not eurofr.international
     assert eurofr.symbol == '€'
@@ -43,6 +44,7 @@ def test_eurofr():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_eurofr_negative():
     assert eurofr.alpha_code == 'EUR'
     assert eurofr.decimal_places == 2
     assert eurofr.decimal_sign == ','
+    assert eurofr.grouping_places == 3
     assert eurofr.grouping_sign == '\u202F'
     assert not eurofr.international
     assert eurofr.symbol == '€'
@@ -74,6 +77,7 @@ def test_eurofr_negative():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_eurofr_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_eurofr_custom():
     assert eurofr.alpha_code == 'EUR'
     assert eurofr.decimal_places == 5
     assert eurofr.decimal_sign == '\u202F'
+    assert eurofr.grouping_places == 2
     assert eurofr.grouping_sign == ','
     assert eurofr.international
     assert eurofr.symbol == '€'
@@ -113,10 +119,11 @@ def test_eurofr_custom():
         'numeric_code: "978", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert eurofr.__str__() == 'EUR 1,000.00000'
+    assert eurofr.__str__() == 'EUR 10,00.00000'
 
 
 def test_eurofr_changed():
@@ -158,6 +165,10 @@ def test_eurofr_changed():
             AttributeError,
             match='can\'t set attribute'):
         eurofr.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        eurofr.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

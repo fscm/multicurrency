@@ -27,6 +27,7 @@ def test_boliviano():
     assert boliviano.alpha_code == 'BOB'
     assert boliviano.decimal_places == 2
     assert boliviano.decimal_sign == ','
+    assert boliviano.grouping_places == 3
     assert boliviano.grouping_sign == '.'
     assert not boliviano.international
     assert boliviano.symbol == 'Bs.'
@@ -43,6 +44,7 @@ def test_boliviano():
         'numeric_code: "068", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_boliviano_negative():
     assert boliviano.alpha_code == 'BOB'
     assert boliviano.decimal_places == 2
     assert boliviano.decimal_sign == ','
+    assert boliviano.grouping_places == 3
     assert boliviano.grouping_sign == '.'
     assert not boliviano.international
     assert boliviano.symbol == 'Bs.'
@@ -74,6 +77,7 @@ def test_boliviano_negative():
         'numeric_code: "068", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_boliviano_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='.',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_boliviano_custom():
     assert boliviano.alpha_code == 'BOB'
     assert boliviano.decimal_places == 5
     assert boliviano.decimal_sign == '.'
+    assert boliviano.grouping_places == 2
     assert boliviano.grouping_sign == ','
     assert boliviano.international
     assert boliviano.symbol == 'Bs.'
@@ -113,10 +119,11 @@ def test_boliviano_custom():
         'numeric_code: "068", '
         'decimal_places: "5", '
         'decimal_sign: ".", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert boliviano.__str__() == 'BOB 1,000.00000'
+    assert boliviano.__str__() == 'BOB 10,00.00000'
 
 
 def test_boliviano_changed():
@@ -158,6 +165,10 @@ def test_boliviano_changed():
             AttributeError,
             match='can\'t set attribute'):
         boliviano.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        boliviano.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

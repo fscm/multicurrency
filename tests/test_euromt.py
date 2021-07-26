@@ -27,6 +27,7 @@ def test_euromt():
     assert euromt.alpha_code == 'EUR'
     assert euromt.decimal_places == 2
     assert euromt.decimal_sign == '.'
+    assert euromt.grouping_places == 3
     assert euromt.grouping_sign == ','
     assert not euromt.international
     assert euromt.symbol == '€'
@@ -43,6 +44,7 @@ def test_euromt():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_euromt_negative():
     assert euromt.alpha_code == 'EUR'
     assert euromt.decimal_places == 2
     assert euromt.decimal_sign == '.'
+    assert euromt.grouping_places == 3
     assert euromt.grouping_sign == ','
     assert not euromt.international
     assert euromt.symbol == '€'
@@ -74,6 +77,7 @@ def test_euromt_negative():
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_euromt_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_euromt_custom():
     assert euromt.alpha_code == 'EUR'
     assert euromt.decimal_places == 5
     assert euromt.decimal_sign == ','
+    assert euromt.grouping_places == 2
     assert euromt.grouping_sign == '.'
     assert euromt.international
     assert euromt.symbol == '€'
@@ -113,10 +119,11 @@ def test_euromt_custom():
         'numeric_code: "978", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert euromt.__str__() == 'EUR 1,000.00000'
+    assert euromt.__str__() == 'EUR 10,00.00000'
 
 
 def test_euromt_changed():
@@ -158,6 +165,10 @@ def test_euromt_changed():
             AttributeError,
             match='can\'t set attribute'):
         euromt.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        euromt.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

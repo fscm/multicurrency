@@ -27,6 +27,7 @@ def test_kwacha():
     assert kwacha.alpha_code == 'MWK'
     assert kwacha.decimal_places == 2
     assert kwacha.decimal_sign == '.'
+    assert kwacha.grouping_places == 3
     assert kwacha.grouping_sign == ','
     assert not kwacha.international
     assert kwacha.symbol == 'MK'
@@ -43,6 +44,7 @@ def test_kwacha():
         'numeric_code: "454", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_kwacha_negative():
     assert kwacha.alpha_code == 'MWK'
     assert kwacha.decimal_places == 2
     assert kwacha.decimal_sign == '.'
+    assert kwacha.grouping_places == 3
     assert kwacha.grouping_sign == ','
     assert not kwacha.international
     assert kwacha.symbol == 'MK'
@@ -74,6 +77,7 @@ def test_kwacha_negative():
         'numeric_code: "454", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
+        'grouping_places: "3", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_kwacha_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign=',',
+        grouping_places=2,
         grouping_sign='.',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_kwacha_custom():
     assert kwacha.alpha_code == 'MWK'
     assert kwacha.decimal_places == 5
     assert kwacha.decimal_sign == ','
+    assert kwacha.grouping_places == 2
     assert kwacha.grouping_sign == '.'
     assert kwacha.international
     assert kwacha.symbol == 'MK'
@@ -113,10 +119,11 @@ def test_kwacha_custom():
         'numeric_code: "454", '
         'decimal_places: "5", '
         'decimal_sign: ",", '
+        'grouping_places: "2", '
         'grouping_sign: ".", '
         'convertion: "", '
         'international: True)')
-    assert kwacha.__str__() == 'MWK 1,000.00000'
+    assert kwacha.__str__() == 'MWK 10,00.00000'
 
 
 def test_kwacha_changed():
@@ -158,6 +165,10 @@ def test_kwacha_changed():
             AttributeError,
             match='can\'t set attribute'):
         kwacha.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        kwacha.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):

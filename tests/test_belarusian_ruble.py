@@ -27,6 +27,7 @@ def test_belarusian_ruble():
     assert belarusian_ruble.alpha_code == 'BYN'
     assert belarusian_ruble.decimal_places == 2
     assert belarusian_ruble.decimal_sign == ','
+    assert belarusian_ruble.grouping_places == 3
     assert belarusian_ruble.grouping_sign == '\u202F'
     assert not belarusian_ruble.international
     assert belarusian_ruble.symbol == 'Br'
@@ -43,6 +44,7 @@ def test_belarusian_ruble():
         'numeric_code: "933", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -58,6 +60,7 @@ def test_belarusian_ruble_negative():
     assert belarusian_ruble.alpha_code == 'BYN'
     assert belarusian_ruble.decimal_places == 2
     assert belarusian_ruble.decimal_sign == ','
+    assert belarusian_ruble.grouping_places == 3
     assert belarusian_ruble.grouping_sign == '\u202F'
     assert not belarusian_ruble.international
     assert belarusian_ruble.symbol == 'Br'
@@ -74,6 +77,7 @@ def test_belarusian_ruble_negative():
         'numeric_code: "933", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
+        'grouping_places: "3", '
         'grouping_sign: "\u202F", '
         'convertion: "", '
         'international: False)')
@@ -87,6 +91,7 @@ def test_belarusian_ruble_custom():
         amount=amount,
         decimal_places=5,
         decimal_sign='\u202F',
+        grouping_places=2,
         grouping_sign=',',
         international=True,
         symbol_ahead=False,
@@ -97,6 +102,7 @@ def test_belarusian_ruble_custom():
     assert belarusian_ruble.alpha_code == 'BYN'
     assert belarusian_ruble.decimal_places == 5
     assert belarusian_ruble.decimal_sign == '\u202F'
+    assert belarusian_ruble.grouping_places == 2
     assert belarusian_ruble.grouping_sign == ','
     assert belarusian_ruble.international
     assert belarusian_ruble.symbol == 'Br'
@@ -113,10 +119,11 @@ def test_belarusian_ruble_custom():
         'numeric_code: "933", '
         'decimal_places: "5", '
         'decimal_sign: "\u202F", '
+        'grouping_places: "2", '
         'grouping_sign: ",", '
         'convertion: "", '
         'international: True)')
-    assert belarusian_ruble.__str__() == 'BYN 1,000.00000'
+    assert belarusian_ruble.__str__() == 'BYN 10,00.00000'
 
 
 def test_belarusian_ruble_changed():
@@ -158,6 +165,10 @@ def test_belarusian_ruble_changed():
             AttributeError,
             match='can\'t set attribute'):
         belarusian_ruble.decimal_sign = ','
+    with raises(
+            AttributeError,
+            match='can\'t set attribute'):
+        belarusian_ruble.grouping_places = 4
     with raises(
             AttributeError,
             match='can\'t set attribute'):
