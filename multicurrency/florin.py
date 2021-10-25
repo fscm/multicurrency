@@ -67,6 +67,7 @@ class ArubanFlorin(Currency):
             symbol='ƒ',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='ƒ',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,

@@ -1,0 +1,211 @@
+
+
+"""Tests for the __CURRENCY_NAME__ representation."""
+
+from multicurrency import __CURRENCY_CLASS__
+
+
+class Test__CURRENCY_CLASS__:
+
+    def test___CURRENCY_VARIABLE__(self):
+        """test___CURRENCY_VARIABLE__."""
+        amount = CONTEXT.create_decimal(1) / CONTEXT.create_decimal(7)
+        __CURRENCY_VARIABLE__ = __CURRENCY_CLASS__(amount=amount)
+        decimal = CONTEXT.create_decimal(amount)
+        assert __CURRENCY_VARIABLE__.amount == decimal
+        assert __CURRENCY_VARIABLE__.numeric_code == '__CODE__'
+        assert __CURRENCY_VARIABLE__.alpha_code == '__CURRENCY__'
+        assert __CURRENCY_VARIABLE__.decimal_places == __DECIMAL_PLACES__
+        assert __CURRENCY_VARIABLE__.decimal_sign == '__DECIMAL_SIGN__'
+        assert __CURRENCY_VARIABLE__.grouping_places == __GROUPING_PLACES__
+        assert __CURRENCY_VARIABLE__.grouping_sign == '__GROUPING_SIGN_ALT__'
+        assert not __CURRENCY_VARIABLE__.international
+        assert __CURRENCY_VARIABLE__.symbol == '__SYMBOL__'
+        assert __SYMBOL_AHEAD_ALT____CURRENCY_VARIABLE__.symbol_ahead
+        assert __CURRENCY_VARIABLE__.symbol_separator == '__SYMBOL_SEPARATOR__'
+        assert __CURRENCY_VARIABLE__.localized_symbol == '__LOCALIZED_SYMBOL__'
+        assert __CURRENCY_VARIABLE__.convertion == '__CONVERTION__'
+        assert __CURRENCY_VARIABLE__.__hash__() == hash((decimal, '__CURRENCY__', '__CODE__'))
+        assert __CURRENCY_VARIABLE__.__repr__() == (
+            '__CURRENCY_CLASS__(amount: 0.1428571428571428571428571429, '
+            'alpha_code: "__CURRENCY__", '
+            'symbol: "__SYMBOL__", '
+            'symbol_ahead: __SYMBOL_AHEAD__, '
+            'symbol_separator: "__SYMBOL_SEPARATOR__", '
+            'localized_symbol: "__LOCALIZED_SYMBOL__", '
+            'numeric_code: "__CODE__", '
+            'decimal_places: "__DECIMAL_PLACES__", '
+            'decimal_sign: "__DECIMAL_SIGN__", '
+            'grouping_places: "__GROUPING_PLACES__", '
+            'grouping_sign: "__GROUPING_SIGN_ALT__", '
+            'convertion: "__CONVERTION__", '
+            'international: False)')
+        assert __CURRENCY_VARIABLE__.__str__() == '__EXAMPLE_1DIV7__'
+
+
+    def test___CURRENCY_VARIABLE___negative(self):
+        """test___CURRENCY_VARIABLE___negative."""
+        amount = -100
+        __CURRENCY_VARIABLE__ = __CURRENCY_CLASS__(amount=amount)
+        decimal = CONTEXT.create_decimal(amount)
+        assert __CURRENCY_VARIABLE__.numeric_code == '__CODE__'
+        assert __CURRENCY_VARIABLE__.alpha_code == '__CURRENCY__'
+        assert __CURRENCY_VARIABLE__.decimal_places == __DECIMAL_PLACES__
+        assert __CURRENCY_VARIABLE__.decimal_sign == '__DECIMAL_SIGN__'
+        assert __CURRENCY_VARIABLE__.grouping_places == __GROUPING_PLACES__
+        assert __CURRENCY_VARIABLE__.grouping_sign == '__GROUPING_SIGN_ALT__'
+        assert not __CURRENCY_VARIABLE__.international
+        assert __CURRENCY_VARIABLE__.symbol == '__SYMBOL__'
+        assert __SYMBOL_AHEAD_ALT____CURRENCY_VARIABLE__.symbol_ahead
+        assert __CURRENCY_VARIABLE__.symbol_separator == '__SYMBOL_SEPARATOR__'
+        assert __CURRENCY_VARIABLE__.localized_symbol == '__LOCALIZED_SYMBOL__'
+        assert __CURRENCY_VARIABLE__.convertion == '__CONVERTION__'
+        assert __CURRENCY_VARIABLE__.__hash__() == hash((decimal, '__CURRENCY__', '__CODE__'))
+        assert __CURRENCY_VARIABLE__.__repr__() == (
+            '__CURRENCY_CLASS__(amount: -100, '
+            'alpha_code: "__CURRENCY__", '
+            'symbol: "__SYMBOL__", '
+            'symbol_ahead: __SYMBOL_AHEAD__, '
+            'symbol_separator: "__SYMBOL_SEPARATOR__", '
+            'localized_symbol: "__LOCALIZED_SYMBOL__", '
+            'numeric_code: "__CODE__", '
+            'decimal_places: "__DECIMAL_PLACES__", '
+            'decimal_sign: "__DECIMAL_SIGN__", '
+            'grouping_places: "__GROUPING_PLACES__", '
+            'grouping_sign: "__GROUPING_SIGN_ALT__", '
+            'convertion: "__CONVERTION__", '
+            'international: False)')
+        assert __CURRENCY_VARIABLE__.__str__() == '__EXAMPLE_NEGATIVE__'
+
+
+    def test___CURRENCY_VARIABLE___custom(self):
+        """test___CURRENCY_VARIABLE___custom."""
+        amount = 1000
+        __CURRENCY_VARIABLE__ = __CURRENCY_CLASS__(
+            amount=amount,
+            decimal_places=5,
+            decimal_sign='__GROUPING_SIGN_ALT__',
+            grouping_places=2,
+            grouping_sign='__DECIMAL_SIGN__',
+            international=True,
+            symbol_ahead=False,
+            symbol_separator='_')
+        decimal = CONTEXT.create_decimal(amount)
+        assert __CURRENCY_VARIABLE__.amount == decimal
+        assert __CURRENCY_VARIABLE__.numeric_code == '__CODE__'
+        assert __CURRENCY_VARIABLE__.alpha_code == '__CURRENCY__'
+        assert __CURRENCY_VARIABLE__.decimal_places == 5
+        assert __CURRENCY_VARIABLE__.decimal_sign == '__GROUPING_SIGN_ALT__'
+        assert __CURRENCY_VARIABLE__.grouping_places == 2
+        assert __CURRENCY_VARIABLE__.grouping_sign == '__DECIMAL_SIGN__'
+        assert __CURRENCY_VARIABLE__.international
+        assert __CURRENCY_VARIABLE__.symbol == '__SYMBOL__'
+        assert not __CURRENCY_VARIABLE__.symbol_ahead
+        assert __CURRENCY_VARIABLE__.symbol_separator == '_'
+        assert __CURRENCY_VARIABLE__.localized_symbol == '__LOCALIZED_SYMBOL__'
+        assert __CURRENCY_VARIABLE__.convertion == '__CONVERTION__'
+        assert __CURRENCY_VARIABLE__.__hash__() == hash((decimal, '__CURRENCY__', '__CODE__'))
+        assert __CURRENCY_VARIABLE__.__repr__() == (
+            '__CURRENCY_CLASS__(amount: 1000, '
+            'alpha_code: "__CURRENCY__", '
+            'symbol: "__SYMBOL__", '
+            'symbol_ahead: False, '
+            'symbol_separator: "_", '
+            'localized_symbol: "__LOCALIZED_SYMBOL__", '
+            'numeric_code: "__CODE__", '
+            'decimal_places: "5", '
+            'decimal_sign: "__GROUPING_SIGN_ALT__", '
+            'grouping_places: "2", '
+            'grouping_sign: "__DECIMAL_SIGN__", '
+            'convertion: "__CONVERTION__", '
+            'international: True)')
+        assert __CURRENCY_VARIABLE__.__str__() == '__EXAMPLE_CUSTOM__'
+
+
+    def test___CURRENCY_VARIABLE___changed(self):
+        """test_c__CURRENCY_VARIABLE___changed."""
+        __CURRENCY_VARIABLE__ = __CURRENCY_CLASS__(amount=1000)
+        with raises(
+                AttributeError,
+                match='can\'t set attribute'):
+            __CURRENCY_VARIABLE__.amount = 999
+        with raises(
+                AttributeError,
+                match='can\'t set attribute'):
+            __CURRENCY_VARIABLE__.alpha_code = 'EUR'
+        with raises(
+                AttributeError,
+                match='can\'t set attribute'):
+            __CURRENCY_VARIABLE__.convertion = '0123456789,.'
+        with raises(
+                AttributeError,
+                match='can\'t set attribute'):
+            __CURRENCY_VARIABLE__.symbol = '€'
+        with raises(
+                AttributeError,
+                match='can\'t set attribute'):
+            __CURRENCY_VARIABLE__.symbol_ahead = False
+        with raises(
+                AttributeError,
+                match='can\'t set attribute'):
+            __CURRENCY_VARIABLE__.symbol_separator = '_'
+        with raises(
+                AttributeError,
+                match='can\'t set attribute'):
+            __CURRENCY_VARIABLE__.localized_symbol = '€'
+        with raises(
+                AttributeError,
+                match='can\'t set attribute'):
+            __CURRENCY_VARIABLE__.numeric_code = '978'
+        with raises(
+                AttributeError,
+                match='can\'t set attribute'):
+            __CURRENCY_VARIABLE__.decimal_places = 3
+        with raises(
+                AttributeError,
+                match='can\'t set attribute'):
+            __CURRENCY_VARIABLE__.decimal_sign = ','
+        with raises(
+                AttributeError,
+                match='can\'t set attribute'):
+            __CURRENCY_VARIABLE__.grouping_places = 4
+        with raises(
+                AttributeError,
+                match='can\'t set attribute'):
+            __CURRENCY_VARIABLE__.grouping_sign = '.'
+        with raises(
+                AttributeError,
+                match='can\'t set attribute'):
+            __CURRENCY_VARIABLE__.international = True
+
+
+    def test___CURRENCY_VARIABLE___math_add(self):
+        """test___CURRENCY_VARIABLE___math_add."""
+        __CURRENCY_VARIABLE___one = __CURRENCY_CLASS__(amount=1)
+        __CURRENCY_VARIABLE___two = __CURRENCY_CLASS__(amount=2)
+        __CURRENCY_VARIABLE___three = __CURRENCY_CLASS__(amount=3)
+        currency = Currency(amount=1, alpha_code='OTHER')
+        with raises(
+                CurrencyMismatchException,
+                match='unsupported operation between currency __CURRENCY__ and OTHER.'):
+            _ = __CURRENCY_VARIABLE___one + currency
+        with raises(
+                CurrencyTypeException,
+                match=('unsupported operation between <class \'multicurrency.'
+                    '__CURRENCY_MODULE__.__CURRENCY_CLASS__\'> '
+                    'and <class \'str\'>.')):
+            _ = __CURRENCY_VARIABLE___one.__add__('1.00')
+        assert (
+            __CURRENCY_VARIABLE___one +
+            __CURRENCY_VARIABLE___two) == __CURRENCY_VARIABLE___three
+
+
+    def test___CURRENCY_VARIABLE___slots(self):
+        """test___CURRENCY_VARIABLE___slots."""
+        __CURRENCY_VARIABLE__ = __CURRENCY_CLASS__(amount=1000)
+        with raises(
+                AttributeError,
+                match=(
+                    '\'__CURRENCY_CLASS__\' '
+                    'object has no attribute \'new_variable\'')):
+            __CURRENCY_VARIABLE__.new_variable = 'fail'  # pylint: disable=assigning-non-slot

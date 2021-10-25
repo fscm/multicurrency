@@ -36,6 +36,7 @@ currency = Currency(
     symbol='€',
     symbol_ahead=True,
     symbol_separator='',
+    localized_symbol='€',
     numeric_code='978',
     decimal_places=2,
     decimal_sign=',',
@@ -61,6 +62,7 @@ def test_currency_default():
     assert default.symbol == ''
     assert default.symbol_ahead
     assert default.symbol_separator == ''
+    assert default.localized_symbol == ''
     assert default.convertion == ''
     assert default.__hash__() == hash((decimal, '', '0'))
     assert default.__repr__() == (
@@ -69,6 +71,7 @@ def test_currency_default():
         'symbol: "", '
         'symbol_ahead: True, '
         'symbol_separator: "", '
+        'localized_symbol: "", '
         'numeric_code: "0", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -93,6 +96,7 @@ def test_currency_negative():
     assert default.symbol == ''
     assert default.symbol_ahead
     assert default.symbol_separator == ''
+    assert default.localized_symbol == ''
     assert default.convertion == ''
     assert default.__hash__() == hash((decimal, '', '0'))
     assert default.__repr__() == (
@@ -101,6 +105,7 @@ def test_currency_negative():
         'symbol: "", '
         'symbol_ahead: True, '
         'symbol_separator: "", '
+        'localized_symbol: "", '
         'numeric_code: "0", '
         'decimal_places: "2", '
         'decimal_sign: ".", '
@@ -120,6 +125,7 @@ def test_currency_custom():
         symbol='€',
         symbol_ahead=False,
         symbol_separator='\u00A0',
+        localized_symbol='PT€',
         numeric_code='978',
         decimal_places=2,
         decimal_sign=',',
@@ -139,6 +145,7 @@ def test_currency_custom():
     assert euro.symbol == '€'
     assert not euro.symbol_ahead
     assert euro.symbol_separator == '\u00A0'
+    assert euro.localized_symbol == 'PT€'
     assert euro.convertion == '0123456789-,.'
     assert euro.__hash__() == hash((decimal, 'EUR', '978'))
     assert euro.__repr__() == (
@@ -147,6 +154,7 @@ def test_currency_custom():
         'symbol: "€", '
         'symbol_ahead: False, '
         'symbol_separator: "\u00A0", '
+        'localized_symbol: "PT€", '
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
@@ -584,6 +592,7 @@ def test_currency_copy():
     assert new_currency.symbol == '€'
     assert new_currency.symbol_ahead
     assert new_currency.symbol_separator == ''
+    assert new_currency.localized_symbol == '€'
     assert new_currency.convertion == ''
     assert new_currency.__repr__() == (
         'Currency(amount: 0.1428571428571428571428571429, '
@@ -591,6 +600,7 @@ def test_currency_copy():
         'symbol: "€", '
         'symbol_ahead: True, '
         'symbol_separator: "", '
+        'localized_symbol: "€", '
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
@@ -616,6 +626,7 @@ def test_currency_deepcopy():
     assert new_currency.symbol == '€'
     assert new_currency.symbol_ahead
     assert new_currency.symbol_separator == ''
+    assert new_currency.localized_symbol == '€'
     assert new_currency.convertion == ''
     assert new_currency.__repr__() == (
         'Currency(amount: 0.1428571428571428571428571429, '
@@ -623,6 +634,7 @@ def test_currency_deepcopy():
         'symbol: "€", '
         'symbol_ahead: True, '
         'symbol_separator: "", '
+        'localized_symbol: "€", '
         'numeric_code: "978", '
         'decimal_places: "2", '
         'decimal_sign: ",", '
@@ -748,6 +760,59 @@ def test_currency_is_signed():
     """test_currency_is_signed."""
     assert currency_euro_negative_one.is_signed()
     assert not currency_euro_one.is_signed()
+
+
+def test_currency_localized_1():
+    """test_currency_localized_1."""
+    roundings = {
+        'ROUND_HALF_EVEN': {2: 'PT€0.14', 3: 'PT€0.143', 4: 'PT€0.1429'}}
+    for mode, results in roundings.items():
+        CurrencyContext.rounding = mode
+        for precision, result in results.items():
+            CurrencyContext.prec = precision
+            localized_currency = Currency(
+                amount=1/7,
+                alpha_code='EUR',
+                symbol='€',
+                localized_symbol='PT€',
+                numeric_code='978')
+            assert localized_currency.lstr(precision) == result
+    CurrencyContext.rounding = 'ROUND_HALF_EVEN'
+    CurrencyContext.prec = 28
+
+
+def test_currency_localized_2():
+    """test_currency_localized_2."""
+    roundings = {
+        'ROUND_HALF_EVEN': {2: 'PT€0.14', 3: 'PT€0.143', 4: 'PT€0.1429'}}
+    for mode, results in roundings.items():
+        CurrencyContext.rounding = mode
+        for precision, result in results.items():
+            CurrencyContext.prec = precision
+            localized_currency = Currency(
+                amount=1/7,
+                alpha_code='EUR',
+                symbol='€',
+                localized_symbol='PT€',
+                numeric_code='978',
+                international=True)
+            assert localized_currency.lstr(precision) == result
+    CurrencyContext.rounding = 'ROUND_HALF_EVEN'
+    CurrencyContext.prec = 28
+
+
+def test_currency_localized_3():
+    """test_currency_localized_3."""
+    localized_currency = Currency(
+        amount=1/7,
+        alpha_code='EUR',
+        symbol='€',
+        symbol_ahead=False,
+        localized_symbol='PT€',
+        numeric_code='978',
+        convertion='0123456789-')
+    assert localized_currency.lstr(-2) == '0PT€'
+    assert localized_currency.lstr(0) == '0PT€'
 
 
 def test_currency_precision_1():

@@ -67,6 +67,332 @@ class AustralianDollar(Currency):
             symbol='$',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class AustralianDollarAU(Currency):
+    """Australian Dollar AU currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import AustralianDollarAU
+        >>> australian_dollar_au = AustralianDollarAU(
+        ...     amount=123456.789)
+        >>> print(australian_dollar_au)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'AustralianDollarAU':
+        """Class creator.
+
+        Returns:
+            AustralianDollarAU: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='AUD',
+            numeric_code='036',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='AU$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class AustralianDollarKI(Currency):
+    """Australian Dollar KI currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import AustralianDollarKI
+        >>> australian_dollar_ki = AustralianDollarKI(
+        ...     amount=123456.789)
+        >>> print(australian_dollar_ki)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'AustralianDollarKI':
+        """Class creator.
+
+        Returns:
+            AustralianDollarKI: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='AUD',
+            numeric_code='036',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='KI$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class AustralianDollarCC(Currency):
+    """Australian Dollar CC currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import AustralianDollarCC
+        >>> australian_dollar_cc = AustralianDollarCC(
+        ...     amount=123456.789)
+        >>> print(australian_dollar_cc)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'AustralianDollarCC':
+        """Class creator.
+
+        Returns:
+            AustralianDollarCC: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='AUD',
+            numeric_code='036',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='CC$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class AustralianDollarMR(Currency):
+    """Australian Dollar MR currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import AustralianDollarMR
+        >>> australian_dollar_mr = AustralianDollarMR(
+        ...     amount=123456.789)
+        >>> print(australian_dollar_mr)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'AustralianDollarMR':
+        """Class creator.
+
+        Returns:
+            AustralianDollarMR: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='AUD',
+            numeric_code='036',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='NR$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class AustralianDollarTV(Currency):
+    """Australian Dollar TV currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import AustralianDollarTV
+        >>> australian_dollar_tv = AustralianDollarTV(
+        ...     amount=123456.789)
+        >>> print(australian_dollar_tv)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'AustralianDollarTV':
+        """Class creator.
+
+        Returns:
+            AustralianDollarTV: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='AUD',
+            numeric_code='036',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='TV$',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -131,6 +457,7 @@ class BarbadosDollar(Currency):
             symbol='$',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='BB$',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -195,6 +522,7 @@ class BermudianDollar(Currency):
             symbol='$',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='BM$',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -259,6 +587,137 @@ class BruneiDollar(Currency):
             symbol='$',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class BruneiDollarBN(Currency):
+    """Brunei Dollar BN currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import BruneiDollarBN
+        >>> brunei_dollar_bn = BruneiDollarBN(
+        ...     amount=123456.789)
+        >>> print(brunei_dollar_bn)
+        $ 123.456,79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = '.',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '\u00A0',
+            **other) -> 'BruneiDollarBN':
+        """Class creator.
+
+        Returns:
+            BruneiDollarBN: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='BND',
+            numeric_code='096',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='BN$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class BruneiDollarSG(Currency):
+    """Brunei Dollar SG currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import BruneiDollarSG
+        >>> brunei_dollar_sg = BruneiDollarSG(
+        ...     amount=123456.789)
+        >>> print(brunei_dollar_sg)
+        $ 123.456,79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = '.',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '\u00A0',
+            **other) -> 'BruneiDollarSG':
+        """Class creator.
+
+        Returns:
+            BruneiDollarSG: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='BND',
+            numeric_code='096',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='SG$',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -323,6 +782,7 @@ class BahamianDollar(Currency):
             symbol='$',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='BS$',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -387,6 +847,7 @@ class BelizeDollar(Currency):
             symbol='$',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='BZ$',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -451,6 +912,7 @@ class CanadianDollarEN(Currency):
             symbol='$',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='CA$',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -515,6 +977,7 @@ class CanadianDollarFR(Currency):
             symbol='$',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='CA$',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -579,6 +1042,7 @@ class FijiDollar(Currency):
             symbol='$',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='FJ$',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -643,6 +1107,7 @@ class GuyanaDollar(Currency):
             symbol='$',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='GY$',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -707,6 +1172,7 @@ class HongKongDollar(Currency):
             symbol='$',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='HK$',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -771,6 +1237,7 @@ class JamaicanDollar(Currency):
             symbol='$',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='JM$',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -835,6 +1302,7 @@ class CaymanIslandsDollar(Currency):
             symbol='$',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='KY$',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -899,6 +1367,7 @@ class LiberianDollar(Currency):
             symbol='$',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='LR$',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -963,6 +1432,7 @@ class NamibiaDollar(Currency):
             symbol='$',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='NA$',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -1027,6 +1497,267 @@ class NewZealandDollar(Currency):
             symbol='$',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class NewZealandDollarCK(Currency):
+    """New Zealand Dollar CK currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import NewZealandDollarCK
+        >>> new_zealand_dollar_ck = NewZealandDollarCK(
+        ...     amount=123456.789)
+        >>> print(new_zealand_dollar_ck)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'NewZealandDollarCK':
+        """Class creator.
+
+        Returns:
+            NewZealandDollarCK: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='NZD',
+            numeric_code='554',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='CK$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class NewZealandDollarNZ(Currency):
+    """New Zealand Dollar NZ currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import NewZealandDollarNZ
+        >>> new_zealand_dollar_nz = NewZealandDollarNZ(
+        ...     amount=123456.789)
+        >>> print(new_zealand_dollar_nz)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'NewZealandDollarNZ':
+        """Class creator.
+
+        Returns:
+            NewZealandDollarNZ: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='NZD',
+            numeric_code='554',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='NZ$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class NewZealandDollarNU(Currency):
+    """New Zealand Dollar NU currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import NewZealandDollarNU
+        >>> new_zealand_dollar_nu = NewZealandDollarNU(
+        ...     amount=123456.789)
+        >>> print(new_zealand_dollar_nu)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'NewZealandDollarNU':
+        """Class creator.
+
+        Returns:
+            NewZealandDollarNU: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='NZD',
+            numeric_code='554',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='NU$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class NewZealandDollarPN(Currency):
+    """New Zealand Dollar PN currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import NewZealandDollarPN
+        >>> new_zealand_dollar_pn = NewZealandDollarPN(
+        ...     amount=123456.789)
+        >>> print(new_zealand_dollar_pn)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'NewZealandDollarPN':
+        """Class creator.
+
+        Returns:
+            NewZealandDollarPN: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='NZD',
+            numeric_code='554',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='PN$',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -1091,6 +1822,7 @@ class SolomonIslandsDollar(Currency):
             symbol='$',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='SB$',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -1155,6 +1887,137 @@ class SingaporeDollar(Currency):
             symbol='$',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class SingaporeDollarBN(Currency):
+    """Singapore Dollar BN currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import SingaporeDollarBN
+        >>> singapore_dollar_bn = SingaporeDollarBN(
+        ...     amount=123456.789)
+        >>> print(singapore_dollar_bn)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'SingaporeDollarBN':
+        """Class creator.
+
+        Returns:
+            SingaporeDollarBN: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='SGD',
+            numeric_code='702',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='BN$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class SingaporeDollarSG(Currency):
+    """Singapore Dollar SG currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import SingaporeDollarSG
+        >>> singapore_dollar_sg = SingaporeDollarSG(
+        ...     amount=123456.789)
+        >>> print(singapore_dollar_sg)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'SingaporeDollarSG':
+        """Class creator.
+
+        Returns:
+            SingaporeDollarSG: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='SGD',
+            numeric_code='702',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='SG$',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -1219,6 +2082,7 @@ class SurinameDollar(Currency):
             symbol='$',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='SR$',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -1283,6 +2147,7 @@ class TrinidadandTobagoDollar(Currency):
             symbol='$',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='TT$',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -1347,6 +2212,7 @@ class TaiwanDollar(Currency):
             symbol='$',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='TW$',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -1411,6 +2277,7 @@ class USDollar(Currency):
             symbol='$',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='US$',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -1419,15 +2286,15 @@ class USDollar(Currency):
             international=international)
 
 
-class EastCaribbeanDollar(Currency):
-    """East Caribbean Dollar currency representation.
+class USDollarAS(Currency):
+    """US Dollar AS currency representation.
 
     Simple usage example:
 
-        >>> from multicurrency import EastCaribbeanDollar
-        >>> east_caribbean_dollar = EastCaribbeanDollar(
+        >>> from multicurrency import USDollarAS
+        >>> us_dollar_as = USDollarAS(
         ...     amount=123456.789)
-        >>> print(east_caribbean_dollar)
+        >>> print(us_dollar_as)
         $123,456.79
 
     For more details see `multicurrency.currency.Currency` .
@@ -1461,11 +2328,921 @@ class EastCaribbeanDollar(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'EastCaribbeanDollar':
+            **other) -> 'USDollarAS':
         """Class creator.
 
         Returns:
-            EastCaribbeanDollar: new opbject.
+            USDollarAS: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='USD',
+            numeric_code='840',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='AS$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class USDollarIO(Currency):
+    """US Dollar IO currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import USDollarIO
+        >>> us_dollar_io = USDollarIO(
+        ...     amount=123456.789)
+        >>> print(us_dollar_io)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'USDollarIO':
+        """Class creator.
+
+        Returns:
+            USDollarIO: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='USD',
+            numeric_code='840',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='IO$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class USDollarVG(Currency):
+    """US Dollar VG currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import USDollarVG
+        >>> us_dollar_vg = USDollarVG(
+        ...     amount=123456.789)
+        >>> print(us_dollar_vg)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'USDollarVG':
+        """Class creator.
+
+        Returns:
+            USDollarVG: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='USD',
+            numeric_code='840',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='VG$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class USDollarGU(Currency):
+    """US Dollar GU currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import USDollarGU
+        >>> us_dollar_gu = USDollarGU(
+        ...     amount=123456.789)
+        >>> print(us_dollar_gu)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'USDollarGU':
+        """Class creator.
+
+        Returns:
+            USDollarGU: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='USD',
+            numeric_code='840',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='GU$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class USDollarHT(Currency):
+    """US Dollar HT currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import USDollarHT
+        >>> us_dollar_ht = USDollarHT(
+        ...     amount=123456.789)
+        >>> print(us_dollar_ht)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'USDollarHT':
+        """Class creator.
+
+        Returns:
+            USDollarHT: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='USD',
+            numeric_code='840',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='HT$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class USDollarMH(Currency):
+    """US Dollar MH currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import USDollarMH
+        >>> us_dollar_mh = USDollarMH(
+        ...     amount=123456.789)
+        >>> print(us_dollar_mh)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'USDollarMH':
+        """Class creator.
+
+        Returns:
+            USDollarMH: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='USD',
+            numeric_code='840',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='MH$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class USDollarFM(Currency):
+    """US Dollar FM currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import USDollarFM
+        >>> us_dollar_fm = USDollarFM(
+        ...     amount=123456.789)
+        >>> print(us_dollar_fm)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'USDollarFM':
+        """Class creator.
+
+        Returns:
+            USDollarFM: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='USD',
+            numeric_code='840',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='FM$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class USDollarMP(Currency):
+    """US Dollar MP currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import USDollarMP
+        >>> us_dollar_mp = USDollarMP(
+        ...     amount=123456.789)
+        >>> print(us_dollar_mp)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'USDollarMP':
+        """Class creator.
+
+        Returns:
+            USDollarMP: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='USD',
+            numeric_code='840',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='MP$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class USDollarPC(Currency):
+    """US Dollar PC currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import USDollarPC
+        >>> us_dollar_pc = USDollarPC(
+        ...     amount=123456.789)
+        >>> print(us_dollar_pc)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'USDollarPC':
+        """Class creator.
+
+        Returns:
+            USDollarPC: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='USD',
+            numeric_code='840',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='PC$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class USDollarPW(Currency):
+    """US Dollar PW currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import USDollarPW
+        >>> us_dollar_pw = USDollarPW(
+        ...     amount=123456.789)
+        >>> print(us_dollar_pw)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'USDollarPW':
+        """Class creator.
+
+        Returns:
+            USDollarPW: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='USD',
+            numeric_code='840',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='PW$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class USDollarPA(Currency):
+    """US Dollar PA currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import USDollarPA
+        >>> us_dollar_pa = USDollarPA(
+        ...     amount=123456.789)
+        >>> print(us_dollar_pa)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'USDollarPA':
+        """Class creator.
+
+        Returns:
+            USDollarPA: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='USD',
+            numeric_code='840',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='PA$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class USDollarPR(Currency):
+    """US Dollar PR currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import USDollarPR
+        >>> us_dollar_pr = USDollarPR(
+        ...     amount=123456.789)
+        >>> print(us_dollar_pr)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'USDollarPR':
+        """Class creator.
+
+        Returns:
+            USDollarPR: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='USD',
+            numeric_code='840',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='PR$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class USDollarTC(Currency):
+    """US Dollar TC currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import USDollarTC
+        >>> us_dollar_tc = USDollarTC(
+        ...     amount=123456.789)
+        >>> print(us_dollar_tc)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'USDollarTC':
+        """Class creator.
+
+        Returns:
+            USDollarTC: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='USD',
+            numeric_code='840',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='TC$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class USDollarVI(Currency):
+    """US Dollar VI currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import USDollarVI
+        >>> us_dollar_vi = USDollarVI(
+        ...     amount=123456.789)
+        >>> print(us_dollar_vi)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'USDollarVI':
+        """Class creator.
+
+        Returns:
+            USDollarVI: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='USD',
+            numeric_code='840',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='VI$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class EasternCaribbeanDollar(Currency):
+    """Eastern Caribbean Dollar currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import EasternCaribbeanDollar
+        >>> eastern_caribbean_dollar = EasternCaribbeanDollar(
+        ...     amount=123456.789)
+        >>> print(eastern_caribbean_dollar)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'EasternCaribbeanDollar':
+        """Class creator.
+
+        Returns:
+            EasternCaribbeanDollar: new opbject.
         """
         return Currency.__new__(
             cls,
@@ -1475,6 +3252,527 @@ class EastCaribbeanDollar(Currency):
             symbol='$',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class EasternCaribbeanDollarAI(Currency):
+    """Eastern Caribbean Dollar AI currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import EasternCaribbeanDollarAI
+        >>> eastern_caribbean_dollar_ai = EasternCaribbeanDollarAI(
+        ...     amount=123456.789)
+        >>> print(eastern_caribbean_dollar_ai)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'EasternCaribbeanDollarAI':
+        """Class creator.
+
+        Returns:
+            EasternCaribbeanDollarAI: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='XCD',
+            numeric_code='951',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='AI$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class EasternCaribbeanDollarAG(Currency):
+    """Eastern Caribbean Dollar AG currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import EasternCaribbeanDollarAG
+        >>> eastern_caribbean_dollar_ag = EasternCaribbeanDollarAG(
+        ...     amount=123456.789)
+        >>> print(eastern_caribbean_dollar_ag)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'EasternCaribbeanDollarAG':
+        """Class creator.
+
+        Returns:
+            EasternCaribbeanDollarAG: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='XCD',
+            numeric_code='951',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='AG$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class EasternCaribbeanDollarDM(Currency):
+    """Eastern Caribbean Dollar DM currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import EasternCaribbeanDollarDM
+        >>> eastern_caribbean_dollar_dm = EasternCaribbeanDollarDM(
+        ...     amount=123456.789)
+        >>> print(eastern_caribbean_dollar_dm)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'EasternCaribbeanDollarDM':
+        """Class creator.
+
+        Returns:
+            EasternCaribbeanDollarDM: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='XCD',
+            numeric_code='951',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='DM$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class EasternCaribbeanDollarGD(Currency):
+    """Eastern Caribbean Dollar GD currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import EasternCaribbeanDollarGD
+        >>> eastern_caribbean_dollar_gd = EasternCaribbeanDollarGD(
+        ...     amount=123456.789)
+        >>> print(eastern_caribbean_dollar_gd)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'EasternCaribbeanDollarGD':
+        """Class creator.
+
+        Returns:
+            EasternCaribbeanDollarGD: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='XCD',
+            numeric_code='951',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='GD$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class EasternCaribbeanDollarMS(Currency):
+    """Eastern Caribbean Dollar MS currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import EasternCaribbeanDollarMS
+        >>> eastern_caribbean_dollar_ms = EasternCaribbeanDollarMS(
+        ...     amount=123456.789)
+        >>> print(eastern_caribbean_dollar_ms)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'EasternCaribbeanDollarMS':
+        """Class creator.
+
+        Returns:
+            EasternCaribbeanDollarMS: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='XCD',
+            numeric_code='951',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='MS$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class EasternCaribbeanDollarKN(Currency):
+    """Eastern Caribbean Dollar KN currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import EasternCaribbeanDollarKN
+        >>> eastern_caribbean_dollar_kn = EasternCaribbeanDollarKN(
+        ...     amount=123456.789)
+        >>> print(eastern_caribbean_dollar_kn)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'EasternCaribbeanDollarKN':
+        """Class creator.
+
+        Returns:
+            EasternCaribbeanDollarKN: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='XCD',
+            numeric_code='951',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='KN$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class EasternCaribbeanDollarLC(Currency):
+    """Eastern Caribbean Dollar LC currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import EasternCaribbeanDollarLC
+        >>> eastern_caribbean_dollar_lc = EasternCaribbeanDollarLC(
+        ...     amount=123456.789)
+        >>> print(eastern_caribbean_dollar_lc)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'EasternCaribbeanDollarLC':
+        """Class creator.
+
+        Returns:
+            EasternCaribbeanDollarLC: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='XCD',
+            numeric_code='951',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='LC$',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class EasternCaribbeanDollarVC(Currency):
+    """Eastern Caribbean Dollar VC currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import EasternCaribbeanDollarVC
+        >>> eastern_caribbean_dollar_vc = EasternCaribbeanDollarVC(
+        ...     amount=123456.789)
+        >>> print(eastern_caribbean_dollar_vc)
+        $123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'EasternCaribbeanDollarVC':
+        """Class creator.
+
+        Returns:
+            EasternCaribbeanDollarVC: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='XCD',
+            numeric_code='951',
+            symbol='$',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='VC$',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -1539,6 +3837,7 @@ class ZimbabweDollar(Currency):
             symbol='$',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='ZW$',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.9.2" />
+<meta name="generator" content="pdoc 0.10.0" />
 <title>multicurrency.currency API documentation</title>
 <meta name="description" content="Currency representation …" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
@@ -100,6 +100,10 @@ one the fields on the left of that are required to be set as well.</p>
 <tr>
 <td align="left">%s</td>
 <td align="left">The currency's symbol.</td>
+</tr>
+<tr>
+<td align="left">%S</td>
+<td align="left">The currency's localized symbol.</td>
 </tr>
 <tr>
 <td align="left">%_</td>
@@ -338,7 +342,7 @@ resutls.</p>
 <dl>
 <dt id="multicurrency.currency.Currency"><code class="flex name class">
 <span>class <span class="ident">Currency</span></span>
-<span>(</span><span>amount: Union[int, float, decimal.Decimal], alpha_code: Optional[str] = '', numeric_code: Optional[str] = '0', symbol: Optional[str] = '', symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '', decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '.', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = ',', convertion: Optional[str] = '', international: Optional[bool] = False)</span>
+<span>(</span><span>amount: Union[int, float, decimal.Decimal], alpha_code: Optional[str] = '', numeric_code: Optional[str] = '0', symbol: Optional[str] = '', symbol_ahead: Optional[bool] = True, symbol_separator: Optional[str] = '', localized_symbol: Optional[str] = '', decimal_places: Optional[int] = 2, decimal_sign: Optional[str] = '.', grouping_places: Optional[int] = 3, grouping_sign: Optional[str] = ',', convertion: Optional[str] = '', international: Optional[bool] = False)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Currency representation.</p>
@@ -385,6 +389,8 @@ and the value. Defaults to ''.</dd>
 <dt><strong><code>symbol_ahead</code></strong> :&ensp;<code>bool</code>, optional</dt>
 <dd>True if symbol goes ahead of the
 value. False otherwise. Defaults to False.</dd>
+<dt>localized_symbol ((str, optional)): Represented currency</dt>
+<dt>localizedsymbol. Defaults to the value of <code>symbol</code>.</dt>
 <dt><strong><code>decimal_places</code></strong> :&ensp;<code>int</code>, optional</dt>
 <dd>Number of decimal places for the
 currency representation. Defaults to 2,</dd>
@@ -436,15 +442,30 @@ followed by the minus ('-') sign. Defaults to ''.</dd>
 <li><a title="multicurrency.dirham.UAEDirham" href="dirham.html#multicurrency.dirham.UAEDirham">UAEDirham</a></li>
 <li><a title="multicurrency.dobra.Dobra" href="dobra.html#multicurrency.dobra.Dobra">Dobra</a></li>
 <li><a title="multicurrency.dollar.AustralianDollar" href="dollar.html#multicurrency.dollar.AustralianDollar">AustralianDollar</a></li>
+<li><a title="multicurrency.dollar.AustralianDollarAU" href="dollar.html#multicurrency.dollar.AustralianDollarAU">AustralianDollarAU</a></li>
+<li><a title="multicurrency.dollar.AustralianDollarCC" href="dollar.html#multicurrency.dollar.AustralianDollarCC">AustralianDollarCC</a></li>
+<li><a title="multicurrency.dollar.AustralianDollarKI" href="dollar.html#multicurrency.dollar.AustralianDollarKI">AustralianDollarKI</a></li>
+<li><a title="multicurrency.dollar.AustralianDollarMR" href="dollar.html#multicurrency.dollar.AustralianDollarMR">AustralianDollarMR</a></li>
+<li><a title="multicurrency.dollar.AustralianDollarTV" href="dollar.html#multicurrency.dollar.AustralianDollarTV">AustralianDollarTV</a></li>
 <li><a title="multicurrency.dollar.BahamianDollar" href="dollar.html#multicurrency.dollar.BahamianDollar">BahamianDollar</a></li>
 <li><a title="multicurrency.dollar.BarbadosDollar" href="dollar.html#multicurrency.dollar.BarbadosDollar">BarbadosDollar</a></li>
 <li><a title="multicurrency.dollar.BelizeDollar" href="dollar.html#multicurrency.dollar.BelizeDollar">BelizeDollar</a></li>
 <li><a title="multicurrency.dollar.BermudianDollar" href="dollar.html#multicurrency.dollar.BermudianDollar">BermudianDollar</a></li>
 <li><a title="multicurrency.dollar.BruneiDollar" href="dollar.html#multicurrency.dollar.BruneiDollar">BruneiDollar</a></li>
+<li><a title="multicurrency.dollar.BruneiDollarBN" href="dollar.html#multicurrency.dollar.BruneiDollarBN">BruneiDollarBN</a></li>
+<li><a title="multicurrency.dollar.BruneiDollarSG" href="dollar.html#multicurrency.dollar.BruneiDollarSG">BruneiDollarSG</a></li>
 <li><a title="multicurrency.dollar.CanadianDollarEN" href="dollar.html#multicurrency.dollar.CanadianDollarEN">CanadianDollarEN</a></li>
 <li><a title="multicurrency.dollar.CanadianDollarFR" href="dollar.html#multicurrency.dollar.CanadianDollarFR">CanadianDollarFR</a></li>
 <li><a title="multicurrency.dollar.CaymanIslandsDollar" href="dollar.html#multicurrency.dollar.CaymanIslandsDollar">CaymanIslandsDollar</a></li>
-<li><a title="multicurrency.dollar.EastCaribbeanDollar" href="dollar.html#multicurrency.dollar.EastCaribbeanDollar">EastCaribbeanDollar</a></li>
+<li><a title="multicurrency.dollar.EasternCaribbeanDollar" href="dollar.html#multicurrency.dollar.EasternCaribbeanDollar">EasternCaribbeanDollar</a></li>
+<li><a title="multicurrency.dollar.EasternCaribbeanDollarAG" href="dollar.html#multicurrency.dollar.EasternCaribbeanDollarAG">EasternCaribbeanDollarAG</a></li>
+<li><a title="multicurrency.dollar.EasternCaribbeanDollarAI" href="dollar.html#multicurrency.dollar.EasternCaribbeanDollarAI">EasternCaribbeanDollarAI</a></li>
+<li><a title="multicurrency.dollar.EasternCaribbeanDollarDM" href="dollar.html#multicurrency.dollar.EasternCaribbeanDollarDM">EasternCaribbeanDollarDM</a></li>
+<li><a title="multicurrency.dollar.EasternCaribbeanDollarGD" href="dollar.html#multicurrency.dollar.EasternCaribbeanDollarGD">EasternCaribbeanDollarGD</a></li>
+<li><a title="multicurrency.dollar.EasternCaribbeanDollarKN" href="dollar.html#multicurrency.dollar.EasternCaribbeanDollarKN">EasternCaribbeanDollarKN</a></li>
+<li><a title="multicurrency.dollar.EasternCaribbeanDollarLC" href="dollar.html#multicurrency.dollar.EasternCaribbeanDollarLC">EasternCaribbeanDollarLC</a></li>
+<li><a title="multicurrency.dollar.EasternCaribbeanDollarMS" href="dollar.html#multicurrency.dollar.EasternCaribbeanDollarMS">EasternCaribbeanDollarMS</a></li>
+<li><a title="multicurrency.dollar.EasternCaribbeanDollarVC" href="dollar.html#multicurrency.dollar.EasternCaribbeanDollarVC">EasternCaribbeanDollarVC</a></li>
 <li><a title="multicurrency.dollar.FijiDollar" href="dollar.html#multicurrency.dollar.FijiDollar">FijiDollar</a></li>
 <li><a title="multicurrency.dollar.GuyanaDollar" href="dollar.html#multicurrency.dollar.GuyanaDollar">GuyanaDollar</a></li>
 <li><a title="multicurrency.dollar.HongKongDollar" href="dollar.html#multicurrency.dollar.HongKongDollar">HongKongDollar</a></li>
@@ -452,12 +473,32 @@ followed by the minus ('-') sign. Defaults to ''.</dd>
 <li><a title="multicurrency.dollar.LiberianDollar" href="dollar.html#multicurrency.dollar.LiberianDollar">LiberianDollar</a></li>
 <li><a title="multicurrency.dollar.NamibiaDollar" href="dollar.html#multicurrency.dollar.NamibiaDollar">NamibiaDollar</a></li>
 <li><a title="multicurrency.dollar.NewZealandDollar" href="dollar.html#multicurrency.dollar.NewZealandDollar">NewZealandDollar</a></li>
+<li><a title="multicurrency.dollar.NewZealandDollarCK" href="dollar.html#multicurrency.dollar.NewZealandDollarCK">NewZealandDollarCK</a></li>
+<li><a title="multicurrency.dollar.NewZealandDollarNU" href="dollar.html#multicurrency.dollar.NewZealandDollarNU">NewZealandDollarNU</a></li>
+<li><a title="multicurrency.dollar.NewZealandDollarNZ" href="dollar.html#multicurrency.dollar.NewZealandDollarNZ">NewZealandDollarNZ</a></li>
+<li><a title="multicurrency.dollar.NewZealandDollarPN" href="dollar.html#multicurrency.dollar.NewZealandDollarPN">NewZealandDollarPN</a></li>
 <li><a title="multicurrency.dollar.SingaporeDollar" href="dollar.html#multicurrency.dollar.SingaporeDollar">SingaporeDollar</a></li>
+<li><a title="multicurrency.dollar.SingaporeDollarBN" href="dollar.html#multicurrency.dollar.SingaporeDollarBN">SingaporeDollarBN</a></li>
+<li><a title="multicurrency.dollar.SingaporeDollarSG" href="dollar.html#multicurrency.dollar.SingaporeDollarSG">SingaporeDollarSG</a></li>
 <li><a title="multicurrency.dollar.SolomonIslandsDollar" href="dollar.html#multicurrency.dollar.SolomonIslandsDollar">SolomonIslandsDollar</a></li>
 <li><a title="multicurrency.dollar.SurinameDollar" href="dollar.html#multicurrency.dollar.SurinameDollar">SurinameDollar</a></li>
 <li><a title="multicurrency.dollar.TaiwanDollar" href="dollar.html#multicurrency.dollar.TaiwanDollar">TaiwanDollar</a></li>
 <li><a title="multicurrency.dollar.TrinidadandTobagoDollar" href="dollar.html#multicurrency.dollar.TrinidadandTobagoDollar">TrinidadandTobagoDollar</a></li>
 <li><a title="multicurrency.dollar.USDollar" href="dollar.html#multicurrency.dollar.USDollar">USDollar</a></li>
+<li><a title="multicurrency.dollar.USDollarAS" href="dollar.html#multicurrency.dollar.USDollarAS">USDollarAS</a></li>
+<li><a title="multicurrency.dollar.USDollarFM" href="dollar.html#multicurrency.dollar.USDollarFM">USDollarFM</a></li>
+<li><a title="multicurrency.dollar.USDollarGU" href="dollar.html#multicurrency.dollar.USDollarGU">USDollarGU</a></li>
+<li><a title="multicurrency.dollar.USDollarHT" href="dollar.html#multicurrency.dollar.USDollarHT">USDollarHT</a></li>
+<li><a title="multicurrency.dollar.USDollarIO" href="dollar.html#multicurrency.dollar.USDollarIO">USDollarIO</a></li>
+<li><a title="multicurrency.dollar.USDollarMH" href="dollar.html#multicurrency.dollar.USDollarMH">USDollarMH</a></li>
+<li><a title="multicurrency.dollar.USDollarMP" href="dollar.html#multicurrency.dollar.USDollarMP">USDollarMP</a></li>
+<li><a title="multicurrency.dollar.USDollarPA" href="dollar.html#multicurrency.dollar.USDollarPA">USDollarPA</a></li>
+<li><a title="multicurrency.dollar.USDollarPC" href="dollar.html#multicurrency.dollar.USDollarPC">USDollarPC</a></li>
+<li><a title="multicurrency.dollar.USDollarPR" href="dollar.html#multicurrency.dollar.USDollarPR">USDollarPR</a></li>
+<li><a title="multicurrency.dollar.USDollarPW" href="dollar.html#multicurrency.dollar.USDollarPW">USDollarPW</a></li>
+<li><a title="multicurrency.dollar.USDollarTC" href="dollar.html#multicurrency.dollar.USDollarTC">USDollarTC</a></li>
+<li><a title="multicurrency.dollar.USDollarVG" href="dollar.html#multicurrency.dollar.USDollarVG">USDollarVG</a></li>
+<li><a title="multicurrency.dollar.USDollarVI" href="dollar.html#multicurrency.dollar.USDollarVI">USDollarVI</a></li>
 <li><a title="multicurrency.dollar.ZimbabweDollar" href="dollar.html#multicurrency.dollar.ZimbabweDollar">ZimbabweDollar</a></li>
 <li><a title="multicurrency.dong.Dong" href="dong.html#multicurrency.dong.Dong">Dong</a></li>
 <li><a title="multicurrency.dram.ArmenianDram" href="dram.html#multicurrency.dram.ArmenianDram">ArmenianDram</a></li>
@@ -483,6 +524,7 @@ followed by the minus ('-') sign. Defaults to ''.</dd>
 <li><a title="multicurrency.euro.EuroMT" href="euro.html#multicurrency.euro.EuroMT">EuroMT</a></li>
 <li><a title="multicurrency.euro.EuroNL" href="euro.html#multicurrency.euro.EuroNL">EuroNL</a></li>
 <li><a title="multicurrency.euro.EuroPT" href="euro.html#multicurrency.euro.EuroPT">EuroPT</a></li>
+<li><a title="multicurrency.euro.EuroSBA" href="euro.html#multicurrency.euro.EuroSBA">EuroSBA</a></li>
 <li><a title="multicurrency.euro.EuroSI" href="euro.html#multicurrency.euro.EuroSI">EuroSI</a></li>
 <li><a title="multicurrency.euro.EuroSK" href="euro.html#multicurrency.euro.EuroSK">EuroSK</a></li>
 <li><a title="multicurrency.euro.EuroSM" href="euro.html#multicurrency.euro.EuroSM">EuroSM</a></li>
@@ -492,13 +534,32 @@ followed by the minus ('-') sign. Defaults to ''.</dd>
 <li><a title="multicurrency.forint.Forint" href="forint.html#multicurrency.forint.Forint">Forint</a></li>
 <li><a title="multicurrency.franc.BurundiFranc" href="franc.html#multicurrency.franc.BurundiFranc">BurundiFranc</a></li>
 <li><a title="multicurrency.franc.CFAFrancBCEAO" href="franc.html#multicurrency.franc.CFAFrancBCEAO">CFAFrancBCEAO</a></li>
+<li><a title="multicurrency.franc.CFAFrancBCEAOBF" href="franc.html#multicurrency.franc.CFAFrancBCEAOBF">CFAFrancBCEAOBF</a></li>
+<li><a title="multicurrency.franc.CFAFrancBCEAOBJ" href="franc.html#multicurrency.franc.CFAFrancBCEAOBJ">CFAFrancBCEAOBJ</a></li>
+<li><a title="multicurrency.franc.CFAFrancBCEAOCI" href="franc.html#multicurrency.franc.CFAFrancBCEAOCI">CFAFrancBCEAOCI</a></li>
+<li><a title="multicurrency.franc.CFAFrancBCEAOGW" href="franc.html#multicurrency.franc.CFAFrancBCEAOGW">CFAFrancBCEAOGW</a></li>
+<li><a title="multicurrency.franc.CFAFrancBCEAOML" href="franc.html#multicurrency.franc.CFAFrancBCEAOML">CFAFrancBCEAOML</a></li>
+<li><a title="multicurrency.franc.CFAFrancBCEAONG" href="franc.html#multicurrency.franc.CFAFrancBCEAONG">CFAFrancBCEAONG</a></li>
+<li><a title="multicurrency.franc.CFAFrancBCEAOSN" href="franc.html#multicurrency.franc.CFAFrancBCEAOSN">CFAFrancBCEAOSN</a></li>
+<li><a title="multicurrency.franc.CFAFrancBCEAOTG" href="franc.html#multicurrency.franc.CFAFrancBCEAOTG">CFAFrancBCEAOTG</a></li>
 <li><a title="multicurrency.franc.CFAFrancBEAC" href="franc.html#multicurrency.franc.CFAFrancBEAC">CFAFrancBEAC</a></li>
+<li><a title="multicurrency.franc.CFAFrancBEACCD" href="franc.html#multicurrency.franc.CFAFrancBEACCD">CFAFrancBEACCD</a></li>
+<li><a title="multicurrency.franc.CFAFrancBEACCF" href="franc.html#multicurrency.franc.CFAFrancBEACCF">CFAFrancBEACCF</a></li>
+<li><a title="multicurrency.franc.CFAFrancBEACCM" href="franc.html#multicurrency.franc.CFAFrancBEACCM">CFAFrancBEACCM</a></li>
+<li><a title="multicurrency.franc.CFAFrancBEACGA" href="franc.html#multicurrency.franc.CFAFrancBEACGA">CFAFrancBEACGA</a></li>
+<li><a title="multicurrency.franc.CFAFrancBEACGQ" href="franc.html#multicurrency.franc.CFAFrancBEACGQ">CFAFrancBEACGQ</a></li>
+<li><a title="multicurrency.franc.CFAFrancBEACTD" href="franc.html#multicurrency.franc.CFAFrancBEACTD">CFAFrancBEACTD</a></li>
 <li><a title="multicurrency.franc.CFPFranc" href="franc.html#multicurrency.franc.CFPFranc">CFPFranc</a></li>
+<li><a title="multicurrency.franc.CFPFrancNC" href="franc.html#multicurrency.franc.CFPFrancNC">CFPFrancNC</a></li>
+<li><a title="multicurrency.franc.CFPFrancPF" href="franc.html#multicurrency.franc.CFPFrancPF">CFPFrancPF</a></li>
+<li><a title="multicurrency.franc.CFPFrancWF" href="franc.html#multicurrency.franc.CFPFrancWF">CFPFrancWF</a></li>
 <li><a title="multicurrency.franc.CongoleseFranc" href="franc.html#multicurrency.franc.CongoleseFranc">CongoleseFranc</a></li>
 <li><a title="multicurrency.franc.DjiboutiFranc" href="franc.html#multicurrency.franc.DjiboutiFranc">DjiboutiFranc</a></li>
 <li><a title="multicurrency.franc.GuineaFranc" href="franc.html#multicurrency.franc.GuineaFranc">GuineaFranc</a></li>
 <li><a title="multicurrency.franc.RwandaFranc" href="franc.html#multicurrency.franc.RwandaFranc">RwandaFranc</a></li>
 <li><a title="multicurrency.franc.SwissFranc" href="franc.html#multicurrency.franc.SwissFranc">SwissFranc</a></li>
+<li><a title="multicurrency.franc.SwissFrancCH" href="franc.html#multicurrency.franc.SwissFrancCH">SwissFrancCH</a></li>
+<li><a title="multicurrency.franc.SwissFrancLI" href="franc.html#multicurrency.franc.SwissFrancLI">SwissFrancLI</a></li>
 <li><a title="multicurrency.fuerte.BolivarFuerte" href="fuerte.html#multicurrency.fuerte.BolivarFuerte">BolivarFuerte</a></li>
 <li><a title="multicurrency.gourde.Gourde" href="gourde.html#multicurrency.gourde.Gourde">Gourde</a></li>
 <li><a title="multicurrency.guarani.Guarani" href="guarani.html#multicurrency.guarani.Guarani">Guarani</a></li>
@@ -524,6 +585,8 @@ followed by the minus ('-') sign. Defaults to ''.</dd>
 <li><a title="multicurrency.lev.BulgarianLev" href="lev.html#multicurrency.lev.BulgarianLev">BulgarianLev</a></li>
 <li><a title="multicurrency.lilangeni.Lilangeni" href="lilangeni.html#multicurrency.lilangeni.Lilangeni">Lilangeni</a></li>
 <li><a title="multicurrency.lira.TurkishLira" href="lira.html#multicurrency.lira.TurkishLira">TurkishLira</a></li>
+<li><a title="multicurrency.lira.TurkishLiraCY" href="lira.html#multicurrency.lira.TurkishLiraCY">TurkishLiraCY</a></li>
+<li><a title="multicurrency.lira.TurkishLiraTR" href="lira.html#multicurrency.lira.TurkishLiraTR">TurkishLiraTR</a></li>
 <li><a title="multicurrency.loti.Loti" href="loti.html#multicurrency.loti.Loti">Loti</a></li>
 <li><a title="multicurrency.manat.AzerbaijanianManat" href="manat.html#multicurrency.manat.AzerbaijanianManat">AzerbaijanianManat</a></li>
 <li><a title="multicurrency.manat.Manat" href="manat.html#multicurrency.manat.Manat">Manat</a></li>
@@ -550,12 +613,17 @@ followed by the minus ('-') sign. Defaults to ''.</dd>
 <li><a title="multicurrency.pound.GibraltarPound" href="pound.html#multicurrency.pound.GibraltarPound">GibraltarPound</a></li>
 <li><a title="multicurrency.pound.LebanesePound" href="pound.html#multicurrency.pound.LebanesePound">LebanesePound</a></li>
 <li><a title="multicurrency.pound.PoundSterling" href="pound.html#multicurrency.pound.PoundSterling">PoundSterling</a></li>
+<li><a title="multicurrency.pound.PoundSterlingGB" href="pound.html#multicurrency.pound.PoundSterlingGB">PoundSterlingGB</a></li>
+<li><a title="multicurrency.pound.PoundSterlingGG" href="pound.html#multicurrency.pound.PoundSterlingGG">PoundSterlingGG</a></li>
+<li><a title="multicurrency.pound.PoundSterlingIM" href="pound.html#multicurrency.pound.PoundSterlingIM">PoundSterlingIM</a></li>
+<li><a title="multicurrency.pound.PoundSterlingIO" href="pound.html#multicurrency.pound.PoundSterlingIO">PoundSterlingIO</a></li>
 <li><a title="multicurrency.pound.SaintHelenaPound" href="pound.html#multicurrency.pound.SaintHelenaPound">SaintHelenaPound</a></li>
 <li><a title="multicurrency.pound.SudanesePound" href="pound.html#multicurrency.pound.SudanesePound">SudanesePound</a></li>
 <li><a title="multicurrency.pound.SyrianPound" href="pound.html#multicurrency.pound.SyrianPound">SyrianPound</a></li>
 <li><a title="multicurrency.pula.Pula" href="pula.html#multicurrency.pula.Pula">Pula</a></li>
 <li><a title="multicurrency.pzloty.PZloty" href="pzloty.html#multicurrency.pzloty.PZloty">PZloty</a></li>
 <li><a title="multicurrency.quetzal.Quetzal" href="quetzal.html#multicurrency.quetzal.Quetzal">Quetzal</a></li>
+<li><a title="multicurrency.rand.Rand" href="rand.html#multicurrency.rand.Rand">Rand</a></li>
 <li><a title="multicurrency.rand.RandLS" href="rand.html#multicurrency.rand.RandLS">RandLS</a></li>
 <li><a title="multicurrency.rand.RandNA" href="rand.html#multicurrency.rand.RandNA">RandNA</a></li>
 <li><a title="multicurrency.rand.RandZA" href="rand.html#multicurrency.rand.RandZA">RandZA</a></li>
@@ -569,8 +637,12 @@ followed by the minus ('-') sign. Defaults to ''.</dd>
 <li><a title="multicurrency.riyal.SaudiRiyal" href="riyal.html#multicurrency.riyal.SaudiRiyal">SaudiRiyal</a></li>
 <li><a title="multicurrency.ruble.BelarusianRuble" href="ruble.html#multicurrency.ruble.BelarusianRuble">BelarusianRuble</a></li>
 <li><a title="multicurrency.ruble.RussianRuble" href="ruble.html#multicurrency.ruble.RussianRuble">RussianRuble</a></li>
+<li><a title="multicurrency.ruble.RussianRubleGE" href="ruble.html#multicurrency.ruble.RussianRubleGE">RussianRubleGE</a></li>
+<li><a title="multicurrency.ruble.RussianRubleRU" href="ruble.html#multicurrency.ruble.RussianRubleRU">RussianRubleRU</a></li>
 <li><a title="multicurrency.rufiyaa.Rufiyaa" href="rufiyaa.html#multicurrency.rufiyaa.Rufiyaa">Rufiyaa</a></li>
 <li><a title="multicurrency.rupee.IndianRupee" href="rupee.html#multicurrency.rupee.IndianRupee">IndianRupee</a></li>
+<li><a title="multicurrency.rupee.IndianRupeeBT" href="rupee.html#multicurrency.rupee.IndianRupeeBT">IndianRupeeBT</a></li>
+<li><a title="multicurrency.rupee.IndianRupeeIN" href="rupee.html#multicurrency.rupee.IndianRupeeIN">IndianRupeeIN</a></li>
 <li><a title="multicurrency.rupee.MauritiusRupee" href="rupee.html#multicurrency.rupee.MauritiusRupee">MauritiusRupee</a></li>
 <li><a title="multicurrency.rupee.NepaleseRupee" href="rupee.html#multicurrency.rupee.NepaleseRupee">NepaleseRupee</a></li>
 <li><a title="multicurrency.rupee.PakistanRupee" href="rupee.html#multicurrency.rupee.PakistanRupee">PakistanRupee</a></li>
@@ -578,6 +650,8 @@ followed by the minus ('-') sign. Defaults to ''.</dd>
 <li><a title="multicurrency.rupee.SriLankaRupee" href="rupee.html#multicurrency.rupee.SriLankaRupee">SriLankaRupee</a></li>
 <li><a title="multicurrency.rupiah.Rupiah" href="rupiah.html#multicurrency.rupiah.Rupiah">Rupiah</a></li>
 <li><a title="multicurrency.shekel.NewIsraeliShekel" href="shekel.html#multicurrency.shekel.NewIsraeliShekel">NewIsraeliShekel</a></li>
+<li><a title="multicurrency.shekel.NewIsraeliShekelIL" href="shekel.html#multicurrency.shekel.NewIsraeliShekelIL">NewIsraeliShekelIL</a></li>
+<li><a title="multicurrency.shekel.NewIsraeliShekelPS" href="shekel.html#multicurrency.shekel.NewIsraeliShekelPS">NewIsraeliShekelPS</a></li>
 <li><a title="multicurrency.shilling.KenyanShilling" href="shilling.html#multicurrency.shilling.KenyanShilling">KenyanShilling</a></li>
 <li><a title="multicurrency.shilling.SomaliShilling" href="shilling.html#multicurrency.shilling.SomaliShilling">SomaliShilling</a></li>
 <li><a title="multicurrency.shilling.TanzanianShilling" href="shilling.html#multicurrency.shilling.TanzanianShilling">TanzanianShilling</a></li>
@@ -629,6 +703,10 @@ followed by the minus ('-') sign. Defaults to ''.</dd>
 <dd>
 <div class="desc"><p>bool: international.</p></div>
 </dd>
+<dt id="multicurrency.currency.Currency.localized_symbol"><code class="name">var <span class="ident">localized_symbol</span> : str</code></dt>
+<dd>
+<div class="desc"><p>str: localized_symbol.</p></div>
+</dd>
 <dt id="multicurrency.currency.Currency.numeric_code"><code class="name">var <span class="ident">numeric_code</span> : str</code></dt>
 <dd>
 <div class="desc"><p>str: numeric_code.</p></div>
@@ -658,6 +736,26 @@ sign.</p>
 <dl>
 <dt><code>bool</code></dt>
 <dd>True if the value is negative. False otherwise.</dd>
+</dl></div>
+</dd>
+<dt id="multicurrency.currency.Currency.lstr"><code class="name flex">
+<span>def <span class="ident">lstr</span></span>(<span>self, precision: int = 2) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>String value of this class formated with the
+<code>localized_symbol</code> and the <code><a title="multicurrency.currency.CurrencyContext" href="#multicurrency.currency.CurrencyContext">CurrencyContext</a></code> precision
+value (<code>prec</code>).</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>precision</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Precision. Defaults to <code>2</code>.
+Values lower than 0 (zero) will be converted to 0
+(zero).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>value</dd>
 </dl></div>
 </dd>
 <dt id="multicurrency.currency.Currency.pstr"><code class="name flex">
@@ -736,6 +834,8 @@ Values lower than 0 (zero) will be converted to 0
 <li><code><a title="multicurrency.currency.Currency.grouping_sign" href="#multicurrency.currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.international" href="#multicurrency.currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.is_signed" href="#multicurrency.currency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.localized_symbol" href="#multicurrency.currency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.currency.Currency.lstr" href="#multicurrency.currency.Currency.lstr">lstr</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.numeric_code" href="#multicurrency.currency.Currency.numeric_code">numeric_code</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.pstr" href="#multicurrency.currency.Currency.pstr">pstr</a></code></li>
 <li><code><a title="multicurrency.currency.Currency.symbol" href="#multicurrency.currency.Currency.symbol">symbol</a></code></li>
@@ -749,7 +849,7 @@ Values lower than 0 (zero) will be converted to 0
 </nav>
 </main>
 <footer id="footer">
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
 </footer>
 </body>
 </html>

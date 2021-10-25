@@ -46,6 +46,7 @@ The available string currency parts for `[spec]` are:
 | %A   | The currency's amount in (western) arabic numerals.                                                                         |
 | %c   | The currency's alpha code (as seen on the international representation of the currency).                                    |
 | %s   | The currency's symbol.                                                                                                      |
+| %S   | The currency's localized symbol.                                                                                                      |
 | %_   | The currency's symbol separator.                                                                                            |
 
 Basic examples of how to use the `multicurrency.currency.Currency`
@@ -357,6 +358,8 @@ class Currency:
             and the value. Defaults to ''.
         symbol_ahead (bool, optional): True if symbol goes ahead of the
             value. False otherwise. Defaults to False.
+        localized_symbol ((str, optional)): Represented currency
+            localizedsymbol. Defaults to the value of `symbol`.
         decimal_places (int, optional): Number of decimal places for the
             currency representation. Defaults to 2,
         decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
@@ -379,6 +382,7 @@ class Currency:
         '_grouping_places',
         '_grouping_sign',
         '_international',
+        '_localized_symbol',
         '_numeric_code',
         '_symbol',
         '_symbol_ahead',
@@ -392,6 +396,7 @@ class Currency:
             symbol: Optional[str] = '',
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
+            localized_symbol: Optional[str] = '',
             decimal_places: Optional[int] = 2,
             decimal_sign: Optional[str] = '.',
             grouping_places: Optional[int] = 3,
@@ -411,6 +416,7 @@ class Currency:
         self._grouping_places = max(grouping_places, 0)
         self._grouping_sign = grouping_sign
         self._international = international
+        self._localized_symbol = localized_symbol or symbol
         self._numeric_code = numeric_code
         self._symbol = symbol
         self._symbol_ahead = symbol_ahead
@@ -434,6 +440,7 @@ class Currency:
             symbol=self._symbol,
             symbol_ahead=self._symbol_ahead,
             symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_places=self._grouping_places,
@@ -467,6 +474,7 @@ class Currency:
             symbol=self._symbol,
             symbol_ahead=self._symbol_ahead,
             symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_places=self._grouping_places,
@@ -495,6 +503,7 @@ class Currency:
             symbol=self._symbol,
             symbol_ahead=self._symbol_ahead,
             symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_places=self._grouping_places,
@@ -515,6 +524,7 @@ class Currency:
             symbol=self._symbol,
             symbol_ahead=self._symbol_ahead,
             symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_places=self._grouping_places,
@@ -551,6 +561,7 @@ class Currency:
                 symbol=self._symbol,
                 symbol_ahead=self._symbol_ahead,
                 symbol_separator=self._symbol_separator,
+                localized_symbol=self._localized_symbol,
                 decimal_places=self._decimal_places,
                 decimal_sign=self._decimal_sign,
                 grouping_places=self._grouping_places,
@@ -564,6 +575,7 @@ class Currency:
                 symbol=self._symbol,
                 symbol_ahead=self._symbol_ahead,
                 symbol_separator=self._symbol_separator,
+                localized_symbol=self._localized_symbol,
                 decimal_places=self._decimal_places,
                 decimal_sign=self._decimal_sign,
                 grouping_places=self._grouping_places,
@@ -607,6 +619,7 @@ class Currency:
             symbol=self._symbol,
             symbol_ahead=self._symbol_ahead,
             symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_places=self._grouping_places,
@@ -641,6 +654,7 @@ class Currency:
             symbol=self._symbol,
             symbol_ahead=self._symbol_ahead,
             symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_places=self._grouping_places,
@@ -675,6 +689,7 @@ class Currency:
             %c: The currency's alpha code (as seen on the international
                 representation of the currency).
             %s: The currency's symbol.
+            %S: The currency's localized symbol.
             %_: The currency's symbol separator.
 
         All fields are optional although for the first four fields when
@@ -692,7 +707,7 @@ class Currency:
             ValueError: If invalid `fmt` format.
         """
         if not isinstance(fmt, str):
-            raise TypeError('must be str, not {}.'.format(type(fmt).__name__))
+            raise TypeError(f'must be str, not {type(fmt).__name__}.')
         if not fmt.strip():   # maybe fmt shoud be striped by default?
             return self.__str__()
         regxpr = (
@@ -729,6 +744,7 @@ class Currency:
             return f'{converted}{self._symbol_separator}{self._symbol}'
         rep = {
             '%s': self._symbol,
+            '%S': self._localized_symbol,
             '%c': self._alpha_code,
             '%a': converted,
             '%A': amount,
@@ -868,6 +884,7 @@ class Currency:
             symbol=self._symbol,
             symbol_ahead=self._symbol_ahead,
             symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_places=self._grouping_places,
@@ -897,6 +914,7 @@ class Currency:
             symbol=self._symbol,
             symbol_ahead=self._symbol_ahead,
             symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_places=self._grouping_places,
@@ -928,6 +946,7 @@ class Currency:
             symbol=self._symbol,
             symbol_ahead=self._symbol_ahead,
             symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_places=self._grouping_places,
@@ -948,6 +967,7 @@ class Currency:
             symbol=self._symbol,
             symbol_ahead=self._symbol_ahead,
             symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_places=self._grouping_places,
@@ -971,6 +991,7 @@ class Currency:
                 self._symbol,
                 self._symbol_ahead,
                 self._symbol_separator,
+                self._localized_symbol,
                 self._decimal_places,
                 self._decimal_sign,
                 self._grouping_places,
@@ -991,6 +1012,7 @@ class Currency:
             f'symbol: "{self._symbol}", '
             f'symbol_ahead: {self._symbol_ahead}, '
             f'symbol_separator: "{self._symbol_separator}", '
+            f'localized_symbol: "{self._localized_symbol}", '
             f'numeric_code: "{self._numeric_code}", '
             f'decimal_places: "{self._decimal_places}", '
             f'decimal_sign: "{self._decimal_sign}", '
@@ -1016,6 +1038,7 @@ class Currency:
             symbol=self._symbol,
             symbol_ahead=self._symbol_ahead,
             symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_places=self._grouping_places,
@@ -1050,6 +1073,7 @@ class Currency:
             symbol=self._symbol,
             symbol_ahead=self._symbol_ahead,
             symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_places=self._grouping_places,
@@ -1092,6 +1116,7 @@ class Currency:
             symbol=self._symbol,
             symbol_ahead=self._symbol_ahead,
             symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_places=self._grouping_places,
@@ -1125,6 +1150,7 @@ class Currency:
             symbol=self._symbol,
             symbol_ahead=self._symbol_ahead,
             symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
             decimal_places=self._decimal_places,
             decimal_sign=self._decimal_sign,
             grouping_places=self._grouping_places,
@@ -1143,6 +1169,39 @@ class Currency:
             bool: True if the value is negative. False otherwise.
         """
         return self._amount.is_signed()
+
+    def lstr(self, precision: int = 2) -> str:
+        """String value of this class formated with the
+            `localized_symbol` and the `CurrencyContext` precision
+            value (`prec`).
+
+        Args:
+            precision (int, optional): Precision. Defaults to `2`.
+                Values lower than 0 (zero) will be converted to 0
+                (zero).
+
+        Returns:
+            str: value
+        """
+        p = max(precision, 0)
+        _rounded = str(round(self._amount, p))
+        if not p:
+            _rounded = f'{_rounded}.'
+        converted = _sub(
+            rf'(\d)(?=(\d{{{self._grouping_places or -1}}})+\.)',
+            r'\1,',
+            _rounded)
+        if not p:
+            converted = converted[:-1]
+        if self._convertion:
+            t = dict(zip('0123456789-', self._convertion))
+            converted = ''.join([t.get(c, c) for c in converted])
+        converted = converted.replace('.', 'X').replace(
+            ',', self._grouping_sign).replace('X', self._decimal_sign)
+        if self._symbol_ahead:
+            return (
+                f'{self._localized_symbol}{self._symbol_separator}{converted}')
+        return f'{converted}{self._symbol_separator}{self._localized_symbol}'
 
     def pstr(self, precision: int = 2) -> str:
         """String value of this class formated with
@@ -1221,6 +1280,11 @@ class Currency:
     def international(self) -> bool:
         """bool: international."""
         return self._international
+
+    @property
+    def localized_symbol(self) -> str:
+        """str: localized_symbol."""
+        return self._localized_symbol
 
     @property
     def symbol(self) -> str:

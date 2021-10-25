@@ -5,7 +5,7 @@
 # author: Frederico Martins <http://github.com/fscm>
 # license: SPDX-License-Identifier: MIT
 
-# pylint: disable=eval-used,invalid-name,line-too-long
+# pylint: disable=eval-used,invalid-name,line-too-long,unspecified-encoding
 """Currency generator.
 
 Creates specific versions of Currency based on the info present on the
@@ -36,10 +36,10 @@ separated by a coma (',') and in the following order:
 
 `currency.csv` file example:
 
-    "Currency","Symbol","Digital Code","Class","Name","Country","Decimal Places","Decimal Sign","Grouping Sign","Grouping Places","Symbol Separator","Symbol Ahead","Convertion"
-    "AFN","؋","971","Afghani","Afghani","Afghanistan","2","\u066B","\u066C","3","\u00A0","True","۰۱۲۳۴۵۶۷۸۹-"
-    "AUD","$","036","Dollar","Australian Dollar","Australia","2",".",",","3","","True",""
-    "BDT","৳","050","Taka","Taka","Bangladesh","2",".",",","3","","False","০১২৩৪৫৬৭৮৯-"
+    "Currency","Symbol","Localized Symbol","Digital Code","Class","Name","Country","Decimal Places","Decimal Sign","Grouping Sign","Grouping Places","Symbol Separator","Symbol Ahead","Convertion"
+    "AFN","؋","؋","971","Afghani","Afghani","Afghanistan","2","\u066B","\u066C","3","\u00A0","True","۰۱۲۳۴۵۶۷۸۹-"
+    "AUD","$","AU$","036","Dollar","Australian Dollar","Australia","2",".",",","3","","True",""
+    "BDT","৳","৳","050","Taka","Taka","Bangladesh","2",".",",","3","","False","০১২৩৪৫৬৭৮৯-"
 """
 
 import csv
@@ -51,7 +51,9 @@ CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 CSV_FILE = 'currency.csv'
 CURRENCY_CLASS = 'currency_class.tmpl'
 CURRENCY_MODULE = 'currency_module.tmpl'
-CURRENCY_TESTS = 'currency_tests.tmpl'
+#CURRENCY_TESTS = 'currency_tests.tmpl'
+TEST_CLASS = 'test_class.tmpl'
+TEST_MODULE = 'test_module.tmpl'
 
 workfolder = os.path.dirname(os.path.realpath(__file__))
 #workfolder = os.getcwd()
@@ -79,8 +81,14 @@ with open(f'{workfolder}/{CURRENCY_MODULE}', 'r') as file_in_module:
 with open(f'{workfolder}/{CURRENCY_CLASS}', 'r') as file_in_class:
     text_class = file_in_class.read()
 
-with open(f'{workfolder}/{CURRENCY_TESTS}', 'r') as file_in_tests:
-    text_tests = file_in_tests.read()
+# with open(f'{workfolder}/{CURRENCY_TESTS}', 'r') as file_in_tests:
+#     text_tests = file_in_tests.read()
+
+with open(f'{workfolder}/{TEST_MODULE}', 'r') as file_in_test_module:
+    text_test_module = file_in_test_module.read()
+
+with open(f'{workfolder}/{TEST_CLASS}', 'r') as file_in_test_class:
+    text_test_class = file_in_test_class.read()
 
 
 def _format( # pylint: disable=missing-return-doc,missing-return-type-doc
@@ -93,8 +101,10 @@ def _format( # pylint: disable=missing-return-doc,missing-return-type-doc
         _symbol,
         _symbol_ahead,
         _symbol_separator,
+        _localized_symbol,
         _convertion,
-        _international=False):
+        _international=False,
+        _localized=False):
     #_converted = f'{round(_amount, _decimal_places):,.{_decimal_places}f}'
     _p = max(_decimal_places, 0)
     _rounded = str(round(_amount, _p))
@@ -116,6 +126,8 @@ def _format( # pylint: disable=missing-return-doc,missing-return-type-doc
     _d = re.sub(r'\\u[0-9a-fA-F]{4}', lambda x:eval('"' + x.group() + '"'), _decimal_sign)
     _g = re.sub(r'\\u[0-9a-fA-F]{4}', lambda x:eval('"' + x.group() + '"'), _grouping_sign)
     _converted = _converted.replace('.', 'X').replace(',', _g).replace('X', _d)
+    if _localized:
+        _symbol = _localized_symbol
     if _symbol_ahead:
         return f'{_symbol}{_symbol_separator}{_converted}'
     return f'{_converted}{_symbol_separator}{_symbol}'
@@ -178,6 +190,7 @@ with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
             '__SYMBOL_AHEAD__': currency['symbol_ahead'],
             '__SYMBOL_AHEAD_ALT__': '' if bool(
                 eval(currency['symbol_ahead'])) else 'not ',
+            '__LOCALIZED_SYMBOL__': currency['localized_symbol'],
             '__EXAMPLE_OUTPUT__': _format(
                 example,
                 int(currency['decimal_places']),
@@ -188,6 +201,7 @@ with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
                 currency['symbol'],
                 eval(currency['symbol_ahead']),
                 currency['symbol_separator'],
+                currency['localized_symbol'],
                 currency['convertion']),
             '__EXAMPLE_1DIV7__': _format(
                 decimal,
@@ -199,6 +213,7 @@ with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
                 currency['symbol'],
                 eval(currency['symbol_ahead']),
                 currency['symbol_separator'],
+                currency['localized_symbol'],
                 currency['convertion']),
             '__EXAMPLE_NEGATIVE__': _format(
                 negative,
@@ -210,6 +225,7 @@ with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
                 currency['symbol'],
                 eval(currency['symbol_ahead']),
                 currency['symbol_separator'],
+                currency['localized_symbol'],
                 currency['convertion']),
             '__EXAMPLE_CUSTOM__': _format(
                 custom,
@@ -221,7 +237,23 @@ with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
                 currency['symbol'],
                 False,
                 '_',
+                currency['localized_symbol'],
                 '',
+                True,
+                False),
+            '__EXAMPLE_LOCALIZED__': _format(
+                example,
+                int(currency['decimal_places']),
+                int(currency['grouping_places']),
+                currency['currency'],
+                currency['grouping_sign'],
+                currency['decimal_sign'],
+                currency['symbol'],
+                eval(currency['symbol_ahead']),
+                currency['symbol_separator'],
+                currency['localized_symbol'],
+                currency['convertion'],
+                False,
                 True),
             '__CONVERTION__': currency['convertion']})
 
@@ -259,27 +291,34 @@ for currency_module in crypto_currencies:
 
 print('Creating currency tests...')
 for currency_module in currencies:
+    out_text = re.sub(
+        '__CURRENCY_MODULE__',
+        currencies[currency_module]['name'], text_test_module)
     for currency, values in currencies[currency_module]['currencies'].items():
         re_values = dict((re.escape(k), v) for k,v in values.items())
         comp_values = re.compile('|'.join(re_values.keys()))
-        out_text = comp_values.sub(
-            lambda l: re_values[re.escape(l.group(0))], text_tests)
+        out_text = out_text + comp_values.sub(
+            lambda l: re_values[re.escape(l.group(0))], text_test_class)
         out_text = re.sub('__CURRENCY_MODULE__', currency_module, out_text)
-        with open(
-                f'{workfolder}/_tests/test_{currency}.py', 'w+') as file_out:
-            _ = file_out.write(out_text)
-            _ = file_out.truncate()
+    with open(
+            f'{workfolder}/_tests/test_{currency_module}.py',
+            'w+') as file_out:
+        _ = file_out.write(out_text)
+        _ = file_out.truncate()
 for currency_module in crypto_currencies:
+    out_text = re.sub(
+        '__CURRENCY_MODULE__',
+        crypto_currencies[currency_module]['name'], text_test_module)
     for currency, values in crypto_currencies[currency_module]['currencies'].items():
         re_values = dict((re.escape(k), v) for k,v in values.items())
         comp_values = re.compile('|'.join(re_values.keys()))
-        out_text = comp_values.sub(
-            lambda l: re_values[re.escape(l.group(0))], text_tests)
+        out_text = out_text + comp_values.sub(
+            lambda l: re_values[re.escape(l.group(0))], text_test_class)
         out_text = re.sub('__CURRENCY_MODULE__', currency_module, out_text)
-        with open(
-                f'{workfolder}/_tests/test_{currency}.py', 'w+') as file_out:
-            _ = file_out.write(out_text)
-            _ = file_out.truncate()
+    with open(
+            f'{workfolder}/_tests/test_{currency_module}.py', 'w+') as file_out:
+        _ = file_out.write(out_text)
+        _ = file_out.truncate()
 
 
 print()
@@ -311,14 +350,15 @@ for currency_module, data in currencies.items():
     for _, values in data['currencies'].items():
         currency_class = values['__CURRENCY_CLASS__']
         eg_locale = values['__EXAMPLE_OUTPUT__']
+        eg_localized = values['__EXAMPLE_LOCALIZED__']
         eg_international = _format(
                 example, int(values['__DECIMAL_PLACES__']),
                 int(values['__GROUPING_PLACES__']),
-                values['__CURRENCY__'], '', '', '', False, '', '', True)
+                values['__CURRENCY__'], '', '', '', False, '', '', '', True)
         supported.append((
             currency_class, (
-            f'* `multicurrency.{currency_module}.{currency_class}` ({eg_locale} | {eg_international})',
-            f'* `{currency_class}` ({eg_locale} | {eg_international})')))
+            f'* `multicurrency.{currency_module}.{currency_class}` ({eg_locale} | {eg_localized} | {eg_international})',
+            f'* `{currency_class}` ({eg_locale} | {eg_localized} | {eg_international})')))
 supported_sorted = [c[0] for _, c in sorted(supported)]
 print(',\n'.join(supported_sorted))
 
@@ -329,14 +369,15 @@ for currency_module, data in crypto_currencies.items():
     for _, values in data['currencies'].items():
         currency_class = values['__CURRENCY_CLASS__']
         eg_locale = values['__EXAMPLE_OUTPUT__']
+        eg_localized = values['__EXAMPLE_LOCALIZED__']
         eg_international = _format(
                 example, int(values['__DECIMAL_PLACES__']),
                 int(values['__GROUPING_PLACES__']),
-                values['__CURRENCY__'], '', '', '', False, '', '', True)
+                values['__CURRENCY__'], '', '', '', False, '', '', '', True)
         supported_crypto.append((
             currency_class, (
-            f'* `multicurrency.{currency_module}.{currency_class}` ({eg_locale} | {eg_international})',
-            f'* `{currency_class}` ({eg_locale} | {eg_international})')))
+            f'* `multicurrency.{currency_module}.{currency_class}` ({eg_locale} | {eg_localized} | {eg_international})',
+            f'* `{currency_class}` ({eg_locale} | {eg_localized} | {eg_international})')))
 supported_crypto_sorted = [c[0] for _, c in sorted(supported_crypto)]
 print(',\n'.join(supported_crypto_sorted))
 

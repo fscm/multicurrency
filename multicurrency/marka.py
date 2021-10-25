@@ -67,6 +67,7 @@ class KonvertibilnaMarka(Currency):
             symbol='КМ',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='КМ',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,

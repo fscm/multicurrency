@@ -13,15 +13,15 @@ from .denar import Denar as Denar
 from .dinar import AlgerianDinar as AlgerianDinar, BahrainiDinar as BahrainiDinar, IraqiDinar as IraqiDinar, JordanianDinar as JordanianDinar, KuwaitiDinar as KuwaitiDinar, LibyanDinar as LibyanDinar, SerbianDinarSR as SerbianDinarSR, SerbianDinarXK as SerbianDinarXK, TunisianDinar as TunisianDinar
 from .dirham import MoroccanDirham as MoroccanDirham, UAEDirham as UAEDirham
 from .dobra import Dobra as Dobra
-from .dollar import AustralianDollar as AustralianDollar, BahamianDollar as BahamianDollar, BarbadosDollar as BarbadosDollar, BelizeDollar as BelizeDollar, BermudianDollar as BermudianDollar, BruneiDollar as BruneiDollar, CanadianDollarEN as CanadianDollarEN, CanadianDollarFR as CanadianDollarFR, CaymanIslandsDollar as CaymanIslandsDollar, EastCaribbeanDollar as EastCaribbeanDollar, FijiDollar as FijiDollar, GuyanaDollar as GuyanaDollar, HongKongDollar as HongKongDollar, JamaicanDollar as JamaicanDollar, LiberianDollar as LiberianDollar, NamibiaDollar as NamibiaDollar, NewZealandDollar as NewZealandDollar, SingaporeDollar as SingaporeDollar, SolomonIslandsDollar as SolomonIslandsDollar, SurinameDollar as SurinameDollar, TaiwanDollar as TaiwanDollar, TrinidadandTobagoDollar as TrinidadandTobagoDollar, USDollar as USDollar, ZimbabweDollar as ZimbabweDollar
+from .dollar import AustralianDollar as AustralianDollar, AustralianDollarAU as AustralianDollarAU, AustralianDollarCC as AustralianDollarCC, AustralianDollarKI as AustralianDollarKI, AustralianDollarMR as AustralianDollarMR, AustralianDollarTV as AustralianDollarTV, BahamianDollar as BahamianDollar, BarbadosDollar as BarbadosDollar, BelizeDollar as BelizeDollar, BermudianDollar as BermudianDollar, BruneiDollar as BruneiDollar, BruneiDollarBN as BruneiDollarBN, BruneiDollarSG as BruneiDollarSG, CanadianDollarEN as CanadianDollarEN, CanadianDollarFR as CanadianDollarFR, CaymanIslandsDollar as CaymanIslandsDollar, EasternCaribbeanDollar as EasternCaribbeanDollar, EasternCaribbeanDollarAG as EasternCaribbeanDollarAG, EasternCaribbeanDollarAI as EasternCaribbeanDollarAI, EasternCaribbeanDollarDM as EasternCaribbeanDollarDM, EasternCaribbeanDollarGD as EasternCaribbeanDollarGD, EasternCaribbeanDollarKN as EasternCaribbeanDollarKN, EasternCaribbeanDollarLC as EasternCaribbeanDollarLC, EasternCaribbeanDollarMS as EasternCaribbeanDollarMS, EasternCaribbeanDollarVC as EasternCaribbeanDollarVC, FijiDollar as FijiDollar, GuyanaDollar as GuyanaDollar, HongKongDollar as HongKongDollar, JamaicanDollar as JamaicanDollar, LiberianDollar as LiberianDollar, NamibiaDollar as NamibiaDollar, NewZealandDollar as NewZealandDollar, NewZealandDollarCK as NewZealandDollarCK, NewZealandDollarNU as NewZealandDollarNU, NewZealandDollarNZ as NewZealandDollarNZ, NewZealandDollarPN as NewZealandDollarPN, SingaporeDollar as SingaporeDollar, SingaporeDollarBN as SingaporeDollarBN, SingaporeDollarSG as SingaporeDollarSG, SolomonIslandsDollar as SolomonIslandsDollar, SurinameDollar as SurinameDollar, TaiwanDollar as TaiwanDollar, TrinidadandTobagoDollar as TrinidadandTobagoDollar, USDollar as USDollar, USDollarAS as USDollarAS, USDollarFM as USDollarFM, USDollarGU as USDollarGU, USDollarHT as USDollarHT, USDollarIO as USDollarIO, USDollarMH as USDollarMH, USDollarMP as USDollarMP, USDollarPA as USDollarPA, USDollarPC as USDollarPC, USDollarPR as USDollarPR, USDollarPW as USDollarPW, USDollarTC as USDollarTC, USDollarVG as USDollarVG, USDollarVI as USDollarVI, ZimbabweDollar as ZimbabweDollar
 from .dong import Dong as Dong
 from .dram import ArmenianDram as ArmenianDram
 from .escudo import CapeVerdeEscudo as CapeVerdeEscudo
-from .euro import Euro as Euro, EuroAD as EuroAD, EuroAT as EuroAT, EuroBE as EuroBE, EuroCY as EuroCY, EuroDE as EuroDE, EuroEE as EuroEE, EuroES as EuroES, EuroFI as EuroFI, EuroFR as EuroFR, EuroGR as EuroGR, EuroIE as EuroIE, EuroIT as EuroIT, EuroLT as EuroLT, EuroLU as EuroLU, EuroLV as EuroLV, EuroMC as EuroMC, EuroME as EuroME, EuroMT as EuroMT, EuroNL as EuroNL, EuroPT as EuroPT, EuroSI as EuroSI, EuroSK as EuroSK, EuroSM as EuroSM, EuroVA as EuroVA, EuroXK as EuroXK
+from .euro import Euro as Euro, EuroAD as EuroAD, EuroAT as EuroAT, EuroBE as EuroBE, EuroCY as EuroCY, EuroDE as EuroDE, EuroEE as EuroEE, EuroES as EuroES, EuroFI as EuroFI, EuroFR as EuroFR, EuroGR as EuroGR, EuroIE as EuroIE, EuroIT as EuroIT, EuroLT as EuroLT, EuroLU as EuroLU, EuroLV as EuroLV, EuroMC as EuroMC, EuroME as EuroME, EuroMT as EuroMT, EuroNL as EuroNL, EuroPT as EuroPT, EuroSBA as EuroSBA, EuroSI as EuroSI, EuroSK as EuroSK, EuroSM as EuroSM, EuroVA as EuroVA, EuroXK as EuroXK
 from .exceptions import CurrencyException as CurrencyException, CurrencyInvalidDivision as CurrencyInvalidDivision, CurrencyInvalidMultiplication as CurrencyInvalidMultiplication, CurrencyInvalidOperation as CurrencyInvalidOperation, CurrencyMismatchException as CurrencyMismatchException, CurrencyTypeException as CurrencyTypeException
 from .florin import ArubanFlorin as ArubanFlorin
 from .forint import Forint as Forint
-from .franc import BurundiFranc as BurundiFranc, CFAFrancBCEAO as CFAFrancBCEAO, CFAFrancBEAC as CFAFrancBEAC, CFPFranc as CFPFranc, CongoleseFranc as CongoleseFranc, DjiboutiFranc as DjiboutiFranc, GuineaFranc as GuineaFranc, RwandaFranc as RwandaFranc, SwissFranc as SwissFranc
+from .franc import BurundiFranc as BurundiFranc, CFAFrancBCEAO as CFAFrancBCEAO, CFAFrancBCEAOBF as CFAFrancBCEAOBF, CFAFrancBCEAOBJ as CFAFrancBCEAOBJ, CFAFrancBCEAOCI as CFAFrancBCEAOCI, CFAFrancBCEAOGW as CFAFrancBCEAOGW, CFAFrancBCEAOML as CFAFrancBCEAOML, CFAFrancBCEAONG as CFAFrancBCEAONG, CFAFrancBCEAOSN as CFAFrancBCEAOSN, CFAFrancBCEAOTG as CFAFrancBCEAOTG, CFAFrancBEAC as CFAFrancBEAC, CFAFrancBEACCD as CFAFrancBEACCD, CFAFrancBEACCF as CFAFrancBEACCF, CFAFrancBEACCM as CFAFrancBEACCM, CFAFrancBEACGA as CFAFrancBEACGA, CFAFrancBEACGQ as CFAFrancBEACGQ, CFAFrancBEACTD as CFAFrancBEACTD, CFPFranc as CFPFranc, CFPFrancNC as CFPFrancNC, CFPFrancPF as CFPFrancPF, CFPFrancWF as CFPFrancWF, CongoleseFranc as CongoleseFranc, DjiboutiFranc as DjiboutiFranc, GuineaFranc as GuineaFranc, RwandaFranc as RwandaFranc, SwissFranc as SwissFranc, SwissFrancCH as SwissFrancCH, SwissFrancLI as SwissFrancLI
 from .fuerte import BolivarFuerte as BolivarFuerte
 from .gourde import Gourde as Gourde
 from .guarani import Guarani as Guarani
@@ -42,7 +42,7 @@ from .leone import Leone as Leone
 from .leu import Leu as Leu, MoldovanLeu as MoldovanLeu
 from .lev import BulgarianLev as BulgarianLev
 from .lilangeni import Lilangeni as Lilangeni
-from .lira import TurkishLira as TurkishLira
+from .lira import TurkishLira as TurkishLira, TurkishLiraCY as TurkishLiraCY, TurkishLiraTR as TurkishLiraTR
 from .loti import Loti as Loti
 from .manat import AzerbaijanianManat as AzerbaijanianManat, Manat as Manat
 from .marka import KonvertibilnaMarka as KonvertibilnaMarka
@@ -56,21 +56,21 @@ from .ouguiya import Ouguiya as Ouguiya
 from .paanga import Paanga as Paanga
 from .pataca import Pataca as Pataca
 from .peso import ArgentinePeso as ArgentinePeso, ChileanPeso as ChileanPeso, ColombianPeso as ColombianPeso, CubanPeso as CubanPeso, DominicanPeso as DominicanPeso, MexicanPeso as MexicanPeso, PesoUruguayo as PesoUruguayo, PhilippinePeso as PhilippinePeso
-from .pound import EgyptianPound as EgyptianPound, FalklandIslandsPound as FalklandIslandsPound, GibraltarPound as GibraltarPound, LebanesePound as LebanesePound, PoundSterling as PoundSterling, SaintHelenaPound as SaintHelenaPound, SudanesePound as SudanesePound, SyrianPound as SyrianPound
+from .pound import EgyptianPound as EgyptianPound, FalklandIslandsPound as FalklandIslandsPound, GibraltarPound as GibraltarPound, LebanesePound as LebanesePound, PoundSterling as PoundSterling, PoundSterlingGB as PoundSterlingGB, PoundSterlingGG as PoundSterlingGG, PoundSterlingIM as PoundSterlingIM, PoundSterlingIO as PoundSterlingIO, SaintHelenaPound as SaintHelenaPound, SudanesePound as SudanesePound, SyrianPound as SyrianPound
 from .pula import Pula as Pula
 from .pzloty import PZloty as PZloty
 from .quetzal import Quetzal as Quetzal
-from .rand import RandLS as RandLS, RandNA as RandNA, RandZA as RandZA
+from .rand import Rand as Rand, RandLS as RandLS, RandNA as RandNA, RandZA as RandZA
 from .real import BrazilianReal as BrazilianReal
 from .rial import IranianRial as IranianRial, QatariRial as QatariRial, RialOmani as RialOmani, YemeniRial as YemeniRial
 from .riel import Riel as Riel
 from .ringgit import MalaysianRinggit as MalaysianRinggit
 from .riyal import SaudiRiyal as SaudiRiyal
-from .ruble import BelarusianRuble as BelarusianRuble, RussianRuble as RussianRuble
+from .ruble import BelarusianRuble as BelarusianRuble, RussianRuble as RussianRuble, RussianRubleGE as RussianRubleGE, RussianRubleRU as RussianRubleRU
 from .rufiyaa import Rufiyaa as Rufiyaa
-from .rupee import IndianRupee as IndianRupee, MauritiusRupee as MauritiusRupee, NepaleseRupee as NepaleseRupee, PakistanRupee as PakistanRupee, SeychellesRupee as SeychellesRupee, SriLankaRupee as SriLankaRupee
+from .rupee import IndianRupee as IndianRupee, IndianRupeeBT as IndianRupeeBT, IndianRupeeIN as IndianRupeeIN, MauritiusRupee as MauritiusRupee, NepaleseRupee as NepaleseRupee, PakistanRupee as PakistanRupee, SeychellesRupee as SeychellesRupee, SriLankaRupee as SriLankaRupee
 from .rupiah import Rupiah as Rupiah
-from .shekel import NewIsraeliShekel as NewIsraeliShekel
+from .shekel import NewIsraeliShekel as NewIsraeliShekel, NewIsraeliShekelIL as NewIsraeliShekelIL, NewIsraeliShekelPS as NewIsraeliShekelPS
 from .shilling import KenyanShilling as KenyanShilling, SomaliShilling as SomaliShilling, TanzanianShilling as TanzanianShilling, UgandaShilling as UgandaShilling
 from .som import Som as Som
 from .somoni import Somoni as Somoni

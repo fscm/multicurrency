@@ -67,6 +67,7 @@ class EgyptianPound(Currency):
             symbol='ج.م.',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='ج.م.',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -131,6 +132,7 @@ class FalklandIslandsPound(Currency):
             symbol='£',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='FK£',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -195,6 +197,267 @@ class PoundSterling(Currency):
             symbol='£',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='£',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class PoundSterlingGG(Currency):
+    """Pound Sterling GG currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import PoundSterlingGG
+        >>> pound_sterling_gg = PoundSterlingGG(
+        ...     amount=123456.789)
+        >>> print(pound_sterling_gg)
+        £123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'PoundSterlingGG':
+        """Class creator.
+
+        Returns:
+            PoundSterlingGG: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='GBP',
+            numeric_code='826',
+            symbol='£',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='GG£',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class PoundSterlingIO(Currency):
+    """Pound Sterling IO currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import PoundSterlingIO
+        >>> pound_sterling_io = PoundSterlingIO(
+        ...     amount=123456.789)
+        >>> print(pound_sterling_io)
+        £123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'PoundSterlingIO':
+        """Class creator.
+
+        Returns:
+            PoundSterlingIO: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='GBP',
+            numeric_code='826',
+            symbol='£',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='IO£',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class PoundSterlingGB(Currency):
+    """Pound Sterling GB currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import PoundSterlingGB
+        >>> pound_sterling_gb = PoundSterlingGB(
+        ...     amount=123456.789)
+        >>> print(pound_sterling_gb)
+        £123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'PoundSterlingGB':
+        """Class creator.
+
+        Returns:
+            PoundSterlingGB: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='GBP',
+            numeric_code='826',
+            symbol='£',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='GB£',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class PoundSterlingIM(Currency):
+    """Pound Sterling IM currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import PoundSterlingIM
+        >>> pound_sterling_im = PoundSterlingIM(
+        ...     amount=123456.789)
+        >>> print(pound_sterling_im)
+        £123,456.79
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to '.'.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to ','.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ''.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to True.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            **other) -> 'PoundSterlingIM':
+        """Class creator.
+
+        Returns:
+            PoundSterlingIM: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='GBP',
+            numeric_code='826',
+            symbol='£',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='IM£',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -259,6 +522,7 @@ class GibraltarPound(Currency):
             symbol='£',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='GI£',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -323,6 +587,7 @@ class LebanesePound(Currency):
             symbol='ل.ل.',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='ل.ل.',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -387,6 +652,7 @@ class SudanesePound(Currency):
             symbol='ج.س',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='ج.س',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -451,6 +717,7 @@ class SaintHelenaPound(Currency):
             symbol='£',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='SH£',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -515,6 +782,7 @@ class SyrianPound(Currency):
             symbol='ل.س',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='ل.س',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,

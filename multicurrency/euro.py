@@ -67,6 +67,72 @@ class Euro(Currency):
             symbol='€',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='€',
+            decimal_places=decimal_places,
+            decimal_sign=decimal_sign,
+            grouping_places=grouping_places,
+            grouping_sign=grouping_sign,
+            convertion='',
+            international=international)
+
+
+class EuroSBA(Currency):
+    """EuroSBA currency representation.
+
+    Simple usage example:
+
+        >>> from multicurrency import EuroSBA
+        >>> eurosba = EuroSBA(
+        ...     amount=123456.789)
+        >>> print(eurosba)
+        123.456,79 €
+
+    For more details see `multicurrency.currency.Currency` .
+
+    Args:
+        amount (Union[int, float, Decimal]): Represented value.
+        decimal_places (int, optional): Number of decimal places for the
+            currency representation. Defaults to 2,
+        decimal_sign (str, optional): Decimal symbol. Defaults to ','.
+        grouping_places (int, optional): Number of digits for grouping.
+            Defaults to 3,
+        grouping_sign (str, optional): Grouping symbol. Defaults to '.'.
+        international (bool, optional): Identifies the currency using
+            the 'currency' value instead of the 'symbol'. Defaults to
+            False.
+        symbol_separator (str, optional): Separation between the symbol
+            and the value. Defaults to ' '.
+        symbol_ahead (bool, optional): True if symbol goes ahead of the
+            value. False otherwise. Defaults to False.
+    """
+
+    __slots__ = []
+
+    def __new__(  # pylint: disable=signature-differs,disable=unused-argument
+            cls,
+            amount: Union[int, float, Decimal],
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = ',',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = '.',
+            international: Optional[bool] = False,
+            symbol_ahead: Optional[bool] = False,
+            symbol_separator: Optional[str] = '\u00A0',
+            **other) -> 'EuroSBA':
+        """Class creator.
+
+        Returns:
+            EuroSBA: new opbject.
+        """
+        return Currency.__new__(
+            cls,
+            amount=amount,
+            alpha_code='EUR',
+            numeric_code='978',
+            symbol='€',
+            symbol_separator=symbol_separator,
+            symbol_ahead=symbol_ahead,
+            localized_symbol='€',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -131,6 +197,7 @@ class EuroAD(Currency):
             symbol='€',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='AD€',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -195,6 +262,7 @@ class EuroAT(Currency):
             symbol='€',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='AT€',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -259,6 +327,7 @@ class EuroBE(Currency):
             symbol='€',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='BE€',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -323,6 +392,7 @@ class EuroCY(Currency):
             symbol='€',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='CY€',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -387,6 +457,7 @@ class EuroEE(Currency):
             symbol='€',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='EE€',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -451,6 +522,7 @@ class EuroFI(Currency):
             symbol='€',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='FI€',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -515,6 +587,7 @@ class EuroFR(Currency):
             symbol='€',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='FR€',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -579,6 +652,7 @@ class EuroDE(Currency):
             symbol='€',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='DE€',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -643,6 +717,7 @@ class EuroGR(Currency):
             symbol='€',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='GR€',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -707,6 +782,7 @@ class EuroIE(Currency):
             symbol='€',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='IR€',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -771,6 +847,7 @@ class EuroIT(Currency):
             symbol='€',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='IT€',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -835,6 +912,7 @@ class EuroXK(Currency):
             symbol='€',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='XK€',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -899,6 +977,7 @@ class EuroLV(Currency):
             symbol='€',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='LV€',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -963,6 +1042,7 @@ class EuroLT(Currency):
             symbol='€',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='LT€',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -1027,6 +1107,7 @@ class EuroLU(Currency):
             symbol='€',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='LU€',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -1091,6 +1172,7 @@ class EuroMT(Currency):
             symbol='€',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='MT€',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -1155,6 +1237,7 @@ class EuroMC(Currency):
             symbol='€',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='MC€',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -1219,6 +1302,7 @@ class EuroME(Currency):
             symbol='€',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='ME€',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -1283,6 +1367,7 @@ class EuroNL(Currency):
             symbol='€',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='NL€',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -1347,6 +1432,7 @@ class EuroPT(Currency):
             symbol='€',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='PT€',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -1411,6 +1497,7 @@ class EuroSM(Currency):
             symbol='€',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='SM€',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -1475,6 +1562,7 @@ class EuroSK(Currency):
             symbol='€',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='SK€',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -1539,6 +1627,7 @@ class EuroSI(Currency):
             symbol='€',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='SI€',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -1603,6 +1692,7 @@ class EuroES(Currency):
             symbol='€',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='ES€',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
@@ -1667,6 +1757,7 @@ class EuroVA(Currency):
             symbol='€',
             symbol_separator=symbol_separator,
             symbol_ahead=symbol_ahead,
+            localized_symbol='VA€',
             decimal_places=decimal_places,
             decimal_sign=decimal_sign,
             grouping_places=grouping_places,
