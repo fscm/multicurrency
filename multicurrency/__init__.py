@@ -290,9 +290,9 @@ Simple usage example:
     >>> from multicurrency import Euro
     >>> euro = Euro(1000)
     >>> print(euro)
-    €1.000,00
+    1.000,00 €
     >>> print(euro + Euro(0.50))
-    €1.000,50
+    1.000,50 €
 
 Unsupported currencies can be represented by creating a generic
 `multicurrency.currency.Currency` object with the desired settings.
@@ -316,7 +316,6 @@ in a dictionary and used when needed:
 
     >>> from multicurrency import Currency
     >>> settings = {
-    ...     'currency':'XBT',
     ...     'alpha_code':'XBT',
     ...     'numeric_code':'0',
     ...     'symbol':'₿',
@@ -335,7 +334,7 @@ instead of the `symbol`.
     >>> from multicurrency import Euro
     >>> euro = Euro(1000, international=True)
     >>> print(euro)
-    EUR 1.000,00
+    EUR 1,000.00
 
 ## Precision
 
@@ -347,13 +346,12 @@ The multicurrency library has a user alterable precision (defaulting to
     ...     CurrencyContext.prec = precision
     ...     result = Euro(1) / 7
     ...     print(result.pstr(precision))
-    ...
-    €0,1
-    €0,14
-    €0,143
-    €0,1429
-    €0,14286
-    €0,142857
+    0,1 €
+    0,14 €
+    0,143 €
+    0,1429 €
+    0,14286 €
+    0,142857 €
 
 It also has a user alterable rounding method (defaulting to
 ROUND_HALF_EVEN) which can be changed as needed:
@@ -372,15 +370,25 @@ ROUND_HALF_EVEN) which can be changed as needed:
     ...     CurrencyContext.rounding = rounding
     ...     result = Euro(1) / 7
     ...     print(f'{rounding:16}', result.pstr(4))
-    ...
-    ROUND_CEILING    €0,1429
-    ROUND_DOWN       €0,1428
-    ROUND_FLOOR      €0,1428
-    ROUND_HALF_DOWN  €0,1429
-    ROUND_HALF_EVEN  €0,1429
-    ROUND_HALF_UP    €0,1429
-    ROUND_UP         €0,1429
-    ROUND_05UP       €0,1428
+    ROUND_CEILING    0,1429 €
+    ROUND_DOWN       0,1428 €
+    ROUND_FLOOR      0,1428 €
+    ROUND_HALF_DOWN  0,1429 €
+    ROUND_HALF_EVEN  0,1429 €
+    ROUND_HALF_UP    0,1429 €
+    ROUND_UP         0,1429 €
+    ROUND_05UP       0,1428 €
+
+Default values can be restored with:
+
+    >>> from multicurrency import (
+    ...     CurrencyContext,
+    ...     DEFAULT_PRECISION,
+    ...     DEFAULT_ROUNDING)
+    >>> CurrencyContext.prec = DEFAULT_PRECISION
+    >>> CurrencyContext.rounding = DEFAULT_ROUNDING
+    >>> print(CurrencyContext.prec, CurrencyContext.rounding)
+    28 ROUND_HALF_EVEN
 
 Supported rounding methods are described on the
 `multicurrency.currency.CurrencyContext` class.
@@ -509,7 +517,7 @@ Several operations are supported by the several library classes.
         >>> from multicurrency import Euro
         >>> euro = abs(Euro(-2))
         >>> print(euro)
-        €2,00
+        2,00 €
 
 * Addiction
 
@@ -519,7 +527,7 @@ Several operations are supported by the several library classes.
         >>> euro1 = Euro(2.5)
         >>> euro2 = Euro(3)
         >>> print(euro1 + euro2)
-        €5,50
+        5,50 €
 
 * Boolean
 
@@ -539,7 +547,7 @@ Several operations are supported by the several library classes.
         >>> from multicurrency import Euro
         >>> from math import ceil
         >>> print(ceil(Euro(1/7)))
-        €1,00
+        1,00 €
 
 * Copy
 
@@ -549,7 +557,7 @@ Several operations are supported by the several library classes.
         >>> from copy import copy
         >>> euro = copy(Euro(1/7))
         >>> print(euro)
-        €0,14
+        0,14 €
 
 * Division
 
@@ -559,7 +567,7 @@ Several operations are supported by the several library classes.
         >>> from multicurrency import Euro
         >>> euro = Euro(7) / 2
         >>> print(euro)
-        €3,50
+        3,50 €
 
 * Divmod
 
@@ -570,7 +578,7 @@ Several operations are supported by the several library classes.
         >>> from multicurrency import Euro
         >>> q, r = divmod(Euro(7), 2)
         >>> print(q, r)
-        €3,00 €1,00
+        3,00 € 1,00 €
 
 * Float
     Produces a `float` with the value of the currency amount.
@@ -586,7 +594,7 @@ Several operations are supported by the several library classes.
         >>> from multicurrency import Euro
         >>> from math import floor
         >>> print(floor(Euro(7/2)))
-        €3,00
+        3,00 €
 
 * Floordiv
 
@@ -597,14 +605,14 @@ Several operations are supported by the several library classes.
         >>> from multicurrency import Euro
         >>> q = Euro(7) // 2
         >>> print(q)
-        €3,00
+        3,00 €
 
 * Hash
 
     Produces a hash representation of the `multicurrency.currency.Currency`.
 
         >>> from multicurrency import Euro
-        >>> hash(Euro(7))
+        >>> hash(Euro(7)) # doctest: +SKIP
         1166476495300974230
 
 * Int
@@ -623,7 +631,7 @@ Several operations are supported by the several library classes.
         >>> from multicurrency import Euro
         >>> r = Euro(7) % 2
         >>> print(r)
-        €1,00
+        1,00 €
 
 * Multiplication
 
@@ -632,7 +640,7 @@ Several operations are supported by the several library classes.
 
         >>> from multicurrency import Euro
         >>> print(Euro(2) * 2.5)
-        €5,00
+        5,00 €
 
 * Round
 
@@ -652,7 +660,7 @@ Several operations are supported by the several library classes.
         >>> euro1 = Euro(2)
         >>> euro2 = Euro(3)
         >>> print(euro1 - euro2)
-        €-1,00
+        -1,00 €
 
 * Other Operations
 
@@ -676,7 +684,11 @@ Several operations are supported by the several library classes.
         True
 """  # pylint: disable=line-too-long
 
-from .currency import Currency, CurrencyContext
+from .currency import (
+    Currency,
+    CurrencyContext,
+    DEFAULT_PRECISION,
+    DEFAULT_ROUNDING)
 from .exceptions import (
     CurrencyException,
     CurrencyInvalidDivision,
@@ -973,6 +985,8 @@ __all__ = [
     'CurrencyInvalidOperation',
     'CurrencyMismatchException',
     'CurrencyTypeException',
+    'DEFAULT_PRECISION',
+    'DEFAULT_ROUNDING',
     'Afghani',
     'AlgerianDinar',
     'ArgentinePeso',

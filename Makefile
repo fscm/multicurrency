@@ -154,6 +154,10 @@ coverage: $(VENV_DIR)/bin/activate tests
 
 # -- docs                                                             docs ----
 docs: $(VENV_DIR)/bin/activate
+	@echo "Checking documentation examples..."
+	@"$(VENV_DIR)"/bin/$(PYTEST) --quiet --no-header --color=auto \
+		--doctest-modules --doctest-continue-on-failure \
+		--rootdir="$(PROJECT_DIR)" "$(SOURCE_DIR)/$(PACKAGE_NAME)"
 	@echo "Generating documentation..."
 	@"$(VENV_DIR)"/bin/$(PDOC) --force --html --skip-errors \
 		--config show_source_code=False --output-dir "$(PROJECT_DIR)/docs" \

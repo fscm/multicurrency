@@ -222,7 +222,7 @@ the quotient of the division of the currency by either an <code>int</code>,
 <h3 id="hash">Hash</h3>
 <p>Produces a hash representation of the <code><a title="multicurrency.currency.Currency" href="#multicurrency.currency.Currency">Currency</a></code>.</p>
 <pre><code>&gt;&gt;&gt; from multicurrency import Currency
-&gt;&gt;&gt; hash(Currency(amount=7, alpha_code='EUR', numeric_code='978'))
+&gt;&gt;&gt; hash(Currency(7, alpha_code='EUR', numeric_code='978') # doctest: +SKIP
 1166476495300974230
 </code></pre>
 <h3 id="int">Int</h3>
@@ -298,10 +298,10 @@ context manages the operations precision and the rounding method.</p>
 <h2 id="args">Args</h2>
 <dl>
 <dt><strong><code>prec</code></strong> :&ensp;<code>int</code></dt>
-<dd>Precision. Defaults to <code>28</code>.</dd>
+<dd>Precision. Defaults to <code><a title="multicurrency.currency.DEFAULT_PRECISION" href="#multicurrency.currency.DEFAULT_PRECISION">DEFAULT_PRECISION</a></code>.</dd>
 <dt><strong><code>rounding</code></strong> :&ensp;<code>str</code></dt>
 <dd>
-<p>Rounding method. Defaults to <code>ROUND_HALF_EVEN</code>.
+<p>Rounding method. Defaults to <code><a title="multicurrency.currency.DEFAULT_ROUNDING" href="#multicurrency.currency.DEFAULT_ROUNDING">DEFAULT_ROUNDING</a></code>.
 Possible values are:</p>
 <ul>
 <li>ROUND_CEILING: Round towards Infinity.</li>
@@ -331,7 +331,28 @@ resutls.</p>
 &gt;&gt;&gt; CurrencyContext.rounding = 'ROUND_HALF_UP'
 &gt;&gt;&gt; print(CurrencyContext.prec, CurrencyContext.rounding)
 4 ROUND_HALF_UP
+</code></pre>
+<p>Default values can be restored with:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import (
+...     CurrencyContext,
+...     DEFAULT_PRECISION,
+...     DEFAULT_ROUNDING)
+&gt;&gt;&gt; CurrencyContext.prec = DEFAULT_PRECISION
+&gt;&gt;&gt; CurrencyContext.rounding = DEFAULT_ROUNDING
+&gt;&gt;&gt; print(CurrencyContext.prec, CurrencyContext.rounding)
+28 ROUND_HALF_EVEN
 </code></pre></div>
+</dd>
+<dt id="multicurrency.currency.DEFAULT_PRECISION"><code class="name">var <span class="ident">DEFAULT_PRECISION</span> : int</code></dt>
+<dd>
+<div class="desc"><p>Currency default precision.</p>
+<p>Holds the default value for the currency rounding precision (<code>28</code>).</p></div>
+</dd>
+<dt id="multicurrency.currency.DEFAULT_ROUNDING"><code class="name">var <span class="ident">DEFAULT_ROUNDING</span> : str</code></dt>
+<dd>
+<div class="desc"><p>Currency default rounding method.</p>
+<p>Holds the default value for the currency rounding method
+(<code>ROUND_HALF_EVEN</code>).</p></div>
 </dd>
 </dl>
 </section>
@@ -818,6 +839,8 @@ Values lower than 0 (zero) will be converted to 0
 <li><h3><a href="#header-variables">Global variables</a></h3>
 <ul class="">
 <li><code><a title="multicurrency.currency.CurrencyContext" href="#multicurrency.currency.CurrencyContext">CurrencyContext</a></code></li>
+<li><code><a title="multicurrency.currency.DEFAULT_PRECISION" href="#multicurrency.currency.DEFAULT_PRECISION">DEFAULT_PRECISION</a></code></li>
+<li><code><a title="multicurrency.currency.DEFAULT_ROUNDING" href="#multicurrency.currency.DEFAULT_ROUNDING">DEFAULT_ROUNDING</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>

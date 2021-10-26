@@ -185,7 +185,7 @@ the quotient of the division of the currency by either an `int`,
 Produces a hash representation of the `multicurrency.currency.Currency`.
 
     >>> from multicurrency import Currency
-    >>> hash(Currency(amount=7, alpha_code='EUR', numeric_code='978'))
+    >>> hash(Currency(7, alpha_code='EUR', numeric_code='978') # doctest: +SKIP
     1166476495300974230
 
 ### Int
@@ -273,15 +273,29 @@ from .exceptions import (
     CurrencyMismatchException,
     CurrencyTypeException)
 
+DEFAULT_PRECISION: int = 28
+"""Currency default precision.
 
-CurrencyContext: Context = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
+Holds the default value for the currency rounding precision (`28`).
+"""
+
+DEFAULT_ROUNDING: str = 'ROUND_HALF_EVEN'
+"""Currency default rounding method.
+
+Holds the default value for the currency rounding method
+(`ROUND_HALF_EVEN`).
+"""
+
+CurrencyContext: Context = Context(
+    prec=DEFAULT_PRECISION,
+    rounding=DEFAULT_ROUNDING).copy()
 """Currency Context.
 The environment for arithmetic operations involving `Currency`. This
 context manages the operations precision and the rounding method.
 
 Args:
-    prec (int): Precision. Defaults to `28`.
-    rounding (str): Rounding method. Defaults to `ROUND_HALF_EVEN`.
+    prec (int): Precision. Defaults to `DEFAULT_PRECISION`.
+    rounding (str): Rounding method. Defaults to `DEFAULT_ROUNDING`.
         Possible values are:
 
         * ROUND_CEILING: Round towards Infinity.
@@ -309,6 +323,17 @@ Usage example:
     >>> CurrencyContext.rounding = 'ROUND_HALF_UP'
     >>> print(CurrencyContext.prec, CurrencyContext.rounding)
     4 ROUND_HALF_UP
+
+Default values can be restored with:
+
+    >>> from multicurrency import (
+    ...     CurrencyContext,
+    ...     DEFAULT_PRECISION,
+    ...     DEFAULT_ROUNDING)
+    >>> CurrencyContext.prec = DEFAULT_PRECISION
+    >>> CurrencyContext.rounding = DEFAULT_ROUNDING
+    >>> print(CurrencyContext.prec, CurrencyContext.rounding)
+    28 ROUND_HALF_EVEN
 """
 
 
@@ -805,7 +830,11 @@ class Currency:
         Returns:
             int: Hash value.
         """
-        return hash((self._amount, self._alpha_code, self._numeric_code))
+        return hash((
+            self.__class__,
+            self._amount,
+            self._alpha_code,
+            self._numeric_code))
 
     def __int__(self) -> int:
         """Integer representation.
