@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.10.0](https://github.com/fscm/multicurrency/tree/v0.10.0) (2021-10-26)
+
+### [changes](https://github.com/fscm/multicurrency/compare/v0.9.0...v0.10.0)
+
+* added localized representation of the currencies
+* documentation examples checked with doctest
+* MANIFEST.in added to fix build issue with the 'requirements.txt' file
+
 ## [v0.9.0](https://github.com/fscm/multicurrency/tree/v0.9.0) (2021-07-26)
 
 ### [changes](https://github.com/fscm/multicurrency/compare/v0.8.0...v0.9.0)
