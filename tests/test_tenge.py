@@ -23,6 +23,7 @@ from multicurrency import Tenge
 
 
 class TestTenge:
+    """Tenge currency tests."""
 
     def test_tenge(self):
         """test_tenge."""
@@ -42,7 +43,8 @@ class TestTenge:
         assert tenge.symbol_separator == '\u00A0'
         assert tenge.localized_symbol == '〒'
         assert tenge.convertion == ''
-        assert tenge.__hash__() == hash((decimal, 'KZT', '398'))
+        assert tenge.__hash__() == hash(
+            (tenge.__class__, decimal, 'KZT', '398'))
         assert tenge.__repr__() == (
             'Tenge(amount: 0.1428571428571428571428571429, '
             'alpha_code: "KZT", '
@@ -58,7 +60,6 @@ class TestTenge:
             'convertion: "", '
             'international: False)')
         assert tenge.__str__() == '0,14 〒'
-
 
     def test_tenge_negative(self):
         """test_tenge_negative."""
@@ -77,7 +78,8 @@ class TestTenge:
         assert tenge.symbol_separator == '\u00A0'
         assert tenge.localized_symbol == '〒'
         assert tenge.convertion == ''
-        assert tenge.__hash__() == hash((decimal, 'KZT', '398'))
+        assert tenge.__hash__() == hash(
+            (tenge.__class__, decimal, 'KZT', '398'))
         assert tenge.__repr__() == (
             'Tenge(amount: -100, '
             'alpha_code: "KZT", '
@@ -93,7 +95,6 @@ class TestTenge:
             'convertion: "", '
             'international: False)')
         assert tenge.__str__() == '-100,00 〒'
-
 
     def test_tenge_custom(self):
         """test_tenge_custom."""
@@ -121,7 +122,8 @@ class TestTenge:
         assert tenge.symbol_separator == '_'
         assert tenge.localized_symbol == '〒'
         assert tenge.convertion == ''
-        assert tenge.__hash__() == hash((decimal, 'KZT', '398'))
+        assert tenge.__hash__() == hash(
+            (tenge.__class__, decimal, 'KZT', '398'))
         assert tenge.__repr__() == (
             'Tenge(amount: 1000, '
             'alpha_code: "KZT", '
@@ -137,7 +139,6 @@ class TestTenge:
             'convertion: "", '
             'international: True)')
         assert tenge.__str__() == 'KZT 10,00.00000'
-
 
     def test_tenge_changed(self):
         """test_ctenge_changed."""
@@ -195,7 +196,6 @@ class TestTenge:
                 match='can\'t set attribute'):
             tenge.international = True
 
-
     def test_tenge_math_add(self):
         """test_tenge_math_add."""
         tenge_one = Tenge(amount=1)
@@ -208,14 +208,14 @@ class TestTenge:
             _ = tenge_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'tenge.Tenge\'> '
                     'and <class \'str\'>.')):
             _ = tenge_one.__add__('1.00')
         assert (
             tenge_one +
             tenge_two) == tenge_three
-
 
     def test_tenge_slots(self):
         """test_tenge_slots."""

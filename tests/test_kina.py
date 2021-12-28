@@ -23,6 +23,7 @@ from multicurrency import Kina
 
 
 class TestKina:
+    """Kina currency tests."""
 
     def test_kina(self):
         """test_kina."""
@@ -42,7 +43,8 @@ class TestKina:
         assert kina.symbol_separator == '\u00A0'
         assert kina.localized_symbol == 'K'
         assert kina.convertion == ''
-        assert kina.__hash__() == hash((decimal, 'PGK', '598'))
+        assert kina.__hash__() == hash(
+            (kina.__class__, decimal, 'PGK', '598'))
         assert kina.__repr__() == (
             'Kina(amount: 0.1428571428571428571428571429, '
             'alpha_code: "PGK", '
@@ -58,7 +60,6 @@ class TestKina:
             'convertion: "", '
             'international: False)')
         assert kina.__str__() == 'K 0.14'
-
 
     def test_kina_negative(self):
         """test_kina_negative."""
@@ -77,7 +78,8 @@ class TestKina:
         assert kina.symbol_separator == '\u00A0'
         assert kina.localized_symbol == 'K'
         assert kina.convertion == ''
-        assert kina.__hash__() == hash((decimal, 'PGK', '598'))
+        assert kina.__hash__() == hash(
+            (kina.__class__, decimal, 'PGK', '598'))
         assert kina.__repr__() == (
             'Kina(amount: -100, '
             'alpha_code: "PGK", '
@@ -93,7 +95,6 @@ class TestKina:
             'convertion: "", '
             'international: False)')
         assert kina.__str__() == 'K -100.00'
-
 
     def test_kina_custom(self):
         """test_kina_custom."""
@@ -121,7 +122,8 @@ class TestKina:
         assert kina.symbol_separator == '_'
         assert kina.localized_symbol == 'K'
         assert kina.convertion == ''
-        assert kina.__hash__() == hash((decimal, 'PGK', '598'))
+        assert kina.__hash__() == hash(
+            (kina.__class__, decimal, 'PGK', '598'))
         assert kina.__repr__() == (
             'Kina(amount: 1000, '
             'alpha_code: "PGK", '
@@ -137,7 +139,6 @@ class TestKina:
             'convertion: "", '
             'international: True)')
         assert kina.__str__() == 'PGK 10,00.00000'
-
 
     def test_kina_changed(self):
         """test_ckina_changed."""
@@ -195,7 +196,6 @@ class TestKina:
                 match='can\'t set attribute'):
             kina.international = True
 
-
     def test_kina_math_add(self):
         """test_kina_math_add."""
         kina_one = Kina(amount=1)
@@ -208,14 +208,14 @@ class TestKina:
             _ = kina_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'kina.Kina\'> '
                     'and <class \'str\'>.')):
             _ = kina_one.__add__('1.00')
         assert (
             kina_one +
             kina_two) == kina_three
-
 
     def test_kina_slots(self):
         """test_kina_slots."""

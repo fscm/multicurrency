@@ -23,6 +23,7 @@ from multicurrency import BelarusianRuble
 
 
 class TestBelarusianRuble:
+    """BelarusianRuble currency tests."""
 
     def test_belarusian_ruble(self):
         """test_belarusian_ruble."""
@@ -42,7 +43,8 @@ class TestBelarusianRuble:
         assert belarusian_ruble.symbol_separator == '\u00A0'
         assert belarusian_ruble.localized_symbol == 'Br'
         assert belarusian_ruble.convertion == ''
-        assert belarusian_ruble.__hash__() == hash((decimal, 'BYN', '933'))
+        assert belarusian_ruble.__hash__() == hash(
+            (belarusian_ruble.__class__, decimal, 'BYN', '933'))
         assert belarusian_ruble.__repr__() == (
             'BelarusianRuble(amount: 0.1428571428571428571428571429, '
             'alpha_code: "BYN", '
@@ -58,7 +60,6 @@ class TestBelarusianRuble:
             'convertion: "", '
             'international: False)')
         assert belarusian_ruble.__str__() == '0,14 Br'
-
 
     def test_belarusian_ruble_negative(self):
         """test_belarusian_ruble_negative."""
@@ -77,7 +78,8 @@ class TestBelarusianRuble:
         assert belarusian_ruble.symbol_separator == '\u00A0'
         assert belarusian_ruble.localized_symbol == 'Br'
         assert belarusian_ruble.convertion == ''
-        assert belarusian_ruble.__hash__() == hash((decimal, 'BYN', '933'))
+        assert belarusian_ruble.__hash__() == hash(
+            (belarusian_ruble.__class__, decimal, 'BYN', '933'))
         assert belarusian_ruble.__repr__() == (
             'BelarusianRuble(amount: -100, '
             'alpha_code: "BYN", '
@@ -93,7 +95,6 @@ class TestBelarusianRuble:
             'convertion: "", '
             'international: False)')
         assert belarusian_ruble.__str__() == '-100,00 Br'
-
 
     def test_belarusian_ruble_custom(self):
         """test_belarusian_ruble_custom."""
@@ -121,7 +122,8 @@ class TestBelarusianRuble:
         assert belarusian_ruble.symbol_separator == '_'
         assert belarusian_ruble.localized_symbol == 'Br'
         assert belarusian_ruble.convertion == ''
-        assert belarusian_ruble.__hash__() == hash((decimal, 'BYN', '933'))
+        assert belarusian_ruble.__hash__() == hash(
+            (belarusian_ruble.__class__, decimal, 'BYN', '933'))
         assert belarusian_ruble.__repr__() == (
             'BelarusianRuble(amount: 1000, '
             'alpha_code: "BYN", '
@@ -137,7 +139,6 @@ class TestBelarusianRuble:
             'convertion: "", '
             'international: True)')
         assert belarusian_ruble.__str__() == 'BYN 10,00.00000'
-
 
     def test_belarusian_ruble_changed(self):
         """test_cbelarusian_ruble_changed."""
@@ -195,7 +196,6 @@ class TestBelarusianRuble:
                 match='can\'t set attribute'):
             belarusian_ruble.international = True
 
-
     def test_belarusian_ruble_math_add(self):
         """test_belarusian_ruble_math_add."""
         belarusian_ruble_one = BelarusianRuble(amount=1)
@@ -208,14 +208,14 @@ class TestBelarusianRuble:
             _ = belarusian_ruble_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'ruble.BelarusianRuble\'> '
                     'and <class \'str\'>.')):
             _ = belarusian_ruble_one.__add__('1.00')
         assert (
             belarusian_ruble_one +
             belarusian_ruble_two) == belarusian_ruble_three
-
 
     def test_belarusian_ruble_slots(self):
         """test_belarusian_ruble_slots."""
@@ -234,6 +234,7 @@ from multicurrency import RussianRuble
 
 
 class TestRussianRuble:
+    """RussianRuble currency tests."""
 
     def test_russian_ruble(self):
         """test_russian_ruble."""
@@ -253,7 +254,8 @@ class TestRussianRuble:
         assert russian_ruble.symbol_separator == '\u00A0'
         assert russian_ruble.localized_symbol == '₽'
         assert russian_ruble.convertion == ''
-        assert russian_ruble.__hash__() == hash((decimal, 'RUB', '643'))
+        assert russian_ruble.__hash__() == hash(
+            (russian_ruble.__class__, decimal, 'RUB', '643'))
         assert russian_ruble.__repr__() == (
             'RussianRuble(amount: 0.1428571428571428571428571429, '
             'alpha_code: "RUB", '
@@ -269,7 +271,6 @@ class TestRussianRuble:
             'convertion: "", '
             'international: False)')
         assert russian_ruble.__str__() == '0,14 ₽'
-
 
     def test_russian_ruble_negative(self):
         """test_russian_ruble_negative."""
@@ -288,7 +289,8 @@ class TestRussianRuble:
         assert russian_ruble.symbol_separator == '\u00A0'
         assert russian_ruble.localized_symbol == '₽'
         assert russian_ruble.convertion == ''
-        assert russian_ruble.__hash__() == hash((decimal, 'RUB', '643'))
+        assert russian_ruble.__hash__() == hash(
+            (russian_ruble.__class__, decimal, 'RUB', '643'))
         assert russian_ruble.__repr__() == (
             'RussianRuble(amount: -100, '
             'alpha_code: "RUB", '
@@ -304,7 +306,6 @@ class TestRussianRuble:
             'convertion: "", '
             'international: False)')
         assert russian_ruble.__str__() == '-100,00 ₽'
-
 
     def test_russian_ruble_custom(self):
         """test_russian_ruble_custom."""
@@ -332,7 +333,8 @@ class TestRussianRuble:
         assert russian_ruble.symbol_separator == '_'
         assert russian_ruble.localized_symbol == '₽'
         assert russian_ruble.convertion == ''
-        assert russian_ruble.__hash__() == hash((decimal, 'RUB', '643'))
+        assert russian_ruble.__hash__() == hash(
+            (russian_ruble.__class__, decimal, 'RUB', '643'))
         assert russian_ruble.__repr__() == (
             'RussianRuble(amount: 1000, '
             'alpha_code: "RUB", '
@@ -348,7 +350,6 @@ class TestRussianRuble:
             'convertion: "", '
             'international: True)')
         assert russian_ruble.__str__() == 'RUB 10,00.00000'
-
 
     def test_russian_ruble_changed(self):
         """test_crussian_ruble_changed."""
@@ -406,7 +407,6 @@ class TestRussianRuble:
                 match='can\'t set attribute'):
             russian_ruble.international = True
 
-
     def test_russian_ruble_math_add(self):
         """test_russian_ruble_math_add."""
         russian_ruble_one = RussianRuble(amount=1)
@@ -419,14 +419,14 @@ class TestRussianRuble:
             _ = russian_ruble_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'ruble.RussianRuble\'> '
                     'and <class \'str\'>.')):
             _ = russian_ruble_one.__add__('1.00')
         assert (
             russian_ruble_one +
             russian_ruble_two) == russian_ruble_three
-
 
     def test_russian_ruble_slots(self):
         """test_russian_ruble_slots."""
@@ -445,6 +445,7 @@ from multicurrency import RussianRubleRU
 
 
 class TestRussianRubleRU:
+    """RussianRubleRU currency tests."""
 
     def test_russian_ruble_ru(self):
         """test_russian_ruble_ru."""
@@ -464,7 +465,8 @@ class TestRussianRubleRU:
         assert russian_ruble_ru.symbol_separator == '\u00A0'
         assert russian_ruble_ru.localized_symbol == 'RU₽'
         assert russian_ruble_ru.convertion == ''
-        assert russian_ruble_ru.__hash__() == hash((decimal, 'RUB', '643'))
+        assert russian_ruble_ru.__hash__() == hash(
+            (russian_ruble_ru.__class__, decimal, 'RUB', '643'))
         assert russian_ruble_ru.__repr__() == (
             'RussianRubleRU(amount: 0.1428571428571428571428571429, '
             'alpha_code: "RUB", '
@@ -480,7 +482,6 @@ class TestRussianRubleRU:
             'convertion: "", '
             'international: False)')
         assert russian_ruble_ru.__str__() == '0,14 ₽'
-
 
     def test_russian_ruble_ru_negative(self):
         """test_russian_ruble_ru_negative."""
@@ -499,7 +500,8 @@ class TestRussianRubleRU:
         assert russian_ruble_ru.symbol_separator == '\u00A0'
         assert russian_ruble_ru.localized_symbol == 'RU₽'
         assert russian_ruble_ru.convertion == ''
-        assert russian_ruble_ru.__hash__() == hash((decimal, 'RUB', '643'))
+        assert russian_ruble_ru.__hash__() == hash(
+            (russian_ruble_ru.__class__, decimal, 'RUB', '643'))
         assert russian_ruble_ru.__repr__() == (
             'RussianRubleRU(amount: -100, '
             'alpha_code: "RUB", '
@@ -515,7 +517,6 @@ class TestRussianRubleRU:
             'convertion: "", '
             'international: False)')
         assert russian_ruble_ru.__str__() == '-100,00 ₽'
-
 
     def test_russian_ruble_ru_custom(self):
         """test_russian_ruble_ru_custom."""
@@ -543,7 +544,8 @@ class TestRussianRubleRU:
         assert russian_ruble_ru.symbol_separator == '_'
         assert russian_ruble_ru.localized_symbol == 'RU₽'
         assert russian_ruble_ru.convertion == ''
-        assert russian_ruble_ru.__hash__() == hash((decimal, 'RUB', '643'))
+        assert russian_ruble_ru.__hash__() == hash(
+            (russian_ruble_ru.__class__, decimal, 'RUB', '643'))
         assert russian_ruble_ru.__repr__() == (
             'RussianRubleRU(amount: 1000, '
             'alpha_code: "RUB", '
@@ -559,7 +561,6 @@ class TestRussianRubleRU:
             'convertion: "", '
             'international: True)')
         assert russian_ruble_ru.__str__() == 'RUB 10,00.00000'
-
 
     def test_russian_ruble_ru_changed(self):
         """test_crussian_ruble_ru_changed."""
@@ -617,7 +618,6 @@ class TestRussianRubleRU:
                 match='can\'t set attribute'):
             russian_ruble_ru.international = True
 
-
     def test_russian_ruble_ru_math_add(self):
         """test_russian_ruble_ru_math_add."""
         russian_ruble_ru_one = RussianRubleRU(amount=1)
@@ -630,14 +630,14 @@ class TestRussianRubleRU:
             _ = russian_ruble_ru_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'ruble.RussianRubleRU\'> '
                     'and <class \'str\'>.')):
             _ = russian_ruble_ru_one.__add__('1.00')
         assert (
             russian_ruble_ru_one +
             russian_ruble_ru_two) == russian_ruble_ru_three
-
 
     def test_russian_ruble_ru_slots(self):
         """test_russian_ruble_ru_slots."""
@@ -656,6 +656,7 @@ from multicurrency import RussianRubleGE
 
 
 class TestRussianRubleGE:
+    """RussianRubleGE currency tests."""
 
     def test_russian_ruble_ge(self):
         """test_russian_ruble_ge."""
@@ -675,7 +676,8 @@ class TestRussianRubleGE:
         assert russian_ruble_ge.symbol_separator == '\u00A0'
         assert russian_ruble_ge.localized_symbol == 'GE₽'
         assert russian_ruble_ge.convertion == ''
-        assert russian_ruble_ge.__hash__() == hash((decimal, 'RUB', '643'))
+        assert russian_ruble_ge.__hash__() == hash(
+            (russian_ruble_ge.__class__, decimal, 'RUB', '643'))
         assert russian_ruble_ge.__repr__() == (
             'RussianRubleGE(amount: 0.1428571428571428571428571429, '
             'alpha_code: "RUB", '
@@ -691,7 +693,6 @@ class TestRussianRubleGE:
             'convertion: "", '
             'international: False)')
         assert russian_ruble_ge.__str__() == '0,14 ₽'
-
 
     def test_russian_ruble_ge_negative(self):
         """test_russian_ruble_ge_negative."""
@@ -710,7 +711,8 @@ class TestRussianRubleGE:
         assert russian_ruble_ge.symbol_separator == '\u00A0'
         assert russian_ruble_ge.localized_symbol == 'GE₽'
         assert russian_ruble_ge.convertion == ''
-        assert russian_ruble_ge.__hash__() == hash((decimal, 'RUB', '643'))
+        assert russian_ruble_ge.__hash__() == hash(
+            (russian_ruble_ge.__class__, decimal, 'RUB', '643'))
         assert russian_ruble_ge.__repr__() == (
             'RussianRubleGE(amount: -100, '
             'alpha_code: "RUB", '
@@ -726,7 +728,6 @@ class TestRussianRubleGE:
             'convertion: "", '
             'international: False)')
         assert russian_ruble_ge.__str__() == '-100,00 ₽'
-
 
     def test_russian_ruble_ge_custom(self):
         """test_russian_ruble_ge_custom."""
@@ -754,7 +755,8 @@ class TestRussianRubleGE:
         assert russian_ruble_ge.symbol_separator == '_'
         assert russian_ruble_ge.localized_symbol == 'GE₽'
         assert russian_ruble_ge.convertion == ''
-        assert russian_ruble_ge.__hash__() == hash((decimal, 'RUB', '643'))
+        assert russian_ruble_ge.__hash__() == hash(
+            (russian_ruble_ge.__class__, decimal, 'RUB', '643'))
         assert russian_ruble_ge.__repr__() == (
             'RussianRubleGE(amount: 1000, '
             'alpha_code: "RUB", '
@@ -770,7 +772,6 @@ class TestRussianRubleGE:
             'convertion: "", '
             'international: True)')
         assert russian_ruble_ge.__str__() == 'RUB 10,00.00000'
-
 
     def test_russian_ruble_ge_changed(self):
         """test_crussian_ruble_ge_changed."""
@@ -828,7 +829,6 @@ class TestRussianRubleGE:
                 match='can\'t set attribute'):
             russian_ruble_ge.international = True
 
-
     def test_russian_ruble_ge_math_add(self):
         """test_russian_ruble_ge_math_add."""
         russian_ruble_ge_one = RussianRubleGE(amount=1)
@@ -841,14 +841,14 @@ class TestRussianRubleGE:
             _ = russian_ruble_ge_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'ruble.RussianRubleGE\'> '
                     'and <class \'str\'>.')):
             _ = russian_ruble_ge_one.__add__('1.00')
         assert (
             russian_ruble_ge_one +
             russian_ruble_ge_two) == russian_ruble_ge_three
-
 
     def test_russian_ruble_ge_slots(self):
         """test_russian_ruble_ge_slots."""

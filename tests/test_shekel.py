@@ -23,6 +23,7 @@ from multicurrency import NewIsraeliShekel
 
 
 class TestNewIsraeliShekel:
+    """NewIsraeliShekel currency tests."""
 
     def test_new_israeli_shekel(self):
         """test_new_israeli_shekel."""
@@ -42,7 +43,8 @@ class TestNewIsraeliShekel:
         assert new_israeli_shekel.symbol_separator == '\u00A0'
         assert new_israeli_shekel.localized_symbol == '₪'
         assert new_israeli_shekel.convertion == ''
-        assert new_israeli_shekel.__hash__() == hash((decimal, 'ILS', '376'))
+        assert new_israeli_shekel.__hash__() == hash(
+            (new_israeli_shekel.__class__, decimal, 'ILS', '376'))
         assert new_israeli_shekel.__repr__() == (
             'NewIsraeliShekel(amount: 0.1428571428571428571428571429, '
             'alpha_code: "ILS", '
@@ -58,7 +60,6 @@ class TestNewIsraeliShekel:
             'convertion: "", '
             'international: False)')
         assert new_israeli_shekel.__str__() == '0.14 ₪'
-
 
     def test_new_israeli_shekel_negative(self):
         """test_new_israeli_shekel_negative."""
@@ -77,7 +78,8 @@ class TestNewIsraeliShekel:
         assert new_israeli_shekel.symbol_separator == '\u00A0'
         assert new_israeli_shekel.localized_symbol == '₪'
         assert new_israeli_shekel.convertion == ''
-        assert new_israeli_shekel.__hash__() == hash((decimal, 'ILS', '376'))
+        assert new_israeli_shekel.__hash__() == hash(
+            (new_israeli_shekel.__class__, decimal, 'ILS', '376'))
         assert new_israeli_shekel.__repr__() == (
             'NewIsraeliShekel(amount: -100, '
             'alpha_code: "ILS", '
@@ -93,7 +95,6 @@ class TestNewIsraeliShekel:
             'convertion: "", '
             'international: False)')
         assert new_israeli_shekel.__str__() == '-100.00 ₪'
-
 
     def test_new_israeli_shekel_custom(self):
         """test_new_israeli_shekel_custom."""
@@ -121,7 +122,8 @@ class TestNewIsraeliShekel:
         assert new_israeli_shekel.symbol_separator == '_'
         assert new_israeli_shekel.localized_symbol == '₪'
         assert new_israeli_shekel.convertion == ''
-        assert new_israeli_shekel.__hash__() == hash((decimal, 'ILS', '376'))
+        assert new_israeli_shekel.__hash__() == hash(
+            (new_israeli_shekel.__class__, decimal, 'ILS', '376'))
         assert new_israeli_shekel.__repr__() == (
             'NewIsraeliShekel(amount: 1000, '
             'alpha_code: "ILS", '
@@ -137,7 +139,6 @@ class TestNewIsraeliShekel:
             'convertion: "", '
             'international: True)')
         assert new_israeli_shekel.__str__() == 'ILS 10,00.00000'
-
 
     def test_new_israeli_shekel_changed(self):
         """test_cnew_israeli_shekel_changed."""
@@ -195,7 +196,6 @@ class TestNewIsraeliShekel:
                 match='can\'t set attribute'):
             new_israeli_shekel.international = True
 
-
     def test_new_israeli_shekel_math_add(self):
         """test_new_israeli_shekel_math_add."""
         new_israeli_shekel_one = NewIsraeliShekel(amount=1)
@@ -208,14 +208,14 @@ class TestNewIsraeliShekel:
             _ = new_israeli_shekel_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'shekel.NewIsraeliShekel\'> '
                     'and <class \'str\'>.')):
             _ = new_israeli_shekel_one.__add__('1.00')
         assert (
             new_israeli_shekel_one +
             new_israeli_shekel_two) == new_israeli_shekel_three
-
 
     def test_new_israeli_shekel_slots(self):
         """test_new_israeli_shekel_slots."""
@@ -234,6 +234,7 @@ from multicurrency import NewIsraeliShekelIL
 
 
 class TestNewIsraeliShekelIL:
+    """NewIsraeliShekelIL currency tests."""
 
     def test_new_israeli_shekel_il(self):
         """test_new_israeli_shekel_il."""
@@ -253,7 +254,8 @@ class TestNewIsraeliShekelIL:
         assert new_israeli_shekel_il.symbol_separator == '\u00A0'
         assert new_israeli_shekel_il.localized_symbol == 'IL₪'
         assert new_israeli_shekel_il.convertion == ''
-        assert new_israeli_shekel_il.__hash__() == hash((decimal, 'ILS', '376'))
+        assert new_israeli_shekel_il.__hash__() == hash(
+            (new_israeli_shekel_il.__class__, decimal, 'ILS', '376'))
         assert new_israeli_shekel_il.__repr__() == (
             'NewIsraeliShekelIL(amount: 0.1428571428571428571428571429, '
             'alpha_code: "ILS", '
@@ -269,7 +271,6 @@ class TestNewIsraeliShekelIL:
             'convertion: "", '
             'international: False)')
         assert new_israeli_shekel_il.__str__() == '0.14 ₪'
-
 
     def test_new_israeli_shekel_il_negative(self):
         """test_new_israeli_shekel_il_negative."""
@@ -288,7 +289,8 @@ class TestNewIsraeliShekelIL:
         assert new_israeli_shekel_il.symbol_separator == '\u00A0'
         assert new_israeli_shekel_il.localized_symbol == 'IL₪'
         assert new_israeli_shekel_il.convertion == ''
-        assert new_israeli_shekel_il.__hash__() == hash((decimal, 'ILS', '376'))
+        assert new_israeli_shekel_il.__hash__() == hash(
+            (new_israeli_shekel_il.__class__, decimal, 'ILS', '376'))
         assert new_israeli_shekel_il.__repr__() == (
             'NewIsraeliShekelIL(amount: -100, '
             'alpha_code: "ILS", '
@@ -304,7 +306,6 @@ class TestNewIsraeliShekelIL:
             'convertion: "", '
             'international: False)')
         assert new_israeli_shekel_il.__str__() == '-100.00 ₪'
-
 
     def test_new_israeli_shekel_il_custom(self):
         """test_new_israeli_shekel_il_custom."""
@@ -332,7 +333,8 @@ class TestNewIsraeliShekelIL:
         assert new_israeli_shekel_il.symbol_separator == '_'
         assert new_israeli_shekel_il.localized_symbol == 'IL₪'
         assert new_israeli_shekel_il.convertion == ''
-        assert new_israeli_shekel_il.__hash__() == hash((decimal, 'ILS', '376'))
+        assert new_israeli_shekel_il.__hash__() == hash(
+            (new_israeli_shekel_il.__class__, decimal, 'ILS', '376'))
         assert new_israeli_shekel_il.__repr__() == (
             'NewIsraeliShekelIL(amount: 1000, '
             'alpha_code: "ILS", '
@@ -348,7 +350,6 @@ class TestNewIsraeliShekelIL:
             'convertion: "", '
             'international: True)')
         assert new_israeli_shekel_il.__str__() == 'ILS 10,00.00000'
-
 
     def test_new_israeli_shekel_il_changed(self):
         """test_cnew_israeli_shekel_il_changed."""
@@ -406,7 +407,6 @@ class TestNewIsraeliShekelIL:
                 match='can\'t set attribute'):
             new_israeli_shekel_il.international = True
 
-
     def test_new_israeli_shekel_il_math_add(self):
         """test_new_israeli_shekel_il_math_add."""
         new_israeli_shekel_il_one = NewIsraeliShekelIL(amount=1)
@@ -419,14 +419,14 @@ class TestNewIsraeliShekelIL:
             _ = new_israeli_shekel_il_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'shekel.NewIsraeliShekelIL\'> '
                     'and <class \'str\'>.')):
             _ = new_israeli_shekel_il_one.__add__('1.00')
         assert (
             new_israeli_shekel_il_one +
             new_israeli_shekel_il_two) == new_israeli_shekel_il_three
-
 
     def test_new_israeli_shekel_il_slots(self):
         """test_new_israeli_shekel_il_slots."""
@@ -445,6 +445,7 @@ from multicurrency import NewIsraeliShekelPS
 
 
 class TestNewIsraeliShekelPS:
+    """NewIsraeliShekelPS currency tests."""
 
     def test_new_israeli_shekel_ps(self):
         """test_new_israeli_shekel_ps."""
@@ -464,7 +465,8 @@ class TestNewIsraeliShekelPS:
         assert new_israeli_shekel_ps.symbol_separator == '\u00A0'
         assert new_israeli_shekel_ps.localized_symbol == 'PS₪'
         assert new_israeli_shekel_ps.convertion == ''
-        assert new_israeli_shekel_ps.__hash__() == hash((decimal, 'ILS', '376'))
+        assert new_israeli_shekel_ps.__hash__() == hash(
+            (new_israeli_shekel_ps.__class__, decimal, 'ILS', '376'))
         assert new_israeli_shekel_ps.__repr__() == (
             'NewIsraeliShekelPS(amount: 0.1428571428571428571428571429, '
             'alpha_code: "ILS", '
@@ -480,7 +482,6 @@ class TestNewIsraeliShekelPS:
             'convertion: "", '
             'international: False)')
         assert new_israeli_shekel_ps.__str__() == '0.14 ₪'
-
 
     def test_new_israeli_shekel_ps_negative(self):
         """test_new_israeli_shekel_ps_negative."""
@@ -499,7 +500,8 @@ class TestNewIsraeliShekelPS:
         assert new_israeli_shekel_ps.symbol_separator == '\u00A0'
         assert new_israeli_shekel_ps.localized_symbol == 'PS₪'
         assert new_israeli_shekel_ps.convertion == ''
-        assert new_israeli_shekel_ps.__hash__() == hash((decimal, 'ILS', '376'))
+        assert new_israeli_shekel_ps.__hash__() == hash(
+            (new_israeli_shekel_ps.__class__, decimal, 'ILS', '376'))
         assert new_israeli_shekel_ps.__repr__() == (
             'NewIsraeliShekelPS(amount: -100, '
             'alpha_code: "ILS", '
@@ -515,7 +517,6 @@ class TestNewIsraeliShekelPS:
             'convertion: "", '
             'international: False)')
         assert new_israeli_shekel_ps.__str__() == '-100.00 ₪'
-
 
     def test_new_israeli_shekel_ps_custom(self):
         """test_new_israeli_shekel_ps_custom."""
@@ -543,7 +544,8 @@ class TestNewIsraeliShekelPS:
         assert new_israeli_shekel_ps.symbol_separator == '_'
         assert new_israeli_shekel_ps.localized_symbol == 'PS₪'
         assert new_israeli_shekel_ps.convertion == ''
-        assert new_israeli_shekel_ps.__hash__() == hash((decimal, 'ILS', '376'))
+        assert new_israeli_shekel_ps.__hash__() == hash(
+            (new_israeli_shekel_ps.__class__, decimal, 'ILS', '376'))
         assert new_israeli_shekel_ps.__repr__() == (
             'NewIsraeliShekelPS(amount: 1000, '
             'alpha_code: "ILS", '
@@ -559,7 +561,6 @@ class TestNewIsraeliShekelPS:
             'convertion: "", '
             'international: True)')
         assert new_israeli_shekel_ps.__str__() == 'ILS 10,00.00000'
-
 
     def test_new_israeli_shekel_ps_changed(self):
         """test_cnew_israeli_shekel_ps_changed."""
@@ -617,7 +618,6 @@ class TestNewIsraeliShekelPS:
                 match='can\'t set attribute'):
             new_israeli_shekel_ps.international = True
 
-
     def test_new_israeli_shekel_ps_math_add(self):
         """test_new_israeli_shekel_ps_math_add."""
         new_israeli_shekel_ps_one = NewIsraeliShekelPS(amount=1)
@@ -630,14 +630,14 @@ class TestNewIsraeliShekelPS:
             _ = new_israeli_shekel_ps_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'shekel.NewIsraeliShekelPS\'> '
                     'and <class \'str\'>.')):
             _ = new_israeli_shekel_ps_one.__add__('1.00')
         assert (
             new_israeli_shekel_ps_one +
             new_israeli_shekel_ps_two) == new_israeli_shekel_ps_three
-
 
     def test_new_israeli_shekel_ps_slots(self):
         """test_new_israeli_shekel_ps_slots."""

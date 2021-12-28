@@ -23,6 +23,7 @@ from multicurrency import Leone
 
 
 class TestLeone:
+    """Leone currency tests."""
 
     def test_leone(self):
         """test_leone."""
@@ -42,7 +43,8 @@ class TestLeone:
         assert leone.symbol_separator == '\u00A0'
         assert leone.localized_symbol == 'Le'
         assert leone.convertion == ''
-        assert leone.__hash__() == hash((decimal, 'SLL', '694'))
+        assert leone.__hash__() == hash(
+            (leone.__class__, decimal, 'SLL', '694'))
         assert leone.__repr__() == (
             'Leone(amount: 0.1428571428571428571428571429, '
             'alpha_code: "SLL", '
@@ -58,7 +60,6 @@ class TestLeone:
             'convertion: "", '
             'international: False)')
         assert leone.__str__() == 'Le 0.14'
-
 
     def test_leone_negative(self):
         """test_leone_negative."""
@@ -77,7 +78,8 @@ class TestLeone:
         assert leone.symbol_separator == '\u00A0'
         assert leone.localized_symbol == 'Le'
         assert leone.convertion == ''
-        assert leone.__hash__() == hash((decimal, 'SLL', '694'))
+        assert leone.__hash__() == hash(
+            (leone.__class__, decimal, 'SLL', '694'))
         assert leone.__repr__() == (
             'Leone(amount: -100, '
             'alpha_code: "SLL", '
@@ -93,7 +95,6 @@ class TestLeone:
             'convertion: "", '
             'international: False)')
         assert leone.__str__() == 'Le -100.00'
-
 
     def test_leone_custom(self):
         """test_leone_custom."""
@@ -121,7 +122,8 @@ class TestLeone:
         assert leone.symbol_separator == '_'
         assert leone.localized_symbol == 'Le'
         assert leone.convertion == ''
-        assert leone.__hash__() == hash((decimal, 'SLL', '694'))
+        assert leone.__hash__() == hash(
+            (leone.__class__, decimal, 'SLL', '694'))
         assert leone.__repr__() == (
             'Leone(amount: 1000, '
             'alpha_code: "SLL", '
@@ -137,7 +139,6 @@ class TestLeone:
             'convertion: "", '
             'international: True)')
         assert leone.__str__() == 'SLL 10,00.00000'
-
 
     def test_leone_changed(self):
         """test_cleone_changed."""
@@ -195,7 +196,6 @@ class TestLeone:
                 match='can\'t set attribute'):
             leone.international = True
 
-
     def test_leone_math_add(self):
         """test_leone_math_add."""
         leone_one = Leone(amount=1)
@@ -208,14 +208,14 @@ class TestLeone:
             _ = leone_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'leone.Leone\'> '
                     'and <class \'str\'>.')):
             _ = leone_one.__add__('1.00')
         assert (
             leone_one +
             leone_two) == leone_three
-
 
     def test_leone_slots(self):
         """test_leone_slots."""

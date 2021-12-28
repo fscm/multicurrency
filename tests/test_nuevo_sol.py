@@ -23,6 +23,7 @@ from multicurrency import NuevoSol
 
 
 class TestNuevoSol:
+    """NuevoSol currency tests."""
 
     def test_nuevo_sol(self):
         """test_nuevo_sol."""
@@ -42,7 +43,8 @@ class TestNuevoSol:
         assert nuevo_sol.symbol_separator == '\u00A0'
         assert nuevo_sol.localized_symbol == 'S/.'
         assert nuevo_sol.convertion == ''
-        assert nuevo_sol.__hash__() == hash((decimal, 'PEN', '604'))
+        assert nuevo_sol.__hash__() == hash(
+            (nuevo_sol.__class__, decimal, 'PEN', '604'))
         assert nuevo_sol.__repr__() == (
             'NuevoSol(amount: 0.1428571428571428571428571429, '
             'alpha_code: "PEN", '
@@ -58,7 +60,6 @@ class TestNuevoSol:
             'convertion: "", '
             'international: False)')
         assert nuevo_sol.__str__() == 'S/. 0.14'
-
 
     def test_nuevo_sol_negative(self):
         """test_nuevo_sol_negative."""
@@ -77,7 +78,8 @@ class TestNuevoSol:
         assert nuevo_sol.symbol_separator == '\u00A0'
         assert nuevo_sol.localized_symbol == 'S/.'
         assert nuevo_sol.convertion == ''
-        assert nuevo_sol.__hash__() == hash((decimal, 'PEN', '604'))
+        assert nuevo_sol.__hash__() == hash(
+            (nuevo_sol.__class__, decimal, 'PEN', '604'))
         assert nuevo_sol.__repr__() == (
             'NuevoSol(amount: -100, '
             'alpha_code: "PEN", '
@@ -93,7 +95,6 @@ class TestNuevoSol:
             'convertion: "", '
             'international: False)')
         assert nuevo_sol.__str__() == 'S/. -100.00'
-
 
     def test_nuevo_sol_custom(self):
         """test_nuevo_sol_custom."""
@@ -121,7 +122,8 @@ class TestNuevoSol:
         assert nuevo_sol.symbol_separator == '_'
         assert nuevo_sol.localized_symbol == 'S/.'
         assert nuevo_sol.convertion == ''
-        assert nuevo_sol.__hash__() == hash((decimal, 'PEN', '604'))
+        assert nuevo_sol.__hash__() == hash(
+            (nuevo_sol.__class__, decimal, 'PEN', '604'))
         assert nuevo_sol.__repr__() == (
             'NuevoSol(amount: 1000, '
             'alpha_code: "PEN", '
@@ -137,7 +139,6 @@ class TestNuevoSol:
             'convertion: "", '
             'international: True)')
         assert nuevo_sol.__str__() == 'PEN 10,00.00000'
-
 
     def test_nuevo_sol_changed(self):
         """test_cnuevo_sol_changed."""
@@ -195,7 +196,6 @@ class TestNuevoSol:
                 match='can\'t set attribute'):
             nuevo_sol.international = True
 
-
     def test_nuevo_sol_math_add(self):
         """test_nuevo_sol_math_add."""
         nuevo_sol_one = NuevoSol(amount=1)
@@ -208,14 +208,14 @@ class TestNuevoSol:
             _ = nuevo_sol_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'nuevo_sol.NuevoSol\'> '
                     'and <class \'str\'>.')):
             _ = nuevo_sol_one.__add__('1.00')
         assert (
             nuevo_sol_one +
             nuevo_sol_two) == nuevo_sol_three
-
 
     def test_nuevo_sol_slots(self):
         """test_nuevo_sol_slots."""

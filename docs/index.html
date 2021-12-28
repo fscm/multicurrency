@@ -346,6 +346,15 @@ instead of the <code>symbol</code>.</p>
 &gt;&gt;&gt; print(euro)
 EUR 1,000.00
 </code></pre>
+<h2 id="localization">Localization</h2>
+<p>The multicurrency library allows you to obtain a localized version of the
+currency representation:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import TaiwanDollar, USDollar
+&gt;&gt;&gt; tw_dollar = TaiwanDollar('27.65')
+&gt;&gt;&gt; us_dollar = USDollar('1')
+&gt;&gt;&gt; print(us_dollar.lstr(), '=', tw_dollar.lstr())
+US$1.00 = TW$27.65
+</code></pre>
 <h2 id="precision">Precision</h2>
 <p>The multicurrency library has a user alterable precision (defaulting to
 28 places) which can be as large as needed for a given problem:</p>
@@ -18877,6 +18886,7 @@ value. False otherwise. Defaults to True.</dd>
 <ul>
 <li><a href="#supported-currencies">Supported Currencies</a></li>
 <li><a href="#usage">Usage</a></li>
+<li><a href="#localization">Localization</a></li>
 <li><a href="#precision">Precision</a></li>
 <li><a href="#formatting">Formatting</a></li>
 <li><a href="#operations">Operations</a></li>

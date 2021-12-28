@@ -23,6 +23,7 @@ from multicurrency import Lempira
 
 
 class TestLempira:
+    """Lempira currency tests."""
 
     def test_lempira(self):
         """test_lempira."""
@@ -42,7 +43,8 @@ class TestLempira:
         assert lempira.symbol_separator == '\u00A0'
         assert lempira.localized_symbol == 'L'
         assert lempira.convertion == ''
-        assert lempira.__hash__() == hash((decimal, 'HNL', '340'))
+        assert lempira.__hash__() == hash(
+            (lempira.__class__, decimal, 'HNL', '340'))
         assert lempira.__repr__() == (
             'Lempira(amount: 0.1428571428571428571428571429, '
             'alpha_code: "HNL", '
@@ -58,7 +60,6 @@ class TestLempira:
             'convertion: "", '
             'international: False)')
         assert lempira.__str__() == 'L 0.14'
-
 
     def test_lempira_negative(self):
         """test_lempira_negative."""
@@ -77,7 +78,8 @@ class TestLempira:
         assert lempira.symbol_separator == '\u00A0'
         assert lempira.localized_symbol == 'L'
         assert lempira.convertion == ''
-        assert lempira.__hash__() == hash((decimal, 'HNL', '340'))
+        assert lempira.__hash__() == hash(
+            (lempira.__class__, decimal, 'HNL', '340'))
         assert lempira.__repr__() == (
             'Lempira(amount: -100, '
             'alpha_code: "HNL", '
@@ -93,7 +95,6 @@ class TestLempira:
             'convertion: "", '
             'international: False)')
         assert lempira.__str__() == 'L -100.00'
-
 
     def test_lempira_custom(self):
         """test_lempira_custom."""
@@ -121,7 +122,8 @@ class TestLempira:
         assert lempira.symbol_separator == '_'
         assert lempira.localized_symbol == 'L'
         assert lempira.convertion == ''
-        assert lempira.__hash__() == hash((decimal, 'HNL', '340'))
+        assert lempira.__hash__() == hash(
+            (lempira.__class__, decimal, 'HNL', '340'))
         assert lempira.__repr__() == (
             'Lempira(amount: 1000, '
             'alpha_code: "HNL", '
@@ -137,7 +139,6 @@ class TestLempira:
             'convertion: "", '
             'international: True)')
         assert lempira.__str__() == 'HNL 10,00.00000'
-
 
     def test_lempira_changed(self):
         """test_clempira_changed."""
@@ -195,7 +196,6 @@ class TestLempira:
                 match='can\'t set attribute'):
             lempira.international = True
 
-
     def test_lempira_math_add(self):
         """test_lempira_math_add."""
         lempira_one = Lempira(amount=1)
@@ -208,14 +208,14 @@ class TestLempira:
             _ = lempira_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'lempira.Lempira\'> '
                     'and <class \'str\'>.')):
             _ = lempira_one.__add__('1.00')
         assert (
             lempira_one +
             lempira_two) == lempira_three
-
 
     def test_lempira_slots(self):
         """test_lempira_slots."""

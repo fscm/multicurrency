@@ -23,6 +23,7 @@ from multicurrency import Yen
 
 
 class TestYen:
+    """Yen currency tests."""
 
     def test_yen(self):
         """test_yen."""
@@ -42,7 +43,8 @@ class TestYen:
         assert yen.symbol_separator == ''
         assert yen.localized_symbol == '¥'
         assert yen.convertion == ''
-        assert yen.__hash__() == hash((decimal, 'JPY', '392'))
+        assert yen.__hash__() == hash(
+            (yen.__class__, decimal, 'JPY', '392'))
         assert yen.__repr__() == (
             'Yen(amount: 0.1428571428571428571428571429, '
             'alpha_code: "JPY", '
@@ -58,7 +60,6 @@ class TestYen:
             'convertion: "", '
             'international: False)')
         assert yen.__str__() == '¥0'
-
 
     def test_yen_negative(self):
         """test_yen_negative."""
@@ -77,7 +78,8 @@ class TestYen:
         assert yen.symbol_separator == ''
         assert yen.localized_symbol == '¥'
         assert yen.convertion == ''
-        assert yen.__hash__() == hash((decimal, 'JPY', '392'))
+        assert yen.__hash__() == hash(
+            (yen.__class__, decimal, 'JPY', '392'))
         assert yen.__repr__() == (
             'Yen(amount: -100, '
             'alpha_code: "JPY", '
@@ -93,7 +95,6 @@ class TestYen:
             'convertion: "", '
             'international: False)')
         assert yen.__str__() == '¥-100'
-
 
     def test_yen_custom(self):
         """test_yen_custom."""
@@ -121,7 +122,8 @@ class TestYen:
         assert yen.symbol_separator == '_'
         assert yen.localized_symbol == '¥'
         assert yen.convertion == ''
-        assert yen.__hash__() == hash((decimal, 'JPY', '392'))
+        assert yen.__hash__() == hash(
+            (yen.__class__, decimal, 'JPY', '392'))
         assert yen.__repr__() == (
             'Yen(amount: 1000, '
             'alpha_code: "JPY", '
@@ -137,7 +139,6 @@ class TestYen:
             'convertion: "", '
             'international: True)')
         assert yen.__str__() == 'JPY 10,00.00000'
-
 
     def test_yen_changed(self):
         """test_cyen_changed."""
@@ -195,7 +196,6 @@ class TestYen:
                 match='can\'t set attribute'):
             yen.international = True
 
-
     def test_yen_math_add(self):
         """test_yen_math_add."""
         yen_one = Yen(amount=1)
@@ -208,14 +208,14 @@ class TestYen:
             _ = yen_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'yen.Yen\'> '
                     'and <class \'str\'>.')):
             _ = yen_one.__add__('1.00')
         assert (
             yen_one +
             yen_two) == yen_three
-
 
     def test_yen_slots(self):
         """test_yen_slots."""

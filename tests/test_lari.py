@@ -23,6 +23,7 @@ from multicurrency import Lari
 
 
 class TestLari:
+    """Lari currency tests."""
 
     def test_lari(self):
         """test_lari."""
@@ -42,7 +43,8 @@ class TestLari:
         assert lari.symbol_separator == '\u00A0'
         assert lari.localized_symbol == 'GEლ'
         assert lari.convertion == ''
-        assert lari.__hash__() == hash((decimal, 'GEL', '981'))
+        assert lari.__hash__() == hash(
+            (lari.__class__, decimal, 'GEL', '981'))
         assert lari.__repr__() == (
             'Lari(amount: 0.1428571428571428571428571429, '
             'alpha_code: "GEL", '
@@ -58,7 +60,6 @@ class TestLari:
             'convertion: "", '
             'international: False)')
         assert lari.__str__() == '0,14 ლ'
-
 
     def test_lari_negative(self):
         """test_lari_negative."""
@@ -77,7 +78,8 @@ class TestLari:
         assert lari.symbol_separator == '\u00A0'
         assert lari.localized_symbol == 'GEლ'
         assert lari.convertion == ''
-        assert lari.__hash__() == hash((decimal, 'GEL', '981'))
+        assert lari.__hash__() == hash(
+            (lari.__class__, decimal, 'GEL', '981'))
         assert lari.__repr__() == (
             'Lari(amount: -100, '
             'alpha_code: "GEL", '
@@ -93,7 +95,6 @@ class TestLari:
             'convertion: "", '
             'international: False)')
         assert lari.__str__() == '-100,00 ლ'
-
 
     def test_lari_custom(self):
         """test_lari_custom."""
@@ -121,7 +122,8 @@ class TestLari:
         assert lari.symbol_separator == '_'
         assert lari.localized_symbol == 'GEლ'
         assert lari.convertion == ''
-        assert lari.__hash__() == hash((decimal, 'GEL', '981'))
+        assert lari.__hash__() == hash(
+            (lari.__class__, decimal, 'GEL', '981'))
         assert lari.__repr__() == (
             'Lari(amount: 1000, '
             'alpha_code: "GEL", '
@@ -137,7 +139,6 @@ class TestLari:
             'convertion: "", '
             'international: True)')
         assert lari.__str__() == 'GEL 10,00.00000'
-
 
     def test_lari_changed(self):
         """test_clari_changed."""
@@ -195,7 +196,6 @@ class TestLari:
                 match='can\'t set attribute'):
             lari.international = True
 
-
     def test_lari_math_add(self):
         """test_lari_math_add."""
         lari_one = Lari(amount=1)
@@ -208,14 +208,14 @@ class TestLari:
             _ = lari_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'lari.Lari\'> '
                     'and <class \'str\'>.')):
             _ = lari_one.__add__('1.00')
         assert (
             lari_one +
             lari_two) == lari_three
-
 
     def test_lari_slots(self):
         """test_lari_slots."""

@@ -23,6 +23,7 @@ from multicurrency import EOS
 
 
 class TestEOS:
+    """EOS currency tests."""
 
     def test_eos(self):
         """test_eos."""
@@ -42,7 +43,8 @@ class TestEOS:
         assert eos.symbol_separator == ''
         assert eos.localized_symbol == 'ε'
         assert eos.convertion == ''
-        assert eos.__hash__() == hash((decimal, 'EOS', '0'))
+        assert eos.__hash__() == hash(
+            (eos.__class__, decimal, 'EOS', '0'))
         assert eos.__repr__() == (
             'EOS(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EOS", '
@@ -58,7 +60,6 @@ class TestEOS:
             'convertion: "", '
             'international: False)')
         assert eos.__str__() == 'ε0.1429'
-
 
     def test_eos_negative(self):
         """test_eos_negative."""
@@ -77,7 +78,8 @@ class TestEOS:
         assert eos.symbol_separator == ''
         assert eos.localized_symbol == 'ε'
         assert eos.convertion == ''
-        assert eos.__hash__() == hash((decimal, 'EOS', '0'))
+        assert eos.__hash__() == hash(
+            (eos.__class__, decimal, 'EOS', '0'))
         assert eos.__repr__() == (
             'EOS(amount: -100, '
             'alpha_code: "EOS", '
@@ -93,7 +95,6 @@ class TestEOS:
             'convertion: "", '
             'international: False)')
         assert eos.__str__() == 'ε-100.0000'
-
 
     def test_eos_custom(self):
         """test_eos_custom."""
@@ -121,7 +122,8 @@ class TestEOS:
         assert eos.symbol_separator == '_'
         assert eos.localized_symbol == 'ε'
         assert eos.convertion == ''
-        assert eos.__hash__() == hash((decimal, 'EOS', '0'))
+        assert eos.__hash__() == hash(
+            (eos.__class__, decimal, 'EOS', '0'))
         assert eos.__repr__() == (
             'EOS(amount: 1000, '
             'alpha_code: "EOS", '
@@ -137,7 +139,6 @@ class TestEOS:
             'convertion: "", '
             'international: True)')
         assert eos.__str__() == 'EOS 10,00.00000'
-
 
     def test_eos_changed(self):
         """test_ceos_changed."""
@@ -195,7 +196,6 @@ class TestEOS:
                 match='can\'t set attribute'):
             eos.international = True
 
-
     def test_eos_math_add(self):
         """test_eos_math_add."""
         eos_one = EOS(amount=1)
@@ -208,14 +208,14 @@ class TestEOS:
             _ = eos_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'crypto.EOS\'> '
                     'and <class \'str\'>.')):
             _ = eos_one.__add__('1.00')
         assert (
             eos_one +
             eos_two) == eos_three
-
 
     def test_eos_slots(self):
         """test_eos_slots."""
@@ -234,6 +234,7 @@ from multicurrency import Ethereum
 
 
 class TestEthereum:
+    """Ethereum currency tests."""
 
     def test_ethereum(self):
         """test_ethereum."""
@@ -253,7 +254,8 @@ class TestEthereum:
         assert ethereum.symbol_separator == ''
         assert ethereum.localized_symbol == 'Ξ'
         assert ethereum.convertion == ''
-        assert ethereum.__hash__() == hash((decimal, 'ETH', '0'))
+        assert ethereum.__hash__() == hash(
+            (ethereum.__class__, decimal, 'ETH', '0'))
         assert ethereum.__repr__() == (
             'Ethereum(amount: 0.1428571428571428571428571429, '
             'alpha_code: "ETH", '
@@ -269,7 +271,6 @@ class TestEthereum:
             'convertion: "", '
             'international: False)')
         assert ethereum.__str__() == 'Ξ0.142857142857142857'
-
 
     def test_ethereum_negative(self):
         """test_ethereum_negative."""
@@ -288,7 +289,8 @@ class TestEthereum:
         assert ethereum.symbol_separator == ''
         assert ethereum.localized_symbol == 'Ξ'
         assert ethereum.convertion == ''
-        assert ethereum.__hash__() == hash((decimal, 'ETH', '0'))
+        assert ethereum.__hash__() == hash(
+            (ethereum.__class__, decimal, 'ETH', '0'))
         assert ethereum.__repr__() == (
             'Ethereum(amount: -100, '
             'alpha_code: "ETH", '
@@ -304,7 +306,6 @@ class TestEthereum:
             'convertion: "", '
             'international: False)')
         assert ethereum.__str__() == 'Ξ-100.000000000000000000'
-
 
     def test_ethereum_custom(self):
         """test_ethereum_custom."""
@@ -332,7 +333,8 @@ class TestEthereum:
         assert ethereum.symbol_separator == '_'
         assert ethereum.localized_symbol == 'Ξ'
         assert ethereum.convertion == ''
-        assert ethereum.__hash__() == hash((decimal, 'ETH', '0'))
+        assert ethereum.__hash__() == hash(
+            (ethereum.__class__, decimal, 'ETH', '0'))
         assert ethereum.__repr__() == (
             'Ethereum(amount: 1000, '
             'alpha_code: "ETH", '
@@ -348,7 +350,6 @@ class TestEthereum:
             'convertion: "", '
             'international: True)')
         assert ethereum.__str__() == 'ETH 10,00.00000'
-
 
     def test_ethereum_changed(self):
         """test_cethereum_changed."""
@@ -406,7 +407,6 @@ class TestEthereum:
                 match='can\'t set attribute'):
             ethereum.international = True
 
-
     def test_ethereum_math_add(self):
         """test_ethereum_math_add."""
         ethereum_one = Ethereum(amount=1)
@@ -419,14 +419,14 @@ class TestEthereum:
             _ = ethereum_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'crypto.Ethereum\'> '
                     'and <class \'str\'>.')):
             _ = ethereum_one.__add__('1.00')
         assert (
             ethereum_one +
             ethereum_two) == ethereum_three
-
 
     def test_ethereum_slots(self):
         """test_ethereum_slots."""
@@ -445,6 +445,7 @@ from multicurrency import Bitcoin
 
 
 class TestBitcoin:
+    """Bitcoin currency tests."""
 
     def test_bitcoin(self):
         """test_bitcoin."""
@@ -464,7 +465,8 @@ class TestBitcoin:
         assert bitcoin.symbol_separator == ''
         assert bitcoin.localized_symbol == '₿'
         assert bitcoin.convertion == ''
-        assert bitcoin.__hash__() == hash((decimal, 'XBT', '0'))
+        assert bitcoin.__hash__() == hash(
+            (bitcoin.__class__, decimal, 'XBT', '0'))
         assert bitcoin.__repr__() == (
             'Bitcoin(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XBT", '
@@ -480,7 +482,6 @@ class TestBitcoin:
             'convertion: "", '
             'international: False)')
         assert bitcoin.__str__() == '₿0.14285714'
-
 
     def test_bitcoin_negative(self):
         """test_bitcoin_negative."""
@@ -499,7 +500,8 @@ class TestBitcoin:
         assert bitcoin.symbol_separator == ''
         assert bitcoin.localized_symbol == '₿'
         assert bitcoin.convertion == ''
-        assert bitcoin.__hash__() == hash((decimal, 'XBT', '0'))
+        assert bitcoin.__hash__() == hash(
+            (bitcoin.__class__, decimal, 'XBT', '0'))
         assert bitcoin.__repr__() == (
             'Bitcoin(amount: -100, '
             'alpha_code: "XBT", '
@@ -515,7 +517,6 @@ class TestBitcoin:
             'convertion: "", '
             'international: False)')
         assert bitcoin.__str__() == '₿-100.00000000'
-
 
     def test_bitcoin_custom(self):
         """test_bitcoin_custom."""
@@ -543,7 +544,8 @@ class TestBitcoin:
         assert bitcoin.symbol_separator == '_'
         assert bitcoin.localized_symbol == '₿'
         assert bitcoin.convertion == ''
-        assert bitcoin.__hash__() == hash((decimal, 'XBT', '0'))
+        assert bitcoin.__hash__() == hash(
+            (bitcoin.__class__, decimal, 'XBT', '0'))
         assert bitcoin.__repr__() == (
             'Bitcoin(amount: 1000, '
             'alpha_code: "XBT", '
@@ -559,7 +561,6 @@ class TestBitcoin:
             'convertion: "", '
             'international: True)')
         assert bitcoin.__str__() == 'XBT 10,00.00000'
-
 
     def test_bitcoin_changed(self):
         """test_cbitcoin_changed."""
@@ -617,7 +618,6 @@ class TestBitcoin:
                 match='can\'t set attribute'):
             bitcoin.international = True
 
-
     def test_bitcoin_math_add(self):
         """test_bitcoin_math_add."""
         bitcoin_one = Bitcoin(amount=1)
@@ -630,14 +630,14 @@ class TestBitcoin:
             _ = bitcoin_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'crypto.Bitcoin\'> '
                     'and <class \'str\'>.')):
             _ = bitcoin_one.__add__('1.00')
         assert (
             bitcoin_one +
             bitcoin_two) == bitcoin_three
-
 
     def test_bitcoin_slots(self):
         """test_bitcoin_slots."""
@@ -656,6 +656,7 @@ from multicurrency import StellarLumens
 
 
 class TestStellarLumens:
+    """StellarLumens currency tests."""
 
     def test_stellar_lumens(self):
         """test_stellar_lumens."""
@@ -675,7 +676,8 @@ class TestStellarLumens:
         assert stellar_lumens.symbol_separator == ''
         assert stellar_lumens.localized_symbol == '*'
         assert stellar_lumens.convertion == ''
-        assert stellar_lumens.__hash__() == hash((decimal, 'XLM', '0'))
+        assert stellar_lumens.__hash__() == hash(
+            (stellar_lumens.__class__, decimal, 'XLM', '0'))
         assert stellar_lumens.__repr__() == (
             'StellarLumens(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XLM", '
@@ -691,7 +693,6 @@ class TestStellarLumens:
             'convertion: "", '
             'international: False)')
         assert stellar_lumens.__str__() == '*0.1428571'
-
 
     def test_stellar_lumens_negative(self):
         """test_stellar_lumens_negative."""
@@ -710,7 +711,8 @@ class TestStellarLumens:
         assert stellar_lumens.symbol_separator == ''
         assert stellar_lumens.localized_symbol == '*'
         assert stellar_lumens.convertion == ''
-        assert stellar_lumens.__hash__() == hash((decimal, 'XLM', '0'))
+        assert stellar_lumens.__hash__() == hash(
+            (stellar_lumens.__class__, decimal, 'XLM', '0'))
         assert stellar_lumens.__repr__() == (
             'StellarLumens(amount: -100, '
             'alpha_code: "XLM", '
@@ -726,7 +728,6 @@ class TestStellarLumens:
             'convertion: "", '
             'international: False)')
         assert stellar_lumens.__str__() == '*-100.0000000'
-
 
     def test_stellar_lumens_custom(self):
         """test_stellar_lumens_custom."""
@@ -754,7 +755,8 @@ class TestStellarLumens:
         assert stellar_lumens.symbol_separator == '_'
         assert stellar_lumens.localized_symbol == '*'
         assert stellar_lumens.convertion == ''
-        assert stellar_lumens.__hash__() == hash((decimal, 'XLM', '0'))
+        assert stellar_lumens.__hash__() == hash(
+            (stellar_lumens.__class__, decimal, 'XLM', '0'))
         assert stellar_lumens.__repr__() == (
             'StellarLumens(amount: 1000, '
             'alpha_code: "XLM", '
@@ -770,7 +772,6 @@ class TestStellarLumens:
             'convertion: "", '
             'international: True)')
         assert stellar_lumens.__str__() == 'XLM 10,00.00000'
-
 
     def test_stellar_lumens_changed(self):
         """test_cstellar_lumens_changed."""
@@ -828,7 +829,6 @@ class TestStellarLumens:
                 match='can\'t set attribute'):
             stellar_lumens.international = True
 
-
     def test_stellar_lumens_math_add(self):
         """test_stellar_lumens_math_add."""
         stellar_lumens_one = StellarLumens(amount=1)
@@ -841,14 +841,14 @@ class TestStellarLumens:
             _ = stellar_lumens_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'crypto.StellarLumens\'> '
                     'and <class \'str\'>.')):
             _ = stellar_lumens_one.__add__('1.00')
         assert (
             stellar_lumens_one +
             stellar_lumens_two) == stellar_lumens_three
-
 
     def test_stellar_lumens_slots(self):
         """test_stellar_lumens_slots."""
@@ -867,6 +867,7 @@ from multicurrency import Monero
 
 
 class TestMonero:
+    """Monero currency tests."""
 
     def test_monero(self):
         """test_monero."""
@@ -886,7 +887,8 @@ class TestMonero:
         assert monero.symbol_separator == ''
         assert monero.localized_symbol == 'ɱ'
         assert monero.convertion == ''
-        assert monero.__hash__() == hash((decimal, 'XMR', '0'))
+        assert monero.__hash__() == hash(
+            (monero.__class__, decimal, 'XMR', '0'))
         assert monero.__repr__() == (
             'Monero(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XMR", '
@@ -902,7 +904,6 @@ class TestMonero:
             'convertion: "", '
             'international: False)')
         assert monero.__str__() == 'ɱ0.142857142857'
-
 
     def test_monero_negative(self):
         """test_monero_negative."""
@@ -921,7 +922,8 @@ class TestMonero:
         assert monero.symbol_separator == ''
         assert monero.localized_symbol == 'ɱ'
         assert monero.convertion == ''
-        assert monero.__hash__() == hash((decimal, 'XMR', '0'))
+        assert monero.__hash__() == hash(
+            (monero.__class__, decimal, 'XMR', '0'))
         assert monero.__repr__() == (
             'Monero(amount: -100, '
             'alpha_code: "XMR", '
@@ -937,7 +939,6 @@ class TestMonero:
             'convertion: "", '
             'international: False)')
         assert monero.__str__() == 'ɱ-100.000000000000'
-
 
     def test_monero_custom(self):
         """test_monero_custom."""
@@ -965,7 +966,8 @@ class TestMonero:
         assert monero.symbol_separator == '_'
         assert monero.localized_symbol == 'ɱ'
         assert monero.convertion == ''
-        assert monero.__hash__() == hash((decimal, 'XMR', '0'))
+        assert monero.__hash__() == hash(
+            (monero.__class__, decimal, 'XMR', '0'))
         assert monero.__repr__() == (
             'Monero(amount: 1000, '
             'alpha_code: "XMR", '
@@ -981,7 +983,6 @@ class TestMonero:
             'convertion: "", '
             'international: True)')
         assert monero.__str__() == 'XMR 10,00.00000'
-
 
     def test_monero_changed(self):
         """test_cmonero_changed."""
@@ -1039,7 +1040,6 @@ class TestMonero:
                 match='can\'t set attribute'):
             monero.international = True
 
-
     def test_monero_math_add(self):
         """test_monero_math_add."""
         monero_one = Monero(amount=1)
@@ -1052,14 +1052,14 @@ class TestMonero:
             _ = monero_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'crypto.Monero\'> '
                     'and <class \'str\'>.')):
             _ = monero_one.__add__('1.00')
         assert (
             monero_one +
             monero_two) == monero_three
-
 
     def test_monero_slots(self):
         """test_monero_slots."""
@@ -1078,6 +1078,7 @@ from multicurrency import Ripple
 
 
 class TestRipple:
+    """Ripple currency tests."""
 
     def test_ripple(self):
         """test_ripple."""
@@ -1097,7 +1098,8 @@ class TestRipple:
         assert ripple.symbol_separator == ''
         assert ripple.localized_symbol == '✕'
         assert ripple.convertion == ''
-        assert ripple.__hash__() == hash((decimal, 'XRP', '0'))
+        assert ripple.__hash__() == hash(
+            (ripple.__class__, decimal, 'XRP', '0'))
         assert ripple.__repr__() == (
             'Ripple(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XRP", '
@@ -1113,7 +1115,6 @@ class TestRipple:
             'convertion: "", '
             'international: False)')
         assert ripple.__str__() == '✕0.142857'
-
 
     def test_ripple_negative(self):
         """test_ripple_negative."""
@@ -1132,7 +1133,8 @@ class TestRipple:
         assert ripple.symbol_separator == ''
         assert ripple.localized_symbol == '✕'
         assert ripple.convertion == ''
-        assert ripple.__hash__() == hash((decimal, 'XRP', '0'))
+        assert ripple.__hash__() == hash(
+            (ripple.__class__, decimal, 'XRP', '0'))
         assert ripple.__repr__() == (
             'Ripple(amount: -100, '
             'alpha_code: "XRP", '
@@ -1148,7 +1150,6 @@ class TestRipple:
             'convertion: "", '
             'international: False)')
         assert ripple.__str__() == '✕-100.000000'
-
 
     def test_ripple_custom(self):
         """test_ripple_custom."""
@@ -1176,7 +1177,8 @@ class TestRipple:
         assert ripple.symbol_separator == '_'
         assert ripple.localized_symbol == '✕'
         assert ripple.convertion == ''
-        assert ripple.__hash__() == hash((decimal, 'XRP', '0'))
+        assert ripple.__hash__() == hash(
+            (ripple.__class__, decimal, 'XRP', '0'))
         assert ripple.__repr__() == (
             'Ripple(amount: 1000, '
             'alpha_code: "XRP", '
@@ -1192,7 +1194,6 @@ class TestRipple:
             'convertion: "", '
             'international: True)')
         assert ripple.__str__() == 'XRP 10,00.00000'
-
 
     def test_ripple_changed(self):
         """test_cripple_changed."""
@@ -1250,7 +1251,6 @@ class TestRipple:
                 match='can\'t set attribute'):
             ripple.international = True
 
-
     def test_ripple_math_add(self):
         """test_ripple_math_add."""
         ripple_one = Ripple(amount=1)
@@ -1263,14 +1263,14 @@ class TestRipple:
             _ = ripple_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'crypto.Ripple\'> '
                     'and <class \'str\'>.')):
             _ = ripple_one.__add__('1.00')
         assert (
             ripple_one +
             ripple_two) == ripple_three
-
 
     def test_ripple_slots(self):
         """test_ripple_slots."""
@@ -1289,6 +1289,7 @@ from multicurrency import Tezos
 
 
 class TestTezos:
+    """Tezos currency tests."""
 
     def test_tezos(self):
         """test_tezos."""
@@ -1308,7 +1309,8 @@ class TestTezos:
         assert tezos.symbol_separator == ''
         assert tezos.localized_symbol == 'ꜩ'
         assert tezos.convertion == ''
-        assert tezos.__hash__() == hash((decimal, 'XTZ', '0'))
+        assert tezos.__hash__() == hash(
+            (tezos.__class__, decimal, 'XTZ', '0'))
         assert tezos.__repr__() == (
             'Tezos(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XTZ", '
@@ -1324,7 +1326,6 @@ class TestTezos:
             'convertion: "", '
             'international: False)')
         assert tezos.__str__() == 'ꜩ0.142857'
-
 
     def test_tezos_negative(self):
         """test_tezos_negative."""
@@ -1343,7 +1344,8 @@ class TestTezos:
         assert tezos.symbol_separator == ''
         assert tezos.localized_symbol == 'ꜩ'
         assert tezos.convertion == ''
-        assert tezos.__hash__() == hash((decimal, 'XTZ', '0'))
+        assert tezos.__hash__() == hash(
+            (tezos.__class__, decimal, 'XTZ', '0'))
         assert tezos.__repr__() == (
             'Tezos(amount: -100, '
             'alpha_code: "XTZ", '
@@ -1359,7 +1361,6 @@ class TestTezos:
             'convertion: "", '
             'international: False)')
         assert tezos.__str__() == 'ꜩ-100.000000'
-
 
     def test_tezos_custom(self):
         """test_tezos_custom."""
@@ -1387,7 +1388,8 @@ class TestTezos:
         assert tezos.symbol_separator == '_'
         assert tezos.localized_symbol == 'ꜩ'
         assert tezos.convertion == ''
-        assert tezos.__hash__() == hash((decimal, 'XTZ', '0'))
+        assert tezos.__hash__() == hash(
+            (tezos.__class__, decimal, 'XTZ', '0'))
         assert tezos.__repr__() == (
             'Tezos(amount: 1000, '
             'alpha_code: "XTZ", '
@@ -1403,7 +1405,6 @@ class TestTezos:
             'convertion: "", '
             'international: True)')
         assert tezos.__str__() == 'XTZ 10,00.00000'
-
 
     def test_tezos_changed(self):
         """test_ctezos_changed."""
@@ -1461,7 +1462,6 @@ class TestTezos:
                 match='can\'t set attribute'):
             tezos.international = True
 
-
     def test_tezos_math_add(self):
         """test_tezos_math_add."""
         tezos_one = Tezos(amount=1)
@@ -1474,14 +1474,14 @@ class TestTezos:
             _ = tezos_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'crypto.Tezos\'> '
                     'and <class \'str\'>.')):
             _ = tezos_one.__add__('1.00')
         assert (
             tezos_one +
             tezos_two) == tezos_three
-
 
     def test_tezos_slots(self):
         """test_tezos_slots."""
@@ -1500,6 +1500,7 @@ from multicurrency import Zcash
 
 
 class TestZcash:
+    """Zcash currency tests."""
 
     def test_zcash(self):
         """test_zcash."""
@@ -1519,7 +1520,8 @@ class TestZcash:
         assert zcash.symbol_separator == ''
         assert zcash.localized_symbol == 'ⓩ'
         assert zcash.convertion == ''
-        assert zcash.__hash__() == hash((decimal, 'ZEC', '0'))
+        assert zcash.__hash__() == hash(
+            (zcash.__class__, decimal, 'ZEC', '0'))
         assert zcash.__repr__() == (
             'Zcash(amount: 0.1428571428571428571428571429, '
             'alpha_code: "ZEC", '
@@ -1535,7 +1537,6 @@ class TestZcash:
             'convertion: "", '
             'international: False)')
         assert zcash.__str__() == 'ⓩ0.14285714'
-
 
     def test_zcash_negative(self):
         """test_zcash_negative."""
@@ -1554,7 +1555,8 @@ class TestZcash:
         assert zcash.symbol_separator == ''
         assert zcash.localized_symbol == 'ⓩ'
         assert zcash.convertion == ''
-        assert zcash.__hash__() == hash((decimal, 'ZEC', '0'))
+        assert zcash.__hash__() == hash(
+            (zcash.__class__, decimal, 'ZEC', '0'))
         assert zcash.__repr__() == (
             'Zcash(amount: -100, '
             'alpha_code: "ZEC", '
@@ -1570,7 +1572,6 @@ class TestZcash:
             'convertion: "", '
             'international: False)')
         assert zcash.__str__() == 'ⓩ-100.00000000'
-
 
     def test_zcash_custom(self):
         """test_zcash_custom."""
@@ -1598,7 +1599,8 @@ class TestZcash:
         assert zcash.symbol_separator == '_'
         assert zcash.localized_symbol == 'ⓩ'
         assert zcash.convertion == ''
-        assert zcash.__hash__() == hash((decimal, 'ZEC', '0'))
+        assert zcash.__hash__() == hash(
+            (zcash.__class__, decimal, 'ZEC', '0'))
         assert zcash.__repr__() == (
             'Zcash(amount: 1000, '
             'alpha_code: "ZEC", '
@@ -1614,7 +1616,6 @@ class TestZcash:
             'convertion: "", '
             'international: True)')
         assert zcash.__str__() == 'ZEC 10,00.00000'
-
 
     def test_zcash_changed(self):
         """test_czcash_changed."""
@@ -1672,7 +1673,6 @@ class TestZcash:
                 match='can\'t set attribute'):
             zcash.international = True
 
-
     def test_zcash_math_add(self):
         """test_zcash_math_add."""
         zcash_one = Zcash(amount=1)
@@ -1685,14 +1685,14 @@ class TestZcash:
             _ = zcash_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'crypto.Zcash\'> '
                     'and <class \'str\'>.')):
             _ = zcash_one.__add__('1.00')
         assert (
             zcash_one +
             zcash_two) == zcash_three
-
 
     def test_zcash_slots(self):
         """test_zcash_slots."""

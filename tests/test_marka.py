@@ -23,6 +23,7 @@ from multicurrency import KonvertibilnaMarka
 
 
 class TestKonvertibilnaMarka:
+    """KonvertibilnaMarka currency tests."""
 
     def test_konvertibilna_marka(self):
         """test_konvertibilna_marka."""
@@ -42,7 +43,8 @@ class TestKonvertibilnaMarka:
         assert konvertibilna_marka.symbol_separator == '\u00A0'
         assert konvertibilna_marka.localized_symbol == 'КМ'
         assert konvertibilna_marka.convertion == ''
-        assert konvertibilna_marka.__hash__() == hash((decimal, 'BAM', '977'))
+        assert konvertibilna_marka.__hash__() == hash(
+            (konvertibilna_marka.__class__, decimal, 'BAM', '977'))
         assert konvertibilna_marka.__repr__() == (
             'KonvertibilnaMarka(amount: 0.1428571428571428571428571429, '
             'alpha_code: "BAM", '
@@ -58,7 +60,6 @@ class TestKonvertibilnaMarka:
             'convertion: "", '
             'international: False)')
         assert konvertibilna_marka.__str__() == '0.14 КМ'
-
 
     def test_konvertibilna_marka_negative(self):
         """test_konvertibilna_marka_negative."""
@@ -77,7 +78,8 @@ class TestKonvertibilnaMarka:
         assert konvertibilna_marka.symbol_separator == '\u00A0'
         assert konvertibilna_marka.localized_symbol == 'КМ'
         assert konvertibilna_marka.convertion == ''
-        assert konvertibilna_marka.__hash__() == hash((decimal, 'BAM', '977'))
+        assert konvertibilna_marka.__hash__() == hash(
+            (konvertibilna_marka.__class__, decimal, 'BAM', '977'))
         assert konvertibilna_marka.__repr__() == (
             'KonvertibilnaMarka(amount: -100, '
             'alpha_code: "BAM", '
@@ -93,7 +95,6 @@ class TestKonvertibilnaMarka:
             'convertion: "", '
             'international: False)')
         assert konvertibilna_marka.__str__() == '-100.00 КМ'
-
 
     def test_konvertibilna_marka_custom(self):
         """test_konvertibilna_marka_custom."""
@@ -121,7 +122,8 @@ class TestKonvertibilnaMarka:
         assert konvertibilna_marka.symbol_separator == '_'
         assert konvertibilna_marka.localized_symbol == 'КМ'
         assert konvertibilna_marka.convertion == ''
-        assert konvertibilna_marka.__hash__() == hash((decimal, 'BAM', '977'))
+        assert konvertibilna_marka.__hash__() == hash(
+            (konvertibilna_marka.__class__, decimal, 'BAM', '977'))
         assert konvertibilna_marka.__repr__() == (
             'KonvertibilnaMarka(amount: 1000, '
             'alpha_code: "BAM", '
@@ -137,7 +139,6 @@ class TestKonvertibilnaMarka:
             'convertion: "", '
             'international: True)')
         assert konvertibilna_marka.__str__() == 'BAM 10,00.00000'
-
 
     def test_konvertibilna_marka_changed(self):
         """test_ckonvertibilna_marka_changed."""
@@ -195,7 +196,6 @@ class TestKonvertibilnaMarka:
                 match='can\'t set attribute'):
             konvertibilna_marka.international = True
 
-
     def test_konvertibilna_marka_math_add(self):
         """test_konvertibilna_marka_math_add."""
         konvertibilna_marka_one = KonvertibilnaMarka(amount=1)
@@ -208,14 +208,14 @@ class TestKonvertibilnaMarka:
             _ = konvertibilna_marka_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'marka.KonvertibilnaMarka\'> '
                     'and <class \'str\'>.')):
             _ = konvertibilna_marka_one.__add__('1.00')
         assert (
             konvertibilna_marka_one +
             konvertibilna_marka_two) == konvertibilna_marka_three
-
 
     def test_konvertibilna_marka_slots(self):
         """test_konvertibilna_marka_slots."""

@@ -23,6 +23,7 @@ from multicurrency import UAEDirham
 
 
 class TestUAEDirham:
+    """UAEDirham currency tests."""
 
     def test_uae_dirham(self):
         """test_uae_dirham."""
@@ -42,7 +43,8 @@ class TestUAEDirham:
         assert uae_dirham.symbol_separator == '\u00A0'
         assert uae_dirham.localized_symbol == 'د.إ.'
         assert uae_dirham.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert uae_dirham.__hash__() == hash((decimal, 'AED', '784'))
+        assert uae_dirham.__hash__() == hash(
+            (uae_dirham.__class__, decimal, 'AED', '784'))
         assert uae_dirham.__repr__() == (
             'UAEDirham(amount: 0.1428571428571428571428571429, '
             'alpha_code: "AED", '
@@ -58,7 +60,6 @@ class TestUAEDirham:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: False)')
         assert uae_dirham.__str__() == 'د.إ. ٠٫١٤'
-
 
     def test_uae_dirham_negative(self):
         """test_uae_dirham_negative."""
@@ -77,7 +78,8 @@ class TestUAEDirham:
         assert uae_dirham.symbol_separator == '\u00A0'
         assert uae_dirham.localized_symbol == 'د.إ.'
         assert uae_dirham.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert uae_dirham.__hash__() == hash((decimal, 'AED', '784'))
+        assert uae_dirham.__hash__() == hash(
+            (uae_dirham.__class__, decimal, 'AED', '784'))
         assert uae_dirham.__repr__() == (
             'UAEDirham(amount: -100, '
             'alpha_code: "AED", '
@@ -93,7 +95,6 @@ class TestUAEDirham:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: False)')
         assert uae_dirham.__str__() == 'د.إ. -١٠٠٫٠٠'
-
 
     def test_uae_dirham_custom(self):
         """test_uae_dirham_custom."""
@@ -121,7 +122,8 @@ class TestUAEDirham:
         assert uae_dirham.symbol_separator == '_'
         assert uae_dirham.localized_symbol == 'د.إ.'
         assert uae_dirham.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert uae_dirham.__hash__() == hash((decimal, 'AED', '784'))
+        assert uae_dirham.__hash__() == hash(
+            (uae_dirham.__class__, decimal, 'AED', '784'))
         assert uae_dirham.__repr__() == (
             'UAEDirham(amount: 1000, '
             'alpha_code: "AED", '
@@ -137,7 +139,6 @@ class TestUAEDirham:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: True)')
         assert uae_dirham.__str__() == 'AED 10,00.00000'
-
 
     def test_uae_dirham_changed(self):
         """test_cuae_dirham_changed."""
@@ -195,7 +196,6 @@ class TestUAEDirham:
                 match='can\'t set attribute'):
             uae_dirham.international = True
 
-
     def test_uae_dirham_math_add(self):
         """test_uae_dirham_math_add."""
         uae_dirham_one = UAEDirham(amount=1)
@@ -208,14 +208,14 @@ class TestUAEDirham:
             _ = uae_dirham_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dirham.UAEDirham\'> '
                     'and <class \'str\'>.')):
             _ = uae_dirham_one.__add__('1.00')
         assert (
             uae_dirham_one +
             uae_dirham_two) == uae_dirham_three
-
 
     def test_uae_dirham_slots(self):
         """test_uae_dirham_slots."""
@@ -234,6 +234,7 @@ from multicurrency import MoroccanDirham
 
 
 class TestMoroccanDirham:
+    """MoroccanDirham currency tests."""
 
     def test_moroccan_dirham(self):
         """test_moroccan_dirham."""
@@ -253,7 +254,8 @@ class TestMoroccanDirham:
         assert moroccan_dirham.symbol_separator == '\u00A0'
         assert moroccan_dirham.localized_symbol == 'د.م.'
         assert moroccan_dirham.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert moroccan_dirham.__hash__() == hash((decimal, 'MAD', '504'))
+        assert moroccan_dirham.__hash__() == hash(
+            (moroccan_dirham.__class__, decimal, 'MAD', '504'))
         assert moroccan_dirham.__repr__() == (
             'MoroccanDirham(amount: 0.1428571428571428571428571429, '
             'alpha_code: "MAD", '
@@ -269,7 +271,6 @@ class TestMoroccanDirham:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: False)')
         assert moroccan_dirham.__str__() == 'د.م. ٠٫١٤'
-
 
     def test_moroccan_dirham_negative(self):
         """test_moroccan_dirham_negative."""
@@ -288,7 +289,8 @@ class TestMoroccanDirham:
         assert moroccan_dirham.symbol_separator == '\u00A0'
         assert moroccan_dirham.localized_symbol == 'د.م.'
         assert moroccan_dirham.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert moroccan_dirham.__hash__() == hash((decimal, 'MAD', '504'))
+        assert moroccan_dirham.__hash__() == hash(
+            (moroccan_dirham.__class__, decimal, 'MAD', '504'))
         assert moroccan_dirham.__repr__() == (
             'MoroccanDirham(amount: -100, '
             'alpha_code: "MAD", '
@@ -304,7 +306,6 @@ class TestMoroccanDirham:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: False)')
         assert moroccan_dirham.__str__() == 'د.م. -١٠٠٫٠٠'
-
 
     def test_moroccan_dirham_custom(self):
         """test_moroccan_dirham_custom."""
@@ -332,7 +333,8 @@ class TestMoroccanDirham:
         assert moroccan_dirham.symbol_separator == '_'
         assert moroccan_dirham.localized_symbol == 'د.م.'
         assert moroccan_dirham.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert moroccan_dirham.__hash__() == hash((decimal, 'MAD', '504'))
+        assert moroccan_dirham.__hash__() == hash(
+            (moroccan_dirham.__class__, decimal, 'MAD', '504'))
         assert moroccan_dirham.__repr__() == (
             'MoroccanDirham(amount: 1000, '
             'alpha_code: "MAD", '
@@ -348,7 +350,6 @@ class TestMoroccanDirham:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: True)')
         assert moroccan_dirham.__str__() == 'MAD 10,00.00000'
-
 
     def test_moroccan_dirham_changed(self):
         """test_cmoroccan_dirham_changed."""
@@ -406,7 +407,6 @@ class TestMoroccanDirham:
                 match='can\'t set attribute'):
             moroccan_dirham.international = True
 
-
     def test_moroccan_dirham_math_add(self):
         """test_moroccan_dirham_math_add."""
         moroccan_dirham_one = MoroccanDirham(amount=1)
@@ -419,14 +419,14 @@ class TestMoroccanDirham:
             _ = moroccan_dirham_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dirham.MoroccanDirham\'> '
                     'and <class \'str\'>.')):
             _ = moroccan_dirham_one.__add__('1.00')
         assert (
             moroccan_dirham_one +
             moroccan_dirham_two) == moroccan_dirham_three
-
 
     def test_moroccan_dirham_slots(self):
         """test_moroccan_dirham_slots."""

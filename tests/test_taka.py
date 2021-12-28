@@ -23,6 +23,7 @@ from multicurrency import Taka
 
 
 class TestTaka:
+    """Taka currency tests."""
 
     def test_taka(self):
         """test_taka."""
@@ -42,7 +43,8 @@ class TestTaka:
         assert taka.symbol_separator == ''
         assert taka.localized_symbol == '৳'
         assert taka.convertion == '০১২৩৪৫৬৭৮৯-,.'
-        assert taka.__hash__() == hash((decimal, 'BDT', '050'))
+        assert taka.__hash__() == hash(
+            (taka.__class__, decimal, 'BDT', '050'))
         assert taka.__repr__() == (
             'Taka(amount: 0.1428571428571428571428571429, '
             'alpha_code: "BDT", '
@@ -58,7 +60,6 @@ class TestTaka:
             'convertion: "০১২৩৪৫৬৭৮৯-,.", '
             'international: False)')
         assert taka.__str__() == '০.১৪৳'
-
 
     def test_taka_negative(self):
         """test_taka_negative."""
@@ -77,7 +78,8 @@ class TestTaka:
         assert taka.symbol_separator == ''
         assert taka.localized_symbol == '৳'
         assert taka.convertion == '০১২৩৪৫৬৭৮৯-,.'
-        assert taka.__hash__() == hash((decimal, 'BDT', '050'))
+        assert taka.__hash__() == hash(
+            (taka.__class__, decimal, 'BDT', '050'))
         assert taka.__repr__() == (
             'Taka(amount: -100, '
             'alpha_code: "BDT", '
@@ -93,7 +95,6 @@ class TestTaka:
             'convertion: "০১২৩৪৫৬৭৮৯-,.", '
             'international: False)')
         assert taka.__str__() == '-১০০.০০৳'
-
 
     def test_taka_custom(self):
         """test_taka_custom."""
@@ -121,7 +122,8 @@ class TestTaka:
         assert taka.symbol_separator == '_'
         assert taka.localized_symbol == '৳'
         assert taka.convertion == '০১২৩৪৫৬৭৮৯-,.'
-        assert taka.__hash__() == hash((decimal, 'BDT', '050'))
+        assert taka.__hash__() == hash(
+            (taka.__class__, decimal, 'BDT', '050'))
         assert taka.__repr__() == (
             'Taka(amount: 1000, '
             'alpha_code: "BDT", '
@@ -137,7 +139,6 @@ class TestTaka:
             'convertion: "০১২৩৪৫৬৭৮৯-,.", '
             'international: True)')
         assert taka.__str__() == 'BDT 10,00.00000'
-
 
     def test_taka_changed(self):
         """test_ctaka_changed."""
@@ -195,7 +196,6 @@ class TestTaka:
                 match='can\'t set attribute'):
             taka.international = True
 
-
     def test_taka_math_add(self):
         """test_taka_math_add."""
         taka_one = Taka(amount=1)
@@ -208,14 +208,14 @@ class TestTaka:
             _ = taka_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'taka.Taka\'> '
                     'and <class \'str\'>.')):
             _ = taka_one.__add__('1.00')
         assert (
             taka_one +
             taka_two) == taka_three
-
 
     def test_taka_slots(self):
         """test_taka_slots."""

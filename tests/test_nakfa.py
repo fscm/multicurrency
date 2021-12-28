@@ -23,6 +23,7 @@ from multicurrency import Nakfa
 
 
 class TestNakfa:
+    """Nakfa currency tests."""
 
     def test_nakfa(self):
         """test_nakfa."""
@@ -42,7 +43,8 @@ class TestNakfa:
         assert nakfa.symbol_separator == '\u00A0'
         assert nakfa.localized_symbol == 'Nfk'
         assert nakfa.convertion == ''
-        assert nakfa.__hash__() == hash((decimal, 'ERN', '232'))
+        assert nakfa.__hash__() == hash(
+            (nakfa.__class__, decimal, 'ERN', '232'))
         assert nakfa.__repr__() == (
             'Nakfa(amount: 0.1428571428571428571428571429, '
             'alpha_code: "ERN", '
@@ -58,7 +60,6 @@ class TestNakfa:
             'convertion: "", '
             'international: False)')
         assert nakfa.__str__() == 'Nfk 0.14'
-
 
     def test_nakfa_negative(self):
         """test_nakfa_negative."""
@@ -77,7 +78,8 @@ class TestNakfa:
         assert nakfa.symbol_separator == '\u00A0'
         assert nakfa.localized_symbol == 'Nfk'
         assert nakfa.convertion == ''
-        assert nakfa.__hash__() == hash((decimal, 'ERN', '232'))
+        assert nakfa.__hash__() == hash(
+            (nakfa.__class__, decimal, 'ERN', '232'))
         assert nakfa.__repr__() == (
             'Nakfa(amount: -100, '
             'alpha_code: "ERN", '
@@ -93,7 +95,6 @@ class TestNakfa:
             'convertion: "", '
             'international: False)')
         assert nakfa.__str__() == 'Nfk -100.00'
-
 
     def test_nakfa_custom(self):
         """test_nakfa_custom."""
@@ -121,7 +122,8 @@ class TestNakfa:
         assert nakfa.symbol_separator == '_'
         assert nakfa.localized_symbol == 'Nfk'
         assert nakfa.convertion == ''
-        assert nakfa.__hash__() == hash((decimal, 'ERN', '232'))
+        assert nakfa.__hash__() == hash(
+            (nakfa.__class__, decimal, 'ERN', '232'))
         assert nakfa.__repr__() == (
             'Nakfa(amount: 1000, '
             'alpha_code: "ERN", '
@@ -137,7 +139,6 @@ class TestNakfa:
             'convertion: "", '
             'international: True)')
         assert nakfa.__str__() == 'ERN 10,00.00000'
-
 
     def test_nakfa_changed(self):
         """test_cnakfa_changed."""
@@ -195,7 +196,6 @@ class TestNakfa:
                 match='can\'t set attribute'):
             nakfa.international = True
 
-
     def test_nakfa_math_add(self):
         """test_nakfa_math_add."""
         nakfa_one = Nakfa(amount=1)
@@ -208,14 +208,14 @@ class TestNakfa:
             _ = nakfa_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'nakfa.Nakfa\'> '
                     'and <class \'str\'>.')):
             _ = nakfa_one.__add__('1.00')
         assert (
             nakfa_one +
             nakfa_two) == nakfa_three
-
 
     def test_nakfa_slots(self):
         """test_nakfa_slots."""

@@ -23,6 +23,7 @@ from multicurrency import EthiopianBirr
 
 
 class TestEthiopianBirr:
+    """EthiopianBirr currency tests."""
 
     def test_ethiopian_birr(self):
         """test_ethiopian_birr."""
@@ -42,7 +43,8 @@ class TestEthiopianBirr:
         assert ethiopian_birr.symbol_separator == '\u00A0'
         assert ethiopian_birr.localized_symbol == 'ብር'
         assert ethiopian_birr.convertion == ''
-        assert ethiopian_birr.__hash__() == hash((decimal, 'ETB', '230'))
+        assert ethiopian_birr.__hash__() == hash(
+            (ethiopian_birr.__class__, decimal, 'ETB', '230'))
         assert ethiopian_birr.__repr__() == (
             'EthiopianBirr(amount: 0.1428571428571428571428571429, '
             'alpha_code: "ETB", '
@@ -58,7 +60,6 @@ class TestEthiopianBirr:
             'convertion: "", '
             'international: False)')
         assert ethiopian_birr.__str__() == 'ብር 0.14'
-
 
     def test_ethiopian_birr_negative(self):
         """test_ethiopian_birr_negative."""
@@ -77,7 +78,8 @@ class TestEthiopianBirr:
         assert ethiopian_birr.symbol_separator == '\u00A0'
         assert ethiopian_birr.localized_symbol == 'ብር'
         assert ethiopian_birr.convertion == ''
-        assert ethiopian_birr.__hash__() == hash((decimal, 'ETB', '230'))
+        assert ethiopian_birr.__hash__() == hash(
+            (ethiopian_birr.__class__, decimal, 'ETB', '230'))
         assert ethiopian_birr.__repr__() == (
             'EthiopianBirr(amount: -100, '
             'alpha_code: "ETB", '
@@ -93,7 +95,6 @@ class TestEthiopianBirr:
             'convertion: "", '
             'international: False)')
         assert ethiopian_birr.__str__() == 'ብር -100.00'
-
 
     def test_ethiopian_birr_custom(self):
         """test_ethiopian_birr_custom."""
@@ -121,7 +122,8 @@ class TestEthiopianBirr:
         assert ethiopian_birr.symbol_separator == '_'
         assert ethiopian_birr.localized_symbol == 'ብር'
         assert ethiopian_birr.convertion == ''
-        assert ethiopian_birr.__hash__() == hash((decimal, 'ETB', '230'))
+        assert ethiopian_birr.__hash__() == hash(
+            (ethiopian_birr.__class__, decimal, 'ETB', '230'))
         assert ethiopian_birr.__repr__() == (
             'EthiopianBirr(amount: 1000, '
             'alpha_code: "ETB", '
@@ -137,7 +139,6 @@ class TestEthiopianBirr:
             'convertion: "", '
             'international: True)')
         assert ethiopian_birr.__str__() == 'ETB 10,00.00000'
-
 
     def test_ethiopian_birr_changed(self):
         """test_cethiopian_birr_changed."""
@@ -195,7 +196,6 @@ class TestEthiopianBirr:
                 match='can\'t set attribute'):
             ethiopian_birr.international = True
 
-
     def test_ethiopian_birr_math_add(self):
         """test_ethiopian_birr_math_add."""
         ethiopian_birr_one = EthiopianBirr(amount=1)
@@ -208,14 +208,14 @@ class TestEthiopianBirr:
             _ = ethiopian_birr_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'birr.EthiopianBirr\'> '
                     'and <class \'str\'>.')):
             _ = ethiopian_birr_one.__add__('1.00')
         assert (
             ethiopian_birr_one +
             ethiopian_birr_two) == ethiopian_birr_three
-
 
     def test_ethiopian_birr_slots(self):
         """test_ethiopian_birr_slots."""

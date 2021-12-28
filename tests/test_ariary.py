@@ -23,6 +23,7 @@ from multicurrency import MalagasyAriary
 
 
 class TestMalagasyAriary:
+    """MalagasyAriary currency tests."""
 
     def test_malagasy_ariary(self):
         """test_malagasy_ariary."""
@@ -42,7 +43,8 @@ class TestMalagasyAriary:
         assert malagasy_ariary.symbol_separator == '\u00A0'
         assert malagasy_ariary.localized_symbol == 'Ar'
         assert malagasy_ariary.convertion == ''
-        assert malagasy_ariary.__hash__() == hash((decimal, 'MGA', '969'))
+        assert malagasy_ariary.__hash__() == hash(
+            (malagasy_ariary.__class__, decimal, 'MGA', '969'))
         assert malagasy_ariary.__repr__() == (
             'MalagasyAriary(amount: 0.1428571428571428571428571429, '
             'alpha_code: "MGA", '
@@ -58,7 +60,6 @@ class TestMalagasyAriary:
             'convertion: "", '
             'international: False)')
         assert malagasy_ariary.__str__() == '0 Ar'
-
 
     def test_malagasy_ariary_negative(self):
         """test_malagasy_ariary_negative."""
@@ -77,7 +78,8 @@ class TestMalagasyAriary:
         assert malagasy_ariary.symbol_separator == '\u00A0'
         assert malagasy_ariary.localized_symbol == 'Ar'
         assert malagasy_ariary.convertion == ''
-        assert malagasy_ariary.__hash__() == hash((decimal, 'MGA', '969'))
+        assert malagasy_ariary.__hash__() == hash(
+            (malagasy_ariary.__class__, decimal, 'MGA', '969'))
         assert malagasy_ariary.__repr__() == (
             'MalagasyAriary(amount: -100, '
             'alpha_code: "MGA", '
@@ -93,7 +95,6 @@ class TestMalagasyAriary:
             'convertion: "", '
             'international: False)')
         assert malagasy_ariary.__str__() == '-100 Ar'
-
 
     def test_malagasy_ariary_custom(self):
         """test_malagasy_ariary_custom."""
@@ -121,7 +122,8 @@ class TestMalagasyAriary:
         assert malagasy_ariary.symbol_separator == '_'
         assert malagasy_ariary.localized_symbol == 'Ar'
         assert malagasy_ariary.convertion == ''
-        assert malagasy_ariary.__hash__() == hash((decimal, 'MGA', '969'))
+        assert malagasy_ariary.__hash__() == hash(
+            (malagasy_ariary.__class__, decimal, 'MGA', '969'))
         assert malagasy_ariary.__repr__() == (
             'MalagasyAriary(amount: 1000, '
             'alpha_code: "MGA", '
@@ -137,7 +139,6 @@ class TestMalagasyAriary:
             'convertion: "", '
             'international: True)')
         assert malagasy_ariary.__str__() == 'MGA 10,00.00000'
-
 
     def test_malagasy_ariary_changed(self):
         """test_cmalagasy_ariary_changed."""
@@ -195,7 +196,6 @@ class TestMalagasyAriary:
                 match='can\'t set attribute'):
             malagasy_ariary.international = True
 
-
     def test_malagasy_ariary_math_add(self):
         """test_malagasy_ariary_math_add."""
         malagasy_ariary_one = MalagasyAriary(amount=1)
@@ -208,14 +208,14 @@ class TestMalagasyAriary:
             _ = malagasy_ariary_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'ariary.MalagasyAriary\'> '
                     'and <class \'str\'>.')):
             _ = malagasy_ariary_one.__add__('1.00')
         assert (
             malagasy_ariary_one +
             malagasy_ariary_two) == malagasy_ariary_three
-
 
     def test_malagasy_ariary_slots(self):
         """test_malagasy_ariary_slots."""

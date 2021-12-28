@@ -23,6 +23,7 @@ from multicurrency import TurkishLira
 
 
 class TestTurkishLira:
+    """TurkishLira currency tests."""
 
     def test_turkish_lira(self):
         """test_turkish_lira."""
@@ -42,7 +43,8 @@ class TestTurkishLira:
         assert turkish_lira.symbol_separator == ''
         assert turkish_lira.localized_symbol == '₤'
         assert turkish_lira.convertion == ''
-        assert turkish_lira.__hash__() == hash((decimal, 'TRY', '949'))
+        assert turkish_lira.__hash__() == hash(
+            (turkish_lira.__class__, decimal, 'TRY', '949'))
         assert turkish_lira.__repr__() == (
             'TurkishLira(amount: 0.1428571428571428571428571429, '
             'alpha_code: "TRY", '
@@ -58,7 +60,6 @@ class TestTurkishLira:
             'convertion: "", '
             'international: False)')
         assert turkish_lira.__str__() == '₤0,14'
-
 
     def test_turkish_lira_negative(self):
         """test_turkish_lira_negative."""
@@ -77,7 +78,8 @@ class TestTurkishLira:
         assert turkish_lira.symbol_separator == ''
         assert turkish_lira.localized_symbol == '₤'
         assert turkish_lira.convertion == ''
-        assert turkish_lira.__hash__() == hash((decimal, 'TRY', '949'))
+        assert turkish_lira.__hash__() == hash(
+            (turkish_lira.__class__, decimal, 'TRY', '949'))
         assert turkish_lira.__repr__() == (
             'TurkishLira(amount: -100, '
             'alpha_code: "TRY", '
@@ -93,7 +95,6 @@ class TestTurkishLira:
             'convertion: "", '
             'international: False)')
         assert turkish_lira.__str__() == '₤-100,00'
-
 
     def test_turkish_lira_custom(self):
         """test_turkish_lira_custom."""
@@ -121,7 +122,8 @@ class TestTurkishLira:
         assert turkish_lira.symbol_separator == '_'
         assert turkish_lira.localized_symbol == '₤'
         assert turkish_lira.convertion == ''
-        assert turkish_lira.__hash__() == hash((decimal, 'TRY', '949'))
+        assert turkish_lira.__hash__() == hash(
+            (turkish_lira.__class__, decimal, 'TRY', '949'))
         assert turkish_lira.__repr__() == (
             'TurkishLira(amount: 1000, '
             'alpha_code: "TRY", '
@@ -137,7 +139,6 @@ class TestTurkishLira:
             'convertion: "", '
             'international: True)')
         assert turkish_lira.__str__() == 'TRY 10,00.00000'
-
 
     def test_turkish_lira_changed(self):
         """test_cturkish_lira_changed."""
@@ -195,7 +196,6 @@ class TestTurkishLira:
                 match='can\'t set attribute'):
             turkish_lira.international = True
 
-
     def test_turkish_lira_math_add(self):
         """test_turkish_lira_math_add."""
         turkish_lira_one = TurkishLira(amount=1)
@@ -208,14 +208,14 @@ class TestTurkishLira:
             _ = turkish_lira_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'lira.TurkishLira\'> '
                     'and <class \'str\'>.')):
             _ = turkish_lira_one.__add__('1.00')
         assert (
             turkish_lira_one +
             turkish_lira_two) == turkish_lira_three
-
 
     def test_turkish_lira_slots(self):
         """test_turkish_lira_slots."""
@@ -234,6 +234,7 @@ from multicurrency import TurkishLiraCY
 
 
 class TestTurkishLiraCY:
+    """TurkishLiraCY currency tests."""
 
     def test_turkish_lira_cy(self):
         """test_turkish_lira_cy."""
@@ -253,7 +254,8 @@ class TestTurkishLiraCY:
         assert turkish_lira_cy.symbol_separator == ''
         assert turkish_lira_cy.localized_symbol == 'CY₤'
         assert turkish_lira_cy.convertion == ''
-        assert turkish_lira_cy.__hash__() == hash((decimal, 'TRY', '949'))
+        assert turkish_lira_cy.__hash__() == hash(
+            (turkish_lira_cy.__class__, decimal, 'TRY', '949'))
         assert turkish_lira_cy.__repr__() == (
             'TurkishLiraCY(amount: 0.1428571428571428571428571429, '
             'alpha_code: "TRY", '
@@ -269,7 +271,6 @@ class TestTurkishLiraCY:
             'convertion: "", '
             'international: False)')
         assert turkish_lira_cy.__str__() == '₤0,14'
-
 
     def test_turkish_lira_cy_negative(self):
         """test_turkish_lira_cy_negative."""
@@ -288,7 +289,8 @@ class TestTurkishLiraCY:
         assert turkish_lira_cy.symbol_separator == ''
         assert turkish_lira_cy.localized_symbol == 'CY₤'
         assert turkish_lira_cy.convertion == ''
-        assert turkish_lira_cy.__hash__() == hash((decimal, 'TRY', '949'))
+        assert turkish_lira_cy.__hash__() == hash(
+            (turkish_lira_cy.__class__, decimal, 'TRY', '949'))
         assert turkish_lira_cy.__repr__() == (
             'TurkishLiraCY(amount: -100, '
             'alpha_code: "TRY", '
@@ -304,7 +306,6 @@ class TestTurkishLiraCY:
             'convertion: "", '
             'international: False)')
         assert turkish_lira_cy.__str__() == '₤-100,00'
-
 
     def test_turkish_lira_cy_custom(self):
         """test_turkish_lira_cy_custom."""
@@ -332,7 +333,8 @@ class TestTurkishLiraCY:
         assert turkish_lira_cy.symbol_separator == '_'
         assert turkish_lira_cy.localized_symbol == 'CY₤'
         assert turkish_lira_cy.convertion == ''
-        assert turkish_lira_cy.__hash__() == hash((decimal, 'TRY', '949'))
+        assert turkish_lira_cy.__hash__() == hash(
+            (turkish_lira_cy.__class__, decimal, 'TRY', '949'))
         assert turkish_lira_cy.__repr__() == (
             'TurkishLiraCY(amount: 1000, '
             'alpha_code: "TRY", '
@@ -348,7 +350,6 @@ class TestTurkishLiraCY:
             'convertion: "", '
             'international: True)')
         assert turkish_lira_cy.__str__() == 'TRY 10,00.00000'
-
 
     def test_turkish_lira_cy_changed(self):
         """test_cturkish_lira_cy_changed."""
@@ -406,7 +407,6 @@ class TestTurkishLiraCY:
                 match='can\'t set attribute'):
             turkish_lira_cy.international = True
 
-
     def test_turkish_lira_cy_math_add(self):
         """test_turkish_lira_cy_math_add."""
         turkish_lira_cy_one = TurkishLiraCY(amount=1)
@@ -419,14 +419,14 @@ class TestTurkishLiraCY:
             _ = turkish_lira_cy_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'lira.TurkishLiraCY\'> '
                     'and <class \'str\'>.')):
             _ = turkish_lira_cy_one.__add__('1.00')
         assert (
             turkish_lira_cy_one +
             turkish_lira_cy_two) == turkish_lira_cy_three
-
 
     def test_turkish_lira_cy_slots(self):
         """test_turkish_lira_cy_slots."""
@@ -445,6 +445,7 @@ from multicurrency import TurkishLiraTR
 
 
 class TestTurkishLiraTR:
+    """TurkishLiraTR currency tests."""
 
     def test_turkish_lira_tr(self):
         """test_turkish_lira_tr."""
@@ -464,7 +465,8 @@ class TestTurkishLiraTR:
         assert turkish_lira_tr.symbol_separator == ''
         assert turkish_lira_tr.localized_symbol == 'TR₤'
         assert turkish_lira_tr.convertion == ''
-        assert turkish_lira_tr.__hash__() == hash((decimal, 'TRY', '949'))
+        assert turkish_lira_tr.__hash__() == hash(
+            (turkish_lira_tr.__class__, decimal, 'TRY', '949'))
         assert turkish_lira_tr.__repr__() == (
             'TurkishLiraTR(amount: 0.1428571428571428571428571429, '
             'alpha_code: "TRY", '
@@ -480,7 +482,6 @@ class TestTurkishLiraTR:
             'convertion: "", '
             'international: False)')
         assert turkish_lira_tr.__str__() == '₤0,14'
-
 
     def test_turkish_lira_tr_negative(self):
         """test_turkish_lira_tr_negative."""
@@ -499,7 +500,8 @@ class TestTurkishLiraTR:
         assert turkish_lira_tr.symbol_separator == ''
         assert turkish_lira_tr.localized_symbol == 'TR₤'
         assert turkish_lira_tr.convertion == ''
-        assert turkish_lira_tr.__hash__() == hash((decimal, 'TRY', '949'))
+        assert turkish_lira_tr.__hash__() == hash(
+            (turkish_lira_tr.__class__, decimal, 'TRY', '949'))
         assert turkish_lira_tr.__repr__() == (
             'TurkishLiraTR(amount: -100, '
             'alpha_code: "TRY", '
@@ -515,7 +517,6 @@ class TestTurkishLiraTR:
             'convertion: "", '
             'international: False)')
         assert turkish_lira_tr.__str__() == '₤-100,00'
-
 
     def test_turkish_lira_tr_custom(self):
         """test_turkish_lira_tr_custom."""
@@ -543,7 +544,8 @@ class TestTurkishLiraTR:
         assert turkish_lira_tr.symbol_separator == '_'
         assert turkish_lira_tr.localized_symbol == 'TR₤'
         assert turkish_lira_tr.convertion == ''
-        assert turkish_lira_tr.__hash__() == hash((decimal, 'TRY', '949'))
+        assert turkish_lira_tr.__hash__() == hash(
+            (turkish_lira_tr.__class__, decimal, 'TRY', '949'))
         assert turkish_lira_tr.__repr__() == (
             'TurkishLiraTR(amount: 1000, '
             'alpha_code: "TRY", '
@@ -559,7 +561,6 @@ class TestTurkishLiraTR:
             'convertion: "", '
             'international: True)')
         assert turkish_lira_tr.__str__() == 'TRY 10,00.00000'
-
 
     def test_turkish_lira_tr_changed(self):
         """test_cturkish_lira_tr_changed."""
@@ -617,7 +618,6 @@ class TestTurkishLiraTR:
                 match='can\'t set attribute'):
             turkish_lira_tr.international = True
 
-
     def test_turkish_lira_tr_math_add(self):
         """test_turkish_lira_tr_math_add."""
         turkish_lira_tr_one = TurkishLiraTR(amount=1)
@@ -630,14 +630,14 @@ class TestTurkishLiraTR:
             _ = turkish_lira_tr_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'lira.TurkishLiraTR\'> '
                     'and <class \'str\'>.')):
             _ = turkish_lira_tr_one.__add__('1.00')
         assert (
             turkish_lira_tr_one +
             turkish_lira_tr_two) == turkish_lira_tr_three
-
 
     def test_turkish_lira_tr_slots(self):
         """test_turkish_lira_tr_slots."""

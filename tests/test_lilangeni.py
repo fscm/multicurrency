@@ -23,6 +23,7 @@ from multicurrency import Lilangeni
 
 
 class TestLilangeni:
+    """Lilangeni currency tests."""
 
     def test_lilangeni(self):
         """test_lilangeni."""
@@ -42,7 +43,8 @@ class TestLilangeni:
         assert lilangeni.symbol_separator == '\u00A0'
         assert lilangeni.localized_symbol == 'L'
         assert lilangeni.convertion == ''
-        assert lilangeni.__hash__() == hash((decimal, 'SZL', '748'))
+        assert lilangeni.__hash__() == hash(
+            (lilangeni.__class__, decimal, 'SZL', '748'))
         assert lilangeni.__repr__() == (
             'Lilangeni(amount: 0.1428571428571428571428571429, '
             'alpha_code: "SZL", '
@@ -58,7 +60,6 @@ class TestLilangeni:
             'convertion: "", '
             'international: False)')
         assert lilangeni.__str__() == 'L 0.14'
-
 
     def test_lilangeni_negative(self):
         """test_lilangeni_negative."""
@@ -77,7 +78,8 @@ class TestLilangeni:
         assert lilangeni.symbol_separator == '\u00A0'
         assert lilangeni.localized_symbol == 'L'
         assert lilangeni.convertion == ''
-        assert lilangeni.__hash__() == hash((decimal, 'SZL', '748'))
+        assert lilangeni.__hash__() == hash(
+            (lilangeni.__class__, decimal, 'SZL', '748'))
         assert lilangeni.__repr__() == (
             'Lilangeni(amount: -100, '
             'alpha_code: "SZL", '
@@ -93,7 +95,6 @@ class TestLilangeni:
             'convertion: "", '
             'international: False)')
         assert lilangeni.__str__() == 'L -100.00'
-
 
     def test_lilangeni_custom(self):
         """test_lilangeni_custom."""
@@ -121,7 +122,8 @@ class TestLilangeni:
         assert lilangeni.symbol_separator == '_'
         assert lilangeni.localized_symbol == 'L'
         assert lilangeni.convertion == ''
-        assert lilangeni.__hash__() == hash((decimal, 'SZL', '748'))
+        assert lilangeni.__hash__() == hash(
+            (lilangeni.__class__, decimal, 'SZL', '748'))
         assert lilangeni.__repr__() == (
             'Lilangeni(amount: 1000, '
             'alpha_code: "SZL", '
@@ -137,7 +139,6 @@ class TestLilangeni:
             'convertion: "", '
             'international: True)')
         assert lilangeni.__str__() == 'SZL 10,00.00000'
-
 
     def test_lilangeni_changed(self):
         """test_clilangeni_changed."""
@@ -195,7 +196,6 @@ class TestLilangeni:
                 match='can\'t set attribute'):
             lilangeni.international = True
 
-
     def test_lilangeni_math_add(self):
         """test_lilangeni_math_add."""
         lilangeni_one = Lilangeni(amount=1)
@@ -208,14 +208,14 @@ class TestLilangeni:
             _ = lilangeni_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'lilangeni.Lilangeni\'> '
                     'and <class \'str\'>.')):
             _ = lilangeni_one.__add__('1.00')
         assert (
             lilangeni_one +
             lilangeni_two) == lilangeni_three
-
 
     def test_lilangeni_slots(self):
         """test_lilangeni_slots."""

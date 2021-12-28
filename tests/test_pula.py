@@ -23,6 +23,7 @@ from multicurrency import Pula
 
 
 class TestPula:
+    """Pula currency tests."""
 
     def test_pula(self):
         """test_pula."""
@@ -42,7 +43,8 @@ class TestPula:
         assert pula.symbol_separator == '\u00A0'
         assert pula.localized_symbol == 'P'
         assert pula.convertion == ''
-        assert pula.__hash__() == hash((decimal, 'BWP', '072'))
+        assert pula.__hash__() == hash(
+            (pula.__class__, decimal, 'BWP', '072'))
         assert pula.__repr__() == (
             'Pula(amount: 0.1428571428571428571428571429, '
             'alpha_code: "BWP", '
@@ -58,7 +60,6 @@ class TestPula:
             'convertion: "", '
             'international: False)')
         assert pula.__str__() == 'P 0.14'
-
 
     def test_pula_negative(self):
         """test_pula_negative."""
@@ -77,7 +78,8 @@ class TestPula:
         assert pula.symbol_separator == '\u00A0'
         assert pula.localized_symbol == 'P'
         assert pula.convertion == ''
-        assert pula.__hash__() == hash((decimal, 'BWP', '072'))
+        assert pula.__hash__() == hash(
+            (pula.__class__, decimal, 'BWP', '072'))
         assert pula.__repr__() == (
             'Pula(amount: -100, '
             'alpha_code: "BWP", '
@@ -93,7 +95,6 @@ class TestPula:
             'convertion: "", '
             'international: False)')
         assert pula.__str__() == 'P -100.00'
-
 
     def test_pula_custom(self):
         """test_pula_custom."""
@@ -121,7 +122,8 @@ class TestPula:
         assert pula.symbol_separator == '_'
         assert pula.localized_symbol == 'P'
         assert pula.convertion == ''
-        assert pula.__hash__() == hash((decimal, 'BWP', '072'))
+        assert pula.__hash__() == hash(
+            (pula.__class__, decimal, 'BWP', '072'))
         assert pula.__repr__() == (
             'Pula(amount: 1000, '
             'alpha_code: "BWP", '
@@ -137,7 +139,6 @@ class TestPula:
             'convertion: "", '
             'international: True)')
         assert pula.__str__() == 'BWP 10,00.00000'
-
 
     def test_pula_changed(self):
         """test_cpula_changed."""
@@ -195,7 +196,6 @@ class TestPula:
                 match='can\'t set attribute'):
             pula.international = True
 
-
     def test_pula_math_add(self):
         """test_pula_math_add."""
         pula_one = Pula(amount=1)
@@ -208,14 +208,14 @@ class TestPula:
             _ = pula_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'pula.Pula\'> '
                     'and <class \'str\'>.')):
             _ = pula_one.__add__('1.00')
         assert (
             pula_one +
             pula_two) == pula_three
-
 
     def test_pula_slots(self):
         """test_pula_slots."""

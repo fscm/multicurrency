@@ -23,6 +23,7 @@ from multicurrency import Loti
 
 
 class TestLoti:
+    """Loti currency tests."""
 
     def test_loti(self):
         """test_loti."""
@@ -42,7 +43,8 @@ class TestLoti:
         assert loti.symbol_separator == '\u00A0'
         assert loti.localized_symbol == 'L'
         assert loti.convertion == ''
-        assert loti.__hash__() == hash((decimal, 'LSL', '426'))
+        assert loti.__hash__() == hash(
+            (loti.__class__, decimal, 'LSL', '426'))
         assert loti.__repr__() == (
             'Loti(amount: 0.1428571428571428571428571429, '
             'alpha_code: "LSL", '
@@ -58,7 +60,6 @@ class TestLoti:
             'convertion: "", '
             'international: False)')
         assert loti.__str__() == 'L 0.14'
-
 
     def test_loti_negative(self):
         """test_loti_negative."""
@@ -77,7 +78,8 @@ class TestLoti:
         assert loti.symbol_separator == '\u00A0'
         assert loti.localized_symbol == 'L'
         assert loti.convertion == ''
-        assert loti.__hash__() == hash((decimal, 'LSL', '426'))
+        assert loti.__hash__() == hash(
+            (loti.__class__, decimal, 'LSL', '426'))
         assert loti.__repr__() == (
             'Loti(amount: -100, '
             'alpha_code: "LSL", '
@@ -93,7 +95,6 @@ class TestLoti:
             'convertion: "", '
             'international: False)')
         assert loti.__str__() == 'L -100.00'
-
 
     def test_loti_custom(self):
         """test_loti_custom."""
@@ -121,7 +122,8 @@ class TestLoti:
         assert loti.symbol_separator == '_'
         assert loti.localized_symbol == 'L'
         assert loti.convertion == ''
-        assert loti.__hash__() == hash((decimal, 'LSL', '426'))
+        assert loti.__hash__() == hash(
+            (loti.__class__, decimal, 'LSL', '426'))
         assert loti.__repr__() == (
             'Loti(amount: 1000, '
             'alpha_code: "LSL", '
@@ -137,7 +139,6 @@ class TestLoti:
             'convertion: "", '
             'international: True)')
         assert loti.__str__() == 'LSL 10,00.00000'
-
 
     def test_loti_changed(self):
         """test_cloti_changed."""
@@ -195,7 +196,6 @@ class TestLoti:
                 match='can\'t set attribute'):
             loti.international = True
 
-
     def test_loti_math_add(self):
         """test_loti_math_add."""
         loti_one = Loti(amount=1)
@@ -208,14 +208,14 @@ class TestLoti:
             _ = loti_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'loti.Loti\'> '
                     'and <class \'str\'>.')):
             _ = loti_one.__add__('1.00')
         assert (
             loti_one +
             loti_two) == loti_three
-
 
     def test_loti_slots(self):
         """test_loti_slots."""

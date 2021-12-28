@@ -4,6 +4,7 @@ tools/generator/_tests/*
 venv/*
 .venv/*
 !.gitkeep
+!.nojekyll
 
 # Python
 .cache

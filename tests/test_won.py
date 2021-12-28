@@ -23,6 +23,7 @@ from multicurrency import NorthKoreanWon
 
 
 class TestNorthKoreanWon:
+    """NorthKoreanWon currency tests."""
 
     def test_north_korean_won(self):
         """test_north_korean_won."""
@@ -42,7 +43,8 @@ class TestNorthKoreanWon:
         assert north_korean_won.symbol_separator == '\u00A0'
         assert north_korean_won.localized_symbol == '₩'
         assert north_korean_won.convertion == ''
-        assert north_korean_won.__hash__() == hash((decimal, 'KPW', '408'))
+        assert north_korean_won.__hash__() == hash(
+            (north_korean_won.__class__, decimal, 'KPW', '408'))
         assert north_korean_won.__repr__() == (
             'NorthKoreanWon(amount: 0.1428571428571428571428571429, '
             'alpha_code: "KPW", '
@@ -58,7 +60,6 @@ class TestNorthKoreanWon:
             'convertion: "", '
             'international: False)')
         assert north_korean_won.__str__() == '₩ 0.14'
-
 
     def test_north_korean_won_negative(self):
         """test_north_korean_won_negative."""
@@ -77,7 +78,8 @@ class TestNorthKoreanWon:
         assert north_korean_won.symbol_separator == '\u00A0'
         assert north_korean_won.localized_symbol == '₩'
         assert north_korean_won.convertion == ''
-        assert north_korean_won.__hash__() == hash((decimal, 'KPW', '408'))
+        assert north_korean_won.__hash__() == hash(
+            (north_korean_won.__class__, decimal, 'KPW', '408'))
         assert north_korean_won.__repr__() == (
             'NorthKoreanWon(amount: -100, '
             'alpha_code: "KPW", '
@@ -93,7 +95,6 @@ class TestNorthKoreanWon:
             'convertion: "", '
             'international: False)')
         assert north_korean_won.__str__() == '₩ -100.00'
-
 
     def test_north_korean_won_custom(self):
         """test_north_korean_won_custom."""
@@ -121,7 +122,8 @@ class TestNorthKoreanWon:
         assert north_korean_won.symbol_separator == '_'
         assert north_korean_won.localized_symbol == '₩'
         assert north_korean_won.convertion == ''
-        assert north_korean_won.__hash__() == hash((decimal, 'KPW', '408'))
+        assert north_korean_won.__hash__() == hash(
+            (north_korean_won.__class__, decimal, 'KPW', '408'))
         assert north_korean_won.__repr__() == (
             'NorthKoreanWon(amount: 1000, '
             'alpha_code: "KPW", '
@@ -137,7 +139,6 @@ class TestNorthKoreanWon:
             'convertion: "", '
             'international: True)')
         assert north_korean_won.__str__() == 'KPW 10,00.00000'
-
 
     def test_north_korean_won_changed(self):
         """test_cnorth_korean_won_changed."""
@@ -195,7 +196,6 @@ class TestNorthKoreanWon:
                 match='can\'t set attribute'):
             north_korean_won.international = True
 
-
     def test_north_korean_won_math_add(self):
         """test_north_korean_won_math_add."""
         north_korean_won_one = NorthKoreanWon(amount=1)
@@ -208,14 +208,14 @@ class TestNorthKoreanWon:
             _ = north_korean_won_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'won.NorthKoreanWon\'> '
                     'and <class \'str\'>.')):
             _ = north_korean_won_one.__add__('1.00')
         assert (
             north_korean_won_one +
             north_korean_won_two) == north_korean_won_three
-
 
     def test_north_korean_won_slots(self):
         """test_north_korean_won_slots."""
@@ -234,6 +234,7 @@ from multicurrency import SouthKoreanWon
 
 
 class TestSouthKoreanWon:
+    """SouthKoreanWon currency tests."""
 
     def test_south_korean_won(self):
         """test_south_korean_won."""
@@ -253,7 +254,8 @@ class TestSouthKoreanWon:
         assert south_korean_won.symbol_separator == ''
         assert south_korean_won.localized_symbol == '₩'
         assert south_korean_won.convertion == ''
-        assert south_korean_won.__hash__() == hash((decimal, 'KRW', '410'))
+        assert south_korean_won.__hash__() == hash(
+            (south_korean_won.__class__, decimal, 'KRW', '410'))
         assert south_korean_won.__repr__() == (
             'SouthKoreanWon(amount: 0.1428571428571428571428571429, '
             'alpha_code: "KRW", '
@@ -269,7 +271,6 @@ class TestSouthKoreanWon:
             'convertion: "", '
             'international: False)')
         assert south_korean_won.__str__() == '₩0'
-
 
     def test_south_korean_won_negative(self):
         """test_south_korean_won_negative."""
@@ -288,7 +289,8 @@ class TestSouthKoreanWon:
         assert south_korean_won.symbol_separator == ''
         assert south_korean_won.localized_symbol == '₩'
         assert south_korean_won.convertion == ''
-        assert south_korean_won.__hash__() == hash((decimal, 'KRW', '410'))
+        assert south_korean_won.__hash__() == hash(
+            (south_korean_won.__class__, decimal, 'KRW', '410'))
         assert south_korean_won.__repr__() == (
             'SouthKoreanWon(amount: -100, '
             'alpha_code: "KRW", '
@@ -304,7 +306,6 @@ class TestSouthKoreanWon:
             'convertion: "", '
             'international: False)')
         assert south_korean_won.__str__() == '₩-100'
-
 
     def test_south_korean_won_custom(self):
         """test_south_korean_won_custom."""
@@ -332,7 +333,8 @@ class TestSouthKoreanWon:
         assert south_korean_won.symbol_separator == '_'
         assert south_korean_won.localized_symbol == '₩'
         assert south_korean_won.convertion == ''
-        assert south_korean_won.__hash__() == hash((decimal, 'KRW', '410'))
+        assert south_korean_won.__hash__() == hash(
+            (south_korean_won.__class__, decimal, 'KRW', '410'))
         assert south_korean_won.__repr__() == (
             'SouthKoreanWon(amount: 1000, '
             'alpha_code: "KRW", '
@@ -348,7 +350,6 @@ class TestSouthKoreanWon:
             'convertion: "", '
             'international: True)')
         assert south_korean_won.__str__() == 'KRW 10,00.00000'
-
 
     def test_south_korean_won_changed(self):
         """test_csouth_korean_won_changed."""
@@ -406,7 +407,6 @@ class TestSouthKoreanWon:
                 match='can\'t set attribute'):
             south_korean_won.international = True
 
-
     def test_south_korean_won_math_add(self):
         """test_south_korean_won_math_add."""
         south_korean_won_one = SouthKoreanWon(amount=1)
@@ -419,14 +419,14 @@ class TestSouthKoreanWon:
             _ = south_korean_won_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'won.SouthKoreanWon\'> '
                     'and <class \'str\'>.')):
             _ = south_korean_won_one.__add__('1.00')
         assert (
             south_korean_won_one +
             south_korean_won_two) == south_korean_won_three
-
 
     def test_south_korean_won_slots(self):
         """test_south_korean_won_slots."""

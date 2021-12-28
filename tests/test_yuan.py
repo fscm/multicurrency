@@ -23,6 +23,7 @@ from multicurrency import Yuan
 
 
 class TestYuan:
+    """Yuan currency tests."""
 
     def test_yuan(self):
         """test_yuan."""
@@ -42,7 +43,8 @@ class TestYuan:
         assert yuan.symbol_separator == ''
         assert yuan.localized_symbol == '¥'
         assert yuan.convertion == ''
-        assert yuan.__hash__() == hash((decimal, 'CNY', '156'))
+        assert yuan.__hash__() == hash(
+            (yuan.__class__, decimal, 'CNY', '156'))
         assert yuan.__repr__() == (
             'Yuan(amount: 0.1428571428571428571428571429, '
             'alpha_code: "CNY", '
@@ -58,7 +60,6 @@ class TestYuan:
             'convertion: "", '
             'international: False)')
         assert yuan.__str__() == '¥0.14'
-
 
     def test_yuan_negative(self):
         """test_yuan_negative."""
@@ -77,7 +78,8 @@ class TestYuan:
         assert yuan.symbol_separator == ''
         assert yuan.localized_symbol == '¥'
         assert yuan.convertion == ''
-        assert yuan.__hash__() == hash((decimal, 'CNY', '156'))
+        assert yuan.__hash__() == hash(
+            (yuan.__class__, decimal, 'CNY', '156'))
         assert yuan.__repr__() == (
             'Yuan(amount: -100, '
             'alpha_code: "CNY", '
@@ -93,7 +95,6 @@ class TestYuan:
             'convertion: "", '
             'international: False)')
         assert yuan.__str__() == '¥-100.00'
-
 
     def test_yuan_custom(self):
         """test_yuan_custom."""
@@ -121,7 +122,8 @@ class TestYuan:
         assert yuan.symbol_separator == '_'
         assert yuan.localized_symbol == '¥'
         assert yuan.convertion == ''
-        assert yuan.__hash__() == hash((decimal, 'CNY', '156'))
+        assert yuan.__hash__() == hash(
+            (yuan.__class__, decimal, 'CNY', '156'))
         assert yuan.__repr__() == (
             'Yuan(amount: 1000, '
             'alpha_code: "CNY", '
@@ -137,7 +139,6 @@ class TestYuan:
             'convertion: "", '
             'international: True)')
         assert yuan.__str__() == 'CNY 10,00.00000'
-
 
     def test_yuan_changed(self):
         """test_cyuan_changed."""
@@ -195,7 +196,6 @@ class TestYuan:
                 match='can\'t set attribute'):
             yuan.international = True
 
-
     def test_yuan_math_add(self):
         """test_yuan_math_add."""
         yuan_one = Yuan(amount=1)
@@ -208,14 +208,14 @@ class TestYuan:
             _ = yuan_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'yuan.Yuan\'> '
                     'and <class \'str\'>.')):
             _ = yuan_one.__add__('1.00')
         assert (
             yuan_one +
             yuan_two) == yuan_three
-
 
     def test_yuan_slots(self):
         """test_yuan_slots."""

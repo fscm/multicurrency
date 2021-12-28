@@ -64,7 +64,7 @@ def test_currency_default():
     assert default.symbol_separator == ''
     assert default.localized_symbol == ''
     assert default.convertion == ''
-    assert default.__hash__() == hash((decimal, '', '0'))
+    assert default.__hash__() == hash((default.__class__, decimal, '', '0'))
     assert default.__repr__() == (
         'Currency(amount: 0.1428571428571428571428571429, '
         'alpha_code: "", '
@@ -98,7 +98,7 @@ def test_currency_negative():
     assert default.symbol_separator == ''
     assert default.localized_symbol == ''
     assert default.convertion == ''
-    assert default.__hash__() == hash((decimal, '', '0'))
+    assert default.__hash__() == hash((default.__class__, decimal, '', '0'))
     assert default.__repr__() == (
         'Currency(amount: -100, '
         'alpha_code: "", '
@@ -147,7 +147,7 @@ def test_currency_custom():
     assert euro.symbol_separator == '\u00A0'
     assert euro.localized_symbol == 'PT€'
     assert euro.convertion == '0123456789-,.'
-    assert euro.__hash__() == hash((decimal, 'EUR', '978'))
+    assert euro.__hash__() == hash((euro.__class__, decimal, 'EUR', '978'))
     assert euro.__repr__() == (
         'Currency(amount: 1000, '
         'alpha_code: "EUR", '

@@ -23,6 +23,7 @@ from multicurrency import Metical
 
 
 class TestMetical:
+    """Metical currency tests."""
 
     def test_metical(self):
         """test_metical."""
@@ -42,7 +43,8 @@ class TestMetical:
         assert metical.symbol_separator == '\u00A0'
         assert metical.localized_symbol == 'MTn'
         assert metical.convertion == ''
-        assert metical.__hash__() == hash((decimal, 'MZN', '943'))
+        assert metical.__hash__() == hash(
+            (metical.__class__, decimal, 'MZN', '943'))
         assert metical.__repr__() == (
             'Metical(amount: 0.1428571428571428571428571429, '
             'alpha_code: "MZN", '
@@ -58,7 +60,6 @@ class TestMetical:
             'convertion: "", '
             'international: False)')
         assert metical.__str__() == '0 MTn'
-
 
     def test_metical_negative(self):
         """test_metical_negative."""
@@ -77,7 +78,8 @@ class TestMetical:
         assert metical.symbol_separator == '\u00A0'
         assert metical.localized_symbol == 'MTn'
         assert metical.convertion == ''
-        assert metical.__hash__() == hash((decimal, 'MZN', '943'))
+        assert metical.__hash__() == hash(
+            (metical.__class__, decimal, 'MZN', '943'))
         assert metical.__repr__() == (
             'Metical(amount: -100, '
             'alpha_code: "MZN", '
@@ -93,7 +95,6 @@ class TestMetical:
             'convertion: "", '
             'international: False)')
         assert metical.__str__() == '-100 MTn'
-
 
     def test_metical_custom(self):
         """test_metical_custom."""
@@ -121,7 +122,8 @@ class TestMetical:
         assert metical.symbol_separator == '_'
         assert metical.localized_symbol == 'MTn'
         assert metical.convertion == ''
-        assert metical.__hash__() == hash((decimal, 'MZN', '943'))
+        assert metical.__hash__() == hash(
+            (metical.__class__, decimal, 'MZN', '943'))
         assert metical.__repr__() == (
             'Metical(amount: 1000, '
             'alpha_code: "MZN", '
@@ -137,7 +139,6 @@ class TestMetical:
             'convertion: "", '
             'international: True)')
         assert metical.__str__() == 'MZN 10,00.00000'
-
 
     def test_metical_changed(self):
         """test_cmetical_changed."""
@@ -195,7 +196,6 @@ class TestMetical:
                 match='can\'t set attribute'):
             metical.international = True
 
-
     def test_metical_math_add(self):
         """test_metical_math_add."""
         metical_one = Metical(amount=1)
@@ -208,14 +208,14 @@ class TestMetical:
             _ = metical_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'metical.Metical\'> '
                     'and <class \'str\'>.')):
             _ = metical_one.__add__('1.00')
         assert (
             metical_one +
             metical_two) == metical_three
-
 
     def test_metical_slots(self):
         """test_metical_slots."""

@@ -23,6 +23,7 @@ from multicurrency import Cedi
 
 
 class TestCedi:
+    """Cedi currency tests."""
 
     def test_cedi(self):
         """test_cedi."""
@@ -42,7 +43,8 @@ class TestCedi:
         assert cedi.symbol_separator == ''
         assert cedi.localized_symbol == '₵'
         assert cedi.convertion == ''
-        assert cedi.__hash__() == hash((decimal, 'GHS', '936'))
+        assert cedi.__hash__() == hash(
+            (cedi.__class__, decimal, 'GHS', '936'))
         assert cedi.__repr__() == (
             'Cedi(amount: 0.1428571428571428571428571429, '
             'alpha_code: "GHS", '
@@ -58,7 +60,6 @@ class TestCedi:
             'convertion: "", '
             'international: False)')
         assert cedi.__str__() == '₵0.14'
-
 
     def test_cedi_negative(self):
         """test_cedi_negative."""
@@ -77,7 +78,8 @@ class TestCedi:
         assert cedi.symbol_separator == ''
         assert cedi.localized_symbol == '₵'
         assert cedi.convertion == ''
-        assert cedi.__hash__() == hash((decimal, 'GHS', '936'))
+        assert cedi.__hash__() == hash(
+            (cedi.__class__, decimal, 'GHS', '936'))
         assert cedi.__repr__() == (
             'Cedi(amount: -100, '
             'alpha_code: "GHS", '
@@ -93,7 +95,6 @@ class TestCedi:
             'convertion: "", '
             'international: False)')
         assert cedi.__str__() == '₵-100.00'
-
 
     def test_cedi_custom(self):
         """test_cedi_custom."""
@@ -121,7 +122,8 @@ class TestCedi:
         assert cedi.symbol_separator == '_'
         assert cedi.localized_symbol == '₵'
         assert cedi.convertion == ''
-        assert cedi.__hash__() == hash((decimal, 'GHS', '936'))
+        assert cedi.__hash__() == hash(
+            (cedi.__class__, decimal, 'GHS', '936'))
         assert cedi.__repr__() == (
             'Cedi(amount: 1000, '
             'alpha_code: "GHS", '
@@ -137,7 +139,6 @@ class TestCedi:
             'convertion: "", '
             'international: True)')
         assert cedi.__str__() == 'GHS 10,00.00000'
-
 
     def test_cedi_changed(self):
         """test_ccedi_changed."""
@@ -195,7 +196,6 @@ class TestCedi:
                 match='can\'t set attribute'):
             cedi.international = True
 
-
     def test_cedi_math_add(self):
         """test_cedi_math_add."""
         cedi_one = Cedi(amount=1)
@@ -208,14 +208,14 @@ class TestCedi:
             _ = cedi_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'cedi.Cedi\'> '
                     'and <class \'str\'>.')):
             _ = cedi_one.__add__('1.00')
         assert (
             cedi_one +
             cedi_two) == cedi_three
-
 
     def test_cedi_slots(self):
         """test_cedi_slots."""

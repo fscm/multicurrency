@@ -23,6 +23,7 @@ from multicurrency import Rufiyaa
 
 
 class TestRufiyaa:
+    """Rufiyaa currency tests."""
 
     def test_rufiyaa(self):
         """test_rufiyaa."""
@@ -42,7 +43,8 @@ class TestRufiyaa:
         assert rufiyaa.symbol_separator == '\u00A0'
         assert rufiyaa.localized_symbol == 'ރ.'
         assert rufiyaa.convertion == ''
-        assert rufiyaa.__hash__() == hash((decimal, 'MVR', '462'))
+        assert rufiyaa.__hash__() == hash(
+            (rufiyaa.__class__, decimal, 'MVR', '462'))
         assert rufiyaa.__repr__() == (
             'Rufiyaa(amount: 0.1428571428571428571428571429, '
             'alpha_code: "MVR", '
@@ -58,7 +60,6 @@ class TestRufiyaa:
             'convertion: "", '
             'international: False)')
         assert rufiyaa.__str__() == 'ރ. 0.14'
-
 
     def test_rufiyaa_negative(self):
         """test_rufiyaa_negative."""
@@ -77,7 +78,8 @@ class TestRufiyaa:
         assert rufiyaa.symbol_separator == '\u00A0'
         assert rufiyaa.localized_symbol == 'ރ.'
         assert rufiyaa.convertion == ''
-        assert rufiyaa.__hash__() == hash((decimal, 'MVR', '462'))
+        assert rufiyaa.__hash__() == hash(
+            (rufiyaa.__class__, decimal, 'MVR', '462'))
         assert rufiyaa.__repr__() == (
             'Rufiyaa(amount: -100, '
             'alpha_code: "MVR", '
@@ -93,7 +95,6 @@ class TestRufiyaa:
             'convertion: "", '
             'international: False)')
         assert rufiyaa.__str__() == 'ރ. -100.00'
-
 
     def test_rufiyaa_custom(self):
         """test_rufiyaa_custom."""
@@ -121,7 +122,8 @@ class TestRufiyaa:
         assert rufiyaa.symbol_separator == '_'
         assert rufiyaa.localized_symbol == 'ރ.'
         assert rufiyaa.convertion == ''
-        assert rufiyaa.__hash__() == hash((decimal, 'MVR', '462'))
+        assert rufiyaa.__hash__() == hash(
+            (rufiyaa.__class__, decimal, 'MVR', '462'))
         assert rufiyaa.__repr__() == (
             'Rufiyaa(amount: 1000, '
             'alpha_code: "MVR", '
@@ -137,7 +139,6 @@ class TestRufiyaa:
             'convertion: "", '
             'international: True)')
         assert rufiyaa.__str__() == 'MVR 10,00.00000'
-
 
     def test_rufiyaa_changed(self):
         """test_crufiyaa_changed."""
@@ -195,7 +196,6 @@ class TestRufiyaa:
                 match='can\'t set attribute'):
             rufiyaa.international = True
 
-
     def test_rufiyaa_math_add(self):
         """test_rufiyaa_math_add."""
         rufiyaa_one = Rufiyaa(amount=1)
@@ -208,14 +208,14 @@ class TestRufiyaa:
             _ = rufiyaa_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'rufiyaa.Rufiyaa\'> '
                     'and <class \'str\'>.')):
             _ = rufiyaa_one.__add__('1.00')
         assert (
             rufiyaa_one +
             rufiyaa_two) == rufiyaa_three
-
 
     def test_rufiyaa_slots(self):
         """test_rufiyaa_slots."""

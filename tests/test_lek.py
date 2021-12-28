@@ -23,6 +23,7 @@ from multicurrency import Lek
 
 
 class TestLek:
+    """Lek currency tests."""
 
     def test_lek(self):
         """test_lek."""
@@ -42,7 +43,8 @@ class TestLek:
         assert lek.symbol_separator == '\u00A0'
         assert lek.localized_symbol == 'Lek'
         assert lek.convertion == ''
-        assert lek.__hash__() == hash((decimal, 'ALL', '008'))
+        assert lek.__hash__() == hash(
+            (lek.__class__, decimal, 'ALL', '008'))
         assert lek.__repr__() == (
             'Lek(amount: 0.1428571428571428571428571429, '
             'alpha_code: "ALL", '
@@ -58,7 +60,6 @@ class TestLek:
             'convertion: "", '
             'international: False)')
         assert lek.__str__() == '0,14 Lek'
-
 
     def test_lek_negative(self):
         """test_lek_negative."""
@@ -77,7 +78,8 @@ class TestLek:
         assert lek.symbol_separator == '\u00A0'
         assert lek.localized_symbol == 'Lek'
         assert lek.convertion == ''
-        assert lek.__hash__() == hash((decimal, 'ALL', '008'))
+        assert lek.__hash__() == hash(
+            (lek.__class__, decimal, 'ALL', '008'))
         assert lek.__repr__() == (
             'Lek(amount: -100, '
             'alpha_code: "ALL", '
@@ -93,7 +95,6 @@ class TestLek:
             'convertion: "", '
             'international: False)')
         assert lek.__str__() == '-100,00 Lek'
-
 
     def test_lek_custom(self):
         """test_lek_custom."""
@@ -121,7 +122,8 @@ class TestLek:
         assert lek.symbol_separator == '_'
         assert lek.localized_symbol == 'Lek'
         assert lek.convertion == ''
-        assert lek.__hash__() == hash((decimal, 'ALL', '008'))
+        assert lek.__hash__() == hash(
+            (lek.__class__, decimal, 'ALL', '008'))
         assert lek.__repr__() == (
             'Lek(amount: 1000, '
             'alpha_code: "ALL", '
@@ -137,7 +139,6 @@ class TestLek:
             'convertion: "", '
             'international: True)')
         assert lek.__str__() == 'ALL 10,00.00000'
-
 
     def test_lek_changed(self):
         """test_clek_changed."""
@@ -195,7 +196,6 @@ class TestLek:
                 match='can\'t set attribute'):
             lek.international = True
 
-
     def test_lek_math_add(self):
         """test_lek_math_add."""
         lek_one = Lek(amount=1)
@@ -208,14 +208,14 @@ class TestLek:
             _ = lek_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'lek.Lek\'> '
                     'and <class \'str\'>.')):
             _ = lek_one.__add__('1.00')
         assert (
             lek_one +
             lek_two) == lek_three
-
 
     def test_lek_slots(self):
         """test_lek_slots."""

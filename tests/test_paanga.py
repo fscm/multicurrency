@@ -23,6 +23,7 @@ from multicurrency import Paanga
 
 
 class TestPaanga:
+    """Paanga currency tests."""
 
     def test_paanga(self):
         """test_paanga."""
@@ -42,7 +43,8 @@ class TestPaanga:
         assert paanga.symbol_separator == '\u00A0'
         assert paanga.localized_symbol == 'T$'
         assert paanga.convertion == ''
-        assert paanga.__hash__() == hash((decimal, 'TOP', '776'))
+        assert paanga.__hash__() == hash(
+            (paanga.__class__, decimal, 'TOP', '776'))
         assert paanga.__repr__() == (
             'Paanga(amount: 0.1428571428571428571428571429, '
             'alpha_code: "TOP", '
@@ -58,7 +60,6 @@ class TestPaanga:
             'convertion: "", '
             'international: False)')
         assert paanga.__str__() == 'T$ 0.14'
-
 
     def test_paanga_negative(self):
         """test_paanga_negative."""
@@ -77,7 +78,8 @@ class TestPaanga:
         assert paanga.symbol_separator == '\u00A0'
         assert paanga.localized_symbol == 'T$'
         assert paanga.convertion == ''
-        assert paanga.__hash__() == hash((decimal, 'TOP', '776'))
+        assert paanga.__hash__() == hash(
+            (paanga.__class__, decimal, 'TOP', '776'))
         assert paanga.__repr__() == (
             'Paanga(amount: -100, '
             'alpha_code: "TOP", '
@@ -93,7 +95,6 @@ class TestPaanga:
             'convertion: "", '
             'international: False)')
         assert paanga.__str__() == 'T$ -100.00'
-
 
     def test_paanga_custom(self):
         """test_paanga_custom."""
@@ -121,7 +122,8 @@ class TestPaanga:
         assert paanga.symbol_separator == '_'
         assert paanga.localized_symbol == 'T$'
         assert paanga.convertion == ''
-        assert paanga.__hash__() == hash((decimal, 'TOP', '776'))
+        assert paanga.__hash__() == hash(
+            (paanga.__class__, decimal, 'TOP', '776'))
         assert paanga.__repr__() == (
             'Paanga(amount: 1000, '
             'alpha_code: "TOP", '
@@ -137,7 +139,6 @@ class TestPaanga:
             'convertion: "", '
             'international: True)')
         assert paanga.__str__() == 'TOP 10,00.00000'
-
 
     def test_paanga_changed(self):
         """test_cpaanga_changed."""
@@ -195,7 +196,6 @@ class TestPaanga:
                 match='can\'t set attribute'):
             paanga.international = True
 
-
     def test_paanga_math_add(self):
         """test_paanga_math_add."""
         paanga_one = Paanga(amount=1)
@@ -208,14 +208,14 @@ class TestPaanga:
             _ = paanga_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'paanga.Paanga\'> '
                     'and <class \'str\'>.')):
             _ = paanga_one.__add__('1.00')
         assert (
             paanga_one +
             paanga_two) == paanga_three
-
 
     def test_paanga_slots(self):
         """test_paanga_slots."""

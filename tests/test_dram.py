@@ -23,6 +23,7 @@ from multicurrency import ArmenianDram
 
 
 class TestArmenianDram:
+    """ArmenianDram currency tests."""
 
     def test_armenian_dram(self):
         """test_armenian_dram."""
@@ -42,7 +43,8 @@ class TestArmenianDram:
         assert armenian_dram.symbol_separator == '\u00A0'
         assert armenian_dram.localized_symbol == 'Դ'
         assert armenian_dram.convertion == ''
-        assert armenian_dram.__hash__() == hash((decimal, 'AMD', '051'))
+        assert armenian_dram.__hash__() == hash(
+            (armenian_dram.__class__, decimal, 'AMD', '051'))
         assert armenian_dram.__repr__() == (
             'ArmenianDram(amount: 0.1428571428571428571428571429, '
             'alpha_code: "AMD", '
@@ -58,7 +60,6 @@ class TestArmenianDram:
             'convertion: "", '
             'international: False)')
         assert armenian_dram.__str__() == '0,14 Դ'
-
 
     def test_armenian_dram_negative(self):
         """test_armenian_dram_negative."""
@@ -77,7 +78,8 @@ class TestArmenianDram:
         assert armenian_dram.symbol_separator == '\u00A0'
         assert armenian_dram.localized_symbol == 'Դ'
         assert armenian_dram.convertion == ''
-        assert armenian_dram.__hash__() == hash((decimal, 'AMD', '051'))
+        assert armenian_dram.__hash__() == hash(
+            (armenian_dram.__class__, decimal, 'AMD', '051'))
         assert armenian_dram.__repr__() == (
             'ArmenianDram(amount: -100, '
             'alpha_code: "AMD", '
@@ -93,7 +95,6 @@ class TestArmenianDram:
             'convertion: "", '
             'international: False)')
         assert armenian_dram.__str__() == '-100,00 Դ'
-
 
     def test_armenian_dram_custom(self):
         """test_armenian_dram_custom."""
@@ -121,7 +122,8 @@ class TestArmenianDram:
         assert armenian_dram.symbol_separator == '_'
         assert armenian_dram.localized_symbol == 'Դ'
         assert armenian_dram.convertion == ''
-        assert armenian_dram.__hash__() == hash((decimal, 'AMD', '051'))
+        assert armenian_dram.__hash__() == hash(
+            (armenian_dram.__class__, decimal, 'AMD', '051'))
         assert armenian_dram.__repr__() == (
             'ArmenianDram(amount: 1000, '
             'alpha_code: "AMD", '
@@ -137,7 +139,6 @@ class TestArmenianDram:
             'convertion: "", '
             'international: True)')
         assert armenian_dram.__str__() == 'AMD 10,00.00000'
-
 
     def test_armenian_dram_changed(self):
         """test_carmenian_dram_changed."""
@@ -195,7 +196,6 @@ class TestArmenianDram:
                 match='can\'t set attribute'):
             armenian_dram.international = True
 
-
     def test_armenian_dram_math_add(self):
         """test_armenian_dram_math_add."""
         armenian_dram_one = ArmenianDram(amount=1)
@@ -208,14 +208,14 @@ class TestArmenianDram:
             _ = armenian_dram_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dram.ArmenianDram\'> '
                     'and <class \'str\'>.')):
             _ = armenian_dram_one.__add__('1.00')
         assert (
             armenian_dram_one +
             armenian_dram_two) == armenian_dram_three
-
 
     def test_armenian_dram_slots(self):
         """test_armenian_dram_slots."""

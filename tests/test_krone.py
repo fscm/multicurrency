@@ -23,6 +23,7 @@ from multicurrency import DanishKrone
 
 
 class TestDanishKrone:
+    """DanishKrone currency tests."""
 
     def test_danish_krone(self):
         """test_danish_krone."""
@@ -42,7 +43,8 @@ class TestDanishKrone:
         assert danish_krone.symbol_separator == '\u00A0'
         assert danish_krone.localized_symbol == 'kr'
         assert danish_krone.convertion == ''
-        assert danish_krone.__hash__() == hash((decimal, 'DKK', '208'))
+        assert danish_krone.__hash__() == hash(
+            (danish_krone.__class__, decimal, 'DKK', '208'))
         assert danish_krone.__repr__() == (
             'DanishKrone(amount: 0.1428571428571428571428571429, '
             'alpha_code: "DKK", '
@@ -58,7 +60,6 @@ class TestDanishKrone:
             'convertion: "", '
             'international: False)')
         assert danish_krone.__str__() == '0,14 kr'
-
 
     def test_danish_krone_negative(self):
         """test_danish_krone_negative."""
@@ -77,7 +78,8 @@ class TestDanishKrone:
         assert danish_krone.symbol_separator == '\u00A0'
         assert danish_krone.localized_symbol == 'kr'
         assert danish_krone.convertion == ''
-        assert danish_krone.__hash__() == hash((decimal, 'DKK', '208'))
+        assert danish_krone.__hash__() == hash(
+            (danish_krone.__class__, decimal, 'DKK', '208'))
         assert danish_krone.__repr__() == (
             'DanishKrone(amount: -100, '
             'alpha_code: "DKK", '
@@ -93,7 +95,6 @@ class TestDanishKrone:
             'convertion: "", '
             'international: False)')
         assert danish_krone.__str__() == '-100,00 kr'
-
 
     def test_danish_krone_custom(self):
         """test_danish_krone_custom."""
@@ -121,7 +122,8 @@ class TestDanishKrone:
         assert danish_krone.symbol_separator == '_'
         assert danish_krone.localized_symbol == 'kr'
         assert danish_krone.convertion == ''
-        assert danish_krone.__hash__() == hash((decimal, 'DKK', '208'))
+        assert danish_krone.__hash__() == hash(
+            (danish_krone.__class__, decimal, 'DKK', '208'))
         assert danish_krone.__repr__() == (
             'DanishKrone(amount: 1000, '
             'alpha_code: "DKK", '
@@ -137,7 +139,6 @@ class TestDanishKrone:
             'convertion: "", '
             'international: True)')
         assert danish_krone.__str__() == 'DKK 10,00.00000'
-
 
     def test_danish_krone_changed(self):
         """test_cdanish_krone_changed."""
@@ -195,7 +196,6 @@ class TestDanishKrone:
                 match='can\'t set attribute'):
             danish_krone.international = True
 
-
     def test_danish_krone_math_add(self):
         """test_danish_krone_math_add."""
         danish_krone_one = DanishKrone(amount=1)
@@ -208,14 +208,14 @@ class TestDanishKrone:
             _ = danish_krone_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'krone.DanishKrone\'> '
                     'and <class \'str\'>.')):
             _ = danish_krone_one.__add__('1.00')
         assert (
             danish_krone_one +
             danish_krone_two) == danish_krone_three
-
 
     def test_danish_krone_slots(self):
         """test_danish_krone_slots."""
@@ -234,6 +234,7 @@ from multicurrency import NorwegianKrone
 
 
 class TestNorwegianKrone:
+    """NorwegianKrone currency tests."""
 
     def test_norwegian_krone(self):
         """test_norwegian_krone."""
@@ -253,7 +254,8 @@ class TestNorwegianKrone:
         assert norwegian_krone.symbol_separator == '\u00A0'
         assert norwegian_krone.localized_symbol == 'kr'
         assert norwegian_krone.convertion == ''
-        assert norwegian_krone.__hash__() == hash((decimal, 'NOK', '578'))
+        assert norwegian_krone.__hash__() == hash(
+            (norwegian_krone.__class__, decimal, 'NOK', '578'))
         assert norwegian_krone.__repr__() == (
             'NorwegianKrone(amount: 0.1428571428571428571428571429, '
             'alpha_code: "NOK", '
@@ -269,7 +271,6 @@ class TestNorwegianKrone:
             'convertion: "", '
             'international: False)')
         assert norwegian_krone.__str__() == 'kr 0,14'
-
 
     def test_norwegian_krone_negative(self):
         """test_norwegian_krone_negative."""
@@ -288,7 +289,8 @@ class TestNorwegianKrone:
         assert norwegian_krone.symbol_separator == '\u00A0'
         assert norwegian_krone.localized_symbol == 'kr'
         assert norwegian_krone.convertion == ''
-        assert norwegian_krone.__hash__() == hash((decimal, 'NOK', '578'))
+        assert norwegian_krone.__hash__() == hash(
+            (norwegian_krone.__class__, decimal, 'NOK', '578'))
         assert norwegian_krone.__repr__() == (
             'NorwegianKrone(amount: -100, '
             'alpha_code: "NOK", '
@@ -304,7 +306,6 @@ class TestNorwegianKrone:
             'convertion: "", '
             'international: False)')
         assert norwegian_krone.__str__() == 'kr -100,00'
-
 
     def test_norwegian_krone_custom(self):
         """test_norwegian_krone_custom."""
@@ -332,7 +333,8 @@ class TestNorwegianKrone:
         assert norwegian_krone.symbol_separator == '_'
         assert norwegian_krone.localized_symbol == 'kr'
         assert norwegian_krone.convertion == ''
-        assert norwegian_krone.__hash__() == hash((decimal, 'NOK', '578'))
+        assert norwegian_krone.__hash__() == hash(
+            (norwegian_krone.__class__, decimal, 'NOK', '578'))
         assert norwegian_krone.__repr__() == (
             'NorwegianKrone(amount: 1000, '
             'alpha_code: "NOK", '
@@ -348,7 +350,6 @@ class TestNorwegianKrone:
             'convertion: "", '
             'international: True)')
         assert norwegian_krone.__str__() == 'NOK 10,00.00000'
-
 
     def test_norwegian_krone_changed(self):
         """test_cnorwegian_krone_changed."""
@@ -406,7 +407,6 @@ class TestNorwegianKrone:
                 match='can\'t set attribute'):
             norwegian_krone.international = True
 
-
     def test_norwegian_krone_math_add(self):
         """test_norwegian_krone_math_add."""
         norwegian_krone_one = NorwegianKrone(amount=1)
@@ -419,14 +419,14 @@ class TestNorwegianKrone:
             _ = norwegian_krone_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'krone.NorwegianKrone\'> '
                     'and <class \'str\'>.')):
             _ = norwegian_krone_one.__add__('1.00')
         assert (
             norwegian_krone_one +
             norwegian_krone_two) == norwegian_krone_three
-
 
     def test_norwegian_krone_slots(self):
         """test_norwegian_krone_slots."""

@@ -6,6 +6,7 @@ from multicurrency import __CURRENCY_CLASS__
 
 
 class Test__CURRENCY_CLASS__:
+    """__CURRENCY_CLASS__ currency tests."""
 
     def test___CURRENCY_VARIABLE__(self):
         """test___CURRENCY_VARIABLE__."""
@@ -25,7 +26,8 @@ class Test__CURRENCY_CLASS__:
         assert __CURRENCY_VARIABLE__.symbol_separator == '__SYMBOL_SEPARATOR__'
         assert __CURRENCY_VARIABLE__.localized_symbol == '__LOCALIZED_SYMBOL__'
         assert __CURRENCY_VARIABLE__.convertion == '__CONVERTION__'
-        assert __CURRENCY_VARIABLE__.__hash__() == hash((decimal, '__CURRENCY__', '__CODE__'))
+        assert __CURRENCY_VARIABLE__.__hash__() == hash(
+            (__CURRENCY_VARIABLE__.__class__, decimal, '__CURRENCY__', '__CODE__'))
         assert __CURRENCY_VARIABLE__.__repr__() == (
             '__CURRENCY_CLASS__(amount: 0.1428571428571428571428571429, '
             'alpha_code: "__CURRENCY__", '
@@ -41,7 +43,6 @@ class Test__CURRENCY_CLASS__:
             'convertion: "__CONVERTION__", '
             'international: False)')
         assert __CURRENCY_VARIABLE__.__str__() == '__EXAMPLE_1DIV7__'
-
 
     def test___CURRENCY_VARIABLE___negative(self):
         """test___CURRENCY_VARIABLE___negative."""
@@ -60,7 +61,8 @@ class Test__CURRENCY_CLASS__:
         assert __CURRENCY_VARIABLE__.symbol_separator == '__SYMBOL_SEPARATOR__'
         assert __CURRENCY_VARIABLE__.localized_symbol == '__LOCALIZED_SYMBOL__'
         assert __CURRENCY_VARIABLE__.convertion == '__CONVERTION__'
-        assert __CURRENCY_VARIABLE__.__hash__() == hash((decimal, '__CURRENCY__', '__CODE__'))
+        assert __CURRENCY_VARIABLE__.__hash__() == hash(
+            (__CURRENCY_VARIABLE__.__class__, decimal, '__CURRENCY__', '__CODE__'))
         assert __CURRENCY_VARIABLE__.__repr__() == (
             '__CURRENCY_CLASS__(amount: -100, '
             'alpha_code: "__CURRENCY__", '
@@ -76,7 +78,6 @@ class Test__CURRENCY_CLASS__:
             'convertion: "__CONVERTION__", '
             'international: False)')
         assert __CURRENCY_VARIABLE__.__str__() == '__EXAMPLE_NEGATIVE__'
-
 
     def test___CURRENCY_VARIABLE___custom(self):
         """test___CURRENCY_VARIABLE___custom."""
@@ -104,7 +105,8 @@ class Test__CURRENCY_CLASS__:
         assert __CURRENCY_VARIABLE__.symbol_separator == '_'
         assert __CURRENCY_VARIABLE__.localized_symbol == '__LOCALIZED_SYMBOL__'
         assert __CURRENCY_VARIABLE__.convertion == '__CONVERTION__'
-        assert __CURRENCY_VARIABLE__.__hash__() == hash((decimal, '__CURRENCY__', '__CODE__'))
+        assert __CURRENCY_VARIABLE__.__hash__() == hash(
+            (__CURRENCY_VARIABLE__.__class__, decimal, '__CURRENCY__', '__CODE__'))
         assert __CURRENCY_VARIABLE__.__repr__() == (
             '__CURRENCY_CLASS__(amount: 1000, '
             'alpha_code: "__CURRENCY__", '
@@ -120,7 +122,6 @@ class Test__CURRENCY_CLASS__:
             'convertion: "__CONVERTION__", '
             'international: True)')
         assert __CURRENCY_VARIABLE__.__str__() == '__EXAMPLE_CUSTOM__'
-
 
     def test___CURRENCY_VARIABLE___changed(self):
         """test_c__CURRENCY_VARIABLE___changed."""
@@ -178,7 +179,6 @@ class Test__CURRENCY_CLASS__:
                 match='can\'t set attribute'):
             __CURRENCY_VARIABLE__.international = True
 
-
     def test___CURRENCY_VARIABLE___math_add(self):
         """test___CURRENCY_VARIABLE___math_add."""
         __CURRENCY_VARIABLE___one = __CURRENCY_CLASS__(amount=1)
@@ -191,14 +191,14 @@ class Test__CURRENCY_CLASS__:
             _ = __CURRENCY_VARIABLE___one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     '__CURRENCY_MODULE__.__CURRENCY_CLASS__\'> '
                     'and <class \'str\'>.')):
             _ = __CURRENCY_VARIABLE___one.__add__('1.00')
         assert (
             __CURRENCY_VARIABLE___one +
             __CURRENCY_VARIABLE___two) == __CURRENCY_VARIABLE___three
-
 
     def test___CURRENCY_VARIABLE___slots(self):
         """test___CURRENCY_VARIABLE___slots."""

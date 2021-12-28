@@ -23,6 +23,7 @@ from multicurrency import Riel
 
 
 class TestRiel:
+    """Riel currency tests."""
 
     def test_riel(self):
         """test_riel."""
@@ -42,7 +43,8 @@ class TestRiel:
         assert riel.symbol_separator == ''
         assert riel.localized_symbol == '៛'
         assert riel.convertion == ''
-        assert riel.__hash__() == hash((decimal, 'KHR', '116'))
+        assert riel.__hash__() == hash(
+            (riel.__class__, decimal, 'KHR', '116'))
         assert riel.__repr__() == (
             'Riel(amount: 0.1428571428571428571428571429, '
             'alpha_code: "KHR", '
@@ -58,7 +60,6 @@ class TestRiel:
             'convertion: "", '
             'international: False)')
         assert riel.__str__() == '0,14៛'
-
 
     def test_riel_negative(self):
         """test_riel_negative."""
@@ -77,7 +78,8 @@ class TestRiel:
         assert riel.symbol_separator == ''
         assert riel.localized_symbol == '៛'
         assert riel.convertion == ''
-        assert riel.__hash__() == hash((decimal, 'KHR', '116'))
+        assert riel.__hash__() == hash(
+            (riel.__class__, decimal, 'KHR', '116'))
         assert riel.__repr__() == (
             'Riel(amount: -100, '
             'alpha_code: "KHR", '
@@ -93,7 +95,6 @@ class TestRiel:
             'convertion: "", '
             'international: False)')
         assert riel.__str__() == '-100,00៛'
-
 
     def test_riel_custom(self):
         """test_riel_custom."""
@@ -121,7 +122,8 @@ class TestRiel:
         assert riel.symbol_separator == '_'
         assert riel.localized_symbol == '៛'
         assert riel.convertion == ''
-        assert riel.__hash__() == hash((decimal, 'KHR', '116'))
+        assert riel.__hash__() == hash(
+            (riel.__class__, decimal, 'KHR', '116'))
         assert riel.__repr__() == (
             'Riel(amount: 1000, '
             'alpha_code: "KHR", '
@@ -137,7 +139,6 @@ class TestRiel:
             'convertion: "", '
             'international: True)')
         assert riel.__str__() == 'KHR 10,00.00000'
-
 
     def test_riel_changed(self):
         """test_criel_changed."""
@@ -195,7 +196,6 @@ class TestRiel:
                 match='can\'t set attribute'):
             riel.international = True
 
-
     def test_riel_math_add(self):
         """test_riel_math_add."""
         riel_one = Riel(amount=1)
@@ -208,14 +208,14 @@ class TestRiel:
             _ = riel_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'riel.Riel\'> '
                     'and <class \'str\'>.')):
             _ = riel_one.__add__('1.00')
         assert (
             riel_one +
             riel_two) == riel_three
-
 
     def test_riel_slots(self):
         """test_riel_slots."""

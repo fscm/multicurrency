@@ -23,6 +23,7 @@ from multicurrency import Dong
 
 
 class TestDong:
+    """Dong currency tests."""
 
     def test_dong(self):
         """test_dong."""
@@ -42,7 +43,8 @@ class TestDong:
         assert dong.symbol_separator == '\u00A0'
         assert dong.localized_symbol == '₫'
         assert dong.convertion == ''
-        assert dong.__hash__() == hash((decimal, 'VND', '704'))
+        assert dong.__hash__() == hash(
+            (dong.__class__, decimal, 'VND', '704'))
         assert dong.__repr__() == (
             'Dong(amount: 0.1428571428571428571428571429, '
             'alpha_code: "VND", '
@@ -58,7 +60,6 @@ class TestDong:
             'convertion: "", '
             'international: False)')
         assert dong.__str__() == '0 ₫'
-
 
     def test_dong_negative(self):
         """test_dong_negative."""
@@ -77,7 +78,8 @@ class TestDong:
         assert dong.symbol_separator == '\u00A0'
         assert dong.localized_symbol == '₫'
         assert dong.convertion == ''
-        assert dong.__hash__() == hash((decimal, 'VND', '704'))
+        assert dong.__hash__() == hash(
+            (dong.__class__, decimal, 'VND', '704'))
         assert dong.__repr__() == (
             'Dong(amount: -100, '
             'alpha_code: "VND", '
@@ -93,7 +95,6 @@ class TestDong:
             'convertion: "", '
             'international: False)')
         assert dong.__str__() == '-100 ₫'
-
 
     def test_dong_custom(self):
         """test_dong_custom."""
@@ -121,7 +122,8 @@ class TestDong:
         assert dong.symbol_separator == '_'
         assert dong.localized_symbol == '₫'
         assert dong.convertion == ''
-        assert dong.__hash__() == hash((decimal, 'VND', '704'))
+        assert dong.__hash__() == hash(
+            (dong.__class__, decimal, 'VND', '704'))
         assert dong.__repr__() == (
             'Dong(amount: 1000, '
             'alpha_code: "VND", '
@@ -137,7 +139,6 @@ class TestDong:
             'convertion: "", '
             'international: True)')
         assert dong.__str__() == 'VND 10,00.00000'
-
 
     def test_dong_changed(self):
         """test_cdong_changed."""
@@ -195,7 +196,6 @@ class TestDong:
                 match='can\'t set attribute'):
             dong.international = True
 
-
     def test_dong_math_add(self):
         """test_dong_math_add."""
         dong_one = Dong(amount=1)
@@ -208,14 +208,14 @@ class TestDong:
             _ = dong_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dong.Dong\'> '
                     'and <class \'str\'>.')):
             _ = dong_one.__add__('1.00')
         assert (
             dong_one +
             dong_two) == dong_three
-
 
     def test_dong_slots(self):
         """test_dong_slots."""

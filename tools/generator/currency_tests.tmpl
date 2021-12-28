@@ -35,7 +35,8 @@ def test___CURRENCY_VARIABLE__():
     assert __CURRENCY_VARIABLE__.symbol_separator == '__SYMBOL_SEPARATOR__'
     assert __CURRENCY_VARIABLE__.localized_symbol == '__LOCALIZED_SYMBOL__'
     assert __CURRENCY_VARIABLE__.convertion == '__CONVERTION__'
-    assert __CURRENCY_VARIABLE__.__hash__() == hash((decimal, '__CURRENCY__', '__CODE__'))
+    assert __CURRENCY_VARIABLE__.__hash__() == hash(
+        (__CURRENCY_VARIABLE__.__class__, decimal, '__CURRENCY__', '__CODE__'))
     assert __CURRENCY_VARIABLE__.__repr__() == (
         '__CURRENCY_CLASS__(amount: 0.1428571428571428571428571429, '
         'alpha_code: "__CURRENCY__", '
@@ -70,7 +71,8 @@ def test___CURRENCY_VARIABLE___negative():
     assert __CURRENCY_VARIABLE__.symbol_separator == '__SYMBOL_SEPARATOR__'
     assert __CURRENCY_VARIABLE__.localized_symbol == '__LOCALIZED_SYMBOL__'
     assert __CURRENCY_VARIABLE__.convertion == '__CONVERTION__'
-    assert __CURRENCY_VARIABLE__.__hash__() == hash((decimal, '__CURRENCY__', '__CODE__'))
+    assert __CURRENCY_VARIABLE__.__hash__() == hash(
+        (__CURRENCY_VARIABLE__.__class__, decimal, '__CURRENCY__', '__CODE__'))
     assert __CURRENCY_VARIABLE__.__repr__() == (
         '__CURRENCY_CLASS__(amount: -100, '
         'alpha_code: "__CURRENCY__", '
@@ -114,7 +116,8 @@ def test___CURRENCY_VARIABLE___custom():
     assert __CURRENCY_VARIABLE__.symbol_separator == '_'
     assert __CURRENCY_VARIABLE__.localized_symbol == '__LOCALIZED_SYMBOL__'
     assert __CURRENCY_VARIABLE__.convertion == '__CONVERTION__'
-    assert __CURRENCY_VARIABLE__.__hash__() == hash((decimal, '__CURRENCY__', '__CODE__'))
+    assert __CURRENCY_VARIABLE__.__hash__() == hash(
+        (__CURRENCY_VARIABLE__.__class__, decimal, '__CURRENCY__', '__CODE__'))
     assert __CURRENCY_VARIABLE__.__repr__() == (
         '__CURRENCY_CLASS__(amount: 1000, '
         'alpha_code: "__CURRENCY__", '

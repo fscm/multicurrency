@@ -23,6 +23,7 @@ from multicurrency import CapeVerdeEscudo
 
 
 class TestCapeVerdeEscudo:
+    """CapeVerdeEscudo currency tests."""
 
     def test_cape_verde_escudo(self):
         """test_cape_verde_escudo."""
@@ -42,7 +43,8 @@ class TestCapeVerdeEscudo:
         assert cape_verde_escudo.symbol_separator == ''
         assert cape_verde_escudo.localized_symbol == ''
         assert cape_verde_escudo.convertion == ''
-        assert cape_verde_escudo.__hash__() == hash((decimal, 'CVE', '132'))
+        assert cape_verde_escudo.__hash__() == hash(
+            (cape_verde_escudo.__class__, decimal, 'CVE', '132'))
         assert cape_verde_escudo.__repr__() == (
             'CapeVerdeEscudo(amount: 0.1428571428571428571428571429, '
             'alpha_code: "CVE", '
@@ -58,7 +60,6 @@ class TestCapeVerdeEscudo:
             'convertion: "", '
             'international: False)')
         assert cape_verde_escudo.__str__() == '0$14'
-
 
     def test_cape_verde_escudo_negative(self):
         """test_cape_verde_escudo_negative."""
@@ -77,7 +78,8 @@ class TestCapeVerdeEscudo:
         assert cape_verde_escudo.symbol_separator == ''
         assert cape_verde_escudo.localized_symbol == ''
         assert cape_verde_escudo.convertion == ''
-        assert cape_verde_escudo.__hash__() == hash((decimal, 'CVE', '132'))
+        assert cape_verde_escudo.__hash__() == hash(
+            (cape_verde_escudo.__class__, decimal, 'CVE', '132'))
         assert cape_verde_escudo.__repr__() == (
             'CapeVerdeEscudo(amount: -100, '
             'alpha_code: "CVE", '
@@ -93,7 +95,6 @@ class TestCapeVerdeEscudo:
             'convertion: "", '
             'international: False)')
         assert cape_verde_escudo.__str__() == '-100$00'
-
 
     def test_cape_verde_escudo_custom(self):
         """test_cape_verde_escudo_custom."""
@@ -121,7 +122,8 @@ class TestCapeVerdeEscudo:
         assert cape_verde_escudo.symbol_separator == '_'
         assert cape_verde_escudo.localized_symbol == ''
         assert cape_verde_escudo.convertion == ''
-        assert cape_verde_escudo.__hash__() == hash((decimal, 'CVE', '132'))
+        assert cape_verde_escudo.__hash__() == hash(
+            (cape_verde_escudo.__class__, decimal, 'CVE', '132'))
         assert cape_verde_escudo.__repr__() == (
             'CapeVerdeEscudo(amount: 1000, '
             'alpha_code: "CVE", '
@@ -137,7 +139,6 @@ class TestCapeVerdeEscudo:
             'convertion: "", '
             'international: True)')
         assert cape_verde_escudo.__str__() == 'CVE 10,00.00000'
-
 
     def test_cape_verde_escudo_changed(self):
         """test_ccape_verde_escudo_changed."""
@@ -195,7 +196,6 @@ class TestCapeVerdeEscudo:
                 match='can\'t set attribute'):
             cape_verde_escudo.international = True
 
-
     def test_cape_verde_escudo_math_add(self):
         """test_cape_verde_escudo_math_add."""
         cape_verde_escudo_one = CapeVerdeEscudo(amount=1)
@@ -208,14 +208,14 @@ class TestCapeVerdeEscudo:
             _ = cape_verde_escudo_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'escudo.CapeVerdeEscudo\'> '
                     'and <class \'str\'>.')):
             _ = cape_verde_escudo_one.__add__('1.00')
         assert (
             cape_verde_escudo_one +
             cape_verde_escudo_two) == cape_verde_escudo_three
-
 
     def test_cape_verde_escudo_slots(self):
         """test_cape_verde_escudo_slots."""

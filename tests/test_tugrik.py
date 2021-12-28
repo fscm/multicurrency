@@ -23,6 +23,7 @@ from multicurrency import Tugrik
 
 
 class TestTugrik:
+    """Tugrik currency tests."""
 
     def test_tugrik(self):
         """test_tugrik."""
@@ -42,7 +43,8 @@ class TestTugrik:
         assert tugrik.symbol_separator == '\u00A0'
         assert tugrik.localized_symbol == '₮'
         assert tugrik.convertion == ''
-        assert tugrik.__hash__() == hash((decimal, 'MNT', '496'))
+        assert tugrik.__hash__() == hash(
+            (tugrik.__class__, decimal, 'MNT', '496'))
         assert tugrik.__repr__() == (
             'Tugrik(amount: 0.1428571428571428571428571429, '
             'alpha_code: "MNT", '
@@ -58,7 +60,6 @@ class TestTugrik:
             'convertion: "", '
             'international: False)')
         assert tugrik.__str__() == '₮ 0.14'
-
 
     def test_tugrik_negative(self):
         """test_tugrik_negative."""
@@ -77,7 +78,8 @@ class TestTugrik:
         assert tugrik.symbol_separator == '\u00A0'
         assert tugrik.localized_symbol == '₮'
         assert tugrik.convertion == ''
-        assert tugrik.__hash__() == hash((decimal, 'MNT', '496'))
+        assert tugrik.__hash__() == hash(
+            (tugrik.__class__, decimal, 'MNT', '496'))
         assert tugrik.__repr__() == (
             'Tugrik(amount: -100, '
             'alpha_code: "MNT", '
@@ -93,7 +95,6 @@ class TestTugrik:
             'convertion: "", '
             'international: False)')
         assert tugrik.__str__() == '₮ -100.00'
-
 
     def test_tugrik_custom(self):
         """test_tugrik_custom."""
@@ -121,7 +122,8 @@ class TestTugrik:
         assert tugrik.symbol_separator == '_'
         assert tugrik.localized_symbol == '₮'
         assert tugrik.convertion == ''
-        assert tugrik.__hash__() == hash((decimal, 'MNT', '496'))
+        assert tugrik.__hash__() == hash(
+            (tugrik.__class__, decimal, 'MNT', '496'))
         assert tugrik.__repr__() == (
             'Tugrik(amount: 1000, '
             'alpha_code: "MNT", '
@@ -137,7 +139,6 @@ class TestTugrik:
             'convertion: "", '
             'international: True)')
         assert tugrik.__str__() == 'MNT 10,00.00000'
-
 
     def test_tugrik_changed(self):
         """test_ctugrik_changed."""
@@ -195,7 +196,6 @@ class TestTugrik:
                 match='can\'t set attribute'):
             tugrik.international = True
 
-
     def test_tugrik_math_add(self):
         """test_tugrik_math_add."""
         tugrik_one = Tugrik(amount=1)
@@ -208,14 +208,14 @@ class TestTugrik:
             _ = tugrik_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'tugrik.Tugrik\'> '
                     'and <class \'str\'>.')):
             _ = tugrik_one.__add__('1.00')
         assert (
             tugrik_one +
             tugrik_two) == tugrik_three
-
 
     def test_tugrik_slots(self):
         """test_tugrik_slots."""

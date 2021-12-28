@@ -23,6 +23,7 @@ from multicurrency import IndianRupee
 
 
 class TestIndianRupee:
+    """IndianRupee currency tests."""
 
     def test_indian_rupee(self):
         """test_indian_rupee."""
@@ -42,7 +43,8 @@ class TestIndianRupee:
         assert indian_rupee.symbol_separator == ''
         assert indian_rupee.localized_symbol == '₹'
         assert indian_rupee.convertion == ''
-        assert indian_rupee.__hash__() == hash((decimal, 'INR', '356'))
+        assert indian_rupee.__hash__() == hash(
+            (indian_rupee.__class__, decimal, 'INR', '356'))
         assert indian_rupee.__repr__() == (
             'IndianRupee(amount: 0.1428571428571428571428571429, '
             'alpha_code: "INR", '
@@ -58,7 +60,6 @@ class TestIndianRupee:
             'convertion: "", '
             'international: False)')
         assert indian_rupee.__str__() == '₹0.14'
-
 
     def test_indian_rupee_negative(self):
         """test_indian_rupee_negative."""
@@ -77,7 +78,8 @@ class TestIndianRupee:
         assert indian_rupee.symbol_separator == ''
         assert indian_rupee.localized_symbol == '₹'
         assert indian_rupee.convertion == ''
-        assert indian_rupee.__hash__() == hash((decimal, 'INR', '356'))
+        assert indian_rupee.__hash__() == hash(
+            (indian_rupee.__class__, decimal, 'INR', '356'))
         assert indian_rupee.__repr__() == (
             'IndianRupee(amount: -100, '
             'alpha_code: "INR", '
@@ -93,7 +95,6 @@ class TestIndianRupee:
             'convertion: "", '
             'international: False)')
         assert indian_rupee.__str__() == '₹-100.00'
-
 
     def test_indian_rupee_custom(self):
         """test_indian_rupee_custom."""
@@ -121,7 +122,8 @@ class TestIndianRupee:
         assert indian_rupee.symbol_separator == '_'
         assert indian_rupee.localized_symbol == '₹'
         assert indian_rupee.convertion == ''
-        assert indian_rupee.__hash__() == hash((decimal, 'INR', '356'))
+        assert indian_rupee.__hash__() == hash(
+            (indian_rupee.__class__, decimal, 'INR', '356'))
         assert indian_rupee.__repr__() == (
             'IndianRupee(amount: 1000, '
             'alpha_code: "INR", '
@@ -137,7 +139,6 @@ class TestIndianRupee:
             'convertion: "", '
             'international: True)')
         assert indian_rupee.__str__() == 'INR 10,00.00000'
-
 
     def test_indian_rupee_changed(self):
         """test_cindian_rupee_changed."""
@@ -195,7 +196,6 @@ class TestIndianRupee:
                 match='can\'t set attribute'):
             indian_rupee.international = True
 
-
     def test_indian_rupee_math_add(self):
         """test_indian_rupee_math_add."""
         indian_rupee_one = IndianRupee(amount=1)
@@ -208,14 +208,14 @@ class TestIndianRupee:
             _ = indian_rupee_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'rupee.IndianRupee\'> '
                     'and <class \'str\'>.')):
             _ = indian_rupee_one.__add__('1.00')
         assert (
             indian_rupee_one +
             indian_rupee_two) == indian_rupee_three
-
 
     def test_indian_rupee_slots(self):
         """test_indian_rupee_slots."""
@@ -234,6 +234,7 @@ from multicurrency import IndianRupeeBT
 
 
 class TestIndianRupeeBT:
+    """IndianRupeeBT currency tests."""
 
     def test_indian_rupee_bt(self):
         """test_indian_rupee_bt."""
@@ -253,7 +254,8 @@ class TestIndianRupeeBT:
         assert indian_rupee_bt.symbol_separator == ''
         assert indian_rupee_bt.localized_symbol == 'BT₹'
         assert indian_rupee_bt.convertion == ''
-        assert indian_rupee_bt.__hash__() == hash((decimal, 'INR', '356'))
+        assert indian_rupee_bt.__hash__() == hash(
+            (indian_rupee_bt.__class__, decimal, 'INR', '356'))
         assert indian_rupee_bt.__repr__() == (
             'IndianRupeeBT(amount: 0.1428571428571428571428571429, '
             'alpha_code: "INR", '
@@ -269,7 +271,6 @@ class TestIndianRupeeBT:
             'convertion: "", '
             'international: False)')
         assert indian_rupee_bt.__str__() == '₹0.14'
-
 
     def test_indian_rupee_bt_negative(self):
         """test_indian_rupee_bt_negative."""
@@ -288,7 +289,8 @@ class TestIndianRupeeBT:
         assert indian_rupee_bt.symbol_separator == ''
         assert indian_rupee_bt.localized_symbol == 'BT₹'
         assert indian_rupee_bt.convertion == ''
-        assert indian_rupee_bt.__hash__() == hash((decimal, 'INR', '356'))
+        assert indian_rupee_bt.__hash__() == hash(
+            (indian_rupee_bt.__class__, decimal, 'INR', '356'))
         assert indian_rupee_bt.__repr__() == (
             'IndianRupeeBT(amount: -100, '
             'alpha_code: "INR", '
@@ -304,7 +306,6 @@ class TestIndianRupeeBT:
             'convertion: "", '
             'international: False)')
         assert indian_rupee_bt.__str__() == '₹-100.00'
-
 
     def test_indian_rupee_bt_custom(self):
         """test_indian_rupee_bt_custom."""
@@ -332,7 +333,8 @@ class TestIndianRupeeBT:
         assert indian_rupee_bt.symbol_separator == '_'
         assert indian_rupee_bt.localized_symbol == 'BT₹'
         assert indian_rupee_bt.convertion == ''
-        assert indian_rupee_bt.__hash__() == hash((decimal, 'INR', '356'))
+        assert indian_rupee_bt.__hash__() == hash(
+            (indian_rupee_bt.__class__, decimal, 'INR', '356'))
         assert indian_rupee_bt.__repr__() == (
             'IndianRupeeBT(amount: 1000, '
             'alpha_code: "INR", '
@@ -348,7 +350,6 @@ class TestIndianRupeeBT:
             'convertion: "", '
             'international: True)')
         assert indian_rupee_bt.__str__() == 'INR 10,00.00000'
-
 
     def test_indian_rupee_bt_changed(self):
         """test_cindian_rupee_bt_changed."""
@@ -406,7 +407,6 @@ class TestIndianRupeeBT:
                 match='can\'t set attribute'):
             indian_rupee_bt.international = True
 
-
     def test_indian_rupee_bt_math_add(self):
         """test_indian_rupee_bt_math_add."""
         indian_rupee_bt_one = IndianRupeeBT(amount=1)
@@ -419,14 +419,14 @@ class TestIndianRupeeBT:
             _ = indian_rupee_bt_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'rupee.IndianRupeeBT\'> '
                     'and <class \'str\'>.')):
             _ = indian_rupee_bt_one.__add__('1.00')
         assert (
             indian_rupee_bt_one +
             indian_rupee_bt_two) == indian_rupee_bt_three
-
 
     def test_indian_rupee_bt_slots(self):
         """test_indian_rupee_bt_slots."""
@@ -445,6 +445,7 @@ from multicurrency import IndianRupeeIN
 
 
 class TestIndianRupeeIN:
+    """IndianRupeeIN currency tests."""
 
     def test_indian_rupee_in(self):
         """test_indian_rupee_in."""
@@ -464,7 +465,8 @@ class TestIndianRupeeIN:
         assert indian_rupee_in.symbol_separator == ''
         assert indian_rupee_in.localized_symbol == 'IN₹'
         assert indian_rupee_in.convertion == ''
-        assert indian_rupee_in.__hash__() == hash((decimal, 'INR', '356'))
+        assert indian_rupee_in.__hash__() == hash(
+            (indian_rupee_in.__class__, decimal, 'INR', '356'))
         assert indian_rupee_in.__repr__() == (
             'IndianRupeeIN(amount: 0.1428571428571428571428571429, '
             'alpha_code: "INR", '
@@ -480,7 +482,6 @@ class TestIndianRupeeIN:
             'convertion: "", '
             'international: False)')
         assert indian_rupee_in.__str__() == '₹0.14'
-
 
     def test_indian_rupee_in_negative(self):
         """test_indian_rupee_in_negative."""
@@ -499,7 +500,8 @@ class TestIndianRupeeIN:
         assert indian_rupee_in.symbol_separator == ''
         assert indian_rupee_in.localized_symbol == 'IN₹'
         assert indian_rupee_in.convertion == ''
-        assert indian_rupee_in.__hash__() == hash((decimal, 'INR', '356'))
+        assert indian_rupee_in.__hash__() == hash(
+            (indian_rupee_in.__class__, decimal, 'INR', '356'))
         assert indian_rupee_in.__repr__() == (
             'IndianRupeeIN(amount: -100, '
             'alpha_code: "INR", '
@@ -515,7 +517,6 @@ class TestIndianRupeeIN:
             'convertion: "", '
             'international: False)')
         assert indian_rupee_in.__str__() == '₹-100.00'
-
 
     def test_indian_rupee_in_custom(self):
         """test_indian_rupee_in_custom."""
@@ -543,7 +544,8 @@ class TestIndianRupeeIN:
         assert indian_rupee_in.symbol_separator == '_'
         assert indian_rupee_in.localized_symbol == 'IN₹'
         assert indian_rupee_in.convertion == ''
-        assert indian_rupee_in.__hash__() == hash((decimal, 'INR', '356'))
+        assert indian_rupee_in.__hash__() == hash(
+            (indian_rupee_in.__class__, decimal, 'INR', '356'))
         assert indian_rupee_in.__repr__() == (
             'IndianRupeeIN(amount: 1000, '
             'alpha_code: "INR", '
@@ -559,7 +561,6 @@ class TestIndianRupeeIN:
             'convertion: "", '
             'international: True)')
         assert indian_rupee_in.__str__() == 'INR 10,00.00000'
-
 
     def test_indian_rupee_in_changed(self):
         """test_cindian_rupee_in_changed."""
@@ -617,7 +618,6 @@ class TestIndianRupeeIN:
                 match='can\'t set attribute'):
             indian_rupee_in.international = True
 
-
     def test_indian_rupee_in_math_add(self):
         """test_indian_rupee_in_math_add."""
         indian_rupee_in_one = IndianRupeeIN(amount=1)
@@ -630,14 +630,14 @@ class TestIndianRupeeIN:
             _ = indian_rupee_in_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'rupee.IndianRupeeIN\'> '
                     'and <class \'str\'>.')):
             _ = indian_rupee_in_one.__add__('1.00')
         assert (
             indian_rupee_in_one +
             indian_rupee_in_two) == indian_rupee_in_three
-
 
     def test_indian_rupee_in_slots(self):
         """test_indian_rupee_in_slots."""
@@ -656,6 +656,7 @@ from multicurrency import SriLankaRupee
 
 
 class TestSriLankaRupee:
+    """SriLankaRupee currency tests."""
 
     def test_sri_lanka_rupee(self):
         """test_sri_lanka_rupee."""
@@ -675,7 +676,8 @@ class TestSriLankaRupee:
         assert sri_lanka_rupee.symbol_separator == '\u00A0'
         assert sri_lanka_rupee.localized_symbol == 'රු.'
         assert sri_lanka_rupee.convertion == ''
-        assert sri_lanka_rupee.__hash__() == hash((decimal, 'LKR', '144'))
+        assert sri_lanka_rupee.__hash__() == hash(
+            (sri_lanka_rupee.__class__, decimal, 'LKR', '144'))
         assert sri_lanka_rupee.__repr__() == (
             'SriLankaRupee(amount: 0.1428571428571428571428571429, '
             'alpha_code: "LKR", '
@@ -691,7 +693,6 @@ class TestSriLankaRupee:
             'convertion: "", '
             'international: False)')
         assert sri_lanka_rupee.__str__() == 'රු. 0.14'
-
 
     def test_sri_lanka_rupee_negative(self):
         """test_sri_lanka_rupee_negative."""
@@ -710,7 +711,8 @@ class TestSriLankaRupee:
         assert sri_lanka_rupee.symbol_separator == '\u00A0'
         assert sri_lanka_rupee.localized_symbol == 'රු.'
         assert sri_lanka_rupee.convertion == ''
-        assert sri_lanka_rupee.__hash__() == hash((decimal, 'LKR', '144'))
+        assert sri_lanka_rupee.__hash__() == hash(
+            (sri_lanka_rupee.__class__, decimal, 'LKR', '144'))
         assert sri_lanka_rupee.__repr__() == (
             'SriLankaRupee(amount: -100, '
             'alpha_code: "LKR", '
@@ -726,7 +728,6 @@ class TestSriLankaRupee:
             'convertion: "", '
             'international: False)')
         assert sri_lanka_rupee.__str__() == 'රු. -100.00'
-
 
     def test_sri_lanka_rupee_custom(self):
         """test_sri_lanka_rupee_custom."""
@@ -754,7 +755,8 @@ class TestSriLankaRupee:
         assert sri_lanka_rupee.symbol_separator == '_'
         assert sri_lanka_rupee.localized_symbol == 'රු.'
         assert sri_lanka_rupee.convertion == ''
-        assert sri_lanka_rupee.__hash__() == hash((decimal, 'LKR', '144'))
+        assert sri_lanka_rupee.__hash__() == hash(
+            (sri_lanka_rupee.__class__, decimal, 'LKR', '144'))
         assert sri_lanka_rupee.__repr__() == (
             'SriLankaRupee(amount: 1000, '
             'alpha_code: "LKR", '
@@ -770,7 +772,6 @@ class TestSriLankaRupee:
             'convertion: "", '
             'international: True)')
         assert sri_lanka_rupee.__str__() == 'LKR 10,00.00000'
-
 
     def test_sri_lanka_rupee_changed(self):
         """test_csri_lanka_rupee_changed."""
@@ -828,7 +829,6 @@ class TestSriLankaRupee:
                 match='can\'t set attribute'):
             sri_lanka_rupee.international = True
 
-
     def test_sri_lanka_rupee_math_add(self):
         """test_sri_lanka_rupee_math_add."""
         sri_lanka_rupee_one = SriLankaRupee(amount=1)
@@ -841,14 +841,14 @@ class TestSriLankaRupee:
             _ = sri_lanka_rupee_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'rupee.SriLankaRupee\'> '
                     'and <class \'str\'>.')):
             _ = sri_lanka_rupee_one.__add__('1.00')
         assert (
             sri_lanka_rupee_one +
             sri_lanka_rupee_two) == sri_lanka_rupee_three
-
 
     def test_sri_lanka_rupee_slots(self):
         """test_sri_lanka_rupee_slots."""
@@ -867,6 +867,7 @@ from multicurrency import MauritiusRupee
 
 
 class TestMauritiusRupee:
+    """MauritiusRupee currency tests."""
 
     def test_mauritius_rupee(self):
         """test_mauritius_rupee."""
@@ -886,7 +887,8 @@ class TestMauritiusRupee:
         assert mauritius_rupee.symbol_separator == '\u00A0'
         assert mauritius_rupee.localized_symbol == '₨'
         assert mauritius_rupee.convertion == ''
-        assert mauritius_rupee.__hash__() == hash((decimal, 'MUR', '480'))
+        assert mauritius_rupee.__hash__() == hash(
+            (mauritius_rupee.__class__, decimal, 'MUR', '480'))
         assert mauritius_rupee.__repr__() == (
             'MauritiusRupee(amount: 0.1428571428571428571428571429, '
             'alpha_code: "MUR", '
@@ -902,7 +904,6 @@ class TestMauritiusRupee:
             'convertion: "", '
             'international: False)')
         assert mauritius_rupee.__str__() == '₨ 0.14'
-
 
     def test_mauritius_rupee_negative(self):
         """test_mauritius_rupee_negative."""
@@ -921,7 +922,8 @@ class TestMauritiusRupee:
         assert mauritius_rupee.symbol_separator == '\u00A0'
         assert mauritius_rupee.localized_symbol == '₨'
         assert mauritius_rupee.convertion == ''
-        assert mauritius_rupee.__hash__() == hash((decimal, 'MUR', '480'))
+        assert mauritius_rupee.__hash__() == hash(
+            (mauritius_rupee.__class__, decimal, 'MUR', '480'))
         assert mauritius_rupee.__repr__() == (
             'MauritiusRupee(amount: -100, '
             'alpha_code: "MUR", '
@@ -937,7 +939,6 @@ class TestMauritiusRupee:
             'convertion: "", '
             'international: False)')
         assert mauritius_rupee.__str__() == '₨ -100.00'
-
 
     def test_mauritius_rupee_custom(self):
         """test_mauritius_rupee_custom."""
@@ -965,7 +966,8 @@ class TestMauritiusRupee:
         assert mauritius_rupee.symbol_separator == '_'
         assert mauritius_rupee.localized_symbol == '₨'
         assert mauritius_rupee.convertion == ''
-        assert mauritius_rupee.__hash__() == hash((decimal, 'MUR', '480'))
+        assert mauritius_rupee.__hash__() == hash(
+            (mauritius_rupee.__class__, decimal, 'MUR', '480'))
         assert mauritius_rupee.__repr__() == (
             'MauritiusRupee(amount: 1000, '
             'alpha_code: "MUR", '
@@ -981,7 +983,6 @@ class TestMauritiusRupee:
             'convertion: "", '
             'international: True)')
         assert mauritius_rupee.__str__() == 'MUR 10,00.00000'
-
 
     def test_mauritius_rupee_changed(self):
         """test_cmauritius_rupee_changed."""
@@ -1039,7 +1040,6 @@ class TestMauritiusRupee:
                 match='can\'t set attribute'):
             mauritius_rupee.international = True
 
-
     def test_mauritius_rupee_math_add(self):
         """test_mauritius_rupee_math_add."""
         mauritius_rupee_one = MauritiusRupee(amount=1)
@@ -1052,14 +1052,14 @@ class TestMauritiusRupee:
             _ = mauritius_rupee_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'rupee.MauritiusRupee\'> '
                     'and <class \'str\'>.')):
             _ = mauritius_rupee_one.__add__('1.00')
         assert (
             mauritius_rupee_one +
             mauritius_rupee_two) == mauritius_rupee_three
-
 
     def test_mauritius_rupee_slots(self):
         """test_mauritius_rupee_slots."""
@@ -1078,6 +1078,7 @@ from multicurrency import NepaleseRupee
 
 
 class TestNepaleseRupee:
+    """NepaleseRupee currency tests."""
 
     def test_nepalese_rupee(self):
         """test_nepalese_rupee."""
@@ -1097,7 +1098,8 @@ class TestNepaleseRupee:
         assert nepalese_rupee.symbol_separator == '\u00A0'
         assert nepalese_rupee.localized_symbol == 'नेरू'
         assert nepalese_rupee.convertion == '०१२३४५६७८९-'
-        assert nepalese_rupee.__hash__() == hash((decimal, 'NPR', '524'))
+        assert nepalese_rupee.__hash__() == hash(
+            (nepalese_rupee.__class__, decimal, 'NPR', '524'))
         assert nepalese_rupee.__repr__() == (
             'NepaleseRupee(amount: 0.1428571428571428571428571429, '
             'alpha_code: "NPR", '
@@ -1113,7 +1115,6 @@ class TestNepaleseRupee:
             'convertion: "०१२३४५६७८९-", '
             'international: False)')
         assert nepalese_rupee.__str__() == 'नेरू ०.१४'
-
 
     def test_nepalese_rupee_negative(self):
         """test_nepalese_rupee_negative."""
@@ -1132,7 +1133,8 @@ class TestNepaleseRupee:
         assert nepalese_rupee.symbol_separator == '\u00A0'
         assert nepalese_rupee.localized_symbol == 'नेरू'
         assert nepalese_rupee.convertion == '०१२३४५६७८९-'
-        assert nepalese_rupee.__hash__() == hash((decimal, 'NPR', '524'))
+        assert nepalese_rupee.__hash__() == hash(
+            (nepalese_rupee.__class__, decimal, 'NPR', '524'))
         assert nepalese_rupee.__repr__() == (
             'NepaleseRupee(amount: -100, '
             'alpha_code: "NPR", '
@@ -1148,7 +1150,6 @@ class TestNepaleseRupee:
             'convertion: "०१२३४५६७८९-", '
             'international: False)')
         assert nepalese_rupee.__str__() == 'नेरू -१००.००'
-
 
     def test_nepalese_rupee_custom(self):
         """test_nepalese_rupee_custom."""
@@ -1176,7 +1177,8 @@ class TestNepaleseRupee:
         assert nepalese_rupee.symbol_separator == '_'
         assert nepalese_rupee.localized_symbol == 'नेरू'
         assert nepalese_rupee.convertion == '०१२३४५६७८९-'
-        assert nepalese_rupee.__hash__() == hash((decimal, 'NPR', '524'))
+        assert nepalese_rupee.__hash__() == hash(
+            (nepalese_rupee.__class__, decimal, 'NPR', '524'))
         assert nepalese_rupee.__repr__() == (
             'NepaleseRupee(amount: 1000, '
             'alpha_code: "NPR", '
@@ -1192,7 +1194,6 @@ class TestNepaleseRupee:
             'convertion: "०१२३४५६७८९-", '
             'international: True)')
         assert nepalese_rupee.__str__() == 'NPR 10,00.00000'
-
 
     def test_nepalese_rupee_changed(self):
         """test_cnepalese_rupee_changed."""
@@ -1250,7 +1251,6 @@ class TestNepaleseRupee:
                 match='can\'t set attribute'):
             nepalese_rupee.international = True
 
-
     def test_nepalese_rupee_math_add(self):
         """test_nepalese_rupee_math_add."""
         nepalese_rupee_one = NepaleseRupee(amount=1)
@@ -1263,14 +1263,14 @@ class TestNepaleseRupee:
             _ = nepalese_rupee_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'rupee.NepaleseRupee\'> '
                     'and <class \'str\'>.')):
             _ = nepalese_rupee_one.__add__('1.00')
         assert (
             nepalese_rupee_one +
             nepalese_rupee_two) == nepalese_rupee_three
-
 
     def test_nepalese_rupee_slots(self):
         """test_nepalese_rupee_slots."""
@@ -1289,6 +1289,7 @@ from multicurrency import PakistanRupee
 
 
 class TestPakistanRupee:
+    """PakistanRupee currency tests."""
 
     def test_pakistan_rupee(self):
         """test_pakistan_rupee."""
@@ -1308,7 +1309,8 @@ class TestPakistanRupee:
         assert pakistan_rupee.symbol_separator == '\u00A0'
         assert pakistan_rupee.localized_symbol == '₨'
         assert pakistan_rupee.convertion == ''
-        assert pakistan_rupee.__hash__() == hash((decimal, 'PKR', '586'))
+        assert pakistan_rupee.__hash__() == hash(
+            (pakistan_rupee.__class__, decimal, 'PKR', '586'))
         assert pakistan_rupee.__repr__() == (
             'PakistanRupee(amount: 0.1428571428571428571428571429, '
             'alpha_code: "PKR", '
@@ -1324,7 +1326,6 @@ class TestPakistanRupee:
             'convertion: "", '
             'international: False)')
         assert pakistan_rupee.__str__() == '₨ 0.14'
-
 
     def test_pakistan_rupee_negative(self):
         """test_pakistan_rupee_negative."""
@@ -1343,7 +1344,8 @@ class TestPakistanRupee:
         assert pakistan_rupee.symbol_separator == '\u00A0'
         assert pakistan_rupee.localized_symbol == '₨'
         assert pakistan_rupee.convertion == ''
-        assert pakistan_rupee.__hash__() == hash((decimal, 'PKR', '586'))
+        assert pakistan_rupee.__hash__() == hash(
+            (pakistan_rupee.__class__, decimal, 'PKR', '586'))
         assert pakistan_rupee.__repr__() == (
             'PakistanRupee(amount: -100, '
             'alpha_code: "PKR", '
@@ -1359,7 +1361,6 @@ class TestPakistanRupee:
             'convertion: "", '
             'international: False)')
         assert pakistan_rupee.__str__() == '₨ -100.00'
-
 
     def test_pakistan_rupee_custom(self):
         """test_pakistan_rupee_custom."""
@@ -1387,7 +1388,8 @@ class TestPakistanRupee:
         assert pakistan_rupee.symbol_separator == '_'
         assert pakistan_rupee.localized_symbol == '₨'
         assert pakistan_rupee.convertion == ''
-        assert pakistan_rupee.__hash__() == hash((decimal, 'PKR', '586'))
+        assert pakistan_rupee.__hash__() == hash(
+            (pakistan_rupee.__class__, decimal, 'PKR', '586'))
         assert pakistan_rupee.__repr__() == (
             'PakistanRupee(amount: 1000, '
             'alpha_code: "PKR", '
@@ -1403,7 +1405,6 @@ class TestPakistanRupee:
             'convertion: "", '
             'international: True)')
         assert pakistan_rupee.__str__() == 'PKR 10,00.00000'
-
 
     def test_pakistan_rupee_changed(self):
         """test_cpakistan_rupee_changed."""
@@ -1461,7 +1462,6 @@ class TestPakistanRupee:
                 match='can\'t set attribute'):
             pakistan_rupee.international = True
 
-
     def test_pakistan_rupee_math_add(self):
         """test_pakistan_rupee_math_add."""
         pakistan_rupee_one = PakistanRupee(amount=1)
@@ -1474,14 +1474,14 @@ class TestPakistanRupee:
             _ = pakistan_rupee_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'rupee.PakistanRupee\'> '
                     'and <class \'str\'>.')):
             _ = pakistan_rupee_one.__add__('1.00')
         assert (
             pakistan_rupee_one +
             pakistan_rupee_two) == pakistan_rupee_three
-
 
     def test_pakistan_rupee_slots(self):
         """test_pakistan_rupee_slots."""
@@ -1500,6 +1500,7 @@ from multicurrency import SeychellesRupee
 
 
 class TestSeychellesRupee:
+    """SeychellesRupee currency tests."""
 
     def test_seychelles_rupee(self):
         """test_seychelles_rupee."""
@@ -1519,7 +1520,8 @@ class TestSeychellesRupee:
         assert seychelles_rupee.symbol_separator == '\u00A0'
         assert seychelles_rupee.localized_symbol == '₨'
         assert seychelles_rupee.convertion == ''
-        assert seychelles_rupee.__hash__() == hash((decimal, 'SCR', '690'))
+        assert seychelles_rupee.__hash__() == hash(
+            (seychelles_rupee.__class__, decimal, 'SCR', '690'))
         assert seychelles_rupee.__repr__() == (
             'SeychellesRupee(amount: 0.1428571428571428571428571429, '
             'alpha_code: "SCR", '
@@ -1535,7 +1537,6 @@ class TestSeychellesRupee:
             'convertion: "", '
             'international: False)')
         assert seychelles_rupee.__str__() == '₨ 0.14'
-
 
     def test_seychelles_rupee_negative(self):
         """test_seychelles_rupee_negative."""
@@ -1554,7 +1555,8 @@ class TestSeychellesRupee:
         assert seychelles_rupee.symbol_separator == '\u00A0'
         assert seychelles_rupee.localized_symbol == '₨'
         assert seychelles_rupee.convertion == ''
-        assert seychelles_rupee.__hash__() == hash((decimal, 'SCR', '690'))
+        assert seychelles_rupee.__hash__() == hash(
+            (seychelles_rupee.__class__, decimal, 'SCR', '690'))
         assert seychelles_rupee.__repr__() == (
             'SeychellesRupee(amount: -100, '
             'alpha_code: "SCR", '
@@ -1570,7 +1572,6 @@ class TestSeychellesRupee:
             'convertion: "", '
             'international: False)')
         assert seychelles_rupee.__str__() == '₨ -100.00'
-
 
     def test_seychelles_rupee_custom(self):
         """test_seychelles_rupee_custom."""
@@ -1598,7 +1599,8 @@ class TestSeychellesRupee:
         assert seychelles_rupee.symbol_separator == '_'
         assert seychelles_rupee.localized_symbol == '₨'
         assert seychelles_rupee.convertion == ''
-        assert seychelles_rupee.__hash__() == hash((decimal, 'SCR', '690'))
+        assert seychelles_rupee.__hash__() == hash(
+            (seychelles_rupee.__class__, decimal, 'SCR', '690'))
         assert seychelles_rupee.__repr__() == (
             'SeychellesRupee(amount: 1000, '
             'alpha_code: "SCR", '
@@ -1614,7 +1616,6 @@ class TestSeychellesRupee:
             'convertion: "", '
             'international: True)')
         assert seychelles_rupee.__str__() == 'SCR 10,00.00000'
-
 
     def test_seychelles_rupee_changed(self):
         """test_cseychelles_rupee_changed."""
@@ -1672,7 +1673,6 @@ class TestSeychellesRupee:
                 match='can\'t set attribute'):
             seychelles_rupee.international = True
 
-
     def test_seychelles_rupee_math_add(self):
         """test_seychelles_rupee_math_add."""
         seychelles_rupee_one = SeychellesRupee(amount=1)
@@ -1685,14 +1685,14 @@ class TestSeychellesRupee:
             _ = seychelles_rupee_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'rupee.SeychellesRupee\'> '
                     'and <class \'str\'>.')):
             _ = seychelles_rupee_one.__add__('1.00')
         assert (
             seychelles_rupee_one +
             seychelles_rupee_two) == seychelles_rupee_three
-
 
     def test_seychelles_rupee_slots(self):
         """test_seychelles_rupee_slots."""

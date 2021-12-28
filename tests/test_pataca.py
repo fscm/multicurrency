@@ -23,6 +23,7 @@ from multicurrency import Pataca
 
 
 class TestPataca:
+    """Pataca currency tests."""
 
     def test_pataca(self):
         """test_pataca."""
@@ -42,7 +43,8 @@ class TestPataca:
         assert pataca.symbol_separator == '\u00A0'
         assert pataca.localized_symbol == 'P'
         assert pataca.convertion == ''
-        assert pataca.__hash__() == hash((decimal, 'MOP', '446'))
+        assert pataca.__hash__() == hash(
+            (pataca.__class__, decimal, 'MOP', '446'))
         assert pataca.__repr__() == (
             'Pataca(amount: 0.1428571428571428571428571429, '
             'alpha_code: "MOP", '
@@ -58,7 +60,6 @@ class TestPataca:
             'convertion: "", '
             'international: False)')
         assert pataca.__str__() == 'P 0.14'
-
 
     def test_pataca_negative(self):
         """test_pataca_negative."""
@@ -77,7 +78,8 @@ class TestPataca:
         assert pataca.symbol_separator == '\u00A0'
         assert pataca.localized_symbol == 'P'
         assert pataca.convertion == ''
-        assert pataca.__hash__() == hash((decimal, 'MOP', '446'))
+        assert pataca.__hash__() == hash(
+            (pataca.__class__, decimal, 'MOP', '446'))
         assert pataca.__repr__() == (
             'Pataca(amount: -100, '
             'alpha_code: "MOP", '
@@ -93,7 +95,6 @@ class TestPataca:
             'convertion: "", '
             'international: False)')
         assert pataca.__str__() == 'P -100.00'
-
 
     def test_pataca_custom(self):
         """test_pataca_custom."""
@@ -121,7 +122,8 @@ class TestPataca:
         assert pataca.symbol_separator == '_'
         assert pataca.localized_symbol == 'P'
         assert pataca.convertion == ''
-        assert pataca.__hash__() == hash((decimal, 'MOP', '446'))
+        assert pataca.__hash__() == hash(
+            (pataca.__class__, decimal, 'MOP', '446'))
         assert pataca.__repr__() == (
             'Pataca(amount: 1000, '
             'alpha_code: "MOP", '
@@ -137,7 +139,6 @@ class TestPataca:
             'convertion: "", '
             'international: True)')
         assert pataca.__str__() == 'MOP 10,00.00000'
-
 
     def test_pataca_changed(self):
         """test_cpataca_changed."""
@@ -195,7 +196,6 @@ class TestPataca:
                 match='can\'t set attribute'):
             pataca.international = True
 
-
     def test_pataca_math_add(self):
         """test_pataca_math_add."""
         pataca_one = Pataca(amount=1)
@@ -208,14 +208,14 @@ class TestPataca:
             _ = pataca_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'pataca.Pataca\'> '
                     'and <class \'str\'>.')):
             _ = pataca_one.__add__('1.00')
         assert (
             pataca_one +
             pataca_two) == pataca_three
-
 
     def test_pataca_slots(self):
         """test_pataca_slots."""

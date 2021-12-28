@@ -23,6 +23,7 @@ from multicurrency import Dobra
 
 
 class TestDobra:
+    """Dobra currency tests."""
 
     def test_dobra(self):
         """test_dobra."""
@@ -42,7 +43,8 @@ class TestDobra:
         assert dobra.symbol_separator == '\u00A0'
         assert dobra.localized_symbol == 'Db'
         assert dobra.convertion == ''
-        assert dobra.__hash__() == hash((decimal, 'STN', '930'))
+        assert dobra.__hash__() == hash(
+            (dobra.__class__, decimal, 'STN', '930'))
         assert dobra.__repr__() == (
             'Dobra(amount: 0.1428571428571428571428571429, '
             'alpha_code: "STN", '
@@ -58,7 +60,6 @@ class TestDobra:
             'convertion: "", '
             'international: False)')
         assert dobra.__str__() == '0,14 Db'
-
 
     def test_dobra_negative(self):
         """test_dobra_negative."""
@@ -77,7 +78,8 @@ class TestDobra:
         assert dobra.symbol_separator == '\u00A0'
         assert dobra.localized_symbol == 'Db'
         assert dobra.convertion == ''
-        assert dobra.__hash__() == hash((decimal, 'STN', '930'))
+        assert dobra.__hash__() == hash(
+            (dobra.__class__, decimal, 'STN', '930'))
         assert dobra.__repr__() == (
             'Dobra(amount: -100, '
             'alpha_code: "STN", '
@@ -93,7 +95,6 @@ class TestDobra:
             'convertion: "", '
             'international: False)')
         assert dobra.__str__() == '-100,00 Db'
-
 
     def test_dobra_custom(self):
         """test_dobra_custom."""
@@ -121,7 +122,8 @@ class TestDobra:
         assert dobra.symbol_separator == '_'
         assert dobra.localized_symbol == 'Db'
         assert dobra.convertion == ''
-        assert dobra.__hash__() == hash((decimal, 'STN', '930'))
+        assert dobra.__hash__() == hash(
+            (dobra.__class__, decimal, 'STN', '930'))
         assert dobra.__repr__() == (
             'Dobra(amount: 1000, '
             'alpha_code: "STN", '
@@ -137,7 +139,6 @@ class TestDobra:
             'convertion: "", '
             'international: True)')
         assert dobra.__str__() == 'STN 10,00.00000'
-
 
     def test_dobra_changed(self):
         """test_cdobra_changed."""
@@ -195,7 +196,6 @@ class TestDobra:
                 match='can\'t set attribute'):
             dobra.international = True
 
-
     def test_dobra_math_add(self):
         """test_dobra_math_add."""
         dobra_one = Dobra(amount=1)
@@ -208,14 +208,14 @@ class TestDobra:
             _ = dobra_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dobra.Dobra\'> '
                     'and <class \'str\'>.')):
             _ = dobra_one.__add__('1.00')
         assert (
             dobra_one +
             dobra_two) == dobra_three
-
 
     def test_dobra_slots(self):
         """test_dobra_slots."""

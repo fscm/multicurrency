@@ -23,6 +23,7 @@ from multicurrency import Som
 
 
 class TestSom:
+    """Som currency tests."""
 
     def test_som(self):
         """test_som."""
@@ -42,7 +43,8 @@ class TestSom:
         assert som.symbol_separator == '\u00A0'
         assert som.localized_symbol == 'Лв'
         assert som.convertion == ''
-        assert som.__hash__() == hash((decimal, 'KGS', '417'))
+        assert som.__hash__() == hash(
+            (som.__class__, decimal, 'KGS', '417'))
         assert som.__repr__() == (
             'Som(amount: 0.1428571428571428571428571429, '
             'alpha_code: "KGS", '
@@ -58,7 +60,6 @@ class TestSom:
             'convertion: "", '
             'international: False)')
         assert som.__str__() == '0,14 Лв'
-
 
     def test_som_negative(self):
         """test_som_negative."""
@@ -77,7 +78,8 @@ class TestSom:
         assert som.symbol_separator == '\u00A0'
         assert som.localized_symbol == 'Лв'
         assert som.convertion == ''
-        assert som.__hash__() == hash((decimal, 'KGS', '417'))
+        assert som.__hash__() == hash(
+            (som.__class__, decimal, 'KGS', '417'))
         assert som.__repr__() == (
             'Som(amount: -100, '
             'alpha_code: "KGS", '
@@ -93,7 +95,6 @@ class TestSom:
             'convertion: "", '
             'international: False)')
         assert som.__str__() == '-100,00 Лв'
-
 
     def test_som_custom(self):
         """test_som_custom."""
@@ -121,7 +122,8 @@ class TestSom:
         assert som.symbol_separator == '_'
         assert som.localized_symbol == 'Лв'
         assert som.convertion == ''
-        assert som.__hash__() == hash((decimal, 'KGS', '417'))
+        assert som.__hash__() == hash(
+            (som.__class__, decimal, 'KGS', '417'))
         assert som.__repr__() == (
             'Som(amount: 1000, '
             'alpha_code: "KGS", '
@@ -137,7 +139,6 @@ class TestSom:
             'convertion: "", '
             'international: True)')
         assert som.__str__() == 'KGS 10,00.00000'
-
 
     def test_som_changed(self):
         """test_csom_changed."""
@@ -195,7 +196,6 @@ class TestSom:
                 match='can\'t set attribute'):
             som.international = True
 
-
     def test_som_math_add(self):
         """test_som_math_add."""
         som_one = Som(amount=1)
@@ -208,14 +208,14 @@ class TestSom:
             _ = som_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'som.Som\'> '
                     'and <class \'str\'>.')):
             _ = som_one.__add__('1.00')
         assert (
             som_one +
             som_two) == som_three
-
 
     def test_som_slots(self):
         """test_som_slots."""

@@ -23,6 +23,7 @@ from multicurrency import Boliviano
 
 
 class TestBoliviano:
+    """Boliviano currency tests."""
 
     def test_boliviano(self):
         """test_boliviano."""
@@ -42,7 +43,8 @@ class TestBoliviano:
         assert boliviano.symbol_separator == '\u00A0'
         assert boliviano.localized_symbol == 'Bs.'
         assert boliviano.convertion == ''
-        assert boliviano.__hash__() == hash((decimal, 'BOB', '068'))
+        assert boliviano.__hash__() == hash(
+            (boliviano.__class__, decimal, 'BOB', '068'))
         assert boliviano.__repr__() == (
             'Boliviano(amount: 0.1428571428571428571428571429, '
             'alpha_code: "BOB", '
@@ -58,7 +60,6 @@ class TestBoliviano:
             'convertion: "", '
             'international: False)')
         assert boliviano.__str__() == 'Bs. 0,14'
-
 
     def test_boliviano_negative(self):
         """test_boliviano_negative."""
@@ -77,7 +78,8 @@ class TestBoliviano:
         assert boliviano.symbol_separator == '\u00A0'
         assert boliviano.localized_symbol == 'Bs.'
         assert boliviano.convertion == ''
-        assert boliviano.__hash__() == hash((decimal, 'BOB', '068'))
+        assert boliviano.__hash__() == hash(
+            (boliviano.__class__, decimal, 'BOB', '068'))
         assert boliviano.__repr__() == (
             'Boliviano(amount: -100, '
             'alpha_code: "BOB", '
@@ -93,7 +95,6 @@ class TestBoliviano:
             'convertion: "", '
             'international: False)')
         assert boliviano.__str__() == 'Bs. -100,00'
-
 
     def test_boliviano_custom(self):
         """test_boliviano_custom."""
@@ -121,7 +122,8 @@ class TestBoliviano:
         assert boliviano.symbol_separator == '_'
         assert boliviano.localized_symbol == 'Bs.'
         assert boliviano.convertion == ''
-        assert boliviano.__hash__() == hash((decimal, 'BOB', '068'))
+        assert boliviano.__hash__() == hash(
+            (boliviano.__class__, decimal, 'BOB', '068'))
         assert boliviano.__repr__() == (
             'Boliviano(amount: 1000, '
             'alpha_code: "BOB", '
@@ -137,7 +139,6 @@ class TestBoliviano:
             'convertion: "", '
             'international: True)')
         assert boliviano.__str__() == 'BOB 10,00.00000'
-
 
     def test_boliviano_changed(self):
         """test_cboliviano_changed."""
@@ -195,7 +196,6 @@ class TestBoliviano:
                 match='can\'t set attribute'):
             boliviano.international = True
 
-
     def test_boliviano_math_add(self):
         """test_boliviano_math_add."""
         boliviano_one = Boliviano(amount=1)
@@ -208,14 +208,14 @@ class TestBoliviano:
             _ = boliviano_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'boliviano.Boliviano\'> '
                     'and <class \'str\'>.')):
             _ = boliviano_one.__add__('1.00')
         assert (
             boliviano_one +
             boliviano_two) == boliviano_three
-
 
     def test_boliviano_slots(self):
         """test_boliviano_slots."""

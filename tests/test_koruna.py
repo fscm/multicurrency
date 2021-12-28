@@ -23,6 +23,7 @@ from multicurrency import CzechKoruna
 
 
 class TestCzechKoruna:
+    """CzechKoruna currency tests."""
 
     def test_czech_koruna(self):
         """test_czech_koruna."""
@@ -42,7 +43,8 @@ class TestCzechKoruna:
         assert czech_koruna.symbol_separator == '\u00A0'
         assert czech_koruna.localized_symbol == 'Kč'
         assert czech_koruna.convertion == ''
-        assert czech_koruna.__hash__() == hash((decimal, 'CZK', '203'))
+        assert czech_koruna.__hash__() == hash(
+            (czech_koruna.__class__, decimal, 'CZK', '203'))
         assert czech_koruna.__repr__() == (
             'CzechKoruna(amount: 0.1428571428571428571428571429, '
             'alpha_code: "CZK", '
@@ -58,7 +60,6 @@ class TestCzechKoruna:
             'convertion: "", '
             'international: False)')
         assert czech_koruna.__str__() == '0,14 Kč'
-
 
     def test_czech_koruna_negative(self):
         """test_czech_koruna_negative."""
@@ -77,7 +78,8 @@ class TestCzechKoruna:
         assert czech_koruna.symbol_separator == '\u00A0'
         assert czech_koruna.localized_symbol == 'Kč'
         assert czech_koruna.convertion == ''
-        assert czech_koruna.__hash__() == hash((decimal, 'CZK', '203'))
+        assert czech_koruna.__hash__() == hash(
+            (czech_koruna.__class__, decimal, 'CZK', '203'))
         assert czech_koruna.__repr__() == (
             'CzechKoruna(amount: -100, '
             'alpha_code: "CZK", '
@@ -93,7 +95,6 @@ class TestCzechKoruna:
             'convertion: "", '
             'international: False)')
         assert czech_koruna.__str__() == '-100,00 Kč'
-
 
     def test_czech_koruna_custom(self):
         """test_czech_koruna_custom."""
@@ -121,7 +122,8 @@ class TestCzechKoruna:
         assert czech_koruna.symbol_separator == '_'
         assert czech_koruna.localized_symbol == 'Kč'
         assert czech_koruna.convertion == ''
-        assert czech_koruna.__hash__() == hash((decimal, 'CZK', '203'))
+        assert czech_koruna.__hash__() == hash(
+            (czech_koruna.__class__, decimal, 'CZK', '203'))
         assert czech_koruna.__repr__() == (
             'CzechKoruna(amount: 1000, '
             'alpha_code: "CZK", '
@@ -137,7 +139,6 @@ class TestCzechKoruna:
             'convertion: "", '
             'international: True)')
         assert czech_koruna.__str__() == 'CZK 10,00.00000'
-
 
     def test_czech_koruna_changed(self):
         """test_cczech_koruna_changed."""
@@ -195,7 +196,6 @@ class TestCzechKoruna:
                 match='can\'t set attribute'):
             czech_koruna.international = True
 
-
     def test_czech_koruna_math_add(self):
         """test_czech_koruna_math_add."""
         czech_koruna_one = CzechKoruna(amount=1)
@@ -208,14 +208,14 @@ class TestCzechKoruna:
             _ = czech_koruna_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'koruna.CzechKoruna\'> '
                     'and <class \'str\'>.')):
             _ = czech_koruna_one.__add__('1.00')
         assert (
             czech_koruna_one +
             czech_koruna_two) == czech_koruna_three
-
 
     def test_czech_koruna_slots(self):
         """test_czech_koruna_slots."""

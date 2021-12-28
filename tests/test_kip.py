@@ -23,6 +23,7 @@ from multicurrency import Kip
 
 
 class TestKip:
+    """Kip currency tests."""
 
     def test_kip(self):
         """test_kip."""
@@ -42,7 +43,8 @@ class TestKip:
         assert kip.symbol_separator == ''
         assert kip.localized_symbol == '₭'
         assert kip.convertion == ''
-        assert kip.__hash__() == hash((decimal, 'LAK', '418'))
+        assert kip.__hash__() == hash(
+            (kip.__class__, decimal, 'LAK', '418'))
         assert kip.__repr__() == (
             'Kip(amount: 0.1428571428571428571428571429, '
             'alpha_code: "LAK", '
@@ -58,7 +60,6 @@ class TestKip:
             'convertion: "", '
             'international: False)')
         assert kip.__str__() == '₭0,14'
-
 
     def test_kip_negative(self):
         """test_kip_negative."""
@@ -77,7 +78,8 @@ class TestKip:
         assert kip.symbol_separator == ''
         assert kip.localized_symbol == '₭'
         assert kip.convertion == ''
-        assert kip.__hash__() == hash((decimal, 'LAK', '418'))
+        assert kip.__hash__() == hash(
+            (kip.__class__, decimal, 'LAK', '418'))
         assert kip.__repr__() == (
             'Kip(amount: -100, '
             'alpha_code: "LAK", '
@@ -93,7 +95,6 @@ class TestKip:
             'convertion: "", '
             'international: False)')
         assert kip.__str__() == '₭-100,00'
-
 
     def test_kip_custom(self):
         """test_kip_custom."""
@@ -121,7 +122,8 @@ class TestKip:
         assert kip.symbol_separator == '_'
         assert kip.localized_symbol == '₭'
         assert kip.convertion == ''
-        assert kip.__hash__() == hash((decimal, 'LAK', '418'))
+        assert kip.__hash__() == hash(
+            (kip.__class__, decimal, 'LAK', '418'))
         assert kip.__repr__() == (
             'Kip(amount: 1000, '
             'alpha_code: "LAK", '
@@ -137,7 +139,6 @@ class TestKip:
             'convertion: "", '
             'international: True)')
         assert kip.__str__() == 'LAK 10,00.00000'
-
 
     def test_kip_changed(self):
         """test_ckip_changed."""
@@ -195,7 +196,6 @@ class TestKip:
                 match='can\'t set attribute'):
             kip.international = True
 
-
     def test_kip_math_add(self):
         """test_kip_math_add."""
         kip_one = Kip(amount=1)
@@ -208,14 +208,14 @@ class TestKip:
             _ = kip_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'kip.Kip\'> '
                     'and <class \'str\'>.')):
             _ = kip_one.__add__('1.00')
         assert (
             kip_one +
             kip_two) == kip_three
-
 
     def test_kip_slots(self):
         """test_kip_slots."""

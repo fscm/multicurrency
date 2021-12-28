@@ -23,6 +23,7 @@ from multicurrency import Forint
 
 
 class TestForint:
+    """Forint currency tests."""
 
     def test_forint(self):
         """test_forint."""
@@ -42,7 +43,8 @@ class TestForint:
         assert forint.symbol_separator == '\u00A0'
         assert forint.localized_symbol == 'Ft'
         assert forint.convertion == ''
-        assert forint.__hash__() == hash((decimal, 'HUF', '348'))
+        assert forint.__hash__() == hash(
+            (forint.__class__, decimal, 'HUF', '348'))
         assert forint.__repr__() == (
             'Forint(amount: 0.1428571428571428571428571429, '
             'alpha_code: "HUF", '
@@ -58,7 +60,6 @@ class TestForint:
             'convertion: "", '
             'international: False)')
         assert forint.__str__() == '0 Ft'
-
 
     def test_forint_negative(self):
         """test_forint_negative."""
@@ -77,7 +78,8 @@ class TestForint:
         assert forint.symbol_separator == '\u00A0'
         assert forint.localized_symbol == 'Ft'
         assert forint.convertion == ''
-        assert forint.__hash__() == hash((decimal, 'HUF', '348'))
+        assert forint.__hash__() == hash(
+            (forint.__class__, decimal, 'HUF', '348'))
         assert forint.__repr__() == (
             'Forint(amount: -100, '
             'alpha_code: "HUF", '
@@ -93,7 +95,6 @@ class TestForint:
             'convertion: "", '
             'international: False)')
         assert forint.__str__() == '-100 Ft'
-
 
     def test_forint_custom(self):
         """test_forint_custom."""
@@ -121,7 +122,8 @@ class TestForint:
         assert forint.symbol_separator == '_'
         assert forint.localized_symbol == 'Ft'
         assert forint.convertion == ''
-        assert forint.__hash__() == hash((decimal, 'HUF', '348'))
+        assert forint.__hash__() == hash(
+            (forint.__class__, decimal, 'HUF', '348'))
         assert forint.__repr__() == (
             'Forint(amount: 1000, '
             'alpha_code: "HUF", '
@@ -137,7 +139,6 @@ class TestForint:
             'convertion: "", '
             'international: True)')
         assert forint.__str__() == 'HUF 10,00.00000'
-
 
     def test_forint_changed(self):
         """test_cforint_changed."""
@@ -195,7 +196,6 @@ class TestForint:
                 match='can\'t set attribute'):
             forint.international = True
 
-
     def test_forint_math_add(self):
         """test_forint_math_add."""
         forint_one = Forint(amount=1)
@@ -208,14 +208,14 @@ class TestForint:
             _ = forint_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'forint.Forint\'> '
                     'and <class \'str\'>.')):
             _ = forint_one.__add__('1.00')
         assert (
             forint_one +
             forint_two) == forint_three
-
 
     def test_forint_slots(self):
         """test_forint_slots."""

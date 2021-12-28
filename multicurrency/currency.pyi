@@ -1,6 +1,8 @@
 from decimal import Context, Decimal
 from typing import Any, Optional, Tuple, Union
 
+DEFAULT_PRECISION: int
+DEFAULT_ROUNDING: str
 CurrencyContext: Context
 
 class Currency:

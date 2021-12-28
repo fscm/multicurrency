@@ -23,6 +23,7 @@ from multicurrency import Denar
 
 
 class TestDenar:
+    """Denar currency tests."""
 
     def test_denar(self):
         """test_denar."""
@@ -42,7 +43,8 @@ class TestDenar:
         assert denar.symbol_separator == '\u00A0'
         assert denar.localized_symbol == 'ден.'
         assert denar.convertion == ''
-        assert denar.__hash__() == hash((decimal, 'MKD', '807'))
+        assert denar.__hash__() == hash(
+            (denar.__class__, decimal, 'MKD', '807'))
         assert denar.__repr__() == (
             'Denar(amount: 0.1428571428571428571428571429, '
             'alpha_code: "MKD", '
@@ -58,7 +60,6 @@ class TestDenar:
             'convertion: "", '
             'international: False)')
         assert denar.__str__() == '0,14 ден.'
-
 
     def test_denar_negative(self):
         """test_denar_negative."""
@@ -77,7 +78,8 @@ class TestDenar:
         assert denar.symbol_separator == '\u00A0'
         assert denar.localized_symbol == 'ден.'
         assert denar.convertion == ''
-        assert denar.__hash__() == hash((decimal, 'MKD', '807'))
+        assert denar.__hash__() == hash(
+            (denar.__class__, decimal, 'MKD', '807'))
         assert denar.__repr__() == (
             'Denar(amount: -100, '
             'alpha_code: "MKD", '
@@ -93,7 +95,6 @@ class TestDenar:
             'convertion: "", '
             'international: False)')
         assert denar.__str__() == '-100,00 ден.'
-
 
     def test_denar_custom(self):
         """test_denar_custom."""
@@ -121,7 +122,8 @@ class TestDenar:
         assert denar.symbol_separator == '_'
         assert denar.localized_symbol == 'ден.'
         assert denar.convertion == ''
-        assert denar.__hash__() == hash((decimal, 'MKD', '807'))
+        assert denar.__hash__() == hash(
+            (denar.__class__, decimal, 'MKD', '807'))
         assert denar.__repr__() == (
             'Denar(amount: 1000, '
             'alpha_code: "MKD", '
@@ -137,7 +139,6 @@ class TestDenar:
             'convertion: "", '
             'international: True)')
         assert denar.__str__() == 'MKD 10,00.00000'
-
 
     def test_denar_changed(self):
         """test_cdenar_changed."""
@@ -195,7 +196,6 @@ class TestDenar:
                 match='can\'t set attribute'):
             denar.international = True
 
-
     def test_denar_math_add(self):
         """test_denar_math_add."""
         denar_one = Denar(amount=1)
@@ -208,14 +208,14 @@ class TestDenar:
             _ = denar_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'denar.Denar\'> '
                     'and <class \'str\'>.')):
             _ = denar_one.__add__('1.00')
         assert (
             denar_one +
             denar_two) == denar_three
-
 
     def test_denar_slots(self):
         """test_denar_slots."""

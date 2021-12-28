@@ -23,6 +23,7 @@ from multicurrency import Guarani
 
 
 class TestGuarani:
+    """Guarani currency tests."""
 
     def test_guarani(self):
         """test_guarani."""
@@ -42,7 +43,8 @@ class TestGuarani:
         assert guarani.symbol_separator == '\u00A0'
         assert guarani.localized_symbol == '₲'
         assert guarani.convertion == ''
-        assert guarani.__hash__() == hash((decimal, 'PYG', '600'))
+        assert guarani.__hash__() == hash(
+            (guarani.__class__, decimal, 'PYG', '600'))
         assert guarani.__repr__() == (
             'Guarani(amount: 0.1428571428571428571428571429, '
             'alpha_code: "PYG", '
@@ -58,7 +60,6 @@ class TestGuarani:
             'convertion: "", '
             'international: False)')
         assert guarani.__str__() == '₲ 0'
-
 
     def test_guarani_negative(self):
         """test_guarani_negative."""
@@ -77,7 +78,8 @@ class TestGuarani:
         assert guarani.symbol_separator == '\u00A0'
         assert guarani.localized_symbol == '₲'
         assert guarani.convertion == ''
-        assert guarani.__hash__() == hash((decimal, 'PYG', '600'))
+        assert guarani.__hash__() == hash(
+            (guarani.__class__, decimal, 'PYG', '600'))
         assert guarani.__repr__() == (
             'Guarani(amount: -100, '
             'alpha_code: "PYG", '
@@ -93,7 +95,6 @@ class TestGuarani:
             'convertion: "", '
             'international: False)')
         assert guarani.__str__() == '₲ -100'
-
 
     def test_guarani_custom(self):
         """test_guarani_custom."""
@@ -121,7 +122,8 @@ class TestGuarani:
         assert guarani.symbol_separator == '_'
         assert guarani.localized_symbol == '₲'
         assert guarani.convertion == ''
-        assert guarani.__hash__() == hash((decimal, 'PYG', '600'))
+        assert guarani.__hash__() == hash(
+            (guarani.__class__, decimal, 'PYG', '600'))
         assert guarani.__repr__() == (
             'Guarani(amount: 1000, '
             'alpha_code: "PYG", '
@@ -137,7 +139,6 @@ class TestGuarani:
             'convertion: "", '
             'international: True)')
         assert guarani.__str__() == 'PYG 10,00.00000'
-
 
     def test_guarani_changed(self):
         """test_cguarani_changed."""
@@ -195,7 +196,6 @@ class TestGuarani:
                 match='can\'t set attribute'):
             guarani.international = True
 
-
     def test_guarani_math_add(self):
         """test_guarani_math_add."""
         guarani_one = Guarani(amount=1)
@@ -208,14 +208,14 @@ class TestGuarani:
             _ = guarani_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'guarani.Guarani\'> '
                     'and <class \'str\'>.')):
             _ = guarani_one.__add__('1.00')
         assert (
             guarani_one +
             guarani_two) == guarani_three
-
 
     def test_guarani_slots(self):
         """test_guarani_slots."""

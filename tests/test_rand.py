@@ -23,6 +23,7 @@ from multicurrency import Rand
 
 
 class TestRand:
+    """Rand currency tests."""
 
     def test_rand(self):
         """test_rand."""
@@ -42,7 +43,8 @@ class TestRand:
         assert rand.symbol_separator == '\u00A0'
         assert rand.localized_symbol == 'R'
         assert rand.convertion == ''
-        assert rand.__hash__() == hash((decimal, 'ZAR', '710'))
+        assert rand.__hash__() == hash(
+            (rand.__class__, decimal, 'ZAR', '710'))
         assert rand.__repr__() == (
             'Rand(amount: 0.1428571428571428571428571429, '
             'alpha_code: "ZAR", '
@@ -58,7 +60,6 @@ class TestRand:
             'convertion: "", '
             'international: False)')
         assert rand.__str__() == 'R 0.14'
-
 
     def test_rand_negative(self):
         """test_rand_negative."""
@@ -77,7 +78,8 @@ class TestRand:
         assert rand.symbol_separator == '\u00A0'
         assert rand.localized_symbol == 'R'
         assert rand.convertion == ''
-        assert rand.__hash__() == hash((decimal, 'ZAR', '710'))
+        assert rand.__hash__() == hash(
+            (rand.__class__, decimal, 'ZAR', '710'))
         assert rand.__repr__() == (
             'Rand(amount: -100, '
             'alpha_code: "ZAR", '
@@ -93,7 +95,6 @@ class TestRand:
             'convertion: "", '
             'international: False)')
         assert rand.__str__() == 'R -100.00'
-
 
     def test_rand_custom(self):
         """test_rand_custom."""
@@ -121,7 +122,8 @@ class TestRand:
         assert rand.symbol_separator == '_'
         assert rand.localized_symbol == 'R'
         assert rand.convertion == ''
-        assert rand.__hash__() == hash((decimal, 'ZAR', '710'))
+        assert rand.__hash__() == hash(
+            (rand.__class__, decimal, 'ZAR', '710'))
         assert rand.__repr__() == (
             'Rand(amount: 1000, '
             'alpha_code: "ZAR", '
@@ -137,7 +139,6 @@ class TestRand:
             'convertion: "", '
             'international: True)')
         assert rand.__str__() == 'ZAR 10,00.00000'
-
 
     def test_rand_changed(self):
         """test_crand_changed."""
@@ -195,7 +196,6 @@ class TestRand:
                 match='can\'t set attribute'):
             rand.international = True
 
-
     def test_rand_math_add(self):
         """test_rand_math_add."""
         rand_one = Rand(amount=1)
@@ -208,14 +208,14 @@ class TestRand:
             _ = rand_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'rand.Rand\'> '
                     'and <class \'str\'>.')):
             _ = rand_one.__add__('1.00')
         assert (
             rand_one +
             rand_two) == rand_three
-
 
     def test_rand_slots(self):
         """test_rand_slots."""
@@ -234,6 +234,7 @@ from multicurrency import RandLS
 
 
 class TestRandLS:
+    """RandLS currency tests."""
 
     def test_rand_ls(self):
         """test_rand_ls."""
@@ -253,7 +254,8 @@ class TestRandLS:
         assert rand_ls.symbol_separator == '\u00A0'
         assert rand_ls.localized_symbol == 'LSR'
         assert rand_ls.convertion == ''
-        assert rand_ls.__hash__() == hash((decimal, 'ZAR', '710'))
+        assert rand_ls.__hash__() == hash(
+            (rand_ls.__class__, decimal, 'ZAR', '710'))
         assert rand_ls.__repr__() == (
             'RandLS(amount: 0.1428571428571428571428571429, '
             'alpha_code: "ZAR", '
@@ -269,7 +271,6 @@ class TestRandLS:
             'convertion: "", '
             'international: False)')
         assert rand_ls.__str__() == 'R 0.14'
-
 
     def test_rand_ls_negative(self):
         """test_rand_ls_negative."""
@@ -288,7 +289,8 @@ class TestRandLS:
         assert rand_ls.symbol_separator == '\u00A0'
         assert rand_ls.localized_symbol == 'LSR'
         assert rand_ls.convertion == ''
-        assert rand_ls.__hash__() == hash((decimal, 'ZAR', '710'))
+        assert rand_ls.__hash__() == hash(
+            (rand_ls.__class__, decimal, 'ZAR', '710'))
         assert rand_ls.__repr__() == (
             'RandLS(amount: -100, '
             'alpha_code: "ZAR", '
@@ -304,7 +306,6 @@ class TestRandLS:
             'convertion: "", '
             'international: False)')
         assert rand_ls.__str__() == 'R -100.00'
-
 
     def test_rand_ls_custom(self):
         """test_rand_ls_custom."""
@@ -332,7 +333,8 @@ class TestRandLS:
         assert rand_ls.symbol_separator == '_'
         assert rand_ls.localized_symbol == 'LSR'
         assert rand_ls.convertion == ''
-        assert rand_ls.__hash__() == hash((decimal, 'ZAR', '710'))
+        assert rand_ls.__hash__() == hash(
+            (rand_ls.__class__, decimal, 'ZAR', '710'))
         assert rand_ls.__repr__() == (
             'RandLS(amount: 1000, '
             'alpha_code: "ZAR", '
@@ -348,7 +350,6 @@ class TestRandLS:
             'convertion: "", '
             'international: True)')
         assert rand_ls.__str__() == 'ZAR 10,00.00000'
-
 
     def test_rand_ls_changed(self):
         """test_crand_ls_changed."""
@@ -406,7 +407,6 @@ class TestRandLS:
                 match='can\'t set attribute'):
             rand_ls.international = True
 
-
     def test_rand_ls_math_add(self):
         """test_rand_ls_math_add."""
         rand_ls_one = RandLS(amount=1)
@@ -419,14 +419,14 @@ class TestRandLS:
             _ = rand_ls_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'rand.RandLS\'> '
                     'and <class \'str\'>.')):
             _ = rand_ls_one.__add__('1.00')
         assert (
             rand_ls_one +
             rand_ls_two) == rand_ls_three
-
 
     def test_rand_ls_slots(self):
         """test_rand_ls_slots."""
@@ -445,6 +445,7 @@ from multicurrency import RandNA
 
 
 class TestRandNA:
+    """RandNA currency tests."""
 
     def test_rand_na(self):
         """test_rand_na."""
@@ -464,7 +465,8 @@ class TestRandNA:
         assert rand_na.symbol_separator == '\u00A0'
         assert rand_na.localized_symbol == 'NAR'
         assert rand_na.convertion == ''
-        assert rand_na.__hash__() == hash((decimal, 'ZAR', '710'))
+        assert rand_na.__hash__() == hash(
+            (rand_na.__class__, decimal, 'ZAR', '710'))
         assert rand_na.__repr__() == (
             'RandNA(amount: 0.1428571428571428571428571429, '
             'alpha_code: "ZAR", '
@@ -480,7 +482,6 @@ class TestRandNA:
             'convertion: "", '
             'international: False)')
         assert rand_na.__str__() == 'R 0.14'
-
 
     def test_rand_na_negative(self):
         """test_rand_na_negative."""
@@ -499,7 +500,8 @@ class TestRandNA:
         assert rand_na.symbol_separator == '\u00A0'
         assert rand_na.localized_symbol == 'NAR'
         assert rand_na.convertion == ''
-        assert rand_na.__hash__() == hash((decimal, 'ZAR', '710'))
+        assert rand_na.__hash__() == hash(
+            (rand_na.__class__, decimal, 'ZAR', '710'))
         assert rand_na.__repr__() == (
             'RandNA(amount: -100, '
             'alpha_code: "ZAR", '
@@ -515,7 +517,6 @@ class TestRandNA:
             'convertion: "", '
             'international: False)')
         assert rand_na.__str__() == 'R -100.00'
-
 
     def test_rand_na_custom(self):
         """test_rand_na_custom."""
@@ -543,7 +544,8 @@ class TestRandNA:
         assert rand_na.symbol_separator == '_'
         assert rand_na.localized_symbol == 'NAR'
         assert rand_na.convertion == ''
-        assert rand_na.__hash__() == hash((decimal, 'ZAR', '710'))
+        assert rand_na.__hash__() == hash(
+            (rand_na.__class__, decimal, 'ZAR', '710'))
         assert rand_na.__repr__() == (
             'RandNA(amount: 1000, '
             'alpha_code: "ZAR", '
@@ -559,7 +561,6 @@ class TestRandNA:
             'convertion: "", '
             'international: True)')
         assert rand_na.__str__() == 'ZAR 10,00.00000'
-
 
     def test_rand_na_changed(self):
         """test_crand_na_changed."""
@@ -617,7 +618,6 @@ class TestRandNA:
                 match='can\'t set attribute'):
             rand_na.international = True
 
-
     def test_rand_na_math_add(self):
         """test_rand_na_math_add."""
         rand_na_one = RandNA(amount=1)
@@ -630,14 +630,14 @@ class TestRandNA:
             _ = rand_na_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'rand.RandNA\'> '
                     'and <class \'str\'>.')):
             _ = rand_na_one.__add__('1.00')
         assert (
             rand_na_one +
             rand_na_two) == rand_na_three
-
 
     def test_rand_na_slots(self):
         """test_rand_na_slots."""
@@ -656,6 +656,7 @@ from multicurrency import RandZA
 
 
 class TestRandZA:
+    """RandZA currency tests."""
 
     def test_rand_za(self):
         """test_rand_za."""
@@ -675,7 +676,8 @@ class TestRandZA:
         assert rand_za.symbol_separator == '\u00A0'
         assert rand_za.localized_symbol == 'ZAR'
         assert rand_za.convertion == ''
-        assert rand_za.__hash__() == hash((decimal, 'ZAR', '710'))
+        assert rand_za.__hash__() == hash(
+            (rand_za.__class__, decimal, 'ZAR', '710'))
         assert rand_za.__repr__() == (
             'RandZA(amount: 0.1428571428571428571428571429, '
             'alpha_code: "ZAR", '
@@ -691,7 +693,6 @@ class TestRandZA:
             'convertion: "", '
             'international: False)')
         assert rand_za.__str__() == 'R 0.14'
-
 
     def test_rand_za_negative(self):
         """test_rand_za_negative."""
@@ -710,7 +711,8 @@ class TestRandZA:
         assert rand_za.symbol_separator == '\u00A0'
         assert rand_za.localized_symbol == 'ZAR'
         assert rand_za.convertion == ''
-        assert rand_za.__hash__() == hash((decimal, 'ZAR', '710'))
+        assert rand_za.__hash__() == hash(
+            (rand_za.__class__, decimal, 'ZAR', '710'))
         assert rand_za.__repr__() == (
             'RandZA(amount: -100, '
             'alpha_code: "ZAR", '
@@ -726,7 +728,6 @@ class TestRandZA:
             'convertion: "", '
             'international: False)')
         assert rand_za.__str__() == 'R -100.00'
-
 
     def test_rand_za_custom(self):
         """test_rand_za_custom."""
@@ -754,7 +755,8 @@ class TestRandZA:
         assert rand_za.symbol_separator == '_'
         assert rand_za.localized_symbol == 'ZAR'
         assert rand_za.convertion == ''
-        assert rand_za.__hash__() == hash((decimal, 'ZAR', '710'))
+        assert rand_za.__hash__() == hash(
+            (rand_za.__class__, decimal, 'ZAR', '710'))
         assert rand_za.__repr__() == (
             'RandZA(amount: 1000, '
             'alpha_code: "ZAR", '
@@ -770,7 +772,6 @@ class TestRandZA:
             'convertion: "", '
             'international: True)')
         assert rand_za.__str__() == 'ZAR 10,00.00000'
-
 
     def test_rand_za_changed(self):
         """test_crand_za_changed."""
@@ -828,7 +829,6 @@ class TestRandZA:
                 match='can\'t set attribute'):
             rand_za.international = True
 
-
     def test_rand_za_math_add(self):
         """test_rand_za_math_add."""
         rand_za_one = RandZA(amount=1)
@@ -841,14 +841,14 @@ class TestRandZA:
             _ = rand_za_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'rand.RandZA\'> '
                     'and <class \'str\'>.')):
             _ = rand_za_one.__add__('1.00')
         assert (
             rand_za_one +
             rand_za_two) == rand_za_three
-
 
     def test_rand_za_slots(self):
         """test_rand_za_slots."""

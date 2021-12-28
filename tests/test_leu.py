@@ -23,6 +23,7 @@ from multicurrency import MoldovanLeu
 
 
 class TestMoldovanLeu:
+    """MoldovanLeu currency tests."""
 
     def test_moldovan_leu(self):
         """test_moldovan_leu."""
@@ -42,7 +43,8 @@ class TestMoldovanLeu:
         assert moldovan_leu.symbol_separator == '\u00A0'
         assert moldovan_leu.localized_symbol == 'L'
         assert moldovan_leu.convertion == ''
-        assert moldovan_leu.__hash__() == hash((decimal, 'MDL', '498'))
+        assert moldovan_leu.__hash__() == hash(
+            (moldovan_leu.__class__, decimal, 'MDL', '498'))
         assert moldovan_leu.__repr__() == (
             'MoldovanLeu(amount: 0.1428571428571428571428571429, '
             'alpha_code: "MDL", '
@@ -58,7 +60,6 @@ class TestMoldovanLeu:
             'convertion: "", '
             'international: False)')
         assert moldovan_leu.__str__() == '0,14 L'
-
 
     def test_moldovan_leu_negative(self):
         """test_moldovan_leu_negative."""
@@ -77,7 +78,8 @@ class TestMoldovanLeu:
         assert moldovan_leu.symbol_separator == '\u00A0'
         assert moldovan_leu.localized_symbol == 'L'
         assert moldovan_leu.convertion == ''
-        assert moldovan_leu.__hash__() == hash((decimal, 'MDL', '498'))
+        assert moldovan_leu.__hash__() == hash(
+            (moldovan_leu.__class__, decimal, 'MDL', '498'))
         assert moldovan_leu.__repr__() == (
             'MoldovanLeu(amount: -100, '
             'alpha_code: "MDL", '
@@ -93,7 +95,6 @@ class TestMoldovanLeu:
             'convertion: "", '
             'international: False)')
         assert moldovan_leu.__str__() == '-100,00 L'
-
 
     def test_moldovan_leu_custom(self):
         """test_moldovan_leu_custom."""
@@ -121,7 +122,8 @@ class TestMoldovanLeu:
         assert moldovan_leu.symbol_separator == '_'
         assert moldovan_leu.localized_symbol == 'L'
         assert moldovan_leu.convertion == ''
-        assert moldovan_leu.__hash__() == hash((decimal, 'MDL', '498'))
+        assert moldovan_leu.__hash__() == hash(
+            (moldovan_leu.__class__, decimal, 'MDL', '498'))
         assert moldovan_leu.__repr__() == (
             'MoldovanLeu(amount: 1000, '
             'alpha_code: "MDL", '
@@ -137,7 +139,6 @@ class TestMoldovanLeu:
             'convertion: "", '
             'international: True)')
         assert moldovan_leu.__str__() == 'MDL 10,00.00000'
-
 
     def test_moldovan_leu_changed(self):
         """test_cmoldovan_leu_changed."""
@@ -195,7 +196,6 @@ class TestMoldovanLeu:
                 match='can\'t set attribute'):
             moldovan_leu.international = True
 
-
     def test_moldovan_leu_math_add(self):
         """test_moldovan_leu_math_add."""
         moldovan_leu_one = MoldovanLeu(amount=1)
@@ -208,14 +208,14 @@ class TestMoldovanLeu:
             _ = moldovan_leu_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'leu.MoldovanLeu\'> '
                     'and <class \'str\'>.')):
             _ = moldovan_leu_one.__add__('1.00')
         assert (
             moldovan_leu_one +
             moldovan_leu_two) == moldovan_leu_three
-
 
     def test_moldovan_leu_slots(self):
         """test_moldovan_leu_slots."""
@@ -234,6 +234,7 @@ from multicurrency import Leu
 
 
 class TestLeu:
+    """Leu currency tests."""
 
     def test_leu(self):
         """test_leu."""
@@ -253,7 +254,8 @@ class TestLeu:
         assert leu.symbol_separator == '\u00A0'
         assert leu.localized_symbol == 'L'
         assert leu.convertion == ''
-        assert leu.__hash__() == hash((decimal, 'RON', '946'))
+        assert leu.__hash__() == hash(
+            (leu.__class__, decimal, 'RON', '946'))
         assert leu.__repr__() == (
             'Leu(amount: 0.1428571428571428571428571429, '
             'alpha_code: "RON", '
@@ -269,7 +271,6 @@ class TestLeu:
             'convertion: "", '
             'international: False)')
         assert leu.__str__() == '0,14 L'
-
 
     def test_leu_negative(self):
         """test_leu_negative."""
@@ -288,7 +289,8 @@ class TestLeu:
         assert leu.symbol_separator == '\u00A0'
         assert leu.localized_symbol == 'L'
         assert leu.convertion == ''
-        assert leu.__hash__() == hash((decimal, 'RON', '946'))
+        assert leu.__hash__() == hash(
+            (leu.__class__, decimal, 'RON', '946'))
         assert leu.__repr__() == (
             'Leu(amount: -100, '
             'alpha_code: "RON", '
@@ -304,7 +306,6 @@ class TestLeu:
             'convertion: "", '
             'international: False)')
         assert leu.__str__() == '-100,00 L'
-
 
     def test_leu_custom(self):
         """test_leu_custom."""
@@ -332,7 +333,8 @@ class TestLeu:
         assert leu.symbol_separator == '_'
         assert leu.localized_symbol == 'L'
         assert leu.convertion == ''
-        assert leu.__hash__() == hash((decimal, 'RON', '946'))
+        assert leu.__hash__() == hash(
+            (leu.__class__, decimal, 'RON', '946'))
         assert leu.__repr__() == (
             'Leu(amount: 1000, '
             'alpha_code: "RON", '
@@ -348,7 +350,6 @@ class TestLeu:
             'convertion: "", '
             'international: True)')
         assert leu.__str__() == 'RON 10,00.00000'
-
 
     def test_leu_changed(self):
         """test_cleu_changed."""
@@ -406,7 +407,6 @@ class TestLeu:
                 match='can\'t set attribute'):
             leu.international = True
 
-
     def test_leu_math_add(self):
         """test_leu_math_add."""
         leu_one = Leu(amount=1)
@@ -419,14 +419,14 @@ class TestLeu:
             _ = leu_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'leu.Leu\'> '
                     'and <class \'str\'>.')):
             _ = leu_one.__add__('1.00')
         assert (
             leu_one +
             leu_two) == leu_three
-
 
     def test_leu_slots(self):
         """test_leu_slots."""

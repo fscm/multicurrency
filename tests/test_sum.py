@@ -23,6 +23,7 @@ from multicurrency import UzbekistanSum
 
 
 class TestUzbekistanSum:
+    """UzbekistanSum currency tests."""
 
     def test_uzbekistan_sum(self):
         """test_uzbekistan_sum."""
@@ -42,7 +43,8 @@ class TestUzbekistanSum:
         assert uzbekistan_sum.symbol_separator == '\u00A0'
         assert uzbekistan_sum.localized_symbol == 'сўм'
         assert uzbekistan_sum.convertion == ''
-        assert uzbekistan_sum.__hash__() == hash((decimal, 'UZS', '860'))
+        assert uzbekistan_sum.__hash__() == hash(
+            (uzbekistan_sum.__class__, decimal, 'UZS', '860'))
         assert uzbekistan_sum.__repr__() == (
             'UzbekistanSum(amount: 0.1428571428571428571428571429, '
             'alpha_code: "UZS", '
@@ -58,7 +60,6 @@ class TestUzbekistanSum:
             'convertion: "", '
             'international: False)')
         assert uzbekistan_sum.__str__() == '0,14 сўм'
-
 
     def test_uzbekistan_sum_negative(self):
         """test_uzbekistan_sum_negative."""
@@ -77,7 +78,8 @@ class TestUzbekistanSum:
         assert uzbekistan_sum.symbol_separator == '\u00A0'
         assert uzbekistan_sum.localized_symbol == 'сўм'
         assert uzbekistan_sum.convertion == ''
-        assert uzbekistan_sum.__hash__() == hash((decimal, 'UZS', '860'))
+        assert uzbekistan_sum.__hash__() == hash(
+            (uzbekistan_sum.__class__, decimal, 'UZS', '860'))
         assert uzbekistan_sum.__repr__() == (
             'UzbekistanSum(amount: -100, '
             'alpha_code: "UZS", '
@@ -93,7 +95,6 @@ class TestUzbekistanSum:
             'convertion: "", '
             'international: False)')
         assert uzbekistan_sum.__str__() == '-100,00 сўм'
-
 
     def test_uzbekistan_sum_custom(self):
         """test_uzbekistan_sum_custom."""
@@ -121,7 +122,8 @@ class TestUzbekistanSum:
         assert uzbekistan_sum.symbol_separator == '_'
         assert uzbekistan_sum.localized_symbol == 'сўм'
         assert uzbekistan_sum.convertion == ''
-        assert uzbekistan_sum.__hash__() == hash((decimal, 'UZS', '860'))
+        assert uzbekistan_sum.__hash__() == hash(
+            (uzbekistan_sum.__class__, decimal, 'UZS', '860'))
         assert uzbekistan_sum.__repr__() == (
             'UzbekistanSum(amount: 1000, '
             'alpha_code: "UZS", '
@@ -137,7 +139,6 @@ class TestUzbekistanSum:
             'convertion: "", '
             'international: True)')
         assert uzbekistan_sum.__str__() == 'UZS 10,00.00000'
-
 
     def test_uzbekistan_sum_changed(self):
         """test_cuzbekistan_sum_changed."""
@@ -195,7 +196,6 @@ class TestUzbekistanSum:
                 match='can\'t set attribute'):
             uzbekistan_sum.international = True
 
-
     def test_uzbekistan_sum_math_add(self):
         """test_uzbekistan_sum_math_add."""
         uzbekistan_sum_one = UzbekistanSum(amount=1)
@@ -208,14 +208,14 @@ class TestUzbekistanSum:
             _ = uzbekistan_sum_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'sum.UzbekistanSum\'> '
                     'and <class \'str\'>.')):
             _ = uzbekistan_sum_one.__add__('1.00')
         assert (
             uzbekistan_sum_one +
             uzbekistan_sum_two) == uzbekistan_sum_three
-
 
     def test_uzbekistan_sum_slots(self):
         """test_uzbekistan_sum_slots."""

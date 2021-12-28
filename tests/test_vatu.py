@@ -23,6 +23,7 @@ from multicurrency import Vatu
 
 
 class TestVatu:
+    """Vatu currency tests."""
 
     def test_vatu(self):
         """test_vatu."""
@@ -42,7 +43,8 @@ class TestVatu:
         assert vatu.symbol_separator == '\u00A0'
         assert vatu.localized_symbol == 'Vt'
         assert vatu.convertion == ''
-        assert vatu.__hash__() == hash((decimal, 'VUV', '548'))
+        assert vatu.__hash__() == hash(
+            (vatu.__class__, decimal, 'VUV', '548'))
         assert vatu.__repr__() == (
             'Vatu(amount: 0.1428571428571428571428571429, '
             'alpha_code: "VUV", '
@@ -58,7 +60,6 @@ class TestVatu:
             'convertion: "", '
             'international: False)')
         assert vatu.__str__() == 'Vt 0'
-
 
     def test_vatu_negative(self):
         """test_vatu_negative."""
@@ -77,7 +78,8 @@ class TestVatu:
         assert vatu.symbol_separator == '\u00A0'
         assert vatu.localized_symbol == 'Vt'
         assert vatu.convertion == ''
-        assert vatu.__hash__() == hash((decimal, 'VUV', '548'))
+        assert vatu.__hash__() == hash(
+            (vatu.__class__, decimal, 'VUV', '548'))
         assert vatu.__repr__() == (
             'Vatu(amount: -100, '
             'alpha_code: "VUV", '
@@ -93,7 +95,6 @@ class TestVatu:
             'convertion: "", '
             'international: False)')
         assert vatu.__str__() == 'Vt -100'
-
 
     def test_vatu_custom(self):
         """test_vatu_custom."""
@@ -121,7 +122,8 @@ class TestVatu:
         assert vatu.symbol_separator == '_'
         assert vatu.localized_symbol == 'Vt'
         assert vatu.convertion == ''
-        assert vatu.__hash__() == hash((decimal, 'VUV', '548'))
+        assert vatu.__hash__() == hash(
+            (vatu.__class__, decimal, 'VUV', '548'))
         assert vatu.__repr__() == (
             'Vatu(amount: 1000, '
             'alpha_code: "VUV", '
@@ -137,7 +139,6 @@ class TestVatu:
             'convertion: "", '
             'international: True)')
         assert vatu.__str__() == 'VUV 10,00.00000'
-
 
     def test_vatu_changed(self):
         """test_cvatu_changed."""
@@ -195,7 +196,6 @@ class TestVatu:
                 match='can\'t set attribute'):
             vatu.international = True
 
-
     def test_vatu_math_add(self):
         """test_vatu_math_add."""
         vatu_one = Vatu(amount=1)
@@ -208,14 +208,14 @@ class TestVatu:
             _ = vatu_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'vatu.Vatu\'> '
                     'and <class \'str\'>.')):
             _ = vatu_one.__add__('1.00')
         assert (
             vatu_one +
             vatu_two) == vatu_three
-
 
     def test_vatu_slots(self):
         """test_vatu_slots."""

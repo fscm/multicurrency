@@ -23,6 +23,7 @@ from multicurrency import CostaRicanColon
 
 
 class TestCostaRicanColon:
+    """CostaRicanColon currency tests."""
 
     def test_costa_rican_colon(self):
         """test_costa_rican_colon."""
@@ -42,7 +43,8 @@ class TestCostaRicanColon:
         assert costa_rican_colon.symbol_separator == ''
         assert costa_rican_colon.localized_symbol == '₡'
         assert costa_rican_colon.convertion == ''
-        assert costa_rican_colon.__hash__() == hash((decimal, 'CRC', '188'))
+        assert costa_rican_colon.__hash__() == hash(
+            (costa_rican_colon.__class__, decimal, 'CRC', '188'))
         assert costa_rican_colon.__repr__() == (
             'CostaRicanColon(amount: 0.1428571428571428571428571429, '
             'alpha_code: "CRC", '
@@ -58,7 +60,6 @@ class TestCostaRicanColon:
             'convertion: "", '
             'international: False)')
         assert costa_rican_colon.__str__() == '₡0,14'
-
 
     def test_costa_rican_colon_negative(self):
         """test_costa_rican_colon_negative."""
@@ -77,7 +78,8 @@ class TestCostaRicanColon:
         assert costa_rican_colon.symbol_separator == ''
         assert costa_rican_colon.localized_symbol == '₡'
         assert costa_rican_colon.convertion == ''
-        assert costa_rican_colon.__hash__() == hash((decimal, 'CRC', '188'))
+        assert costa_rican_colon.__hash__() == hash(
+            (costa_rican_colon.__class__, decimal, 'CRC', '188'))
         assert costa_rican_colon.__repr__() == (
             'CostaRicanColon(amount: -100, '
             'alpha_code: "CRC", '
@@ -93,7 +95,6 @@ class TestCostaRicanColon:
             'convertion: "", '
             'international: False)')
         assert costa_rican_colon.__str__() == '₡-100,00'
-
 
     def test_costa_rican_colon_custom(self):
         """test_costa_rican_colon_custom."""
@@ -121,7 +122,8 @@ class TestCostaRicanColon:
         assert costa_rican_colon.symbol_separator == '_'
         assert costa_rican_colon.localized_symbol == '₡'
         assert costa_rican_colon.convertion == ''
-        assert costa_rican_colon.__hash__() == hash((decimal, 'CRC', '188'))
+        assert costa_rican_colon.__hash__() == hash(
+            (costa_rican_colon.__class__, decimal, 'CRC', '188'))
         assert costa_rican_colon.__repr__() == (
             'CostaRicanColon(amount: 1000, '
             'alpha_code: "CRC", '
@@ -137,7 +139,6 @@ class TestCostaRicanColon:
             'convertion: "", '
             'international: True)')
         assert costa_rican_colon.__str__() == 'CRC 10,00.00000'
-
 
     def test_costa_rican_colon_changed(self):
         """test_ccosta_rican_colon_changed."""
@@ -195,7 +196,6 @@ class TestCostaRicanColon:
                 match='can\'t set attribute'):
             costa_rican_colon.international = True
 
-
     def test_costa_rican_colon_math_add(self):
         """test_costa_rican_colon_math_add."""
         costa_rican_colon_one = CostaRicanColon(amount=1)
@@ -208,14 +208,14 @@ class TestCostaRicanColon:
             _ = costa_rican_colon_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'colon.CostaRicanColon\'> '
                     'and <class \'str\'>.')):
             _ = costa_rican_colon_one.__add__('1.00')
         assert (
             costa_rican_colon_one +
             costa_rican_colon_two) == costa_rican_colon_three
-
 
     def test_costa_rican_colon_slots(self):
         """test_costa_rican_colon_slots."""

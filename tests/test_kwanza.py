@@ -23,6 +23,7 @@ from multicurrency import Kwanza
 
 
 class TestKwanza:
+    """Kwanza currency tests."""
 
     def test_kwanza(self):
         """test_kwanza."""
@@ -42,7 +43,8 @@ class TestKwanza:
         assert kwanza.symbol_separator == '\u00A0'
         assert kwanza.localized_symbol == 'Kz'
         assert kwanza.convertion == ''
-        assert kwanza.__hash__() == hash((decimal, 'AOA', '973'))
+        assert kwanza.__hash__() == hash(
+            (kwanza.__class__, decimal, 'AOA', '973'))
         assert kwanza.__repr__() == (
             'Kwanza(amount: 0.1428571428571428571428571429, '
             'alpha_code: "AOA", '
@@ -58,7 +60,6 @@ class TestKwanza:
             'convertion: "", '
             'international: False)')
         assert kwanza.__str__() == '0,14 Kz'
-
 
     def test_kwanza_negative(self):
         """test_kwanza_negative."""
@@ -77,7 +78,8 @@ class TestKwanza:
         assert kwanza.symbol_separator == '\u00A0'
         assert kwanza.localized_symbol == 'Kz'
         assert kwanza.convertion == ''
-        assert kwanza.__hash__() == hash((decimal, 'AOA', '973'))
+        assert kwanza.__hash__() == hash(
+            (kwanza.__class__, decimal, 'AOA', '973'))
         assert kwanza.__repr__() == (
             'Kwanza(amount: -100, '
             'alpha_code: "AOA", '
@@ -93,7 +95,6 @@ class TestKwanza:
             'convertion: "", '
             'international: False)')
         assert kwanza.__str__() == '-100,00 Kz'
-
 
     def test_kwanza_custom(self):
         """test_kwanza_custom."""
@@ -121,7 +122,8 @@ class TestKwanza:
         assert kwanza.symbol_separator == '_'
         assert kwanza.localized_symbol == 'Kz'
         assert kwanza.convertion == ''
-        assert kwanza.__hash__() == hash((decimal, 'AOA', '973'))
+        assert kwanza.__hash__() == hash(
+            (kwanza.__class__, decimal, 'AOA', '973'))
         assert kwanza.__repr__() == (
             'Kwanza(amount: 1000, '
             'alpha_code: "AOA", '
@@ -137,7 +139,6 @@ class TestKwanza:
             'convertion: "", '
             'international: True)')
         assert kwanza.__str__() == 'AOA 10,00.00000'
-
 
     def test_kwanza_changed(self):
         """test_ckwanza_changed."""
@@ -195,7 +196,6 @@ class TestKwanza:
                 match='can\'t set attribute'):
             kwanza.international = True
 
-
     def test_kwanza_math_add(self):
         """test_kwanza_math_add."""
         kwanza_one = Kwanza(amount=1)
@@ -208,14 +208,14 @@ class TestKwanza:
             _ = kwanza_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'kwanza.Kwanza\'> '
                     'and <class \'str\'>.')):
             _ = kwanza_one.__add__('1.00')
         assert (
             kwanza_one +
             kwanza_two) == kwanza_three
-
 
     def test_kwanza_slots(self):
         """test_kwanza_slots."""

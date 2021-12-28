@@ -23,6 +23,7 @@ from multicurrency import Afghani
 
 
 class TestAfghani:
+    """Afghani currency tests."""
 
     def test_afghani(self):
         """test_afghani."""
@@ -42,7 +43,8 @@ class TestAfghani:
         assert afghani.symbol_separator == '\u00A0'
         assert afghani.localized_symbol == '؋'
         assert afghani.convertion == '۰۱۲۳۴۵۶۷۸۹-'
-        assert afghani.__hash__() == hash((decimal, 'AFN', '971'))
+        assert afghani.__hash__() == hash(
+            (afghani.__class__, decimal, 'AFN', '971'))
         assert afghani.__repr__() == (
             'Afghani(amount: 0.1428571428571428571428571429, '
             'alpha_code: "AFN", '
@@ -58,7 +60,6 @@ class TestAfghani:
             'convertion: "۰۱۲۳۴۵۶۷۸۹-", '
             'international: False)')
         assert afghani.__str__() == '؋ ۰٫۱۴'
-
 
     def test_afghani_negative(self):
         """test_afghani_negative."""
@@ -77,7 +78,8 @@ class TestAfghani:
         assert afghani.symbol_separator == '\u00A0'
         assert afghani.localized_symbol == '؋'
         assert afghani.convertion == '۰۱۲۳۴۵۶۷۸۹-'
-        assert afghani.__hash__() == hash((decimal, 'AFN', '971'))
+        assert afghani.__hash__() == hash(
+            (afghani.__class__, decimal, 'AFN', '971'))
         assert afghani.__repr__() == (
             'Afghani(amount: -100, '
             'alpha_code: "AFN", '
@@ -93,7 +95,6 @@ class TestAfghani:
             'convertion: "۰۱۲۳۴۵۶۷۸۹-", '
             'international: False)')
         assert afghani.__str__() == '؋ -۱۰۰٫۰۰'
-
 
     def test_afghani_custom(self):
         """test_afghani_custom."""
@@ -121,7 +122,8 @@ class TestAfghani:
         assert afghani.symbol_separator == '_'
         assert afghani.localized_symbol == '؋'
         assert afghani.convertion == '۰۱۲۳۴۵۶۷۸۹-'
-        assert afghani.__hash__() == hash((decimal, 'AFN', '971'))
+        assert afghani.__hash__() == hash(
+            (afghani.__class__, decimal, 'AFN', '971'))
         assert afghani.__repr__() == (
             'Afghani(amount: 1000, '
             'alpha_code: "AFN", '
@@ -137,7 +139,6 @@ class TestAfghani:
             'convertion: "۰۱۲۳۴۵۶۷۸۹-", '
             'international: True)')
         assert afghani.__str__() == 'AFN 10,00.00000'
-
 
     def test_afghani_changed(self):
         """test_cafghani_changed."""
@@ -195,7 +196,6 @@ class TestAfghani:
                 match='can\'t set attribute'):
             afghani.international = True
 
-
     def test_afghani_math_add(self):
         """test_afghani_math_add."""
         afghani_one = Afghani(amount=1)
@@ -208,14 +208,14 @@ class TestAfghani:
             _ = afghani_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'afghani.Afghani\'> '
                     'and <class \'str\'>.')):
             _ = afghani_one.__add__('1.00')
         assert (
             afghani_one +
             afghani_two) == afghani_three
-
 
     def test_afghani_slots(self):
         """test_afghani_slots."""

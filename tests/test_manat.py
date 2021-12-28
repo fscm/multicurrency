@@ -23,6 +23,7 @@ from multicurrency import AzerbaijanianManat
 
 
 class TestAzerbaijanianManat:
+    """AzerbaijanianManat currency tests."""
 
     def test_azerbaijanian_manat(self):
         """test_azerbaijanian_manat."""
@@ -42,7 +43,8 @@ class TestAzerbaijanianManat:
         assert azerbaijanian_manat.symbol_separator == '\u00A0'
         assert azerbaijanian_manat.localized_symbol == '₼'
         assert azerbaijanian_manat.convertion == ''
-        assert azerbaijanian_manat.__hash__() == hash((decimal, 'AZN', '944'))
+        assert azerbaijanian_manat.__hash__() == hash(
+            (azerbaijanian_manat.__class__, decimal, 'AZN', '944'))
         assert azerbaijanian_manat.__repr__() == (
             'AzerbaijanianManat(amount: 0.1428571428571428571428571429, '
             'alpha_code: "AZN", '
@@ -58,7 +60,6 @@ class TestAzerbaijanianManat:
             'convertion: "", '
             'international: False)')
         assert azerbaijanian_manat.__str__() == '0,14 ₼'
-
 
     def test_azerbaijanian_manat_negative(self):
         """test_azerbaijanian_manat_negative."""
@@ -77,7 +78,8 @@ class TestAzerbaijanianManat:
         assert azerbaijanian_manat.symbol_separator == '\u00A0'
         assert azerbaijanian_manat.localized_symbol == '₼'
         assert azerbaijanian_manat.convertion == ''
-        assert azerbaijanian_manat.__hash__() == hash((decimal, 'AZN', '944'))
+        assert azerbaijanian_manat.__hash__() == hash(
+            (azerbaijanian_manat.__class__, decimal, 'AZN', '944'))
         assert azerbaijanian_manat.__repr__() == (
             'AzerbaijanianManat(amount: -100, '
             'alpha_code: "AZN", '
@@ -93,7 +95,6 @@ class TestAzerbaijanianManat:
             'convertion: "", '
             'international: False)')
         assert azerbaijanian_manat.__str__() == '-100,00 ₼'
-
 
     def test_azerbaijanian_manat_custom(self):
         """test_azerbaijanian_manat_custom."""
@@ -121,7 +122,8 @@ class TestAzerbaijanianManat:
         assert azerbaijanian_manat.symbol_separator == '_'
         assert azerbaijanian_manat.localized_symbol == '₼'
         assert azerbaijanian_manat.convertion == ''
-        assert azerbaijanian_manat.__hash__() == hash((decimal, 'AZN', '944'))
+        assert azerbaijanian_manat.__hash__() == hash(
+            (azerbaijanian_manat.__class__, decimal, 'AZN', '944'))
         assert azerbaijanian_manat.__repr__() == (
             'AzerbaijanianManat(amount: 1000, '
             'alpha_code: "AZN", '
@@ -137,7 +139,6 @@ class TestAzerbaijanianManat:
             'convertion: "", '
             'international: True)')
         assert azerbaijanian_manat.__str__() == 'AZN 10,00.00000'
-
 
     def test_azerbaijanian_manat_changed(self):
         """test_cazerbaijanian_manat_changed."""
@@ -195,7 +196,6 @@ class TestAzerbaijanianManat:
                 match='can\'t set attribute'):
             azerbaijanian_manat.international = True
 
-
     def test_azerbaijanian_manat_math_add(self):
         """test_azerbaijanian_manat_math_add."""
         azerbaijanian_manat_one = AzerbaijanianManat(amount=1)
@@ -208,14 +208,14 @@ class TestAzerbaijanianManat:
             _ = azerbaijanian_manat_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'manat.AzerbaijanianManat\'> '
                     'and <class \'str\'>.')):
             _ = azerbaijanian_manat_one.__add__('1.00')
         assert (
             azerbaijanian_manat_one +
             azerbaijanian_manat_two) == azerbaijanian_manat_three
-
 
     def test_azerbaijanian_manat_slots(self):
         """test_azerbaijanian_manat_slots."""
@@ -234,6 +234,7 @@ from multicurrency import Manat
 
 
 class TestManat:
+    """Manat currency tests."""
 
     def test_manat(self):
         """test_manat."""
@@ -253,7 +254,8 @@ class TestManat:
         assert manat.symbol_separator == '\u00A0'
         assert manat.localized_symbol == 'm'
         assert manat.convertion == ''
-        assert manat.__hash__() == hash((decimal, 'TMT', '934'))
+        assert manat.__hash__() == hash(
+            (manat.__class__, decimal, 'TMT', '934'))
         assert manat.__repr__() == (
             'Manat(amount: 0.1428571428571428571428571429, '
             'alpha_code: "TMT", '
@@ -269,7 +271,6 @@ class TestManat:
             'convertion: "", '
             'international: False)')
         assert manat.__str__() == '0,14 m'
-
 
     def test_manat_negative(self):
         """test_manat_negative."""
@@ -288,7 +289,8 @@ class TestManat:
         assert manat.symbol_separator == '\u00A0'
         assert manat.localized_symbol == 'm'
         assert manat.convertion == ''
-        assert manat.__hash__() == hash((decimal, 'TMT', '934'))
+        assert manat.__hash__() == hash(
+            (manat.__class__, decimal, 'TMT', '934'))
         assert manat.__repr__() == (
             'Manat(amount: -100, '
             'alpha_code: "TMT", '
@@ -304,7 +306,6 @@ class TestManat:
             'convertion: "", '
             'international: False)')
         assert manat.__str__() == '-100,00 m'
-
 
     def test_manat_custom(self):
         """test_manat_custom."""
@@ -332,7 +333,8 @@ class TestManat:
         assert manat.symbol_separator == '_'
         assert manat.localized_symbol == 'm'
         assert manat.convertion == ''
-        assert manat.__hash__() == hash((decimal, 'TMT', '934'))
+        assert manat.__hash__() == hash(
+            (manat.__class__, decimal, 'TMT', '934'))
         assert manat.__repr__() == (
             'Manat(amount: 1000, '
             'alpha_code: "TMT", '
@@ -348,7 +350,6 @@ class TestManat:
             'convertion: "", '
             'international: True)')
         assert manat.__str__() == 'TMT 10,00.00000'
-
 
     def test_manat_changed(self):
         """test_cmanat_changed."""
@@ -406,7 +407,6 @@ class TestManat:
                 match='can\'t set attribute'):
             manat.international = True
 
-
     def test_manat_math_add(self):
         """test_manat_math_add."""
         manat_one = Manat(amount=1)
@@ -419,14 +419,14 @@ class TestManat:
             _ = manat_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'manat.Manat\'> '
                     'and <class \'str\'>.')):
             _ = manat_one.__add__('1.00')
         assert (
             manat_one +
             manat_two) == manat_three
-
 
     def test_manat_slots(self):
         """test_manat_slots."""

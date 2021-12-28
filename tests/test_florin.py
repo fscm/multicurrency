@@ -23,6 +23,7 @@ from multicurrency import ArubanFlorin
 
 
 class TestArubanFlorin:
+    """ArubanFlorin currency tests."""
 
     def test_aruban_florin(self):
         """test_aruban_florin."""
@@ -42,7 +43,8 @@ class TestArubanFlorin:
         assert aruban_florin.symbol_separator == ''
         assert aruban_florin.localized_symbol == 'ƒ'
         assert aruban_florin.convertion == ''
-        assert aruban_florin.__hash__() == hash((decimal, 'AWG', '533'))
+        assert aruban_florin.__hash__() == hash(
+            (aruban_florin.__class__, decimal, 'AWG', '533'))
         assert aruban_florin.__repr__() == (
             'ArubanFlorin(amount: 0.1428571428571428571428571429, '
             'alpha_code: "AWG", '
@@ -58,7 +60,6 @@ class TestArubanFlorin:
             'convertion: "", '
             'international: False)')
         assert aruban_florin.__str__() == 'ƒ0.14'
-
 
     def test_aruban_florin_negative(self):
         """test_aruban_florin_negative."""
@@ -77,7 +78,8 @@ class TestArubanFlorin:
         assert aruban_florin.symbol_separator == ''
         assert aruban_florin.localized_symbol == 'ƒ'
         assert aruban_florin.convertion == ''
-        assert aruban_florin.__hash__() == hash((decimal, 'AWG', '533'))
+        assert aruban_florin.__hash__() == hash(
+            (aruban_florin.__class__, decimal, 'AWG', '533'))
         assert aruban_florin.__repr__() == (
             'ArubanFlorin(amount: -100, '
             'alpha_code: "AWG", '
@@ -93,7 +95,6 @@ class TestArubanFlorin:
             'convertion: "", '
             'international: False)')
         assert aruban_florin.__str__() == 'ƒ-100.00'
-
 
     def test_aruban_florin_custom(self):
         """test_aruban_florin_custom."""
@@ -121,7 +122,8 @@ class TestArubanFlorin:
         assert aruban_florin.symbol_separator == '_'
         assert aruban_florin.localized_symbol == 'ƒ'
         assert aruban_florin.convertion == ''
-        assert aruban_florin.__hash__() == hash((decimal, 'AWG', '533'))
+        assert aruban_florin.__hash__() == hash(
+            (aruban_florin.__class__, decimal, 'AWG', '533'))
         assert aruban_florin.__repr__() == (
             'ArubanFlorin(amount: 1000, '
             'alpha_code: "AWG", '
@@ -137,7 +139,6 @@ class TestArubanFlorin:
             'convertion: "", '
             'international: True)')
         assert aruban_florin.__str__() == 'AWG 10,00.00000'
-
 
     def test_aruban_florin_changed(self):
         """test_caruban_florin_changed."""
@@ -195,7 +196,6 @@ class TestArubanFlorin:
                 match='can\'t set attribute'):
             aruban_florin.international = True
 
-
     def test_aruban_florin_math_add(self):
         """test_aruban_florin_math_add."""
         aruban_florin_one = ArubanFlorin(amount=1)
@@ -208,14 +208,14 @@ class TestArubanFlorin:
             _ = aruban_florin_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'florin.ArubanFlorin\'> '
                     'and <class \'str\'>.')):
             _ = aruban_florin_one.__add__('1.00')
         assert (
             aruban_florin_one +
             aruban_florin_two) == aruban_florin_three
-
 
     def test_aruban_florin_slots(self):
         """test_aruban_florin_slots."""

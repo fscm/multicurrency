@@ -23,6 +23,7 @@ from multicurrency import Baht
 
 
 class TestBaht:
+    """Baht currency tests."""
 
     def test_baht(self):
         """test_baht."""
@@ -42,7 +43,8 @@ class TestBaht:
         assert baht.symbol_separator == ''
         assert baht.localized_symbol == '฿'
         assert baht.convertion == ''
-        assert baht.__hash__() == hash((decimal, 'THB', '764'))
+        assert baht.__hash__() == hash(
+            (baht.__class__, decimal, 'THB', '764'))
         assert baht.__repr__() == (
             'Baht(amount: 0.1428571428571428571428571429, '
             'alpha_code: "THB", '
@@ -58,7 +60,6 @@ class TestBaht:
             'convertion: "", '
             'international: False)')
         assert baht.__str__() == '฿0.14'
-
 
     def test_baht_negative(self):
         """test_baht_negative."""
@@ -77,7 +78,8 @@ class TestBaht:
         assert baht.symbol_separator == ''
         assert baht.localized_symbol == '฿'
         assert baht.convertion == ''
-        assert baht.__hash__() == hash((decimal, 'THB', '764'))
+        assert baht.__hash__() == hash(
+            (baht.__class__, decimal, 'THB', '764'))
         assert baht.__repr__() == (
             'Baht(amount: -100, '
             'alpha_code: "THB", '
@@ -93,7 +95,6 @@ class TestBaht:
             'convertion: "", '
             'international: False)')
         assert baht.__str__() == '฿-100.00'
-
 
     def test_baht_custom(self):
         """test_baht_custom."""
@@ -121,7 +122,8 @@ class TestBaht:
         assert baht.symbol_separator == '_'
         assert baht.localized_symbol == '฿'
         assert baht.convertion == ''
-        assert baht.__hash__() == hash((decimal, 'THB', '764'))
+        assert baht.__hash__() == hash(
+            (baht.__class__, decimal, 'THB', '764'))
         assert baht.__repr__() == (
             'Baht(amount: 1000, '
             'alpha_code: "THB", '
@@ -137,7 +139,6 @@ class TestBaht:
             'convertion: "", '
             'international: True)')
         assert baht.__str__() == 'THB 10,00.00000'
-
 
     def test_baht_changed(self):
         """test_cbaht_changed."""
@@ -195,7 +196,6 @@ class TestBaht:
                 match='can\'t set attribute'):
             baht.international = True
 
-
     def test_baht_math_add(self):
         """test_baht_math_add."""
         baht_one = Baht(amount=1)
@@ -208,14 +208,14 @@ class TestBaht:
             _ = baht_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'baht.Baht\'> '
                     'and <class \'str\'>.')):
             _ = baht_one.__add__('1.00')
         assert (
             baht_one +
             baht_two) == baht_three
-
 
     def test_baht_slots(self):
         """test_baht_slots."""

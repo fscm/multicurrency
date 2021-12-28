@@ -23,6 +23,7 @@ from multicurrency import ArgentinePeso
 
 
 class TestArgentinePeso:
+    """ArgentinePeso currency tests."""
 
     def test_argentine_peso(self):
         """test_argentine_peso."""
@@ -42,7 +43,8 @@ class TestArgentinePeso:
         assert argentine_peso.symbol_separator == '\u00A0'
         assert argentine_peso.localized_symbol == 'AR$'
         assert argentine_peso.convertion == ''
-        assert argentine_peso.__hash__() == hash((decimal, 'ARS', '032'))
+        assert argentine_peso.__hash__() == hash(
+            (argentine_peso.__class__, decimal, 'ARS', '032'))
         assert argentine_peso.__repr__() == (
             'ArgentinePeso(amount: 0.1428571428571428571428571429, '
             'alpha_code: "ARS", '
@@ -58,7 +60,6 @@ class TestArgentinePeso:
             'convertion: "", '
             'international: False)')
         assert argentine_peso.__str__() == '$ 0,14'
-
 
     def test_argentine_peso_negative(self):
         """test_argentine_peso_negative."""
@@ -77,7 +78,8 @@ class TestArgentinePeso:
         assert argentine_peso.symbol_separator == '\u00A0'
         assert argentine_peso.localized_symbol == 'AR$'
         assert argentine_peso.convertion == ''
-        assert argentine_peso.__hash__() == hash((decimal, 'ARS', '032'))
+        assert argentine_peso.__hash__() == hash(
+            (argentine_peso.__class__, decimal, 'ARS', '032'))
         assert argentine_peso.__repr__() == (
             'ArgentinePeso(amount: -100, '
             'alpha_code: "ARS", '
@@ -93,7 +95,6 @@ class TestArgentinePeso:
             'convertion: "", '
             'international: False)')
         assert argentine_peso.__str__() == '$ -100,00'
-
 
     def test_argentine_peso_custom(self):
         """test_argentine_peso_custom."""
@@ -121,7 +122,8 @@ class TestArgentinePeso:
         assert argentine_peso.symbol_separator == '_'
         assert argentine_peso.localized_symbol == 'AR$'
         assert argentine_peso.convertion == ''
-        assert argentine_peso.__hash__() == hash((decimal, 'ARS', '032'))
+        assert argentine_peso.__hash__() == hash(
+            (argentine_peso.__class__, decimal, 'ARS', '032'))
         assert argentine_peso.__repr__() == (
             'ArgentinePeso(amount: 1000, '
             'alpha_code: "ARS", '
@@ -137,7 +139,6 @@ class TestArgentinePeso:
             'convertion: "", '
             'international: True)')
         assert argentine_peso.__str__() == 'ARS 10,00.00000'
-
 
     def test_argentine_peso_changed(self):
         """test_cargentine_peso_changed."""
@@ -195,7 +196,6 @@ class TestArgentinePeso:
                 match='can\'t set attribute'):
             argentine_peso.international = True
 
-
     def test_argentine_peso_math_add(self):
         """test_argentine_peso_math_add."""
         argentine_peso_one = ArgentinePeso(amount=1)
@@ -208,14 +208,14 @@ class TestArgentinePeso:
             _ = argentine_peso_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'peso.ArgentinePeso\'> '
                     'and <class \'str\'>.')):
             _ = argentine_peso_one.__add__('1.00')
         assert (
             argentine_peso_one +
             argentine_peso_two) == argentine_peso_three
-
 
     def test_argentine_peso_slots(self):
         """test_argentine_peso_slots."""
@@ -234,6 +234,7 @@ from multicurrency import ChileanPeso
 
 
 class TestChileanPeso:
+    """ChileanPeso currency tests."""
 
     def test_chilean_peso(self):
         """test_chilean_peso."""
@@ -253,7 +254,8 @@ class TestChileanPeso:
         assert chilean_peso.symbol_separator == ''
         assert chilean_peso.localized_symbol == 'CL$'
         assert chilean_peso.convertion == ''
-        assert chilean_peso.__hash__() == hash((decimal, 'CLP', '152'))
+        assert chilean_peso.__hash__() == hash(
+            (chilean_peso.__class__, decimal, 'CLP', '152'))
         assert chilean_peso.__repr__() == (
             'ChileanPeso(amount: 0.1428571428571428571428571429, '
             'alpha_code: "CLP", '
@@ -269,7 +271,6 @@ class TestChileanPeso:
             'convertion: "", '
             'international: False)')
         assert chilean_peso.__str__() == '$0'
-
 
     def test_chilean_peso_negative(self):
         """test_chilean_peso_negative."""
@@ -288,7 +289,8 @@ class TestChileanPeso:
         assert chilean_peso.symbol_separator == ''
         assert chilean_peso.localized_symbol == 'CL$'
         assert chilean_peso.convertion == ''
-        assert chilean_peso.__hash__() == hash((decimal, 'CLP', '152'))
+        assert chilean_peso.__hash__() == hash(
+            (chilean_peso.__class__, decimal, 'CLP', '152'))
         assert chilean_peso.__repr__() == (
             'ChileanPeso(amount: -100, '
             'alpha_code: "CLP", '
@@ -304,7 +306,6 @@ class TestChileanPeso:
             'convertion: "", '
             'international: False)')
         assert chilean_peso.__str__() == '$-100'
-
 
     def test_chilean_peso_custom(self):
         """test_chilean_peso_custom."""
@@ -332,7 +333,8 @@ class TestChileanPeso:
         assert chilean_peso.symbol_separator == '_'
         assert chilean_peso.localized_symbol == 'CL$'
         assert chilean_peso.convertion == ''
-        assert chilean_peso.__hash__() == hash((decimal, 'CLP', '152'))
+        assert chilean_peso.__hash__() == hash(
+            (chilean_peso.__class__, decimal, 'CLP', '152'))
         assert chilean_peso.__repr__() == (
             'ChileanPeso(amount: 1000, '
             'alpha_code: "CLP", '
@@ -348,7 +350,6 @@ class TestChileanPeso:
             'convertion: "", '
             'international: True)')
         assert chilean_peso.__str__() == 'CLP 10,00.00000'
-
 
     def test_chilean_peso_changed(self):
         """test_cchilean_peso_changed."""
@@ -406,7 +407,6 @@ class TestChileanPeso:
                 match='can\'t set attribute'):
             chilean_peso.international = True
 
-
     def test_chilean_peso_math_add(self):
         """test_chilean_peso_math_add."""
         chilean_peso_one = ChileanPeso(amount=1)
@@ -419,14 +419,14 @@ class TestChileanPeso:
             _ = chilean_peso_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'peso.ChileanPeso\'> '
                     'and <class \'str\'>.')):
             _ = chilean_peso_one.__add__('1.00')
         assert (
             chilean_peso_one +
             chilean_peso_two) == chilean_peso_three
-
 
     def test_chilean_peso_slots(self):
         """test_chilean_peso_slots."""
@@ -445,6 +445,7 @@ from multicurrency import ColombianPeso
 
 
 class TestColombianPeso:
+    """ColombianPeso currency tests."""
 
     def test_colombian_peso(self):
         """test_colombian_peso."""
@@ -464,7 +465,8 @@ class TestColombianPeso:
         assert colombian_peso.symbol_separator == '\u00A0'
         assert colombian_peso.localized_symbol == 'CO$'
         assert colombian_peso.convertion == ''
-        assert colombian_peso.__hash__() == hash((decimal, 'COP', '170'))
+        assert colombian_peso.__hash__() == hash(
+            (colombian_peso.__class__, decimal, 'COP', '170'))
         assert colombian_peso.__repr__() == (
             'ColombianPeso(amount: 0.1428571428571428571428571429, '
             'alpha_code: "COP", '
@@ -480,7 +482,6 @@ class TestColombianPeso:
             'convertion: "", '
             'international: False)')
         assert colombian_peso.__str__() == '$ 0,14'
-
 
     def test_colombian_peso_negative(self):
         """test_colombian_peso_negative."""
@@ -499,7 +500,8 @@ class TestColombianPeso:
         assert colombian_peso.symbol_separator == '\u00A0'
         assert colombian_peso.localized_symbol == 'CO$'
         assert colombian_peso.convertion == ''
-        assert colombian_peso.__hash__() == hash((decimal, 'COP', '170'))
+        assert colombian_peso.__hash__() == hash(
+            (colombian_peso.__class__, decimal, 'COP', '170'))
         assert colombian_peso.__repr__() == (
             'ColombianPeso(amount: -100, '
             'alpha_code: "COP", '
@@ -515,7 +517,6 @@ class TestColombianPeso:
             'convertion: "", '
             'international: False)')
         assert colombian_peso.__str__() == '$ -100,00'
-
 
     def test_colombian_peso_custom(self):
         """test_colombian_peso_custom."""
@@ -543,7 +544,8 @@ class TestColombianPeso:
         assert colombian_peso.symbol_separator == '_'
         assert colombian_peso.localized_symbol == 'CO$'
         assert colombian_peso.convertion == ''
-        assert colombian_peso.__hash__() == hash((decimal, 'COP', '170'))
+        assert colombian_peso.__hash__() == hash(
+            (colombian_peso.__class__, decimal, 'COP', '170'))
         assert colombian_peso.__repr__() == (
             'ColombianPeso(amount: 1000, '
             'alpha_code: "COP", '
@@ -559,7 +561,6 @@ class TestColombianPeso:
             'convertion: "", '
             'international: True)')
         assert colombian_peso.__str__() == 'COP 10,00.00000'
-
 
     def test_colombian_peso_changed(self):
         """test_ccolombian_peso_changed."""
@@ -617,7 +618,6 @@ class TestColombianPeso:
                 match='can\'t set attribute'):
             colombian_peso.international = True
 
-
     def test_colombian_peso_math_add(self):
         """test_colombian_peso_math_add."""
         colombian_peso_one = ColombianPeso(amount=1)
@@ -630,14 +630,14 @@ class TestColombianPeso:
             _ = colombian_peso_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'peso.ColombianPeso\'> '
                     'and <class \'str\'>.')):
             _ = colombian_peso_one.__add__('1.00')
         assert (
             colombian_peso_one +
             colombian_peso_two) == colombian_peso_three
-
 
     def test_colombian_peso_slots(self):
         """test_colombian_peso_slots."""
@@ -656,6 +656,7 @@ from multicurrency import CubanPeso
 
 
 class TestCubanPeso:
+    """CubanPeso currency tests."""
 
     def test_cuban_peso(self):
         """test_cuban_peso."""
@@ -675,7 +676,8 @@ class TestCubanPeso:
         assert cuban_peso.symbol_separator == ''
         assert cuban_peso.localized_symbol == 'CU$'
         assert cuban_peso.convertion == ''
-        assert cuban_peso.__hash__() == hash((decimal, 'CUP', '192'))
+        assert cuban_peso.__hash__() == hash(
+            (cuban_peso.__class__, decimal, 'CUP', '192'))
         assert cuban_peso.__repr__() == (
             'CubanPeso(amount: 0.1428571428571428571428571429, '
             'alpha_code: "CUP", '
@@ -691,7 +693,6 @@ class TestCubanPeso:
             'convertion: "", '
             'international: False)')
         assert cuban_peso.__str__() == '$0.14'
-
 
     def test_cuban_peso_negative(self):
         """test_cuban_peso_negative."""
@@ -710,7 +711,8 @@ class TestCubanPeso:
         assert cuban_peso.symbol_separator == ''
         assert cuban_peso.localized_symbol == 'CU$'
         assert cuban_peso.convertion == ''
-        assert cuban_peso.__hash__() == hash((decimal, 'CUP', '192'))
+        assert cuban_peso.__hash__() == hash(
+            (cuban_peso.__class__, decimal, 'CUP', '192'))
         assert cuban_peso.__repr__() == (
             'CubanPeso(amount: -100, '
             'alpha_code: "CUP", '
@@ -726,7 +728,6 @@ class TestCubanPeso:
             'convertion: "", '
             'international: False)')
         assert cuban_peso.__str__() == '$-100.00'
-
 
     def test_cuban_peso_custom(self):
         """test_cuban_peso_custom."""
@@ -754,7 +755,8 @@ class TestCubanPeso:
         assert cuban_peso.symbol_separator == '_'
         assert cuban_peso.localized_symbol == 'CU$'
         assert cuban_peso.convertion == ''
-        assert cuban_peso.__hash__() == hash((decimal, 'CUP', '192'))
+        assert cuban_peso.__hash__() == hash(
+            (cuban_peso.__class__, decimal, 'CUP', '192'))
         assert cuban_peso.__repr__() == (
             'CubanPeso(amount: 1000, '
             'alpha_code: "CUP", '
@@ -770,7 +772,6 @@ class TestCubanPeso:
             'convertion: "", '
             'international: True)')
         assert cuban_peso.__str__() == 'CUP 10,00.00000'
-
 
     def test_cuban_peso_changed(self):
         """test_ccuban_peso_changed."""
@@ -828,7 +829,6 @@ class TestCubanPeso:
                 match='can\'t set attribute'):
             cuban_peso.international = True
 
-
     def test_cuban_peso_math_add(self):
         """test_cuban_peso_math_add."""
         cuban_peso_one = CubanPeso(amount=1)
@@ -841,14 +841,14 @@ class TestCubanPeso:
             _ = cuban_peso_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'peso.CubanPeso\'> '
                     'and <class \'str\'>.')):
             _ = cuban_peso_one.__add__('1.00')
         assert (
             cuban_peso_one +
             cuban_peso_two) == cuban_peso_three
-
 
     def test_cuban_peso_slots(self):
         """test_cuban_peso_slots."""
@@ -867,6 +867,7 @@ from multicurrency import DominicanPeso
 
 
 class TestDominicanPeso:
+    """DominicanPeso currency tests."""
 
     def test_dominican_peso(self):
         """test_dominican_peso."""
@@ -886,7 +887,8 @@ class TestDominicanPeso:
         assert dominican_peso.symbol_separator == ''
         assert dominican_peso.localized_symbol == 'DO$'
         assert dominican_peso.convertion == ''
-        assert dominican_peso.__hash__() == hash((decimal, 'DOP', '214'))
+        assert dominican_peso.__hash__() == hash(
+            (dominican_peso.__class__, decimal, 'DOP', '214'))
         assert dominican_peso.__repr__() == (
             'DominicanPeso(amount: 0.1428571428571428571428571429, '
             'alpha_code: "DOP", '
@@ -902,7 +904,6 @@ class TestDominicanPeso:
             'convertion: "", '
             'international: False)')
         assert dominican_peso.__str__() == '$0.14'
-
 
     def test_dominican_peso_negative(self):
         """test_dominican_peso_negative."""
@@ -921,7 +922,8 @@ class TestDominicanPeso:
         assert dominican_peso.symbol_separator == ''
         assert dominican_peso.localized_symbol == 'DO$'
         assert dominican_peso.convertion == ''
-        assert dominican_peso.__hash__() == hash((decimal, 'DOP', '214'))
+        assert dominican_peso.__hash__() == hash(
+            (dominican_peso.__class__, decimal, 'DOP', '214'))
         assert dominican_peso.__repr__() == (
             'DominicanPeso(amount: -100, '
             'alpha_code: "DOP", '
@@ -937,7 +939,6 @@ class TestDominicanPeso:
             'convertion: "", '
             'international: False)')
         assert dominican_peso.__str__() == '$-100.00'
-
 
     def test_dominican_peso_custom(self):
         """test_dominican_peso_custom."""
@@ -965,7 +966,8 @@ class TestDominicanPeso:
         assert dominican_peso.symbol_separator == '_'
         assert dominican_peso.localized_symbol == 'DO$'
         assert dominican_peso.convertion == ''
-        assert dominican_peso.__hash__() == hash((decimal, 'DOP', '214'))
+        assert dominican_peso.__hash__() == hash(
+            (dominican_peso.__class__, decimal, 'DOP', '214'))
         assert dominican_peso.__repr__() == (
             'DominicanPeso(amount: 1000, '
             'alpha_code: "DOP", '
@@ -981,7 +983,6 @@ class TestDominicanPeso:
             'convertion: "", '
             'international: True)')
         assert dominican_peso.__str__() == 'DOP 10,00.00000'
-
 
     def test_dominican_peso_changed(self):
         """test_cdominican_peso_changed."""
@@ -1039,7 +1040,6 @@ class TestDominicanPeso:
                 match='can\'t set attribute'):
             dominican_peso.international = True
 
-
     def test_dominican_peso_math_add(self):
         """test_dominican_peso_math_add."""
         dominican_peso_one = DominicanPeso(amount=1)
@@ -1052,14 +1052,14 @@ class TestDominicanPeso:
             _ = dominican_peso_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'peso.DominicanPeso\'> '
                     'and <class \'str\'>.')):
             _ = dominican_peso_one.__add__('1.00')
         assert (
             dominican_peso_one +
             dominican_peso_two) == dominican_peso_three
-
 
     def test_dominican_peso_slots(self):
         """test_dominican_peso_slots."""
@@ -1078,6 +1078,7 @@ from multicurrency import MexicanPeso
 
 
 class TestMexicanPeso:
+    """MexicanPeso currency tests."""
 
     def test_mexican_peso(self):
         """test_mexican_peso."""
@@ -1097,7 +1098,8 @@ class TestMexicanPeso:
         assert mexican_peso.symbol_separator == ''
         assert mexican_peso.localized_symbol == 'MX$'
         assert mexican_peso.convertion == ''
-        assert mexican_peso.__hash__() == hash((decimal, 'MXN', '484'))
+        assert mexican_peso.__hash__() == hash(
+            (mexican_peso.__class__, decimal, 'MXN', '484'))
         assert mexican_peso.__repr__() == (
             'MexicanPeso(amount: 0.1428571428571428571428571429, '
             'alpha_code: "MXN", '
@@ -1113,7 +1115,6 @@ class TestMexicanPeso:
             'convertion: "", '
             'international: False)')
         assert mexican_peso.__str__() == '$0.14'
-
 
     def test_mexican_peso_negative(self):
         """test_mexican_peso_negative."""
@@ -1132,7 +1133,8 @@ class TestMexicanPeso:
         assert mexican_peso.symbol_separator == ''
         assert mexican_peso.localized_symbol == 'MX$'
         assert mexican_peso.convertion == ''
-        assert mexican_peso.__hash__() == hash((decimal, 'MXN', '484'))
+        assert mexican_peso.__hash__() == hash(
+            (mexican_peso.__class__, decimal, 'MXN', '484'))
         assert mexican_peso.__repr__() == (
             'MexicanPeso(amount: -100, '
             'alpha_code: "MXN", '
@@ -1148,7 +1150,6 @@ class TestMexicanPeso:
             'convertion: "", '
             'international: False)')
         assert mexican_peso.__str__() == '$-100.00'
-
 
     def test_mexican_peso_custom(self):
         """test_mexican_peso_custom."""
@@ -1176,7 +1177,8 @@ class TestMexicanPeso:
         assert mexican_peso.symbol_separator == '_'
         assert mexican_peso.localized_symbol == 'MX$'
         assert mexican_peso.convertion == ''
-        assert mexican_peso.__hash__() == hash((decimal, 'MXN', '484'))
+        assert mexican_peso.__hash__() == hash(
+            (mexican_peso.__class__, decimal, 'MXN', '484'))
         assert mexican_peso.__repr__() == (
             'MexicanPeso(amount: 1000, '
             'alpha_code: "MXN", '
@@ -1192,7 +1194,6 @@ class TestMexicanPeso:
             'convertion: "", '
             'international: True)')
         assert mexican_peso.__str__() == 'MXN 10,00.00000'
-
 
     def test_mexican_peso_changed(self):
         """test_cmexican_peso_changed."""
@@ -1250,7 +1251,6 @@ class TestMexicanPeso:
                 match='can\'t set attribute'):
             mexican_peso.international = True
 
-
     def test_mexican_peso_math_add(self):
         """test_mexican_peso_math_add."""
         mexican_peso_one = MexicanPeso(amount=1)
@@ -1263,14 +1263,14 @@ class TestMexicanPeso:
             _ = mexican_peso_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'peso.MexicanPeso\'> '
                     'and <class \'str\'>.')):
             _ = mexican_peso_one.__add__('1.00')
         assert (
             mexican_peso_one +
             mexican_peso_two) == mexican_peso_three
-
 
     def test_mexican_peso_slots(self):
         """test_mexican_peso_slots."""
@@ -1289,6 +1289,7 @@ from multicurrency import PhilippinePeso
 
 
 class TestPhilippinePeso:
+    """PhilippinePeso currency tests."""
 
     def test_philippine_peso(self):
         """test_philippine_peso."""
@@ -1308,7 +1309,8 @@ class TestPhilippinePeso:
         assert philippine_peso.symbol_separator == ''
         assert philippine_peso.localized_symbol == '₱'
         assert philippine_peso.convertion == ''
-        assert philippine_peso.__hash__() == hash((decimal, 'PHP', '608'))
+        assert philippine_peso.__hash__() == hash(
+            (philippine_peso.__class__, decimal, 'PHP', '608'))
         assert philippine_peso.__repr__() == (
             'PhilippinePeso(amount: 0.1428571428571428571428571429, '
             'alpha_code: "PHP", '
@@ -1324,7 +1326,6 @@ class TestPhilippinePeso:
             'convertion: "", '
             'international: False)')
         assert philippine_peso.__str__() == '₱0.14'
-
 
     def test_philippine_peso_negative(self):
         """test_philippine_peso_negative."""
@@ -1343,7 +1344,8 @@ class TestPhilippinePeso:
         assert philippine_peso.symbol_separator == ''
         assert philippine_peso.localized_symbol == '₱'
         assert philippine_peso.convertion == ''
-        assert philippine_peso.__hash__() == hash((decimal, 'PHP', '608'))
+        assert philippine_peso.__hash__() == hash(
+            (philippine_peso.__class__, decimal, 'PHP', '608'))
         assert philippine_peso.__repr__() == (
             'PhilippinePeso(amount: -100, '
             'alpha_code: "PHP", '
@@ -1359,7 +1361,6 @@ class TestPhilippinePeso:
             'convertion: "", '
             'international: False)')
         assert philippine_peso.__str__() == '₱-100.00'
-
 
     def test_philippine_peso_custom(self):
         """test_philippine_peso_custom."""
@@ -1387,7 +1388,8 @@ class TestPhilippinePeso:
         assert philippine_peso.symbol_separator == '_'
         assert philippine_peso.localized_symbol == '₱'
         assert philippine_peso.convertion == ''
-        assert philippine_peso.__hash__() == hash((decimal, 'PHP', '608'))
+        assert philippine_peso.__hash__() == hash(
+            (philippine_peso.__class__, decimal, 'PHP', '608'))
         assert philippine_peso.__repr__() == (
             'PhilippinePeso(amount: 1000, '
             'alpha_code: "PHP", '
@@ -1403,7 +1405,6 @@ class TestPhilippinePeso:
             'convertion: "", '
             'international: True)')
         assert philippine_peso.__str__() == 'PHP 10,00.00000'
-
 
     def test_philippine_peso_changed(self):
         """test_cphilippine_peso_changed."""
@@ -1461,7 +1462,6 @@ class TestPhilippinePeso:
                 match='can\'t set attribute'):
             philippine_peso.international = True
 
-
     def test_philippine_peso_math_add(self):
         """test_philippine_peso_math_add."""
         philippine_peso_one = PhilippinePeso(amount=1)
@@ -1474,14 +1474,14 @@ class TestPhilippinePeso:
             _ = philippine_peso_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'peso.PhilippinePeso\'> '
                     'and <class \'str\'>.')):
             _ = philippine_peso_one.__add__('1.00')
         assert (
             philippine_peso_one +
             philippine_peso_two) == philippine_peso_three
-
 
     def test_philippine_peso_slots(self):
         """test_philippine_peso_slots."""
@@ -1500,6 +1500,7 @@ from multicurrency import PesoUruguayo
 
 
 class TestPesoUruguayo:
+    """PesoUruguayo currency tests."""
 
     def test_peso_uruguayo(self):
         """test_peso_uruguayo."""
@@ -1519,7 +1520,8 @@ class TestPesoUruguayo:
         assert peso_uruguayo.symbol_separator == '\u00A0'
         assert peso_uruguayo.localized_symbol == 'UY$'
         assert peso_uruguayo.convertion == ''
-        assert peso_uruguayo.__hash__() == hash((decimal, 'UYU', '858'))
+        assert peso_uruguayo.__hash__() == hash(
+            (peso_uruguayo.__class__, decimal, 'UYU', '858'))
         assert peso_uruguayo.__repr__() == (
             'PesoUruguayo(amount: 0.1428571428571428571428571429, '
             'alpha_code: "UYU", '
@@ -1535,7 +1537,6 @@ class TestPesoUruguayo:
             'convertion: "", '
             'international: False)')
         assert peso_uruguayo.__str__() == '$ 0,14'
-
 
     def test_peso_uruguayo_negative(self):
         """test_peso_uruguayo_negative."""
@@ -1554,7 +1555,8 @@ class TestPesoUruguayo:
         assert peso_uruguayo.symbol_separator == '\u00A0'
         assert peso_uruguayo.localized_symbol == 'UY$'
         assert peso_uruguayo.convertion == ''
-        assert peso_uruguayo.__hash__() == hash((decimal, 'UYU', '858'))
+        assert peso_uruguayo.__hash__() == hash(
+            (peso_uruguayo.__class__, decimal, 'UYU', '858'))
         assert peso_uruguayo.__repr__() == (
             'PesoUruguayo(amount: -100, '
             'alpha_code: "UYU", '
@@ -1570,7 +1572,6 @@ class TestPesoUruguayo:
             'convertion: "", '
             'international: False)')
         assert peso_uruguayo.__str__() == '$ -100,00'
-
 
     def test_peso_uruguayo_custom(self):
         """test_peso_uruguayo_custom."""
@@ -1598,7 +1599,8 @@ class TestPesoUruguayo:
         assert peso_uruguayo.symbol_separator == '_'
         assert peso_uruguayo.localized_symbol == 'UY$'
         assert peso_uruguayo.convertion == ''
-        assert peso_uruguayo.__hash__() == hash((decimal, 'UYU', '858'))
+        assert peso_uruguayo.__hash__() == hash(
+            (peso_uruguayo.__class__, decimal, 'UYU', '858'))
         assert peso_uruguayo.__repr__() == (
             'PesoUruguayo(amount: 1000, '
             'alpha_code: "UYU", '
@@ -1614,7 +1616,6 @@ class TestPesoUruguayo:
             'convertion: "", '
             'international: True)')
         assert peso_uruguayo.__str__() == 'UYU 10,00.00000'
-
 
     def test_peso_uruguayo_changed(self):
         """test_cpeso_uruguayo_changed."""
@@ -1672,7 +1673,6 @@ class TestPesoUruguayo:
                 match='can\'t set attribute'):
             peso_uruguayo.international = True
 
-
     def test_peso_uruguayo_math_add(self):
         """test_peso_uruguayo_math_add."""
         peso_uruguayo_one = PesoUruguayo(amount=1)
@@ -1685,14 +1685,14 @@ class TestPesoUruguayo:
             _ = peso_uruguayo_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'peso.PesoUruguayo\'> '
                     'and <class \'str\'>.')):
             _ = peso_uruguayo_one.__add__('1.00')
         assert (
             peso_uruguayo_one +
             peso_uruguayo_two) == peso_uruguayo_three
-
 
     def test_peso_uruguayo_slots(self):
         """test_peso_uruguayo_slots."""

@@ -23,6 +23,7 @@ from multicurrency import SaudiRiyal
 
 
 class TestSaudiRiyal:
+    """SaudiRiyal currency tests."""
 
     def test_saudi_riyal(self):
         """test_saudi_riyal."""
@@ -42,7 +43,8 @@ class TestSaudiRiyal:
         assert saudi_riyal.symbol_separator == '\u00A0'
         assert saudi_riyal.localized_symbol == 'ر.س.'
         assert saudi_riyal.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert saudi_riyal.__hash__() == hash((decimal, 'SAR', '682'))
+        assert saudi_riyal.__hash__() == hash(
+            (saudi_riyal.__class__, decimal, 'SAR', '682'))
         assert saudi_riyal.__repr__() == (
             'SaudiRiyal(amount: 0.1428571428571428571428571429, '
             'alpha_code: "SAR", '
@@ -58,7 +60,6 @@ class TestSaudiRiyal:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: False)')
         assert saudi_riyal.__str__() == 'ر.س. ٠٫١٤'
-
 
     def test_saudi_riyal_negative(self):
         """test_saudi_riyal_negative."""
@@ -77,7 +78,8 @@ class TestSaudiRiyal:
         assert saudi_riyal.symbol_separator == '\u00A0'
         assert saudi_riyal.localized_symbol == 'ر.س.'
         assert saudi_riyal.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert saudi_riyal.__hash__() == hash((decimal, 'SAR', '682'))
+        assert saudi_riyal.__hash__() == hash(
+            (saudi_riyal.__class__, decimal, 'SAR', '682'))
         assert saudi_riyal.__repr__() == (
             'SaudiRiyal(amount: -100, '
             'alpha_code: "SAR", '
@@ -93,7 +95,6 @@ class TestSaudiRiyal:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: False)')
         assert saudi_riyal.__str__() == 'ر.س. -١٠٠٫٠٠'
-
 
     def test_saudi_riyal_custom(self):
         """test_saudi_riyal_custom."""
@@ -121,7 +122,8 @@ class TestSaudiRiyal:
         assert saudi_riyal.symbol_separator == '_'
         assert saudi_riyal.localized_symbol == 'ر.س.'
         assert saudi_riyal.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert saudi_riyal.__hash__() == hash((decimal, 'SAR', '682'))
+        assert saudi_riyal.__hash__() == hash(
+            (saudi_riyal.__class__, decimal, 'SAR', '682'))
         assert saudi_riyal.__repr__() == (
             'SaudiRiyal(amount: 1000, '
             'alpha_code: "SAR", '
@@ -137,7 +139,6 @@ class TestSaudiRiyal:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: True)')
         assert saudi_riyal.__str__() == 'SAR 10,00.00000'
-
 
     def test_saudi_riyal_changed(self):
         """test_csaudi_riyal_changed."""
@@ -195,7 +196,6 @@ class TestSaudiRiyal:
                 match='can\'t set attribute'):
             saudi_riyal.international = True
 
-
     def test_saudi_riyal_math_add(self):
         """test_saudi_riyal_math_add."""
         saudi_riyal_one = SaudiRiyal(amount=1)
@@ -208,14 +208,14 @@ class TestSaudiRiyal:
             _ = saudi_riyal_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'riyal.SaudiRiyal\'> '
                     'and <class \'str\'>.')):
             _ = saudi_riyal_one.__add__('1.00')
         assert (
             saudi_riyal_one +
             saudi_riyal_two) == saudi_riyal_three
-
 
     def test_saudi_riyal_slots(self):
         """test_saudi_riyal_slots."""

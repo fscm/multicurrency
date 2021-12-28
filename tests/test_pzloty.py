@@ -23,6 +23,7 @@ from multicurrency import PZloty
 
 
 class TestPZloty:
+    """PZloty currency tests."""
 
     def test_pzloty(self):
         """test_pzloty."""
@@ -42,7 +43,8 @@ class TestPZloty:
         assert pzloty.symbol_separator == '\u00A0'
         assert pzloty.localized_symbol == 'zł'
         assert pzloty.convertion == ''
-        assert pzloty.__hash__() == hash((decimal, 'PLN', '985'))
+        assert pzloty.__hash__() == hash(
+            (pzloty.__class__, decimal, 'PLN', '985'))
         assert pzloty.__repr__() == (
             'PZloty(amount: 0.1428571428571428571428571429, '
             'alpha_code: "PLN", '
@@ -58,7 +60,6 @@ class TestPZloty:
             'convertion: "", '
             'international: False)')
         assert pzloty.__str__() == '0,14 zł'
-
 
     def test_pzloty_negative(self):
         """test_pzloty_negative."""
@@ -77,7 +78,8 @@ class TestPZloty:
         assert pzloty.symbol_separator == '\u00A0'
         assert pzloty.localized_symbol == 'zł'
         assert pzloty.convertion == ''
-        assert pzloty.__hash__() == hash((decimal, 'PLN', '985'))
+        assert pzloty.__hash__() == hash(
+            (pzloty.__class__, decimal, 'PLN', '985'))
         assert pzloty.__repr__() == (
             'PZloty(amount: -100, '
             'alpha_code: "PLN", '
@@ -93,7 +95,6 @@ class TestPZloty:
             'convertion: "", '
             'international: False)')
         assert pzloty.__str__() == '-100,00 zł'
-
 
     def test_pzloty_custom(self):
         """test_pzloty_custom."""
@@ -121,7 +122,8 @@ class TestPZloty:
         assert pzloty.symbol_separator == '_'
         assert pzloty.localized_symbol == 'zł'
         assert pzloty.convertion == ''
-        assert pzloty.__hash__() == hash((decimal, 'PLN', '985'))
+        assert pzloty.__hash__() == hash(
+            (pzloty.__class__, decimal, 'PLN', '985'))
         assert pzloty.__repr__() == (
             'PZloty(amount: 1000, '
             'alpha_code: "PLN", '
@@ -137,7 +139,6 @@ class TestPZloty:
             'convertion: "", '
             'international: True)')
         assert pzloty.__str__() == 'PLN 10,00.00000'
-
 
     def test_pzloty_changed(self):
         """test_cpzloty_changed."""
@@ -195,7 +196,6 @@ class TestPZloty:
                 match='can\'t set attribute'):
             pzloty.international = True
 
-
     def test_pzloty_math_add(self):
         """test_pzloty_math_add."""
         pzloty_one = PZloty(amount=1)
@@ -208,14 +208,14 @@ class TestPZloty:
             _ = pzloty_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'pzloty.PZloty\'> '
                     'and <class \'str\'>.')):
             _ = pzloty_one.__add__('1.00')
         assert (
             pzloty_one +
             pzloty_two) == pzloty_three
-
 
     def test_pzloty_slots(self):
         """test_pzloty_slots."""

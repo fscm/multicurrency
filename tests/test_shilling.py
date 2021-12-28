@@ -23,6 +23,7 @@ from multicurrency import KenyanShilling
 
 
 class TestKenyanShilling:
+    """KenyanShilling currency tests."""
 
     def test_kenyan_shilling(self):
         """test_kenyan_shilling."""
@@ -42,7 +43,8 @@ class TestKenyanShilling:
         assert kenyan_shilling.symbol_separator == '\u00A0'
         assert kenyan_shilling.localized_symbol == 'Ksh'
         assert kenyan_shilling.convertion == ''
-        assert kenyan_shilling.__hash__() == hash((decimal, 'KES', '404'))
+        assert kenyan_shilling.__hash__() == hash(
+            (kenyan_shilling.__class__, decimal, 'KES', '404'))
         assert kenyan_shilling.__repr__() == (
             'KenyanShilling(amount: 0.1428571428571428571428571429, '
             'alpha_code: "KES", '
@@ -58,7 +60,6 @@ class TestKenyanShilling:
             'convertion: "", '
             'international: False)')
         assert kenyan_shilling.__str__() == 'Ksh 0.14'
-
 
     def test_kenyan_shilling_negative(self):
         """test_kenyan_shilling_negative."""
@@ -77,7 +78,8 @@ class TestKenyanShilling:
         assert kenyan_shilling.symbol_separator == '\u00A0'
         assert kenyan_shilling.localized_symbol == 'Ksh'
         assert kenyan_shilling.convertion == ''
-        assert kenyan_shilling.__hash__() == hash((decimal, 'KES', '404'))
+        assert kenyan_shilling.__hash__() == hash(
+            (kenyan_shilling.__class__, decimal, 'KES', '404'))
         assert kenyan_shilling.__repr__() == (
             'KenyanShilling(amount: -100, '
             'alpha_code: "KES", '
@@ -93,7 +95,6 @@ class TestKenyanShilling:
             'convertion: "", '
             'international: False)')
         assert kenyan_shilling.__str__() == 'Ksh -100.00'
-
 
     def test_kenyan_shilling_custom(self):
         """test_kenyan_shilling_custom."""
@@ -121,7 +122,8 @@ class TestKenyanShilling:
         assert kenyan_shilling.symbol_separator == '_'
         assert kenyan_shilling.localized_symbol == 'Ksh'
         assert kenyan_shilling.convertion == ''
-        assert kenyan_shilling.__hash__() == hash((decimal, 'KES', '404'))
+        assert kenyan_shilling.__hash__() == hash(
+            (kenyan_shilling.__class__, decimal, 'KES', '404'))
         assert kenyan_shilling.__repr__() == (
             'KenyanShilling(amount: 1000, '
             'alpha_code: "KES", '
@@ -137,7 +139,6 @@ class TestKenyanShilling:
             'convertion: "", '
             'international: True)')
         assert kenyan_shilling.__str__() == 'KES 10,00.00000'
-
 
     def test_kenyan_shilling_changed(self):
         """test_ckenyan_shilling_changed."""
@@ -195,7 +196,6 @@ class TestKenyanShilling:
                 match='can\'t set attribute'):
             kenyan_shilling.international = True
 
-
     def test_kenyan_shilling_math_add(self):
         """test_kenyan_shilling_math_add."""
         kenyan_shilling_one = KenyanShilling(amount=1)
@@ -208,14 +208,14 @@ class TestKenyanShilling:
             _ = kenyan_shilling_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'shilling.KenyanShilling\'> '
                     'and <class \'str\'>.')):
             _ = kenyan_shilling_one.__add__('1.00')
         assert (
             kenyan_shilling_one +
             kenyan_shilling_two) == kenyan_shilling_three
-
 
     def test_kenyan_shilling_slots(self):
         """test_kenyan_shilling_slots."""
@@ -234,6 +234,7 @@ from multicurrency import SomaliShilling
 
 
 class TestSomaliShilling:
+    """SomaliShilling currency tests."""
 
     def test_somali_shilling(self):
         """test_somali_shilling."""
@@ -253,7 +254,8 @@ class TestSomaliShilling:
         assert somali_shilling.symbol_separator == '\u00A0'
         assert somali_shilling.localized_symbol == 'SSh'
         assert somali_shilling.convertion == ''
-        assert somali_shilling.__hash__() == hash((decimal, 'SOS', '706'))
+        assert somali_shilling.__hash__() == hash(
+            (somali_shilling.__class__, decimal, 'SOS', '706'))
         assert somali_shilling.__repr__() == (
             'SomaliShilling(amount: 0.1428571428571428571428571429, '
             'alpha_code: "SOS", '
@@ -269,7 +271,6 @@ class TestSomaliShilling:
             'convertion: "", '
             'international: False)')
         assert somali_shilling.__str__() == 'SSh 0.14'
-
 
     def test_somali_shilling_negative(self):
         """test_somali_shilling_negative."""
@@ -288,7 +289,8 @@ class TestSomaliShilling:
         assert somali_shilling.symbol_separator == '\u00A0'
         assert somali_shilling.localized_symbol == 'SSh'
         assert somali_shilling.convertion == ''
-        assert somali_shilling.__hash__() == hash((decimal, 'SOS', '706'))
+        assert somali_shilling.__hash__() == hash(
+            (somali_shilling.__class__, decimal, 'SOS', '706'))
         assert somali_shilling.__repr__() == (
             'SomaliShilling(amount: -100, '
             'alpha_code: "SOS", '
@@ -304,7 +306,6 @@ class TestSomaliShilling:
             'convertion: "", '
             'international: False)')
         assert somali_shilling.__str__() == 'SSh -100.00'
-
 
     def test_somali_shilling_custom(self):
         """test_somali_shilling_custom."""
@@ -332,7 +333,8 @@ class TestSomaliShilling:
         assert somali_shilling.symbol_separator == '_'
         assert somali_shilling.localized_symbol == 'SSh'
         assert somali_shilling.convertion == ''
-        assert somali_shilling.__hash__() == hash((decimal, 'SOS', '706'))
+        assert somali_shilling.__hash__() == hash(
+            (somali_shilling.__class__, decimal, 'SOS', '706'))
         assert somali_shilling.__repr__() == (
             'SomaliShilling(amount: 1000, '
             'alpha_code: "SOS", '
@@ -348,7 +350,6 @@ class TestSomaliShilling:
             'convertion: "", '
             'international: True)')
         assert somali_shilling.__str__() == 'SOS 10,00.00000'
-
 
     def test_somali_shilling_changed(self):
         """test_csomali_shilling_changed."""
@@ -406,7 +407,6 @@ class TestSomaliShilling:
                 match='can\'t set attribute'):
             somali_shilling.international = True
 
-
     def test_somali_shilling_math_add(self):
         """test_somali_shilling_math_add."""
         somali_shilling_one = SomaliShilling(amount=1)
@@ -419,14 +419,14 @@ class TestSomaliShilling:
             _ = somali_shilling_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'shilling.SomaliShilling\'> '
                     'and <class \'str\'>.')):
             _ = somali_shilling_one.__add__('1.00')
         assert (
             somali_shilling_one +
             somali_shilling_two) == somali_shilling_three
-
 
     def test_somali_shilling_slots(self):
         """test_somali_shilling_slots."""
@@ -445,6 +445,7 @@ from multicurrency import TanzanianShilling
 
 
 class TestTanzanianShilling:
+    """TanzanianShilling currency tests."""
 
     def test_tanzanian_shilling(self):
         """test_tanzanian_shilling."""
@@ -464,7 +465,8 @@ class TestTanzanianShilling:
         assert tanzanian_shilling.symbol_separator == '\u00A0'
         assert tanzanian_shilling.localized_symbol == 'TSh'
         assert tanzanian_shilling.convertion == ''
-        assert tanzanian_shilling.__hash__() == hash((decimal, 'TZS', '834'))
+        assert tanzanian_shilling.__hash__() == hash(
+            (tanzanian_shilling.__class__, decimal, 'TZS', '834'))
         assert tanzanian_shilling.__repr__() == (
             'TanzanianShilling(amount: 0.1428571428571428571428571429, '
             'alpha_code: "TZS", '
@@ -480,7 +482,6 @@ class TestTanzanianShilling:
             'convertion: "", '
             'international: False)')
         assert tanzanian_shilling.__str__() == 'TSh 0.14'
-
 
     def test_tanzanian_shilling_negative(self):
         """test_tanzanian_shilling_negative."""
@@ -499,7 +500,8 @@ class TestTanzanianShilling:
         assert tanzanian_shilling.symbol_separator == '\u00A0'
         assert tanzanian_shilling.localized_symbol == 'TSh'
         assert tanzanian_shilling.convertion == ''
-        assert tanzanian_shilling.__hash__() == hash((decimal, 'TZS', '834'))
+        assert tanzanian_shilling.__hash__() == hash(
+            (tanzanian_shilling.__class__, decimal, 'TZS', '834'))
         assert tanzanian_shilling.__repr__() == (
             'TanzanianShilling(amount: -100, '
             'alpha_code: "TZS", '
@@ -515,7 +517,6 @@ class TestTanzanianShilling:
             'convertion: "", '
             'international: False)')
         assert tanzanian_shilling.__str__() == 'TSh -100.00'
-
 
     def test_tanzanian_shilling_custom(self):
         """test_tanzanian_shilling_custom."""
@@ -543,7 +544,8 @@ class TestTanzanianShilling:
         assert tanzanian_shilling.symbol_separator == '_'
         assert tanzanian_shilling.localized_symbol == 'TSh'
         assert tanzanian_shilling.convertion == ''
-        assert tanzanian_shilling.__hash__() == hash((decimal, 'TZS', '834'))
+        assert tanzanian_shilling.__hash__() == hash(
+            (tanzanian_shilling.__class__, decimal, 'TZS', '834'))
         assert tanzanian_shilling.__repr__() == (
             'TanzanianShilling(amount: 1000, '
             'alpha_code: "TZS", '
@@ -559,7 +561,6 @@ class TestTanzanianShilling:
             'convertion: "", '
             'international: True)')
         assert tanzanian_shilling.__str__() == 'TZS 10,00.00000'
-
 
     def test_tanzanian_shilling_changed(self):
         """test_ctanzanian_shilling_changed."""
@@ -617,7 +618,6 @@ class TestTanzanianShilling:
                 match='can\'t set attribute'):
             tanzanian_shilling.international = True
 
-
     def test_tanzanian_shilling_math_add(self):
         """test_tanzanian_shilling_math_add."""
         tanzanian_shilling_one = TanzanianShilling(amount=1)
@@ -630,14 +630,14 @@ class TestTanzanianShilling:
             _ = tanzanian_shilling_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'shilling.TanzanianShilling\'> '
                     'and <class \'str\'>.')):
             _ = tanzanian_shilling_one.__add__('1.00')
         assert (
             tanzanian_shilling_one +
             tanzanian_shilling_two) == tanzanian_shilling_three
-
 
     def test_tanzanian_shilling_slots(self):
         """test_tanzanian_shilling_slots."""
@@ -656,6 +656,7 @@ from multicurrency import UgandaShilling
 
 
 class TestUgandaShilling:
+    """UgandaShilling currency tests."""
 
     def test_uganda_shilling(self):
         """test_uganda_shilling."""
@@ -675,7 +676,8 @@ class TestUgandaShilling:
         assert uganda_shilling.symbol_separator == '\u00A0'
         assert uganda_shilling.localized_symbol == 'USh'
         assert uganda_shilling.convertion == ''
-        assert uganda_shilling.__hash__() == hash((decimal, 'UGX', '800'))
+        assert uganda_shilling.__hash__() == hash(
+            (uganda_shilling.__class__, decimal, 'UGX', '800'))
         assert uganda_shilling.__repr__() == (
             'UgandaShilling(amount: 0.1428571428571428571428571429, '
             'alpha_code: "UGX", '
@@ -691,7 +693,6 @@ class TestUgandaShilling:
             'convertion: "", '
             'international: False)')
         assert uganda_shilling.__str__() == 'USh 0'
-
 
     def test_uganda_shilling_negative(self):
         """test_uganda_shilling_negative."""
@@ -710,7 +711,8 @@ class TestUgandaShilling:
         assert uganda_shilling.symbol_separator == '\u00A0'
         assert uganda_shilling.localized_symbol == 'USh'
         assert uganda_shilling.convertion == ''
-        assert uganda_shilling.__hash__() == hash((decimal, 'UGX', '800'))
+        assert uganda_shilling.__hash__() == hash(
+            (uganda_shilling.__class__, decimal, 'UGX', '800'))
         assert uganda_shilling.__repr__() == (
             'UgandaShilling(amount: -100, '
             'alpha_code: "UGX", '
@@ -726,7 +728,6 @@ class TestUgandaShilling:
             'convertion: "", '
             'international: False)')
         assert uganda_shilling.__str__() == 'USh -100'
-
 
     def test_uganda_shilling_custom(self):
         """test_uganda_shilling_custom."""
@@ -754,7 +755,8 @@ class TestUgandaShilling:
         assert uganda_shilling.symbol_separator == '_'
         assert uganda_shilling.localized_symbol == 'USh'
         assert uganda_shilling.convertion == ''
-        assert uganda_shilling.__hash__() == hash((decimal, 'UGX', '800'))
+        assert uganda_shilling.__hash__() == hash(
+            (uganda_shilling.__class__, decimal, 'UGX', '800'))
         assert uganda_shilling.__repr__() == (
             'UgandaShilling(amount: 1000, '
             'alpha_code: "UGX", '
@@ -770,7 +772,6 @@ class TestUgandaShilling:
             'convertion: "", '
             'international: True)')
         assert uganda_shilling.__str__() == 'UGX 10,00.00000'
-
 
     def test_uganda_shilling_changed(self):
         """test_cuganda_shilling_changed."""
@@ -828,7 +829,6 @@ class TestUgandaShilling:
                 match='can\'t set attribute'):
             uganda_shilling.international = True
 
-
     def test_uganda_shilling_math_add(self):
         """test_uganda_shilling_math_add."""
         uganda_shilling_one = UgandaShilling(amount=1)
@@ -841,14 +841,14 @@ class TestUgandaShilling:
             _ = uganda_shilling_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'shilling.UgandaShilling\'> '
                     'and <class \'str\'>.')):
             _ = uganda_shilling_one.__add__('1.00')
         assert (
             uganda_shilling_one +
             uganda_shilling_two) == uganda_shilling_three
-
 
     def test_uganda_shilling_slots(self):
         """test_uganda_shilling_slots."""

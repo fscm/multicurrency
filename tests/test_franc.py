@@ -23,6 +23,7 @@ from multicurrency import BurundiFranc
 
 
 class TestBurundiFranc:
+    """BurundiFranc currency tests."""
 
     def test_burundi_franc(self):
         """test_burundi_franc."""
@@ -42,7 +43,8 @@ class TestBurundiFranc:
         assert burundi_franc.symbol_separator == '\u00A0'
         assert burundi_franc.localized_symbol == 'BI₣'
         assert burundi_franc.convertion == ''
-        assert burundi_franc.__hash__() == hash((decimal, 'BIF', '108'))
+        assert burundi_franc.__hash__() == hash(
+            (burundi_franc.__class__, decimal, 'BIF', '108'))
         assert burundi_franc.__repr__() == (
             'BurundiFranc(amount: 0.1428571428571428571428571429, '
             'alpha_code: "BIF", '
@@ -58,7 +60,6 @@ class TestBurundiFranc:
             'convertion: "", '
             'international: False)')
         assert burundi_franc.__str__() == '0 ₣'
-
 
     def test_burundi_franc_negative(self):
         """test_burundi_franc_negative."""
@@ -77,7 +78,8 @@ class TestBurundiFranc:
         assert burundi_franc.symbol_separator == '\u00A0'
         assert burundi_franc.localized_symbol == 'BI₣'
         assert burundi_franc.convertion == ''
-        assert burundi_franc.__hash__() == hash((decimal, 'BIF', '108'))
+        assert burundi_franc.__hash__() == hash(
+            (burundi_franc.__class__, decimal, 'BIF', '108'))
         assert burundi_franc.__repr__() == (
             'BurundiFranc(amount: -100, '
             'alpha_code: "BIF", '
@@ -93,7 +95,6 @@ class TestBurundiFranc:
             'convertion: "", '
             'international: False)')
         assert burundi_franc.__str__() == '-100 ₣'
-
 
     def test_burundi_franc_custom(self):
         """test_burundi_franc_custom."""
@@ -121,7 +122,8 @@ class TestBurundiFranc:
         assert burundi_franc.symbol_separator == '_'
         assert burundi_franc.localized_symbol == 'BI₣'
         assert burundi_franc.convertion == ''
-        assert burundi_franc.__hash__() == hash((decimal, 'BIF', '108'))
+        assert burundi_franc.__hash__() == hash(
+            (burundi_franc.__class__, decimal, 'BIF', '108'))
         assert burundi_franc.__repr__() == (
             'BurundiFranc(amount: 1000, '
             'alpha_code: "BIF", '
@@ -137,7 +139,6 @@ class TestBurundiFranc:
             'convertion: "", '
             'international: True)')
         assert burundi_franc.__str__() == 'BIF 10,00.00000'
-
 
     def test_burundi_franc_changed(self):
         """test_cburundi_franc_changed."""
@@ -195,7 +196,6 @@ class TestBurundiFranc:
                 match='can\'t set attribute'):
             burundi_franc.international = True
 
-
     def test_burundi_franc_math_add(self):
         """test_burundi_franc_math_add."""
         burundi_franc_one = BurundiFranc(amount=1)
@@ -208,14 +208,14 @@ class TestBurundiFranc:
             _ = burundi_franc_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.BurundiFranc\'> '
                     'and <class \'str\'>.')):
             _ = burundi_franc_one.__add__('1.00')
         assert (
             burundi_franc_one +
             burundi_franc_two) == burundi_franc_three
-
 
     def test_burundi_franc_slots(self):
         """test_burundi_franc_slots."""
@@ -234,6 +234,7 @@ from multicurrency import CongoleseFranc
 
 
 class TestCongoleseFranc:
+    """CongoleseFranc currency tests."""
 
     def test_congolese_franc(self):
         """test_congolese_franc."""
@@ -253,7 +254,8 @@ class TestCongoleseFranc:
         assert congolese_franc.symbol_separator == '\u00A0'
         assert congolese_franc.localized_symbol == 'CD₣'
         assert congolese_franc.convertion == ''
-        assert congolese_franc.__hash__() == hash((decimal, 'CDF', '976'))
+        assert congolese_franc.__hash__() == hash(
+            (congolese_franc.__class__, decimal, 'CDF', '976'))
         assert congolese_franc.__repr__() == (
             'CongoleseFranc(amount: 0.1428571428571428571428571429, '
             'alpha_code: "CDF", '
@@ -269,7 +271,6 @@ class TestCongoleseFranc:
             'convertion: "", '
             'international: False)')
         assert congolese_franc.__str__() == '0,14 ₣'
-
 
     def test_congolese_franc_negative(self):
         """test_congolese_franc_negative."""
@@ -288,7 +289,8 @@ class TestCongoleseFranc:
         assert congolese_franc.symbol_separator == '\u00A0'
         assert congolese_franc.localized_symbol == 'CD₣'
         assert congolese_franc.convertion == ''
-        assert congolese_franc.__hash__() == hash((decimal, 'CDF', '976'))
+        assert congolese_franc.__hash__() == hash(
+            (congolese_franc.__class__, decimal, 'CDF', '976'))
         assert congolese_franc.__repr__() == (
             'CongoleseFranc(amount: -100, '
             'alpha_code: "CDF", '
@@ -304,7 +306,6 @@ class TestCongoleseFranc:
             'convertion: "", '
             'international: False)')
         assert congolese_franc.__str__() == '-100,00 ₣'
-
 
     def test_congolese_franc_custom(self):
         """test_congolese_franc_custom."""
@@ -332,7 +333,8 @@ class TestCongoleseFranc:
         assert congolese_franc.symbol_separator == '_'
         assert congolese_franc.localized_symbol == 'CD₣'
         assert congolese_franc.convertion == ''
-        assert congolese_franc.__hash__() == hash((decimal, 'CDF', '976'))
+        assert congolese_franc.__hash__() == hash(
+            (congolese_franc.__class__, decimal, 'CDF', '976'))
         assert congolese_franc.__repr__() == (
             'CongoleseFranc(amount: 1000, '
             'alpha_code: "CDF", '
@@ -348,7 +350,6 @@ class TestCongoleseFranc:
             'convertion: "", '
             'international: True)')
         assert congolese_franc.__str__() == 'CDF 10,00.00000'
-
 
     def test_congolese_franc_changed(self):
         """test_ccongolese_franc_changed."""
@@ -406,7 +407,6 @@ class TestCongoleseFranc:
                 match='can\'t set attribute'):
             congolese_franc.international = True
 
-
     def test_congolese_franc_math_add(self):
         """test_congolese_franc_math_add."""
         congolese_franc_one = CongoleseFranc(amount=1)
@@ -419,14 +419,14 @@ class TestCongoleseFranc:
             _ = congolese_franc_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.CongoleseFranc\'> '
                     'and <class \'str\'>.')):
             _ = congolese_franc_one.__add__('1.00')
         assert (
             congolese_franc_one +
             congolese_franc_two) == congolese_franc_three
-
 
     def test_congolese_franc_slots(self):
         """test_congolese_franc_slots."""
@@ -445,6 +445,7 @@ from multicurrency import SwissFranc
 
 
 class TestSwissFranc:
+    """SwissFranc currency tests."""
 
     def test_swiss_franc(self):
         """test_swiss_franc."""
@@ -464,7 +465,8 @@ class TestSwissFranc:
         assert swiss_franc.symbol_separator == '\u00A0'
         assert swiss_franc.localized_symbol == '₣'
         assert swiss_franc.convertion == ''
-        assert swiss_franc.__hash__() == hash((decimal, 'CHF', '756'))
+        assert swiss_franc.__hash__() == hash(
+            (swiss_franc.__class__, decimal, 'CHF', '756'))
         assert swiss_franc.__repr__() == (
             'SwissFranc(amount: 0.1428571428571428571428571429, '
             'alpha_code: "CHF", '
@@ -480,7 +482,6 @@ class TestSwissFranc:
             'convertion: "", '
             'international: False)')
         assert swiss_franc.__str__() == '₣ 0.14'
-
 
     def test_swiss_franc_negative(self):
         """test_swiss_franc_negative."""
@@ -499,7 +500,8 @@ class TestSwissFranc:
         assert swiss_franc.symbol_separator == '\u00A0'
         assert swiss_franc.localized_symbol == '₣'
         assert swiss_franc.convertion == ''
-        assert swiss_franc.__hash__() == hash((decimal, 'CHF', '756'))
+        assert swiss_franc.__hash__() == hash(
+            (swiss_franc.__class__, decimal, 'CHF', '756'))
         assert swiss_franc.__repr__() == (
             'SwissFranc(amount: -100, '
             'alpha_code: "CHF", '
@@ -515,7 +517,6 @@ class TestSwissFranc:
             'convertion: "", '
             'international: False)')
         assert swiss_franc.__str__() == '₣ -100.00'
-
 
     def test_swiss_franc_custom(self):
         """test_swiss_franc_custom."""
@@ -543,7 +544,8 @@ class TestSwissFranc:
         assert swiss_franc.symbol_separator == '_'
         assert swiss_franc.localized_symbol == '₣'
         assert swiss_franc.convertion == ''
-        assert swiss_franc.__hash__() == hash((decimal, 'CHF', '756'))
+        assert swiss_franc.__hash__() == hash(
+            (swiss_franc.__class__, decimal, 'CHF', '756'))
         assert swiss_franc.__repr__() == (
             'SwissFranc(amount: 1000, '
             'alpha_code: "CHF", '
@@ -559,7 +561,6 @@ class TestSwissFranc:
             'convertion: "", '
             'international: True)')
         assert swiss_franc.__str__() == 'CHF 10,00.00000'
-
 
     def test_swiss_franc_changed(self):
         """test_cswiss_franc_changed."""
@@ -617,7 +618,6 @@ class TestSwissFranc:
                 match='can\'t set attribute'):
             swiss_franc.international = True
 
-
     def test_swiss_franc_math_add(self):
         """test_swiss_franc_math_add."""
         swiss_franc_one = SwissFranc(amount=1)
@@ -630,14 +630,14 @@ class TestSwissFranc:
             _ = swiss_franc_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.SwissFranc\'> '
                     'and <class \'str\'>.')):
             _ = swiss_franc_one.__add__('1.00')
         assert (
             swiss_franc_one +
             swiss_franc_two) == swiss_franc_three
-
 
     def test_swiss_franc_slots(self):
         """test_swiss_franc_slots."""
@@ -656,6 +656,7 @@ from multicurrency import SwissFrancLI
 
 
 class TestSwissFrancLI:
+    """SwissFrancLI currency tests."""
 
     def test_swiss_franc_li(self):
         """test_swiss_franc_li."""
@@ -675,7 +676,8 @@ class TestSwissFrancLI:
         assert swiss_franc_li.symbol_separator == '\u00A0'
         assert swiss_franc_li.localized_symbol == 'LI₣'
         assert swiss_franc_li.convertion == ''
-        assert swiss_franc_li.__hash__() == hash((decimal, 'CHF', '756'))
+        assert swiss_franc_li.__hash__() == hash(
+            (swiss_franc_li.__class__, decimal, 'CHF', '756'))
         assert swiss_franc_li.__repr__() == (
             'SwissFrancLI(amount: 0.1428571428571428571428571429, '
             'alpha_code: "CHF", '
@@ -691,7 +693,6 @@ class TestSwissFrancLI:
             'convertion: "", '
             'international: False)')
         assert swiss_franc_li.__str__() == '₣ 0.14'
-
 
     def test_swiss_franc_li_negative(self):
         """test_swiss_franc_li_negative."""
@@ -710,7 +711,8 @@ class TestSwissFrancLI:
         assert swiss_franc_li.symbol_separator == '\u00A0'
         assert swiss_franc_li.localized_symbol == 'LI₣'
         assert swiss_franc_li.convertion == ''
-        assert swiss_franc_li.__hash__() == hash((decimal, 'CHF', '756'))
+        assert swiss_franc_li.__hash__() == hash(
+            (swiss_franc_li.__class__, decimal, 'CHF', '756'))
         assert swiss_franc_li.__repr__() == (
             'SwissFrancLI(amount: -100, '
             'alpha_code: "CHF", '
@@ -726,7 +728,6 @@ class TestSwissFrancLI:
             'convertion: "", '
             'international: False)')
         assert swiss_franc_li.__str__() == '₣ -100.00'
-
 
     def test_swiss_franc_li_custom(self):
         """test_swiss_franc_li_custom."""
@@ -754,7 +755,8 @@ class TestSwissFrancLI:
         assert swiss_franc_li.symbol_separator == '_'
         assert swiss_franc_li.localized_symbol == 'LI₣'
         assert swiss_franc_li.convertion == ''
-        assert swiss_franc_li.__hash__() == hash((decimal, 'CHF', '756'))
+        assert swiss_franc_li.__hash__() == hash(
+            (swiss_franc_li.__class__, decimal, 'CHF', '756'))
         assert swiss_franc_li.__repr__() == (
             'SwissFrancLI(amount: 1000, '
             'alpha_code: "CHF", '
@@ -770,7 +772,6 @@ class TestSwissFrancLI:
             'convertion: "", '
             'international: True)')
         assert swiss_franc_li.__str__() == 'CHF 10,00.00000'
-
 
     def test_swiss_franc_li_changed(self):
         """test_cswiss_franc_li_changed."""
@@ -828,7 +829,6 @@ class TestSwissFrancLI:
                 match='can\'t set attribute'):
             swiss_franc_li.international = True
 
-
     def test_swiss_franc_li_math_add(self):
         """test_swiss_franc_li_math_add."""
         swiss_franc_li_one = SwissFrancLI(amount=1)
@@ -841,14 +841,14 @@ class TestSwissFrancLI:
             _ = swiss_franc_li_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.SwissFrancLI\'> '
                     'and <class \'str\'>.')):
             _ = swiss_franc_li_one.__add__('1.00')
         assert (
             swiss_franc_li_one +
             swiss_franc_li_two) == swiss_franc_li_three
-
 
     def test_swiss_franc_li_slots(self):
         """test_swiss_franc_li_slots."""
@@ -867,6 +867,7 @@ from multicurrency import SwissFrancCH
 
 
 class TestSwissFrancCH:
+    """SwissFrancCH currency tests."""
 
     def test_swiss_franc_ch(self):
         """test_swiss_franc_ch."""
@@ -886,7 +887,8 @@ class TestSwissFrancCH:
         assert swiss_franc_ch.symbol_separator == '\u00A0'
         assert swiss_franc_ch.localized_symbol == 'CH₣'
         assert swiss_franc_ch.convertion == ''
-        assert swiss_franc_ch.__hash__() == hash((decimal, 'CHF', '756'))
+        assert swiss_franc_ch.__hash__() == hash(
+            (swiss_franc_ch.__class__, decimal, 'CHF', '756'))
         assert swiss_franc_ch.__repr__() == (
             'SwissFrancCH(amount: 0.1428571428571428571428571429, '
             'alpha_code: "CHF", '
@@ -902,7 +904,6 @@ class TestSwissFrancCH:
             'convertion: "", '
             'international: False)')
         assert swiss_franc_ch.__str__() == '₣ 0.14'
-
 
     def test_swiss_franc_ch_negative(self):
         """test_swiss_franc_ch_negative."""
@@ -921,7 +922,8 @@ class TestSwissFrancCH:
         assert swiss_franc_ch.symbol_separator == '\u00A0'
         assert swiss_franc_ch.localized_symbol == 'CH₣'
         assert swiss_franc_ch.convertion == ''
-        assert swiss_franc_ch.__hash__() == hash((decimal, 'CHF', '756'))
+        assert swiss_franc_ch.__hash__() == hash(
+            (swiss_franc_ch.__class__, decimal, 'CHF', '756'))
         assert swiss_franc_ch.__repr__() == (
             'SwissFrancCH(amount: -100, '
             'alpha_code: "CHF", '
@@ -937,7 +939,6 @@ class TestSwissFrancCH:
             'convertion: "", '
             'international: False)')
         assert swiss_franc_ch.__str__() == '₣ -100.00'
-
 
     def test_swiss_franc_ch_custom(self):
         """test_swiss_franc_ch_custom."""
@@ -965,7 +966,8 @@ class TestSwissFrancCH:
         assert swiss_franc_ch.symbol_separator == '_'
         assert swiss_franc_ch.localized_symbol == 'CH₣'
         assert swiss_franc_ch.convertion == ''
-        assert swiss_franc_ch.__hash__() == hash((decimal, 'CHF', '756'))
+        assert swiss_franc_ch.__hash__() == hash(
+            (swiss_franc_ch.__class__, decimal, 'CHF', '756'))
         assert swiss_franc_ch.__repr__() == (
             'SwissFrancCH(amount: 1000, '
             'alpha_code: "CHF", '
@@ -981,7 +983,6 @@ class TestSwissFrancCH:
             'convertion: "", '
             'international: True)')
         assert swiss_franc_ch.__str__() == 'CHF 10,00.00000'
-
 
     def test_swiss_franc_ch_changed(self):
         """test_cswiss_franc_ch_changed."""
@@ -1039,7 +1040,6 @@ class TestSwissFrancCH:
                 match='can\'t set attribute'):
             swiss_franc_ch.international = True
 
-
     def test_swiss_franc_ch_math_add(self):
         """test_swiss_franc_ch_math_add."""
         swiss_franc_ch_one = SwissFrancCH(amount=1)
@@ -1052,14 +1052,14 @@ class TestSwissFrancCH:
             _ = swiss_franc_ch_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.SwissFrancCH\'> '
                     'and <class \'str\'>.')):
             _ = swiss_franc_ch_one.__add__('1.00')
         assert (
             swiss_franc_ch_one +
             swiss_franc_ch_two) == swiss_franc_ch_three
-
 
     def test_swiss_franc_ch_slots(self):
         """test_swiss_franc_ch_slots."""
@@ -1078,6 +1078,7 @@ from multicurrency import DjiboutiFranc
 
 
 class TestDjiboutiFranc:
+    """DjiboutiFranc currency tests."""
 
     def test_djibouti_franc(self):
         """test_djibouti_franc."""
@@ -1097,7 +1098,8 @@ class TestDjiboutiFranc:
         assert djibouti_franc.symbol_separator == '\u00A0'
         assert djibouti_franc.localized_symbol == 'DJ₣'
         assert djibouti_franc.convertion == ''
-        assert djibouti_franc.__hash__() == hash((decimal, 'DJF', '262'))
+        assert djibouti_franc.__hash__() == hash(
+            (djibouti_franc.__class__, decimal, 'DJF', '262'))
         assert djibouti_franc.__repr__() == (
             'DjiboutiFranc(amount: 0.1428571428571428571428571429, '
             'alpha_code: "DJF", '
@@ -1113,7 +1115,6 @@ class TestDjiboutiFranc:
             'convertion: "", '
             'international: False)')
         assert djibouti_franc.__str__() == '0 ₣'
-
 
     def test_djibouti_franc_negative(self):
         """test_djibouti_franc_negative."""
@@ -1132,7 +1133,8 @@ class TestDjiboutiFranc:
         assert djibouti_franc.symbol_separator == '\u00A0'
         assert djibouti_franc.localized_symbol == 'DJ₣'
         assert djibouti_franc.convertion == ''
-        assert djibouti_franc.__hash__() == hash((decimal, 'DJF', '262'))
+        assert djibouti_franc.__hash__() == hash(
+            (djibouti_franc.__class__, decimal, 'DJF', '262'))
         assert djibouti_franc.__repr__() == (
             'DjiboutiFranc(amount: -100, '
             'alpha_code: "DJF", '
@@ -1148,7 +1150,6 @@ class TestDjiboutiFranc:
             'convertion: "", '
             'international: False)')
         assert djibouti_franc.__str__() == '-100 ₣'
-
 
     def test_djibouti_franc_custom(self):
         """test_djibouti_franc_custom."""
@@ -1176,7 +1177,8 @@ class TestDjiboutiFranc:
         assert djibouti_franc.symbol_separator == '_'
         assert djibouti_franc.localized_symbol == 'DJ₣'
         assert djibouti_franc.convertion == ''
-        assert djibouti_franc.__hash__() == hash((decimal, 'DJF', '262'))
+        assert djibouti_franc.__hash__() == hash(
+            (djibouti_franc.__class__, decimal, 'DJF', '262'))
         assert djibouti_franc.__repr__() == (
             'DjiboutiFranc(amount: 1000, '
             'alpha_code: "DJF", '
@@ -1192,7 +1194,6 @@ class TestDjiboutiFranc:
             'convertion: "", '
             'international: True)')
         assert djibouti_franc.__str__() == 'DJF 10,00.00000'
-
 
     def test_djibouti_franc_changed(self):
         """test_cdjibouti_franc_changed."""
@@ -1250,7 +1251,6 @@ class TestDjiboutiFranc:
                 match='can\'t set attribute'):
             djibouti_franc.international = True
 
-
     def test_djibouti_franc_math_add(self):
         """test_djibouti_franc_math_add."""
         djibouti_franc_one = DjiboutiFranc(amount=1)
@@ -1263,14 +1263,14 @@ class TestDjiboutiFranc:
             _ = djibouti_franc_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.DjiboutiFranc\'> '
                     'and <class \'str\'>.')):
             _ = djibouti_franc_one.__add__('1.00')
         assert (
             djibouti_franc_one +
             djibouti_franc_two) == djibouti_franc_three
-
 
     def test_djibouti_franc_slots(self):
         """test_djibouti_franc_slots."""
@@ -1289,6 +1289,7 @@ from multicurrency import GuineaFranc
 
 
 class TestGuineaFranc:
+    """GuineaFranc currency tests."""
 
     def test_guinea_franc(self):
         """test_guinea_franc."""
@@ -1308,7 +1309,8 @@ class TestGuineaFranc:
         assert guinea_franc.symbol_separator == '\u00A0'
         assert guinea_franc.localized_symbol == 'GN₣'
         assert guinea_franc.convertion == ''
-        assert guinea_franc.__hash__() == hash((decimal, 'GNF', '324'))
+        assert guinea_franc.__hash__() == hash(
+            (guinea_franc.__class__, decimal, 'GNF', '324'))
         assert guinea_franc.__repr__() == (
             'GuineaFranc(amount: 0.1428571428571428571428571429, '
             'alpha_code: "GNF", '
@@ -1324,7 +1326,6 @@ class TestGuineaFranc:
             'convertion: "", '
             'international: False)')
         assert guinea_franc.__str__() == '0 ₣'
-
 
     def test_guinea_franc_negative(self):
         """test_guinea_franc_negative."""
@@ -1343,7 +1344,8 @@ class TestGuineaFranc:
         assert guinea_franc.symbol_separator == '\u00A0'
         assert guinea_franc.localized_symbol == 'GN₣'
         assert guinea_franc.convertion == ''
-        assert guinea_franc.__hash__() == hash((decimal, 'GNF', '324'))
+        assert guinea_franc.__hash__() == hash(
+            (guinea_franc.__class__, decimal, 'GNF', '324'))
         assert guinea_franc.__repr__() == (
             'GuineaFranc(amount: -100, '
             'alpha_code: "GNF", '
@@ -1359,7 +1361,6 @@ class TestGuineaFranc:
             'convertion: "", '
             'international: False)')
         assert guinea_franc.__str__() == '-100 ₣'
-
 
     def test_guinea_franc_custom(self):
         """test_guinea_franc_custom."""
@@ -1387,7 +1388,8 @@ class TestGuineaFranc:
         assert guinea_franc.symbol_separator == '_'
         assert guinea_franc.localized_symbol == 'GN₣'
         assert guinea_franc.convertion == ''
-        assert guinea_franc.__hash__() == hash((decimal, 'GNF', '324'))
+        assert guinea_franc.__hash__() == hash(
+            (guinea_franc.__class__, decimal, 'GNF', '324'))
         assert guinea_franc.__repr__() == (
             'GuineaFranc(amount: 1000, '
             'alpha_code: "GNF", '
@@ -1403,7 +1405,6 @@ class TestGuineaFranc:
             'convertion: "", '
             'international: True)')
         assert guinea_franc.__str__() == 'GNF 10,00.00000'
-
 
     def test_guinea_franc_changed(self):
         """test_cguinea_franc_changed."""
@@ -1461,7 +1462,6 @@ class TestGuineaFranc:
                 match='can\'t set attribute'):
             guinea_franc.international = True
 
-
     def test_guinea_franc_math_add(self):
         """test_guinea_franc_math_add."""
         guinea_franc_one = GuineaFranc(amount=1)
@@ -1474,14 +1474,14 @@ class TestGuineaFranc:
             _ = guinea_franc_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.GuineaFranc\'> '
                     'and <class \'str\'>.')):
             _ = guinea_franc_one.__add__('1.00')
         assert (
             guinea_franc_one +
             guinea_franc_two) == guinea_franc_three
-
 
     def test_guinea_franc_slots(self):
         """test_guinea_franc_slots."""
@@ -1500,6 +1500,7 @@ from multicurrency import RwandaFranc
 
 
 class TestRwandaFranc:
+    """RwandaFranc currency tests."""
 
     def test_rwanda_franc(self):
         """test_rwanda_franc."""
@@ -1519,7 +1520,8 @@ class TestRwandaFranc:
         assert rwanda_franc.symbol_separator == '\u00A0'
         assert rwanda_franc.localized_symbol == 'RW₣'
         assert rwanda_franc.convertion == ''
-        assert rwanda_franc.__hash__() == hash((decimal, 'RWF', '646'))
+        assert rwanda_franc.__hash__() == hash(
+            (rwanda_franc.__class__, decimal, 'RWF', '646'))
         assert rwanda_franc.__repr__() == (
             'RwandaFranc(amount: 0.1428571428571428571428571429, '
             'alpha_code: "RWF", '
@@ -1535,7 +1537,6 @@ class TestRwandaFranc:
             'convertion: "", '
             'international: False)')
         assert rwanda_franc.__str__() == '₣ 0'
-
 
     def test_rwanda_franc_negative(self):
         """test_rwanda_franc_negative."""
@@ -1554,7 +1555,8 @@ class TestRwandaFranc:
         assert rwanda_franc.symbol_separator == '\u00A0'
         assert rwanda_franc.localized_symbol == 'RW₣'
         assert rwanda_franc.convertion == ''
-        assert rwanda_franc.__hash__() == hash((decimal, 'RWF', '646'))
+        assert rwanda_franc.__hash__() == hash(
+            (rwanda_franc.__class__, decimal, 'RWF', '646'))
         assert rwanda_franc.__repr__() == (
             'RwandaFranc(amount: -100, '
             'alpha_code: "RWF", '
@@ -1570,7 +1572,6 @@ class TestRwandaFranc:
             'convertion: "", '
             'international: False)')
         assert rwanda_franc.__str__() == '₣ -100'
-
 
     def test_rwanda_franc_custom(self):
         """test_rwanda_franc_custom."""
@@ -1598,7 +1599,8 @@ class TestRwandaFranc:
         assert rwanda_franc.symbol_separator == '_'
         assert rwanda_franc.localized_symbol == 'RW₣'
         assert rwanda_franc.convertion == ''
-        assert rwanda_franc.__hash__() == hash((decimal, 'RWF', '646'))
+        assert rwanda_franc.__hash__() == hash(
+            (rwanda_franc.__class__, decimal, 'RWF', '646'))
         assert rwanda_franc.__repr__() == (
             'RwandaFranc(amount: 1000, '
             'alpha_code: "RWF", '
@@ -1614,7 +1616,6 @@ class TestRwandaFranc:
             'convertion: "", '
             'international: True)')
         assert rwanda_franc.__str__() == 'RWF 10,00.00000'
-
 
     def test_rwanda_franc_changed(self):
         """test_crwanda_franc_changed."""
@@ -1672,7 +1673,6 @@ class TestRwandaFranc:
                 match='can\'t set attribute'):
             rwanda_franc.international = True
 
-
     def test_rwanda_franc_math_add(self):
         """test_rwanda_franc_math_add."""
         rwanda_franc_one = RwandaFranc(amount=1)
@@ -1685,14 +1685,14 @@ class TestRwandaFranc:
             _ = rwanda_franc_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.RwandaFranc\'> '
                     'and <class \'str\'>.')):
             _ = rwanda_franc_one.__add__('1.00')
         assert (
             rwanda_franc_one +
             rwanda_franc_two) == rwanda_franc_three
-
 
     def test_rwanda_franc_slots(self):
         """test_rwanda_franc_slots."""
@@ -1711,6 +1711,7 @@ from multicurrency import CFAFrancBEAC
 
 
 class TestCFAFrancBEAC:
+    """CFAFrancBEAC currency tests."""
 
     def test_cfa_franc_beac(self):
         """test_cfa_franc_beac."""
@@ -1730,7 +1731,8 @@ class TestCFAFrancBEAC:
         assert cfa_franc_beac.symbol_separator == '\u00A0'
         assert cfa_franc_beac.localized_symbol == '₣'
         assert cfa_franc_beac.convertion == ''
-        assert cfa_franc_beac.__hash__() == hash((decimal, 'XAF', '950'))
+        assert cfa_franc_beac.__hash__() == hash(
+            (cfa_franc_beac.__class__, decimal, 'XAF', '950'))
         assert cfa_franc_beac.__repr__() == (
             'CFAFrancBEAC(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XAF", '
@@ -1746,7 +1748,6 @@ class TestCFAFrancBEAC:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_beac.__str__() == '0 ₣'
-
 
     def test_cfa_franc_beac_negative(self):
         """test_cfa_franc_beac_negative."""
@@ -1765,7 +1766,8 @@ class TestCFAFrancBEAC:
         assert cfa_franc_beac.symbol_separator == '\u00A0'
         assert cfa_franc_beac.localized_symbol == '₣'
         assert cfa_franc_beac.convertion == ''
-        assert cfa_franc_beac.__hash__() == hash((decimal, 'XAF', '950'))
+        assert cfa_franc_beac.__hash__() == hash(
+            (cfa_franc_beac.__class__, decimal, 'XAF', '950'))
         assert cfa_franc_beac.__repr__() == (
             'CFAFrancBEAC(amount: -100, '
             'alpha_code: "XAF", '
@@ -1781,7 +1783,6 @@ class TestCFAFrancBEAC:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_beac.__str__() == '-100 ₣'
-
 
     def test_cfa_franc_beac_custom(self):
         """test_cfa_franc_beac_custom."""
@@ -1809,7 +1810,8 @@ class TestCFAFrancBEAC:
         assert cfa_franc_beac.symbol_separator == '_'
         assert cfa_franc_beac.localized_symbol == '₣'
         assert cfa_franc_beac.convertion == ''
-        assert cfa_franc_beac.__hash__() == hash((decimal, 'XAF', '950'))
+        assert cfa_franc_beac.__hash__() == hash(
+            (cfa_franc_beac.__class__, decimal, 'XAF', '950'))
         assert cfa_franc_beac.__repr__() == (
             'CFAFrancBEAC(amount: 1000, '
             'alpha_code: "XAF", '
@@ -1825,7 +1827,6 @@ class TestCFAFrancBEAC:
             'convertion: "", '
             'international: True)')
         assert cfa_franc_beac.__str__() == 'XAF 10,00.00000'
-
 
     def test_cfa_franc_beac_changed(self):
         """test_ccfa_franc_beac_changed."""
@@ -1883,7 +1884,6 @@ class TestCFAFrancBEAC:
                 match='can\'t set attribute'):
             cfa_franc_beac.international = True
 
-
     def test_cfa_franc_beac_math_add(self):
         """test_cfa_franc_beac_math_add."""
         cfa_franc_beac_one = CFAFrancBEAC(amount=1)
@@ -1896,14 +1896,14 @@ class TestCFAFrancBEAC:
             _ = cfa_franc_beac_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.CFAFrancBEAC\'> '
                     'and <class \'str\'>.')):
             _ = cfa_franc_beac_one.__add__('1.00')
         assert (
             cfa_franc_beac_one +
             cfa_franc_beac_two) == cfa_franc_beac_three
-
 
     def test_cfa_franc_beac_slots(self):
         """test_cfa_franc_beac_slots."""
@@ -1922,6 +1922,7 @@ from multicurrency import CFAFrancBEACCM
 
 
 class TestCFAFrancBEACCM:
+    """CFAFrancBEACCM currency tests."""
 
     def test_cfa_franc_beac_cm(self):
         """test_cfa_franc_beac_cm."""
@@ -1941,7 +1942,8 @@ class TestCFAFrancBEACCM:
         assert cfa_franc_beac_cm.symbol_separator == '\u00A0'
         assert cfa_franc_beac_cm.localized_symbol == 'CM₣'
         assert cfa_franc_beac_cm.convertion == ''
-        assert cfa_franc_beac_cm.__hash__() == hash((decimal, 'XAF', '950'))
+        assert cfa_franc_beac_cm.__hash__() == hash(
+            (cfa_franc_beac_cm.__class__, decimal, 'XAF', '950'))
         assert cfa_franc_beac_cm.__repr__() == (
             'CFAFrancBEACCM(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XAF", '
@@ -1957,7 +1959,6 @@ class TestCFAFrancBEACCM:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_beac_cm.__str__() == '0 ₣'
-
 
     def test_cfa_franc_beac_cm_negative(self):
         """test_cfa_franc_beac_cm_negative."""
@@ -1976,7 +1977,8 @@ class TestCFAFrancBEACCM:
         assert cfa_franc_beac_cm.symbol_separator == '\u00A0'
         assert cfa_franc_beac_cm.localized_symbol == 'CM₣'
         assert cfa_franc_beac_cm.convertion == ''
-        assert cfa_franc_beac_cm.__hash__() == hash((decimal, 'XAF', '950'))
+        assert cfa_franc_beac_cm.__hash__() == hash(
+            (cfa_franc_beac_cm.__class__, decimal, 'XAF', '950'))
         assert cfa_franc_beac_cm.__repr__() == (
             'CFAFrancBEACCM(amount: -100, '
             'alpha_code: "XAF", '
@@ -1992,7 +1994,6 @@ class TestCFAFrancBEACCM:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_beac_cm.__str__() == '-100 ₣'
-
 
     def test_cfa_franc_beac_cm_custom(self):
         """test_cfa_franc_beac_cm_custom."""
@@ -2020,7 +2021,8 @@ class TestCFAFrancBEACCM:
         assert cfa_franc_beac_cm.symbol_separator == '_'
         assert cfa_franc_beac_cm.localized_symbol == 'CM₣'
         assert cfa_franc_beac_cm.convertion == ''
-        assert cfa_franc_beac_cm.__hash__() == hash((decimal, 'XAF', '950'))
+        assert cfa_franc_beac_cm.__hash__() == hash(
+            (cfa_franc_beac_cm.__class__, decimal, 'XAF', '950'))
         assert cfa_franc_beac_cm.__repr__() == (
             'CFAFrancBEACCM(amount: 1000, '
             'alpha_code: "XAF", '
@@ -2036,7 +2038,6 @@ class TestCFAFrancBEACCM:
             'convertion: "", '
             'international: True)')
         assert cfa_franc_beac_cm.__str__() == 'XAF 10,00.00000'
-
 
     def test_cfa_franc_beac_cm_changed(self):
         """test_ccfa_franc_beac_cm_changed."""
@@ -2094,7 +2095,6 @@ class TestCFAFrancBEACCM:
                 match='can\'t set attribute'):
             cfa_franc_beac_cm.international = True
 
-
     def test_cfa_franc_beac_cm_math_add(self):
         """test_cfa_franc_beac_cm_math_add."""
         cfa_franc_beac_cm_one = CFAFrancBEACCM(amount=1)
@@ -2107,14 +2107,14 @@ class TestCFAFrancBEACCM:
             _ = cfa_franc_beac_cm_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.CFAFrancBEACCM\'> '
                     'and <class \'str\'>.')):
             _ = cfa_franc_beac_cm_one.__add__('1.00')
         assert (
             cfa_franc_beac_cm_one +
             cfa_franc_beac_cm_two) == cfa_franc_beac_cm_three
-
 
     def test_cfa_franc_beac_cm_slots(self):
         """test_cfa_franc_beac_cm_slots."""
@@ -2133,6 +2133,7 @@ from multicurrency import CFAFrancBEACCF
 
 
 class TestCFAFrancBEACCF:
+    """CFAFrancBEACCF currency tests."""
 
     def test_cfa_franc_beac_cf(self):
         """test_cfa_franc_beac_cf."""
@@ -2152,7 +2153,8 @@ class TestCFAFrancBEACCF:
         assert cfa_franc_beac_cf.symbol_separator == '\u00A0'
         assert cfa_franc_beac_cf.localized_symbol == 'CF₣'
         assert cfa_franc_beac_cf.convertion == ''
-        assert cfa_franc_beac_cf.__hash__() == hash((decimal, 'XAF', '950'))
+        assert cfa_franc_beac_cf.__hash__() == hash(
+            (cfa_franc_beac_cf.__class__, decimal, 'XAF', '950'))
         assert cfa_franc_beac_cf.__repr__() == (
             'CFAFrancBEACCF(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XAF", '
@@ -2168,7 +2170,6 @@ class TestCFAFrancBEACCF:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_beac_cf.__str__() == '0 ₣'
-
 
     def test_cfa_franc_beac_cf_negative(self):
         """test_cfa_franc_beac_cf_negative."""
@@ -2187,7 +2188,8 @@ class TestCFAFrancBEACCF:
         assert cfa_franc_beac_cf.symbol_separator == '\u00A0'
         assert cfa_franc_beac_cf.localized_symbol == 'CF₣'
         assert cfa_franc_beac_cf.convertion == ''
-        assert cfa_franc_beac_cf.__hash__() == hash((decimal, 'XAF', '950'))
+        assert cfa_franc_beac_cf.__hash__() == hash(
+            (cfa_franc_beac_cf.__class__, decimal, 'XAF', '950'))
         assert cfa_franc_beac_cf.__repr__() == (
             'CFAFrancBEACCF(amount: -100, '
             'alpha_code: "XAF", '
@@ -2203,7 +2205,6 @@ class TestCFAFrancBEACCF:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_beac_cf.__str__() == '-100 ₣'
-
 
     def test_cfa_franc_beac_cf_custom(self):
         """test_cfa_franc_beac_cf_custom."""
@@ -2231,7 +2232,8 @@ class TestCFAFrancBEACCF:
         assert cfa_franc_beac_cf.symbol_separator == '_'
         assert cfa_franc_beac_cf.localized_symbol == 'CF₣'
         assert cfa_franc_beac_cf.convertion == ''
-        assert cfa_franc_beac_cf.__hash__() == hash((decimal, 'XAF', '950'))
+        assert cfa_franc_beac_cf.__hash__() == hash(
+            (cfa_franc_beac_cf.__class__, decimal, 'XAF', '950'))
         assert cfa_franc_beac_cf.__repr__() == (
             'CFAFrancBEACCF(amount: 1000, '
             'alpha_code: "XAF", '
@@ -2247,7 +2249,6 @@ class TestCFAFrancBEACCF:
             'convertion: "", '
             'international: True)')
         assert cfa_franc_beac_cf.__str__() == 'XAF 10,00.00000'
-
 
     def test_cfa_franc_beac_cf_changed(self):
         """test_ccfa_franc_beac_cf_changed."""
@@ -2305,7 +2306,6 @@ class TestCFAFrancBEACCF:
                 match='can\'t set attribute'):
             cfa_franc_beac_cf.international = True
 
-
     def test_cfa_franc_beac_cf_math_add(self):
         """test_cfa_franc_beac_cf_math_add."""
         cfa_franc_beac_cf_one = CFAFrancBEACCF(amount=1)
@@ -2318,14 +2318,14 @@ class TestCFAFrancBEACCF:
             _ = cfa_franc_beac_cf_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.CFAFrancBEACCF\'> '
                     'and <class \'str\'>.')):
             _ = cfa_franc_beac_cf_one.__add__('1.00')
         assert (
             cfa_franc_beac_cf_one +
             cfa_franc_beac_cf_two) == cfa_franc_beac_cf_three
-
 
     def test_cfa_franc_beac_cf_slots(self):
         """test_cfa_franc_beac_cf_slots."""
@@ -2344,6 +2344,7 @@ from multicurrency import CFAFrancBEACTD
 
 
 class TestCFAFrancBEACTD:
+    """CFAFrancBEACTD currency tests."""
 
     def test_cfa_franc_beac_td(self):
         """test_cfa_franc_beac_td."""
@@ -2363,7 +2364,8 @@ class TestCFAFrancBEACTD:
         assert cfa_franc_beac_td.symbol_separator == '\u00A0'
         assert cfa_franc_beac_td.localized_symbol == 'TD₣'
         assert cfa_franc_beac_td.convertion == ''
-        assert cfa_franc_beac_td.__hash__() == hash((decimal, 'XAF', '950'))
+        assert cfa_franc_beac_td.__hash__() == hash(
+            (cfa_franc_beac_td.__class__, decimal, 'XAF', '950'))
         assert cfa_franc_beac_td.__repr__() == (
             'CFAFrancBEACTD(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XAF", '
@@ -2379,7 +2381,6 @@ class TestCFAFrancBEACTD:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_beac_td.__str__() == '0 ₣'
-
 
     def test_cfa_franc_beac_td_negative(self):
         """test_cfa_franc_beac_td_negative."""
@@ -2398,7 +2399,8 @@ class TestCFAFrancBEACTD:
         assert cfa_franc_beac_td.symbol_separator == '\u00A0'
         assert cfa_franc_beac_td.localized_symbol == 'TD₣'
         assert cfa_franc_beac_td.convertion == ''
-        assert cfa_franc_beac_td.__hash__() == hash((decimal, 'XAF', '950'))
+        assert cfa_franc_beac_td.__hash__() == hash(
+            (cfa_franc_beac_td.__class__, decimal, 'XAF', '950'))
         assert cfa_franc_beac_td.__repr__() == (
             'CFAFrancBEACTD(amount: -100, '
             'alpha_code: "XAF", '
@@ -2414,7 +2416,6 @@ class TestCFAFrancBEACTD:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_beac_td.__str__() == '-100 ₣'
-
 
     def test_cfa_franc_beac_td_custom(self):
         """test_cfa_franc_beac_td_custom."""
@@ -2442,7 +2443,8 @@ class TestCFAFrancBEACTD:
         assert cfa_franc_beac_td.symbol_separator == '_'
         assert cfa_franc_beac_td.localized_symbol == 'TD₣'
         assert cfa_franc_beac_td.convertion == ''
-        assert cfa_franc_beac_td.__hash__() == hash((decimal, 'XAF', '950'))
+        assert cfa_franc_beac_td.__hash__() == hash(
+            (cfa_franc_beac_td.__class__, decimal, 'XAF', '950'))
         assert cfa_franc_beac_td.__repr__() == (
             'CFAFrancBEACTD(amount: 1000, '
             'alpha_code: "XAF", '
@@ -2458,7 +2460,6 @@ class TestCFAFrancBEACTD:
             'convertion: "", '
             'international: True)')
         assert cfa_franc_beac_td.__str__() == 'XAF 10,00.00000'
-
 
     def test_cfa_franc_beac_td_changed(self):
         """test_ccfa_franc_beac_td_changed."""
@@ -2516,7 +2517,6 @@ class TestCFAFrancBEACTD:
                 match='can\'t set attribute'):
             cfa_franc_beac_td.international = True
 
-
     def test_cfa_franc_beac_td_math_add(self):
         """test_cfa_franc_beac_td_math_add."""
         cfa_franc_beac_td_one = CFAFrancBEACTD(amount=1)
@@ -2529,14 +2529,14 @@ class TestCFAFrancBEACTD:
             _ = cfa_franc_beac_td_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.CFAFrancBEACTD\'> '
                     'and <class \'str\'>.')):
             _ = cfa_franc_beac_td_one.__add__('1.00')
         assert (
             cfa_franc_beac_td_one +
             cfa_franc_beac_td_two) == cfa_franc_beac_td_three
-
 
     def test_cfa_franc_beac_td_slots(self):
         """test_cfa_franc_beac_td_slots."""
@@ -2555,6 +2555,7 @@ from multicurrency import CFAFrancBEACCD
 
 
 class TestCFAFrancBEACCD:
+    """CFAFrancBEACCD currency tests."""
 
     def test_cfa_franc_beac_cd(self):
         """test_cfa_franc_beac_cd."""
@@ -2574,7 +2575,8 @@ class TestCFAFrancBEACCD:
         assert cfa_franc_beac_cd.symbol_separator == '\u00A0'
         assert cfa_franc_beac_cd.localized_symbol == 'CD₣'
         assert cfa_franc_beac_cd.convertion == ''
-        assert cfa_franc_beac_cd.__hash__() == hash((decimal, 'XAF', '950'))
+        assert cfa_franc_beac_cd.__hash__() == hash(
+            (cfa_franc_beac_cd.__class__, decimal, 'XAF', '950'))
         assert cfa_franc_beac_cd.__repr__() == (
             'CFAFrancBEACCD(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XAF", '
@@ -2590,7 +2592,6 @@ class TestCFAFrancBEACCD:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_beac_cd.__str__() == '0 ₣'
-
 
     def test_cfa_franc_beac_cd_negative(self):
         """test_cfa_franc_beac_cd_negative."""
@@ -2609,7 +2610,8 @@ class TestCFAFrancBEACCD:
         assert cfa_franc_beac_cd.symbol_separator == '\u00A0'
         assert cfa_franc_beac_cd.localized_symbol == 'CD₣'
         assert cfa_franc_beac_cd.convertion == ''
-        assert cfa_franc_beac_cd.__hash__() == hash((decimal, 'XAF', '950'))
+        assert cfa_franc_beac_cd.__hash__() == hash(
+            (cfa_franc_beac_cd.__class__, decimal, 'XAF', '950'))
         assert cfa_franc_beac_cd.__repr__() == (
             'CFAFrancBEACCD(amount: -100, '
             'alpha_code: "XAF", '
@@ -2625,7 +2627,6 @@ class TestCFAFrancBEACCD:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_beac_cd.__str__() == '-100 ₣'
-
 
     def test_cfa_franc_beac_cd_custom(self):
         """test_cfa_franc_beac_cd_custom."""
@@ -2653,7 +2654,8 @@ class TestCFAFrancBEACCD:
         assert cfa_franc_beac_cd.symbol_separator == '_'
         assert cfa_franc_beac_cd.localized_symbol == 'CD₣'
         assert cfa_franc_beac_cd.convertion == ''
-        assert cfa_franc_beac_cd.__hash__() == hash((decimal, 'XAF', '950'))
+        assert cfa_franc_beac_cd.__hash__() == hash(
+            (cfa_franc_beac_cd.__class__, decimal, 'XAF', '950'))
         assert cfa_franc_beac_cd.__repr__() == (
             'CFAFrancBEACCD(amount: 1000, '
             'alpha_code: "XAF", '
@@ -2669,7 +2671,6 @@ class TestCFAFrancBEACCD:
             'convertion: "", '
             'international: True)')
         assert cfa_franc_beac_cd.__str__() == 'XAF 10,00.00000'
-
 
     def test_cfa_franc_beac_cd_changed(self):
         """test_ccfa_franc_beac_cd_changed."""
@@ -2727,7 +2728,6 @@ class TestCFAFrancBEACCD:
                 match='can\'t set attribute'):
             cfa_franc_beac_cd.international = True
 
-
     def test_cfa_franc_beac_cd_math_add(self):
         """test_cfa_franc_beac_cd_math_add."""
         cfa_franc_beac_cd_one = CFAFrancBEACCD(amount=1)
@@ -2740,14 +2740,14 @@ class TestCFAFrancBEACCD:
             _ = cfa_franc_beac_cd_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.CFAFrancBEACCD\'> '
                     'and <class \'str\'>.')):
             _ = cfa_franc_beac_cd_one.__add__('1.00')
         assert (
             cfa_franc_beac_cd_one +
             cfa_franc_beac_cd_two) == cfa_franc_beac_cd_three
-
 
     def test_cfa_franc_beac_cd_slots(self):
         """test_cfa_franc_beac_cd_slots."""
@@ -2766,6 +2766,7 @@ from multicurrency import CFAFrancBEACGQ
 
 
 class TestCFAFrancBEACGQ:
+    """CFAFrancBEACGQ currency tests."""
 
     def test_cfa_franc_beac_gq(self):
         """test_cfa_franc_beac_gq."""
@@ -2785,7 +2786,8 @@ class TestCFAFrancBEACGQ:
         assert cfa_franc_beac_gq.symbol_separator == '\u00A0'
         assert cfa_franc_beac_gq.localized_symbol == 'GQ₣'
         assert cfa_franc_beac_gq.convertion == ''
-        assert cfa_franc_beac_gq.__hash__() == hash((decimal, 'XAF', '950'))
+        assert cfa_franc_beac_gq.__hash__() == hash(
+            (cfa_franc_beac_gq.__class__, decimal, 'XAF', '950'))
         assert cfa_franc_beac_gq.__repr__() == (
             'CFAFrancBEACGQ(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XAF", '
@@ -2801,7 +2803,6 @@ class TestCFAFrancBEACGQ:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_beac_gq.__str__() == '0 ₣'
-
 
     def test_cfa_franc_beac_gq_negative(self):
         """test_cfa_franc_beac_gq_negative."""
@@ -2820,7 +2821,8 @@ class TestCFAFrancBEACGQ:
         assert cfa_franc_beac_gq.symbol_separator == '\u00A0'
         assert cfa_franc_beac_gq.localized_symbol == 'GQ₣'
         assert cfa_franc_beac_gq.convertion == ''
-        assert cfa_franc_beac_gq.__hash__() == hash((decimal, 'XAF', '950'))
+        assert cfa_franc_beac_gq.__hash__() == hash(
+            (cfa_franc_beac_gq.__class__, decimal, 'XAF', '950'))
         assert cfa_franc_beac_gq.__repr__() == (
             'CFAFrancBEACGQ(amount: -100, '
             'alpha_code: "XAF", '
@@ -2836,7 +2838,6 @@ class TestCFAFrancBEACGQ:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_beac_gq.__str__() == '-100 ₣'
-
 
     def test_cfa_franc_beac_gq_custom(self):
         """test_cfa_franc_beac_gq_custom."""
@@ -2864,7 +2865,8 @@ class TestCFAFrancBEACGQ:
         assert cfa_franc_beac_gq.symbol_separator == '_'
         assert cfa_franc_beac_gq.localized_symbol == 'GQ₣'
         assert cfa_franc_beac_gq.convertion == ''
-        assert cfa_franc_beac_gq.__hash__() == hash((decimal, 'XAF', '950'))
+        assert cfa_franc_beac_gq.__hash__() == hash(
+            (cfa_franc_beac_gq.__class__, decimal, 'XAF', '950'))
         assert cfa_franc_beac_gq.__repr__() == (
             'CFAFrancBEACGQ(amount: 1000, '
             'alpha_code: "XAF", '
@@ -2880,7 +2882,6 @@ class TestCFAFrancBEACGQ:
             'convertion: "", '
             'international: True)')
         assert cfa_franc_beac_gq.__str__() == 'XAF 10,00.00000'
-
 
     def test_cfa_franc_beac_gq_changed(self):
         """test_ccfa_franc_beac_gq_changed."""
@@ -2938,7 +2939,6 @@ class TestCFAFrancBEACGQ:
                 match='can\'t set attribute'):
             cfa_franc_beac_gq.international = True
 
-
     def test_cfa_franc_beac_gq_math_add(self):
         """test_cfa_franc_beac_gq_math_add."""
         cfa_franc_beac_gq_one = CFAFrancBEACGQ(amount=1)
@@ -2951,14 +2951,14 @@ class TestCFAFrancBEACGQ:
             _ = cfa_franc_beac_gq_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.CFAFrancBEACGQ\'> '
                     'and <class \'str\'>.')):
             _ = cfa_franc_beac_gq_one.__add__('1.00')
         assert (
             cfa_franc_beac_gq_one +
             cfa_franc_beac_gq_two) == cfa_franc_beac_gq_three
-
 
     def test_cfa_franc_beac_gq_slots(self):
         """test_cfa_franc_beac_gq_slots."""
@@ -2977,6 +2977,7 @@ from multicurrency import CFAFrancBEACGA
 
 
 class TestCFAFrancBEACGA:
+    """CFAFrancBEACGA currency tests."""
 
     def test_cfa_franc_beac_ga(self):
         """test_cfa_franc_beac_ga."""
@@ -2996,7 +2997,8 @@ class TestCFAFrancBEACGA:
         assert cfa_franc_beac_ga.symbol_separator == '\u00A0'
         assert cfa_franc_beac_ga.localized_symbol == 'GA₣'
         assert cfa_franc_beac_ga.convertion == ''
-        assert cfa_franc_beac_ga.__hash__() == hash((decimal, 'XAF', '950'))
+        assert cfa_franc_beac_ga.__hash__() == hash(
+            (cfa_franc_beac_ga.__class__, decimal, 'XAF', '950'))
         assert cfa_franc_beac_ga.__repr__() == (
             'CFAFrancBEACGA(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XAF", '
@@ -3012,7 +3014,6 @@ class TestCFAFrancBEACGA:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_beac_ga.__str__() == '0 ₣'
-
 
     def test_cfa_franc_beac_ga_negative(self):
         """test_cfa_franc_beac_ga_negative."""
@@ -3031,7 +3032,8 @@ class TestCFAFrancBEACGA:
         assert cfa_franc_beac_ga.symbol_separator == '\u00A0'
         assert cfa_franc_beac_ga.localized_symbol == 'GA₣'
         assert cfa_franc_beac_ga.convertion == ''
-        assert cfa_franc_beac_ga.__hash__() == hash((decimal, 'XAF', '950'))
+        assert cfa_franc_beac_ga.__hash__() == hash(
+            (cfa_franc_beac_ga.__class__, decimal, 'XAF', '950'))
         assert cfa_franc_beac_ga.__repr__() == (
             'CFAFrancBEACGA(amount: -100, '
             'alpha_code: "XAF", '
@@ -3047,7 +3049,6 @@ class TestCFAFrancBEACGA:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_beac_ga.__str__() == '-100 ₣'
-
 
     def test_cfa_franc_beac_ga_custom(self):
         """test_cfa_franc_beac_ga_custom."""
@@ -3075,7 +3076,8 @@ class TestCFAFrancBEACGA:
         assert cfa_franc_beac_ga.symbol_separator == '_'
         assert cfa_franc_beac_ga.localized_symbol == 'GA₣'
         assert cfa_franc_beac_ga.convertion == ''
-        assert cfa_franc_beac_ga.__hash__() == hash((decimal, 'XAF', '950'))
+        assert cfa_franc_beac_ga.__hash__() == hash(
+            (cfa_franc_beac_ga.__class__, decimal, 'XAF', '950'))
         assert cfa_franc_beac_ga.__repr__() == (
             'CFAFrancBEACGA(amount: 1000, '
             'alpha_code: "XAF", '
@@ -3091,7 +3093,6 @@ class TestCFAFrancBEACGA:
             'convertion: "", '
             'international: True)')
         assert cfa_franc_beac_ga.__str__() == 'XAF 10,00.00000'
-
 
     def test_cfa_franc_beac_ga_changed(self):
         """test_ccfa_franc_beac_ga_changed."""
@@ -3149,7 +3150,6 @@ class TestCFAFrancBEACGA:
                 match='can\'t set attribute'):
             cfa_franc_beac_ga.international = True
 
-
     def test_cfa_franc_beac_ga_math_add(self):
         """test_cfa_franc_beac_ga_math_add."""
         cfa_franc_beac_ga_one = CFAFrancBEACGA(amount=1)
@@ -3162,14 +3162,14 @@ class TestCFAFrancBEACGA:
             _ = cfa_franc_beac_ga_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.CFAFrancBEACGA\'> '
                     'and <class \'str\'>.')):
             _ = cfa_franc_beac_ga_one.__add__('1.00')
         assert (
             cfa_franc_beac_ga_one +
             cfa_franc_beac_ga_two) == cfa_franc_beac_ga_three
-
 
     def test_cfa_franc_beac_ga_slots(self):
         """test_cfa_franc_beac_ga_slots."""
@@ -3188,6 +3188,7 @@ from multicurrency import CFAFrancBCEAO
 
 
 class TestCFAFrancBCEAO:
+    """CFAFrancBCEAO currency tests."""
 
     def test_cfa_franc_bceao(self):
         """test_cfa_franc_bceao."""
@@ -3207,7 +3208,8 @@ class TestCFAFrancBCEAO:
         assert cfa_franc_bceao.symbol_separator == '\u00A0'
         assert cfa_franc_bceao.localized_symbol == '₣'
         assert cfa_franc_bceao.convertion == ''
-        assert cfa_franc_bceao.__hash__() == hash((decimal, 'XOF', '952'))
+        assert cfa_franc_bceao.__hash__() == hash(
+            (cfa_franc_bceao.__class__, decimal, 'XOF', '952'))
         assert cfa_franc_bceao.__repr__() == (
             'CFAFrancBCEAO(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XOF", '
@@ -3223,7 +3225,6 @@ class TestCFAFrancBCEAO:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_bceao.__str__() == '0 ₣'
-
 
     def test_cfa_franc_bceao_negative(self):
         """test_cfa_franc_bceao_negative."""
@@ -3242,7 +3243,8 @@ class TestCFAFrancBCEAO:
         assert cfa_franc_bceao.symbol_separator == '\u00A0'
         assert cfa_franc_bceao.localized_symbol == '₣'
         assert cfa_franc_bceao.convertion == ''
-        assert cfa_franc_bceao.__hash__() == hash((decimal, 'XOF', '952'))
+        assert cfa_franc_bceao.__hash__() == hash(
+            (cfa_franc_bceao.__class__, decimal, 'XOF', '952'))
         assert cfa_franc_bceao.__repr__() == (
             'CFAFrancBCEAO(amount: -100, '
             'alpha_code: "XOF", '
@@ -3258,7 +3260,6 @@ class TestCFAFrancBCEAO:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_bceao.__str__() == '-100 ₣'
-
 
     def test_cfa_franc_bceao_custom(self):
         """test_cfa_franc_bceao_custom."""
@@ -3286,7 +3287,8 @@ class TestCFAFrancBCEAO:
         assert cfa_franc_bceao.symbol_separator == '_'
         assert cfa_franc_bceao.localized_symbol == '₣'
         assert cfa_franc_bceao.convertion == ''
-        assert cfa_franc_bceao.__hash__() == hash((decimal, 'XOF', '952'))
+        assert cfa_franc_bceao.__hash__() == hash(
+            (cfa_franc_bceao.__class__, decimal, 'XOF', '952'))
         assert cfa_franc_bceao.__repr__() == (
             'CFAFrancBCEAO(amount: 1000, '
             'alpha_code: "XOF", '
@@ -3302,7 +3304,6 @@ class TestCFAFrancBCEAO:
             'convertion: "", '
             'international: True)')
         assert cfa_franc_bceao.__str__() == 'XOF 10,00.00000'
-
 
     def test_cfa_franc_bceao_changed(self):
         """test_ccfa_franc_bceao_changed."""
@@ -3360,7 +3361,6 @@ class TestCFAFrancBCEAO:
                 match='can\'t set attribute'):
             cfa_franc_bceao.international = True
 
-
     def test_cfa_franc_bceao_math_add(self):
         """test_cfa_franc_bceao_math_add."""
         cfa_franc_bceao_one = CFAFrancBCEAO(amount=1)
@@ -3373,14 +3373,14 @@ class TestCFAFrancBCEAO:
             _ = cfa_franc_bceao_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.CFAFrancBCEAO\'> '
                     'and <class \'str\'>.')):
             _ = cfa_franc_bceao_one.__add__('1.00')
         assert (
             cfa_franc_bceao_one +
             cfa_franc_bceao_two) == cfa_franc_bceao_three
-
 
     def test_cfa_franc_bceao_slots(self):
         """test_cfa_franc_bceao_slots."""
@@ -3399,6 +3399,7 @@ from multicurrency import CFAFrancBCEAOBJ
 
 
 class TestCFAFrancBCEAOBJ:
+    """CFAFrancBCEAOBJ currency tests."""
 
     def test_cfa_franc_bceao_bj(self):
         """test_cfa_franc_bceao_bj."""
@@ -3418,7 +3419,8 @@ class TestCFAFrancBCEAOBJ:
         assert cfa_franc_bceao_bj.symbol_separator == '\u00A0'
         assert cfa_franc_bceao_bj.localized_symbol == 'BJ₣'
         assert cfa_franc_bceao_bj.convertion == ''
-        assert cfa_franc_bceao_bj.__hash__() == hash((decimal, 'XOF', '952'))
+        assert cfa_franc_bceao_bj.__hash__() == hash(
+            (cfa_franc_bceao_bj.__class__, decimal, 'XOF', '952'))
         assert cfa_franc_bceao_bj.__repr__() == (
             'CFAFrancBCEAOBJ(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XOF", '
@@ -3434,7 +3436,6 @@ class TestCFAFrancBCEAOBJ:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_bceao_bj.__str__() == '0 ₣'
-
 
     def test_cfa_franc_bceao_bj_negative(self):
         """test_cfa_franc_bceao_bj_negative."""
@@ -3453,7 +3454,8 @@ class TestCFAFrancBCEAOBJ:
         assert cfa_franc_bceao_bj.symbol_separator == '\u00A0'
         assert cfa_franc_bceao_bj.localized_symbol == 'BJ₣'
         assert cfa_franc_bceao_bj.convertion == ''
-        assert cfa_franc_bceao_bj.__hash__() == hash((decimal, 'XOF', '952'))
+        assert cfa_franc_bceao_bj.__hash__() == hash(
+            (cfa_franc_bceao_bj.__class__, decimal, 'XOF', '952'))
         assert cfa_franc_bceao_bj.__repr__() == (
             'CFAFrancBCEAOBJ(amount: -100, '
             'alpha_code: "XOF", '
@@ -3469,7 +3471,6 @@ class TestCFAFrancBCEAOBJ:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_bceao_bj.__str__() == '-100 ₣'
-
 
     def test_cfa_franc_bceao_bj_custom(self):
         """test_cfa_franc_bceao_bj_custom."""
@@ -3497,7 +3498,8 @@ class TestCFAFrancBCEAOBJ:
         assert cfa_franc_bceao_bj.symbol_separator == '_'
         assert cfa_franc_bceao_bj.localized_symbol == 'BJ₣'
         assert cfa_franc_bceao_bj.convertion == ''
-        assert cfa_franc_bceao_bj.__hash__() == hash((decimal, 'XOF', '952'))
+        assert cfa_franc_bceao_bj.__hash__() == hash(
+            (cfa_franc_bceao_bj.__class__, decimal, 'XOF', '952'))
         assert cfa_franc_bceao_bj.__repr__() == (
             'CFAFrancBCEAOBJ(amount: 1000, '
             'alpha_code: "XOF", '
@@ -3513,7 +3515,6 @@ class TestCFAFrancBCEAOBJ:
             'convertion: "", '
             'international: True)')
         assert cfa_franc_bceao_bj.__str__() == 'XOF 10,00.00000'
-
 
     def test_cfa_franc_bceao_bj_changed(self):
         """test_ccfa_franc_bceao_bj_changed."""
@@ -3571,7 +3572,6 @@ class TestCFAFrancBCEAOBJ:
                 match='can\'t set attribute'):
             cfa_franc_bceao_bj.international = True
 
-
     def test_cfa_franc_bceao_bj_math_add(self):
         """test_cfa_franc_bceao_bj_math_add."""
         cfa_franc_bceao_bj_one = CFAFrancBCEAOBJ(amount=1)
@@ -3584,14 +3584,14 @@ class TestCFAFrancBCEAOBJ:
             _ = cfa_franc_bceao_bj_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.CFAFrancBCEAOBJ\'> '
                     'and <class \'str\'>.')):
             _ = cfa_franc_bceao_bj_one.__add__('1.00')
         assert (
             cfa_franc_bceao_bj_one +
             cfa_franc_bceao_bj_two) == cfa_franc_bceao_bj_three
-
 
     def test_cfa_franc_bceao_bj_slots(self):
         """test_cfa_franc_bceao_bj_slots."""
@@ -3610,6 +3610,7 @@ from multicurrency import CFAFrancBCEAOBF
 
 
 class TestCFAFrancBCEAOBF:
+    """CFAFrancBCEAOBF currency tests."""
 
     def test_cfa_franc_bceao_bf(self):
         """test_cfa_franc_bceao_bf."""
@@ -3629,7 +3630,8 @@ class TestCFAFrancBCEAOBF:
         assert cfa_franc_bceao_bf.symbol_separator == '\u00A0'
         assert cfa_franc_bceao_bf.localized_symbol == 'BF₣'
         assert cfa_franc_bceao_bf.convertion == ''
-        assert cfa_franc_bceao_bf.__hash__() == hash((decimal, 'XOF', '952'))
+        assert cfa_franc_bceao_bf.__hash__() == hash(
+            (cfa_franc_bceao_bf.__class__, decimal, 'XOF', '952'))
         assert cfa_franc_bceao_bf.__repr__() == (
             'CFAFrancBCEAOBF(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XOF", '
@@ -3645,7 +3647,6 @@ class TestCFAFrancBCEAOBF:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_bceao_bf.__str__() == '0 ₣'
-
 
     def test_cfa_franc_bceao_bf_negative(self):
         """test_cfa_franc_bceao_bf_negative."""
@@ -3664,7 +3665,8 @@ class TestCFAFrancBCEAOBF:
         assert cfa_franc_bceao_bf.symbol_separator == '\u00A0'
         assert cfa_franc_bceao_bf.localized_symbol == 'BF₣'
         assert cfa_franc_bceao_bf.convertion == ''
-        assert cfa_franc_bceao_bf.__hash__() == hash((decimal, 'XOF', '952'))
+        assert cfa_franc_bceao_bf.__hash__() == hash(
+            (cfa_franc_bceao_bf.__class__, decimal, 'XOF', '952'))
         assert cfa_franc_bceao_bf.__repr__() == (
             'CFAFrancBCEAOBF(amount: -100, '
             'alpha_code: "XOF", '
@@ -3680,7 +3682,6 @@ class TestCFAFrancBCEAOBF:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_bceao_bf.__str__() == '-100 ₣'
-
 
     def test_cfa_franc_bceao_bf_custom(self):
         """test_cfa_franc_bceao_bf_custom."""
@@ -3708,7 +3709,8 @@ class TestCFAFrancBCEAOBF:
         assert cfa_franc_bceao_bf.symbol_separator == '_'
         assert cfa_franc_bceao_bf.localized_symbol == 'BF₣'
         assert cfa_franc_bceao_bf.convertion == ''
-        assert cfa_franc_bceao_bf.__hash__() == hash((decimal, 'XOF', '952'))
+        assert cfa_franc_bceao_bf.__hash__() == hash(
+            (cfa_franc_bceao_bf.__class__, decimal, 'XOF', '952'))
         assert cfa_franc_bceao_bf.__repr__() == (
             'CFAFrancBCEAOBF(amount: 1000, '
             'alpha_code: "XOF", '
@@ -3724,7 +3726,6 @@ class TestCFAFrancBCEAOBF:
             'convertion: "", '
             'international: True)')
         assert cfa_franc_bceao_bf.__str__() == 'XOF 10,00.00000'
-
 
     def test_cfa_franc_bceao_bf_changed(self):
         """test_ccfa_franc_bceao_bf_changed."""
@@ -3782,7 +3783,6 @@ class TestCFAFrancBCEAOBF:
                 match='can\'t set attribute'):
             cfa_franc_bceao_bf.international = True
 
-
     def test_cfa_franc_bceao_bf_math_add(self):
         """test_cfa_franc_bceao_bf_math_add."""
         cfa_franc_bceao_bf_one = CFAFrancBCEAOBF(amount=1)
@@ -3795,14 +3795,14 @@ class TestCFAFrancBCEAOBF:
             _ = cfa_franc_bceao_bf_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.CFAFrancBCEAOBF\'> '
                     'and <class \'str\'>.')):
             _ = cfa_franc_bceao_bf_one.__add__('1.00')
         assert (
             cfa_franc_bceao_bf_one +
             cfa_franc_bceao_bf_two) == cfa_franc_bceao_bf_three
-
 
     def test_cfa_franc_bceao_bf_slots(self):
         """test_cfa_franc_bceao_bf_slots."""
@@ -3821,6 +3821,7 @@ from multicurrency import CFAFrancBCEAOCI
 
 
 class TestCFAFrancBCEAOCI:
+    """CFAFrancBCEAOCI currency tests."""
 
     def test_cfa_franc_bceao_ci(self):
         """test_cfa_franc_bceao_ci."""
@@ -3840,7 +3841,8 @@ class TestCFAFrancBCEAOCI:
         assert cfa_franc_bceao_ci.symbol_separator == '\u00A0'
         assert cfa_franc_bceao_ci.localized_symbol == 'CI₣'
         assert cfa_franc_bceao_ci.convertion == ''
-        assert cfa_franc_bceao_ci.__hash__() == hash((decimal, 'XOF', '952'))
+        assert cfa_franc_bceao_ci.__hash__() == hash(
+            (cfa_franc_bceao_ci.__class__, decimal, 'XOF', '952'))
         assert cfa_franc_bceao_ci.__repr__() == (
             'CFAFrancBCEAOCI(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XOF", '
@@ -3856,7 +3858,6 @@ class TestCFAFrancBCEAOCI:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_bceao_ci.__str__() == '0 ₣'
-
 
     def test_cfa_franc_bceao_ci_negative(self):
         """test_cfa_franc_bceao_ci_negative."""
@@ -3875,7 +3876,8 @@ class TestCFAFrancBCEAOCI:
         assert cfa_franc_bceao_ci.symbol_separator == '\u00A0'
         assert cfa_franc_bceao_ci.localized_symbol == 'CI₣'
         assert cfa_franc_bceao_ci.convertion == ''
-        assert cfa_franc_bceao_ci.__hash__() == hash((decimal, 'XOF', '952'))
+        assert cfa_franc_bceao_ci.__hash__() == hash(
+            (cfa_franc_bceao_ci.__class__, decimal, 'XOF', '952'))
         assert cfa_franc_bceao_ci.__repr__() == (
             'CFAFrancBCEAOCI(amount: -100, '
             'alpha_code: "XOF", '
@@ -3891,7 +3893,6 @@ class TestCFAFrancBCEAOCI:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_bceao_ci.__str__() == '-100 ₣'
-
 
     def test_cfa_franc_bceao_ci_custom(self):
         """test_cfa_franc_bceao_ci_custom."""
@@ -3919,7 +3920,8 @@ class TestCFAFrancBCEAOCI:
         assert cfa_franc_bceao_ci.symbol_separator == '_'
         assert cfa_franc_bceao_ci.localized_symbol == 'CI₣'
         assert cfa_franc_bceao_ci.convertion == ''
-        assert cfa_franc_bceao_ci.__hash__() == hash((decimal, 'XOF', '952'))
+        assert cfa_franc_bceao_ci.__hash__() == hash(
+            (cfa_franc_bceao_ci.__class__, decimal, 'XOF', '952'))
         assert cfa_franc_bceao_ci.__repr__() == (
             'CFAFrancBCEAOCI(amount: 1000, '
             'alpha_code: "XOF", '
@@ -3935,7 +3937,6 @@ class TestCFAFrancBCEAOCI:
             'convertion: "", '
             'international: True)')
         assert cfa_franc_bceao_ci.__str__() == 'XOF 10,00.00000'
-
 
     def test_cfa_franc_bceao_ci_changed(self):
         """test_ccfa_franc_bceao_ci_changed."""
@@ -3993,7 +3994,6 @@ class TestCFAFrancBCEAOCI:
                 match='can\'t set attribute'):
             cfa_franc_bceao_ci.international = True
 
-
     def test_cfa_franc_bceao_ci_math_add(self):
         """test_cfa_franc_bceao_ci_math_add."""
         cfa_franc_bceao_ci_one = CFAFrancBCEAOCI(amount=1)
@@ -4006,14 +4006,14 @@ class TestCFAFrancBCEAOCI:
             _ = cfa_franc_bceao_ci_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.CFAFrancBCEAOCI\'> '
                     'and <class \'str\'>.')):
             _ = cfa_franc_bceao_ci_one.__add__('1.00')
         assert (
             cfa_franc_bceao_ci_one +
             cfa_franc_bceao_ci_two) == cfa_franc_bceao_ci_three
-
 
     def test_cfa_franc_bceao_ci_slots(self):
         """test_cfa_franc_bceao_ci_slots."""
@@ -4032,6 +4032,7 @@ from multicurrency import CFAFrancBCEAOGW
 
 
 class TestCFAFrancBCEAOGW:
+    """CFAFrancBCEAOGW currency tests."""
 
     def test_cfa_franc_bceao_gw(self):
         """test_cfa_franc_bceao_gw."""
@@ -4051,7 +4052,8 @@ class TestCFAFrancBCEAOGW:
         assert cfa_franc_bceao_gw.symbol_separator == '\u00A0'
         assert cfa_franc_bceao_gw.localized_symbol == 'GW₣'
         assert cfa_franc_bceao_gw.convertion == ''
-        assert cfa_franc_bceao_gw.__hash__() == hash((decimal, 'XOF', '952'))
+        assert cfa_franc_bceao_gw.__hash__() == hash(
+            (cfa_franc_bceao_gw.__class__, decimal, 'XOF', '952'))
         assert cfa_franc_bceao_gw.__repr__() == (
             'CFAFrancBCEAOGW(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XOF", '
@@ -4067,7 +4069,6 @@ class TestCFAFrancBCEAOGW:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_bceao_gw.__str__() == '0 ₣'
-
 
     def test_cfa_franc_bceao_gw_negative(self):
         """test_cfa_franc_bceao_gw_negative."""
@@ -4086,7 +4087,8 @@ class TestCFAFrancBCEAOGW:
         assert cfa_franc_bceao_gw.symbol_separator == '\u00A0'
         assert cfa_franc_bceao_gw.localized_symbol == 'GW₣'
         assert cfa_franc_bceao_gw.convertion == ''
-        assert cfa_franc_bceao_gw.__hash__() == hash((decimal, 'XOF', '952'))
+        assert cfa_franc_bceao_gw.__hash__() == hash(
+            (cfa_franc_bceao_gw.__class__, decimal, 'XOF', '952'))
         assert cfa_franc_bceao_gw.__repr__() == (
             'CFAFrancBCEAOGW(amount: -100, '
             'alpha_code: "XOF", '
@@ -4102,7 +4104,6 @@ class TestCFAFrancBCEAOGW:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_bceao_gw.__str__() == '-100 ₣'
-
 
     def test_cfa_franc_bceao_gw_custom(self):
         """test_cfa_franc_bceao_gw_custom."""
@@ -4130,7 +4131,8 @@ class TestCFAFrancBCEAOGW:
         assert cfa_franc_bceao_gw.symbol_separator == '_'
         assert cfa_franc_bceao_gw.localized_symbol == 'GW₣'
         assert cfa_franc_bceao_gw.convertion == ''
-        assert cfa_franc_bceao_gw.__hash__() == hash((decimal, 'XOF', '952'))
+        assert cfa_franc_bceao_gw.__hash__() == hash(
+            (cfa_franc_bceao_gw.__class__, decimal, 'XOF', '952'))
         assert cfa_franc_bceao_gw.__repr__() == (
             'CFAFrancBCEAOGW(amount: 1000, '
             'alpha_code: "XOF", '
@@ -4146,7 +4148,6 @@ class TestCFAFrancBCEAOGW:
             'convertion: "", '
             'international: True)')
         assert cfa_franc_bceao_gw.__str__() == 'XOF 10,00.00000'
-
 
     def test_cfa_franc_bceao_gw_changed(self):
         """test_ccfa_franc_bceao_gw_changed."""
@@ -4204,7 +4205,6 @@ class TestCFAFrancBCEAOGW:
                 match='can\'t set attribute'):
             cfa_franc_bceao_gw.international = True
 
-
     def test_cfa_franc_bceao_gw_math_add(self):
         """test_cfa_franc_bceao_gw_math_add."""
         cfa_franc_bceao_gw_one = CFAFrancBCEAOGW(amount=1)
@@ -4217,14 +4217,14 @@ class TestCFAFrancBCEAOGW:
             _ = cfa_franc_bceao_gw_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.CFAFrancBCEAOGW\'> '
                     'and <class \'str\'>.')):
             _ = cfa_franc_bceao_gw_one.__add__('1.00')
         assert (
             cfa_franc_bceao_gw_one +
             cfa_franc_bceao_gw_two) == cfa_franc_bceao_gw_three
-
 
     def test_cfa_franc_bceao_gw_slots(self):
         """test_cfa_franc_bceao_gw_slots."""
@@ -4243,6 +4243,7 @@ from multicurrency import CFAFrancBCEAOML
 
 
 class TestCFAFrancBCEAOML:
+    """CFAFrancBCEAOML currency tests."""
 
     def test_cfa_franc_bceao_ml(self):
         """test_cfa_franc_bceao_ml."""
@@ -4262,7 +4263,8 @@ class TestCFAFrancBCEAOML:
         assert cfa_franc_bceao_ml.symbol_separator == '\u00A0'
         assert cfa_franc_bceao_ml.localized_symbol == 'ML₣'
         assert cfa_franc_bceao_ml.convertion == ''
-        assert cfa_franc_bceao_ml.__hash__() == hash((decimal, 'XOF', '952'))
+        assert cfa_franc_bceao_ml.__hash__() == hash(
+            (cfa_franc_bceao_ml.__class__, decimal, 'XOF', '952'))
         assert cfa_franc_bceao_ml.__repr__() == (
             'CFAFrancBCEAOML(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XOF", '
@@ -4278,7 +4280,6 @@ class TestCFAFrancBCEAOML:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_bceao_ml.__str__() == '0 ₣'
-
 
     def test_cfa_franc_bceao_ml_negative(self):
         """test_cfa_franc_bceao_ml_negative."""
@@ -4297,7 +4298,8 @@ class TestCFAFrancBCEAOML:
         assert cfa_franc_bceao_ml.symbol_separator == '\u00A0'
         assert cfa_franc_bceao_ml.localized_symbol == 'ML₣'
         assert cfa_franc_bceao_ml.convertion == ''
-        assert cfa_franc_bceao_ml.__hash__() == hash((decimal, 'XOF', '952'))
+        assert cfa_franc_bceao_ml.__hash__() == hash(
+            (cfa_franc_bceao_ml.__class__, decimal, 'XOF', '952'))
         assert cfa_franc_bceao_ml.__repr__() == (
             'CFAFrancBCEAOML(amount: -100, '
             'alpha_code: "XOF", '
@@ -4313,7 +4315,6 @@ class TestCFAFrancBCEAOML:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_bceao_ml.__str__() == '-100 ₣'
-
 
     def test_cfa_franc_bceao_ml_custom(self):
         """test_cfa_franc_bceao_ml_custom."""
@@ -4341,7 +4342,8 @@ class TestCFAFrancBCEAOML:
         assert cfa_franc_bceao_ml.symbol_separator == '_'
         assert cfa_franc_bceao_ml.localized_symbol == 'ML₣'
         assert cfa_franc_bceao_ml.convertion == ''
-        assert cfa_franc_bceao_ml.__hash__() == hash((decimal, 'XOF', '952'))
+        assert cfa_franc_bceao_ml.__hash__() == hash(
+            (cfa_franc_bceao_ml.__class__, decimal, 'XOF', '952'))
         assert cfa_franc_bceao_ml.__repr__() == (
             'CFAFrancBCEAOML(amount: 1000, '
             'alpha_code: "XOF", '
@@ -4357,7 +4359,6 @@ class TestCFAFrancBCEAOML:
             'convertion: "", '
             'international: True)')
         assert cfa_franc_bceao_ml.__str__() == 'XOF 10,00.00000'
-
 
     def test_cfa_franc_bceao_ml_changed(self):
         """test_ccfa_franc_bceao_ml_changed."""
@@ -4415,7 +4416,6 @@ class TestCFAFrancBCEAOML:
                 match='can\'t set attribute'):
             cfa_franc_bceao_ml.international = True
 
-
     def test_cfa_franc_bceao_ml_math_add(self):
         """test_cfa_franc_bceao_ml_math_add."""
         cfa_franc_bceao_ml_one = CFAFrancBCEAOML(amount=1)
@@ -4428,14 +4428,14 @@ class TestCFAFrancBCEAOML:
             _ = cfa_franc_bceao_ml_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.CFAFrancBCEAOML\'> '
                     'and <class \'str\'>.')):
             _ = cfa_franc_bceao_ml_one.__add__('1.00')
         assert (
             cfa_franc_bceao_ml_one +
             cfa_franc_bceao_ml_two) == cfa_franc_bceao_ml_three
-
 
     def test_cfa_franc_bceao_ml_slots(self):
         """test_cfa_franc_bceao_ml_slots."""
@@ -4454,6 +4454,7 @@ from multicurrency import CFAFrancBCEAONG
 
 
 class TestCFAFrancBCEAONG:
+    """CFAFrancBCEAONG currency tests."""
 
     def test_cfa_franc_bceao_ng(self):
         """test_cfa_franc_bceao_ng."""
@@ -4473,7 +4474,8 @@ class TestCFAFrancBCEAONG:
         assert cfa_franc_bceao_ng.symbol_separator == '\u00A0'
         assert cfa_franc_bceao_ng.localized_symbol == 'NG₣'
         assert cfa_franc_bceao_ng.convertion == ''
-        assert cfa_franc_bceao_ng.__hash__() == hash((decimal, 'XOF', '952'))
+        assert cfa_franc_bceao_ng.__hash__() == hash(
+            (cfa_franc_bceao_ng.__class__, decimal, 'XOF', '952'))
         assert cfa_franc_bceao_ng.__repr__() == (
             'CFAFrancBCEAONG(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XOF", '
@@ -4489,7 +4491,6 @@ class TestCFAFrancBCEAONG:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_bceao_ng.__str__() == '0 ₣'
-
 
     def test_cfa_franc_bceao_ng_negative(self):
         """test_cfa_franc_bceao_ng_negative."""
@@ -4508,7 +4509,8 @@ class TestCFAFrancBCEAONG:
         assert cfa_franc_bceao_ng.symbol_separator == '\u00A0'
         assert cfa_franc_bceao_ng.localized_symbol == 'NG₣'
         assert cfa_franc_bceao_ng.convertion == ''
-        assert cfa_franc_bceao_ng.__hash__() == hash((decimal, 'XOF', '952'))
+        assert cfa_franc_bceao_ng.__hash__() == hash(
+            (cfa_franc_bceao_ng.__class__, decimal, 'XOF', '952'))
         assert cfa_franc_bceao_ng.__repr__() == (
             'CFAFrancBCEAONG(amount: -100, '
             'alpha_code: "XOF", '
@@ -4524,7 +4526,6 @@ class TestCFAFrancBCEAONG:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_bceao_ng.__str__() == '-100 ₣'
-
 
     def test_cfa_franc_bceao_ng_custom(self):
         """test_cfa_franc_bceao_ng_custom."""
@@ -4552,7 +4553,8 @@ class TestCFAFrancBCEAONG:
         assert cfa_franc_bceao_ng.symbol_separator == '_'
         assert cfa_franc_bceao_ng.localized_symbol == 'NG₣'
         assert cfa_franc_bceao_ng.convertion == ''
-        assert cfa_franc_bceao_ng.__hash__() == hash((decimal, 'XOF', '952'))
+        assert cfa_franc_bceao_ng.__hash__() == hash(
+            (cfa_franc_bceao_ng.__class__, decimal, 'XOF', '952'))
         assert cfa_franc_bceao_ng.__repr__() == (
             'CFAFrancBCEAONG(amount: 1000, '
             'alpha_code: "XOF", '
@@ -4568,7 +4570,6 @@ class TestCFAFrancBCEAONG:
             'convertion: "", '
             'international: True)')
         assert cfa_franc_bceao_ng.__str__() == 'XOF 10,00.00000'
-
 
     def test_cfa_franc_bceao_ng_changed(self):
         """test_ccfa_franc_bceao_ng_changed."""
@@ -4626,7 +4627,6 @@ class TestCFAFrancBCEAONG:
                 match='can\'t set attribute'):
             cfa_franc_bceao_ng.international = True
 
-
     def test_cfa_franc_bceao_ng_math_add(self):
         """test_cfa_franc_bceao_ng_math_add."""
         cfa_franc_bceao_ng_one = CFAFrancBCEAONG(amount=1)
@@ -4639,14 +4639,14 @@ class TestCFAFrancBCEAONG:
             _ = cfa_franc_bceao_ng_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.CFAFrancBCEAONG\'> '
                     'and <class \'str\'>.')):
             _ = cfa_franc_bceao_ng_one.__add__('1.00')
         assert (
             cfa_franc_bceao_ng_one +
             cfa_franc_bceao_ng_two) == cfa_franc_bceao_ng_three
-
 
     def test_cfa_franc_bceao_ng_slots(self):
         """test_cfa_franc_bceao_ng_slots."""
@@ -4665,6 +4665,7 @@ from multicurrency import CFAFrancBCEAOSN
 
 
 class TestCFAFrancBCEAOSN:
+    """CFAFrancBCEAOSN currency tests."""
 
     def test_cfa_franc_bceao_sn(self):
         """test_cfa_franc_bceao_sn."""
@@ -4684,7 +4685,8 @@ class TestCFAFrancBCEAOSN:
         assert cfa_franc_bceao_sn.symbol_separator == '\u00A0'
         assert cfa_franc_bceao_sn.localized_symbol == 'SN₣'
         assert cfa_franc_bceao_sn.convertion == ''
-        assert cfa_franc_bceao_sn.__hash__() == hash((decimal, 'XOF', '952'))
+        assert cfa_franc_bceao_sn.__hash__() == hash(
+            (cfa_franc_bceao_sn.__class__, decimal, 'XOF', '952'))
         assert cfa_franc_bceao_sn.__repr__() == (
             'CFAFrancBCEAOSN(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XOF", '
@@ -4700,7 +4702,6 @@ class TestCFAFrancBCEAOSN:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_bceao_sn.__str__() == '0 ₣'
-
 
     def test_cfa_franc_bceao_sn_negative(self):
         """test_cfa_franc_bceao_sn_negative."""
@@ -4719,7 +4720,8 @@ class TestCFAFrancBCEAOSN:
         assert cfa_franc_bceao_sn.symbol_separator == '\u00A0'
         assert cfa_franc_bceao_sn.localized_symbol == 'SN₣'
         assert cfa_franc_bceao_sn.convertion == ''
-        assert cfa_franc_bceao_sn.__hash__() == hash((decimal, 'XOF', '952'))
+        assert cfa_franc_bceao_sn.__hash__() == hash(
+            (cfa_franc_bceao_sn.__class__, decimal, 'XOF', '952'))
         assert cfa_franc_bceao_sn.__repr__() == (
             'CFAFrancBCEAOSN(amount: -100, '
             'alpha_code: "XOF", '
@@ -4735,7 +4737,6 @@ class TestCFAFrancBCEAOSN:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_bceao_sn.__str__() == '-100 ₣'
-
 
     def test_cfa_franc_bceao_sn_custom(self):
         """test_cfa_franc_bceao_sn_custom."""
@@ -4763,7 +4764,8 @@ class TestCFAFrancBCEAOSN:
         assert cfa_franc_bceao_sn.symbol_separator == '_'
         assert cfa_franc_bceao_sn.localized_symbol == 'SN₣'
         assert cfa_franc_bceao_sn.convertion == ''
-        assert cfa_franc_bceao_sn.__hash__() == hash((decimal, 'XOF', '952'))
+        assert cfa_franc_bceao_sn.__hash__() == hash(
+            (cfa_franc_bceao_sn.__class__, decimal, 'XOF', '952'))
         assert cfa_franc_bceao_sn.__repr__() == (
             'CFAFrancBCEAOSN(amount: 1000, '
             'alpha_code: "XOF", '
@@ -4779,7 +4781,6 @@ class TestCFAFrancBCEAOSN:
             'convertion: "", '
             'international: True)')
         assert cfa_franc_bceao_sn.__str__() == 'XOF 10,00.00000'
-
 
     def test_cfa_franc_bceao_sn_changed(self):
         """test_ccfa_franc_bceao_sn_changed."""
@@ -4837,7 +4838,6 @@ class TestCFAFrancBCEAOSN:
                 match='can\'t set attribute'):
             cfa_franc_bceao_sn.international = True
 
-
     def test_cfa_franc_bceao_sn_math_add(self):
         """test_cfa_franc_bceao_sn_math_add."""
         cfa_franc_bceao_sn_one = CFAFrancBCEAOSN(amount=1)
@@ -4850,14 +4850,14 @@ class TestCFAFrancBCEAOSN:
             _ = cfa_franc_bceao_sn_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.CFAFrancBCEAOSN\'> '
                     'and <class \'str\'>.')):
             _ = cfa_franc_bceao_sn_one.__add__('1.00')
         assert (
             cfa_franc_bceao_sn_one +
             cfa_franc_bceao_sn_two) == cfa_franc_bceao_sn_three
-
 
     def test_cfa_franc_bceao_sn_slots(self):
         """test_cfa_franc_bceao_sn_slots."""
@@ -4876,6 +4876,7 @@ from multicurrency import CFAFrancBCEAOTG
 
 
 class TestCFAFrancBCEAOTG:
+    """CFAFrancBCEAOTG currency tests."""
 
     def test_cfa_franc_bceao_tg(self):
         """test_cfa_franc_bceao_tg."""
@@ -4895,7 +4896,8 @@ class TestCFAFrancBCEAOTG:
         assert cfa_franc_bceao_tg.symbol_separator == '\u00A0'
         assert cfa_franc_bceao_tg.localized_symbol == 'TG₣'
         assert cfa_franc_bceao_tg.convertion == ''
-        assert cfa_franc_bceao_tg.__hash__() == hash((decimal, 'XOF', '952'))
+        assert cfa_franc_bceao_tg.__hash__() == hash(
+            (cfa_franc_bceao_tg.__class__, decimal, 'XOF', '952'))
         assert cfa_franc_bceao_tg.__repr__() == (
             'CFAFrancBCEAOTG(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XOF", '
@@ -4911,7 +4913,6 @@ class TestCFAFrancBCEAOTG:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_bceao_tg.__str__() == '0 ₣'
-
 
     def test_cfa_franc_bceao_tg_negative(self):
         """test_cfa_franc_bceao_tg_negative."""
@@ -4930,7 +4931,8 @@ class TestCFAFrancBCEAOTG:
         assert cfa_franc_bceao_tg.symbol_separator == '\u00A0'
         assert cfa_franc_bceao_tg.localized_symbol == 'TG₣'
         assert cfa_franc_bceao_tg.convertion == ''
-        assert cfa_franc_bceao_tg.__hash__() == hash((decimal, 'XOF', '952'))
+        assert cfa_franc_bceao_tg.__hash__() == hash(
+            (cfa_franc_bceao_tg.__class__, decimal, 'XOF', '952'))
         assert cfa_franc_bceao_tg.__repr__() == (
             'CFAFrancBCEAOTG(amount: -100, '
             'alpha_code: "XOF", '
@@ -4946,7 +4948,6 @@ class TestCFAFrancBCEAOTG:
             'convertion: "", '
             'international: False)')
         assert cfa_franc_bceao_tg.__str__() == '-100 ₣'
-
 
     def test_cfa_franc_bceao_tg_custom(self):
         """test_cfa_franc_bceao_tg_custom."""
@@ -4974,7 +4975,8 @@ class TestCFAFrancBCEAOTG:
         assert cfa_franc_bceao_tg.symbol_separator == '_'
         assert cfa_franc_bceao_tg.localized_symbol == 'TG₣'
         assert cfa_franc_bceao_tg.convertion == ''
-        assert cfa_franc_bceao_tg.__hash__() == hash((decimal, 'XOF', '952'))
+        assert cfa_franc_bceao_tg.__hash__() == hash(
+            (cfa_franc_bceao_tg.__class__, decimal, 'XOF', '952'))
         assert cfa_franc_bceao_tg.__repr__() == (
             'CFAFrancBCEAOTG(amount: 1000, '
             'alpha_code: "XOF", '
@@ -4990,7 +4992,6 @@ class TestCFAFrancBCEAOTG:
             'convertion: "", '
             'international: True)')
         assert cfa_franc_bceao_tg.__str__() == 'XOF 10,00.00000'
-
 
     def test_cfa_franc_bceao_tg_changed(self):
         """test_ccfa_franc_bceao_tg_changed."""
@@ -5048,7 +5049,6 @@ class TestCFAFrancBCEAOTG:
                 match='can\'t set attribute'):
             cfa_franc_bceao_tg.international = True
 
-
     def test_cfa_franc_bceao_tg_math_add(self):
         """test_cfa_franc_bceao_tg_math_add."""
         cfa_franc_bceao_tg_one = CFAFrancBCEAOTG(amount=1)
@@ -5061,14 +5061,14 @@ class TestCFAFrancBCEAOTG:
             _ = cfa_franc_bceao_tg_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.CFAFrancBCEAOTG\'> '
                     'and <class \'str\'>.')):
             _ = cfa_franc_bceao_tg_one.__add__('1.00')
         assert (
             cfa_franc_bceao_tg_one +
             cfa_franc_bceao_tg_two) == cfa_franc_bceao_tg_three
-
 
     def test_cfa_franc_bceao_tg_slots(self):
         """test_cfa_franc_bceao_tg_slots."""
@@ -5087,6 +5087,7 @@ from multicurrency import CFPFranc
 
 
 class TestCFPFranc:
+    """CFPFranc currency tests."""
 
     def test_cfp_franc(self):
         """test_cfp_franc."""
@@ -5106,7 +5107,8 @@ class TestCFPFranc:
         assert cfp_franc.symbol_separator == '\u00A0'
         assert cfp_franc.localized_symbol == '₣'
         assert cfp_franc.convertion == ''
-        assert cfp_franc.__hash__() == hash((decimal, 'XPF', '953'))
+        assert cfp_franc.__hash__() == hash(
+            (cfp_franc.__class__, decimal, 'XPF', '953'))
         assert cfp_franc.__repr__() == (
             'CFPFranc(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XPF", '
@@ -5122,7 +5124,6 @@ class TestCFPFranc:
             'convertion: "", '
             'international: False)')
         assert cfp_franc.__str__() == '0 ₣'
-
 
     def test_cfp_franc_negative(self):
         """test_cfp_franc_negative."""
@@ -5141,7 +5142,8 @@ class TestCFPFranc:
         assert cfp_franc.symbol_separator == '\u00A0'
         assert cfp_franc.localized_symbol == '₣'
         assert cfp_franc.convertion == ''
-        assert cfp_franc.__hash__() == hash((decimal, 'XPF', '953'))
+        assert cfp_franc.__hash__() == hash(
+            (cfp_franc.__class__, decimal, 'XPF', '953'))
         assert cfp_franc.__repr__() == (
             'CFPFranc(amount: -100, '
             'alpha_code: "XPF", '
@@ -5157,7 +5159,6 @@ class TestCFPFranc:
             'convertion: "", '
             'international: False)')
         assert cfp_franc.__str__() == '-100 ₣'
-
 
     def test_cfp_franc_custom(self):
         """test_cfp_franc_custom."""
@@ -5185,7 +5186,8 @@ class TestCFPFranc:
         assert cfp_franc.symbol_separator == '_'
         assert cfp_franc.localized_symbol == '₣'
         assert cfp_franc.convertion == ''
-        assert cfp_franc.__hash__() == hash((decimal, 'XPF', '953'))
+        assert cfp_franc.__hash__() == hash(
+            (cfp_franc.__class__, decimal, 'XPF', '953'))
         assert cfp_franc.__repr__() == (
             'CFPFranc(amount: 1000, '
             'alpha_code: "XPF", '
@@ -5201,7 +5203,6 @@ class TestCFPFranc:
             'convertion: "", '
             'international: True)')
         assert cfp_franc.__str__() == 'XPF 10,00.00000'
-
 
     def test_cfp_franc_changed(self):
         """test_ccfp_franc_changed."""
@@ -5259,7 +5260,6 @@ class TestCFPFranc:
                 match='can\'t set attribute'):
             cfp_franc.international = True
 
-
     def test_cfp_franc_math_add(self):
         """test_cfp_franc_math_add."""
         cfp_franc_one = CFPFranc(amount=1)
@@ -5272,14 +5272,14 @@ class TestCFPFranc:
             _ = cfp_franc_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.CFPFranc\'> '
                     'and <class \'str\'>.')):
             _ = cfp_franc_one.__add__('1.00')
         assert (
             cfp_franc_one +
             cfp_franc_two) == cfp_franc_three
-
 
     def test_cfp_franc_slots(self):
         """test_cfp_franc_slots."""
@@ -5298,6 +5298,7 @@ from multicurrency import CFPFrancPF
 
 
 class TestCFPFrancPF:
+    """CFPFrancPF currency tests."""
 
     def test_cfp_franc_pf(self):
         """test_cfp_franc_pf."""
@@ -5317,7 +5318,8 @@ class TestCFPFrancPF:
         assert cfp_franc_pf.symbol_separator == '\u00A0'
         assert cfp_franc_pf.localized_symbol == 'PF₣'
         assert cfp_franc_pf.convertion == ''
-        assert cfp_franc_pf.__hash__() == hash((decimal, 'XPF', '953'))
+        assert cfp_franc_pf.__hash__() == hash(
+            (cfp_franc_pf.__class__, decimal, 'XPF', '953'))
         assert cfp_franc_pf.__repr__() == (
             'CFPFrancPF(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XPF", '
@@ -5333,7 +5335,6 @@ class TestCFPFrancPF:
             'convertion: "", '
             'international: False)')
         assert cfp_franc_pf.__str__() == '0 ₣'
-
 
     def test_cfp_franc_pf_negative(self):
         """test_cfp_franc_pf_negative."""
@@ -5352,7 +5353,8 @@ class TestCFPFrancPF:
         assert cfp_franc_pf.symbol_separator == '\u00A0'
         assert cfp_franc_pf.localized_symbol == 'PF₣'
         assert cfp_franc_pf.convertion == ''
-        assert cfp_franc_pf.__hash__() == hash((decimal, 'XPF', '953'))
+        assert cfp_franc_pf.__hash__() == hash(
+            (cfp_franc_pf.__class__, decimal, 'XPF', '953'))
         assert cfp_franc_pf.__repr__() == (
             'CFPFrancPF(amount: -100, '
             'alpha_code: "XPF", '
@@ -5368,7 +5370,6 @@ class TestCFPFrancPF:
             'convertion: "", '
             'international: False)')
         assert cfp_franc_pf.__str__() == '-100 ₣'
-
 
     def test_cfp_franc_pf_custom(self):
         """test_cfp_franc_pf_custom."""
@@ -5396,7 +5397,8 @@ class TestCFPFrancPF:
         assert cfp_franc_pf.symbol_separator == '_'
         assert cfp_franc_pf.localized_symbol == 'PF₣'
         assert cfp_franc_pf.convertion == ''
-        assert cfp_franc_pf.__hash__() == hash((decimal, 'XPF', '953'))
+        assert cfp_franc_pf.__hash__() == hash(
+            (cfp_franc_pf.__class__, decimal, 'XPF', '953'))
         assert cfp_franc_pf.__repr__() == (
             'CFPFrancPF(amount: 1000, '
             'alpha_code: "XPF", '
@@ -5412,7 +5414,6 @@ class TestCFPFrancPF:
             'convertion: "", '
             'international: True)')
         assert cfp_franc_pf.__str__() == 'XPF 10,00.00000'
-
 
     def test_cfp_franc_pf_changed(self):
         """test_ccfp_franc_pf_changed."""
@@ -5470,7 +5471,6 @@ class TestCFPFrancPF:
                 match='can\'t set attribute'):
             cfp_franc_pf.international = True
 
-
     def test_cfp_franc_pf_math_add(self):
         """test_cfp_franc_pf_math_add."""
         cfp_franc_pf_one = CFPFrancPF(amount=1)
@@ -5483,14 +5483,14 @@ class TestCFPFrancPF:
             _ = cfp_franc_pf_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.CFPFrancPF\'> '
                     'and <class \'str\'>.')):
             _ = cfp_franc_pf_one.__add__('1.00')
         assert (
             cfp_franc_pf_one +
             cfp_franc_pf_two) == cfp_franc_pf_three
-
 
     def test_cfp_franc_pf_slots(self):
         """test_cfp_franc_pf_slots."""
@@ -5509,6 +5509,7 @@ from multicurrency import CFPFrancNC
 
 
 class TestCFPFrancNC:
+    """CFPFrancNC currency tests."""
 
     def test_cfp_franc_nc(self):
         """test_cfp_franc_nc."""
@@ -5528,7 +5529,8 @@ class TestCFPFrancNC:
         assert cfp_franc_nc.symbol_separator == '\u00A0'
         assert cfp_franc_nc.localized_symbol == 'NC₣'
         assert cfp_franc_nc.convertion == ''
-        assert cfp_franc_nc.__hash__() == hash((decimal, 'XPF', '953'))
+        assert cfp_franc_nc.__hash__() == hash(
+            (cfp_franc_nc.__class__, decimal, 'XPF', '953'))
         assert cfp_franc_nc.__repr__() == (
             'CFPFrancNC(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XPF", '
@@ -5544,7 +5546,6 @@ class TestCFPFrancNC:
             'convertion: "", '
             'international: False)')
         assert cfp_franc_nc.__str__() == '0 ₣'
-
 
     def test_cfp_franc_nc_negative(self):
         """test_cfp_franc_nc_negative."""
@@ -5563,7 +5564,8 @@ class TestCFPFrancNC:
         assert cfp_franc_nc.symbol_separator == '\u00A0'
         assert cfp_franc_nc.localized_symbol == 'NC₣'
         assert cfp_franc_nc.convertion == ''
-        assert cfp_franc_nc.__hash__() == hash((decimal, 'XPF', '953'))
+        assert cfp_franc_nc.__hash__() == hash(
+            (cfp_franc_nc.__class__, decimal, 'XPF', '953'))
         assert cfp_franc_nc.__repr__() == (
             'CFPFrancNC(amount: -100, '
             'alpha_code: "XPF", '
@@ -5579,7 +5581,6 @@ class TestCFPFrancNC:
             'convertion: "", '
             'international: False)')
         assert cfp_franc_nc.__str__() == '-100 ₣'
-
 
     def test_cfp_franc_nc_custom(self):
         """test_cfp_franc_nc_custom."""
@@ -5607,7 +5608,8 @@ class TestCFPFrancNC:
         assert cfp_franc_nc.symbol_separator == '_'
         assert cfp_franc_nc.localized_symbol == 'NC₣'
         assert cfp_franc_nc.convertion == ''
-        assert cfp_franc_nc.__hash__() == hash((decimal, 'XPF', '953'))
+        assert cfp_franc_nc.__hash__() == hash(
+            (cfp_franc_nc.__class__, decimal, 'XPF', '953'))
         assert cfp_franc_nc.__repr__() == (
             'CFPFrancNC(amount: 1000, '
             'alpha_code: "XPF", '
@@ -5623,7 +5625,6 @@ class TestCFPFrancNC:
             'convertion: "", '
             'international: True)')
         assert cfp_franc_nc.__str__() == 'XPF 10,00.00000'
-
 
     def test_cfp_franc_nc_changed(self):
         """test_ccfp_franc_nc_changed."""
@@ -5681,7 +5682,6 @@ class TestCFPFrancNC:
                 match='can\'t set attribute'):
             cfp_franc_nc.international = True
 
-
     def test_cfp_franc_nc_math_add(self):
         """test_cfp_franc_nc_math_add."""
         cfp_franc_nc_one = CFPFrancNC(amount=1)
@@ -5694,14 +5694,14 @@ class TestCFPFrancNC:
             _ = cfp_franc_nc_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.CFPFrancNC\'> '
                     'and <class \'str\'>.')):
             _ = cfp_franc_nc_one.__add__('1.00')
         assert (
             cfp_franc_nc_one +
             cfp_franc_nc_two) == cfp_franc_nc_three
-
 
     def test_cfp_franc_nc_slots(self):
         """test_cfp_franc_nc_slots."""
@@ -5720,6 +5720,7 @@ from multicurrency import CFPFrancWF
 
 
 class TestCFPFrancWF:
+    """CFPFrancWF currency tests."""
 
     def test_cfp_franc_wf(self):
         """test_cfp_franc_wf."""
@@ -5739,7 +5740,8 @@ class TestCFPFrancWF:
         assert cfp_franc_wf.symbol_separator == '\u00A0'
         assert cfp_franc_wf.localized_symbol == 'WF₣'
         assert cfp_franc_wf.convertion == ''
-        assert cfp_franc_wf.__hash__() == hash((decimal, 'XPF', '953'))
+        assert cfp_franc_wf.__hash__() == hash(
+            (cfp_franc_wf.__class__, decimal, 'XPF', '953'))
         assert cfp_franc_wf.__repr__() == (
             'CFPFrancWF(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XPF", '
@@ -5755,7 +5757,6 @@ class TestCFPFrancWF:
             'convertion: "", '
             'international: False)')
         assert cfp_franc_wf.__str__() == '0 ₣'
-
 
     def test_cfp_franc_wf_negative(self):
         """test_cfp_franc_wf_negative."""
@@ -5774,7 +5775,8 @@ class TestCFPFrancWF:
         assert cfp_franc_wf.symbol_separator == '\u00A0'
         assert cfp_franc_wf.localized_symbol == 'WF₣'
         assert cfp_franc_wf.convertion == ''
-        assert cfp_franc_wf.__hash__() == hash((decimal, 'XPF', '953'))
+        assert cfp_franc_wf.__hash__() == hash(
+            (cfp_franc_wf.__class__, decimal, 'XPF', '953'))
         assert cfp_franc_wf.__repr__() == (
             'CFPFrancWF(amount: -100, '
             'alpha_code: "XPF", '
@@ -5790,7 +5792,6 @@ class TestCFPFrancWF:
             'convertion: "", '
             'international: False)')
         assert cfp_franc_wf.__str__() == '-100 ₣'
-
 
     def test_cfp_franc_wf_custom(self):
         """test_cfp_franc_wf_custom."""
@@ -5818,7 +5819,8 @@ class TestCFPFrancWF:
         assert cfp_franc_wf.symbol_separator == '_'
         assert cfp_franc_wf.localized_symbol == 'WF₣'
         assert cfp_franc_wf.convertion == ''
-        assert cfp_franc_wf.__hash__() == hash((decimal, 'XPF', '953'))
+        assert cfp_franc_wf.__hash__() == hash(
+            (cfp_franc_wf.__class__, decimal, 'XPF', '953'))
         assert cfp_franc_wf.__repr__() == (
             'CFPFrancWF(amount: 1000, '
             'alpha_code: "XPF", '
@@ -5834,7 +5836,6 @@ class TestCFPFrancWF:
             'convertion: "", '
             'international: True)')
         assert cfp_franc_wf.__str__() == 'XPF 10,00.00000'
-
 
     def test_cfp_franc_wf_changed(self):
         """test_ccfp_franc_wf_changed."""
@@ -5892,7 +5893,6 @@ class TestCFPFrancWF:
                 match='can\'t set attribute'):
             cfp_franc_wf.international = True
 
-
     def test_cfp_franc_wf_math_add(self):
         """test_cfp_franc_wf_math_add."""
         cfp_franc_wf_one = CFPFrancWF(amount=1)
@@ -5905,14 +5905,14 @@ class TestCFPFrancWF:
             _ = cfp_franc_wf_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'franc.CFPFrancWF\'> '
                     'and <class \'str\'>.')):
             _ = cfp_franc_wf_one.__add__('1.00')
         assert (
             cfp_franc_wf_one +
             cfp_franc_wf_two) == cfp_franc_wf_three
-
 
     def test_cfp_franc_wf_slots(self):
         """test_cfp_franc_wf_slots."""

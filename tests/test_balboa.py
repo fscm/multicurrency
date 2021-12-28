@@ -23,6 +23,7 @@ from multicurrency import Balboa
 
 
 class TestBalboa:
+    """Balboa currency tests."""
 
     def test_balboa(self):
         """test_balboa."""
@@ -42,7 +43,8 @@ class TestBalboa:
         assert balboa.symbol_separator == '\u00A0'
         assert balboa.localized_symbol == 'B/.'
         assert balboa.convertion == ''
-        assert balboa.__hash__() == hash((decimal, 'PAB', '590'))
+        assert balboa.__hash__() == hash(
+            (balboa.__class__, decimal, 'PAB', '590'))
         assert balboa.__repr__() == (
             'Balboa(amount: 0.1428571428571428571428571429, '
             'alpha_code: "PAB", '
@@ -58,7 +60,6 @@ class TestBalboa:
             'convertion: "", '
             'international: False)')
         assert balboa.__str__() == 'B/. 0.14'
-
 
     def test_balboa_negative(self):
         """test_balboa_negative."""
@@ -77,7 +78,8 @@ class TestBalboa:
         assert balboa.symbol_separator == '\u00A0'
         assert balboa.localized_symbol == 'B/.'
         assert balboa.convertion == ''
-        assert balboa.__hash__() == hash((decimal, 'PAB', '590'))
+        assert balboa.__hash__() == hash(
+            (balboa.__class__, decimal, 'PAB', '590'))
         assert balboa.__repr__() == (
             'Balboa(amount: -100, '
             'alpha_code: "PAB", '
@@ -93,7 +95,6 @@ class TestBalboa:
             'convertion: "", '
             'international: False)')
         assert balboa.__str__() == 'B/. -100.00'
-
 
     def test_balboa_custom(self):
         """test_balboa_custom."""
@@ -121,7 +122,8 @@ class TestBalboa:
         assert balboa.symbol_separator == '_'
         assert balboa.localized_symbol == 'B/.'
         assert balboa.convertion == ''
-        assert balboa.__hash__() == hash((decimal, 'PAB', '590'))
+        assert balboa.__hash__() == hash(
+            (balboa.__class__, decimal, 'PAB', '590'))
         assert balboa.__repr__() == (
             'Balboa(amount: 1000, '
             'alpha_code: "PAB", '
@@ -137,7 +139,6 @@ class TestBalboa:
             'convertion: "", '
             'international: True)')
         assert balboa.__str__() == 'PAB 10,00.00000'
-
 
     def test_balboa_changed(self):
         """test_cbalboa_changed."""
@@ -195,7 +196,6 @@ class TestBalboa:
                 match='can\'t set attribute'):
             balboa.international = True
 
-
     def test_balboa_math_add(self):
         """test_balboa_math_add."""
         balboa_one = Balboa(amount=1)
@@ -208,14 +208,14 @@ class TestBalboa:
             _ = balboa_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'balboa.Balboa\'> '
                     'and <class \'str\'>.')):
             _ = balboa_one.__add__('1.00')
         assert (
             balboa_one +
             balboa_two) == balboa_three
-
 
     def test_balboa_slots(self):
         """test_balboa_slots."""

@@ -12,7 +12,7 @@ from multicurrency import (
     __author__, __license__, __project__, __version__)
 
 
-CLASSIFIERS =[
+CLASSIFIERS = [
     'Development Status :: 4 - Beta',
     'Intended Audience :: Developers',
     'License :: OSI Approved :: MIT License',
@@ -23,15 +23,16 @@ CLASSIFIERS =[
     'Programming Language :: Python :: 3.7',
     'Programming Language :: Python :: 3.8',
     'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
     'Topic :: Software Development :: Libraries',
     'Typing :: Typed']
 DESCRIPTION = 'Currency representation library.'
 KEYWORDS = ['currency', 'library', 'monetary']
 PROJECT_URLS = {
-    'Documentation': 'http://fscm.github.io/{0}'.format(__project__),
-    'Source': 'https://github.com/fscm/{0}'.format(__project__)}
+    'Documentation': f'http://fscm.github.io/{__project__}',
+    'Source': f'https://github.com/fscm/{__project__}'}
 PYTHON_REQUIRES = '>=3.6, <4'
-URL = 'https://github.com/fscm/{0}'.format(__project__)
+URL = f'https://github.com/fscm/{__project__}'
 
 
 with open('requirements.txt', 'r', encoding='utf-8') as r:

@@ -23,6 +23,7 @@ from multicurrency import BrazilianReal
 
 
 class TestBrazilianReal:
+    """BrazilianReal currency tests."""
 
     def test_brazilian_real(self):
         """test_brazilian_real."""
@@ -42,7 +43,8 @@ class TestBrazilianReal:
         assert brazilian_real.symbol_separator == '\u00A0'
         assert brazilian_real.localized_symbol == 'R$'
         assert brazilian_real.convertion == ''
-        assert brazilian_real.__hash__() == hash((decimal, 'BRL', '986'))
+        assert brazilian_real.__hash__() == hash(
+            (brazilian_real.__class__, decimal, 'BRL', '986'))
         assert brazilian_real.__repr__() == (
             'BrazilianReal(amount: 0.1428571428571428571428571429, '
             'alpha_code: "BRL", '
@@ -58,7 +60,6 @@ class TestBrazilianReal:
             'convertion: "", '
             'international: False)')
         assert brazilian_real.__str__() == 'R$ 0,14'
-
 
     def test_brazilian_real_negative(self):
         """test_brazilian_real_negative."""
@@ -77,7 +78,8 @@ class TestBrazilianReal:
         assert brazilian_real.symbol_separator == '\u00A0'
         assert brazilian_real.localized_symbol == 'R$'
         assert brazilian_real.convertion == ''
-        assert brazilian_real.__hash__() == hash((decimal, 'BRL', '986'))
+        assert brazilian_real.__hash__() == hash(
+            (brazilian_real.__class__, decimal, 'BRL', '986'))
         assert brazilian_real.__repr__() == (
             'BrazilianReal(amount: -100, '
             'alpha_code: "BRL", '
@@ -93,7 +95,6 @@ class TestBrazilianReal:
             'convertion: "", '
             'international: False)')
         assert brazilian_real.__str__() == 'R$ -100,00'
-
 
     def test_brazilian_real_custom(self):
         """test_brazilian_real_custom."""
@@ -121,7 +122,8 @@ class TestBrazilianReal:
         assert brazilian_real.symbol_separator == '_'
         assert brazilian_real.localized_symbol == 'R$'
         assert brazilian_real.convertion == ''
-        assert brazilian_real.__hash__() == hash((decimal, 'BRL', '986'))
+        assert brazilian_real.__hash__() == hash(
+            (brazilian_real.__class__, decimal, 'BRL', '986'))
         assert brazilian_real.__repr__() == (
             'BrazilianReal(amount: 1000, '
             'alpha_code: "BRL", '
@@ -137,7 +139,6 @@ class TestBrazilianReal:
             'convertion: "", '
             'international: True)')
         assert brazilian_real.__str__() == 'BRL 10,00.00000'
-
 
     def test_brazilian_real_changed(self):
         """test_cbrazilian_real_changed."""
@@ -195,7 +196,6 @@ class TestBrazilianReal:
                 match='can\'t set attribute'):
             brazilian_real.international = True
 
-
     def test_brazilian_real_math_add(self):
         """test_brazilian_real_math_add."""
         brazilian_real_one = BrazilianReal(amount=1)
@@ -208,14 +208,14 @@ class TestBrazilianReal:
             _ = brazilian_real_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'real.BrazilianReal\'> '
                     'and <class \'str\'>.')):
             _ = brazilian_real_one.__add__('1.00')
         assert (
             brazilian_real_one +
             brazilian_real_two) == brazilian_real_three
-
 
     def test_brazilian_real_slots(self):
         """test_brazilian_real_slots."""

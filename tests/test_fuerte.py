@@ -23,6 +23,7 @@ from multicurrency import BolivarFuerte
 
 
 class TestBolivarFuerte:
+    """BolivarFuerte currency tests."""
 
     def test_bolivar_fuerte(self):
         """test_bolivar_fuerte."""
@@ -42,7 +43,8 @@ class TestBolivarFuerte:
         assert bolivar_fuerte.symbol_separator == '\u00A0'
         assert bolivar_fuerte.localized_symbol == 'Bs.F.'
         assert bolivar_fuerte.convertion == ''
-        assert bolivar_fuerte.__hash__() == hash((decimal, 'VEF', '937'))
+        assert bolivar_fuerte.__hash__() == hash(
+            (bolivar_fuerte.__class__, decimal, 'VEF', '937'))
         assert bolivar_fuerte.__repr__() == (
             'BolivarFuerte(amount: 0.1428571428571428571428571429, '
             'alpha_code: "VEF", '
@@ -58,7 +60,6 @@ class TestBolivarFuerte:
             'convertion: "", '
             'international: False)')
         assert bolivar_fuerte.__str__() == 'Bs.F. 0,14'
-
 
     def test_bolivar_fuerte_negative(self):
         """test_bolivar_fuerte_negative."""
@@ -77,7 +78,8 @@ class TestBolivarFuerte:
         assert bolivar_fuerte.symbol_separator == '\u00A0'
         assert bolivar_fuerte.localized_symbol == 'Bs.F.'
         assert bolivar_fuerte.convertion == ''
-        assert bolivar_fuerte.__hash__() == hash((decimal, 'VEF', '937'))
+        assert bolivar_fuerte.__hash__() == hash(
+            (bolivar_fuerte.__class__, decimal, 'VEF', '937'))
         assert bolivar_fuerte.__repr__() == (
             'BolivarFuerte(amount: -100, '
             'alpha_code: "VEF", '
@@ -93,7 +95,6 @@ class TestBolivarFuerte:
             'convertion: "", '
             'international: False)')
         assert bolivar_fuerte.__str__() == 'Bs.F. -100,00'
-
 
     def test_bolivar_fuerte_custom(self):
         """test_bolivar_fuerte_custom."""
@@ -121,7 +122,8 @@ class TestBolivarFuerte:
         assert bolivar_fuerte.symbol_separator == '_'
         assert bolivar_fuerte.localized_symbol == 'Bs.F.'
         assert bolivar_fuerte.convertion == ''
-        assert bolivar_fuerte.__hash__() == hash((decimal, 'VEF', '937'))
+        assert bolivar_fuerte.__hash__() == hash(
+            (bolivar_fuerte.__class__, decimal, 'VEF', '937'))
         assert bolivar_fuerte.__repr__() == (
             'BolivarFuerte(amount: 1000, '
             'alpha_code: "VEF", '
@@ -137,7 +139,6 @@ class TestBolivarFuerte:
             'convertion: "", '
             'international: True)')
         assert bolivar_fuerte.__str__() == 'VEF 10,00.00000'
-
 
     def test_bolivar_fuerte_changed(self):
         """test_cbolivar_fuerte_changed."""
@@ -195,7 +196,6 @@ class TestBolivarFuerte:
                 match='can\'t set attribute'):
             bolivar_fuerte.international = True
 
-
     def test_bolivar_fuerte_math_add(self):
         """test_bolivar_fuerte_math_add."""
         bolivar_fuerte_one = BolivarFuerte(amount=1)
@@ -208,14 +208,14 @@ class TestBolivarFuerte:
             _ = bolivar_fuerte_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'fuerte.BolivarFuerte\'> '
                     'and <class \'str\'>.')):
             _ = bolivar_fuerte_one.__add__('1.00')
         assert (
             bolivar_fuerte_one +
             bolivar_fuerte_two) == bolivar_fuerte_three
-
 
     def test_bolivar_fuerte_slots(self):
         """test_bolivar_fuerte_slots."""

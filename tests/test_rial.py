@@ -23,6 +23,7 @@ from multicurrency import IranianRial
 
 
 class TestIranianRial:
+    """IranianRial currency tests."""
 
     def test_iranian_rial(self):
         """test_iranian_rial."""
@@ -42,7 +43,8 @@ class TestIranianRial:
         assert iranian_rial.symbol_separator == '\u00A0'
         assert iranian_rial.localized_symbol == '﷼'
         assert iranian_rial.convertion == '۰۱۲۳۴۵۶۷۸۹-'
-        assert iranian_rial.__hash__() == hash((decimal, 'IRR', '364'))
+        assert iranian_rial.__hash__() == hash(
+            (iranian_rial.__class__, decimal, 'IRR', '364'))
         assert iranian_rial.__repr__() == (
             'IranianRial(amount: 0.1428571428571428571428571429, '
             'alpha_code: "IRR", '
@@ -58,7 +60,6 @@ class TestIranianRial:
             'convertion: "۰۱۲۳۴۵۶۷۸۹-", '
             'international: False)')
         assert iranian_rial.__str__() == '۰٫۱۴ ﷼'
-
 
     def test_iranian_rial_negative(self):
         """test_iranian_rial_negative."""
@@ -77,7 +78,8 @@ class TestIranianRial:
         assert iranian_rial.symbol_separator == '\u00A0'
         assert iranian_rial.localized_symbol == '﷼'
         assert iranian_rial.convertion == '۰۱۲۳۴۵۶۷۸۹-'
-        assert iranian_rial.__hash__() == hash((decimal, 'IRR', '364'))
+        assert iranian_rial.__hash__() == hash(
+            (iranian_rial.__class__, decimal, 'IRR', '364'))
         assert iranian_rial.__repr__() == (
             'IranianRial(amount: -100, '
             'alpha_code: "IRR", '
@@ -93,7 +95,6 @@ class TestIranianRial:
             'convertion: "۰۱۲۳۴۵۶۷۸۹-", '
             'international: False)')
         assert iranian_rial.__str__() == '-۱۰۰٫۰۰ ﷼'
-
 
     def test_iranian_rial_custom(self):
         """test_iranian_rial_custom."""
@@ -121,7 +122,8 @@ class TestIranianRial:
         assert iranian_rial.symbol_separator == '_'
         assert iranian_rial.localized_symbol == '﷼'
         assert iranian_rial.convertion == '۰۱۲۳۴۵۶۷۸۹-'
-        assert iranian_rial.__hash__() == hash((decimal, 'IRR', '364'))
+        assert iranian_rial.__hash__() == hash(
+            (iranian_rial.__class__, decimal, 'IRR', '364'))
         assert iranian_rial.__repr__() == (
             'IranianRial(amount: 1000, '
             'alpha_code: "IRR", '
@@ -137,7 +139,6 @@ class TestIranianRial:
             'convertion: "۰۱۲۳۴۵۶۷۸۹-", '
             'international: True)')
         assert iranian_rial.__str__() == 'IRR 10,00.00000'
-
 
     def test_iranian_rial_changed(self):
         """test_ciranian_rial_changed."""
@@ -195,7 +196,6 @@ class TestIranianRial:
                 match='can\'t set attribute'):
             iranian_rial.international = True
 
-
     def test_iranian_rial_math_add(self):
         """test_iranian_rial_math_add."""
         iranian_rial_one = IranianRial(amount=1)
@@ -208,14 +208,14 @@ class TestIranianRial:
             _ = iranian_rial_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'rial.IranianRial\'> '
                     'and <class \'str\'>.')):
             _ = iranian_rial_one.__add__('1.00')
         assert (
             iranian_rial_one +
             iranian_rial_two) == iranian_rial_three
-
 
     def test_iranian_rial_slots(self):
         """test_iranian_rial_slots."""
@@ -234,6 +234,7 @@ from multicurrency import RialOmani
 
 
 class TestRialOmani:
+    """RialOmani currency tests."""
 
     def test_rial_omani(self):
         """test_rial_omani."""
@@ -253,7 +254,8 @@ class TestRialOmani:
         assert rial_omani.symbol_separator == '\u00A0'
         assert rial_omani.localized_symbol == 'ر.ع.'
         assert rial_omani.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert rial_omani.__hash__() == hash((decimal, 'OMR', '512'))
+        assert rial_omani.__hash__() == hash(
+            (rial_omani.__class__, decimal, 'OMR', '512'))
         assert rial_omani.__repr__() == (
             'RialOmani(amount: 0.1428571428571428571428571429, '
             'alpha_code: "OMR", '
@@ -269,7 +271,6 @@ class TestRialOmani:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: False)')
         assert rial_omani.__str__() == 'ر.ع. ٠٫١٤٣'
-
 
     def test_rial_omani_negative(self):
         """test_rial_omani_negative."""
@@ -288,7 +289,8 @@ class TestRialOmani:
         assert rial_omani.symbol_separator == '\u00A0'
         assert rial_omani.localized_symbol == 'ر.ع.'
         assert rial_omani.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert rial_omani.__hash__() == hash((decimal, 'OMR', '512'))
+        assert rial_omani.__hash__() == hash(
+            (rial_omani.__class__, decimal, 'OMR', '512'))
         assert rial_omani.__repr__() == (
             'RialOmani(amount: -100, '
             'alpha_code: "OMR", '
@@ -304,7 +306,6 @@ class TestRialOmani:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: False)')
         assert rial_omani.__str__() == 'ر.ع. -١٠٠٫٠٠٠'
-
 
     def test_rial_omani_custom(self):
         """test_rial_omani_custom."""
@@ -332,7 +333,8 @@ class TestRialOmani:
         assert rial_omani.symbol_separator == '_'
         assert rial_omani.localized_symbol == 'ر.ع.'
         assert rial_omani.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert rial_omani.__hash__() == hash((decimal, 'OMR', '512'))
+        assert rial_omani.__hash__() == hash(
+            (rial_omani.__class__, decimal, 'OMR', '512'))
         assert rial_omani.__repr__() == (
             'RialOmani(amount: 1000, '
             'alpha_code: "OMR", '
@@ -348,7 +350,6 @@ class TestRialOmani:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: True)')
         assert rial_omani.__str__() == 'OMR 10,00.00000'
-
 
     def test_rial_omani_changed(self):
         """test_crial_omani_changed."""
@@ -406,7 +407,6 @@ class TestRialOmani:
                 match='can\'t set attribute'):
             rial_omani.international = True
 
-
     def test_rial_omani_math_add(self):
         """test_rial_omani_math_add."""
         rial_omani_one = RialOmani(amount=1)
@@ -419,14 +419,14 @@ class TestRialOmani:
             _ = rial_omani_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'rial.RialOmani\'> '
                     'and <class \'str\'>.')):
             _ = rial_omani_one.__add__('1.00')
         assert (
             rial_omani_one +
             rial_omani_two) == rial_omani_three
-
 
     def test_rial_omani_slots(self):
         """test_rial_omani_slots."""
@@ -445,6 +445,7 @@ from multicurrency import QatariRial
 
 
 class TestQatariRial:
+    """QatariRial currency tests."""
 
     def test_qatari_rial(self):
         """test_qatari_rial."""
@@ -464,7 +465,8 @@ class TestQatariRial:
         assert qatari_rial.symbol_separator == '\u00A0'
         assert qatari_rial.localized_symbol == 'ر.ق.'
         assert qatari_rial.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert qatari_rial.__hash__() == hash((decimal, 'QAR', '634'))
+        assert qatari_rial.__hash__() == hash(
+            (qatari_rial.__class__, decimal, 'QAR', '634'))
         assert qatari_rial.__repr__() == (
             'QatariRial(amount: 0.1428571428571428571428571429, '
             'alpha_code: "QAR", '
@@ -480,7 +482,6 @@ class TestQatariRial:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: False)')
         assert qatari_rial.__str__() == 'ر.ق. ٠٫١٤'
-
 
     def test_qatari_rial_negative(self):
         """test_qatari_rial_negative."""
@@ -499,7 +500,8 @@ class TestQatariRial:
         assert qatari_rial.symbol_separator == '\u00A0'
         assert qatari_rial.localized_symbol == 'ر.ق.'
         assert qatari_rial.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert qatari_rial.__hash__() == hash((decimal, 'QAR', '634'))
+        assert qatari_rial.__hash__() == hash(
+            (qatari_rial.__class__, decimal, 'QAR', '634'))
         assert qatari_rial.__repr__() == (
             'QatariRial(amount: -100, '
             'alpha_code: "QAR", '
@@ -515,7 +517,6 @@ class TestQatariRial:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: False)')
         assert qatari_rial.__str__() == 'ر.ق. -١٠٠٫٠٠'
-
 
     def test_qatari_rial_custom(self):
         """test_qatari_rial_custom."""
@@ -543,7 +544,8 @@ class TestQatariRial:
         assert qatari_rial.symbol_separator == '_'
         assert qatari_rial.localized_symbol == 'ر.ق.'
         assert qatari_rial.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert qatari_rial.__hash__() == hash((decimal, 'QAR', '634'))
+        assert qatari_rial.__hash__() == hash(
+            (qatari_rial.__class__, decimal, 'QAR', '634'))
         assert qatari_rial.__repr__() == (
             'QatariRial(amount: 1000, '
             'alpha_code: "QAR", '
@@ -559,7 +561,6 @@ class TestQatariRial:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: True)')
         assert qatari_rial.__str__() == 'QAR 10,00.00000'
-
 
     def test_qatari_rial_changed(self):
         """test_cqatari_rial_changed."""
@@ -617,7 +618,6 @@ class TestQatariRial:
                 match='can\'t set attribute'):
             qatari_rial.international = True
 
-
     def test_qatari_rial_math_add(self):
         """test_qatari_rial_math_add."""
         qatari_rial_one = QatariRial(amount=1)
@@ -630,14 +630,14 @@ class TestQatariRial:
             _ = qatari_rial_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'rial.QatariRial\'> '
                     'and <class \'str\'>.')):
             _ = qatari_rial_one.__add__('1.00')
         assert (
             qatari_rial_one +
             qatari_rial_two) == qatari_rial_three
-
 
     def test_qatari_rial_slots(self):
         """test_qatari_rial_slots."""
@@ -656,6 +656,7 @@ from multicurrency import YemeniRial
 
 
 class TestYemeniRial:
+    """YemeniRial currency tests."""
 
     def test_yemeni_rial(self):
         """test_yemeni_rial."""
@@ -675,7 +676,8 @@ class TestYemeniRial:
         assert yemeni_rial.symbol_separator == '\u00A0'
         assert yemeni_rial.localized_symbol == '﷼'
         assert yemeni_rial.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert yemeni_rial.__hash__() == hash((decimal, 'YER', '886'))
+        assert yemeni_rial.__hash__() == hash(
+            (yemeni_rial.__class__, decimal, 'YER', '886'))
         assert yemeni_rial.__repr__() == (
             'YemeniRial(amount: 0.1428571428571428571428571429, '
             'alpha_code: "YER", '
@@ -691,7 +693,6 @@ class TestYemeniRial:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: False)')
         assert yemeni_rial.__str__() == '٠٫١٤ ﷼'
-
 
     def test_yemeni_rial_negative(self):
         """test_yemeni_rial_negative."""
@@ -710,7 +711,8 @@ class TestYemeniRial:
         assert yemeni_rial.symbol_separator == '\u00A0'
         assert yemeni_rial.localized_symbol == '﷼'
         assert yemeni_rial.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert yemeni_rial.__hash__() == hash((decimal, 'YER', '886'))
+        assert yemeni_rial.__hash__() == hash(
+            (yemeni_rial.__class__, decimal, 'YER', '886'))
         assert yemeni_rial.__repr__() == (
             'YemeniRial(amount: -100, '
             'alpha_code: "YER", '
@@ -726,7 +728,6 @@ class TestYemeniRial:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: False)')
         assert yemeni_rial.__str__() == '-١٠٠٫٠٠ ﷼'
-
 
     def test_yemeni_rial_custom(self):
         """test_yemeni_rial_custom."""
@@ -754,7 +755,8 @@ class TestYemeniRial:
         assert yemeni_rial.symbol_separator == '_'
         assert yemeni_rial.localized_symbol == '﷼'
         assert yemeni_rial.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert yemeni_rial.__hash__() == hash((decimal, 'YER', '886'))
+        assert yemeni_rial.__hash__() == hash(
+            (yemeni_rial.__class__, decimal, 'YER', '886'))
         assert yemeni_rial.__repr__() == (
             'YemeniRial(amount: 1000, '
             'alpha_code: "YER", '
@@ -770,7 +772,6 @@ class TestYemeniRial:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: True)')
         assert yemeni_rial.__str__() == 'YER 10,00.00000'
-
 
     def test_yemeni_rial_changed(self):
         """test_cyemeni_rial_changed."""
@@ -828,7 +829,6 @@ class TestYemeniRial:
                 match='can\'t set attribute'):
             yemeni_rial.international = True
 
-
     def test_yemeni_rial_math_add(self):
         """test_yemeni_rial_math_add."""
         yemeni_rial_one = YemeniRial(amount=1)
@@ -841,14 +841,14 @@ class TestYemeniRial:
             _ = yemeni_rial_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'rial.YemeniRial\'> '
                     'and <class \'str\'>.')):
             _ = yemeni_rial_one.__add__('1.00')
         assert (
             yemeni_rial_one +
             yemeni_rial_two) == yemeni_rial_three
-
 
     def test_yemeni_rial_slots(self):
         """test_yemeni_rial_slots."""

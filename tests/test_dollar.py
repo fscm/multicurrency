@@ -23,6 +23,7 @@ from multicurrency import AustralianDollar
 
 
 class TestAustralianDollar:
+    """AustralianDollar currency tests."""
 
     def test_australian_dollar(self):
         """test_australian_dollar."""
@@ -42,7 +43,8 @@ class TestAustralianDollar:
         assert australian_dollar.symbol_separator == ''
         assert australian_dollar.localized_symbol == '$'
         assert australian_dollar.convertion == ''
-        assert australian_dollar.__hash__() == hash((decimal, 'AUD', '036'))
+        assert australian_dollar.__hash__() == hash(
+            (australian_dollar.__class__, decimal, 'AUD', '036'))
         assert australian_dollar.__repr__() == (
             'AustralianDollar(amount: 0.1428571428571428571428571429, '
             'alpha_code: "AUD", '
@@ -58,7 +60,6 @@ class TestAustralianDollar:
             'convertion: "", '
             'international: False)')
         assert australian_dollar.__str__() == '$0.14'
-
 
     def test_australian_dollar_negative(self):
         """test_australian_dollar_negative."""
@@ -77,7 +78,8 @@ class TestAustralianDollar:
         assert australian_dollar.symbol_separator == ''
         assert australian_dollar.localized_symbol == '$'
         assert australian_dollar.convertion == ''
-        assert australian_dollar.__hash__() == hash((decimal, 'AUD', '036'))
+        assert australian_dollar.__hash__() == hash(
+            (australian_dollar.__class__, decimal, 'AUD', '036'))
         assert australian_dollar.__repr__() == (
             'AustralianDollar(amount: -100, '
             'alpha_code: "AUD", '
@@ -93,7 +95,6 @@ class TestAustralianDollar:
             'convertion: "", '
             'international: False)')
         assert australian_dollar.__str__() == '$-100.00'
-
 
     def test_australian_dollar_custom(self):
         """test_australian_dollar_custom."""
@@ -121,7 +122,8 @@ class TestAustralianDollar:
         assert australian_dollar.symbol_separator == '_'
         assert australian_dollar.localized_symbol == '$'
         assert australian_dollar.convertion == ''
-        assert australian_dollar.__hash__() == hash((decimal, 'AUD', '036'))
+        assert australian_dollar.__hash__() == hash(
+            (australian_dollar.__class__, decimal, 'AUD', '036'))
         assert australian_dollar.__repr__() == (
             'AustralianDollar(amount: 1000, '
             'alpha_code: "AUD", '
@@ -137,7 +139,6 @@ class TestAustralianDollar:
             'convertion: "", '
             'international: True)')
         assert australian_dollar.__str__() == 'AUD 10,00.00000'
-
 
     def test_australian_dollar_changed(self):
         """test_caustralian_dollar_changed."""
@@ -195,7 +196,6 @@ class TestAustralianDollar:
                 match='can\'t set attribute'):
             australian_dollar.international = True
 
-
     def test_australian_dollar_math_add(self):
         """test_australian_dollar_math_add."""
         australian_dollar_one = AustralianDollar(amount=1)
@@ -208,14 +208,14 @@ class TestAustralianDollar:
             _ = australian_dollar_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.AustralianDollar\'> '
                     'and <class \'str\'>.')):
             _ = australian_dollar_one.__add__('1.00')
         assert (
             australian_dollar_one +
             australian_dollar_two) == australian_dollar_three
-
 
     def test_australian_dollar_slots(self):
         """test_australian_dollar_slots."""
@@ -234,6 +234,7 @@ from multicurrency import AustralianDollarAU
 
 
 class TestAustralianDollarAU:
+    """AustralianDollarAU currency tests."""
 
     def test_australian_dollar_au(self):
         """test_australian_dollar_au."""
@@ -253,7 +254,8 @@ class TestAustralianDollarAU:
         assert australian_dollar_au.symbol_separator == ''
         assert australian_dollar_au.localized_symbol == 'AU$'
         assert australian_dollar_au.convertion == ''
-        assert australian_dollar_au.__hash__() == hash((decimal, 'AUD', '036'))
+        assert australian_dollar_au.__hash__() == hash(
+            (australian_dollar_au.__class__, decimal, 'AUD', '036'))
         assert australian_dollar_au.__repr__() == (
             'AustralianDollarAU(amount: 0.1428571428571428571428571429, '
             'alpha_code: "AUD", '
@@ -269,7 +271,6 @@ class TestAustralianDollarAU:
             'convertion: "", '
             'international: False)')
         assert australian_dollar_au.__str__() == '$0.14'
-
 
     def test_australian_dollar_au_negative(self):
         """test_australian_dollar_au_negative."""
@@ -288,7 +289,8 @@ class TestAustralianDollarAU:
         assert australian_dollar_au.symbol_separator == ''
         assert australian_dollar_au.localized_symbol == 'AU$'
         assert australian_dollar_au.convertion == ''
-        assert australian_dollar_au.__hash__() == hash((decimal, 'AUD', '036'))
+        assert australian_dollar_au.__hash__() == hash(
+            (australian_dollar_au.__class__, decimal, 'AUD', '036'))
         assert australian_dollar_au.__repr__() == (
             'AustralianDollarAU(amount: -100, '
             'alpha_code: "AUD", '
@@ -304,7 +306,6 @@ class TestAustralianDollarAU:
             'convertion: "", '
             'international: False)')
         assert australian_dollar_au.__str__() == '$-100.00'
-
 
     def test_australian_dollar_au_custom(self):
         """test_australian_dollar_au_custom."""
@@ -332,7 +333,8 @@ class TestAustralianDollarAU:
         assert australian_dollar_au.symbol_separator == '_'
         assert australian_dollar_au.localized_symbol == 'AU$'
         assert australian_dollar_au.convertion == ''
-        assert australian_dollar_au.__hash__() == hash((decimal, 'AUD', '036'))
+        assert australian_dollar_au.__hash__() == hash(
+            (australian_dollar_au.__class__, decimal, 'AUD', '036'))
         assert australian_dollar_au.__repr__() == (
             'AustralianDollarAU(amount: 1000, '
             'alpha_code: "AUD", '
@@ -348,7 +350,6 @@ class TestAustralianDollarAU:
             'convertion: "", '
             'international: True)')
         assert australian_dollar_au.__str__() == 'AUD 10,00.00000'
-
 
     def test_australian_dollar_au_changed(self):
         """test_caustralian_dollar_au_changed."""
@@ -406,7 +407,6 @@ class TestAustralianDollarAU:
                 match='can\'t set attribute'):
             australian_dollar_au.international = True
 
-
     def test_australian_dollar_au_math_add(self):
         """test_australian_dollar_au_math_add."""
         australian_dollar_au_one = AustralianDollarAU(amount=1)
@@ -419,14 +419,14 @@ class TestAustralianDollarAU:
             _ = australian_dollar_au_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.AustralianDollarAU\'> '
                     'and <class \'str\'>.')):
             _ = australian_dollar_au_one.__add__('1.00')
         assert (
             australian_dollar_au_one +
             australian_dollar_au_two) == australian_dollar_au_three
-
 
     def test_australian_dollar_au_slots(self):
         """test_australian_dollar_au_slots."""
@@ -445,6 +445,7 @@ from multicurrency import AustralianDollarKI
 
 
 class TestAustralianDollarKI:
+    """AustralianDollarKI currency tests."""
 
     def test_australian_dollar_ki(self):
         """test_australian_dollar_ki."""
@@ -464,7 +465,8 @@ class TestAustralianDollarKI:
         assert australian_dollar_ki.symbol_separator == ''
         assert australian_dollar_ki.localized_symbol == 'KI$'
         assert australian_dollar_ki.convertion == ''
-        assert australian_dollar_ki.__hash__() == hash((decimal, 'AUD', '036'))
+        assert australian_dollar_ki.__hash__() == hash(
+            (australian_dollar_ki.__class__, decimal, 'AUD', '036'))
         assert australian_dollar_ki.__repr__() == (
             'AustralianDollarKI(amount: 0.1428571428571428571428571429, '
             'alpha_code: "AUD", '
@@ -480,7 +482,6 @@ class TestAustralianDollarKI:
             'convertion: "", '
             'international: False)')
         assert australian_dollar_ki.__str__() == '$0.14'
-
 
     def test_australian_dollar_ki_negative(self):
         """test_australian_dollar_ki_negative."""
@@ -499,7 +500,8 @@ class TestAustralianDollarKI:
         assert australian_dollar_ki.symbol_separator == ''
         assert australian_dollar_ki.localized_symbol == 'KI$'
         assert australian_dollar_ki.convertion == ''
-        assert australian_dollar_ki.__hash__() == hash((decimal, 'AUD', '036'))
+        assert australian_dollar_ki.__hash__() == hash(
+            (australian_dollar_ki.__class__, decimal, 'AUD', '036'))
         assert australian_dollar_ki.__repr__() == (
             'AustralianDollarKI(amount: -100, '
             'alpha_code: "AUD", '
@@ -515,7 +517,6 @@ class TestAustralianDollarKI:
             'convertion: "", '
             'international: False)')
         assert australian_dollar_ki.__str__() == '$-100.00'
-
 
     def test_australian_dollar_ki_custom(self):
         """test_australian_dollar_ki_custom."""
@@ -543,7 +544,8 @@ class TestAustralianDollarKI:
         assert australian_dollar_ki.symbol_separator == '_'
         assert australian_dollar_ki.localized_symbol == 'KI$'
         assert australian_dollar_ki.convertion == ''
-        assert australian_dollar_ki.__hash__() == hash((decimal, 'AUD', '036'))
+        assert australian_dollar_ki.__hash__() == hash(
+            (australian_dollar_ki.__class__, decimal, 'AUD', '036'))
         assert australian_dollar_ki.__repr__() == (
             'AustralianDollarKI(amount: 1000, '
             'alpha_code: "AUD", '
@@ -559,7 +561,6 @@ class TestAustralianDollarKI:
             'convertion: "", '
             'international: True)')
         assert australian_dollar_ki.__str__() == 'AUD 10,00.00000'
-
 
     def test_australian_dollar_ki_changed(self):
         """test_caustralian_dollar_ki_changed."""
@@ -617,7 +618,6 @@ class TestAustralianDollarKI:
                 match='can\'t set attribute'):
             australian_dollar_ki.international = True
 
-
     def test_australian_dollar_ki_math_add(self):
         """test_australian_dollar_ki_math_add."""
         australian_dollar_ki_one = AustralianDollarKI(amount=1)
@@ -630,14 +630,14 @@ class TestAustralianDollarKI:
             _ = australian_dollar_ki_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.AustralianDollarKI\'> '
                     'and <class \'str\'>.')):
             _ = australian_dollar_ki_one.__add__('1.00')
         assert (
             australian_dollar_ki_one +
             australian_dollar_ki_two) == australian_dollar_ki_three
-
 
     def test_australian_dollar_ki_slots(self):
         """test_australian_dollar_ki_slots."""
@@ -656,6 +656,7 @@ from multicurrency import AustralianDollarCC
 
 
 class TestAustralianDollarCC:
+    """AustralianDollarCC currency tests."""
 
     def test_australian_dollar_cc(self):
         """test_australian_dollar_cc."""
@@ -675,7 +676,8 @@ class TestAustralianDollarCC:
         assert australian_dollar_cc.symbol_separator == ''
         assert australian_dollar_cc.localized_symbol == 'CC$'
         assert australian_dollar_cc.convertion == ''
-        assert australian_dollar_cc.__hash__() == hash((decimal, 'AUD', '036'))
+        assert australian_dollar_cc.__hash__() == hash(
+            (australian_dollar_cc.__class__, decimal, 'AUD', '036'))
         assert australian_dollar_cc.__repr__() == (
             'AustralianDollarCC(amount: 0.1428571428571428571428571429, '
             'alpha_code: "AUD", '
@@ -691,7 +693,6 @@ class TestAustralianDollarCC:
             'convertion: "", '
             'international: False)')
         assert australian_dollar_cc.__str__() == '$0.14'
-
 
     def test_australian_dollar_cc_negative(self):
         """test_australian_dollar_cc_negative."""
@@ -710,7 +711,8 @@ class TestAustralianDollarCC:
         assert australian_dollar_cc.symbol_separator == ''
         assert australian_dollar_cc.localized_symbol == 'CC$'
         assert australian_dollar_cc.convertion == ''
-        assert australian_dollar_cc.__hash__() == hash((decimal, 'AUD', '036'))
+        assert australian_dollar_cc.__hash__() == hash(
+            (australian_dollar_cc.__class__, decimal, 'AUD', '036'))
         assert australian_dollar_cc.__repr__() == (
             'AustralianDollarCC(amount: -100, '
             'alpha_code: "AUD", '
@@ -726,7 +728,6 @@ class TestAustralianDollarCC:
             'convertion: "", '
             'international: False)')
         assert australian_dollar_cc.__str__() == '$-100.00'
-
 
     def test_australian_dollar_cc_custom(self):
         """test_australian_dollar_cc_custom."""
@@ -754,7 +755,8 @@ class TestAustralianDollarCC:
         assert australian_dollar_cc.symbol_separator == '_'
         assert australian_dollar_cc.localized_symbol == 'CC$'
         assert australian_dollar_cc.convertion == ''
-        assert australian_dollar_cc.__hash__() == hash((decimal, 'AUD', '036'))
+        assert australian_dollar_cc.__hash__() == hash(
+            (australian_dollar_cc.__class__, decimal, 'AUD', '036'))
         assert australian_dollar_cc.__repr__() == (
             'AustralianDollarCC(amount: 1000, '
             'alpha_code: "AUD", '
@@ -770,7 +772,6 @@ class TestAustralianDollarCC:
             'convertion: "", '
             'international: True)')
         assert australian_dollar_cc.__str__() == 'AUD 10,00.00000'
-
 
     def test_australian_dollar_cc_changed(self):
         """test_caustralian_dollar_cc_changed."""
@@ -828,7 +829,6 @@ class TestAustralianDollarCC:
                 match='can\'t set attribute'):
             australian_dollar_cc.international = True
 
-
     def test_australian_dollar_cc_math_add(self):
         """test_australian_dollar_cc_math_add."""
         australian_dollar_cc_one = AustralianDollarCC(amount=1)
@@ -841,14 +841,14 @@ class TestAustralianDollarCC:
             _ = australian_dollar_cc_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.AustralianDollarCC\'> '
                     'and <class \'str\'>.')):
             _ = australian_dollar_cc_one.__add__('1.00')
         assert (
             australian_dollar_cc_one +
             australian_dollar_cc_two) == australian_dollar_cc_three
-
 
     def test_australian_dollar_cc_slots(self):
         """test_australian_dollar_cc_slots."""
@@ -867,6 +867,7 @@ from multicurrency import AustralianDollarMR
 
 
 class TestAustralianDollarMR:
+    """AustralianDollarMR currency tests."""
 
     def test_australian_dollar_mr(self):
         """test_australian_dollar_mr."""
@@ -886,7 +887,8 @@ class TestAustralianDollarMR:
         assert australian_dollar_mr.symbol_separator == ''
         assert australian_dollar_mr.localized_symbol == 'NR$'
         assert australian_dollar_mr.convertion == ''
-        assert australian_dollar_mr.__hash__() == hash((decimal, 'AUD', '036'))
+        assert australian_dollar_mr.__hash__() == hash(
+            (australian_dollar_mr.__class__, decimal, 'AUD', '036'))
         assert australian_dollar_mr.__repr__() == (
             'AustralianDollarMR(amount: 0.1428571428571428571428571429, '
             'alpha_code: "AUD", '
@@ -902,7 +904,6 @@ class TestAustralianDollarMR:
             'convertion: "", '
             'international: False)')
         assert australian_dollar_mr.__str__() == '$0.14'
-
 
     def test_australian_dollar_mr_negative(self):
         """test_australian_dollar_mr_negative."""
@@ -921,7 +922,8 @@ class TestAustralianDollarMR:
         assert australian_dollar_mr.symbol_separator == ''
         assert australian_dollar_mr.localized_symbol == 'NR$'
         assert australian_dollar_mr.convertion == ''
-        assert australian_dollar_mr.__hash__() == hash((decimal, 'AUD', '036'))
+        assert australian_dollar_mr.__hash__() == hash(
+            (australian_dollar_mr.__class__, decimal, 'AUD', '036'))
         assert australian_dollar_mr.__repr__() == (
             'AustralianDollarMR(amount: -100, '
             'alpha_code: "AUD", '
@@ -937,7 +939,6 @@ class TestAustralianDollarMR:
             'convertion: "", '
             'international: False)')
         assert australian_dollar_mr.__str__() == '$-100.00'
-
 
     def test_australian_dollar_mr_custom(self):
         """test_australian_dollar_mr_custom."""
@@ -965,7 +966,8 @@ class TestAustralianDollarMR:
         assert australian_dollar_mr.symbol_separator == '_'
         assert australian_dollar_mr.localized_symbol == 'NR$'
         assert australian_dollar_mr.convertion == ''
-        assert australian_dollar_mr.__hash__() == hash((decimal, 'AUD', '036'))
+        assert australian_dollar_mr.__hash__() == hash(
+            (australian_dollar_mr.__class__, decimal, 'AUD', '036'))
         assert australian_dollar_mr.__repr__() == (
             'AustralianDollarMR(amount: 1000, '
             'alpha_code: "AUD", '
@@ -981,7 +983,6 @@ class TestAustralianDollarMR:
             'convertion: "", '
             'international: True)')
         assert australian_dollar_mr.__str__() == 'AUD 10,00.00000'
-
 
     def test_australian_dollar_mr_changed(self):
         """test_caustralian_dollar_mr_changed."""
@@ -1039,7 +1040,6 @@ class TestAustralianDollarMR:
                 match='can\'t set attribute'):
             australian_dollar_mr.international = True
 
-
     def test_australian_dollar_mr_math_add(self):
         """test_australian_dollar_mr_math_add."""
         australian_dollar_mr_one = AustralianDollarMR(amount=1)
@@ -1052,14 +1052,14 @@ class TestAustralianDollarMR:
             _ = australian_dollar_mr_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.AustralianDollarMR\'> '
                     'and <class \'str\'>.')):
             _ = australian_dollar_mr_one.__add__('1.00')
         assert (
             australian_dollar_mr_one +
             australian_dollar_mr_two) == australian_dollar_mr_three
-
 
     def test_australian_dollar_mr_slots(self):
         """test_australian_dollar_mr_slots."""
@@ -1078,6 +1078,7 @@ from multicurrency import AustralianDollarTV
 
 
 class TestAustralianDollarTV:
+    """AustralianDollarTV currency tests."""
 
     def test_australian_dollar_tv(self):
         """test_australian_dollar_tv."""
@@ -1097,7 +1098,8 @@ class TestAustralianDollarTV:
         assert australian_dollar_tv.symbol_separator == ''
         assert australian_dollar_tv.localized_symbol == 'TV$'
         assert australian_dollar_tv.convertion == ''
-        assert australian_dollar_tv.__hash__() == hash((decimal, 'AUD', '036'))
+        assert australian_dollar_tv.__hash__() == hash(
+            (australian_dollar_tv.__class__, decimal, 'AUD', '036'))
         assert australian_dollar_tv.__repr__() == (
             'AustralianDollarTV(amount: 0.1428571428571428571428571429, '
             'alpha_code: "AUD", '
@@ -1113,7 +1115,6 @@ class TestAustralianDollarTV:
             'convertion: "", '
             'international: False)')
         assert australian_dollar_tv.__str__() == '$0.14'
-
 
     def test_australian_dollar_tv_negative(self):
         """test_australian_dollar_tv_negative."""
@@ -1132,7 +1133,8 @@ class TestAustralianDollarTV:
         assert australian_dollar_tv.symbol_separator == ''
         assert australian_dollar_tv.localized_symbol == 'TV$'
         assert australian_dollar_tv.convertion == ''
-        assert australian_dollar_tv.__hash__() == hash((decimal, 'AUD', '036'))
+        assert australian_dollar_tv.__hash__() == hash(
+            (australian_dollar_tv.__class__, decimal, 'AUD', '036'))
         assert australian_dollar_tv.__repr__() == (
             'AustralianDollarTV(amount: -100, '
             'alpha_code: "AUD", '
@@ -1148,7 +1150,6 @@ class TestAustralianDollarTV:
             'convertion: "", '
             'international: False)')
         assert australian_dollar_tv.__str__() == '$-100.00'
-
 
     def test_australian_dollar_tv_custom(self):
         """test_australian_dollar_tv_custom."""
@@ -1176,7 +1177,8 @@ class TestAustralianDollarTV:
         assert australian_dollar_tv.symbol_separator == '_'
         assert australian_dollar_tv.localized_symbol == 'TV$'
         assert australian_dollar_tv.convertion == ''
-        assert australian_dollar_tv.__hash__() == hash((decimal, 'AUD', '036'))
+        assert australian_dollar_tv.__hash__() == hash(
+            (australian_dollar_tv.__class__, decimal, 'AUD', '036'))
         assert australian_dollar_tv.__repr__() == (
             'AustralianDollarTV(amount: 1000, '
             'alpha_code: "AUD", '
@@ -1192,7 +1194,6 @@ class TestAustralianDollarTV:
             'convertion: "", '
             'international: True)')
         assert australian_dollar_tv.__str__() == 'AUD 10,00.00000'
-
 
     def test_australian_dollar_tv_changed(self):
         """test_caustralian_dollar_tv_changed."""
@@ -1250,7 +1251,6 @@ class TestAustralianDollarTV:
                 match='can\'t set attribute'):
             australian_dollar_tv.international = True
 
-
     def test_australian_dollar_tv_math_add(self):
         """test_australian_dollar_tv_math_add."""
         australian_dollar_tv_one = AustralianDollarTV(amount=1)
@@ -1263,14 +1263,14 @@ class TestAustralianDollarTV:
             _ = australian_dollar_tv_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.AustralianDollarTV\'> '
                     'and <class \'str\'>.')):
             _ = australian_dollar_tv_one.__add__('1.00')
         assert (
             australian_dollar_tv_one +
             australian_dollar_tv_two) == australian_dollar_tv_three
-
 
     def test_australian_dollar_tv_slots(self):
         """test_australian_dollar_tv_slots."""
@@ -1289,6 +1289,7 @@ from multicurrency import BarbadosDollar
 
 
 class TestBarbadosDollar:
+    """BarbadosDollar currency tests."""
 
     def test_barbados_dollar(self):
         """test_barbados_dollar."""
@@ -1308,7 +1309,8 @@ class TestBarbadosDollar:
         assert barbados_dollar.symbol_separator == ''
         assert barbados_dollar.localized_symbol == 'BB$'
         assert barbados_dollar.convertion == ''
-        assert barbados_dollar.__hash__() == hash((decimal, 'BBD', '052'))
+        assert barbados_dollar.__hash__() == hash(
+            (barbados_dollar.__class__, decimal, 'BBD', '052'))
         assert barbados_dollar.__repr__() == (
             'BarbadosDollar(amount: 0.1428571428571428571428571429, '
             'alpha_code: "BBD", '
@@ -1324,7 +1326,6 @@ class TestBarbadosDollar:
             'convertion: "", '
             'international: False)')
         assert barbados_dollar.__str__() == '$0.14'
-
 
     def test_barbados_dollar_negative(self):
         """test_barbados_dollar_negative."""
@@ -1343,7 +1344,8 @@ class TestBarbadosDollar:
         assert barbados_dollar.symbol_separator == ''
         assert barbados_dollar.localized_symbol == 'BB$'
         assert barbados_dollar.convertion == ''
-        assert barbados_dollar.__hash__() == hash((decimal, 'BBD', '052'))
+        assert barbados_dollar.__hash__() == hash(
+            (barbados_dollar.__class__, decimal, 'BBD', '052'))
         assert barbados_dollar.__repr__() == (
             'BarbadosDollar(amount: -100, '
             'alpha_code: "BBD", '
@@ -1359,7 +1361,6 @@ class TestBarbadosDollar:
             'convertion: "", '
             'international: False)')
         assert barbados_dollar.__str__() == '$-100.00'
-
 
     def test_barbados_dollar_custom(self):
         """test_barbados_dollar_custom."""
@@ -1387,7 +1388,8 @@ class TestBarbadosDollar:
         assert barbados_dollar.symbol_separator == '_'
         assert barbados_dollar.localized_symbol == 'BB$'
         assert barbados_dollar.convertion == ''
-        assert barbados_dollar.__hash__() == hash((decimal, 'BBD', '052'))
+        assert barbados_dollar.__hash__() == hash(
+            (barbados_dollar.__class__, decimal, 'BBD', '052'))
         assert barbados_dollar.__repr__() == (
             'BarbadosDollar(amount: 1000, '
             'alpha_code: "BBD", '
@@ -1403,7 +1405,6 @@ class TestBarbadosDollar:
             'convertion: "", '
             'international: True)')
         assert barbados_dollar.__str__() == 'BBD 10,00.00000'
-
 
     def test_barbados_dollar_changed(self):
         """test_cbarbados_dollar_changed."""
@@ -1461,7 +1462,6 @@ class TestBarbadosDollar:
                 match='can\'t set attribute'):
             barbados_dollar.international = True
 
-
     def test_barbados_dollar_math_add(self):
         """test_barbados_dollar_math_add."""
         barbados_dollar_one = BarbadosDollar(amount=1)
@@ -1474,14 +1474,14 @@ class TestBarbadosDollar:
             _ = barbados_dollar_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.BarbadosDollar\'> '
                     'and <class \'str\'>.')):
             _ = barbados_dollar_one.__add__('1.00')
         assert (
             barbados_dollar_one +
             barbados_dollar_two) == barbados_dollar_three
-
 
     def test_barbados_dollar_slots(self):
         """test_barbados_dollar_slots."""
@@ -1500,6 +1500,7 @@ from multicurrency import BermudianDollar
 
 
 class TestBermudianDollar:
+    """BermudianDollar currency tests."""
 
     def test_bermudian_dollar(self):
         """test_bermudian_dollar."""
@@ -1519,7 +1520,8 @@ class TestBermudianDollar:
         assert bermudian_dollar.symbol_separator == ''
         assert bermudian_dollar.localized_symbol == 'BM$'
         assert bermudian_dollar.convertion == ''
-        assert bermudian_dollar.__hash__() == hash((decimal, 'BMD', '060'))
+        assert bermudian_dollar.__hash__() == hash(
+            (bermudian_dollar.__class__, decimal, 'BMD', '060'))
         assert bermudian_dollar.__repr__() == (
             'BermudianDollar(amount: 0.1428571428571428571428571429, '
             'alpha_code: "BMD", '
@@ -1535,7 +1537,6 @@ class TestBermudianDollar:
             'convertion: "", '
             'international: False)')
         assert bermudian_dollar.__str__() == '$0.14'
-
 
     def test_bermudian_dollar_negative(self):
         """test_bermudian_dollar_negative."""
@@ -1554,7 +1555,8 @@ class TestBermudianDollar:
         assert bermudian_dollar.symbol_separator == ''
         assert bermudian_dollar.localized_symbol == 'BM$'
         assert bermudian_dollar.convertion == ''
-        assert bermudian_dollar.__hash__() == hash((decimal, 'BMD', '060'))
+        assert bermudian_dollar.__hash__() == hash(
+            (bermudian_dollar.__class__, decimal, 'BMD', '060'))
         assert bermudian_dollar.__repr__() == (
             'BermudianDollar(amount: -100, '
             'alpha_code: "BMD", '
@@ -1570,7 +1572,6 @@ class TestBermudianDollar:
             'convertion: "", '
             'international: False)')
         assert bermudian_dollar.__str__() == '$-100.00'
-
 
     def test_bermudian_dollar_custom(self):
         """test_bermudian_dollar_custom."""
@@ -1598,7 +1599,8 @@ class TestBermudianDollar:
         assert bermudian_dollar.symbol_separator == '_'
         assert bermudian_dollar.localized_symbol == 'BM$'
         assert bermudian_dollar.convertion == ''
-        assert bermudian_dollar.__hash__() == hash((decimal, 'BMD', '060'))
+        assert bermudian_dollar.__hash__() == hash(
+            (bermudian_dollar.__class__, decimal, 'BMD', '060'))
         assert bermudian_dollar.__repr__() == (
             'BermudianDollar(amount: 1000, '
             'alpha_code: "BMD", '
@@ -1614,7 +1616,6 @@ class TestBermudianDollar:
             'convertion: "", '
             'international: True)')
         assert bermudian_dollar.__str__() == 'BMD 10,00.00000'
-
 
     def test_bermudian_dollar_changed(self):
         """test_cbermudian_dollar_changed."""
@@ -1672,7 +1673,6 @@ class TestBermudianDollar:
                 match='can\'t set attribute'):
             bermudian_dollar.international = True
 
-
     def test_bermudian_dollar_math_add(self):
         """test_bermudian_dollar_math_add."""
         bermudian_dollar_one = BermudianDollar(amount=1)
@@ -1685,14 +1685,14 @@ class TestBermudianDollar:
             _ = bermudian_dollar_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.BermudianDollar\'> '
                     'and <class \'str\'>.')):
             _ = bermudian_dollar_one.__add__('1.00')
         assert (
             bermudian_dollar_one +
             bermudian_dollar_two) == bermudian_dollar_three
-
 
     def test_bermudian_dollar_slots(self):
         """test_bermudian_dollar_slots."""
@@ -1711,6 +1711,7 @@ from multicurrency import BruneiDollar
 
 
 class TestBruneiDollar:
+    """BruneiDollar currency tests."""
 
     def test_brunei_dollar(self):
         """test_brunei_dollar."""
@@ -1730,7 +1731,8 @@ class TestBruneiDollar:
         assert brunei_dollar.symbol_separator == '\u00A0'
         assert brunei_dollar.localized_symbol == '$'
         assert brunei_dollar.convertion == ''
-        assert brunei_dollar.__hash__() == hash((decimal, 'BND', '096'))
+        assert brunei_dollar.__hash__() == hash(
+            (brunei_dollar.__class__, decimal, 'BND', '096'))
         assert brunei_dollar.__repr__() == (
             'BruneiDollar(amount: 0.1428571428571428571428571429, '
             'alpha_code: "BND", '
@@ -1746,7 +1748,6 @@ class TestBruneiDollar:
             'convertion: "", '
             'international: False)')
         assert brunei_dollar.__str__() == '$ 0,14'
-
 
     def test_brunei_dollar_negative(self):
         """test_brunei_dollar_negative."""
@@ -1765,7 +1766,8 @@ class TestBruneiDollar:
         assert brunei_dollar.symbol_separator == '\u00A0'
         assert brunei_dollar.localized_symbol == '$'
         assert brunei_dollar.convertion == ''
-        assert brunei_dollar.__hash__() == hash((decimal, 'BND', '096'))
+        assert brunei_dollar.__hash__() == hash(
+            (brunei_dollar.__class__, decimal, 'BND', '096'))
         assert brunei_dollar.__repr__() == (
             'BruneiDollar(amount: -100, '
             'alpha_code: "BND", '
@@ -1781,7 +1783,6 @@ class TestBruneiDollar:
             'convertion: "", '
             'international: False)')
         assert brunei_dollar.__str__() == '$ -100,00'
-
 
     def test_brunei_dollar_custom(self):
         """test_brunei_dollar_custom."""
@@ -1809,7 +1810,8 @@ class TestBruneiDollar:
         assert brunei_dollar.symbol_separator == '_'
         assert brunei_dollar.localized_symbol == '$'
         assert brunei_dollar.convertion == ''
-        assert brunei_dollar.__hash__() == hash((decimal, 'BND', '096'))
+        assert brunei_dollar.__hash__() == hash(
+            (brunei_dollar.__class__, decimal, 'BND', '096'))
         assert brunei_dollar.__repr__() == (
             'BruneiDollar(amount: 1000, '
             'alpha_code: "BND", '
@@ -1825,7 +1827,6 @@ class TestBruneiDollar:
             'convertion: "", '
             'international: True)')
         assert brunei_dollar.__str__() == 'BND 10,00.00000'
-
 
     def test_brunei_dollar_changed(self):
         """test_cbrunei_dollar_changed."""
@@ -1883,7 +1884,6 @@ class TestBruneiDollar:
                 match='can\'t set attribute'):
             brunei_dollar.international = True
 
-
     def test_brunei_dollar_math_add(self):
         """test_brunei_dollar_math_add."""
         brunei_dollar_one = BruneiDollar(amount=1)
@@ -1896,14 +1896,14 @@ class TestBruneiDollar:
             _ = brunei_dollar_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.BruneiDollar\'> '
                     'and <class \'str\'>.')):
             _ = brunei_dollar_one.__add__('1.00')
         assert (
             brunei_dollar_one +
             brunei_dollar_two) == brunei_dollar_three
-
 
     def test_brunei_dollar_slots(self):
         """test_brunei_dollar_slots."""
@@ -1922,6 +1922,7 @@ from multicurrency import BruneiDollarBN
 
 
 class TestBruneiDollarBN:
+    """BruneiDollarBN currency tests."""
 
     def test_brunei_dollar_bn(self):
         """test_brunei_dollar_bn."""
@@ -1941,7 +1942,8 @@ class TestBruneiDollarBN:
         assert brunei_dollar_bn.symbol_separator == '\u00A0'
         assert brunei_dollar_bn.localized_symbol == 'BN$'
         assert brunei_dollar_bn.convertion == ''
-        assert brunei_dollar_bn.__hash__() == hash((decimal, 'BND', '096'))
+        assert brunei_dollar_bn.__hash__() == hash(
+            (brunei_dollar_bn.__class__, decimal, 'BND', '096'))
         assert brunei_dollar_bn.__repr__() == (
             'BruneiDollarBN(amount: 0.1428571428571428571428571429, '
             'alpha_code: "BND", '
@@ -1957,7 +1959,6 @@ class TestBruneiDollarBN:
             'convertion: "", '
             'international: False)')
         assert brunei_dollar_bn.__str__() == '$ 0,14'
-
 
     def test_brunei_dollar_bn_negative(self):
         """test_brunei_dollar_bn_negative."""
@@ -1976,7 +1977,8 @@ class TestBruneiDollarBN:
         assert brunei_dollar_bn.symbol_separator == '\u00A0'
         assert brunei_dollar_bn.localized_symbol == 'BN$'
         assert brunei_dollar_bn.convertion == ''
-        assert brunei_dollar_bn.__hash__() == hash((decimal, 'BND', '096'))
+        assert brunei_dollar_bn.__hash__() == hash(
+            (brunei_dollar_bn.__class__, decimal, 'BND', '096'))
         assert brunei_dollar_bn.__repr__() == (
             'BruneiDollarBN(amount: -100, '
             'alpha_code: "BND", '
@@ -1992,7 +1994,6 @@ class TestBruneiDollarBN:
             'convertion: "", '
             'international: False)')
         assert brunei_dollar_bn.__str__() == '$ -100,00'
-
 
     def test_brunei_dollar_bn_custom(self):
         """test_brunei_dollar_bn_custom."""
@@ -2020,7 +2021,8 @@ class TestBruneiDollarBN:
         assert brunei_dollar_bn.symbol_separator == '_'
         assert brunei_dollar_bn.localized_symbol == 'BN$'
         assert brunei_dollar_bn.convertion == ''
-        assert brunei_dollar_bn.__hash__() == hash((decimal, 'BND', '096'))
+        assert brunei_dollar_bn.__hash__() == hash(
+            (brunei_dollar_bn.__class__, decimal, 'BND', '096'))
         assert brunei_dollar_bn.__repr__() == (
             'BruneiDollarBN(amount: 1000, '
             'alpha_code: "BND", '
@@ -2036,7 +2038,6 @@ class TestBruneiDollarBN:
             'convertion: "", '
             'international: True)')
         assert brunei_dollar_bn.__str__() == 'BND 10,00.00000'
-
 
     def test_brunei_dollar_bn_changed(self):
         """test_cbrunei_dollar_bn_changed."""
@@ -2094,7 +2095,6 @@ class TestBruneiDollarBN:
                 match='can\'t set attribute'):
             brunei_dollar_bn.international = True
 
-
     def test_brunei_dollar_bn_math_add(self):
         """test_brunei_dollar_bn_math_add."""
         brunei_dollar_bn_one = BruneiDollarBN(amount=1)
@@ -2107,14 +2107,14 @@ class TestBruneiDollarBN:
             _ = brunei_dollar_bn_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.BruneiDollarBN\'> '
                     'and <class \'str\'>.')):
             _ = brunei_dollar_bn_one.__add__('1.00')
         assert (
             brunei_dollar_bn_one +
             brunei_dollar_bn_two) == brunei_dollar_bn_three
-
 
     def test_brunei_dollar_bn_slots(self):
         """test_brunei_dollar_bn_slots."""
@@ -2133,6 +2133,7 @@ from multicurrency import BruneiDollarSG
 
 
 class TestBruneiDollarSG:
+    """BruneiDollarSG currency tests."""
 
     def test_brunei_dollar_sg(self):
         """test_brunei_dollar_sg."""
@@ -2152,7 +2153,8 @@ class TestBruneiDollarSG:
         assert brunei_dollar_sg.symbol_separator == '\u00A0'
         assert brunei_dollar_sg.localized_symbol == 'SG$'
         assert brunei_dollar_sg.convertion == ''
-        assert brunei_dollar_sg.__hash__() == hash((decimal, 'BND', '096'))
+        assert brunei_dollar_sg.__hash__() == hash(
+            (brunei_dollar_sg.__class__, decimal, 'BND', '096'))
         assert brunei_dollar_sg.__repr__() == (
             'BruneiDollarSG(amount: 0.1428571428571428571428571429, '
             'alpha_code: "BND", '
@@ -2168,7 +2170,6 @@ class TestBruneiDollarSG:
             'convertion: "", '
             'international: False)')
         assert brunei_dollar_sg.__str__() == '$ 0,14'
-
 
     def test_brunei_dollar_sg_negative(self):
         """test_brunei_dollar_sg_negative."""
@@ -2187,7 +2188,8 @@ class TestBruneiDollarSG:
         assert brunei_dollar_sg.symbol_separator == '\u00A0'
         assert brunei_dollar_sg.localized_symbol == 'SG$'
         assert brunei_dollar_sg.convertion == ''
-        assert brunei_dollar_sg.__hash__() == hash((decimal, 'BND', '096'))
+        assert brunei_dollar_sg.__hash__() == hash(
+            (brunei_dollar_sg.__class__, decimal, 'BND', '096'))
         assert brunei_dollar_sg.__repr__() == (
             'BruneiDollarSG(amount: -100, '
             'alpha_code: "BND", '
@@ -2203,7 +2205,6 @@ class TestBruneiDollarSG:
             'convertion: "", '
             'international: False)')
         assert brunei_dollar_sg.__str__() == '$ -100,00'
-
 
     def test_brunei_dollar_sg_custom(self):
         """test_brunei_dollar_sg_custom."""
@@ -2231,7 +2232,8 @@ class TestBruneiDollarSG:
         assert brunei_dollar_sg.symbol_separator == '_'
         assert brunei_dollar_sg.localized_symbol == 'SG$'
         assert brunei_dollar_sg.convertion == ''
-        assert brunei_dollar_sg.__hash__() == hash((decimal, 'BND', '096'))
+        assert brunei_dollar_sg.__hash__() == hash(
+            (brunei_dollar_sg.__class__, decimal, 'BND', '096'))
         assert brunei_dollar_sg.__repr__() == (
             'BruneiDollarSG(amount: 1000, '
             'alpha_code: "BND", '
@@ -2247,7 +2249,6 @@ class TestBruneiDollarSG:
             'convertion: "", '
             'international: True)')
         assert brunei_dollar_sg.__str__() == 'BND 10,00.00000'
-
 
     def test_brunei_dollar_sg_changed(self):
         """test_cbrunei_dollar_sg_changed."""
@@ -2305,7 +2306,6 @@ class TestBruneiDollarSG:
                 match='can\'t set attribute'):
             brunei_dollar_sg.international = True
 
-
     def test_brunei_dollar_sg_math_add(self):
         """test_brunei_dollar_sg_math_add."""
         brunei_dollar_sg_one = BruneiDollarSG(amount=1)
@@ -2318,14 +2318,14 @@ class TestBruneiDollarSG:
             _ = brunei_dollar_sg_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.BruneiDollarSG\'> '
                     'and <class \'str\'>.')):
             _ = brunei_dollar_sg_one.__add__('1.00')
         assert (
             brunei_dollar_sg_one +
             brunei_dollar_sg_two) == brunei_dollar_sg_three
-
 
     def test_brunei_dollar_sg_slots(self):
         """test_brunei_dollar_sg_slots."""
@@ -2344,6 +2344,7 @@ from multicurrency import BahamianDollar
 
 
 class TestBahamianDollar:
+    """BahamianDollar currency tests."""
 
     def test_bahamian_dollar(self):
         """test_bahamian_dollar."""
@@ -2363,7 +2364,8 @@ class TestBahamianDollar:
         assert bahamian_dollar.symbol_separator == ''
         assert bahamian_dollar.localized_symbol == 'BS$'
         assert bahamian_dollar.convertion == ''
-        assert bahamian_dollar.__hash__() == hash((decimal, 'BSD', '044'))
+        assert bahamian_dollar.__hash__() == hash(
+            (bahamian_dollar.__class__, decimal, 'BSD', '044'))
         assert bahamian_dollar.__repr__() == (
             'BahamianDollar(amount: 0.1428571428571428571428571429, '
             'alpha_code: "BSD", '
@@ -2379,7 +2381,6 @@ class TestBahamianDollar:
             'convertion: "", '
             'international: False)')
         assert bahamian_dollar.__str__() == '$0.14'
-
 
     def test_bahamian_dollar_negative(self):
         """test_bahamian_dollar_negative."""
@@ -2398,7 +2399,8 @@ class TestBahamianDollar:
         assert bahamian_dollar.symbol_separator == ''
         assert bahamian_dollar.localized_symbol == 'BS$'
         assert bahamian_dollar.convertion == ''
-        assert bahamian_dollar.__hash__() == hash((decimal, 'BSD', '044'))
+        assert bahamian_dollar.__hash__() == hash(
+            (bahamian_dollar.__class__, decimal, 'BSD', '044'))
         assert bahamian_dollar.__repr__() == (
             'BahamianDollar(amount: -100, '
             'alpha_code: "BSD", '
@@ -2414,7 +2416,6 @@ class TestBahamianDollar:
             'convertion: "", '
             'international: False)')
         assert bahamian_dollar.__str__() == '$-100.00'
-
 
     def test_bahamian_dollar_custom(self):
         """test_bahamian_dollar_custom."""
@@ -2442,7 +2443,8 @@ class TestBahamianDollar:
         assert bahamian_dollar.symbol_separator == '_'
         assert bahamian_dollar.localized_symbol == 'BS$'
         assert bahamian_dollar.convertion == ''
-        assert bahamian_dollar.__hash__() == hash((decimal, 'BSD', '044'))
+        assert bahamian_dollar.__hash__() == hash(
+            (bahamian_dollar.__class__, decimal, 'BSD', '044'))
         assert bahamian_dollar.__repr__() == (
             'BahamianDollar(amount: 1000, '
             'alpha_code: "BSD", '
@@ -2458,7 +2460,6 @@ class TestBahamianDollar:
             'convertion: "", '
             'international: True)')
         assert bahamian_dollar.__str__() == 'BSD 10,00.00000'
-
 
     def test_bahamian_dollar_changed(self):
         """test_cbahamian_dollar_changed."""
@@ -2516,7 +2517,6 @@ class TestBahamianDollar:
                 match='can\'t set attribute'):
             bahamian_dollar.international = True
 
-
     def test_bahamian_dollar_math_add(self):
         """test_bahamian_dollar_math_add."""
         bahamian_dollar_one = BahamianDollar(amount=1)
@@ -2529,14 +2529,14 @@ class TestBahamianDollar:
             _ = bahamian_dollar_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.BahamianDollar\'> '
                     'and <class \'str\'>.')):
             _ = bahamian_dollar_one.__add__('1.00')
         assert (
             bahamian_dollar_one +
             bahamian_dollar_two) == bahamian_dollar_three
-
 
     def test_bahamian_dollar_slots(self):
         """test_bahamian_dollar_slots."""
@@ -2555,6 +2555,7 @@ from multicurrency import BelizeDollar
 
 
 class TestBelizeDollar:
+    """BelizeDollar currency tests."""
 
     def test_belize_dollar(self):
         """test_belize_dollar."""
@@ -2574,7 +2575,8 @@ class TestBelizeDollar:
         assert belize_dollar.symbol_separator == ''
         assert belize_dollar.localized_symbol == 'BZ$'
         assert belize_dollar.convertion == ''
-        assert belize_dollar.__hash__() == hash((decimal, 'BZD', '084'))
+        assert belize_dollar.__hash__() == hash(
+            (belize_dollar.__class__, decimal, 'BZD', '084'))
         assert belize_dollar.__repr__() == (
             'BelizeDollar(amount: 0.1428571428571428571428571429, '
             'alpha_code: "BZD", '
@@ -2590,7 +2592,6 @@ class TestBelizeDollar:
             'convertion: "", '
             'international: False)')
         assert belize_dollar.__str__() == '$0.14'
-
 
     def test_belize_dollar_negative(self):
         """test_belize_dollar_negative."""
@@ -2609,7 +2610,8 @@ class TestBelizeDollar:
         assert belize_dollar.symbol_separator == ''
         assert belize_dollar.localized_symbol == 'BZ$'
         assert belize_dollar.convertion == ''
-        assert belize_dollar.__hash__() == hash((decimal, 'BZD', '084'))
+        assert belize_dollar.__hash__() == hash(
+            (belize_dollar.__class__, decimal, 'BZD', '084'))
         assert belize_dollar.__repr__() == (
             'BelizeDollar(amount: -100, '
             'alpha_code: "BZD", '
@@ -2625,7 +2627,6 @@ class TestBelizeDollar:
             'convertion: "", '
             'international: False)')
         assert belize_dollar.__str__() == '$-100.00'
-
 
     def test_belize_dollar_custom(self):
         """test_belize_dollar_custom."""
@@ -2653,7 +2654,8 @@ class TestBelizeDollar:
         assert belize_dollar.symbol_separator == '_'
         assert belize_dollar.localized_symbol == 'BZ$'
         assert belize_dollar.convertion == ''
-        assert belize_dollar.__hash__() == hash((decimal, 'BZD', '084'))
+        assert belize_dollar.__hash__() == hash(
+            (belize_dollar.__class__, decimal, 'BZD', '084'))
         assert belize_dollar.__repr__() == (
             'BelizeDollar(amount: 1000, '
             'alpha_code: "BZD", '
@@ -2669,7 +2671,6 @@ class TestBelizeDollar:
             'convertion: "", '
             'international: True)')
         assert belize_dollar.__str__() == 'BZD 10,00.00000'
-
 
     def test_belize_dollar_changed(self):
         """test_cbelize_dollar_changed."""
@@ -2727,7 +2728,6 @@ class TestBelizeDollar:
                 match='can\'t set attribute'):
             belize_dollar.international = True
 
-
     def test_belize_dollar_math_add(self):
         """test_belize_dollar_math_add."""
         belize_dollar_one = BelizeDollar(amount=1)
@@ -2740,14 +2740,14 @@ class TestBelizeDollar:
             _ = belize_dollar_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.BelizeDollar\'> '
                     'and <class \'str\'>.')):
             _ = belize_dollar_one.__add__('1.00')
         assert (
             belize_dollar_one +
             belize_dollar_two) == belize_dollar_three
-
 
     def test_belize_dollar_slots(self):
         """test_belize_dollar_slots."""
@@ -2766,6 +2766,7 @@ from multicurrency import CanadianDollarEN
 
 
 class TestCanadianDollarEN:
+    """CanadianDollarEN currency tests."""
 
     def test_canadian_dollar_en(self):
         """test_canadian_dollar_en."""
@@ -2785,7 +2786,8 @@ class TestCanadianDollarEN:
         assert canadian_dollar_en.symbol_separator == ''
         assert canadian_dollar_en.localized_symbol == 'CA$'
         assert canadian_dollar_en.convertion == ''
-        assert canadian_dollar_en.__hash__() == hash((decimal, 'CAD', '124'))
+        assert canadian_dollar_en.__hash__() == hash(
+            (canadian_dollar_en.__class__, decimal, 'CAD', '124'))
         assert canadian_dollar_en.__repr__() == (
             'CanadianDollarEN(amount: 0.1428571428571428571428571429, '
             'alpha_code: "CAD", '
@@ -2801,7 +2803,6 @@ class TestCanadianDollarEN:
             'convertion: "", '
             'international: False)')
         assert canadian_dollar_en.__str__() == '$0.14'
-
 
     def test_canadian_dollar_en_negative(self):
         """test_canadian_dollar_en_negative."""
@@ -2820,7 +2821,8 @@ class TestCanadianDollarEN:
         assert canadian_dollar_en.symbol_separator == ''
         assert canadian_dollar_en.localized_symbol == 'CA$'
         assert canadian_dollar_en.convertion == ''
-        assert canadian_dollar_en.__hash__() == hash((decimal, 'CAD', '124'))
+        assert canadian_dollar_en.__hash__() == hash(
+            (canadian_dollar_en.__class__, decimal, 'CAD', '124'))
         assert canadian_dollar_en.__repr__() == (
             'CanadianDollarEN(amount: -100, '
             'alpha_code: "CAD", '
@@ -2836,7 +2838,6 @@ class TestCanadianDollarEN:
             'convertion: "", '
             'international: False)')
         assert canadian_dollar_en.__str__() == '$-100.00'
-
 
     def test_canadian_dollar_en_custom(self):
         """test_canadian_dollar_en_custom."""
@@ -2864,7 +2865,8 @@ class TestCanadianDollarEN:
         assert canadian_dollar_en.symbol_separator == '_'
         assert canadian_dollar_en.localized_symbol == 'CA$'
         assert canadian_dollar_en.convertion == ''
-        assert canadian_dollar_en.__hash__() == hash((decimal, 'CAD', '124'))
+        assert canadian_dollar_en.__hash__() == hash(
+            (canadian_dollar_en.__class__, decimal, 'CAD', '124'))
         assert canadian_dollar_en.__repr__() == (
             'CanadianDollarEN(amount: 1000, '
             'alpha_code: "CAD", '
@@ -2880,7 +2882,6 @@ class TestCanadianDollarEN:
             'convertion: "", '
             'international: True)')
         assert canadian_dollar_en.__str__() == 'CAD 10,00.00000'
-
 
     def test_canadian_dollar_en_changed(self):
         """test_ccanadian_dollar_en_changed."""
@@ -2938,7 +2939,6 @@ class TestCanadianDollarEN:
                 match='can\'t set attribute'):
             canadian_dollar_en.international = True
 
-
     def test_canadian_dollar_en_math_add(self):
         """test_canadian_dollar_en_math_add."""
         canadian_dollar_en_one = CanadianDollarEN(amount=1)
@@ -2951,14 +2951,14 @@ class TestCanadianDollarEN:
             _ = canadian_dollar_en_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.CanadianDollarEN\'> '
                     'and <class \'str\'>.')):
             _ = canadian_dollar_en_one.__add__('1.00')
         assert (
             canadian_dollar_en_one +
             canadian_dollar_en_two) == canadian_dollar_en_three
-
 
     def test_canadian_dollar_en_slots(self):
         """test_canadian_dollar_en_slots."""
@@ -2977,6 +2977,7 @@ from multicurrency import CanadianDollarFR
 
 
 class TestCanadianDollarFR:
+    """CanadianDollarFR currency tests."""
 
     def test_canadian_dollar_fr(self):
         """test_canadian_dollar_fr."""
@@ -2996,7 +2997,8 @@ class TestCanadianDollarFR:
         assert canadian_dollar_fr.symbol_separator == '\u00A0'
         assert canadian_dollar_fr.localized_symbol == 'CA$'
         assert canadian_dollar_fr.convertion == ''
-        assert canadian_dollar_fr.__hash__() == hash((decimal, 'CAD', '124'))
+        assert canadian_dollar_fr.__hash__() == hash(
+            (canadian_dollar_fr.__class__, decimal, 'CAD', '124'))
         assert canadian_dollar_fr.__repr__() == (
             'CanadianDollarFR(amount: 0.1428571428571428571428571429, '
             'alpha_code: "CAD", '
@@ -3012,7 +3014,6 @@ class TestCanadianDollarFR:
             'convertion: "", '
             'international: False)')
         assert canadian_dollar_fr.__str__() == '0,14 $'
-
 
     def test_canadian_dollar_fr_negative(self):
         """test_canadian_dollar_fr_negative."""
@@ -3031,7 +3032,8 @@ class TestCanadianDollarFR:
         assert canadian_dollar_fr.symbol_separator == '\u00A0'
         assert canadian_dollar_fr.localized_symbol == 'CA$'
         assert canadian_dollar_fr.convertion == ''
-        assert canadian_dollar_fr.__hash__() == hash((decimal, 'CAD', '124'))
+        assert canadian_dollar_fr.__hash__() == hash(
+            (canadian_dollar_fr.__class__, decimal, 'CAD', '124'))
         assert canadian_dollar_fr.__repr__() == (
             'CanadianDollarFR(amount: -100, '
             'alpha_code: "CAD", '
@@ -3047,7 +3049,6 @@ class TestCanadianDollarFR:
             'convertion: "", '
             'international: False)')
         assert canadian_dollar_fr.__str__() == '-100,00 $'
-
 
     def test_canadian_dollar_fr_custom(self):
         """test_canadian_dollar_fr_custom."""
@@ -3075,7 +3076,8 @@ class TestCanadianDollarFR:
         assert canadian_dollar_fr.symbol_separator == '_'
         assert canadian_dollar_fr.localized_symbol == 'CA$'
         assert canadian_dollar_fr.convertion == ''
-        assert canadian_dollar_fr.__hash__() == hash((decimal, 'CAD', '124'))
+        assert canadian_dollar_fr.__hash__() == hash(
+            (canadian_dollar_fr.__class__, decimal, 'CAD', '124'))
         assert canadian_dollar_fr.__repr__() == (
             'CanadianDollarFR(amount: 1000, '
             'alpha_code: "CAD", '
@@ -3091,7 +3093,6 @@ class TestCanadianDollarFR:
             'convertion: "", '
             'international: True)')
         assert canadian_dollar_fr.__str__() == 'CAD 10,00.00000'
-
 
     def test_canadian_dollar_fr_changed(self):
         """test_ccanadian_dollar_fr_changed."""
@@ -3149,7 +3150,6 @@ class TestCanadianDollarFR:
                 match='can\'t set attribute'):
             canadian_dollar_fr.international = True
 
-
     def test_canadian_dollar_fr_math_add(self):
         """test_canadian_dollar_fr_math_add."""
         canadian_dollar_fr_one = CanadianDollarFR(amount=1)
@@ -3162,14 +3162,14 @@ class TestCanadianDollarFR:
             _ = canadian_dollar_fr_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.CanadianDollarFR\'> '
                     'and <class \'str\'>.')):
             _ = canadian_dollar_fr_one.__add__('1.00')
         assert (
             canadian_dollar_fr_one +
             canadian_dollar_fr_two) == canadian_dollar_fr_three
-
 
     def test_canadian_dollar_fr_slots(self):
         """test_canadian_dollar_fr_slots."""
@@ -3188,6 +3188,7 @@ from multicurrency import FijiDollar
 
 
 class TestFijiDollar:
+    """FijiDollar currency tests."""
 
     def test_fiji_dollar(self):
         """test_fiji_dollar."""
@@ -3207,7 +3208,8 @@ class TestFijiDollar:
         assert fiji_dollar.symbol_separator == ''
         assert fiji_dollar.localized_symbol == 'FJ$'
         assert fiji_dollar.convertion == ''
-        assert fiji_dollar.__hash__() == hash((decimal, 'FJD', '242'))
+        assert fiji_dollar.__hash__() == hash(
+            (fiji_dollar.__class__, decimal, 'FJD', '242'))
         assert fiji_dollar.__repr__() == (
             'FijiDollar(amount: 0.1428571428571428571428571429, '
             'alpha_code: "FJD", '
@@ -3223,7 +3225,6 @@ class TestFijiDollar:
             'convertion: "", '
             'international: False)')
         assert fiji_dollar.__str__() == '$0.14'
-
 
     def test_fiji_dollar_negative(self):
         """test_fiji_dollar_negative."""
@@ -3242,7 +3243,8 @@ class TestFijiDollar:
         assert fiji_dollar.symbol_separator == ''
         assert fiji_dollar.localized_symbol == 'FJ$'
         assert fiji_dollar.convertion == ''
-        assert fiji_dollar.__hash__() == hash((decimal, 'FJD', '242'))
+        assert fiji_dollar.__hash__() == hash(
+            (fiji_dollar.__class__, decimal, 'FJD', '242'))
         assert fiji_dollar.__repr__() == (
             'FijiDollar(amount: -100, '
             'alpha_code: "FJD", '
@@ -3258,7 +3260,6 @@ class TestFijiDollar:
             'convertion: "", '
             'international: False)')
         assert fiji_dollar.__str__() == '$-100.00'
-
 
     def test_fiji_dollar_custom(self):
         """test_fiji_dollar_custom."""
@@ -3286,7 +3287,8 @@ class TestFijiDollar:
         assert fiji_dollar.symbol_separator == '_'
         assert fiji_dollar.localized_symbol == 'FJ$'
         assert fiji_dollar.convertion == ''
-        assert fiji_dollar.__hash__() == hash((decimal, 'FJD', '242'))
+        assert fiji_dollar.__hash__() == hash(
+            (fiji_dollar.__class__, decimal, 'FJD', '242'))
         assert fiji_dollar.__repr__() == (
             'FijiDollar(amount: 1000, '
             'alpha_code: "FJD", '
@@ -3302,7 +3304,6 @@ class TestFijiDollar:
             'convertion: "", '
             'international: True)')
         assert fiji_dollar.__str__() == 'FJD 10,00.00000'
-
 
     def test_fiji_dollar_changed(self):
         """test_cfiji_dollar_changed."""
@@ -3360,7 +3361,6 @@ class TestFijiDollar:
                 match='can\'t set attribute'):
             fiji_dollar.international = True
 
-
     def test_fiji_dollar_math_add(self):
         """test_fiji_dollar_math_add."""
         fiji_dollar_one = FijiDollar(amount=1)
@@ -3373,14 +3373,14 @@ class TestFijiDollar:
             _ = fiji_dollar_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.FijiDollar\'> '
                     'and <class \'str\'>.')):
             _ = fiji_dollar_one.__add__('1.00')
         assert (
             fiji_dollar_one +
             fiji_dollar_two) == fiji_dollar_three
-
 
     def test_fiji_dollar_slots(self):
         """test_fiji_dollar_slots."""
@@ -3399,6 +3399,7 @@ from multicurrency import GuyanaDollar
 
 
 class TestGuyanaDollar:
+    """GuyanaDollar currency tests."""
 
     def test_guyana_dollar(self):
         """test_guyana_dollar."""
@@ -3418,7 +3419,8 @@ class TestGuyanaDollar:
         assert guyana_dollar.symbol_separator == ''
         assert guyana_dollar.localized_symbol == 'GY$'
         assert guyana_dollar.convertion == ''
-        assert guyana_dollar.__hash__() == hash((decimal, 'GYD', '328'))
+        assert guyana_dollar.__hash__() == hash(
+            (guyana_dollar.__class__, decimal, 'GYD', '328'))
         assert guyana_dollar.__repr__() == (
             'GuyanaDollar(amount: 0.1428571428571428571428571429, '
             'alpha_code: "GYD", '
@@ -3434,7 +3436,6 @@ class TestGuyanaDollar:
             'convertion: "", '
             'international: False)')
         assert guyana_dollar.__str__() == '$0.14'
-
 
     def test_guyana_dollar_negative(self):
         """test_guyana_dollar_negative."""
@@ -3453,7 +3454,8 @@ class TestGuyanaDollar:
         assert guyana_dollar.symbol_separator == ''
         assert guyana_dollar.localized_symbol == 'GY$'
         assert guyana_dollar.convertion == ''
-        assert guyana_dollar.__hash__() == hash((decimal, 'GYD', '328'))
+        assert guyana_dollar.__hash__() == hash(
+            (guyana_dollar.__class__, decimal, 'GYD', '328'))
         assert guyana_dollar.__repr__() == (
             'GuyanaDollar(amount: -100, '
             'alpha_code: "GYD", '
@@ -3469,7 +3471,6 @@ class TestGuyanaDollar:
             'convertion: "", '
             'international: False)')
         assert guyana_dollar.__str__() == '$-100.00'
-
 
     def test_guyana_dollar_custom(self):
         """test_guyana_dollar_custom."""
@@ -3497,7 +3498,8 @@ class TestGuyanaDollar:
         assert guyana_dollar.symbol_separator == '_'
         assert guyana_dollar.localized_symbol == 'GY$'
         assert guyana_dollar.convertion == ''
-        assert guyana_dollar.__hash__() == hash((decimal, 'GYD', '328'))
+        assert guyana_dollar.__hash__() == hash(
+            (guyana_dollar.__class__, decimal, 'GYD', '328'))
         assert guyana_dollar.__repr__() == (
             'GuyanaDollar(amount: 1000, '
             'alpha_code: "GYD", '
@@ -3513,7 +3515,6 @@ class TestGuyanaDollar:
             'convertion: "", '
             'international: True)')
         assert guyana_dollar.__str__() == 'GYD 10,00.00000'
-
 
     def test_guyana_dollar_changed(self):
         """test_cguyana_dollar_changed."""
@@ -3571,7 +3572,6 @@ class TestGuyanaDollar:
                 match='can\'t set attribute'):
             guyana_dollar.international = True
 
-
     def test_guyana_dollar_math_add(self):
         """test_guyana_dollar_math_add."""
         guyana_dollar_one = GuyanaDollar(amount=1)
@@ -3584,14 +3584,14 @@ class TestGuyanaDollar:
             _ = guyana_dollar_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.GuyanaDollar\'> '
                     'and <class \'str\'>.')):
             _ = guyana_dollar_one.__add__('1.00')
         assert (
             guyana_dollar_one +
             guyana_dollar_two) == guyana_dollar_three
-
 
     def test_guyana_dollar_slots(self):
         """test_guyana_dollar_slots."""
@@ -3610,6 +3610,7 @@ from multicurrency import HongKongDollar
 
 
 class TestHongKongDollar:
+    """HongKongDollar currency tests."""
 
     def test_hong_kong_dollar(self):
         """test_hong_kong_dollar."""
@@ -3629,7 +3630,8 @@ class TestHongKongDollar:
         assert hong_kong_dollar.symbol_separator == ''
         assert hong_kong_dollar.localized_symbol == 'HK$'
         assert hong_kong_dollar.convertion == ''
-        assert hong_kong_dollar.__hash__() == hash((decimal, 'HKD', '344'))
+        assert hong_kong_dollar.__hash__() == hash(
+            (hong_kong_dollar.__class__, decimal, 'HKD', '344'))
         assert hong_kong_dollar.__repr__() == (
             'HongKongDollar(amount: 0.1428571428571428571428571429, '
             'alpha_code: "HKD", '
@@ -3645,7 +3647,6 @@ class TestHongKongDollar:
             'convertion: "", '
             'international: False)')
         assert hong_kong_dollar.__str__() == '$0.14'
-
 
     def test_hong_kong_dollar_negative(self):
         """test_hong_kong_dollar_negative."""
@@ -3664,7 +3665,8 @@ class TestHongKongDollar:
         assert hong_kong_dollar.symbol_separator == ''
         assert hong_kong_dollar.localized_symbol == 'HK$'
         assert hong_kong_dollar.convertion == ''
-        assert hong_kong_dollar.__hash__() == hash((decimal, 'HKD', '344'))
+        assert hong_kong_dollar.__hash__() == hash(
+            (hong_kong_dollar.__class__, decimal, 'HKD', '344'))
         assert hong_kong_dollar.__repr__() == (
             'HongKongDollar(amount: -100, '
             'alpha_code: "HKD", '
@@ -3680,7 +3682,6 @@ class TestHongKongDollar:
             'convertion: "", '
             'international: False)')
         assert hong_kong_dollar.__str__() == '$-100.00'
-
 
     def test_hong_kong_dollar_custom(self):
         """test_hong_kong_dollar_custom."""
@@ -3708,7 +3709,8 @@ class TestHongKongDollar:
         assert hong_kong_dollar.symbol_separator == '_'
         assert hong_kong_dollar.localized_symbol == 'HK$'
         assert hong_kong_dollar.convertion == ''
-        assert hong_kong_dollar.__hash__() == hash((decimal, 'HKD', '344'))
+        assert hong_kong_dollar.__hash__() == hash(
+            (hong_kong_dollar.__class__, decimal, 'HKD', '344'))
         assert hong_kong_dollar.__repr__() == (
             'HongKongDollar(amount: 1000, '
             'alpha_code: "HKD", '
@@ -3724,7 +3726,6 @@ class TestHongKongDollar:
             'convertion: "", '
             'international: True)')
         assert hong_kong_dollar.__str__() == 'HKD 10,00.00000'
-
 
     def test_hong_kong_dollar_changed(self):
         """test_chong_kong_dollar_changed."""
@@ -3782,7 +3783,6 @@ class TestHongKongDollar:
                 match='can\'t set attribute'):
             hong_kong_dollar.international = True
 
-
     def test_hong_kong_dollar_math_add(self):
         """test_hong_kong_dollar_math_add."""
         hong_kong_dollar_one = HongKongDollar(amount=1)
@@ -3795,14 +3795,14 @@ class TestHongKongDollar:
             _ = hong_kong_dollar_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.HongKongDollar\'> '
                     'and <class \'str\'>.')):
             _ = hong_kong_dollar_one.__add__('1.00')
         assert (
             hong_kong_dollar_one +
             hong_kong_dollar_two) == hong_kong_dollar_three
-
 
     def test_hong_kong_dollar_slots(self):
         """test_hong_kong_dollar_slots."""
@@ -3821,6 +3821,7 @@ from multicurrency import JamaicanDollar
 
 
 class TestJamaicanDollar:
+    """JamaicanDollar currency tests."""
 
     def test_jamaican_dollar(self):
         """test_jamaican_dollar."""
@@ -3840,7 +3841,8 @@ class TestJamaicanDollar:
         assert jamaican_dollar.symbol_separator == ''
         assert jamaican_dollar.localized_symbol == 'JM$'
         assert jamaican_dollar.convertion == ''
-        assert jamaican_dollar.__hash__() == hash((decimal, 'JMD', '388'))
+        assert jamaican_dollar.__hash__() == hash(
+            (jamaican_dollar.__class__, decimal, 'JMD', '388'))
         assert jamaican_dollar.__repr__() == (
             'JamaicanDollar(amount: 0.1428571428571428571428571429, '
             'alpha_code: "JMD", '
@@ -3856,7 +3858,6 @@ class TestJamaicanDollar:
             'convertion: "", '
             'international: False)')
         assert jamaican_dollar.__str__() == '$0.14'
-
 
     def test_jamaican_dollar_negative(self):
         """test_jamaican_dollar_negative."""
@@ -3875,7 +3876,8 @@ class TestJamaicanDollar:
         assert jamaican_dollar.symbol_separator == ''
         assert jamaican_dollar.localized_symbol == 'JM$'
         assert jamaican_dollar.convertion == ''
-        assert jamaican_dollar.__hash__() == hash((decimal, 'JMD', '388'))
+        assert jamaican_dollar.__hash__() == hash(
+            (jamaican_dollar.__class__, decimal, 'JMD', '388'))
         assert jamaican_dollar.__repr__() == (
             'JamaicanDollar(amount: -100, '
             'alpha_code: "JMD", '
@@ -3891,7 +3893,6 @@ class TestJamaicanDollar:
             'convertion: "", '
             'international: False)')
         assert jamaican_dollar.__str__() == '$-100.00'
-
 
     def test_jamaican_dollar_custom(self):
         """test_jamaican_dollar_custom."""
@@ -3919,7 +3920,8 @@ class TestJamaicanDollar:
         assert jamaican_dollar.symbol_separator == '_'
         assert jamaican_dollar.localized_symbol == 'JM$'
         assert jamaican_dollar.convertion == ''
-        assert jamaican_dollar.__hash__() == hash((decimal, 'JMD', '388'))
+        assert jamaican_dollar.__hash__() == hash(
+            (jamaican_dollar.__class__, decimal, 'JMD', '388'))
         assert jamaican_dollar.__repr__() == (
             'JamaicanDollar(amount: 1000, '
             'alpha_code: "JMD", '
@@ -3935,7 +3937,6 @@ class TestJamaicanDollar:
             'convertion: "", '
             'international: True)')
         assert jamaican_dollar.__str__() == 'JMD 10,00.00000'
-
 
     def test_jamaican_dollar_changed(self):
         """test_cjamaican_dollar_changed."""
@@ -3993,7 +3994,6 @@ class TestJamaicanDollar:
                 match='can\'t set attribute'):
             jamaican_dollar.international = True
 
-
     def test_jamaican_dollar_math_add(self):
         """test_jamaican_dollar_math_add."""
         jamaican_dollar_one = JamaicanDollar(amount=1)
@@ -4006,14 +4006,14 @@ class TestJamaicanDollar:
             _ = jamaican_dollar_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.JamaicanDollar\'> '
                     'and <class \'str\'>.')):
             _ = jamaican_dollar_one.__add__('1.00')
         assert (
             jamaican_dollar_one +
             jamaican_dollar_two) == jamaican_dollar_three
-
 
     def test_jamaican_dollar_slots(self):
         """test_jamaican_dollar_slots."""
@@ -4032,6 +4032,7 @@ from multicurrency import CaymanIslandsDollar
 
 
 class TestCaymanIslandsDollar:
+    """CaymanIslandsDollar currency tests."""
 
     def test_cayman_islands_dollar(self):
         """test_cayman_islands_dollar."""
@@ -4051,7 +4052,8 @@ class TestCaymanIslandsDollar:
         assert cayman_islands_dollar.symbol_separator == ''
         assert cayman_islands_dollar.localized_symbol == 'KY$'
         assert cayman_islands_dollar.convertion == ''
-        assert cayman_islands_dollar.__hash__() == hash((decimal, 'KYD', '136'))
+        assert cayman_islands_dollar.__hash__() == hash(
+            (cayman_islands_dollar.__class__, decimal, 'KYD', '136'))
         assert cayman_islands_dollar.__repr__() == (
             'CaymanIslandsDollar(amount: 0.1428571428571428571428571429, '
             'alpha_code: "KYD", '
@@ -4067,7 +4069,6 @@ class TestCaymanIslandsDollar:
             'convertion: "", '
             'international: False)')
         assert cayman_islands_dollar.__str__() == '$0.14'
-
 
     def test_cayman_islands_dollar_negative(self):
         """test_cayman_islands_dollar_negative."""
@@ -4086,7 +4087,8 @@ class TestCaymanIslandsDollar:
         assert cayman_islands_dollar.symbol_separator == ''
         assert cayman_islands_dollar.localized_symbol == 'KY$'
         assert cayman_islands_dollar.convertion == ''
-        assert cayman_islands_dollar.__hash__() == hash((decimal, 'KYD', '136'))
+        assert cayman_islands_dollar.__hash__() == hash(
+            (cayman_islands_dollar.__class__, decimal, 'KYD', '136'))
         assert cayman_islands_dollar.__repr__() == (
             'CaymanIslandsDollar(amount: -100, '
             'alpha_code: "KYD", '
@@ -4102,7 +4104,6 @@ class TestCaymanIslandsDollar:
             'convertion: "", '
             'international: False)')
         assert cayman_islands_dollar.__str__() == '$-100.00'
-
 
     def test_cayman_islands_dollar_custom(self):
         """test_cayman_islands_dollar_custom."""
@@ -4130,7 +4131,8 @@ class TestCaymanIslandsDollar:
         assert cayman_islands_dollar.symbol_separator == '_'
         assert cayman_islands_dollar.localized_symbol == 'KY$'
         assert cayman_islands_dollar.convertion == ''
-        assert cayman_islands_dollar.__hash__() == hash((decimal, 'KYD', '136'))
+        assert cayman_islands_dollar.__hash__() == hash(
+            (cayman_islands_dollar.__class__, decimal, 'KYD', '136'))
         assert cayman_islands_dollar.__repr__() == (
             'CaymanIslandsDollar(amount: 1000, '
             'alpha_code: "KYD", '
@@ -4146,7 +4148,6 @@ class TestCaymanIslandsDollar:
             'convertion: "", '
             'international: True)')
         assert cayman_islands_dollar.__str__() == 'KYD 10,00.00000'
-
 
     def test_cayman_islands_dollar_changed(self):
         """test_ccayman_islands_dollar_changed."""
@@ -4204,7 +4205,6 @@ class TestCaymanIslandsDollar:
                 match='can\'t set attribute'):
             cayman_islands_dollar.international = True
 
-
     def test_cayman_islands_dollar_math_add(self):
         """test_cayman_islands_dollar_math_add."""
         cayman_islands_dollar_one = CaymanIslandsDollar(amount=1)
@@ -4217,14 +4217,14 @@ class TestCaymanIslandsDollar:
             _ = cayman_islands_dollar_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.CaymanIslandsDollar\'> '
                     'and <class \'str\'>.')):
             _ = cayman_islands_dollar_one.__add__('1.00')
         assert (
             cayman_islands_dollar_one +
             cayman_islands_dollar_two) == cayman_islands_dollar_three
-
 
     def test_cayman_islands_dollar_slots(self):
         """test_cayman_islands_dollar_slots."""
@@ -4243,6 +4243,7 @@ from multicurrency import LiberianDollar
 
 
 class TestLiberianDollar:
+    """LiberianDollar currency tests."""
 
     def test_liberian_dollar(self):
         """test_liberian_dollar."""
@@ -4262,7 +4263,8 @@ class TestLiberianDollar:
         assert liberian_dollar.symbol_separator == ''
         assert liberian_dollar.localized_symbol == 'LR$'
         assert liberian_dollar.convertion == ''
-        assert liberian_dollar.__hash__() == hash((decimal, 'LRD', '430'))
+        assert liberian_dollar.__hash__() == hash(
+            (liberian_dollar.__class__, decimal, 'LRD', '430'))
         assert liberian_dollar.__repr__() == (
             'LiberianDollar(amount: 0.1428571428571428571428571429, '
             'alpha_code: "LRD", '
@@ -4278,7 +4280,6 @@ class TestLiberianDollar:
             'convertion: "", '
             'international: False)')
         assert liberian_dollar.__str__() == '$0.14'
-
 
     def test_liberian_dollar_negative(self):
         """test_liberian_dollar_negative."""
@@ -4297,7 +4298,8 @@ class TestLiberianDollar:
         assert liberian_dollar.symbol_separator == ''
         assert liberian_dollar.localized_symbol == 'LR$'
         assert liberian_dollar.convertion == ''
-        assert liberian_dollar.__hash__() == hash((decimal, 'LRD', '430'))
+        assert liberian_dollar.__hash__() == hash(
+            (liberian_dollar.__class__, decimal, 'LRD', '430'))
         assert liberian_dollar.__repr__() == (
             'LiberianDollar(amount: -100, '
             'alpha_code: "LRD", '
@@ -4313,7 +4315,6 @@ class TestLiberianDollar:
             'convertion: "", '
             'international: False)')
         assert liberian_dollar.__str__() == '$-100.00'
-
 
     def test_liberian_dollar_custom(self):
         """test_liberian_dollar_custom."""
@@ -4341,7 +4342,8 @@ class TestLiberianDollar:
         assert liberian_dollar.symbol_separator == '_'
         assert liberian_dollar.localized_symbol == 'LR$'
         assert liberian_dollar.convertion == ''
-        assert liberian_dollar.__hash__() == hash((decimal, 'LRD', '430'))
+        assert liberian_dollar.__hash__() == hash(
+            (liberian_dollar.__class__, decimal, 'LRD', '430'))
         assert liberian_dollar.__repr__() == (
             'LiberianDollar(amount: 1000, '
             'alpha_code: "LRD", '
@@ -4357,7 +4359,6 @@ class TestLiberianDollar:
             'convertion: "", '
             'international: True)')
         assert liberian_dollar.__str__() == 'LRD 10,00.00000'
-
 
     def test_liberian_dollar_changed(self):
         """test_cliberian_dollar_changed."""
@@ -4415,7 +4416,6 @@ class TestLiberianDollar:
                 match='can\'t set attribute'):
             liberian_dollar.international = True
 
-
     def test_liberian_dollar_math_add(self):
         """test_liberian_dollar_math_add."""
         liberian_dollar_one = LiberianDollar(amount=1)
@@ -4428,14 +4428,14 @@ class TestLiberianDollar:
             _ = liberian_dollar_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.LiberianDollar\'> '
                     'and <class \'str\'>.')):
             _ = liberian_dollar_one.__add__('1.00')
         assert (
             liberian_dollar_one +
             liberian_dollar_two) == liberian_dollar_three
-
 
     def test_liberian_dollar_slots(self):
         """test_liberian_dollar_slots."""
@@ -4454,6 +4454,7 @@ from multicurrency import NamibiaDollar
 
 
 class TestNamibiaDollar:
+    """NamibiaDollar currency tests."""
 
     def test_namibia_dollar(self):
         """test_namibia_dollar."""
@@ -4473,7 +4474,8 @@ class TestNamibiaDollar:
         assert namibia_dollar.symbol_separator == ''
         assert namibia_dollar.localized_symbol == 'NA$'
         assert namibia_dollar.convertion == ''
-        assert namibia_dollar.__hash__() == hash((decimal, 'NAD', '516'))
+        assert namibia_dollar.__hash__() == hash(
+            (namibia_dollar.__class__, decimal, 'NAD', '516'))
         assert namibia_dollar.__repr__() == (
             'NamibiaDollar(amount: 0.1428571428571428571428571429, '
             'alpha_code: "NAD", '
@@ -4489,7 +4491,6 @@ class TestNamibiaDollar:
             'convertion: "", '
             'international: False)')
         assert namibia_dollar.__str__() == '$0.14'
-
 
     def test_namibia_dollar_negative(self):
         """test_namibia_dollar_negative."""
@@ -4508,7 +4509,8 @@ class TestNamibiaDollar:
         assert namibia_dollar.symbol_separator == ''
         assert namibia_dollar.localized_symbol == 'NA$'
         assert namibia_dollar.convertion == ''
-        assert namibia_dollar.__hash__() == hash((decimal, 'NAD', '516'))
+        assert namibia_dollar.__hash__() == hash(
+            (namibia_dollar.__class__, decimal, 'NAD', '516'))
         assert namibia_dollar.__repr__() == (
             'NamibiaDollar(amount: -100, '
             'alpha_code: "NAD", '
@@ -4524,7 +4526,6 @@ class TestNamibiaDollar:
             'convertion: "", '
             'international: False)')
         assert namibia_dollar.__str__() == '$-100.00'
-
 
     def test_namibia_dollar_custom(self):
         """test_namibia_dollar_custom."""
@@ -4552,7 +4553,8 @@ class TestNamibiaDollar:
         assert namibia_dollar.symbol_separator == '_'
         assert namibia_dollar.localized_symbol == 'NA$'
         assert namibia_dollar.convertion == ''
-        assert namibia_dollar.__hash__() == hash((decimal, 'NAD', '516'))
+        assert namibia_dollar.__hash__() == hash(
+            (namibia_dollar.__class__, decimal, 'NAD', '516'))
         assert namibia_dollar.__repr__() == (
             'NamibiaDollar(amount: 1000, '
             'alpha_code: "NAD", '
@@ -4568,7 +4570,6 @@ class TestNamibiaDollar:
             'convertion: "", '
             'international: True)')
         assert namibia_dollar.__str__() == 'NAD 10,00.00000'
-
 
     def test_namibia_dollar_changed(self):
         """test_cnamibia_dollar_changed."""
@@ -4626,7 +4627,6 @@ class TestNamibiaDollar:
                 match='can\'t set attribute'):
             namibia_dollar.international = True
 
-
     def test_namibia_dollar_math_add(self):
         """test_namibia_dollar_math_add."""
         namibia_dollar_one = NamibiaDollar(amount=1)
@@ -4639,14 +4639,14 @@ class TestNamibiaDollar:
             _ = namibia_dollar_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.NamibiaDollar\'> '
                     'and <class \'str\'>.')):
             _ = namibia_dollar_one.__add__('1.00')
         assert (
             namibia_dollar_one +
             namibia_dollar_two) == namibia_dollar_three
-
 
     def test_namibia_dollar_slots(self):
         """test_namibia_dollar_slots."""
@@ -4665,6 +4665,7 @@ from multicurrency import NewZealandDollar
 
 
 class TestNewZealandDollar:
+    """NewZealandDollar currency tests."""
 
     def test_new_zealand_dollar(self):
         """test_new_zealand_dollar."""
@@ -4684,7 +4685,8 @@ class TestNewZealandDollar:
         assert new_zealand_dollar.symbol_separator == ''
         assert new_zealand_dollar.localized_symbol == '$'
         assert new_zealand_dollar.convertion == ''
-        assert new_zealand_dollar.__hash__() == hash((decimal, 'NZD', '554'))
+        assert new_zealand_dollar.__hash__() == hash(
+            (new_zealand_dollar.__class__, decimal, 'NZD', '554'))
         assert new_zealand_dollar.__repr__() == (
             'NewZealandDollar(amount: 0.1428571428571428571428571429, '
             'alpha_code: "NZD", '
@@ -4700,7 +4702,6 @@ class TestNewZealandDollar:
             'convertion: "", '
             'international: False)')
         assert new_zealand_dollar.__str__() == '$0.14'
-
 
     def test_new_zealand_dollar_negative(self):
         """test_new_zealand_dollar_negative."""
@@ -4719,7 +4720,8 @@ class TestNewZealandDollar:
         assert new_zealand_dollar.symbol_separator == ''
         assert new_zealand_dollar.localized_symbol == '$'
         assert new_zealand_dollar.convertion == ''
-        assert new_zealand_dollar.__hash__() == hash((decimal, 'NZD', '554'))
+        assert new_zealand_dollar.__hash__() == hash(
+            (new_zealand_dollar.__class__, decimal, 'NZD', '554'))
         assert new_zealand_dollar.__repr__() == (
             'NewZealandDollar(amount: -100, '
             'alpha_code: "NZD", '
@@ -4735,7 +4737,6 @@ class TestNewZealandDollar:
             'convertion: "", '
             'international: False)')
         assert new_zealand_dollar.__str__() == '$-100.00'
-
 
     def test_new_zealand_dollar_custom(self):
         """test_new_zealand_dollar_custom."""
@@ -4763,7 +4764,8 @@ class TestNewZealandDollar:
         assert new_zealand_dollar.symbol_separator == '_'
         assert new_zealand_dollar.localized_symbol == '$'
         assert new_zealand_dollar.convertion == ''
-        assert new_zealand_dollar.__hash__() == hash((decimal, 'NZD', '554'))
+        assert new_zealand_dollar.__hash__() == hash(
+            (new_zealand_dollar.__class__, decimal, 'NZD', '554'))
         assert new_zealand_dollar.__repr__() == (
             'NewZealandDollar(amount: 1000, '
             'alpha_code: "NZD", '
@@ -4779,7 +4781,6 @@ class TestNewZealandDollar:
             'convertion: "", '
             'international: True)')
         assert new_zealand_dollar.__str__() == 'NZD 10,00.00000'
-
 
     def test_new_zealand_dollar_changed(self):
         """test_cnew_zealand_dollar_changed."""
@@ -4837,7 +4838,6 @@ class TestNewZealandDollar:
                 match='can\'t set attribute'):
             new_zealand_dollar.international = True
 
-
     def test_new_zealand_dollar_math_add(self):
         """test_new_zealand_dollar_math_add."""
         new_zealand_dollar_one = NewZealandDollar(amount=1)
@@ -4850,14 +4850,14 @@ class TestNewZealandDollar:
             _ = new_zealand_dollar_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.NewZealandDollar\'> '
                     'and <class \'str\'>.')):
             _ = new_zealand_dollar_one.__add__('1.00')
         assert (
             new_zealand_dollar_one +
             new_zealand_dollar_two) == new_zealand_dollar_three
-
 
     def test_new_zealand_dollar_slots(self):
         """test_new_zealand_dollar_slots."""
@@ -4876,6 +4876,7 @@ from multicurrency import NewZealandDollarCK
 
 
 class TestNewZealandDollarCK:
+    """NewZealandDollarCK currency tests."""
 
     def test_new_zealand_dollar_ck(self):
         """test_new_zealand_dollar_ck."""
@@ -4895,7 +4896,8 @@ class TestNewZealandDollarCK:
         assert new_zealand_dollar_ck.symbol_separator == ''
         assert new_zealand_dollar_ck.localized_symbol == 'CK$'
         assert new_zealand_dollar_ck.convertion == ''
-        assert new_zealand_dollar_ck.__hash__() == hash((decimal, 'NZD', '554'))
+        assert new_zealand_dollar_ck.__hash__() == hash(
+            (new_zealand_dollar_ck.__class__, decimal, 'NZD', '554'))
         assert new_zealand_dollar_ck.__repr__() == (
             'NewZealandDollarCK(amount: 0.1428571428571428571428571429, '
             'alpha_code: "NZD", '
@@ -4911,7 +4913,6 @@ class TestNewZealandDollarCK:
             'convertion: "", '
             'international: False)')
         assert new_zealand_dollar_ck.__str__() == '$0.14'
-
 
     def test_new_zealand_dollar_ck_negative(self):
         """test_new_zealand_dollar_ck_negative."""
@@ -4930,7 +4931,8 @@ class TestNewZealandDollarCK:
         assert new_zealand_dollar_ck.symbol_separator == ''
         assert new_zealand_dollar_ck.localized_symbol == 'CK$'
         assert new_zealand_dollar_ck.convertion == ''
-        assert new_zealand_dollar_ck.__hash__() == hash((decimal, 'NZD', '554'))
+        assert new_zealand_dollar_ck.__hash__() == hash(
+            (new_zealand_dollar_ck.__class__, decimal, 'NZD', '554'))
         assert new_zealand_dollar_ck.__repr__() == (
             'NewZealandDollarCK(amount: -100, '
             'alpha_code: "NZD", '
@@ -4946,7 +4948,6 @@ class TestNewZealandDollarCK:
             'convertion: "", '
             'international: False)')
         assert new_zealand_dollar_ck.__str__() == '$-100.00'
-
 
     def test_new_zealand_dollar_ck_custom(self):
         """test_new_zealand_dollar_ck_custom."""
@@ -4974,7 +4975,8 @@ class TestNewZealandDollarCK:
         assert new_zealand_dollar_ck.symbol_separator == '_'
         assert new_zealand_dollar_ck.localized_symbol == 'CK$'
         assert new_zealand_dollar_ck.convertion == ''
-        assert new_zealand_dollar_ck.__hash__() == hash((decimal, 'NZD', '554'))
+        assert new_zealand_dollar_ck.__hash__() == hash(
+            (new_zealand_dollar_ck.__class__, decimal, 'NZD', '554'))
         assert new_zealand_dollar_ck.__repr__() == (
             'NewZealandDollarCK(amount: 1000, '
             'alpha_code: "NZD", '
@@ -4990,7 +4992,6 @@ class TestNewZealandDollarCK:
             'convertion: "", '
             'international: True)')
         assert new_zealand_dollar_ck.__str__() == 'NZD 10,00.00000'
-
 
     def test_new_zealand_dollar_ck_changed(self):
         """test_cnew_zealand_dollar_ck_changed."""
@@ -5048,7 +5049,6 @@ class TestNewZealandDollarCK:
                 match='can\'t set attribute'):
             new_zealand_dollar_ck.international = True
 
-
     def test_new_zealand_dollar_ck_math_add(self):
         """test_new_zealand_dollar_ck_math_add."""
         new_zealand_dollar_ck_one = NewZealandDollarCK(amount=1)
@@ -5061,14 +5061,14 @@ class TestNewZealandDollarCK:
             _ = new_zealand_dollar_ck_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.NewZealandDollarCK\'> '
                     'and <class \'str\'>.')):
             _ = new_zealand_dollar_ck_one.__add__('1.00')
         assert (
             new_zealand_dollar_ck_one +
             new_zealand_dollar_ck_two) == new_zealand_dollar_ck_three
-
 
     def test_new_zealand_dollar_ck_slots(self):
         """test_new_zealand_dollar_ck_slots."""
@@ -5087,6 +5087,7 @@ from multicurrency import NewZealandDollarNZ
 
 
 class TestNewZealandDollarNZ:
+    """NewZealandDollarNZ currency tests."""
 
     def test_new_zealand_dollar_nz(self):
         """test_new_zealand_dollar_nz."""
@@ -5106,7 +5107,8 @@ class TestNewZealandDollarNZ:
         assert new_zealand_dollar_nz.symbol_separator == ''
         assert new_zealand_dollar_nz.localized_symbol == 'NZ$'
         assert new_zealand_dollar_nz.convertion == ''
-        assert new_zealand_dollar_nz.__hash__() == hash((decimal, 'NZD', '554'))
+        assert new_zealand_dollar_nz.__hash__() == hash(
+            (new_zealand_dollar_nz.__class__, decimal, 'NZD', '554'))
         assert new_zealand_dollar_nz.__repr__() == (
             'NewZealandDollarNZ(amount: 0.1428571428571428571428571429, '
             'alpha_code: "NZD", '
@@ -5122,7 +5124,6 @@ class TestNewZealandDollarNZ:
             'convertion: "", '
             'international: False)')
         assert new_zealand_dollar_nz.__str__() == '$0.14'
-
 
     def test_new_zealand_dollar_nz_negative(self):
         """test_new_zealand_dollar_nz_negative."""
@@ -5141,7 +5142,8 @@ class TestNewZealandDollarNZ:
         assert new_zealand_dollar_nz.symbol_separator == ''
         assert new_zealand_dollar_nz.localized_symbol == 'NZ$'
         assert new_zealand_dollar_nz.convertion == ''
-        assert new_zealand_dollar_nz.__hash__() == hash((decimal, 'NZD', '554'))
+        assert new_zealand_dollar_nz.__hash__() == hash(
+            (new_zealand_dollar_nz.__class__, decimal, 'NZD', '554'))
         assert new_zealand_dollar_nz.__repr__() == (
             'NewZealandDollarNZ(amount: -100, '
             'alpha_code: "NZD", '
@@ -5157,7 +5159,6 @@ class TestNewZealandDollarNZ:
             'convertion: "", '
             'international: False)')
         assert new_zealand_dollar_nz.__str__() == '$-100.00'
-
 
     def test_new_zealand_dollar_nz_custom(self):
         """test_new_zealand_dollar_nz_custom."""
@@ -5185,7 +5186,8 @@ class TestNewZealandDollarNZ:
         assert new_zealand_dollar_nz.symbol_separator == '_'
         assert new_zealand_dollar_nz.localized_symbol == 'NZ$'
         assert new_zealand_dollar_nz.convertion == ''
-        assert new_zealand_dollar_nz.__hash__() == hash((decimal, 'NZD', '554'))
+        assert new_zealand_dollar_nz.__hash__() == hash(
+            (new_zealand_dollar_nz.__class__, decimal, 'NZD', '554'))
         assert new_zealand_dollar_nz.__repr__() == (
             'NewZealandDollarNZ(amount: 1000, '
             'alpha_code: "NZD", '
@@ -5201,7 +5203,6 @@ class TestNewZealandDollarNZ:
             'convertion: "", '
             'international: True)')
         assert new_zealand_dollar_nz.__str__() == 'NZD 10,00.00000'
-
 
     def test_new_zealand_dollar_nz_changed(self):
         """test_cnew_zealand_dollar_nz_changed."""
@@ -5259,7 +5260,6 @@ class TestNewZealandDollarNZ:
                 match='can\'t set attribute'):
             new_zealand_dollar_nz.international = True
 
-
     def test_new_zealand_dollar_nz_math_add(self):
         """test_new_zealand_dollar_nz_math_add."""
         new_zealand_dollar_nz_one = NewZealandDollarNZ(amount=1)
@@ -5272,14 +5272,14 @@ class TestNewZealandDollarNZ:
             _ = new_zealand_dollar_nz_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.NewZealandDollarNZ\'> '
                     'and <class \'str\'>.')):
             _ = new_zealand_dollar_nz_one.__add__('1.00')
         assert (
             new_zealand_dollar_nz_one +
             new_zealand_dollar_nz_two) == new_zealand_dollar_nz_three
-
 
     def test_new_zealand_dollar_nz_slots(self):
         """test_new_zealand_dollar_nz_slots."""
@@ -5298,6 +5298,7 @@ from multicurrency import NewZealandDollarNU
 
 
 class TestNewZealandDollarNU:
+    """NewZealandDollarNU currency tests."""
 
     def test_new_zealand_dollar_nu(self):
         """test_new_zealand_dollar_nu."""
@@ -5317,7 +5318,8 @@ class TestNewZealandDollarNU:
         assert new_zealand_dollar_nu.symbol_separator == ''
         assert new_zealand_dollar_nu.localized_symbol == 'NU$'
         assert new_zealand_dollar_nu.convertion == ''
-        assert new_zealand_dollar_nu.__hash__() == hash((decimal, 'NZD', '554'))
+        assert new_zealand_dollar_nu.__hash__() == hash(
+            (new_zealand_dollar_nu.__class__, decimal, 'NZD', '554'))
         assert new_zealand_dollar_nu.__repr__() == (
             'NewZealandDollarNU(amount: 0.1428571428571428571428571429, '
             'alpha_code: "NZD", '
@@ -5333,7 +5335,6 @@ class TestNewZealandDollarNU:
             'convertion: "", '
             'international: False)')
         assert new_zealand_dollar_nu.__str__() == '$0.14'
-
 
     def test_new_zealand_dollar_nu_negative(self):
         """test_new_zealand_dollar_nu_negative."""
@@ -5352,7 +5353,8 @@ class TestNewZealandDollarNU:
         assert new_zealand_dollar_nu.symbol_separator == ''
         assert new_zealand_dollar_nu.localized_symbol == 'NU$'
         assert new_zealand_dollar_nu.convertion == ''
-        assert new_zealand_dollar_nu.__hash__() == hash((decimal, 'NZD', '554'))
+        assert new_zealand_dollar_nu.__hash__() == hash(
+            (new_zealand_dollar_nu.__class__, decimal, 'NZD', '554'))
         assert new_zealand_dollar_nu.__repr__() == (
             'NewZealandDollarNU(amount: -100, '
             'alpha_code: "NZD", '
@@ -5368,7 +5370,6 @@ class TestNewZealandDollarNU:
             'convertion: "", '
             'international: False)')
         assert new_zealand_dollar_nu.__str__() == '$-100.00'
-
 
     def test_new_zealand_dollar_nu_custom(self):
         """test_new_zealand_dollar_nu_custom."""
@@ -5396,7 +5397,8 @@ class TestNewZealandDollarNU:
         assert new_zealand_dollar_nu.symbol_separator == '_'
         assert new_zealand_dollar_nu.localized_symbol == 'NU$'
         assert new_zealand_dollar_nu.convertion == ''
-        assert new_zealand_dollar_nu.__hash__() == hash((decimal, 'NZD', '554'))
+        assert new_zealand_dollar_nu.__hash__() == hash(
+            (new_zealand_dollar_nu.__class__, decimal, 'NZD', '554'))
         assert new_zealand_dollar_nu.__repr__() == (
             'NewZealandDollarNU(amount: 1000, '
             'alpha_code: "NZD", '
@@ -5412,7 +5414,6 @@ class TestNewZealandDollarNU:
             'convertion: "", '
             'international: True)')
         assert new_zealand_dollar_nu.__str__() == 'NZD 10,00.00000'
-
 
     def test_new_zealand_dollar_nu_changed(self):
         """test_cnew_zealand_dollar_nu_changed."""
@@ -5470,7 +5471,6 @@ class TestNewZealandDollarNU:
                 match='can\'t set attribute'):
             new_zealand_dollar_nu.international = True
 
-
     def test_new_zealand_dollar_nu_math_add(self):
         """test_new_zealand_dollar_nu_math_add."""
         new_zealand_dollar_nu_one = NewZealandDollarNU(amount=1)
@@ -5483,14 +5483,14 @@ class TestNewZealandDollarNU:
             _ = new_zealand_dollar_nu_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.NewZealandDollarNU\'> '
                     'and <class \'str\'>.')):
             _ = new_zealand_dollar_nu_one.__add__('1.00')
         assert (
             new_zealand_dollar_nu_one +
             new_zealand_dollar_nu_two) == new_zealand_dollar_nu_three
-
 
     def test_new_zealand_dollar_nu_slots(self):
         """test_new_zealand_dollar_nu_slots."""
@@ -5509,6 +5509,7 @@ from multicurrency import NewZealandDollarPN
 
 
 class TestNewZealandDollarPN:
+    """NewZealandDollarPN currency tests."""
 
     def test_new_zealand_dollar_pn(self):
         """test_new_zealand_dollar_pn."""
@@ -5528,7 +5529,8 @@ class TestNewZealandDollarPN:
         assert new_zealand_dollar_pn.symbol_separator == ''
         assert new_zealand_dollar_pn.localized_symbol == 'PN$'
         assert new_zealand_dollar_pn.convertion == ''
-        assert new_zealand_dollar_pn.__hash__() == hash((decimal, 'NZD', '554'))
+        assert new_zealand_dollar_pn.__hash__() == hash(
+            (new_zealand_dollar_pn.__class__, decimal, 'NZD', '554'))
         assert new_zealand_dollar_pn.__repr__() == (
             'NewZealandDollarPN(amount: 0.1428571428571428571428571429, '
             'alpha_code: "NZD", '
@@ -5544,7 +5546,6 @@ class TestNewZealandDollarPN:
             'convertion: "", '
             'international: False)')
         assert new_zealand_dollar_pn.__str__() == '$0.14'
-
 
     def test_new_zealand_dollar_pn_negative(self):
         """test_new_zealand_dollar_pn_negative."""
@@ -5563,7 +5564,8 @@ class TestNewZealandDollarPN:
         assert new_zealand_dollar_pn.symbol_separator == ''
         assert new_zealand_dollar_pn.localized_symbol == 'PN$'
         assert new_zealand_dollar_pn.convertion == ''
-        assert new_zealand_dollar_pn.__hash__() == hash((decimal, 'NZD', '554'))
+        assert new_zealand_dollar_pn.__hash__() == hash(
+            (new_zealand_dollar_pn.__class__, decimal, 'NZD', '554'))
         assert new_zealand_dollar_pn.__repr__() == (
             'NewZealandDollarPN(amount: -100, '
             'alpha_code: "NZD", '
@@ -5579,7 +5581,6 @@ class TestNewZealandDollarPN:
             'convertion: "", '
             'international: False)')
         assert new_zealand_dollar_pn.__str__() == '$-100.00'
-
 
     def test_new_zealand_dollar_pn_custom(self):
         """test_new_zealand_dollar_pn_custom."""
@@ -5607,7 +5608,8 @@ class TestNewZealandDollarPN:
         assert new_zealand_dollar_pn.symbol_separator == '_'
         assert new_zealand_dollar_pn.localized_symbol == 'PN$'
         assert new_zealand_dollar_pn.convertion == ''
-        assert new_zealand_dollar_pn.__hash__() == hash((decimal, 'NZD', '554'))
+        assert new_zealand_dollar_pn.__hash__() == hash(
+            (new_zealand_dollar_pn.__class__, decimal, 'NZD', '554'))
         assert new_zealand_dollar_pn.__repr__() == (
             'NewZealandDollarPN(amount: 1000, '
             'alpha_code: "NZD", '
@@ -5623,7 +5625,6 @@ class TestNewZealandDollarPN:
             'convertion: "", '
             'international: True)')
         assert new_zealand_dollar_pn.__str__() == 'NZD 10,00.00000'
-
 
     def test_new_zealand_dollar_pn_changed(self):
         """test_cnew_zealand_dollar_pn_changed."""
@@ -5681,7 +5682,6 @@ class TestNewZealandDollarPN:
                 match='can\'t set attribute'):
             new_zealand_dollar_pn.international = True
 
-
     def test_new_zealand_dollar_pn_math_add(self):
         """test_new_zealand_dollar_pn_math_add."""
         new_zealand_dollar_pn_one = NewZealandDollarPN(amount=1)
@@ -5694,14 +5694,14 @@ class TestNewZealandDollarPN:
             _ = new_zealand_dollar_pn_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.NewZealandDollarPN\'> '
                     'and <class \'str\'>.')):
             _ = new_zealand_dollar_pn_one.__add__('1.00')
         assert (
             new_zealand_dollar_pn_one +
             new_zealand_dollar_pn_two) == new_zealand_dollar_pn_three
-
 
     def test_new_zealand_dollar_pn_slots(self):
         """test_new_zealand_dollar_pn_slots."""
@@ -5720,6 +5720,7 @@ from multicurrency import SolomonIslandsDollar
 
 
 class TestSolomonIslandsDollar:
+    """SolomonIslandsDollar currency tests."""
 
     def test_solomon_islands_dollar(self):
         """test_solomon_islands_dollar."""
@@ -5739,7 +5740,8 @@ class TestSolomonIslandsDollar:
         assert solomon_islands_dollar.symbol_separator == ''
         assert solomon_islands_dollar.localized_symbol == 'SB$'
         assert solomon_islands_dollar.convertion == ''
-        assert solomon_islands_dollar.__hash__() == hash((decimal, 'SBD', '090'))
+        assert solomon_islands_dollar.__hash__() == hash(
+            (solomon_islands_dollar.__class__, decimal, 'SBD', '090'))
         assert solomon_islands_dollar.__repr__() == (
             'SolomonIslandsDollar(amount: 0.1428571428571428571428571429, '
             'alpha_code: "SBD", '
@@ -5755,7 +5757,6 @@ class TestSolomonIslandsDollar:
             'convertion: "", '
             'international: False)')
         assert solomon_islands_dollar.__str__() == '$0.14'
-
 
     def test_solomon_islands_dollar_negative(self):
         """test_solomon_islands_dollar_negative."""
@@ -5774,7 +5775,8 @@ class TestSolomonIslandsDollar:
         assert solomon_islands_dollar.symbol_separator == ''
         assert solomon_islands_dollar.localized_symbol == 'SB$'
         assert solomon_islands_dollar.convertion == ''
-        assert solomon_islands_dollar.__hash__() == hash((decimal, 'SBD', '090'))
+        assert solomon_islands_dollar.__hash__() == hash(
+            (solomon_islands_dollar.__class__, decimal, 'SBD', '090'))
         assert solomon_islands_dollar.__repr__() == (
             'SolomonIslandsDollar(amount: -100, '
             'alpha_code: "SBD", '
@@ -5790,7 +5792,6 @@ class TestSolomonIslandsDollar:
             'convertion: "", '
             'international: False)')
         assert solomon_islands_dollar.__str__() == '$-100.00'
-
 
     def test_solomon_islands_dollar_custom(self):
         """test_solomon_islands_dollar_custom."""
@@ -5818,7 +5819,8 @@ class TestSolomonIslandsDollar:
         assert solomon_islands_dollar.symbol_separator == '_'
         assert solomon_islands_dollar.localized_symbol == 'SB$'
         assert solomon_islands_dollar.convertion == ''
-        assert solomon_islands_dollar.__hash__() == hash((decimal, 'SBD', '090'))
+        assert solomon_islands_dollar.__hash__() == hash(
+            (solomon_islands_dollar.__class__, decimal, 'SBD', '090'))
         assert solomon_islands_dollar.__repr__() == (
             'SolomonIslandsDollar(amount: 1000, '
             'alpha_code: "SBD", '
@@ -5834,7 +5836,6 @@ class TestSolomonIslandsDollar:
             'convertion: "", '
             'international: True)')
         assert solomon_islands_dollar.__str__() == 'SBD 10,00.00000'
-
 
     def test_solomon_islands_dollar_changed(self):
         """test_csolomon_islands_dollar_changed."""
@@ -5892,7 +5893,6 @@ class TestSolomonIslandsDollar:
                 match='can\'t set attribute'):
             solomon_islands_dollar.international = True
 
-
     def test_solomon_islands_dollar_math_add(self):
         """test_solomon_islands_dollar_math_add."""
         solomon_islands_dollar_one = SolomonIslandsDollar(amount=1)
@@ -5905,14 +5905,14 @@ class TestSolomonIslandsDollar:
             _ = solomon_islands_dollar_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.SolomonIslandsDollar\'> '
                     'and <class \'str\'>.')):
             _ = solomon_islands_dollar_one.__add__('1.00')
         assert (
             solomon_islands_dollar_one +
             solomon_islands_dollar_two) == solomon_islands_dollar_three
-
 
     def test_solomon_islands_dollar_slots(self):
         """test_solomon_islands_dollar_slots."""
@@ -5931,6 +5931,7 @@ from multicurrency import SingaporeDollar
 
 
 class TestSingaporeDollar:
+    """SingaporeDollar currency tests."""
 
     def test_singapore_dollar(self):
         """test_singapore_dollar."""
@@ -5950,7 +5951,8 @@ class TestSingaporeDollar:
         assert singapore_dollar.symbol_separator == ''
         assert singapore_dollar.localized_symbol == '$'
         assert singapore_dollar.convertion == ''
-        assert singapore_dollar.__hash__() == hash((decimal, 'SGD', '702'))
+        assert singapore_dollar.__hash__() == hash(
+            (singapore_dollar.__class__, decimal, 'SGD', '702'))
         assert singapore_dollar.__repr__() == (
             'SingaporeDollar(amount: 0.1428571428571428571428571429, '
             'alpha_code: "SGD", '
@@ -5966,7 +5968,6 @@ class TestSingaporeDollar:
             'convertion: "", '
             'international: False)')
         assert singapore_dollar.__str__() == '$0.14'
-
 
     def test_singapore_dollar_negative(self):
         """test_singapore_dollar_negative."""
@@ -5985,7 +5986,8 @@ class TestSingaporeDollar:
         assert singapore_dollar.symbol_separator == ''
         assert singapore_dollar.localized_symbol == '$'
         assert singapore_dollar.convertion == ''
-        assert singapore_dollar.__hash__() == hash((decimal, 'SGD', '702'))
+        assert singapore_dollar.__hash__() == hash(
+            (singapore_dollar.__class__, decimal, 'SGD', '702'))
         assert singapore_dollar.__repr__() == (
             'SingaporeDollar(amount: -100, '
             'alpha_code: "SGD", '
@@ -6001,7 +6003,6 @@ class TestSingaporeDollar:
             'convertion: "", '
             'international: False)')
         assert singapore_dollar.__str__() == '$-100.00'
-
 
     def test_singapore_dollar_custom(self):
         """test_singapore_dollar_custom."""
@@ -6029,7 +6030,8 @@ class TestSingaporeDollar:
         assert singapore_dollar.symbol_separator == '_'
         assert singapore_dollar.localized_symbol == '$'
         assert singapore_dollar.convertion == ''
-        assert singapore_dollar.__hash__() == hash((decimal, 'SGD', '702'))
+        assert singapore_dollar.__hash__() == hash(
+            (singapore_dollar.__class__, decimal, 'SGD', '702'))
         assert singapore_dollar.__repr__() == (
             'SingaporeDollar(amount: 1000, '
             'alpha_code: "SGD", '
@@ -6045,7 +6047,6 @@ class TestSingaporeDollar:
             'convertion: "", '
             'international: True)')
         assert singapore_dollar.__str__() == 'SGD 10,00.00000'
-
 
     def test_singapore_dollar_changed(self):
         """test_csingapore_dollar_changed."""
@@ -6103,7 +6104,6 @@ class TestSingaporeDollar:
                 match='can\'t set attribute'):
             singapore_dollar.international = True
 
-
     def test_singapore_dollar_math_add(self):
         """test_singapore_dollar_math_add."""
         singapore_dollar_one = SingaporeDollar(amount=1)
@@ -6116,14 +6116,14 @@ class TestSingaporeDollar:
             _ = singapore_dollar_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.SingaporeDollar\'> '
                     'and <class \'str\'>.')):
             _ = singapore_dollar_one.__add__('1.00')
         assert (
             singapore_dollar_one +
             singapore_dollar_two) == singapore_dollar_three
-
 
     def test_singapore_dollar_slots(self):
         """test_singapore_dollar_slots."""
@@ -6142,6 +6142,7 @@ from multicurrency import SingaporeDollarBN
 
 
 class TestSingaporeDollarBN:
+    """SingaporeDollarBN currency tests."""
 
     def test_singapore_dollar_bn(self):
         """test_singapore_dollar_bn."""
@@ -6161,7 +6162,8 @@ class TestSingaporeDollarBN:
         assert singapore_dollar_bn.symbol_separator == ''
         assert singapore_dollar_bn.localized_symbol == 'BN$'
         assert singapore_dollar_bn.convertion == ''
-        assert singapore_dollar_bn.__hash__() == hash((decimal, 'SGD', '702'))
+        assert singapore_dollar_bn.__hash__() == hash(
+            (singapore_dollar_bn.__class__, decimal, 'SGD', '702'))
         assert singapore_dollar_bn.__repr__() == (
             'SingaporeDollarBN(amount: 0.1428571428571428571428571429, '
             'alpha_code: "SGD", '
@@ -6177,7 +6179,6 @@ class TestSingaporeDollarBN:
             'convertion: "", '
             'international: False)')
         assert singapore_dollar_bn.__str__() == '$0.14'
-
 
     def test_singapore_dollar_bn_negative(self):
         """test_singapore_dollar_bn_negative."""
@@ -6196,7 +6197,8 @@ class TestSingaporeDollarBN:
         assert singapore_dollar_bn.symbol_separator == ''
         assert singapore_dollar_bn.localized_symbol == 'BN$'
         assert singapore_dollar_bn.convertion == ''
-        assert singapore_dollar_bn.__hash__() == hash((decimal, 'SGD', '702'))
+        assert singapore_dollar_bn.__hash__() == hash(
+            (singapore_dollar_bn.__class__, decimal, 'SGD', '702'))
         assert singapore_dollar_bn.__repr__() == (
             'SingaporeDollarBN(amount: -100, '
             'alpha_code: "SGD", '
@@ -6212,7 +6214,6 @@ class TestSingaporeDollarBN:
             'convertion: "", '
             'international: False)')
         assert singapore_dollar_bn.__str__() == '$-100.00'
-
 
     def test_singapore_dollar_bn_custom(self):
         """test_singapore_dollar_bn_custom."""
@@ -6240,7 +6241,8 @@ class TestSingaporeDollarBN:
         assert singapore_dollar_bn.symbol_separator == '_'
         assert singapore_dollar_bn.localized_symbol == 'BN$'
         assert singapore_dollar_bn.convertion == ''
-        assert singapore_dollar_bn.__hash__() == hash((decimal, 'SGD', '702'))
+        assert singapore_dollar_bn.__hash__() == hash(
+            (singapore_dollar_bn.__class__, decimal, 'SGD', '702'))
         assert singapore_dollar_bn.__repr__() == (
             'SingaporeDollarBN(amount: 1000, '
             'alpha_code: "SGD", '
@@ -6256,7 +6258,6 @@ class TestSingaporeDollarBN:
             'convertion: "", '
             'international: True)')
         assert singapore_dollar_bn.__str__() == 'SGD 10,00.00000'
-
 
     def test_singapore_dollar_bn_changed(self):
         """test_csingapore_dollar_bn_changed."""
@@ -6314,7 +6315,6 @@ class TestSingaporeDollarBN:
                 match='can\'t set attribute'):
             singapore_dollar_bn.international = True
 
-
     def test_singapore_dollar_bn_math_add(self):
         """test_singapore_dollar_bn_math_add."""
         singapore_dollar_bn_one = SingaporeDollarBN(amount=1)
@@ -6327,14 +6327,14 @@ class TestSingaporeDollarBN:
             _ = singapore_dollar_bn_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.SingaporeDollarBN\'> '
                     'and <class \'str\'>.')):
             _ = singapore_dollar_bn_one.__add__('1.00')
         assert (
             singapore_dollar_bn_one +
             singapore_dollar_bn_two) == singapore_dollar_bn_three
-
 
     def test_singapore_dollar_bn_slots(self):
         """test_singapore_dollar_bn_slots."""
@@ -6353,6 +6353,7 @@ from multicurrency import SingaporeDollarSG
 
 
 class TestSingaporeDollarSG:
+    """SingaporeDollarSG currency tests."""
 
     def test_singapore_dollar_sg(self):
         """test_singapore_dollar_sg."""
@@ -6372,7 +6373,8 @@ class TestSingaporeDollarSG:
         assert singapore_dollar_sg.symbol_separator == ''
         assert singapore_dollar_sg.localized_symbol == 'SG$'
         assert singapore_dollar_sg.convertion == ''
-        assert singapore_dollar_sg.__hash__() == hash((decimal, 'SGD', '702'))
+        assert singapore_dollar_sg.__hash__() == hash(
+            (singapore_dollar_sg.__class__, decimal, 'SGD', '702'))
         assert singapore_dollar_sg.__repr__() == (
             'SingaporeDollarSG(amount: 0.1428571428571428571428571429, '
             'alpha_code: "SGD", '
@@ -6388,7 +6390,6 @@ class TestSingaporeDollarSG:
             'convertion: "", '
             'international: False)')
         assert singapore_dollar_sg.__str__() == '$0.14'
-
 
     def test_singapore_dollar_sg_negative(self):
         """test_singapore_dollar_sg_negative."""
@@ -6407,7 +6408,8 @@ class TestSingaporeDollarSG:
         assert singapore_dollar_sg.symbol_separator == ''
         assert singapore_dollar_sg.localized_symbol == 'SG$'
         assert singapore_dollar_sg.convertion == ''
-        assert singapore_dollar_sg.__hash__() == hash((decimal, 'SGD', '702'))
+        assert singapore_dollar_sg.__hash__() == hash(
+            (singapore_dollar_sg.__class__, decimal, 'SGD', '702'))
         assert singapore_dollar_sg.__repr__() == (
             'SingaporeDollarSG(amount: -100, '
             'alpha_code: "SGD", '
@@ -6423,7 +6425,6 @@ class TestSingaporeDollarSG:
             'convertion: "", '
             'international: False)')
         assert singapore_dollar_sg.__str__() == '$-100.00'
-
 
     def test_singapore_dollar_sg_custom(self):
         """test_singapore_dollar_sg_custom."""
@@ -6451,7 +6452,8 @@ class TestSingaporeDollarSG:
         assert singapore_dollar_sg.symbol_separator == '_'
         assert singapore_dollar_sg.localized_symbol == 'SG$'
         assert singapore_dollar_sg.convertion == ''
-        assert singapore_dollar_sg.__hash__() == hash((decimal, 'SGD', '702'))
+        assert singapore_dollar_sg.__hash__() == hash(
+            (singapore_dollar_sg.__class__, decimal, 'SGD', '702'))
         assert singapore_dollar_sg.__repr__() == (
             'SingaporeDollarSG(amount: 1000, '
             'alpha_code: "SGD", '
@@ -6467,7 +6469,6 @@ class TestSingaporeDollarSG:
             'convertion: "", '
             'international: True)')
         assert singapore_dollar_sg.__str__() == 'SGD 10,00.00000'
-
 
     def test_singapore_dollar_sg_changed(self):
         """test_csingapore_dollar_sg_changed."""
@@ -6525,7 +6526,6 @@ class TestSingaporeDollarSG:
                 match='can\'t set attribute'):
             singapore_dollar_sg.international = True
 
-
     def test_singapore_dollar_sg_math_add(self):
         """test_singapore_dollar_sg_math_add."""
         singapore_dollar_sg_one = SingaporeDollarSG(amount=1)
@@ -6538,14 +6538,14 @@ class TestSingaporeDollarSG:
             _ = singapore_dollar_sg_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.SingaporeDollarSG\'> '
                     'and <class \'str\'>.')):
             _ = singapore_dollar_sg_one.__add__('1.00')
         assert (
             singapore_dollar_sg_one +
             singapore_dollar_sg_two) == singapore_dollar_sg_three
-
 
     def test_singapore_dollar_sg_slots(self):
         """test_singapore_dollar_sg_slots."""
@@ -6564,6 +6564,7 @@ from multicurrency import SurinameDollar
 
 
 class TestSurinameDollar:
+    """SurinameDollar currency tests."""
 
     def test_suriname_dollar(self):
         """test_suriname_dollar."""
@@ -6583,7 +6584,8 @@ class TestSurinameDollar:
         assert suriname_dollar.symbol_separator == '\u00A0'
         assert suriname_dollar.localized_symbol == 'SR$'
         assert suriname_dollar.convertion == ''
-        assert suriname_dollar.__hash__() == hash((decimal, 'SRD', '968'))
+        assert suriname_dollar.__hash__() == hash(
+            (suriname_dollar.__class__, decimal, 'SRD', '968'))
         assert suriname_dollar.__repr__() == (
             'SurinameDollar(amount: 0.1428571428571428571428571429, '
             'alpha_code: "SRD", '
@@ -6599,7 +6601,6 @@ class TestSurinameDollar:
             'convertion: "", '
             'international: False)')
         assert suriname_dollar.__str__() == '$ 0,14'
-
 
     def test_suriname_dollar_negative(self):
         """test_suriname_dollar_negative."""
@@ -6618,7 +6619,8 @@ class TestSurinameDollar:
         assert suriname_dollar.symbol_separator == '\u00A0'
         assert suriname_dollar.localized_symbol == 'SR$'
         assert suriname_dollar.convertion == ''
-        assert suriname_dollar.__hash__() == hash((decimal, 'SRD', '968'))
+        assert suriname_dollar.__hash__() == hash(
+            (suriname_dollar.__class__, decimal, 'SRD', '968'))
         assert suriname_dollar.__repr__() == (
             'SurinameDollar(amount: -100, '
             'alpha_code: "SRD", '
@@ -6634,7 +6636,6 @@ class TestSurinameDollar:
             'convertion: "", '
             'international: False)')
         assert suriname_dollar.__str__() == '$ -100,00'
-
 
     def test_suriname_dollar_custom(self):
         """test_suriname_dollar_custom."""
@@ -6662,7 +6663,8 @@ class TestSurinameDollar:
         assert suriname_dollar.symbol_separator == '_'
         assert suriname_dollar.localized_symbol == 'SR$'
         assert suriname_dollar.convertion == ''
-        assert suriname_dollar.__hash__() == hash((decimal, 'SRD', '968'))
+        assert suriname_dollar.__hash__() == hash(
+            (suriname_dollar.__class__, decimal, 'SRD', '968'))
         assert suriname_dollar.__repr__() == (
             'SurinameDollar(amount: 1000, '
             'alpha_code: "SRD", '
@@ -6678,7 +6680,6 @@ class TestSurinameDollar:
             'convertion: "", '
             'international: True)')
         assert suriname_dollar.__str__() == 'SRD 10,00.00000'
-
 
     def test_suriname_dollar_changed(self):
         """test_csuriname_dollar_changed."""
@@ -6736,7 +6737,6 @@ class TestSurinameDollar:
                 match='can\'t set attribute'):
             suriname_dollar.international = True
 
-
     def test_suriname_dollar_math_add(self):
         """test_suriname_dollar_math_add."""
         suriname_dollar_one = SurinameDollar(amount=1)
@@ -6749,14 +6749,14 @@ class TestSurinameDollar:
             _ = suriname_dollar_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.SurinameDollar\'> '
                     'and <class \'str\'>.')):
             _ = suriname_dollar_one.__add__('1.00')
         assert (
             suriname_dollar_one +
             suriname_dollar_two) == suriname_dollar_three
-
 
     def test_suriname_dollar_slots(self):
         """test_suriname_dollar_slots."""
@@ -6775,6 +6775,7 @@ from multicurrency import TrinidadandTobagoDollar
 
 
 class TestTrinidadandTobagoDollar:
+    """TrinidadandTobagoDollar currency tests."""
 
     def test_trinidad_and_tobago_dollar(self):
         """test_trinidad_and_tobago_dollar."""
@@ -6794,7 +6795,8 @@ class TestTrinidadandTobagoDollar:
         assert trinidad_and_tobago_dollar.symbol_separator == ''
         assert trinidad_and_tobago_dollar.localized_symbol == 'TT$'
         assert trinidad_and_tobago_dollar.convertion == ''
-        assert trinidad_and_tobago_dollar.__hash__() == hash((decimal, 'TTD', '780'))
+        assert trinidad_and_tobago_dollar.__hash__() == hash(
+            (trinidad_and_tobago_dollar.__class__, decimal, 'TTD', '780'))
         assert trinidad_and_tobago_dollar.__repr__() == (
             'TrinidadandTobagoDollar(amount: 0.1428571428571428571428571429, '
             'alpha_code: "TTD", '
@@ -6810,7 +6812,6 @@ class TestTrinidadandTobagoDollar:
             'convertion: "", '
             'international: False)')
         assert trinidad_and_tobago_dollar.__str__() == '$0.14'
-
 
     def test_trinidad_and_tobago_dollar_negative(self):
         """test_trinidad_and_tobago_dollar_negative."""
@@ -6829,7 +6830,8 @@ class TestTrinidadandTobagoDollar:
         assert trinidad_and_tobago_dollar.symbol_separator == ''
         assert trinidad_and_tobago_dollar.localized_symbol == 'TT$'
         assert trinidad_and_tobago_dollar.convertion == ''
-        assert trinidad_and_tobago_dollar.__hash__() == hash((decimal, 'TTD', '780'))
+        assert trinidad_and_tobago_dollar.__hash__() == hash(
+            (trinidad_and_tobago_dollar.__class__, decimal, 'TTD', '780'))
         assert trinidad_and_tobago_dollar.__repr__() == (
             'TrinidadandTobagoDollar(amount: -100, '
             'alpha_code: "TTD", '
@@ -6845,7 +6847,6 @@ class TestTrinidadandTobagoDollar:
             'convertion: "", '
             'international: False)')
         assert trinidad_and_tobago_dollar.__str__() == '$-100.00'
-
 
     def test_trinidad_and_tobago_dollar_custom(self):
         """test_trinidad_and_tobago_dollar_custom."""
@@ -6873,7 +6874,8 @@ class TestTrinidadandTobagoDollar:
         assert trinidad_and_tobago_dollar.symbol_separator == '_'
         assert trinidad_and_tobago_dollar.localized_symbol == 'TT$'
         assert trinidad_and_tobago_dollar.convertion == ''
-        assert trinidad_and_tobago_dollar.__hash__() == hash((decimal, 'TTD', '780'))
+        assert trinidad_and_tobago_dollar.__hash__() == hash(
+            (trinidad_and_tobago_dollar.__class__, decimal, 'TTD', '780'))
         assert trinidad_and_tobago_dollar.__repr__() == (
             'TrinidadandTobagoDollar(amount: 1000, '
             'alpha_code: "TTD", '
@@ -6889,7 +6891,6 @@ class TestTrinidadandTobagoDollar:
             'convertion: "", '
             'international: True)')
         assert trinidad_and_tobago_dollar.__str__() == 'TTD 10,00.00000'
-
 
     def test_trinidad_and_tobago_dollar_changed(self):
         """test_ctrinidad_and_tobago_dollar_changed."""
@@ -6947,7 +6948,6 @@ class TestTrinidadandTobagoDollar:
                 match='can\'t set attribute'):
             trinidad_and_tobago_dollar.international = True
 
-
     def test_trinidad_and_tobago_dollar_math_add(self):
         """test_trinidad_and_tobago_dollar_math_add."""
         trinidad_and_tobago_dollar_one = TrinidadandTobagoDollar(amount=1)
@@ -6960,14 +6960,14 @@ class TestTrinidadandTobagoDollar:
             _ = trinidad_and_tobago_dollar_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.TrinidadandTobagoDollar\'> '
                     'and <class \'str\'>.')):
             _ = trinidad_and_tobago_dollar_one.__add__('1.00')
         assert (
             trinidad_and_tobago_dollar_one +
             trinidad_and_tobago_dollar_two) == trinidad_and_tobago_dollar_three
-
 
     def test_trinidad_and_tobago_dollar_slots(self):
         """test_trinidad_and_tobago_dollar_slots."""
@@ -6986,6 +6986,7 @@ from multicurrency import TaiwanDollar
 
 
 class TestTaiwanDollar:
+    """TaiwanDollar currency tests."""
 
     def test_taiwan_dollar(self):
         """test_taiwan_dollar."""
@@ -7005,7 +7006,8 @@ class TestTaiwanDollar:
         assert taiwan_dollar.symbol_separator == ''
         assert taiwan_dollar.localized_symbol == 'TW$'
         assert taiwan_dollar.convertion == ''
-        assert taiwan_dollar.__hash__() == hash((decimal, 'TWD', '901'))
+        assert taiwan_dollar.__hash__() == hash(
+            (taiwan_dollar.__class__, decimal, 'TWD', '901'))
         assert taiwan_dollar.__repr__() == (
             'TaiwanDollar(amount: 0.1428571428571428571428571429, '
             'alpha_code: "TWD", '
@@ -7021,7 +7023,6 @@ class TestTaiwanDollar:
             'convertion: "", '
             'international: False)')
         assert taiwan_dollar.__str__() == '$0.14'
-
 
     def test_taiwan_dollar_negative(self):
         """test_taiwan_dollar_negative."""
@@ -7040,7 +7041,8 @@ class TestTaiwanDollar:
         assert taiwan_dollar.symbol_separator == ''
         assert taiwan_dollar.localized_symbol == 'TW$'
         assert taiwan_dollar.convertion == ''
-        assert taiwan_dollar.__hash__() == hash((decimal, 'TWD', '901'))
+        assert taiwan_dollar.__hash__() == hash(
+            (taiwan_dollar.__class__, decimal, 'TWD', '901'))
         assert taiwan_dollar.__repr__() == (
             'TaiwanDollar(amount: -100, '
             'alpha_code: "TWD", '
@@ -7056,7 +7058,6 @@ class TestTaiwanDollar:
             'convertion: "", '
             'international: False)')
         assert taiwan_dollar.__str__() == '$-100.00'
-
 
     def test_taiwan_dollar_custom(self):
         """test_taiwan_dollar_custom."""
@@ -7084,7 +7085,8 @@ class TestTaiwanDollar:
         assert taiwan_dollar.symbol_separator == '_'
         assert taiwan_dollar.localized_symbol == 'TW$'
         assert taiwan_dollar.convertion == ''
-        assert taiwan_dollar.__hash__() == hash((decimal, 'TWD', '901'))
+        assert taiwan_dollar.__hash__() == hash(
+            (taiwan_dollar.__class__, decimal, 'TWD', '901'))
         assert taiwan_dollar.__repr__() == (
             'TaiwanDollar(amount: 1000, '
             'alpha_code: "TWD", '
@@ -7100,7 +7102,6 @@ class TestTaiwanDollar:
             'convertion: "", '
             'international: True)')
         assert taiwan_dollar.__str__() == 'TWD 10,00.00000'
-
 
     def test_taiwan_dollar_changed(self):
         """test_ctaiwan_dollar_changed."""
@@ -7158,7 +7159,6 @@ class TestTaiwanDollar:
                 match='can\'t set attribute'):
             taiwan_dollar.international = True
 
-
     def test_taiwan_dollar_math_add(self):
         """test_taiwan_dollar_math_add."""
         taiwan_dollar_one = TaiwanDollar(amount=1)
@@ -7171,14 +7171,14 @@ class TestTaiwanDollar:
             _ = taiwan_dollar_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.TaiwanDollar\'> '
                     'and <class \'str\'>.')):
             _ = taiwan_dollar_one.__add__('1.00')
         assert (
             taiwan_dollar_one +
             taiwan_dollar_two) == taiwan_dollar_three
-
 
     def test_taiwan_dollar_slots(self):
         """test_taiwan_dollar_slots."""
@@ -7197,6 +7197,7 @@ from multicurrency import USDollar
 
 
 class TestUSDollar:
+    """USDollar currency tests."""
 
     def test_us_dollar(self):
         """test_us_dollar."""
@@ -7216,7 +7217,8 @@ class TestUSDollar:
         assert us_dollar.symbol_separator == ''
         assert us_dollar.localized_symbol == 'US$'
         assert us_dollar.convertion == ''
-        assert us_dollar.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar.__hash__() == hash(
+            (us_dollar.__class__, decimal, 'USD', '840'))
         assert us_dollar.__repr__() == (
             'USDollar(amount: 0.1428571428571428571428571429, '
             'alpha_code: "USD", '
@@ -7232,7 +7234,6 @@ class TestUSDollar:
             'convertion: "", '
             'international: False)')
         assert us_dollar.__str__() == '$0.14'
-
 
     def test_us_dollar_negative(self):
         """test_us_dollar_negative."""
@@ -7251,7 +7252,8 @@ class TestUSDollar:
         assert us_dollar.symbol_separator == ''
         assert us_dollar.localized_symbol == 'US$'
         assert us_dollar.convertion == ''
-        assert us_dollar.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar.__hash__() == hash(
+            (us_dollar.__class__, decimal, 'USD', '840'))
         assert us_dollar.__repr__() == (
             'USDollar(amount: -100, '
             'alpha_code: "USD", '
@@ -7267,7 +7269,6 @@ class TestUSDollar:
             'convertion: "", '
             'international: False)')
         assert us_dollar.__str__() == '$-100.00'
-
 
     def test_us_dollar_custom(self):
         """test_us_dollar_custom."""
@@ -7295,7 +7296,8 @@ class TestUSDollar:
         assert us_dollar.symbol_separator == '_'
         assert us_dollar.localized_symbol == 'US$'
         assert us_dollar.convertion == ''
-        assert us_dollar.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar.__hash__() == hash(
+            (us_dollar.__class__, decimal, 'USD', '840'))
         assert us_dollar.__repr__() == (
             'USDollar(amount: 1000, '
             'alpha_code: "USD", '
@@ -7311,7 +7313,6 @@ class TestUSDollar:
             'convertion: "", '
             'international: True)')
         assert us_dollar.__str__() == 'USD 10,00.00000'
-
 
     def test_us_dollar_changed(self):
         """test_cus_dollar_changed."""
@@ -7369,7 +7370,6 @@ class TestUSDollar:
                 match='can\'t set attribute'):
             us_dollar.international = True
 
-
     def test_us_dollar_math_add(self):
         """test_us_dollar_math_add."""
         us_dollar_one = USDollar(amount=1)
@@ -7382,14 +7382,14 @@ class TestUSDollar:
             _ = us_dollar_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.USDollar\'> '
                     'and <class \'str\'>.')):
             _ = us_dollar_one.__add__('1.00')
         assert (
             us_dollar_one +
             us_dollar_two) == us_dollar_three
-
 
     def test_us_dollar_slots(self):
         """test_us_dollar_slots."""
@@ -7408,6 +7408,7 @@ from multicurrency import USDollarAS
 
 
 class TestUSDollarAS:
+    """USDollarAS currency tests."""
 
     def test_us_dollar_as(self):
         """test_us_dollar_as."""
@@ -7427,7 +7428,8 @@ class TestUSDollarAS:
         assert us_dollar_as.symbol_separator == ''
         assert us_dollar_as.localized_symbol == 'AS$'
         assert us_dollar_as.convertion == ''
-        assert us_dollar_as.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_as.__hash__() == hash(
+            (us_dollar_as.__class__, decimal, 'USD', '840'))
         assert us_dollar_as.__repr__() == (
             'USDollarAS(amount: 0.1428571428571428571428571429, '
             'alpha_code: "USD", '
@@ -7443,7 +7445,6 @@ class TestUSDollarAS:
             'convertion: "", '
             'international: False)')
         assert us_dollar_as.__str__() == '$0.14'
-
 
     def test_us_dollar_as_negative(self):
         """test_us_dollar_as_negative."""
@@ -7462,7 +7463,8 @@ class TestUSDollarAS:
         assert us_dollar_as.symbol_separator == ''
         assert us_dollar_as.localized_symbol == 'AS$'
         assert us_dollar_as.convertion == ''
-        assert us_dollar_as.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_as.__hash__() == hash(
+            (us_dollar_as.__class__, decimal, 'USD', '840'))
         assert us_dollar_as.__repr__() == (
             'USDollarAS(amount: -100, '
             'alpha_code: "USD", '
@@ -7478,7 +7480,6 @@ class TestUSDollarAS:
             'convertion: "", '
             'international: False)')
         assert us_dollar_as.__str__() == '$-100.00'
-
 
     def test_us_dollar_as_custom(self):
         """test_us_dollar_as_custom."""
@@ -7506,7 +7507,8 @@ class TestUSDollarAS:
         assert us_dollar_as.symbol_separator == '_'
         assert us_dollar_as.localized_symbol == 'AS$'
         assert us_dollar_as.convertion == ''
-        assert us_dollar_as.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_as.__hash__() == hash(
+            (us_dollar_as.__class__, decimal, 'USD', '840'))
         assert us_dollar_as.__repr__() == (
             'USDollarAS(amount: 1000, '
             'alpha_code: "USD", '
@@ -7522,7 +7524,6 @@ class TestUSDollarAS:
             'convertion: "", '
             'international: True)')
         assert us_dollar_as.__str__() == 'USD 10,00.00000'
-
 
     def test_us_dollar_as_changed(self):
         """test_cus_dollar_as_changed."""
@@ -7580,7 +7581,6 @@ class TestUSDollarAS:
                 match='can\'t set attribute'):
             us_dollar_as.international = True
 
-
     def test_us_dollar_as_math_add(self):
         """test_us_dollar_as_math_add."""
         us_dollar_as_one = USDollarAS(amount=1)
@@ -7593,14 +7593,14 @@ class TestUSDollarAS:
             _ = us_dollar_as_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.USDollarAS\'> '
                     'and <class \'str\'>.')):
             _ = us_dollar_as_one.__add__('1.00')
         assert (
             us_dollar_as_one +
             us_dollar_as_two) == us_dollar_as_three
-
 
     def test_us_dollar_as_slots(self):
         """test_us_dollar_as_slots."""
@@ -7619,6 +7619,7 @@ from multicurrency import USDollarIO
 
 
 class TestUSDollarIO:
+    """USDollarIO currency tests."""
 
     def test_us_dollar_io(self):
         """test_us_dollar_io."""
@@ -7638,7 +7639,8 @@ class TestUSDollarIO:
         assert us_dollar_io.symbol_separator == ''
         assert us_dollar_io.localized_symbol == 'IO$'
         assert us_dollar_io.convertion == ''
-        assert us_dollar_io.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_io.__hash__() == hash(
+            (us_dollar_io.__class__, decimal, 'USD', '840'))
         assert us_dollar_io.__repr__() == (
             'USDollarIO(amount: 0.1428571428571428571428571429, '
             'alpha_code: "USD", '
@@ -7654,7 +7656,6 @@ class TestUSDollarIO:
             'convertion: "", '
             'international: False)')
         assert us_dollar_io.__str__() == '$0.14'
-
 
     def test_us_dollar_io_negative(self):
         """test_us_dollar_io_negative."""
@@ -7673,7 +7674,8 @@ class TestUSDollarIO:
         assert us_dollar_io.symbol_separator == ''
         assert us_dollar_io.localized_symbol == 'IO$'
         assert us_dollar_io.convertion == ''
-        assert us_dollar_io.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_io.__hash__() == hash(
+            (us_dollar_io.__class__, decimal, 'USD', '840'))
         assert us_dollar_io.__repr__() == (
             'USDollarIO(amount: -100, '
             'alpha_code: "USD", '
@@ -7689,7 +7691,6 @@ class TestUSDollarIO:
             'convertion: "", '
             'international: False)')
         assert us_dollar_io.__str__() == '$-100.00'
-
 
     def test_us_dollar_io_custom(self):
         """test_us_dollar_io_custom."""
@@ -7717,7 +7718,8 @@ class TestUSDollarIO:
         assert us_dollar_io.symbol_separator == '_'
         assert us_dollar_io.localized_symbol == 'IO$'
         assert us_dollar_io.convertion == ''
-        assert us_dollar_io.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_io.__hash__() == hash(
+            (us_dollar_io.__class__, decimal, 'USD', '840'))
         assert us_dollar_io.__repr__() == (
             'USDollarIO(amount: 1000, '
             'alpha_code: "USD", '
@@ -7733,7 +7735,6 @@ class TestUSDollarIO:
             'convertion: "", '
             'international: True)')
         assert us_dollar_io.__str__() == 'USD 10,00.00000'
-
 
     def test_us_dollar_io_changed(self):
         """test_cus_dollar_io_changed."""
@@ -7791,7 +7792,6 @@ class TestUSDollarIO:
                 match='can\'t set attribute'):
             us_dollar_io.international = True
 
-
     def test_us_dollar_io_math_add(self):
         """test_us_dollar_io_math_add."""
         us_dollar_io_one = USDollarIO(amount=1)
@@ -7804,14 +7804,14 @@ class TestUSDollarIO:
             _ = us_dollar_io_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.USDollarIO\'> '
                     'and <class \'str\'>.')):
             _ = us_dollar_io_one.__add__('1.00')
         assert (
             us_dollar_io_one +
             us_dollar_io_two) == us_dollar_io_three
-
 
     def test_us_dollar_io_slots(self):
         """test_us_dollar_io_slots."""
@@ -7830,6 +7830,7 @@ from multicurrency import USDollarVG
 
 
 class TestUSDollarVG:
+    """USDollarVG currency tests."""
 
     def test_us_dollar_vg(self):
         """test_us_dollar_vg."""
@@ -7849,7 +7850,8 @@ class TestUSDollarVG:
         assert us_dollar_vg.symbol_separator == ''
         assert us_dollar_vg.localized_symbol == 'VG$'
         assert us_dollar_vg.convertion == ''
-        assert us_dollar_vg.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_vg.__hash__() == hash(
+            (us_dollar_vg.__class__, decimal, 'USD', '840'))
         assert us_dollar_vg.__repr__() == (
             'USDollarVG(amount: 0.1428571428571428571428571429, '
             'alpha_code: "USD", '
@@ -7865,7 +7867,6 @@ class TestUSDollarVG:
             'convertion: "", '
             'international: False)')
         assert us_dollar_vg.__str__() == '$0.14'
-
 
     def test_us_dollar_vg_negative(self):
         """test_us_dollar_vg_negative."""
@@ -7884,7 +7885,8 @@ class TestUSDollarVG:
         assert us_dollar_vg.symbol_separator == ''
         assert us_dollar_vg.localized_symbol == 'VG$'
         assert us_dollar_vg.convertion == ''
-        assert us_dollar_vg.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_vg.__hash__() == hash(
+            (us_dollar_vg.__class__, decimal, 'USD', '840'))
         assert us_dollar_vg.__repr__() == (
             'USDollarVG(amount: -100, '
             'alpha_code: "USD", '
@@ -7900,7 +7902,6 @@ class TestUSDollarVG:
             'convertion: "", '
             'international: False)')
         assert us_dollar_vg.__str__() == '$-100.00'
-
 
     def test_us_dollar_vg_custom(self):
         """test_us_dollar_vg_custom."""
@@ -7928,7 +7929,8 @@ class TestUSDollarVG:
         assert us_dollar_vg.symbol_separator == '_'
         assert us_dollar_vg.localized_symbol == 'VG$'
         assert us_dollar_vg.convertion == ''
-        assert us_dollar_vg.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_vg.__hash__() == hash(
+            (us_dollar_vg.__class__, decimal, 'USD', '840'))
         assert us_dollar_vg.__repr__() == (
             'USDollarVG(amount: 1000, '
             'alpha_code: "USD", '
@@ -7944,7 +7946,6 @@ class TestUSDollarVG:
             'convertion: "", '
             'international: True)')
         assert us_dollar_vg.__str__() == 'USD 10,00.00000'
-
 
     def test_us_dollar_vg_changed(self):
         """test_cus_dollar_vg_changed."""
@@ -8002,7 +8003,6 @@ class TestUSDollarVG:
                 match='can\'t set attribute'):
             us_dollar_vg.international = True
 
-
     def test_us_dollar_vg_math_add(self):
         """test_us_dollar_vg_math_add."""
         us_dollar_vg_one = USDollarVG(amount=1)
@@ -8015,14 +8015,14 @@ class TestUSDollarVG:
             _ = us_dollar_vg_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.USDollarVG\'> '
                     'and <class \'str\'>.')):
             _ = us_dollar_vg_one.__add__('1.00')
         assert (
             us_dollar_vg_one +
             us_dollar_vg_two) == us_dollar_vg_three
-
 
     def test_us_dollar_vg_slots(self):
         """test_us_dollar_vg_slots."""
@@ -8041,6 +8041,7 @@ from multicurrency import USDollarGU
 
 
 class TestUSDollarGU:
+    """USDollarGU currency tests."""
 
     def test_us_dollar_gu(self):
         """test_us_dollar_gu."""
@@ -8060,7 +8061,8 @@ class TestUSDollarGU:
         assert us_dollar_gu.symbol_separator == ''
         assert us_dollar_gu.localized_symbol == 'GU$'
         assert us_dollar_gu.convertion == ''
-        assert us_dollar_gu.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_gu.__hash__() == hash(
+            (us_dollar_gu.__class__, decimal, 'USD', '840'))
         assert us_dollar_gu.__repr__() == (
             'USDollarGU(amount: 0.1428571428571428571428571429, '
             'alpha_code: "USD", '
@@ -8076,7 +8078,6 @@ class TestUSDollarGU:
             'convertion: "", '
             'international: False)')
         assert us_dollar_gu.__str__() == '$0.14'
-
 
     def test_us_dollar_gu_negative(self):
         """test_us_dollar_gu_negative."""
@@ -8095,7 +8096,8 @@ class TestUSDollarGU:
         assert us_dollar_gu.symbol_separator == ''
         assert us_dollar_gu.localized_symbol == 'GU$'
         assert us_dollar_gu.convertion == ''
-        assert us_dollar_gu.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_gu.__hash__() == hash(
+            (us_dollar_gu.__class__, decimal, 'USD', '840'))
         assert us_dollar_gu.__repr__() == (
             'USDollarGU(amount: -100, '
             'alpha_code: "USD", '
@@ -8111,7 +8113,6 @@ class TestUSDollarGU:
             'convertion: "", '
             'international: False)')
         assert us_dollar_gu.__str__() == '$-100.00'
-
 
     def test_us_dollar_gu_custom(self):
         """test_us_dollar_gu_custom."""
@@ -8139,7 +8140,8 @@ class TestUSDollarGU:
         assert us_dollar_gu.symbol_separator == '_'
         assert us_dollar_gu.localized_symbol == 'GU$'
         assert us_dollar_gu.convertion == ''
-        assert us_dollar_gu.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_gu.__hash__() == hash(
+            (us_dollar_gu.__class__, decimal, 'USD', '840'))
         assert us_dollar_gu.__repr__() == (
             'USDollarGU(amount: 1000, '
             'alpha_code: "USD", '
@@ -8155,7 +8157,6 @@ class TestUSDollarGU:
             'convertion: "", '
             'international: True)')
         assert us_dollar_gu.__str__() == 'USD 10,00.00000'
-
 
     def test_us_dollar_gu_changed(self):
         """test_cus_dollar_gu_changed."""
@@ -8213,7 +8214,6 @@ class TestUSDollarGU:
                 match='can\'t set attribute'):
             us_dollar_gu.international = True
 
-
     def test_us_dollar_gu_math_add(self):
         """test_us_dollar_gu_math_add."""
         us_dollar_gu_one = USDollarGU(amount=1)
@@ -8226,14 +8226,14 @@ class TestUSDollarGU:
             _ = us_dollar_gu_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.USDollarGU\'> '
                     'and <class \'str\'>.')):
             _ = us_dollar_gu_one.__add__('1.00')
         assert (
             us_dollar_gu_one +
             us_dollar_gu_two) == us_dollar_gu_three
-
 
     def test_us_dollar_gu_slots(self):
         """test_us_dollar_gu_slots."""
@@ -8252,6 +8252,7 @@ from multicurrency import USDollarHT
 
 
 class TestUSDollarHT:
+    """USDollarHT currency tests."""
 
     def test_us_dollar_ht(self):
         """test_us_dollar_ht."""
@@ -8271,7 +8272,8 @@ class TestUSDollarHT:
         assert us_dollar_ht.symbol_separator == ''
         assert us_dollar_ht.localized_symbol == 'HT$'
         assert us_dollar_ht.convertion == ''
-        assert us_dollar_ht.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_ht.__hash__() == hash(
+            (us_dollar_ht.__class__, decimal, 'USD', '840'))
         assert us_dollar_ht.__repr__() == (
             'USDollarHT(amount: 0.1428571428571428571428571429, '
             'alpha_code: "USD", '
@@ -8287,7 +8289,6 @@ class TestUSDollarHT:
             'convertion: "", '
             'international: False)')
         assert us_dollar_ht.__str__() == '$0.14'
-
 
     def test_us_dollar_ht_negative(self):
         """test_us_dollar_ht_negative."""
@@ -8306,7 +8307,8 @@ class TestUSDollarHT:
         assert us_dollar_ht.symbol_separator == ''
         assert us_dollar_ht.localized_symbol == 'HT$'
         assert us_dollar_ht.convertion == ''
-        assert us_dollar_ht.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_ht.__hash__() == hash(
+            (us_dollar_ht.__class__, decimal, 'USD', '840'))
         assert us_dollar_ht.__repr__() == (
             'USDollarHT(amount: -100, '
             'alpha_code: "USD", '
@@ -8322,7 +8324,6 @@ class TestUSDollarHT:
             'convertion: "", '
             'international: False)')
         assert us_dollar_ht.__str__() == '$-100.00'
-
 
     def test_us_dollar_ht_custom(self):
         """test_us_dollar_ht_custom."""
@@ -8350,7 +8351,8 @@ class TestUSDollarHT:
         assert us_dollar_ht.symbol_separator == '_'
         assert us_dollar_ht.localized_symbol == 'HT$'
         assert us_dollar_ht.convertion == ''
-        assert us_dollar_ht.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_ht.__hash__() == hash(
+            (us_dollar_ht.__class__, decimal, 'USD', '840'))
         assert us_dollar_ht.__repr__() == (
             'USDollarHT(amount: 1000, '
             'alpha_code: "USD", '
@@ -8366,7 +8368,6 @@ class TestUSDollarHT:
             'convertion: "", '
             'international: True)')
         assert us_dollar_ht.__str__() == 'USD 10,00.00000'
-
 
     def test_us_dollar_ht_changed(self):
         """test_cus_dollar_ht_changed."""
@@ -8424,7 +8425,6 @@ class TestUSDollarHT:
                 match='can\'t set attribute'):
             us_dollar_ht.international = True
 
-
     def test_us_dollar_ht_math_add(self):
         """test_us_dollar_ht_math_add."""
         us_dollar_ht_one = USDollarHT(amount=1)
@@ -8437,14 +8437,14 @@ class TestUSDollarHT:
             _ = us_dollar_ht_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.USDollarHT\'> '
                     'and <class \'str\'>.')):
             _ = us_dollar_ht_one.__add__('1.00')
         assert (
             us_dollar_ht_one +
             us_dollar_ht_two) == us_dollar_ht_three
-
 
     def test_us_dollar_ht_slots(self):
         """test_us_dollar_ht_slots."""
@@ -8463,6 +8463,7 @@ from multicurrency import USDollarMH
 
 
 class TestUSDollarMH:
+    """USDollarMH currency tests."""
 
     def test_us_dollar_mh(self):
         """test_us_dollar_mh."""
@@ -8482,7 +8483,8 @@ class TestUSDollarMH:
         assert us_dollar_mh.symbol_separator == ''
         assert us_dollar_mh.localized_symbol == 'MH$'
         assert us_dollar_mh.convertion == ''
-        assert us_dollar_mh.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_mh.__hash__() == hash(
+            (us_dollar_mh.__class__, decimal, 'USD', '840'))
         assert us_dollar_mh.__repr__() == (
             'USDollarMH(amount: 0.1428571428571428571428571429, '
             'alpha_code: "USD", '
@@ -8498,7 +8500,6 @@ class TestUSDollarMH:
             'convertion: "", '
             'international: False)')
         assert us_dollar_mh.__str__() == '$0.14'
-
 
     def test_us_dollar_mh_negative(self):
         """test_us_dollar_mh_negative."""
@@ -8517,7 +8518,8 @@ class TestUSDollarMH:
         assert us_dollar_mh.symbol_separator == ''
         assert us_dollar_mh.localized_symbol == 'MH$'
         assert us_dollar_mh.convertion == ''
-        assert us_dollar_mh.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_mh.__hash__() == hash(
+            (us_dollar_mh.__class__, decimal, 'USD', '840'))
         assert us_dollar_mh.__repr__() == (
             'USDollarMH(amount: -100, '
             'alpha_code: "USD", '
@@ -8533,7 +8535,6 @@ class TestUSDollarMH:
             'convertion: "", '
             'international: False)')
         assert us_dollar_mh.__str__() == '$-100.00'
-
 
     def test_us_dollar_mh_custom(self):
         """test_us_dollar_mh_custom."""
@@ -8561,7 +8562,8 @@ class TestUSDollarMH:
         assert us_dollar_mh.symbol_separator == '_'
         assert us_dollar_mh.localized_symbol == 'MH$'
         assert us_dollar_mh.convertion == ''
-        assert us_dollar_mh.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_mh.__hash__() == hash(
+            (us_dollar_mh.__class__, decimal, 'USD', '840'))
         assert us_dollar_mh.__repr__() == (
             'USDollarMH(amount: 1000, '
             'alpha_code: "USD", '
@@ -8577,7 +8579,6 @@ class TestUSDollarMH:
             'convertion: "", '
             'international: True)')
         assert us_dollar_mh.__str__() == 'USD 10,00.00000'
-
 
     def test_us_dollar_mh_changed(self):
         """test_cus_dollar_mh_changed."""
@@ -8635,7 +8636,6 @@ class TestUSDollarMH:
                 match='can\'t set attribute'):
             us_dollar_mh.international = True
 
-
     def test_us_dollar_mh_math_add(self):
         """test_us_dollar_mh_math_add."""
         us_dollar_mh_one = USDollarMH(amount=1)
@@ -8648,14 +8648,14 @@ class TestUSDollarMH:
             _ = us_dollar_mh_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.USDollarMH\'> '
                     'and <class \'str\'>.')):
             _ = us_dollar_mh_one.__add__('1.00')
         assert (
             us_dollar_mh_one +
             us_dollar_mh_two) == us_dollar_mh_three
-
 
     def test_us_dollar_mh_slots(self):
         """test_us_dollar_mh_slots."""
@@ -8674,6 +8674,7 @@ from multicurrency import USDollarFM
 
 
 class TestUSDollarFM:
+    """USDollarFM currency tests."""
 
     def test_us_dollar_fm(self):
         """test_us_dollar_fm."""
@@ -8693,7 +8694,8 @@ class TestUSDollarFM:
         assert us_dollar_fm.symbol_separator == ''
         assert us_dollar_fm.localized_symbol == 'FM$'
         assert us_dollar_fm.convertion == ''
-        assert us_dollar_fm.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_fm.__hash__() == hash(
+            (us_dollar_fm.__class__, decimal, 'USD', '840'))
         assert us_dollar_fm.__repr__() == (
             'USDollarFM(amount: 0.1428571428571428571428571429, '
             'alpha_code: "USD", '
@@ -8709,7 +8711,6 @@ class TestUSDollarFM:
             'convertion: "", '
             'international: False)')
         assert us_dollar_fm.__str__() == '$0.14'
-
 
     def test_us_dollar_fm_negative(self):
         """test_us_dollar_fm_negative."""
@@ -8728,7 +8729,8 @@ class TestUSDollarFM:
         assert us_dollar_fm.symbol_separator == ''
         assert us_dollar_fm.localized_symbol == 'FM$'
         assert us_dollar_fm.convertion == ''
-        assert us_dollar_fm.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_fm.__hash__() == hash(
+            (us_dollar_fm.__class__, decimal, 'USD', '840'))
         assert us_dollar_fm.__repr__() == (
             'USDollarFM(amount: -100, '
             'alpha_code: "USD", '
@@ -8744,7 +8746,6 @@ class TestUSDollarFM:
             'convertion: "", '
             'international: False)')
         assert us_dollar_fm.__str__() == '$-100.00'
-
 
     def test_us_dollar_fm_custom(self):
         """test_us_dollar_fm_custom."""
@@ -8772,7 +8773,8 @@ class TestUSDollarFM:
         assert us_dollar_fm.symbol_separator == '_'
         assert us_dollar_fm.localized_symbol == 'FM$'
         assert us_dollar_fm.convertion == ''
-        assert us_dollar_fm.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_fm.__hash__() == hash(
+            (us_dollar_fm.__class__, decimal, 'USD', '840'))
         assert us_dollar_fm.__repr__() == (
             'USDollarFM(amount: 1000, '
             'alpha_code: "USD", '
@@ -8788,7 +8790,6 @@ class TestUSDollarFM:
             'convertion: "", '
             'international: True)')
         assert us_dollar_fm.__str__() == 'USD 10,00.00000'
-
 
     def test_us_dollar_fm_changed(self):
         """test_cus_dollar_fm_changed."""
@@ -8846,7 +8847,6 @@ class TestUSDollarFM:
                 match='can\'t set attribute'):
             us_dollar_fm.international = True
 
-
     def test_us_dollar_fm_math_add(self):
         """test_us_dollar_fm_math_add."""
         us_dollar_fm_one = USDollarFM(amount=1)
@@ -8859,14 +8859,14 @@ class TestUSDollarFM:
             _ = us_dollar_fm_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.USDollarFM\'> '
                     'and <class \'str\'>.')):
             _ = us_dollar_fm_one.__add__('1.00')
         assert (
             us_dollar_fm_one +
             us_dollar_fm_two) == us_dollar_fm_three
-
 
     def test_us_dollar_fm_slots(self):
         """test_us_dollar_fm_slots."""
@@ -8885,6 +8885,7 @@ from multicurrency import USDollarMP
 
 
 class TestUSDollarMP:
+    """USDollarMP currency tests."""
 
     def test_us_dollar_mp(self):
         """test_us_dollar_mp."""
@@ -8904,7 +8905,8 @@ class TestUSDollarMP:
         assert us_dollar_mp.symbol_separator == ''
         assert us_dollar_mp.localized_symbol == 'MP$'
         assert us_dollar_mp.convertion == ''
-        assert us_dollar_mp.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_mp.__hash__() == hash(
+            (us_dollar_mp.__class__, decimal, 'USD', '840'))
         assert us_dollar_mp.__repr__() == (
             'USDollarMP(amount: 0.1428571428571428571428571429, '
             'alpha_code: "USD", '
@@ -8920,7 +8922,6 @@ class TestUSDollarMP:
             'convertion: "", '
             'international: False)')
         assert us_dollar_mp.__str__() == '$0.14'
-
 
     def test_us_dollar_mp_negative(self):
         """test_us_dollar_mp_negative."""
@@ -8939,7 +8940,8 @@ class TestUSDollarMP:
         assert us_dollar_mp.symbol_separator == ''
         assert us_dollar_mp.localized_symbol == 'MP$'
         assert us_dollar_mp.convertion == ''
-        assert us_dollar_mp.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_mp.__hash__() == hash(
+            (us_dollar_mp.__class__, decimal, 'USD', '840'))
         assert us_dollar_mp.__repr__() == (
             'USDollarMP(amount: -100, '
             'alpha_code: "USD", '
@@ -8955,7 +8957,6 @@ class TestUSDollarMP:
             'convertion: "", '
             'international: False)')
         assert us_dollar_mp.__str__() == '$-100.00'
-
 
     def test_us_dollar_mp_custom(self):
         """test_us_dollar_mp_custom."""
@@ -8983,7 +8984,8 @@ class TestUSDollarMP:
         assert us_dollar_mp.symbol_separator == '_'
         assert us_dollar_mp.localized_symbol == 'MP$'
         assert us_dollar_mp.convertion == ''
-        assert us_dollar_mp.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_mp.__hash__() == hash(
+            (us_dollar_mp.__class__, decimal, 'USD', '840'))
         assert us_dollar_mp.__repr__() == (
             'USDollarMP(amount: 1000, '
             'alpha_code: "USD", '
@@ -8999,7 +9001,6 @@ class TestUSDollarMP:
             'convertion: "", '
             'international: True)')
         assert us_dollar_mp.__str__() == 'USD 10,00.00000'
-
 
     def test_us_dollar_mp_changed(self):
         """test_cus_dollar_mp_changed."""
@@ -9057,7 +9058,6 @@ class TestUSDollarMP:
                 match='can\'t set attribute'):
             us_dollar_mp.international = True
 
-
     def test_us_dollar_mp_math_add(self):
         """test_us_dollar_mp_math_add."""
         us_dollar_mp_one = USDollarMP(amount=1)
@@ -9070,14 +9070,14 @@ class TestUSDollarMP:
             _ = us_dollar_mp_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.USDollarMP\'> '
                     'and <class \'str\'>.')):
             _ = us_dollar_mp_one.__add__('1.00')
         assert (
             us_dollar_mp_one +
             us_dollar_mp_two) == us_dollar_mp_three
-
 
     def test_us_dollar_mp_slots(self):
         """test_us_dollar_mp_slots."""
@@ -9096,6 +9096,7 @@ from multicurrency import USDollarPC
 
 
 class TestUSDollarPC:
+    """USDollarPC currency tests."""
 
     def test_us_dollar_pc(self):
         """test_us_dollar_pc."""
@@ -9115,7 +9116,8 @@ class TestUSDollarPC:
         assert us_dollar_pc.symbol_separator == ''
         assert us_dollar_pc.localized_symbol == 'PC$'
         assert us_dollar_pc.convertion == ''
-        assert us_dollar_pc.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_pc.__hash__() == hash(
+            (us_dollar_pc.__class__, decimal, 'USD', '840'))
         assert us_dollar_pc.__repr__() == (
             'USDollarPC(amount: 0.1428571428571428571428571429, '
             'alpha_code: "USD", '
@@ -9131,7 +9133,6 @@ class TestUSDollarPC:
             'convertion: "", '
             'international: False)')
         assert us_dollar_pc.__str__() == '$0.14'
-
 
     def test_us_dollar_pc_negative(self):
         """test_us_dollar_pc_negative."""
@@ -9150,7 +9151,8 @@ class TestUSDollarPC:
         assert us_dollar_pc.symbol_separator == ''
         assert us_dollar_pc.localized_symbol == 'PC$'
         assert us_dollar_pc.convertion == ''
-        assert us_dollar_pc.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_pc.__hash__() == hash(
+            (us_dollar_pc.__class__, decimal, 'USD', '840'))
         assert us_dollar_pc.__repr__() == (
             'USDollarPC(amount: -100, '
             'alpha_code: "USD", '
@@ -9166,7 +9168,6 @@ class TestUSDollarPC:
             'convertion: "", '
             'international: False)')
         assert us_dollar_pc.__str__() == '$-100.00'
-
 
     def test_us_dollar_pc_custom(self):
         """test_us_dollar_pc_custom."""
@@ -9194,7 +9195,8 @@ class TestUSDollarPC:
         assert us_dollar_pc.symbol_separator == '_'
         assert us_dollar_pc.localized_symbol == 'PC$'
         assert us_dollar_pc.convertion == ''
-        assert us_dollar_pc.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_pc.__hash__() == hash(
+            (us_dollar_pc.__class__, decimal, 'USD', '840'))
         assert us_dollar_pc.__repr__() == (
             'USDollarPC(amount: 1000, '
             'alpha_code: "USD", '
@@ -9210,7 +9212,6 @@ class TestUSDollarPC:
             'convertion: "", '
             'international: True)')
         assert us_dollar_pc.__str__() == 'USD 10,00.00000'
-
 
     def test_us_dollar_pc_changed(self):
         """test_cus_dollar_pc_changed."""
@@ -9268,7 +9269,6 @@ class TestUSDollarPC:
                 match='can\'t set attribute'):
             us_dollar_pc.international = True
 
-
     def test_us_dollar_pc_math_add(self):
         """test_us_dollar_pc_math_add."""
         us_dollar_pc_one = USDollarPC(amount=1)
@@ -9281,14 +9281,14 @@ class TestUSDollarPC:
             _ = us_dollar_pc_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.USDollarPC\'> '
                     'and <class \'str\'>.')):
             _ = us_dollar_pc_one.__add__('1.00')
         assert (
             us_dollar_pc_one +
             us_dollar_pc_two) == us_dollar_pc_three
-
 
     def test_us_dollar_pc_slots(self):
         """test_us_dollar_pc_slots."""
@@ -9307,6 +9307,7 @@ from multicurrency import USDollarPW
 
 
 class TestUSDollarPW:
+    """USDollarPW currency tests."""
 
     def test_us_dollar_pw(self):
         """test_us_dollar_pw."""
@@ -9326,7 +9327,8 @@ class TestUSDollarPW:
         assert us_dollar_pw.symbol_separator == ''
         assert us_dollar_pw.localized_symbol == 'PW$'
         assert us_dollar_pw.convertion == ''
-        assert us_dollar_pw.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_pw.__hash__() == hash(
+            (us_dollar_pw.__class__, decimal, 'USD', '840'))
         assert us_dollar_pw.__repr__() == (
             'USDollarPW(amount: 0.1428571428571428571428571429, '
             'alpha_code: "USD", '
@@ -9342,7 +9344,6 @@ class TestUSDollarPW:
             'convertion: "", '
             'international: False)')
         assert us_dollar_pw.__str__() == '$0.14'
-
 
     def test_us_dollar_pw_negative(self):
         """test_us_dollar_pw_negative."""
@@ -9361,7 +9362,8 @@ class TestUSDollarPW:
         assert us_dollar_pw.symbol_separator == ''
         assert us_dollar_pw.localized_symbol == 'PW$'
         assert us_dollar_pw.convertion == ''
-        assert us_dollar_pw.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_pw.__hash__() == hash(
+            (us_dollar_pw.__class__, decimal, 'USD', '840'))
         assert us_dollar_pw.__repr__() == (
             'USDollarPW(amount: -100, '
             'alpha_code: "USD", '
@@ -9377,7 +9379,6 @@ class TestUSDollarPW:
             'convertion: "", '
             'international: False)')
         assert us_dollar_pw.__str__() == '$-100.00'
-
 
     def test_us_dollar_pw_custom(self):
         """test_us_dollar_pw_custom."""
@@ -9405,7 +9406,8 @@ class TestUSDollarPW:
         assert us_dollar_pw.symbol_separator == '_'
         assert us_dollar_pw.localized_symbol == 'PW$'
         assert us_dollar_pw.convertion == ''
-        assert us_dollar_pw.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_pw.__hash__() == hash(
+            (us_dollar_pw.__class__, decimal, 'USD', '840'))
         assert us_dollar_pw.__repr__() == (
             'USDollarPW(amount: 1000, '
             'alpha_code: "USD", '
@@ -9421,7 +9423,6 @@ class TestUSDollarPW:
             'convertion: "", '
             'international: True)')
         assert us_dollar_pw.__str__() == 'USD 10,00.00000'
-
 
     def test_us_dollar_pw_changed(self):
         """test_cus_dollar_pw_changed."""
@@ -9479,7 +9480,6 @@ class TestUSDollarPW:
                 match='can\'t set attribute'):
             us_dollar_pw.international = True
 
-
     def test_us_dollar_pw_math_add(self):
         """test_us_dollar_pw_math_add."""
         us_dollar_pw_one = USDollarPW(amount=1)
@@ -9492,14 +9492,14 @@ class TestUSDollarPW:
             _ = us_dollar_pw_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.USDollarPW\'> '
                     'and <class \'str\'>.')):
             _ = us_dollar_pw_one.__add__('1.00')
         assert (
             us_dollar_pw_one +
             us_dollar_pw_two) == us_dollar_pw_three
-
 
     def test_us_dollar_pw_slots(self):
         """test_us_dollar_pw_slots."""
@@ -9518,6 +9518,7 @@ from multicurrency import USDollarPA
 
 
 class TestUSDollarPA:
+    """USDollarPA currency tests."""
 
     def test_us_dollar_pa(self):
         """test_us_dollar_pa."""
@@ -9537,7 +9538,8 @@ class TestUSDollarPA:
         assert us_dollar_pa.symbol_separator == ''
         assert us_dollar_pa.localized_symbol == 'PA$'
         assert us_dollar_pa.convertion == ''
-        assert us_dollar_pa.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_pa.__hash__() == hash(
+            (us_dollar_pa.__class__, decimal, 'USD', '840'))
         assert us_dollar_pa.__repr__() == (
             'USDollarPA(amount: 0.1428571428571428571428571429, '
             'alpha_code: "USD", '
@@ -9553,7 +9555,6 @@ class TestUSDollarPA:
             'convertion: "", '
             'international: False)')
         assert us_dollar_pa.__str__() == '$0.14'
-
 
     def test_us_dollar_pa_negative(self):
         """test_us_dollar_pa_negative."""
@@ -9572,7 +9573,8 @@ class TestUSDollarPA:
         assert us_dollar_pa.symbol_separator == ''
         assert us_dollar_pa.localized_symbol == 'PA$'
         assert us_dollar_pa.convertion == ''
-        assert us_dollar_pa.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_pa.__hash__() == hash(
+            (us_dollar_pa.__class__, decimal, 'USD', '840'))
         assert us_dollar_pa.__repr__() == (
             'USDollarPA(amount: -100, '
             'alpha_code: "USD", '
@@ -9588,7 +9590,6 @@ class TestUSDollarPA:
             'convertion: "", '
             'international: False)')
         assert us_dollar_pa.__str__() == '$-100.00'
-
 
     def test_us_dollar_pa_custom(self):
         """test_us_dollar_pa_custom."""
@@ -9616,7 +9617,8 @@ class TestUSDollarPA:
         assert us_dollar_pa.symbol_separator == '_'
         assert us_dollar_pa.localized_symbol == 'PA$'
         assert us_dollar_pa.convertion == ''
-        assert us_dollar_pa.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_pa.__hash__() == hash(
+            (us_dollar_pa.__class__, decimal, 'USD', '840'))
         assert us_dollar_pa.__repr__() == (
             'USDollarPA(amount: 1000, '
             'alpha_code: "USD", '
@@ -9632,7 +9634,6 @@ class TestUSDollarPA:
             'convertion: "", '
             'international: True)')
         assert us_dollar_pa.__str__() == 'USD 10,00.00000'
-
 
     def test_us_dollar_pa_changed(self):
         """test_cus_dollar_pa_changed."""
@@ -9690,7 +9691,6 @@ class TestUSDollarPA:
                 match='can\'t set attribute'):
             us_dollar_pa.international = True
 
-
     def test_us_dollar_pa_math_add(self):
         """test_us_dollar_pa_math_add."""
         us_dollar_pa_one = USDollarPA(amount=1)
@@ -9703,14 +9703,14 @@ class TestUSDollarPA:
             _ = us_dollar_pa_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.USDollarPA\'> '
                     'and <class \'str\'>.')):
             _ = us_dollar_pa_one.__add__('1.00')
         assert (
             us_dollar_pa_one +
             us_dollar_pa_two) == us_dollar_pa_three
-
 
     def test_us_dollar_pa_slots(self):
         """test_us_dollar_pa_slots."""
@@ -9729,6 +9729,7 @@ from multicurrency import USDollarPR
 
 
 class TestUSDollarPR:
+    """USDollarPR currency tests."""
 
     def test_us_dollar_pr(self):
         """test_us_dollar_pr."""
@@ -9748,7 +9749,8 @@ class TestUSDollarPR:
         assert us_dollar_pr.symbol_separator == ''
         assert us_dollar_pr.localized_symbol == 'PR$'
         assert us_dollar_pr.convertion == ''
-        assert us_dollar_pr.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_pr.__hash__() == hash(
+            (us_dollar_pr.__class__, decimal, 'USD', '840'))
         assert us_dollar_pr.__repr__() == (
             'USDollarPR(amount: 0.1428571428571428571428571429, '
             'alpha_code: "USD", '
@@ -9764,7 +9766,6 @@ class TestUSDollarPR:
             'convertion: "", '
             'international: False)')
         assert us_dollar_pr.__str__() == '$0.14'
-
 
     def test_us_dollar_pr_negative(self):
         """test_us_dollar_pr_negative."""
@@ -9783,7 +9784,8 @@ class TestUSDollarPR:
         assert us_dollar_pr.symbol_separator == ''
         assert us_dollar_pr.localized_symbol == 'PR$'
         assert us_dollar_pr.convertion == ''
-        assert us_dollar_pr.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_pr.__hash__() == hash(
+            (us_dollar_pr.__class__, decimal, 'USD', '840'))
         assert us_dollar_pr.__repr__() == (
             'USDollarPR(amount: -100, '
             'alpha_code: "USD", '
@@ -9799,7 +9801,6 @@ class TestUSDollarPR:
             'convertion: "", '
             'international: False)')
         assert us_dollar_pr.__str__() == '$-100.00'
-
 
     def test_us_dollar_pr_custom(self):
         """test_us_dollar_pr_custom."""
@@ -9827,7 +9828,8 @@ class TestUSDollarPR:
         assert us_dollar_pr.symbol_separator == '_'
         assert us_dollar_pr.localized_symbol == 'PR$'
         assert us_dollar_pr.convertion == ''
-        assert us_dollar_pr.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_pr.__hash__() == hash(
+            (us_dollar_pr.__class__, decimal, 'USD', '840'))
         assert us_dollar_pr.__repr__() == (
             'USDollarPR(amount: 1000, '
             'alpha_code: "USD", '
@@ -9843,7 +9845,6 @@ class TestUSDollarPR:
             'convertion: "", '
             'international: True)')
         assert us_dollar_pr.__str__() == 'USD 10,00.00000'
-
 
     def test_us_dollar_pr_changed(self):
         """test_cus_dollar_pr_changed."""
@@ -9901,7 +9902,6 @@ class TestUSDollarPR:
                 match='can\'t set attribute'):
             us_dollar_pr.international = True
 
-
     def test_us_dollar_pr_math_add(self):
         """test_us_dollar_pr_math_add."""
         us_dollar_pr_one = USDollarPR(amount=1)
@@ -9914,14 +9914,14 @@ class TestUSDollarPR:
             _ = us_dollar_pr_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.USDollarPR\'> '
                     'and <class \'str\'>.')):
             _ = us_dollar_pr_one.__add__('1.00')
         assert (
             us_dollar_pr_one +
             us_dollar_pr_two) == us_dollar_pr_three
-
 
     def test_us_dollar_pr_slots(self):
         """test_us_dollar_pr_slots."""
@@ -9940,6 +9940,7 @@ from multicurrency import USDollarTC
 
 
 class TestUSDollarTC:
+    """USDollarTC currency tests."""
 
     def test_us_dollar_tc(self):
         """test_us_dollar_tc."""
@@ -9959,7 +9960,8 @@ class TestUSDollarTC:
         assert us_dollar_tc.symbol_separator == ''
         assert us_dollar_tc.localized_symbol == 'TC$'
         assert us_dollar_tc.convertion == ''
-        assert us_dollar_tc.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_tc.__hash__() == hash(
+            (us_dollar_tc.__class__, decimal, 'USD', '840'))
         assert us_dollar_tc.__repr__() == (
             'USDollarTC(amount: 0.1428571428571428571428571429, '
             'alpha_code: "USD", '
@@ -9975,7 +9977,6 @@ class TestUSDollarTC:
             'convertion: "", '
             'international: False)')
         assert us_dollar_tc.__str__() == '$0.14'
-
 
     def test_us_dollar_tc_negative(self):
         """test_us_dollar_tc_negative."""
@@ -9994,7 +9995,8 @@ class TestUSDollarTC:
         assert us_dollar_tc.symbol_separator == ''
         assert us_dollar_tc.localized_symbol == 'TC$'
         assert us_dollar_tc.convertion == ''
-        assert us_dollar_tc.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_tc.__hash__() == hash(
+            (us_dollar_tc.__class__, decimal, 'USD', '840'))
         assert us_dollar_tc.__repr__() == (
             'USDollarTC(amount: -100, '
             'alpha_code: "USD", '
@@ -10010,7 +10012,6 @@ class TestUSDollarTC:
             'convertion: "", '
             'international: False)')
         assert us_dollar_tc.__str__() == '$-100.00'
-
 
     def test_us_dollar_tc_custom(self):
         """test_us_dollar_tc_custom."""
@@ -10038,7 +10039,8 @@ class TestUSDollarTC:
         assert us_dollar_tc.symbol_separator == '_'
         assert us_dollar_tc.localized_symbol == 'TC$'
         assert us_dollar_tc.convertion == ''
-        assert us_dollar_tc.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_tc.__hash__() == hash(
+            (us_dollar_tc.__class__, decimal, 'USD', '840'))
         assert us_dollar_tc.__repr__() == (
             'USDollarTC(amount: 1000, '
             'alpha_code: "USD", '
@@ -10054,7 +10056,6 @@ class TestUSDollarTC:
             'convertion: "", '
             'international: True)')
         assert us_dollar_tc.__str__() == 'USD 10,00.00000'
-
 
     def test_us_dollar_tc_changed(self):
         """test_cus_dollar_tc_changed."""
@@ -10112,7 +10113,6 @@ class TestUSDollarTC:
                 match='can\'t set attribute'):
             us_dollar_tc.international = True
 
-
     def test_us_dollar_tc_math_add(self):
         """test_us_dollar_tc_math_add."""
         us_dollar_tc_one = USDollarTC(amount=1)
@@ -10125,14 +10125,14 @@ class TestUSDollarTC:
             _ = us_dollar_tc_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.USDollarTC\'> '
                     'and <class \'str\'>.')):
             _ = us_dollar_tc_one.__add__('1.00')
         assert (
             us_dollar_tc_one +
             us_dollar_tc_two) == us_dollar_tc_three
-
 
     def test_us_dollar_tc_slots(self):
         """test_us_dollar_tc_slots."""
@@ -10151,6 +10151,7 @@ from multicurrency import USDollarVI
 
 
 class TestUSDollarVI:
+    """USDollarVI currency tests."""
 
     def test_us_dollar_vi(self):
         """test_us_dollar_vi."""
@@ -10170,7 +10171,8 @@ class TestUSDollarVI:
         assert us_dollar_vi.symbol_separator == ''
         assert us_dollar_vi.localized_symbol == 'VI$'
         assert us_dollar_vi.convertion == ''
-        assert us_dollar_vi.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_vi.__hash__() == hash(
+            (us_dollar_vi.__class__, decimal, 'USD', '840'))
         assert us_dollar_vi.__repr__() == (
             'USDollarVI(amount: 0.1428571428571428571428571429, '
             'alpha_code: "USD", '
@@ -10186,7 +10188,6 @@ class TestUSDollarVI:
             'convertion: "", '
             'international: False)')
         assert us_dollar_vi.__str__() == '$0.14'
-
 
     def test_us_dollar_vi_negative(self):
         """test_us_dollar_vi_negative."""
@@ -10205,7 +10206,8 @@ class TestUSDollarVI:
         assert us_dollar_vi.symbol_separator == ''
         assert us_dollar_vi.localized_symbol == 'VI$'
         assert us_dollar_vi.convertion == ''
-        assert us_dollar_vi.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_vi.__hash__() == hash(
+            (us_dollar_vi.__class__, decimal, 'USD', '840'))
         assert us_dollar_vi.__repr__() == (
             'USDollarVI(amount: -100, '
             'alpha_code: "USD", '
@@ -10221,7 +10223,6 @@ class TestUSDollarVI:
             'convertion: "", '
             'international: False)')
         assert us_dollar_vi.__str__() == '$-100.00'
-
 
     def test_us_dollar_vi_custom(self):
         """test_us_dollar_vi_custom."""
@@ -10249,7 +10250,8 @@ class TestUSDollarVI:
         assert us_dollar_vi.symbol_separator == '_'
         assert us_dollar_vi.localized_symbol == 'VI$'
         assert us_dollar_vi.convertion == ''
-        assert us_dollar_vi.__hash__() == hash((decimal, 'USD', '840'))
+        assert us_dollar_vi.__hash__() == hash(
+            (us_dollar_vi.__class__, decimal, 'USD', '840'))
         assert us_dollar_vi.__repr__() == (
             'USDollarVI(amount: 1000, '
             'alpha_code: "USD", '
@@ -10265,7 +10267,6 @@ class TestUSDollarVI:
             'convertion: "", '
             'international: True)')
         assert us_dollar_vi.__str__() == 'USD 10,00.00000'
-
 
     def test_us_dollar_vi_changed(self):
         """test_cus_dollar_vi_changed."""
@@ -10323,7 +10324,6 @@ class TestUSDollarVI:
                 match='can\'t set attribute'):
             us_dollar_vi.international = True
 
-
     def test_us_dollar_vi_math_add(self):
         """test_us_dollar_vi_math_add."""
         us_dollar_vi_one = USDollarVI(amount=1)
@@ -10336,14 +10336,14 @@ class TestUSDollarVI:
             _ = us_dollar_vi_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.USDollarVI\'> '
                     'and <class \'str\'>.')):
             _ = us_dollar_vi_one.__add__('1.00')
         assert (
             us_dollar_vi_one +
             us_dollar_vi_two) == us_dollar_vi_three
-
 
     def test_us_dollar_vi_slots(self):
         """test_us_dollar_vi_slots."""
@@ -10362,6 +10362,7 @@ from multicurrency import EasternCaribbeanDollar
 
 
 class TestEasternCaribbeanDollar:
+    """EasternCaribbeanDollar currency tests."""
 
     def test_eastern_caribbean_dollar(self):
         """test_eastern_caribbean_dollar."""
@@ -10381,7 +10382,8 @@ class TestEasternCaribbeanDollar:
         assert eastern_caribbean_dollar.symbol_separator == ''
         assert eastern_caribbean_dollar.localized_symbol == '$'
         assert eastern_caribbean_dollar.convertion == ''
-        assert eastern_caribbean_dollar.__hash__() == hash((decimal, 'XCD', '951'))
+        assert eastern_caribbean_dollar.__hash__() == hash(
+            (eastern_caribbean_dollar.__class__, decimal, 'XCD', '951'))
         assert eastern_caribbean_dollar.__repr__() == (
             'EasternCaribbeanDollar(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XCD", '
@@ -10397,7 +10399,6 @@ class TestEasternCaribbeanDollar:
             'convertion: "", '
             'international: False)')
         assert eastern_caribbean_dollar.__str__() == '$0.14'
-
 
     def test_eastern_caribbean_dollar_negative(self):
         """test_eastern_caribbean_dollar_negative."""
@@ -10416,7 +10417,8 @@ class TestEasternCaribbeanDollar:
         assert eastern_caribbean_dollar.symbol_separator == ''
         assert eastern_caribbean_dollar.localized_symbol == '$'
         assert eastern_caribbean_dollar.convertion == ''
-        assert eastern_caribbean_dollar.__hash__() == hash((decimal, 'XCD', '951'))
+        assert eastern_caribbean_dollar.__hash__() == hash(
+            (eastern_caribbean_dollar.__class__, decimal, 'XCD', '951'))
         assert eastern_caribbean_dollar.__repr__() == (
             'EasternCaribbeanDollar(amount: -100, '
             'alpha_code: "XCD", '
@@ -10432,7 +10434,6 @@ class TestEasternCaribbeanDollar:
             'convertion: "", '
             'international: False)')
         assert eastern_caribbean_dollar.__str__() == '$-100.00'
-
 
     def test_eastern_caribbean_dollar_custom(self):
         """test_eastern_caribbean_dollar_custom."""
@@ -10460,7 +10461,8 @@ class TestEasternCaribbeanDollar:
         assert eastern_caribbean_dollar.symbol_separator == '_'
         assert eastern_caribbean_dollar.localized_symbol == '$'
         assert eastern_caribbean_dollar.convertion == ''
-        assert eastern_caribbean_dollar.__hash__() == hash((decimal, 'XCD', '951'))
+        assert eastern_caribbean_dollar.__hash__() == hash(
+            (eastern_caribbean_dollar.__class__, decimal, 'XCD', '951'))
         assert eastern_caribbean_dollar.__repr__() == (
             'EasternCaribbeanDollar(amount: 1000, '
             'alpha_code: "XCD", '
@@ -10476,7 +10478,6 @@ class TestEasternCaribbeanDollar:
             'convertion: "", '
             'international: True)')
         assert eastern_caribbean_dollar.__str__() == 'XCD 10,00.00000'
-
 
     def test_eastern_caribbean_dollar_changed(self):
         """test_ceastern_caribbean_dollar_changed."""
@@ -10534,7 +10535,6 @@ class TestEasternCaribbeanDollar:
                 match='can\'t set attribute'):
             eastern_caribbean_dollar.international = True
 
-
     def test_eastern_caribbean_dollar_math_add(self):
         """test_eastern_caribbean_dollar_math_add."""
         eastern_caribbean_dollar_one = EasternCaribbeanDollar(amount=1)
@@ -10547,14 +10547,14 @@ class TestEasternCaribbeanDollar:
             _ = eastern_caribbean_dollar_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.EasternCaribbeanDollar\'> '
                     'and <class \'str\'>.')):
             _ = eastern_caribbean_dollar_one.__add__('1.00')
         assert (
             eastern_caribbean_dollar_one +
             eastern_caribbean_dollar_two) == eastern_caribbean_dollar_three
-
 
     def test_eastern_caribbean_dollar_slots(self):
         """test_eastern_caribbean_dollar_slots."""
@@ -10573,6 +10573,7 @@ from multicurrency import EasternCaribbeanDollarAI
 
 
 class TestEasternCaribbeanDollarAI:
+    """EasternCaribbeanDollarAI currency tests."""
 
     def test_eastern_caribbean_dollar_ai(self):
         """test_eastern_caribbean_dollar_ai."""
@@ -10592,7 +10593,8 @@ class TestEasternCaribbeanDollarAI:
         assert eastern_caribbean_dollar_ai.symbol_separator == ''
         assert eastern_caribbean_dollar_ai.localized_symbol == 'AI$'
         assert eastern_caribbean_dollar_ai.convertion == ''
-        assert eastern_caribbean_dollar_ai.__hash__() == hash((decimal, 'XCD', '951'))
+        assert eastern_caribbean_dollar_ai.__hash__() == hash(
+            (eastern_caribbean_dollar_ai.__class__, decimal, 'XCD', '951'))
         assert eastern_caribbean_dollar_ai.__repr__() == (
             'EasternCaribbeanDollarAI(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XCD", '
@@ -10608,7 +10610,6 @@ class TestEasternCaribbeanDollarAI:
             'convertion: "", '
             'international: False)')
         assert eastern_caribbean_dollar_ai.__str__() == '$0.14'
-
 
     def test_eastern_caribbean_dollar_ai_negative(self):
         """test_eastern_caribbean_dollar_ai_negative."""
@@ -10627,7 +10628,8 @@ class TestEasternCaribbeanDollarAI:
         assert eastern_caribbean_dollar_ai.symbol_separator == ''
         assert eastern_caribbean_dollar_ai.localized_symbol == 'AI$'
         assert eastern_caribbean_dollar_ai.convertion == ''
-        assert eastern_caribbean_dollar_ai.__hash__() == hash((decimal, 'XCD', '951'))
+        assert eastern_caribbean_dollar_ai.__hash__() == hash(
+            (eastern_caribbean_dollar_ai.__class__, decimal, 'XCD', '951'))
         assert eastern_caribbean_dollar_ai.__repr__() == (
             'EasternCaribbeanDollarAI(amount: -100, '
             'alpha_code: "XCD", '
@@ -10643,7 +10645,6 @@ class TestEasternCaribbeanDollarAI:
             'convertion: "", '
             'international: False)')
         assert eastern_caribbean_dollar_ai.__str__() == '$-100.00'
-
 
     def test_eastern_caribbean_dollar_ai_custom(self):
         """test_eastern_caribbean_dollar_ai_custom."""
@@ -10671,7 +10672,8 @@ class TestEasternCaribbeanDollarAI:
         assert eastern_caribbean_dollar_ai.symbol_separator == '_'
         assert eastern_caribbean_dollar_ai.localized_symbol == 'AI$'
         assert eastern_caribbean_dollar_ai.convertion == ''
-        assert eastern_caribbean_dollar_ai.__hash__() == hash((decimal, 'XCD', '951'))
+        assert eastern_caribbean_dollar_ai.__hash__() == hash(
+            (eastern_caribbean_dollar_ai.__class__, decimal, 'XCD', '951'))
         assert eastern_caribbean_dollar_ai.__repr__() == (
             'EasternCaribbeanDollarAI(amount: 1000, '
             'alpha_code: "XCD", '
@@ -10687,7 +10689,6 @@ class TestEasternCaribbeanDollarAI:
             'convertion: "", '
             'international: True)')
         assert eastern_caribbean_dollar_ai.__str__() == 'XCD 10,00.00000'
-
 
     def test_eastern_caribbean_dollar_ai_changed(self):
         """test_ceastern_caribbean_dollar_ai_changed."""
@@ -10745,7 +10746,6 @@ class TestEasternCaribbeanDollarAI:
                 match='can\'t set attribute'):
             eastern_caribbean_dollar_ai.international = True
 
-
     def test_eastern_caribbean_dollar_ai_math_add(self):
         """test_eastern_caribbean_dollar_ai_math_add."""
         eastern_caribbean_dollar_ai_one = EasternCaribbeanDollarAI(amount=1)
@@ -10758,14 +10758,14 @@ class TestEasternCaribbeanDollarAI:
             _ = eastern_caribbean_dollar_ai_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.EasternCaribbeanDollarAI\'> '
                     'and <class \'str\'>.')):
             _ = eastern_caribbean_dollar_ai_one.__add__('1.00')
         assert (
             eastern_caribbean_dollar_ai_one +
             eastern_caribbean_dollar_ai_two) == eastern_caribbean_dollar_ai_three
-
 
     def test_eastern_caribbean_dollar_ai_slots(self):
         """test_eastern_caribbean_dollar_ai_slots."""
@@ -10784,6 +10784,7 @@ from multicurrency import EasternCaribbeanDollarAG
 
 
 class TestEasternCaribbeanDollarAG:
+    """EasternCaribbeanDollarAG currency tests."""
 
     def test_eastern_caribbean_dollar_ag(self):
         """test_eastern_caribbean_dollar_ag."""
@@ -10803,7 +10804,8 @@ class TestEasternCaribbeanDollarAG:
         assert eastern_caribbean_dollar_ag.symbol_separator == ''
         assert eastern_caribbean_dollar_ag.localized_symbol == 'AG$'
         assert eastern_caribbean_dollar_ag.convertion == ''
-        assert eastern_caribbean_dollar_ag.__hash__() == hash((decimal, 'XCD', '951'))
+        assert eastern_caribbean_dollar_ag.__hash__() == hash(
+            (eastern_caribbean_dollar_ag.__class__, decimal, 'XCD', '951'))
         assert eastern_caribbean_dollar_ag.__repr__() == (
             'EasternCaribbeanDollarAG(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XCD", '
@@ -10819,7 +10821,6 @@ class TestEasternCaribbeanDollarAG:
             'convertion: "", '
             'international: False)')
         assert eastern_caribbean_dollar_ag.__str__() == '$0.14'
-
 
     def test_eastern_caribbean_dollar_ag_negative(self):
         """test_eastern_caribbean_dollar_ag_negative."""
@@ -10838,7 +10839,8 @@ class TestEasternCaribbeanDollarAG:
         assert eastern_caribbean_dollar_ag.symbol_separator == ''
         assert eastern_caribbean_dollar_ag.localized_symbol == 'AG$'
         assert eastern_caribbean_dollar_ag.convertion == ''
-        assert eastern_caribbean_dollar_ag.__hash__() == hash((decimal, 'XCD', '951'))
+        assert eastern_caribbean_dollar_ag.__hash__() == hash(
+            (eastern_caribbean_dollar_ag.__class__, decimal, 'XCD', '951'))
         assert eastern_caribbean_dollar_ag.__repr__() == (
             'EasternCaribbeanDollarAG(amount: -100, '
             'alpha_code: "XCD", '
@@ -10854,7 +10856,6 @@ class TestEasternCaribbeanDollarAG:
             'convertion: "", '
             'international: False)')
         assert eastern_caribbean_dollar_ag.__str__() == '$-100.00'
-
 
     def test_eastern_caribbean_dollar_ag_custom(self):
         """test_eastern_caribbean_dollar_ag_custom."""
@@ -10882,7 +10883,8 @@ class TestEasternCaribbeanDollarAG:
         assert eastern_caribbean_dollar_ag.symbol_separator == '_'
         assert eastern_caribbean_dollar_ag.localized_symbol == 'AG$'
         assert eastern_caribbean_dollar_ag.convertion == ''
-        assert eastern_caribbean_dollar_ag.__hash__() == hash((decimal, 'XCD', '951'))
+        assert eastern_caribbean_dollar_ag.__hash__() == hash(
+            (eastern_caribbean_dollar_ag.__class__, decimal, 'XCD', '951'))
         assert eastern_caribbean_dollar_ag.__repr__() == (
             'EasternCaribbeanDollarAG(amount: 1000, '
             'alpha_code: "XCD", '
@@ -10898,7 +10900,6 @@ class TestEasternCaribbeanDollarAG:
             'convertion: "", '
             'international: True)')
         assert eastern_caribbean_dollar_ag.__str__() == 'XCD 10,00.00000'
-
 
     def test_eastern_caribbean_dollar_ag_changed(self):
         """test_ceastern_caribbean_dollar_ag_changed."""
@@ -10956,7 +10957,6 @@ class TestEasternCaribbeanDollarAG:
                 match='can\'t set attribute'):
             eastern_caribbean_dollar_ag.international = True
 
-
     def test_eastern_caribbean_dollar_ag_math_add(self):
         """test_eastern_caribbean_dollar_ag_math_add."""
         eastern_caribbean_dollar_ag_one = EasternCaribbeanDollarAG(amount=1)
@@ -10969,14 +10969,14 @@ class TestEasternCaribbeanDollarAG:
             _ = eastern_caribbean_dollar_ag_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.EasternCaribbeanDollarAG\'> '
                     'and <class \'str\'>.')):
             _ = eastern_caribbean_dollar_ag_one.__add__('1.00')
         assert (
             eastern_caribbean_dollar_ag_one +
             eastern_caribbean_dollar_ag_two) == eastern_caribbean_dollar_ag_three
-
 
     def test_eastern_caribbean_dollar_ag_slots(self):
         """test_eastern_caribbean_dollar_ag_slots."""
@@ -10995,6 +10995,7 @@ from multicurrency import EasternCaribbeanDollarDM
 
 
 class TestEasternCaribbeanDollarDM:
+    """EasternCaribbeanDollarDM currency tests."""
 
     def test_eastern_caribbean_dollar_dm(self):
         """test_eastern_caribbean_dollar_dm."""
@@ -11014,7 +11015,8 @@ class TestEasternCaribbeanDollarDM:
         assert eastern_caribbean_dollar_dm.symbol_separator == ''
         assert eastern_caribbean_dollar_dm.localized_symbol == 'DM$'
         assert eastern_caribbean_dollar_dm.convertion == ''
-        assert eastern_caribbean_dollar_dm.__hash__() == hash((decimal, 'XCD', '951'))
+        assert eastern_caribbean_dollar_dm.__hash__() == hash(
+            (eastern_caribbean_dollar_dm.__class__, decimal, 'XCD', '951'))
         assert eastern_caribbean_dollar_dm.__repr__() == (
             'EasternCaribbeanDollarDM(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XCD", '
@@ -11030,7 +11032,6 @@ class TestEasternCaribbeanDollarDM:
             'convertion: "", '
             'international: False)')
         assert eastern_caribbean_dollar_dm.__str__() == '$0.14'
-
 
     def test_eastern_caribbean_dollar_dm_negative(self):
         """test_eastern_caribbean_dollar_dm_negative."""
@@ -11049,7 +11050,8 @@ class TestEasternCaribbeanDollarDM:
         assert eastern_caribbean_dollar_dm.symbol_separator == ''
         assert eastern_caribbean_dollar_dm.localized_symbol == 'DM$'
         assert eastern_caribbean_dollar_dm.convertion == ''
-        assert eastern_caribbean_dollar_dm.__hash__() == hash((decimal, 'XCD', '951'))
+        assert eastern_caribbean_dollar_dm.__hash__() == hash(
+            (eastern_caribbean_dollar_dm.__class__, decimal, 'XCD', '951'))
         assert eastern_caribbean_dollar_dm.__repr__() == (
             'EasternCaribbeanDollarDM(amount: -100, '
             'alpha_code: "XCD", '
@@ -11065,7 +11067,6 @@ class TestEasternCaribbeanDollarDM:
             'convertion: "", '
             'international: False)')
         assert eastern_caribbean_dollar_dm.__str__() == '$-100.00'
-
 
     def test_eastern_caribbean_dollar_dm_custom(self):
         """test_eastern_caribbean_dollar_dm_custom."""
@@ -11093,7 +11094,8 @@ class TestEasternCaribbeanDollarDM:
         assert eastern_caribbean_dollar_dm.symbol_separator == '_'
         assert eastern_caribbean_dollar_dm.localized_symbol == 'DM$'
         assert eastern_caribbean_dollar_dm.convertion == ''
-        assert eastern_caribbean_dollar_dm.__hash__() == hash((decimal, 'XCD', '951'))
+        assert eastern_caribbean_dollar_dm.__hash__() == hash(
+            (eastern_caribbean_dollar_dm.__class__, decimal, 'XCD', '951'))
         assert eastern_caribbean_dollar_dm.__repr__() == (
             'EasternCaribbeanDollarDM(amount: 1000, '
             'alpha_code: "XCD", '
@@ -11109,7 +11111,6 @@ class TestEasternCaribbeanDollarDM:
             'convertion: "", '
             'international: True)')
         assert eastern_caribbean_dollar_dm.__str__() == 'XCD 10,00.00000'
-
 
     def test_eastern_caribbean_dollar_dm_changed(self):
         """test_ceastern_caribbean_dollar_dm_changed."""
@@ -11167,7 +11168,6 @@ class TestEasternCaribbeanDollarDM:
                 match='can\'t set attribute'):
             eastern_caribbean_dollar_dm.international = True
 
-
     def test_eastern_caribbean_dollar_dm_math_add(self):
         """test_eastern_caribbean_dollar_dm_math_add."""
         eastern_caribbean_dollar_dm_one = EasternCaribbeanDollarDM(amount=1)
@@ -11180,14 +11180,14 @@ class TestEasternCaribbeanDollarDM:
             _ = eastern_caribbean_dollar_dm_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.EasternCaribbeanDollarDM\'> '
                     'and <class \'str\'>.')):
             _ = eastern_caribbean_dollar_dm_one.__add__('1.00')
         assert (
             eastern_caribbean_dollar_dm_one +
             eastern_caribbean_dollar_dm_two) == eastern_caribbean_dollar_dm_three
-
 
     def test_eastern_caribbean_dollar_dm_slots(self):
         """test_eastern_caribbean_dollar_dm_slots."""
@@ -11206,6 +11206,7 @@ from multicurrency import EasternCaribbeanDollarGD
 
 
 class TestEasternCaribbeanDollarGD:
+    """EasternCaribbeanDollarGD currency tests."""
 
     def test_eastern_caribbean_dollar_gd(self):
         """test_eastern_caribbean_dollar_gd."""
@@ -11225,7 +11226,8 @@ class TestEasternCaribbeanDollarGD:
         assert eastern_caribbean_dollar_gd.symbol_separator == ''
         assert eastern_caribbean_dollar_gd.localized_symbol == 'GD$'
         assert eastern_caribbean_dollar_gd.convertion == ''
-        assert eastern_caribbean_dollar_gd.__hash__() == hash((decimal, 'XCD', '951'))
+        assert eastern_caribbean_dollar_gd.__hash__() == hash(
+            (eastern_caribbean_dollar_gd.__class__, decimal, 'XCD', '951'))
         assert eastern_caribbean_dollar_gd.__repr__() == (
             'EasternCaribbeanDollarGD(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XCD", '
@@ -11241,7 +11243,6 @@ class TestEasternCaribbeanDollarGD:
             'convertion: "", '
             'international: False)')
         assert eastern_caribbean_dollar_gd.__str__() == '$0.14'
-
 
     def test_eastern_caribbean_dollar_gd_negative(self):
         """test_eastern_caribbean_dollar_gd_negative."""
@@ -11260,7 +11261,8 @@ class TestEasternCaribbeanDollarGD:
         assert eastern_caribbean_dollar_gd.symbol_separator == ''
         assert eastern_caribbean_dollar_gd.localized_symbol == 'GD$'
         assert eastern_caribbean_dollar_gd.convertion == ''
-        assert eastern_caribbean_dollar_gd.__hash__() == hash((decimal, 'XCD', '951'))
+        assert eastern_caribbean_dollar_gd.__hash__() == hash(
+            (eastern_caribbean_dollar_gd.__class__, decimal, 'XCD', '951'))
         assert eastern_caribbean_dollar_gd.__repr__() == (
             'EasternCaribbeanDollarGD(amount: -100, '
             'alpha_code: "XCD", '
@@ -11276,7 +11278,6 @@ class TestEasternCaribbeanDollarGD:
             'convertion: "", '
             'international: False)')
         assert eastern_caribbean_dollar_gd.__str__() == '$-100.00'
-
 
     def test_eastern_caribbean_dollar_gd_custom(self):
         """test_eastern_caribbean_dollar_gd_custom."""
@@ -11304,7 +11305,8 @@ class TestEasternCaribbeanDollarGD:
         assert eastern_caribbean_dollar_gd.symbol_separator == '_'
         assert eastern_caribbean_dollar_gd.localized_symbol == 'GD$'
         assert eastern_caribbean_dollar_gd.convertion == ''
-        assert eastern_caribbean_dollar_gd.__hash__() == hash((decimal, 'XCD', '951'))
+        assert eastern_caribbean_dollar_gd.__hash__() == hash(
+            (eastern_caribbean_dollar_gd.__class__, decimal, 'XCD', '951'))
         assert eastern_caribbean_dollar_gd.__repr__() == (
             'EasternCaribbeanDollarGD(amount: 1000, '
             'alpha_code: "XCD", '
@@ -11320,7 +11322,6 @@ class TestEasternCaribbeanDollarGD:
             'convertion: "", '
             'international: True)')
         assert eastern_caribbean_dollar_gd.__str__() == 'XCD 10,00.00000'
-
 
     def test_eastern_caribbean_dollar_gd_changed(self):
         """test_ceastern_caribbean_dollar_gd_changed."""
@@ -11378,7 +11379,6 @@ class TestEasternCaribbeanDollarGD:
                 match='can\'t set attribute'):
             eastern_caribbean_dollar_gd.international = True
 
-
     def test_eastern_caribbean_dollar_gd_math_add(self):
         """test_eastern_caribbean_dollar_gd_math_add."""
         eastern_caribbean_dollar_gd_one = EasternCaribbeanDollarGD(amount=1)
@@ -11391,14 +11391,14 @@ class TestEasternCaribbeanDollarGD:
             _ = eastern_caribbean_dollar_gd_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.EasternCaribbeanDollarGD\'> '
                     'and <class \'str\'>.')):
             _ = eastern_caribbean_dollar_gd_one.__add__('1.00')
         assert (
             eastern_caribbean_dollar_gd_one +
             eastern_caribbean_dollar_gd_two) == eastern_caribbean_dollar_gd_three
-
 
     def test_eastern_caribbean_dollar_gd_slots(self):
         """test_eastern_caribbean_dollar_gd_slots."""
@@ -11417,6 +11417,7 @@ from multicurrency import EasternCaribbeanDollarMS
 
 
 class TestEasternCaribbeanDollarMS:
+    """EasternCaribbeanDollarMS currency tests."""
 
     def test_eastern_caribbean_dollar_ms(self):
         """test_eastern_caribbean_dollar_ms."""
@@ -11436,7 +11437,8 @@ class TestEasternCaribbeanDollarMS:
         assert eastern_caribbean_dollar_ms.symbol_separator == ''
         assert eastern_caribbean_dollar_ms.localized_symbol == 'MS$'
         assert eastern_caribbean_dollar_ms.convertion == ''
-        assert eastern_caribbean_dollar_ms.__hash__() == hash((decimal, 'XCD', '951'))
+        assert eastern_caribbean_dollar_ms.__hash__() == hash(
+            (eastern_caribbean_dollar_ms.__class__, decimal, 'XCD', '951'))
         assert eastern_caribbean_dollar_ms.__repr__() == (
             'EasternCaribbeanDollarMS(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XCD", '
@@ -11452,7 +11454,6 @@ class TestEasternCaribbeanDollarMS:
             'convertion: "", '
             'international: False)')
         assert eastern_caribbean_dollar_ms.__str__() == '$0.14'
-
 
     def test_eastern_caribbean_dollar_ms_negative(self):
         """test_eastern_caribbean_dollar_ms_negative."""
@@ -11471,7 +11472,8 @@ class TestEasternCaribbeanDollarMS:
         assert eastern_caribbean_dollar_ms.symbol_separator == ''
         assert eastern_caribbean_dollar_ms.localized_symbol == 'MS$'
         assert eastern_caribbean_dollar_ms.convertion == ''
-        assert eastern_caribbean_dollar_ms.__hash__() == hash((decimal, 'XCD', '951'))
+        assert eastern_caribbean_dollar_ms.__hash__() == hash(
+            (eastern_caribbean_dollar_ms.__class__, decimal, 'XCD', '951'))
         assert eastern_caribbean_dollar_ms.__repr__() == (
             'EasternCaribbeanDollarMS(amount: -100, '
             'alpha_code: "XCD", '
@@ -11487,7 +11489,6 @@ class TestEasternCaribbeanDollarMS:
             'convertion: "", '
             'international: False)')
         assert eastern_caribbean_dollar_ms.__str__() == '$-100.00'
-
 
     def test_eastern_caribbean_dollar_ms_custom(self):
         """test_eastern_caribbean_dollar_ms_custom."""
@@ -11515,7 +11516,8 @@ class TestEasternCaribbeanDollarMS:
         assert eastern_caribbean_dollar_ms.symbol_separator == '_'
         assert eastern_caribbean_dollar_ms.localized_symbol == 'MS$'
         assert eastern_caribbean_dollar_ms.convertion == ''
-        assert eastern_caribbean_dollar_ms.__hash__() == hash((decimal, 'XCD', '951'))
+        assert eastern_caribbean_dollar_ms.__hash__() == hash(
+            (eastern_caribbean_dollar_ms.__class__, decimal, 'XCD', '951'))
         assert eastern_caribbean_dollar_ms.__repr__() == (
             'EasternCaribbeanDollarMS(amount: 1000, '
             'alpha_code: "XCD", '
@@ -11531,7 +11533,6 @@ class TestEasternCaribbeanDollarMS:
             'convertion: "", '
             'international: True)')
         assert eastern_caribbean_dollar_ms.__str__() == 'XCD 10,00.00000'
-
 
     def test_eastern_caribbean_dollar_ms_changed(self):
         """test_ceastern_caribbean_dollar_ms_changed."""
@@ -11589,7 +11590,6 @@ class TestEasternCaribbeanDollarMS:
                 match='can\'t set attribute'):
             eastern_caribbean_dollar_ms.international = True
 
-
     def test_eastern_caribbean_dollar_ms_math_add(self):
         """test_eastern_caribbean_dollar_ms_math_add."""
         eastern_caribbean_dollar_ms_one = EasternCaribbeanDollarMS(amount=1)
@@ -11602,14 +11602,14 @@ class TestEasternCaribbeanDollarMS:
             _ = eastern_caribbean_dollar_ms_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.EasternCaribbeanDollarMS\'> '
                     'and <class \'str\'>.')):
             _ = eastern_caribbean_dollar_ms_one.__add__('1.00')
         assert (
             eastern_caribbean_dollar_ms_one +
             eastern_caribbean_dollar_ms_two) == eastern_caribbean_dollar_ms_three
-
 
     def test_eastern_caribbean_dollar_ms_slots(self):
         """test_eastern_caribbean_dollar_ms_slots."""
@@ -11628,6 +11628,7 @@ from multicurrency import EasternCaribbeanDollarKN
 
 
 class TestEasternCaribbeanDollarKN:
+    """EasternCaribbeanDollarKN currency tests."""
 
     def test_eastern_caribbean_dollar_kn(self):
         """test_eastern_caribbean_dollar_kn."""
@@ -11647,7 +11648,8 @@ class TestEasternCaribbeanDollarKN:
         assert eastern_caribbean_dollar_kn.symbol_separator == ''
         assert eastern_caribbean_dollar_kn.localized_symbol == 'KN$'
         assert eastern_caribbean_dollar_kn.convertion == ''
-        assert eastern_caribbean_dollar_kn.__hash__() == hash((decimal, 'XCD', '951'))
+        assert eastern_caribbean_dollar_kn.__hash__() == hash(
+            (eastern_caribbean_dollar_kn.__class__, decimal, 'XCD', '951'))
         assert eastern_caribbean_dollar_kn.__repr__() == (
             'EasternCaribbeanDollarKN(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XCD", '
@@ -11663,7 +11665,6 @@ class TestEasternCaribbeanDollarKN:
             'convertion: "", '
             'international: False)')
         assert eastern_caribbean_dollar_kn.__str__() == '$0.14'
-
 
     def test_eastern_caribbean_dollar_kn_negative(self):
         """test_eastern_caribbean_dollar_kn_negative."""
@@ -11682,7 +11683,8 @@ class TestEasternCaribbeanDollarKN:
         assert eastern_caribbean_dollar_kn.symbol_separator == ''
         assert eastern_caribbean_dollar_kn.localized_symbol == 'KN$'
         assert eastern_caribbean_dollar_kn.convertion == ''
-        assert eastern_caribbean_dollar_kn.__hash__() == hash((decimal, 'XCD', '951'))
+        assert eastern_caribbean_dollar_kn.__hash__() == hash(
+            (eastern_caribbean_dollar_kn.__class__, decimal, 'XCD', '951'))
         assert eastern_caribbean_dollar_kn.__repr__() == (
             'EasternCaribbeanDollarKN(amount: -100, '
             'alpha_code: "XCD", '
@@ -11698,7 +11700,6 @@ class TestEasternCaribbeanDollarKN:
             'convertion: "", '
             'international: False)')
         assert eastern_caribbean_dollar_kn.__str__() == '$-100.00'
-
 
     def test_eastern_caribbean_dollar_kn_custom(self):
         """test_eastern_caribbean_dollar_kn_custom."""
@@ -11726,7 +11727,8 @@ class TestEasternCaribbeanDollarKN:
         assert eastern_caribbean_dollar_kn.symbol_separator == '_'
         assert eastern_caribbean_dollar_kn.localized_symbol == 'KN$'
         assert eastern_caribbean_dollar_kn.convertion == ''
-        assert eastern_caribbean_dollar_kn.__hash__() == hash((decimal, 'XCD', '951'))
+        assert eastern_caribbean_dollar_kn.__hash__() == hash(
+            (eastern_caribbean_dollar_kn.__class__, decimal, 'XCD', '951'))
         assert eastern_caribbean_dollar_kn.__repr__() == (
             'EasternCaribbeanDollarKN(amount: 1000, '
             'alpha_code: "XCD", '
@@ -11742,7 +11744,6 @@ class TestEasternCaribbeanDollarKN:
             'convertion: "", '
             'international: True)')
         assert eastern_caribbean_dollar_kn.__str__() == 'XCD 10,00.00000'
-
 
     def test_eastern_caribbean_dollar_kn_changed(self):
         """test_ceastern_caribbean_dollar_kn_changed."""
@@ -11800,7 +11801,6 @@ class TestEasternCaribbeanDollarKN:
                 match='can\'t set attribute'):
             eastern_caribbean_dollar_kn.international = True
 
-
     def test_eastern_caribbean_dollar_kn_math_add(self):
         """test_eastern_caribbean_dollar_kn_math_add."""
         eastern_caribbean_dollar_kn_one = EasternCaribbeanDollarKN(amount=1)
@@ -11813,14 +11813,14 @@ class TestEasternCaribbeanDollarKN:
             _ = eastern_caribbean_dollar_kn_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.EasternCaribbeanDollarKN\'> '
                     'and <class \'str\'>.')):
             _ = eastern_caribbean_dollar_kn_one.__add__('1.00')
         assert (
             eastern_caribbean_dollar_kn_one +
             eastern_caribbean_dollar_kn_two) == eastern_caribbean_dollar_kn_three
-
 
     def test_eastern_caribbean_dollar_kn_slots(self):
         """test_eastern_caribbean_dollar_kn_slots."""
@@ -11839,6 +11839,7 @@ from multicurrency import EasternCaribbeanDollarLC
 
 
 class TestEasternCaribbeanDollarLC:
+    """EasternCaribbeanDollarLC currency tests."""
 
     def test_eastern_caribbean_dollar_lc(self):
         """test_eastern_caribbean_dollar_lc."""
@@ -11858,7 +11859,8 @@ class TestEasternCaribbeanDollarLC:
         assert eastern_caribbean_dollar_lc.symbol_separator == ''
         assert eastern_caribbean_dollar_lc.localized_symbol == 'LC$'
         assert eastern_caribbean_dollar_lc.convertion == ''
-        assert eastern_caribbean_dollar_lc.__hash__() == hash((decimal, 'XCD', '951'))
+        assert eastern_caribbean_dollar_lc.__hash__() == hash(
+            (eastern_caribbean_dollar_lc.__class__, decimal, 'XCD', '951'))
         assert eastern_caribbean_dollar_lc.__repr__() == (
             'EasternCaribbeanDollarLC(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XCD", '
@@ -11874,7 +11876,6 @@ class TestEasternCaribbeanDollarLC:
             'convertion: "", '
             'international: False)')
         assert eastern_caribbean_dollar_lc.__str__() == '$0.14'
-
 
     def test_eastern_caribbean_dollar_lc_negative(self):
         """test_eastern_caribbean_dollar_lc_negative."""
@@ -11893,7 +11894,8 @@ class TestEasternCaribbeanDollarLC:
         assert eastern_caribbean_dollar_lc.symbol_separator == ''
         assert eastern_caribbean_dollar_lc.localized_symbol == 'LC$'
         assert eastern_caribbean_dollar_lc.convertion == ''
-        assert eastern_caribbean_dollar_lc.__hash__() == hash((decimal, 'XCD', '951'))
+        assert eastern_caribbean_dollar_lc.__hash__() == hash(
+            (eastern_caribbean_dollar_lc.__class__, decimal, 'XCD', '951'))
         assert eastern_caribbean_dollar_lc.__repr__() == (
             'EasternCaribbeanDollarLC(amount: -100, '
             'alpha_code: "XCD", '
@@ -11909,7 +11911,6 @@ class TestEasternCaribbeanDollarLC:
             'convertion: "", '
             'international: False)')
         assert eastern_caribbean_dollar_lc.__str__() == '$-100.00'
-
 
     def test_eastern_caribbean_dollar_lc_custom(self):
         """test_eastern_caribbean_dollar_lc_custom."""
@@ -11937,7 +11938,8 @@ class TestEasternCaribbeanDollarLC:
         assert eastern_caribbean_dollar_lc.symbol_separator == '_'
         assert eastern_caribbean_dollar_lc.localized_symbol == 'LC$'
         assert eastern_caribbean_dollar_lc.convertion == ''
-        assert eastern_caribbean_dollar_lc.__hash__() == hash((decimal, 'XCD', '951'))
+        assert eastern_caribbean_dollar_lc.__hash__() == hash(
+            (eastern_caribbean_dollar_lc.__class__, decimal, 'XCD', '951'))
         assert eastern_caribbean_dollar_lc.__repr__() == (
             'EasternCaribbeanDollarLC(amount: 1000, '
             'alpha_code: "XCD", '
@@ -11953,7 +11955,6 @@ class TestEasternCaribbeanDollarLC:
             'convertion: "", '
             'international: True)')
         assert eastern_caribbean_dollar_lc.__str__() == 'XCD 10,00.00000'
-
 
     def test_eastern_caribbean_dollar_lc_changed(self):
         """test_ceastern_caribbean_dollar_lc_changed."""
@@ -12011,7 +12012,6 @@ class TestEasternCaribbeanDollarLC:
                 match='can\'t set attribute'):
             eastern_caribbean_dollar_lc.international = True
 
-
     def test_eastern_caribbean_dollar_lc_math_add(self):
         """test_eastern_caribbean_dollar_lc_math_add."""
         eastern_caribbean_dollar_lc_one = EasternCaribbeanDollarLC(amount=1)
@@ -12024,14 +12024,14 @@ class TestEasternCaribbeanDollarLC:
             _ = eastern_caribbean_dollar_lc_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.EasternCaribbeanDollarLC\'> '
                     'and <class \'str\'>.')):
             _ = eastern_caribbean_dollar_lc_one.__add__('1.00')
         assert (
             eastern_caribbean_dollar_lc_one +
             eastern_caribbean_dollar_lc_two) == eastern_caribbean_dollar_lc_three
-
 
     def test_eastern_caribbean_dollar_lc_slots(self):
         """test_eastern_caribbean_dollar_lc_slots."""
@@ -12050,6 +12050,7 @@ from multicurrency import EasternCaribbeanDollarVC
 
 
 class TestEasternCaribbeanDollarVC:
+    """EasternCaribbeanDollarVC currency tests."""
 
     def test_eastern_caribbean_dollar_vc(self):
         """test_eastern_caribbean_dollar_vc."""
@@ -12069,7 +12070,8 @@ class TestEasternCaribbeanDollarVC:
         assert eastern_caribbean_dollar_vc.symbol_separator == ''
         assert eastern_caribbean_dollar_vc.localized_symbol == 'VC$'
         assert eastern_caribbean_dollar_vc.convertion == ''
-        assert eastern_caribbean_dollar_vc.__hash__() == hash((decimal, 'XCD', '951'))
+        assert eastern_caribbean_dollar_vc.__hash__() == hash(
+            (eastern_caribbean_dollar_vc.__class__, decimal, 'XCD', '951'))
         assert eastern_caribbean_dollar_vc.__repr__() == (
             'EasternCaribbeanDollarVC(amount: 0.1428571428571428571428571429, '
             'alpha_code: "XCD", '
@@ -12085,7 +12087,6 @@ class TestEasternCaribbeanDollarVC:
             'convertion: "", '
             'international: False)')
         assert eastern_caribbean_dollar_vc.__str__() == '$0.14'
-
 
     def test_eastern_caribbean_dollar_vc_negative(self):
         """test_eastern_caribbean_dollar_vc_negative."""
@@ -12104,7 +12105,8 @@ class TestEasternCaribbeanDollarVC:
         assert eastern_caribbean_dollar_vc.symbol_separator == ''
         assert eastern_caribbean_dollar_vc.localized_symbol == 'VC$'
         assert eastern_caribbean_dollar_vc.convertion == ''
-        assert eastern_caribbean_dollar_vc.__hash__() == hash((decimal, 'XCD', '951'))
+        assert eastern_caribbean_dollar_vc.__hash__() == hash(
+            (eastern_caribbean_dollar_vc.__class__, decimal, 'XCD', '951'))
         assert eastern_caribbean_dollar_vc.__repr__() == (
             'EasternCaribbeanDollarVC(amount: -100, '
             'alpha_code: "XCD", '
@@ -12120,7 +12122,6 @@ class TestEasternCaribbeanDollarVC:
             'convertion: "", '
             'international: False)')
         assert eastern_caribbean_dollar_vc.__str__() == '$-100.00'
-
 
     def test_eastern_caribbean_dollar_vc_custom(self):
         """test_eastern_caribbean_dollar_vc_custom."""
@@ -12148,7 +12149,8 @@ class TestEasternCaribbeanDollarVC:
         assert eastern_caribbean_dollar_vc.symbol_separator == '_'
         assert eastern_caribbean_dollar_vc.localized_symbol == 'VC$'
         assert eastern_caribbean_dollar_vc.convertion == ''
-        assert eastern_caribbean_dollar_vc.__hash__() == hash((decimal, 'XCD', '951'))
+        assert eastern_caribbean_dollar_vc.__hash__() == hash(
+            (eastern_caribbean_dollar_vc.__class__, decimal, 'XCD', '951'))
         assert eastern_caribbean_dollar_vc.__repr__() == (
             'EasternCaribbeanDollarVC(amount: 1000, '
             'alpha_code: "XCD", '
@@ -12164,7 +12166,6 @@ class TestEasternCaribbeanDollarVC:
             'convertion: "", '
             'international: True)')
         assert eastern_caribbean_dollar_vc.__str__() == 'XCD 10,00.00000'
-
 
     def test_eastern_caribbean_dollar_vc_changed(self):
         """test_ceastern_caribbean_dollar_vc_changed."""
@@ -12222,7 +12223,6 @@ class TestEasternCaribbeanDollarVC:
                 match='can\'t set attribute'):
             eastern_caribbean_dollar_vc.international = True
 
-
     def test_eastern_caribbean_dollar_vc_math_add(self):
         """test_eastern_caribbean_dollar_vc_math_add."""
         eastern_caribbean_dollar_vc_one = EasternCaribbeanDollarVC(amount=1)
@@ -12235,14 +12235,14 @@ class TestEasternCaribbeanDollarVC:
             _ = eastern_caribbean_dollar_vc_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.EasternCaribbeanDollarVC\'> '
                     'and <class \'str\'>.')):
             _ = eastern_caribbean_dollar_vc_one.__add__('1.00')
         assert (
             eastern_caribbean_dollar_vc_one +
             eastern_caribbean_dollar_vc_two) == eastern_caribbean_dollar_vc_three
-
 
     def test_eastern_caribbean_dollar_vc_slots(self):
         """test_eastern_caribbean_dollar_vc_slots."""
@@ -12261,6 +12261,7 @@ from multicurrency import ZimbabweDollar
 
 
 class TestZimbabweDollar:
+    """ZimbabweDollar currency tests."""
 
     def test_zimbabwe_dollar(self):
         """test_zimbabwe_dollar."""
@@ -12280,7 +12281,8 @@ class TestZimbabweDollar:
         assert zimbabwe_dollar.symbol_separator == '\u00A0'
         assert zimbabwe_dollar.localized_symbol == 'ZW$'
         assert zimbabwe_dollar.convertion == ''
-        assert zimbabwe_dollar.__hash__() == hash((decimal, 'ZWL', '932'))
+        assert zimbabwe_dollar.__hash__() == hash(
+            (zimbabwe_dollar.__class__, decimal, 'ZWL', '932'))
         assert zimbabwe_dollar.__repr__() == (
             'ZimbabweDollar(amount: 0.1428571428571428571428571429, '
             'alpha_code: "ZWL", '
@@ -12296,7 +12298,6 @@ class TestZimbabweDollar:
             'convertion: "", '
             'international: False)')
         assert zimbabwe_dollar.__str__() == '$ 0.14'
-
 
     def test_zimbabwe_dollar_negative(self):
         """test_zimbabwe_dollar_negative."""
@@ -12315,7 +12316,8 @@ class TestZimbabweDollar:
         assert zimbabwe_dollar.symbol_separator == '\u00A0'
         assert zimbabwe_dollar.localized_symbol == 'ZW$'
         assert zimbabwe_dollar.convertion == ''
-        assert zimbabwe_dollar.__hash__() == hash((decimal, 'ZWL', '932'))
+        assert zimbabwe_dollar.__hash__() == hash(
+            (zimbabwe_dollar.__class__, decimal, 'ZWL', '932'))
         assert zimbabwe_dollar.__repr__() == (
             'ZimbabweDollar(amount: -100, '
             'alpha_code: "ZWL", '
@@ -12331,7 +12333,6 @@ class TestZimbabweDollar:
             'convertion: "", '
             'international: False)')
         assert zimbabwe_dollar.__str__() == '$ -100.00'
-
 
     def test_zimbabwe_dollar_custom(self):
         """test_zimbabwe_dollar_custom."""
@@ -12359,7 +12360,8 @@ class TestZimbabweDollar:
         assert zimbabwe_dollar.symbol_separator == '_'
         assert zimbabwe_dollar.localized_symbol == 'ZW$'
         assert zimbabwe_dollar.convertion == ''
-        assert zimbabwe_dollar.__hash__() == hash((decimal, 'ZWL', '932'))
+        assert zimbabwe_dollar.__hash__() == hash(
+            (zimbabwe_dollar.__class__, decimal, 'ZWL', '932'))
         assert zimbabwe_dollar.__repr__() == (
             'ZimbabweDollar(amount: 1000, '
             'alpha_code: "ZWL", '
@@ -12375,7 +12377,6 @@ class TestZimbabweDollar:
             'convertion: "", '
             'international: True)')
         assert zimbabwe_dollar.__str__() == 'ZWL 10,00.00000'
-
 
     def test_zimbabwe_dollar_changed(self):
         """test_czimbabwe_dollar_changed."""
@@ -12433,7 +12434,6 @@ class TestZimbabweDollar:
                 match='can\'t set attribute'):
             zimbabwe_dollar.international = True
 
-
     def test_zimbabwe_dollar_math_add(self):
         """test_zimbabwe_dollar_math_add."""
         zimbabwe_dollar_one = ZimbabweDollar(amount=1)
@@ -12446,14 +12446,14 @@ class TestZimbabweDollar:
             _ = zimbabwe_dollar_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dollar.ZimbabweDollar\'> '
                     'and <class \'str\'>.')):
             _ = zimbabwe_dollar_one.__add__('1.00')
         assert (
             zimbabwe_dollar_one +
             zimbabwe_dollar_two) == zimbabwe_dollar_three
-
 
     def test_zimbabwe_dollar_slots(self):
         """test_zimbabwe_dollar_slots."""

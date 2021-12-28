@@ -336,6 +336,17 @@ instead of the `symbol`.
     >>> print(euro)
     EUR 1,000.00
 
+## Localization
+
+The multicurrency library allows you to obtain a localized version of the
+currency representation:
+
+    >>> from multicurrency import TaiwanDollar, USDollar
+    >>> tw_dollar = TaiwanDollar('27.65')
+    >>> us_dollar = USDollar('1')
+    >>> print(us_dollar.lstr(), '=', tw_dollar.lstr())
+    US$1.00 = TW$27.65
+
 ## Precision
 
 The multicurrency library has a user alterable precision (defaulting to
@@ -1249,4 +1260,4 @@ __all__ = [
 __author__: str = 'Frederico Martins'
 __license__: str = 'MIT'
 __project__: str = __package__
-__version__: str = '0.10.0'
+__version__: str = '0.11.0'

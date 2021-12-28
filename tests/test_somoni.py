@@ -23,6 +23,7 @@ from multicurrency import Somoni
 
 
 class TestSomoni:
+    """Somoni currency tests."""
 
     def test_somoni(self):
         """test_somoni."""
@@ -42,7 +43,8 @@ class TestSomoni:
         assert somoni.symbol_separator == '\u00A0'
         assert somoni.localized_symbol == 'ЅМ'
         assert somoni.convertion == ''
-        assert somoni.__hash__() == hash((decimal, 'TJS', '972'))
+        assert somoni.__hash__() == hash(
+            (somoni.__class__, decimal, 'TJS', '972'))
         assert somoni.__repr__() == (
             'Somoni(amount: 0.1428571428571428571428571429, '
             'alpha_code: "TJS", '
@@ -58,7 +60,6 @@ class TestSomoni:
             'convertion: "", '
             'international: False)')
         assert somoni.__str__() == 'ЅМ 0.14'
-
 
     def test_somoni_negative(self):
         """test_somoni_negative."""
@@ -77,7 +78,8 @@ class TestSomoni:
         assert somoni.symbol_separator == '\u00A0'
         assert somoni.localized_symbol == 'ЅМ'
         assert somoni.convertion == ''
-        assert somoni.__hash__() == hash((decimal, 'TJS', '972'))
+        assert somoni.__hash__() == hash(
+            (somoni.__class__, decimal, 'TJS', '972'))
         assert somoni.__repr__() == (
             'Somoni(amount: -100, '
             'alpha_code: "TJS", '
@@ -93,7 +95,6 @@ class TestSomoni:
             'convertion: "", '
             'international: False)')
         assert somoni.__str__() == 'ЅМ -100.00'
-
 
     def test_somoni_custom(self):
         """test_somoni_custom."""
@@ -121,7 +122,8 @@ class TestSomoni:
         assert somoni.symbol_separator == '_'
         assert somoni.localized_symbol == 'ЅМ'
         assert somoni.convertion == ''
-        assert somoni.__hash__() == hash((decimal, 'TJS', '972'))
+        assert somoni.__hash__() == hash(
+            (somoni.__class__, decimal, 'TJS', '972'))
         assert somoni.__repr__() == (
             'Somoni(amount: 1000, '
             'alpha_code: "TJS", '
@@ -137,7 +139,6 @@ class TestSomoni:
             'convertion: "", '
             'international: True)')
         assert somoni.__str__() == 'TJS 10,00.00000'
-
 
     def test_somoni_changed(self):
         """test_csomoni_changed."""
@@ -195,7 +196,6 @@ class TestSomoni:
                 match='can\'t set attribute'):
             somoni.international = True
 
-
     def test_somoni_math_add(self):
         """test_somoni_math_add."""
         somoni_one = Somoni(amount=1)
@@ -208,14 +208,14 @@ class TestSomoni:
             _ = somoni_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'somoni.Somoni\'> '
                     'and <class \'str\'>.')):
             _ = somoni_one.__add__('1.00')
         assert (
             somoni_one +
             somoni_two) == somoni_three
-
 
     def test_somoni_slots(self):
         """test_somoni_slots."""

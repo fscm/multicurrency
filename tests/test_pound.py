@@ -23,6 +23,7 @@ from multicurrency import EgyptianPound
 
 
 class TestEgyptianPound:
+    """EgyptianPound currency tests."""
 
     def test_egyptian_pound(self):
         """test_egyptian_pound."""
@@ -42,7 +43,8 @@ class TestEgyptianPound:
         assert egyptian_pound.symbol_separator == '\u00A0'
         assert egyptian_pound.localized_symbol == 'ج.م.'
         assert egyptian_pound.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert egyptian_pound.__hash__() == hash((decimal, 'EGP', '818'))
+        assert egyptian_pound.__hash__() == hash(
+            (egyptian_pound.__class__, decimal, 'EGP', '818'))
         assert egyptian_pound.__repr__() == (
             'EgyptianPound(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EGP", '
@@ -58,7 +60,6 @@ class TestEgyptianPound:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: False)')
         assert egyptian_pound.__str__() == 'ج.م. ٠٫١٤'
-
 
     def test_egyptian_pound_negative(self):
         """test_egyptian_pound_negative."""
@@ -77,7 +78,8 @@ class TestEgyptianPound:
         assert egyptian_pound.symbol_separator == '\u00A0'
         assert egyptian_pound.localized_symbol == 'ج.م.'
         assert egyptian_pound.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert egyptian_pound.__hash__() == hash((decimal, 'EGP', '818'))
+        assert egyptian_pound.__hash__() == hash(
+            (egyptian_pound.__class__, decimal, 'EGP', '818'))
         assert egyptian_pound.__repr__() == (
             'EgyptianPound(amount: -100, '
             'alpha_code: "EGP", '
@@ -93,7 +95,6 @@ class TestEgyptianPound:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: False)')
         assert egyptian_pound.__str__() == 'ج.م. -١٠٠٫٠٠'
-
 
     def test_egyptian_pound_custom(self):
         """test_egyptian_pound_custom."""
@@ -121,7 +122,8 @@ class TestEgyptianPound:
         assert egyptian_pound.symbol_separator == '_'
         assert egyptian_pound.localized_symbol == 'ج.م.'
         assert egyptian_pound.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert egyptian_pound.__hash__() == hash((decimal, 'EGP', '818'))
+        assert egyptian_pound.__hash__() == hash(
+            (egyptian_pound.__class__, decimal, 'EGP', '818'))
         assert egyptian_pound.__repr__() == (
             'EgyptianPound(amount: 1000, '
             'alpha_code: "EGP", '
@@ -137,7 +139,6 @@ class TestEgyptianPound:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: True)')
         assert egyptian_pound.__str__() == 'EGP 10,00.00000'
-
 
     def test_egyptian_pound_changed(self):
         """test_cegyptian_pound_changed."""
@@ -195,7 +196,6 @@ class TestEgyptianPound:
                 match='can\'t set attribute'):
             egyptian_pound.international = True
 
-
     def test_egyptian_pound_math_add(self):
         """test_egyptian_pound_math_add."""
         egyptian_pound_one = EgyptianPound(amount=1)
@@ -208,14 +208,14 @@ class TestEgyptianPound:
             _ = egyptian_pound_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'pound.EgyptianPound\'> '
                     'and <class \'str\'>.')):
             _ = egyptian_pound_one.__add__('1.00')
         assert (
             egyptian_pound_one +
             egyptian_pound_two) == egyptian_pound_three
-
 
     def test_egyptian_pound_slots(self):
         """test_egyptian_pound_slots."""
@@ -234,6 +234,7 @@ from multicurrency import FalklandIslandsPound
 
 
 class TestFalklandIslandsPound:
+    """FalklandIslandsPound currency tests."""
 
     def test_falkland_islands_pound(self):
         """test_falkland_islands_pound."""
@@ -253,7 +254,8 @@ class TestFalklandIslandsPound:
         assert falkland_islands_pound.symbol_separator == ''
         assert falkland_islands_pound.localized_symbol == 'FK£'
         assert falkland_islands_pound.convertion == ''
-        assert falkland_islands_pound.__hash__() == hash((decimal, 'FKP', '238'))
+        assert falkland_islands_pound.__hash__() == hash(
+            (falkland_islands_pound.__class__, decimal, 'FKP', '238'))
         assert falkland_islands_pound.__repr__() == (
             'FalklandIslandsPound(amount: 0.1428571428571428571428571429, '
             'alpha_code: "FKP", '
@@ -269,7 +271,6 @@ class TestFalklandIslandsPound:
             'convertion: "", '
             'international: False)')
         assert falkland_islands_pound.__str__() == '£0.14'
-
 
     def test_falkland_islands_pound_negative(self):
         """test_falkland_islands_pound_negative."""
@@ -288,7 +289,8 @@ class TestFalklandIslandsPound:
         assert falkland_islands_pound.symbol_separator == ''
         assert falkland_islands_pound.localized_symbol == 'FK£'
         assert falkland_islands_pound.convertion == ''
-        assert falkland_islands_pound.__hash__() == hash((decimal, 'FKP', '238'))
+        assert falkland_islands_pound.__hash__() == hash(
+            (falkland_islands_pound.__class__, decimal, 'FKP', '238'))
         assert falkland_islands_pound.__repr__() == (
             'FalklandIslandsPound(amount: -100, '
             'alpha_code: "FKP", '
@@ -304,7 +306,6 @@ class TestFalklandIslandsPound:
             'convertion: "", '
             'international: False)')
         assert falkland_islands_pound.__str__() == '£-100.00'
-
 
     def test_falkland_islands_pound_custom(self):
         """test_falkland_islands_pound_custom."""
@@ -332,7 +333,8 @@ class TestFalklandIslandsPound:
         assert falkland_islands_pound.symbol_separator == '_'
         assert falkland_islands_pound.localized_symbol == 'FK£'
         assert falkland_islands_pound.convertion == ''
-        assert falkland_islands_pound.__hash__() == hash((decimal, 'FKP', '238'))
+        assert falkland_islands_pound.__hash__() == hash(
+            (falkland_islands_pound.__class__, decimal, 'FKP', '238'))
         assert falkland_islands_pound.__repr__() == (
             'FalklandIslandsPound(amount: 1000, '
             'alpha_code: "FKP", '
@@ -348,7 +350,6 @@ class TestFalklandIslandsPound:
             'convertion: "", '
             'international: True)')
         assert falkland_islands_pound.__str__() == 'FKP 10,00.00000'
-
 
     def test_falkland_islands_pound_changed(self):
         """test_cfalkland_islands_pound_changed."""
@@ -406,7 +407,6 @@ class TestFalklandIslandsPound:
                 match='can\'t set attribute'):
             falkland_islands_pound.international = True
 
-
     def test_falkland_islands_pound_math_add(self):
         """test_falkland_islands_pound_math_add."""
         falkland_islands_pound_one = FalklandIslandsPound(amount=1)
@@ -419,14 +419,14 @@ class TestFalklandIslandsPound:
             _ = falkland_islands_pound_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'pound.FalklandIslandsPound\'> '
                     'and <class \'str\'>.')):
             _ = falkland_islands_pound_one.__add__('1.00')
         assert (
             falkland_islands_pound_one +
             falkland_islands_pound_two) == falkland_islands_pound_three
-
 
     def test_falkland_islands_pound_slots(self):
         """test_falkland_islands_pound_slots."""
@@ -445,6 +445,7 @@ from multicurrency import PoundSterling
 
 
 class TestPoundSterling:
+    """PoundSterling currency tests."""
 
     def test_pound_sterling(self):
         """test_pound_sterling."""
@@ -464,7 +465,8 @@ class TestPoundSterling:
         assert pound_sterling.symbol_separator == ''
         assert pound_sterling.localized_symbol == '£'
         assert pound_sterling.convertion == ''
-        assert pound_sterling.__hash__() == hash((decimal, 'GBP', '826'))
+        assert pound_sterling.__hash__() == hash(
+            (pound_sterling.__class__, decimal, 'GBP', '826'))
         assert pound_sterling.__repr__() == (
             'PoundSterling(amount: 0.1428571428571428571428571429, '
             'alpha_code: "GBP", '
@@ -480,7 +482,6 @@ class TestPoundSterling:
             'convertion: "", '
             'international: False)')
         assert pound_sterling.__str__() == '£0.14'
-
 
     def test_pound_sterling_negative(self):
         """test_pound_sterling_negative."""
@@ -499,7 +500,8 @@ class TestPoundSterling:
         assert pound_sterling.symbol_separator == ''
         assert pound_sterling.localized_symbol == '£'
         assert pound_sterling.convertion == ''
-        assert pound_sterling.__hash__() == hash((decimal, 'GBP', '826'))
+        assert pound_sterling.__hash__() == hash(
+            (pound_sterling.__class__, decimal, 'GBP', '826'))
         assert pound_sterling.__repr__() == (
             'PoundSterling(amount: -100, '
             'alpha_code: "GBP", '
@@ -515,7 +517,6 @@ class TestPoundSterling:
             'convertion: "", '
             'international: False)')
         assert pound_sterling.__str__() == '£-100.00'
-
 
     def test_pound_sterling_custom(self):
         """test_pound_sterling_custom."""
@@ -543,7 +544,8 @@ class TestPoundSterling:
         assert pound_sterling.symbol_separator == '_'
         assert pound_sterling.localized_symbol == '£'
         assert pound_sterling.convertion == ''
-        assert pound_sterling.__hash__() == hash((decimal, 'GBP', '826'))
+        assert pound_sterling.__hash__() == hash(
+            (pound_sterling.__class__, decimal, 'GBP', '826'))
         assert pound_sterling.__repr__() == (
             'PoundSterling(amount: 1000, '
             'alpha_code: "GBP", '
@@ -559,7 +561,6 @@ class TestPoundSterling:
             'convertion: "", '
             'international: True)')
         assert pound_sterling.__str__() == 'GBP 10,00.00000'
-
 
     def test_pound_sterling_changed(self):
         """test_cpound_sterling_changed."""
@@ -617,7 +618,6 @@ class TestPoundSterling:
                 match='can\'t set attribute'):
             pound_sterling.international = True
 
-
     def test_pound_sterling_math_add(self):
         """test_pound_sterling_math_add."""
         pound_sterling_one = PoundSterling(amount=1)
@@ -630,14 +630,14 @@ class TestPoundSterling:
             _ = pound_sterling_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'pound.PoundSterling\'> '
                     'and <class \'str\'>.')):
             _ = pound_sterling_one.__add__('1.00')
         assert (
             pound_sterling_one +
             pound_sterling_two) == pound_sterling_three
-
 
     def test_pound_sterling_slots(self):
         """test_pound_sterling_slots."""
@@ -656,6 +656,7 @@ from multicurrency import PoundSterlingGG
 
 
 class TestPoundSterlingGG:
+    """PoundSterlingGG currency tests."""
 
     def test_pound_sterling_gg(self):
         """test_pound_sterling_gg."""
@@ -675,7 +676,8 @@ class TestPoundSterlingGG:
         assert pound_sterling_gg.symbol_separator == ''
         assert pound_sterling_gg.localized_symbol == 'GG£'
         assert pound_sterling_gg.convertion == ''
-        assert pound_sterling_gg.__hash__() == hash((decimal, 'GBP', '826'))
+        assert pound_sterling_gg.__hash__() == hash(
+            (pound_sterling_gg.__class__, decimal, 'GBP', '826'))
         assert pound_sterling_gg.__repr__() == (
             'PoundSterlingGG(amount: 0.1428571428571428571428571429, '
             'alpha_code: "GBP", '
@@ -691,7 +693,6 @@ class TestPoundSterlingGG:
             'convertion: "", '
             'international: False)')
         assert pound_sterling_gg.__str__() == '£0.14'
-
 
     def test_pound_sterling_gg_negative(self):
         """test_pound_sterling_gg_negative."""
@@ -710,7 +711,8 @@ class TestPoundSterlingGG:
         assert pound_sterling_gg.symbol_separator == ''
         assert pound_sterling_gg.localized_symbol == 'GG£'
         assert pound_sterling_gg.convertion == ''
-        assert pound_sterling_gg.__hash__() == hash((decimal, 'GBP', '826'))
+        assert pound_sterling_gg.__hash__() == hash(
+            (pound_sterling_gg.__class__, decimal, 'GBP', '826'))
         assert pound_sterling_gg.__repr__() == (
             'PoundSterlingGG(amount: -100, '
             'alpha_code: "GBP", '
@@ -726,7 +728,6 @@ class TestPoundSterlingGG:
             'convertion: "", '
             'international: False)')
         assert pound_sterling_gg.__str__() == '£-100.00'
-
 
     def test_pound_sterling_gg_custom(self):
         """test_pound_sterling_gg_custom."""
@@ -754,7 +755,8 @@ class TestPoundSterlingGG:
         assert pound_sterling_gg.symbol_separator == '_'
         assert pound_sterling_gg.localized_symbol == 'GG£'
         assert pound_sterling_gg.convertion == ''
-        assert pound_sterling_gg.__hash__() == hash((decimal, 'GBP', '826'))
+        assert pound_sterling_gg.__hash__() == hash(
+            (pound_sterling_gg.__class__, decimal, 'GBP', '826'))
         assert pound_sterling_gg.__repr__() == (
             'PoundSterlingGG(amount: 1000, '
             'alpha_code: "GBP", '
@@ -770,7 +772,6 @@ class TestPoundSterlingGG:
             'convertion: "", '
             'international: True)')
         assert pound_sterling_gg.__str__() == 'GBP 10,00.00000'
-
 
     def test_pound_sterling_gg_changed(self):
         """test_cpound_sterling_gg_changed."""
@@ -828,7 +829,6 @@ class TestPoundSterlingGG:
                 match='can\'t set attribute'):
             pound_sterling_gg.international = True
 
-
     def test_pound_sterling_gg_math_add(self):
         """test_pound_sterling_gg_math_add."""
         pound_sterling_gg_one = PoundSterlingGG(amount=1)
@@ -841,14 +841,14 @@ class TestPoundSterlingGG:
             _ = pound_sterling_gg_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'pound.PoundSterlingGG\'> '
                     'and <class \'str\'>.')):
             _ = pound_sterling_gg_one.__add__('1.00')
         assert (
             pound_sterling_gg_one +
             pound_sterling_gg_two) == pound_sterling_gg_three
-
 
     def test_pound_sterling_gg_slots(self):
         """test_pound_sterling_gg_slots."""
@@ -867,6 +867,7 @@ from multicurrency import PoundSterlingIO
 
 
 class TestPoundSterlingIO:
+    """PoundSterlingIO currency tests."""
 
     def test_pound_sterling_io(self):
         """test_pound_sterling_io."""
@@ -886,7 +887,8 @@ class TestPoundSterlingIO:
         assert pound_sterling_io.symbol_separator == ''
         assert pound_sterling_io.localized_symbol == 'IO£'
         assert pound_sterling_io.convertion == ''
-        assert pound_sterling_io.__hash__() == hash((decimal, 'GBP', '826'))
+        assert pound_sterling_io.__hash__() == hash(
+            (pound_sterling_io.__class__, decimal, 'GBP', '826'))
         assert pound_sterling_io.__repr__() == (
             'PoundSterlingIO(amount: 0.1428571428571428571428571429, '
             'alpha_code: "GBP", '
@@ -902,7 +904,6 @@ class TestPoundSterlingIO:
             'convertion: "", '
             'international: False)')
         assert pound_sterling_io.__str__() == '£0.14'
-
 
     def test_pound_sterling_io_negative(self):
         """test_pound_sterling_io_negative."""
@@ -921,7 +922,8 @@ class TestPoundSterlingIO:
         assert pound_sterling_io.symbol_separator == ''
         assert pound_sterling_io.localized_symbol == 'IO£'
         assert pound_sterling_io.convertion == ''
-        assert pound_sterling_io.__hash__() == hash((decimal, 'GBP', '826'))
+        assert pound_sterling_io.__hash__() == hash(
+            (pound_sterling_io.__class__, decimal, 'GBP', '826'))
         assert pound_sterling_io.__repr__() == (
             'PoundSterlingIO(amount: -100, '
             'alpha_code: "GBP", '
@@ -937,7 +939,6 @@ class TestPoundSterlingIO:
             'convertion: "", '
             'international: False)')
         assert pound_sterling_io.__str__() == '£-100.00'
-
 
     def test_pound_sterling_io_custom(self):
         """test_pound_sterling_io_custom."""
@@ -965,7 +966,8 @@ class TestPoundSterlingIO:
         assert pound_sterling_io.symbol_separator == '_'
         assert pound_sterling_io.localized_symbol == 'IO£'
         assert pound_sterling_io.convertion == ''
-        assert pound_sterling_io.__hash__() == hash((decimal, 'GBP', '826'))
+        assert pound_sterling_io.__hash__() == hash(
+            (pound_sterling_io.__class__, decimal, 'GBP', '826'))
         assert pound_sterling_io.__repr__() == (
             'PoundSterlingIO(amount: 1000, '
             'alpha_code: "GBP", '
@@ -981,7 +983,6 @@ class TestPoundSterlingIO:
             'convertion: "", '
             'international: True)')
         assert pound_sterling_io.__str__() == 'GBP 10,00.00000'
-
 
     def test_pound_sterling_io_changed(self):
         """test_cpound_sterling_io_changed."""
@@ -1039,7 +1040,6 @@ class TestPoundSterlingIO:
                 match='can\'t set attribute'):
             pound_sterling_io.international = True
 
-
     def test_pound_sterling_io_math_add(self):
         """test_pound_sterling_io_math_add."""
         pound_sterling_io_one = PoundSterlingIO(amount=1)
@@ -1052,14 +1052,14 @@ class TestPoundSterlingIO:
             _ = pound_sterling_io_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'pound.PoundSterlingIO\'> '
                     'and <class \'str\'>.')):
             _ = pound_sterling_io_one.__add__('1.00')
         assert (
             pound_sterling_io_one +
             pound_sterling_io_two) == pound_sterling_io_three
-
 
     def test_pound_sterling_io_slots(self):
         """test_pound_sterling_io_slots."""
@@ -1078,6 +1078,7 @@ from multicurrency import PoundSterlingGB
 
 
 class TestPoundSterlingGB:
+    """PoundSterlingGB currency tests."""
 
     def test_pound_sterling_gb(self):
         """test_pound_sterling_gb."""
@@ -1097,7 +1098,8 @@ class TestPoundSterlingGB:
         assert pound_sterling_gb.symbol_separator == ''
         assert pound_sterling_gb.localized_symbol == 'GB£'
         assert pound_sterling_gb.convertion == ''
-        assert pound_sterling_gb.__hash__() == hash((decimal, 'GBP', '826'))
+        assert pound_sterling_gb.__hash__() == hash(
+            (pound_sterling_gb.__class__, decimal, 'GBP', '826'))
         assert pound_sterling_gb.__repr__() == (
             'PoundSterlingGB(amount: 0.1428571428571428571428571429, '
             'alpha_code: "GBP", '
@@ -1113,7 +1115,6 @@ class TestPoundSterlingGB:
             'convertion: "", '
             'international: False)')
         assert pound_sterling_gb.__str__() == '£0.14'
-
 
     def test_pound_sterling_gb_negative(self):
         """test_pound_sterling_gb_negative."""
@@ -1132,7 +1133,8 @@ class TestPoundSterlingGB:
         assert pound_sterling_gb.symbol_separator == ''
         assert pound_sterling_gb.localized_symbol == 'GB£'
         assert pound_sterling_gb.convertion == ''
-        assert pound_sterling_gb.__hash__() == hash((decimal, 'GBP', '826'))
+        assert pound_sterling_gb.__hash__() == hash(
+            (pound_sterling_gb.__class__, decimal, 'GBP', '826'))
         assert pound_sterling_gb.__repr__() == (
             'PoundSterlingGB(amount: -100, '
             'alpha_code: "GBP", '
@@ -1148,7 +1150,6 @@ class TestPoundSterlingGB:
             'convertion: "", '
             'international: False)')
         assert pound_sterling_gb.__str__() == '£-100.00'
-
 
     def test_pound_sterling_gb_custom(self):
         """test_pound_sterling_gb_custom."""
@@ -1176,7 +1177,8 @@ class TestPoundSterlingGB:
         assert pound_sterling_gb.symbol_separator == '_'
         assert pound_sterling_gb.localized_symbol == 'GB£'
         assert pound_sterling_gb.convertion == ''
-        assert pound_sterling_gb.__hash__() == hash((decimal, 'GBP', '826'))
+        assert pound_sterling_gb.__hash__() == hash(
+            (pound_sterling_gb.__class__, decimal, 'GBP', '826'))
         assert pound_sterling_gb.__repr__() == (
             'PoundSterlingGB(amount: 1000, '
             'alpha_code: "GBP", '
@@ -1192,7 +1194,6 @@ class TestPoundSterlingGB:
             'convertion: "", '
             'international: True)')
         assert pound_sterling_gb.__str__() == 'GBP 10,00.00000'
-
 
     def test_pound_sterling_gb_changed(self):
         """test_cpound_sterling_gb_changed."""
@@ -1250,7 +1251,6 @@ class TestPoundSterlingGB:
                 match='can\'t set attribute'):
             pound_sterling_gb.international = True
 
-
     def test_pound_sterling_gb_math_add(self):
         """test_pound_sterling_gb_math_add."""
         pound_sterling_gb_one = PoundSterlingGB(amount=1)
@@ -1263,14 +1263,14 @@ class TestPoundSterlingGB:
             _ = pound_sterling_gb_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'pound.PoundSterlingGB\'> '
                     'and <class \'str\'>.')):
             _ = pound_sterling_gb_one.__add__('1.00')
         assert (
             pound_sterling_gb_one +
             pound_sterling_gb_two) == pound_sterling_gb_three
-
 
     def test_pound_sterling_gb_slots(self):
         """test_pound_sterling_gb_slots."""
@@ -1289,6 +1289,7 @@ from multicurrency import PoundSterlingIM
 
 
 class TestPoundSterlingIM:
+    """PoundSterlingIM currency tests."""
 
     def test_pound_sterling_im(self):
         """test_pound_sterling_im."""
@@ -1308,7 +1309,8 @@ class TestPoundSterlingIM:
         assert pound_sterling_im.symbol_separator == ''
         assert pound_sterling_im.localized_symbol == 'IM£'
         assert pound_sterling_im.convertion == ''
-        assert pound_sterling_im.__hash__() == hash((decimal, 'GBP', '826'))
+        assert pound_sterling_im.__hash__() == hash(
+            (pound_sterling_im.__class__, decimal, 'GBP', '826'))
         assert pound_sterling_im.__repr__() == (
             'PoundSterlingIM(amount: 0.1428571428571428571428571429, '
             'alpha_code: "GBP", '
@@ -1324,7 +1326,6 @@ class TestPoundSterlingIM:
             'convertion: "", '
             'international: False)')
         assert pound_sterling_im.__str__() == '£0.14'
-
 
     def test_pound_sterling_im_negative(self):
         """test_pound_sterling_im_negative."""
@@ -1343,7 +1344,8 @@ class TestPoundSterlingIM:
         assert pound_sterling_im.symbol_separator == ''
         assert pound_sterling_im.localized_symbol == 'IM£'
         assert pound_sterling_im.convertion == ''
-        assert pound_sterling_im.__hash__() == hash((decimal, 'GBP', '826'))
+        assert pound_sterling_im.__hash__() == hash(
+            (pound_sterling_im.__class__, decimal, 'GBP', '826'))
         assert pound_sterling_im.__repr__() == (
             'PoundSterlingIM(amount: -100, '
             'alpha_code: "GBP", '
@@ -1359,7 +1361,6 @@ class TestPoundSterlingIM:
             'convertion: "", '
             'international: False)')
         assert pound_sterling_im.__str__() == '£-100.00'
-
 
     def test_pound_sterling_im_custom(self):
         """test_pound_sterling_im_custom."""
@@ -1387,7 +1388,8 @@ class TestPoundSterlingIM:
         assert pound_sterling_im.symbol_separator == '_'
         assert pound_sterling_im.localized_symbol == 'IM£'
         assert pound_sterling_im.convertion == ''
-        assert pound_sterling_im.__hash__() == hash((decimal, 'GBP', '826'))
+        assert pound_sterling_im.__hash__() == hash(
+            (pound_sterling_im.__class__, decimal, 'GBP', '826'))
         assert pound_sterling_im.__repr__() == (
             'PoundSterlingIM(amount: 1000, '
             'alpha_code: "GBP", '
@@ -1403,7 +1405,6 @@ class TestPoundSterlingIM:
             'convertion: "", '
             'international: True)')
         assert pound_sterling_im.__str__() == 'GBP 10,00.00000'
-
 
     def test_pound_sterling_im_changed(self):
         """test_cpound_sterling_im_changed."""
@@ -1461,7 +1462,6 @@ class TestPoundSterlingIM:
                 match='can\'t set attribute'):
             pound_sterling_im.international = True
 
-
     def test_pound_sterling_im_math_add(self):
         """test_pound_sterling_im_math_add."""
         pound_sterling_im_one = PoundSterlingIM(amount=1)
@@ -1474,14 +1474,14 @@ class TestPoundSterlingIM:
             _ = pound_sterling_im_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'pound.PoundSterlingIM\'> '
                     'and <class \'str\'>.')):
             _ = pound_sterling_im_one.__add__('1.00')
         assert (
             pound_sterling_im_one +
             pound_sterling_im_two) == pound_sterling_im_three
-
 
     def test_pound_sterling_im_slots(self):
         """test_pound_sterling_im_slots."""
@@ -1500,6 +1500,7 @@ from multicurrency import GibraltarPound
 
 
 class TestGibraltarPound:
+    """GibraltarPound currency tests."""
 
     def test_gibraltar_pound(self):
         """test_gibraltar_pound."""
@@ -1519,7 +1520,8 @@ class TestGibraltarPound:
         assert gibraltar_pound.symbol_separator == ''
         assert gibraltar_pound.localized_symbol == 'GI£'
         assert gibraltar_pound.convertion == ''
-        assert gibraltar_pound.__hash__() == hash((decimal, 'GIP', '292'))
+        assert gibraltar_pound.__hash__() == hash(
+            (gibraltar_pound.__class__, decimal, 'GIP', '292'))
         assert gibraltar_pound.__repr__() == (
             'GibraltarPound(amount: 0.1428571428571428571428571429, '
             'alpha_code: "GIP", '
@@ -1535,7 +1537,6 @@ class TestGibraltarPound:
             'convertion: "", '
             'international: False)')
         assert gibraltar_pound.__str__() == '£0.14'
-
 
     def test_gibraltar_pound_negative(self):
         """test_gibraltar_pound_negative."""
@@ -1554,7 +1555,8 @@ class TestGibraltarPound:
         assert gibraltar_pound.symbol_separator == ''
         assert gibraltar_pound.localized_symbol == 'GI£'
         assert gibraltar_pound.convertion == ''
-        assert gibraltar_pound.__hash__() == hash((decimal, 'GIP', '292'))
+        assert gibraltar_pound.__hash__() == hash(
+            (gibraltar_pound.__class__, decimal, 'GIP', '292'))
         assert gibraltar_pound.__repr__() == (
             'GibraltarPound(amount: -100, '
             'alpha_code: "GIP", '
@@ -1570,7 +1572,6 @@ class TestGibraltarPound:
             'convertion: "", '
             'international: False)')
         assert gibraltar_pound.__str__() == '£-100.00'
-
 
     def test_gibraltar_pound_custom(self):
         """test_gibraltar_pound_custom."""
@@ -1598,7 +1599,8 @@ class TestGibraltarPound:
         assert gibraltar_pound.symbol_separator == '_'
         assert gibraltar_pound.localized_symbol == 'GI£'
         assert gibraltar_pound.convertion == ''
-        assert gibraltar_pound.__hash__() == hash((decimal, 'GIP', '292'))
+        assert gibraltar_pound.__hash__() == hash(
+            (gibraltar_pound.__class__, decimal, 'GIP', '292'))
         assert gibraltar_pound.__repr__() == (
             'GibraltarPound(amount: 1000, '
             'alpha_code: "GIP", '
@@ -1614,7 +1616,6 @@ class TestGibraltarPound:
             'convertion: "", '
             'international: True)')
         assert gibraltar_pound.__str__() == 'GIP 10,00.00000'
-
 
     def test_gibraltar_pound_changed(self):
         """test_cgibraltar_pound_changed."""
@@ -1672,7 +1673,6 @@ class TestGibraltarPound:
                 match='can\'t set attribute'):
             gibraltar_pound.international = True
 
-
     def test_gibraltar_pound_math_add(self):
         """test_gibraltar_pound_math_add."""
         gibraltar_pound_one = GibraltarPound(amount=1)
@@ -1685,14 +1685,14 @@ class TestGibraltarPound:
             _ = gibraltar_pound_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'pound.GibraltarPound\'> '
                     'and <class \'str\'>.')):
             _ = gibraltar_pound_one.__add__('1.00')
         assert (
             gibraltar_pound_one +
             gibraltar_pound_two) == gibraltar_pound_three
-
 
     def test_gibraltar_pound_slots(self):
         """test_gibraltar_pound_slots."""
@@ -1711,6 +1711,7 @@ from multicurrency import LebanesePound
 
 
 class TestLebanesePound:
+    """LebanesePound currency tests."""
 
     def test_lebanese_pound(self):
         """test_lebanese_pound."""
@@ -1730,7 +1731,8 @@ class TestLebanesePound:
         assert lebanese_pound.symbol_separator == '\u00A0'
         assert lebanese_pound.localized_symbol == 'ل.ل.'
         assert lebanese_pound.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert lebanese_pound.__hash__() == hash((decimal, 'LBP', '422'))
+        assert lebanese_pound.__hash__() == hash(
+            (lebanese_pound.__class__, decimal, 'LBP', '422'))
         assert lebanese_pound.__repr__() == (
             'LebanesePound(amount: 0.1428571428571428571428571429, '
             'alpha_code: "LBP", '
@@ -1746,7 +1748,6 @@ class TestLebanesePound:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: False)')
         assert lebanese_pound.__str__() == 'ل.ل. ٠'
-
 
     def test_lebanese_pound_negative(self):
         """test_lebanese_pound_negative."""
@@ -1765,7 +1766,8 @@ class TestLebanesePound:
         assert lebanese_pound.symbol_separator == '\u00A0'
         assert lebanese_pound.localized_symbol == 'ل.ل.'
         assert lebanese_pound.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert lebanese_pound.__hash__() == hash((decimal, 'LBP', '422'))
+        assert lebanese_pound.__hash__() == hash(
+            (lebanese_pound.__class__, decimal, 'LBP', '422'))
         assert lebanese_pound.__repr__() == (
             'LebanesePound(amount: -100, '
             'alpha_code: "LBP", '
@@ -1781,7 +1783,6 @@ class TestLebanesePound:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: False)')
         assert lebanese_pound.__str__() == 'ل.ل. -١٠٠'
-
 
     def test_lebanese_pound_custom(self):
         """test_lebanese_pound_custom."""
@@ -1809,7 +1810,8 @@ class TestLebanesePound:
         assert lebanese_pound.symbol_separator == '_'
         assert lebanese_pound.localized_symbol == 'ل.ل.'
         assert lebanese_pound.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert lebanese_pound.__hash__() == hash((decimal, 'LBP', '422'))
+        assert lebanese_pound.__hash__() == hash(
+            (lebanese_pound.__class__, decimal, 'LBP', '422'))
         assert lebanese_pound.__repr__() == (
             'LebanesePound(amount: 1000, '
             'alpha_code: "LBP", '
@@ -1825,7 +1827,6 @@ class TestLebanesePound:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: True)')
         assert lebanese_pound.__str__() == 'LBP 10,00.00000'
-
 
     def test_lebanese_pound_changed(self):
         """test_clebanese_pound_changed."""
@@ -1883,7 +1884,6 @@ class TestLebanesePound:
                 match='can\'t set attribute'):
             lebanese_pound.international = True
 
-
     def test_lebanese_pound_math_add(self):
         """test_lebanese_pound_math_add."""
         lebanese_pound_one = LebanesePound(amount=1)
@@ -1896,14 +1896,14 @@ class TestLebanesePound:
             _ = lebanese_pound_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'pound.LebanesePound\'> '
                     'and <class \'str\'>.')):
             _ = lebanese_pound_one.__add__('1.00')
         assert (
             lebanese_pound_one +
             lebanese_pound_two) == lebanese_pound_three
-
 
     def test_lebanese_pound_slots(self):
         """test_lebanese_pound_slots."""
@@ -1922,6 +1922,7 @@ from multicurrency import SudanesePound
 
 
 class TestSudanesePound:
+    """SudanesePound currency tests."""
 
     def test_sudanese_pound(self):
         """test_sudanese_pound."""
@@ -1941,7 +1942,8 @@ class TestSudanesePound:
         assert sudanese_pound.symbol_separator == '\u00A0'
         assert sudanese_pound.localized_symbol == 'ج.س'
         assert sudanese_pound.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert sudanese_pound.__hash__() == hash((decimal, 'SDG', '938'))
+        assert sudanese_pound.__hash__() == hash(
+            (sudanese_pound.__class__, decimal, 'SDG', '938'))
         assert sudanese_pound.__repr__() == (
             'SudanesePound(amount: 0.1428571428571428571428571429, '
             'alpha_code: "SDG", '
@@ -1957,7 +1959,6 @@ class TestSudanesePound:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: False)')
         assert sudanese_pound.__str__() == '٠٫١٤ ج.س'
-
 
     def test_sudanese_pound_negative(self):
         """test_sudanese_pound_negative."""
@@ -1976,7 +1977,8 @@ class TestSudanesePound:
         assert sudanese_pound.symbol_separator == '\u00A0'
         assert sudanese_pound.localized_symbol == 'ج.س'
         assert sudanese_pound.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert sudanese_pound.__hash__() == hash((decimal, 'SDG', '938'))
+        assert sudanese_pound.__hash__() == hash(
+            (sudanese_pound.__class__, decimal, 'SDG', '938'))
         assert sudanese_pound.__repr__() == (
             'SudanesePound(amount: -100, '
             'alpha_code: "SDG", '
@@ -1992,7 +1994,6 @@ class TestSudanesePound:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: False)')
         assert sudanese_pound.__str__() == '-١٠٠٫٠٠ ج.س'
-
 
     def test_sudanese_pound_custom(self):
         """test_sudanese_pound_custom."""
@@ -2020,7 +2021,8 @@ class TestSudanesePound:
         assert sudanese_pound.symbol_separator == '_'
         assert sudanese_pound.localized_symbol == 'ج.س'
         assert sudanese_pound.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert sudanese_pound.__hash__() == hash((decimal, 'SDG', '938'))
+        assert sudanese_pound.__hash__() == hash(
+            (sudanese_pound.__class__, decimal, 'SDG', '938'))
         assert sudanese_pound.__repr__() == (
             'SudanesePound(amount: 1000, '
             'alpha_code: "SDG", '
@@ -2036,7 +2038,6 @@ class TestSudanesePound:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: True)')
         assert sudanese_pound.__str__() == 'SDG 10,00.00000'
-
 
     def test_sudanese_pound_changed(self):
         """test_csudanese_pound_changed."""
@@ -2094,7 +2095,6 @@ class TestSudanesePound:
                 match='can\'t set attribute'):
             sudanese_pound.international = True
 
-
     def test_sudanese_pound_math_add(self):
         """test_sudanese_pound_math_add."""
         sudanese_pound_one = SudanesePound(amount=1)
@@ -2107,14 +2107,14 @@ class TestSudanesePound:
             _ = sudanese_pound_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'pound.SudanesePound\'> '
                     'and <class \'str\'>.')):
             _ = sudanese_pound_one.__add__('1.00')
         assert (
             sudanese_pound_one +
             sudanese_pound_two) == sudanese_pound_three
-
 
     def test_sudanese_pound_slots(self):
         """test_sudanese_pound_slots."""
@@ -2133,6 +2133,7 @@ from multicurrency import SaintHelenaPound
 
 
 class TestSaintHelenaPound:
+    """SaintHelenaPound currency tests."""
 
     def test_saint_helena_pound(self):
         """test_saint_helena_pound."""
@@ -2152,7 +2153,8 @@ class TestSaintHelenaPound:
         assert saint_helena_pound.symbol_separator == ''
         assert saint_helena_pound.localized_symbol == 'SH£'
         assert saint_helena_pound.convertion == ''
-        assert saint_helena_pound.__hash__() == hash((decimal, 'SHP', '654'))
+        assert saint_helena_pound.__hash__() == hash(
+            (saint_helena_pound.__class__, decimal, 'SHP', '654'))
         assert saint_helena_pound.__repr__() == (
             'SaintHelenaPound(amount: 0.1428571428571428571428571429, '
             'alpha_code: "SHP", '
@@ -2168,7 +2170,6 @@ class TestSaintHelenaPound:
             'convertion: "", '
             'international: False)')
         assert saint_helena_pound.__str__() == '£0.14'
-
 
     def test_saint_helena_pound_negative(self):
         """test_saint_helena_pound_negative."""
@@ -2187,7 +2188,8 @@ class TestSaintHelenaPound:
         assert saint_helena_pound.symbol_separator == ''
         assert saint_helena_pound.localized_symbol == 'SH£'
         assert saint_helena_pound.convertion == ''
-        assert saint_helena_pound.__hash__() == hash((decimal, 'SHP', '654'))
+        assert saint_helena_pound.__hash__() == hash(
+            (saint_helena_pound.__class__, decimal, 'SHP', '654'))
         assert saint_helena_pound.__repr__() == (
             'SaintHelenaPound(amount: -100, '
             'alpha_code: "SHP", '
@@ -2203,7 +2205,6 @@ class TestSaintHelenaPound:
             'convertion: "", '
             'international: False)')
         assert saint_helena_pound.__str__() == '£-100.00'
-
 
     def test_saint_helena_pound_custom(self):
         """test_saint_helena_pound_custom."""
@@ -2231,7 +2232,8 @@ class TestSaintHelenaPound:
         assert saint_helena_pound.symbol_separator == '_'
         assert saint_helena_pound.localized_symbol == 'SH£'
         assert saint_helena_pound.convertion == ''
-        assert saint_helena_pound.__hash__() == hash((decimal, 'SHP', '654'))
+        assert saint_helena_pound.__hash__() == hash(
+            (saint_helena_pound.__class__, decimal, 'SHP', '654'))
         assert saint_helena_pound.__repr__() == (
             'SaintHelenaPound(amount: 1000, '
             'alpha_code: "SHP", '
@@ -2247,7 +2249,6 @@ class TestSaintHelenaPound:
             'convertion: "", '
             'international: True)')
         assert saint_helena_pound.__str__() == 'SHP 10,00.00000'
-
 
     def test_saint_helena_pound_changed(self):
         """test_csaint_helena_pound_changed."""
@@ -2305,7 +2306,6 @@ class TestSaintHelenaPound:
                 match='can\'t set attribute'):
             saint_helena_pound.international = True
 
-
     def test_saint_helena_pound_math_add(self):
         """test_saint_helena_pound_math_add."""
         saint_helena_pound_one = SaintHelenaPound(amount=1)
@@ -2318,14 +2318,14 @@ class TestSaintHelenaPound:
             _ = saint_helena_pound_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'pound.SaintHelenaPound\'> '
                     'and <class \'str\'>.')):
             _ = saint_helena_pound_one.__add__('1.00')
         assert (
             saint_helena_pound_one +
             saint_helena_pound_two) == saint_helena_pound_three
-
 
     def test_saint_helena_pound_slots(self):
         """test_saint_helena_pound_slots."""
@@ -2344,6 +2344,7 @@ from multicurrency import SyrianPound
 
 
 class TestSyrianPound:
+    """SyrianPound currency tests."""
 
     def test_syrian_pound(self):
         """test_syrian_pound."""
@@ -2363,7 +2364,8 @@ class TestSyrianPound:
         assert syrian_pound.symbol_separator == '\u00A0'
         assert syrian_pound.localized_symbol == 'ل.س'
         assert syrian_pound.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert syrian_pound.__hash__() == hash((decimal, 'SYP', '760'))
+        assert syrian_pound.__hash__() == hash(
+            (syrian_pound.__class__, decimal, 'SYP', '760'))
         assert syrian_pound.__repr__() == (
             'SyrianPound(amount: 0.1428571428571428571428571429, '
             'alpha_code: "SYP", '
@@ -2379,7 +2381,6 @@ class TestSyrianPound:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: False)')
         assert syrian_pound.__str__() == '٠٫١٤ ل.س'
-
 
     def test_syrian_pound_negative(self):
         """test_syrian_pound_negative."""
@@ -2398,7 +2399,8 @@ class TestSyrianPound:
         assert syrian_pound.symbol_separator == '\u00A0'
         assert syrian_pound.localized_symbol == 'ل.س'
         assert syrian_pound.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert syrian_pound.__hash__() == hash((decimal, 'SYP', '760'))
+        assert syrian_pound.__hash__() == hash(
+            (syrian_pound.__class__, decimal, 'SYP', '760'))
         assert syrian_pound.__repr__() == (
             'SyrianPound(amount: -100, '
             'alpha_code: "SYP", '
@@ -2414,7 +2416,6 @@ class TestSyrianPound:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: False)')
         assert syrian_pound.__str__() == '-١٠٠٫٠٠ ل.س'
-
 
     def test_syrian_pound_custom(self):
         """test_syrian_pound_custom."""
@@ -2442,7 +2443,8 @@ class TestSyrianPound:
         assert syrian_pound.symbol_separator == '_'
         assert syrian_pound.localized_symbol == 'ل.س'
         assert syrian_pound.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert syrian_pound.__hash__() == hash((decimal, 'SYP', '760'))
+        assert syrian_pound.__hash__() == hash(
+            (syrian_pound.__class__, decimal, 'SYP', '760'))
         assert syrian_pound.__repr__() == (
             'SyrianPound(amount: 1000, '
             'alpha_code: "SYP", '
@@ -2458,7 +2460,6 @@ class TestSyrianPound:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: True)')
         assert syrian_pound.__str__() == 'SYP 10,00.00000'
-
 
     def test_syrian_pound_changed(self):
         """test_csyrian_pound_changed."""
@@ -2516,7 +2517,6 @@ class TestSyrianPound:
                 match='can\'t set attribute'):
             syrian_pound.international = True
 
-
     def test_syrian_pound_math_add(self):
         """test_syrian_pound_math_add."""
         syrian_pound_one = SyrianPound(amount=1)
@@ -2529,14 +2529,14 @@ class TestSyrianPound:
             _ = syrian_pound_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'pound.SyrianPound\'> '
                     'and <class \'str\'>.')):
             _ = syrian_pound_one.__add__('1.00')
         assert (
             syrian_pound_one +
             syrian_pound_two) == syrian_pound_three
-
 
     def test_syrian_pound_slots(self):
         """test_syrian_pound_slots."""

@@ -23,6 +23,7 @@ from multicurrency import MalaysianRinggit
 
 
 class TestMalaysianRinggit:
+    """MalaysianRinggit currency tests."""
 
     def test_malaysian_ringgit(self):
         """test_malaysian_ringgit."""
@@ -42,7 +43,8 @@ class TestMalaysianRinggit:
         assert malaysian_ringgit.symbol_separator == '\u00A0'
         assert malaysian_ringgit.localized_symbol == 'RM'
         assert malaysian_ringgit.convertion == ''
-        assert malaysian_ringgit.__hash__() == hash((decimal, 'MYR', '458'))
+        assert malaysian_ringgit.__hash__() == hash(
+            (malaysian_ringgit.__class__, decimal, 'MYR', '458'))
         assert malaysian_ringgit.__repr__() == (
             'MalaysianRinggit(amount: 0.1428571428571428571428571429, '
             'alpha_code: "MYR", '
@@ -58,7 +60,6 @@ class TestMalaysianRinggit:
             'convertion: "", '
             'international: False)')
         assert malaysian_ringgit.__str__() == 'RM 0.14'
-
 
     def test_malaysian_ringgit_negative(self):
         """test_malaysian_ringgit_negative."""
@@ -77,7 +78,8 @@ class TestMalaysianRinggit:
         assert malaysian_ringgit.symbol_separator == '\u00A0'
         assert malaysian_ringgit.localized_symbol == 'RM'
         assert malaysian_ringgit.convertion == ''
-        assert malaysian_ringgit.__hash__() == hash((decimal, 'MYR', '458'))
+        assert malaysian_ringgit.__hash__() == hash(
+            (malaysian_ringgit.__class__, decimal, 'MYR', '458'))
         assert malaysian_ringgit.__repr__() == (
             'MalaysianRinggit(amount: -100, '
             'alpha_code: "MYR", '
@@ -93,7 +95,6 @@ class TestMalaysianRinggit:
             'convertion: "", '
             'international: False)')
         assert malaysian_ringgit.__str__() == 'RM -100.00'
-
 
     def test_malaysian_ringgit_custom(self):
         """test_malaysian_ringgit_custom."""
@@ -121,7 +122,8 @@ class TestMalaysianRinggit:
         assert malaysian_ringgit.symbol_separator == '_'
         assert malaysian_ringgit.localized_symbol == 'RM'
         assert malaysian_ringgit.convertion == ''
-        assert malaysian_ringgit.__hash__() == hash((decimal, 'MYR', '458'))
+        assert malaysian_ringgit.__hash__() == hash(
+            (malaysian_ringgit.__class__, decimal, 'MYR', '458'))
         assert malaysian_ringgit.__repr__() == (
             'MalaysianRinggit(amount: 1000, '
             'alpha_code: "MYR", '
@@ -137,7 +139,6 @@ class TestMalaysianRinggit:
             'convertion: "", '
             'international: True)')
         assert malaysian_ringgit.__str__() == 'MYR 10,00.00000'
-
 
     def test_malaysian_ringgit_changed(self):
         """test_cmalaysian_ringgit_changed."""
@@ -195,7 +196,6 @@ class TestMalaysianRinggit:
                 match='can\'t set attribute'):
             malaysian_ringgit.international = True
 
-
     def test_malaysian_ringgit_math_add(self):
         """test_malaysian_ringgit_math_add."""
         malaysian_ringgit_one = MalaysianRinggit(amount=1)
@@ -208,14 +208,14 @@ class TestMalaysianRinggit:
             _ = malaysian_ringgit_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'ringgit.MalaysianRinggit\'> '
                     'and <class \'str\'>.')):
             _ = malaysian_ringgit_one.__add__('1.00')
         assert (
             malaysian_ringgit_one +
             malaysian_ringgit_two) == malaysian_ringgit_three
-
 
     def test_malaysian_ringgit_slots(self):
         """test_malaysian_ringgit_slots."""

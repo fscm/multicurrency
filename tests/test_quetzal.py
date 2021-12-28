@@ -23,6 +23,7 @@ from multicurrency import Quetzal
 
 
 class TestQuetzal:
+    """Quetzal currency tests."""
 
     def test_quetzal(self):
         """test_quetzal."""
@@ -42,7 +43,8 @@ class TestQuetzal:
         assert quetzal.symbol_separator == '\u00A0'
         assert quetzal.localized_symbol == 'Q'
         assert quetzal.convertion == ''
-        assert quetzal.__hash__() == hash((decimal, 'GTQ', '320'))
+        assert quetzal.__hash__() == hash(
+            (quetzal.__class__, decimal, 'GTQ', '320'))
         assert quetzal.__repr__() == (
             'Quetzal(amount: 0.1428571428571428571428571429, '
             'alpha_code: "GTQ", '
@@ -58,7 +60,6 @@ class TestQuetzal:
             'convertion: "", '
             'international: False)')
         assert quetzal.__str__() == 'Q 0.14'
-
 
     def test_quetzal_negative(self):
         """test_quetzal_negative."""
@@ -77,7 +78,8 @@ class TestQuetzal:
         assert quetzal.symbol_separator == '\u00A0'
         assert quetzal.localized_symbol == 'Q'
         assert quetzal.convertion == ''
-        assert quetzal.__hash__() == hash((decimal, 'GTQ', '320'))
+        assert quetzal.__hash__() == hash(
+            (quetzal.__class__, decimal, 'GTQ', '320'))
         assert quetzal.__repr__() == (
             'Quetzal(amount: -100, '
             'alpha_code: "GTQ", '
@@ -93,7 +95,6 @@ class TestQuetzal:
             'convertion: "", '
             'international: False)')
         assert quetzal.__str__() == 'Q -100.00'
-
 
     def test_quetzal_custom(self):
         """test_quetzal_custom."""
@@ -121,7 +122,8 @@ class TestQuetzal:
         assert quetzal.symbol_separator == '_'
         assert quetzal.localized_symbol == 'Q'
         assert quetzal.convertion == ''
-        assert quetzal.__hash__() == hash((decimal, 'GTQ', '320'))
+        assert quetzal.__hash__() == hash(
+            (quetzal.__class__, decimal, 'GTQ', '320'))
         assert quetzal.__repr__() == (
             'Quetzal(amount: 1000, '
             'alpha_code: "GTQ", '
@@ -137,7 +139,6 @@ class TestQuetzal:
             'convertion: "", '
             'international: True)')
         assert quetzal.__str__() == 'GTQ 10,00.00000'
-
 
     def test_quetzal_changed(self):
         """test_cquetzal_changed."""
@@ -195,7 +196,6 @@ class TestQuetzal:
                 match='can\'t set attribute'):
             quetzal.international = True
 
-
     def test_quetzal_math_add(self):
         """test_quetzal_math_add."""
         quetzal_one = Quetzal(amount=1)
@@ -208,14 +208,14 @@ class TestQuetzal:
             _ = quetzal_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'quetzal.Quetzal\'> '
                     'and <class \'str\'>.')):
             _ = quetzal_one.__add__('1.00')
         assert (
             quetzal_one +
             quetzal_two) == quetzal_three
-
 
     def test_quetzal_slots(self):
         """test_quetzal_slots."""

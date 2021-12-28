@@ -23,6 +23,7 @@ from multicurrency import Rupiah
 
 
 class TestRupiah:
+    """Rupiah currency tests."""
 
     def test_rupiah(self):
         """test_rupiah."""
@@ -42,7 +43,8 @@ class TestRupiah:
         assert rupiah.symbol_separator == '\u00A0'
         assert rupiah.localized_symbol == 'Rp'
         assert rupiah.convertion == ''
-        assert rupiah.__hash__() == hash((decimal, 'IDR', '360'))
+        assert rupiah.__hash__() == hash(
+            (rupiah.__class__, decimal, 'IDR', '360'))
         assert rupiah.__repr__() == (
             'Rupiah(amount: 0.1428571428571428571428571429, '
             'alpha_code: "IDR", '
@@ -58,7 +60,6 @@ class TestRupiah:
             'convertion: "", '
             'international: False)')
         assert rupiah.__str__() == 'Rp 0,14'
-
 
     def test_rupiah_negative(self):
         """test_rupiah_negative."""
@@ -77,7 +78,8 @@ class TestRupiah:
         assert rupiah.symbol_separator == '\u00A0'
         assert rupiah.localized_symbol == 'Rp'
         assert rupiah.convertion == ''
-        assert rupiah.__hash__() == hash((decimal, 'IDR', '360'))
+        assert rupiah.__hash__() == hash(
+            (rupiah.__class__, decimal, 'IDR', '360'))
         assert rupiah.__repr__() == (
             'Rupiah(amount: -100, '
             'alpha_code: "IDR", '
@@ -93,7 +95,6 @@ class TestRupiah:
             'convertion: "", '
             'international: False)')
         assert rupiah.__str__() == 'Rp -100,00'
-
 
     def test_rupiah_custom(self):
         """test_rupiah_custom."""
@@ -121,7 +122,8 @@ class TestRupiah:
         assert rupiah.symbol_separator == '_'
         assert rupiah.localized_symbol == 'Rp'
         assert rupiah.convertion == ''
-        assert rupiah.__hash__() == hash((decimal, 'IDR', '360'))
+        assert rupiah.__hash__() == hash(
+            (rupiah.__class__, decimal, 'IDR', '360'))
         assert rupiah.__repr__() == (
             'Rupiah(amount: 1000, '
             'alpha_code: "IDR", '
@@ -137,7 +139,6 @@ class TestRupiah:
             'convertion: "", '
             'international: True)')
         assert rupiah.__str__() == 'IDR 10,00.00000'
-
 
     def test_rupiah_changed(self):
         """test_crupiah_changed."""
@@ -195,7 +196,6 @@ class TestRupiah:
                 match='can\'t set attribute'):
             rupiah.international = True
 
-
     def test_rupiah_math_add(self):
         """test_rupiah_math_add."""
         rupiah_one = Rupiah(amount=1)
@@ -208,14 +208,14 @@ class TestRupiah:
             _ = rupiah_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'rupiah.Rupiah\'> '
                     'and <class \'str\'>.')):
             _ = rupiah_one.__add__('1.00')
         assert (
             rupiah_one +
             rupiah_two) == rupiah_three
-
 
     def test_rupiah_slots(self):
         """test_rupiah_slots."""

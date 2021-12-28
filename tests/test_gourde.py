@@ -23,6 +23,7 @@ from multicurrency import Gourde
 
 
 class TestGourde:
+    """Gourde currency tests."""
 
     def test_gourde(self):
         """test_gourde."""
@@ -42,7 +43,8 @@ class TestGourde:
         assert gourde.symbol_separator == '\u00A0'
         assert gourde.localized_symbol == 'G'
         assert gourde.convertion == ''
-        assert gourde.__hash__() == hash((decimal, 'HTG', '332'))
+        assert gourde.__hash__() == hash(
+            (gourde.__class__, decimal, 'HTG', '332'))
         assert gourde.__repr__() == (
             'Gourde(amount: 0.1428571428571428571428571429, '
             'alpha_code: "HTG", '
@@ -58,7 +60,6 @@ class TestGourde:
             'convertion: "", '
             'international: False)')
         assert gourde.__str__() == 'G 0.14'
-
 
     def test_gourde_negative(self):
         """test_gourde_negative."""
@@ -77,7 +78,8 @@ class TestGourde:
         assert gourde.symbol_separator == '\u00A0'
         assert gourde.localized_symbol == 'G'
         assert gourde.convertion == ''
-        assert gourde.__hash__() == hash((decimal, 'HTG', '332'))
+        assert gourde.__hash__() == hash(
+            (gourde.__class__, decimal, 'HTG', '332'))
         assert gourde.__repr__() == (
             'Gourde(amount: -100, '
             'alpha_code: "HTG", '
@@ -93,7 +95,6 @@ class TestGourde:
             'convertion: "", '
             'international: False)')
         assert gourde.__str__() == 'G -100.00'
-
 
     def test_gourde_custom(self):
         """test_gourde_custom."""
@@ -121,7 +122,8 @@ class TestGourde:
         assert gourde.symbol_separator == '_'
         assert gourde.localized_symbol == 'G'
         assert gourde.convertion == ''
-        assert gourde.__hash__() == hash((decimal, 'HTG', '332'))
+        assert gourde.__hash__() == hash(
+            (gourde.__class__, decimal, 'HTG', '332'))
         assert gourde.__repr__() == (
             'Gourde(amount: 1000, '
             'alpha_code: "HTG", '
@@ -137,7 +139,6 @@ class TestGourde:
             'convertion: "", '
             'international: True)')
         assert gourde.__str__() == 'HTG 10,00.00000'
-
 
     def test_gourde_changed(self):
         """test_cgourde_changed."""
@@ -195,7 +196,6 @@ class TestGourde:
                 match='can\'t set attribute'):
             gourde.international = True
 
-
     def test_gourde_math_add(self):
         """test_gourde_math_add."""
         gourde_one = Gourde(amount=1)
@@ -208,14 +208,14 @@ class TestGourde:
             _ = gourde_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'gourde.Gourde\'> '
                     'and <class \'str\'>.')):
             _ = gourde_one.__add__('1.00')
         assert (
             gourde_one +
             gourde_two) == gourde_three
-
 
     def test_gourde_slots(self):
         """test_gourde_slots."""

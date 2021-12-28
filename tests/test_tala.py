@@ -23,6 +23,7 @@ from multicurrency import Tala
 
 
 class TestTala:
+    """Tala currency tests."""
 
     def test_tala(self):
         """test_tala."""
@@ -42,7 +43,8 @@ class TestTala:
         assert tala.symbol_separator == '\u00A0'
         assert tala.localized_symbol == 'T'
         assert tala.convertion == ''
-        assert tala.__hash__() == hash((decimal, 'WST', '882'))
+        assert tala.__hash__() == hash(
+            (tala.__class__, decimal, 'WST', '882'))
         assert tala.__repr__() == (
             'Tala(amount: 0.1428571428571428571428571429, '
             'alpha_code: "WST", '
@@ -58,7 +60,6 @@ class TestTala:
             'convertion: "", '
             'international: False)')
         assert tala.__str__() == 'T 0.14'
-
 
     def test_tala_negative(self):
         """test_tala_negative."""
@@ -77,7 +78,8 @@ class TestTala:
         assert tala.symbol_separator == '\u00A0'
         assert tala.localized_symbol == 'T'
         assert tala.convertion == ''
-        assert tala.__hash__() == hash((decimal, 'WST', '882'))
+        assert tala.__hash__() == hash(
+            (tala.__class__, decimal, 'WST', '882'))
         assert tala.__repr__() == (
             'Tala(amount: -100, '
             'alpha_code: "WST", '
@@ -93,7 +95,6 @@ class TestTala:
             'convertion: "", '
             'international: False)')
         assert tala.__str__() == 'T -100.00'
-
 
     def test_tala_custom(self):
         """test_tala_custom."""
@@ -121,7 +122,8 @@ class TestTala:
         assert tala.symbol_separator == '_'
         assert tala.localized_symbol == 'T'
         assert tala.convertion == ''
-        assert tala.__hash__() == hash((decimal, 'WST', '882'))
+        assert tala.__hash__() == hash(
+            (tala.__class__, decimal, 'WST', '882'))
         assert tala.__repr__() == (
             'Tala(amount: 1000, '
             'alpha_code: "WST", '
@@ -137,7 +139,6 @@ class TestTala:
             'convertion: "", '
             'international: True)')
         assert tala.__str__() == 'WST 10,00.00000'
-
 
     def test_tala_changed(self):
         """test_ctala_changed."""
@@ -195,7 +196,6 @@ class TestTala:
                 match='can\'t set attribute'):
             tala.international = True
 
-
     def test_tala_math_add(self):
         """test_tala_math_add."""
         tala_one = Tala(amount=1)
@@ -208,14 +208,14 @@ class TestTala:
             _ = tala_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'tala.Tala\'> '
                     'and <class \'str\'>.')):
             _ = tala_one.__add__('1.00')
         assert (
             tala_one +
             tala_two) == tala_three
-
 
     def test_tala_slots(self):
         """test_tala_slots."""

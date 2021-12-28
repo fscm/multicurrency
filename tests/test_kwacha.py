@@ -23,6 +23,7 @@ from multicurrency import Kwacha
 
 
 class TestKwacha:
+    """Kwacha currency tests."""
 
     def test_kwacha(self):
         """test_kwacha."""
@@ -42,7 +43,8 @@ class TestKwacha:
         assert kwacha.symbol_separator == '\u00A0'
         assert kwacha.localized_symbol == 'MK'
         assert kwacha.convertion == ''
-        assert kwacha.__hash__() == hash((decimal, 'MWK', '454'))
+        assert kwacha.__hash__() == hash(
+            (kwacha.__class__, decimal, 'MWK', '454'))
         assert kwacha.__repr__() == (
             'Kwacha(amount: 0.1428571428571428571428571429, '
             'alpha_code: "MWK", '
@@ -58,7 +60,6 @@ class TestKwacha:
             'convertion: "", '
             'international: False)')
         assert kwacha.__str__() == 'MK 0.14'
-
 
     def test_kwacha_negative(self):
         """test_kwacha_negative."""
@@ -77,7 +78,8 @@ class TestKwacha:
         assert kwacha.symbol_separator == '\u00A0'
         assert kwacha.localized_symbol == 'MK'
         assert kwacha.convertion == ''
-        assert kwacha.__hash__() == hash((decimal, 'MWK', '454'))
+        assert kwacha.__hash__() == hash(
+            (kwacha.__class__, decimal, 'MWK', '454'))
         assert kwacha.__repr__() == (
             'Kwacha(amount: -100, '
             'alpha_code: "MWK", '
@@ -93,7 +95,6 @@ class TestKwacha:
             'convertion: "", '
             'international: False)')
         assert kwacha.__str__() == 'MK -100.00'
-
 
     def test_kwacha_custom(self):
         """test_kwacha_custom."""
@@ -121,7 +122,8 @@ class TestKwacha:
         assert kwacha.symbol_separator == '_'
         assert kwacha.localized_symbol == 'MK'
         assert kwacha.convertion == ''
-        assert kwacha.__hash__() == hash((decimal, 'MWK', '454'))
+        assert kwacha.__hash__() == hash(
+            (kwacha.__class__, decimal, 'MWK', '454'))
         assert kwacha.__repr__() == (
             'Kwacha(amount: 1000, '
             'alpha_code: "MWK", '
@@ -137,7 +139,6 @@ class TestKwacha:
             'convertion: "", '
             'international: True)')
         assert kwacha.__str__() == 'MWK 10,00.00000'
-
 
     def test_kwacha_changed(self):
         """test_ckwacha_changed."""
@@ -195,7 +196,6 @@ class TestKwacha:
                 match='can\'t set attribute'):
             kwacha.international = True
 
-
     def test_kwacha_math_add(self):
         """test_kwacha_math_add."""
         kwacha_one = Kwacha(amount=1)
@@ -208,14 +208,14 @@ class TestKwacha:
             _ = kwacha_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'kwacha.Kwacha\'> '
                     'and <class \'str\'>.')):
             _ = kwacha_one.__add__('1.00')
         assert (
             kwacha_one +
             kwacha_two) == kwacha_three
-
 
     def test_kwacha_slots(self):
         """test_kwacha_slots."""
@@ -234,6 +234,7 @@ from multicurrency import ZambianKwacha
 
 
 class TestZambianKwacha:
+    """ZambianKwacha currency tests."""
 
     def test_zambian_kwacha(self):
         """test_zambian_kwacha."""
@@ -253,7 +254,8 @@ class TestZambianKwacha:
         assert zambian_kwacha.symbol_separator == '\u00A0'
         assert zambian_kwacha.localized_symbol == 'ZK'
         assert zambian_kwacha.convertion == ''
-        assert zambian_kwacha.__hash__() == hash((decimal, 'ZMW', '967'))
+        assert zambian_kwacha.__hash__() == hash(
+            (zambian_kwacha.__class__, decimal, 'ZMW', '967'))
         assert zambian_kwacha.__repr__() == (
             'ZambianKwacha(amount: 0.1428571428571428571428571429, '
             'alpha_code: "ZMW", '
@@ -269,7 +271,6 @@ class TestZambianKwacha:
             'convertion: "", '
             'international: False)')
         assert zambian_kwacha.__str__() == 'ZK 0.14'
-
 
     def test_zambian_kwacha_negative(self):
         """test_zambian_kwacha_negative."""
@@ -288,7 +289,8 @@ class TestZambianKwacha:
         assert zambian_kwacha.symbol_separator == '\u00A0'
         assert zambian_kwacha.localized_symbol == 'ZK'
         assert zambian_kwacha.convertion == ''
-        assert zambian_kwacha.__hash__() == hash((decimal, 'ZMW', '967'))
+        assert zambian_kwacha.__hash__() == hash(
+            (zambian_kwacha.__class__, decimal, 'ZMW', '967'))
         assert zambian_kwacha.__repr__() == (
             'ZambianKwacha(amount: -100, '
             'alpha_code: "ZMW", '
@@ -304,7 +306,6 @@ class TestZambianKwacha:
             'convertion: "", '
             'international: False)')
         assert zambian_kwacha.__str__() == 'ZK -100.00'
-
 
     def test_zambian_kwacha_custom(self):
         """test_zambian_kwacha_custom."""
@@ -332,7 +333,8 @@ class TestZambianKwacha:
         assert zambian_kwacha.symbol_separator == '_'
         assert zambian_kwacha.localized_symbol == 'ZK'
         assert zambian_kwacha.convertion == ''
-        assert zambian_kwacha.__hash__() == hash((decimal, 'ZMW', '967'))
+        assert zambian_kwacha.__hash__() == hash(
+            (zambian_kwacha.__class__, decimal, 'ZMW', '967'))
         assert zambian_kwacha.__repr__() == (
             'ZambianKwacha(amount: 1000, '
             'alpha_code: "ZMW", '
@@ -348,7 +350,6 @@ class TestZambianKwacha:
             'convertion: "", '
             'international: True)')
         assert zambian_kwacha.__str__() == 'ZMW 10,00.00000'
-
 
     def test_zambian_kwacha_changed(self):
         """test_czambian_kwacha_changed."""
@@ -406,7 +407,6 @@ class TestZambianKwacha:
                 match='can\'t set attribute'):
             zambian_kwacha.international = True
 
-
     def test_zambian_kwacha_math_add(self):
         """test_zambian_kwacha_math_add."""
         zambian_kwacha_one = ZambianKwacha(amount=1)
@@ -419,14 +419,14 @@ class TestZambianKwacha:
             _ = zambian_kwacha_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'kwacha.ZambianKwacha\'> '
                     'and <class \'str\'>.')):
             _ = zambian_kwacha_one.__add__('1.00')
         assert (
             zambian_kwacha_one +
             zambian_kwacha_two) == zambian_kwacha_three
-
 
     def test_zambian_kwacha_slots(self):
         """test_zambian_kwacha_slots."""

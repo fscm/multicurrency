@@ -23,6 +23,7 @@ from multicurrency import Hryvnia
 
 
 class TestHryvnia:
+    """Hryvnia currency tests."""
 
     def test_hryvnia(self):
         """test_hryvnia."""
@@ -42,7 +43,8 @@ class TestHryvnia:
         assert hryvnia.symbol_separator == '\u00A0'
         assert hryvnia.localized_symbol == '₴'
         assert hryvnia.convertion == ''
-        assert hryvnia.__hash__() == hash((decimal, 'UAH', '980'))
+        assert hryvnia.__hash__() == hash(
+            (hryvnia.__class__, decimal, 'UAH', '980'))
         assert hryvnia.__repr__() == (
             'Hryvnia(amount: 0.1428571428571428571428571429, '
             'alpha_code: "UAH", '
@@ -58,7 +60,6 @@ class TestHryvnia:
             'convertion: "", '
             'international: False)')
         assert hryvnia.__str__() == '0,14 ₴'
-
 
     def test_hryvnia_negative(self):
         """test_hryvnia_negative."""
@@ -77,7 +78,8 @@ class TestHryvnia:
         assert hryvnia.symbol_separator == '\u00A0'
         assert hryvnia.localized_symbol == '₴'
         assert hryvnia.convertion == ''
-        assert hryvnia.__hash__() == hash((decimal, 'UAH', '980'))
+        assert hryvnia.__hash__() == hash(
+            (hryvnia.__class__, decimal, 'UAH', '980'))
         assert hryvnia.__repr__() == (
             'Hryvnia(amount: -100, '
             'alpha_code: "UAH", '
@@ -93,7 +95,6 @@ class TestHryvnia:
             'convertion: "", '
             'international: False)')
         assert hryvnia.__str__() == '-100,00 ₴'
-
 
     def test_hryvnia_custom(self):
         """test_hryvnia_custom."""
@@ -121,7 +122,8 @@ class TestHryvnia:
         assert hryvnia.symbol_separator == '_'
         assert hryvnia.localized_symbol == '₴'
         assert hryvnia.convertion == ''
-        assert hryvnia.__hash__() == hash((decimal, 'UAH', '980'))
+        assert hryvnia.__hash__() == hash(
+            (hryvnia.__class__, decimal, 'UAH', '980'))
         assert hryvnia.__repr__() == (
             'Hryvnia(amount: 1000, '
             'alpha_code: "UAH", '
@@ -137,7 +139,6 @@ class TestHryvnia:
             'convertion: "", '
             'international: True)')
         assert hryvnia.__str__() == 'UAH 10,00.00000'
-
 
     def test_hryvnia_changed(self):
         """test_chryvnia_changed."""
@@ -195,7 +196,6 @@ class TestHryvnia:
                 match='can\'t set attribute'):
             hryvnia.international = True
 
-
     def test_hryvnia_math_add(self):
         """test_hryvnia_math_add."""
         hryvnia_one = Hryvnia(amount=1)
@@ -208,14 +208,14 @@ class TestHryvnia:
             _ = hryvnia_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'hryvnia.Hryvnia\'> '
                     'and <class \'str\'>.')):
             _ = hryvnia_one.__add__('1.00')
         assert (
             hryvnia_one +
             hryvnia_two) == hryvnia_three
-
 
     def test_hryvnia_slots(self):
         """test_hryvnia_slots."""

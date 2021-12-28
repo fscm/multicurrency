@@ -23,6 +23,7 @@ from multicurrency import Dalasi
 
 
 class TestDalasi:
+    """Dalasi currency tests."""
 
     def test_dalasi(self):
         """test_dalasi."""
@@ -42,7 +43,8 @@ class TestDalasi:
         assert dalasi.symbol_separator == '\u00A0'
         assert dalasi.localized_symbol == 'D'
         assert dalasi.convertion == ''
-        assert dalasi.__hash__() == hash((decimal, 'GMD', '270'))
+        assert dalasi.__hash__() == hash(
+            (dalasi.__class__, decimal, 'GMD', '270'))
         assert dalasi.__repr__() == (
             'Dalasi(amount: 0.1428571428571428571428571429, '
             'alpha_code: "GMD", '
@@ -58,7 +60,6 @@ class TestDalasi:
             'convertion: "", '
             'international: False)')
         assert dalasi.__str__() == 'D 0.14'
-
 
     def test_dalasi_negative(self):
         """test_dalasi_negative."""
@@ -77,7 +78,8 @@ class TestDalasi:
         assert dalasi.symbol_separator == '\u00A0'
         assert dalasi.localized_symbol == 'D'
         assert dalasi.convertion == ''
-        assert dalasi.__hash__() == hash((decimal, 'GMD', '270'))
+        assert dalasi.__hash__() == hash(
+            (dalasi.__class__, decimal, 'GMD', '270'))
         assert dalasi.__repr__() == (
             'Dalasi(amount: -100, '
             'alpha_code: "GMD", '
@@ -93,7 +95,6 @@ class TestDalasi:
             'convertion: "", '
             'international: False)')
         assert dalasi.__str__() == 'D -100.00'
-
 
     def test_dalasi_custom(self):
         """test_dalasi_custom."""
@@ -121,7 +122,8 @@ class TestDalasi:
         assert dalasi.symbol_separator == '_'
         assert dalasi.localized_symbol == 'D'
         assert dalasi.convertion == ''
-        assert dalasi.__hash__() == hash((decimal, 'GMD', '270'))
+        assert dalasi.__hash__() == hash(
+            (dalasi.__class__, decimal, 'GMD', '270'))
         assert dalasi.__repr__() == (
             'Dalasi(amount: 1000, '
             'alpha_code: "GMD", '
@@ -137,7 +139,6 @@ class TestDalasi:
             'convertion: "", '
             'international: True)')
         assert dalasi.__str__() == 'GMD 10,00.00000'
-
 
     def test_dalasi_changed(self):
         """test_cdalasi_changed."""
@@ -195,7 +196,6 @@ class TestDalasi:
                 match='can\'t set attribute'):
             dalasi.international = True
 
-
     def test_dalasi_math_add(self):
         """test_dalasi_math_add."""
         dalasi_one = Dalasi(amount=1)
@@ -208,14 +208,14 @@ class TestDalasi:
             _ = dalasi_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'dalasi.Dalasi\'> '
                     'and <class \'str\'>.')):
             _ = dalasi_one.__add__('1.00')
         assert (
             dalasi_one +
             dalasi_two) == dalasi_three
-
 
     def test_dalasi_slots(self):
         """test_dalasi_slots."""

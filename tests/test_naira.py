@@ -23,6 +23,7 @@ from multicurrency import Naira
 
 
 class TestNaira:
+    """Naira currency tests."""
 
     def test_naira(self):
         """test_naira."""
@@ -42,7 +43,8 @@ class TestNaira:
         assert naira.symbol_separator == ''
         assert naira.localized_symbol == '₦'
         assert naira.convertion == ''
-        assert naira.__hash__() == hash((decimal, 'NGN', '566'))
+        assert naira.__hash__() == hash(
+            (naira.__class__, decimal, 'NGN', '566'))
         assert naira.__repr__() == (
             'Naira(amount: 0.1428571428571428571428571429, '
             'alpha_code: "NGN", '
@@ -58,7 +60,6 @@ class TestNaira:
             'convertion: "", '
             'international: False)')
         assert naira.__str__() == '₦0.14'
-
 
     def test_naira_negative(self):
         """test_naira_negative."""
@@ -77,7 +78,8 @@ class TestNaira:
         assert naira.symbol_separator == ''
         assert naira.localized_symbol == '₦'
         assert naira.convertion == ''
-        assert naira.__hash__() == hash((decimal, 'NGN', '566'))
+        assert naira.__hash__() == hash(
+            (naira.__class__, decimal, 'NGN', '566'))
         assert naira.__repr__() == (
             'Naira(amount: -100, '
             'alpha_code: "NGN", '
@@ -93,7 +95,6 @@ class TestNaira:
             'convertion: "", '
             'international: False)')
         assert naira.__str__() == '₦-100.00'
-
 
     def test_naira_custom(self):
         """test_naira_custom."""
@@ -121,7 +122,8 @@ class TestNaira:
         assert naira.symbol_separator == '_'
         assert naira.localized_symbol == '₦'
         assert naira.convertion == ''
-        assert naira.__hash__() == hash((decimal, 'NGN', '566'))
+        assert naira.__hash__() == hash(
+            (naira.__class__, decimal, 'NGN', '566'))
         assert naira.__repr__() == (
             'Naira(amount: 1000, '
             'alpha_code: "NGN", '
@@ -137,7 +139,6 @@ class TestNaira:
             'convertion: "", '
             'international: True)')
         assert naira.__str__() == 'NGN 10,00.00000'
-
 
     def test_naira_changed(self):
         """test_cnaira_changed."""
@@ -195,7 +196,6 @@ class TestNaira:
                 match='can\'t set attribute'):
             naira.international = True
 
-
     def test_naira_math_add(self):
         """test_naira_math_add."""
         naira_one = Naira(amount=1)
@@ -208,14 +208,14 @@ class TestNaira:
             _ = naira_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'naira.Naira\'> '
                     'and <class \'str\'>.')):
             _ = naira_one.__add__('1.00')
         assert (
             naira_one +
             naira_two) == naira_three
-
 
     def test_naira_slots(self):
         """test_naira_slots."""

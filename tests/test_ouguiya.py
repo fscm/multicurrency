@@ -23,6 +23,7 @@ from multicurrency import Ouguiya
 
 
 class TestOuguiya:
+    """Ouguiya currency tests."""
 
     def test_ouguiya(self):
         """test_ouguiya."""
@@ -42,7 +43,8 @@ class TestOuguiya:
         assert ouguiya.symbol_separator == '\u00A0'
         assert ouguiya.localized_symbol == 'أ.م'
         assert ouguiya.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert ouguiya.__hash__() == hash((decimal, 'MRU', '929'))
+        assert ouguiya.__hash__() == hash(
+            (ouguiya.__class__, decimal, 'MRU', '929'))
         assert ouguiya.__repr__() == (
             'Ouguiya(amount: 0.1428571428571428571428571429, '
             'alpha_code: "MRU", '
@@ -58,7 +60,6 @@ class TestOuguiya:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: False)')
         assert ouguiya.__str__() == '٠٫١٤ أ.م'
-
 
     def test_ouguiya_negative(self):
         """test_ouguiya_negative."""
@@ -77,7 +78,8 @@ class TestOuguiya:
         assert ouguiya.symbol_separator == '\u00A0'
         assert ouguiya.localized_symbol == 'أ.م'
         assert ouguiya.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert ouguiya.__hash__() == hash((decimal, 'MRU', '929'))
+        assert ouguiya.__hash__() == hash(
+            (ouguiya.__class__, decimal, 'MRU', '929'))
         assert ouguiya.__repr__() == (
             'Ouguiya(amount: -100, '
             'alpha_code: "MRU", '
@@ -93,7 +95,6 @@ class TestOuguiya:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: False)')
         assert ouguiya.__str__() == '-١٠٠٫٠٠ أ.م'
-
 
     def test_ouguiya_custom(self):
         """test_ouguiya_custom."""
@@ -121,7 +122,8 @@ class TestOuguiya:
         assert ouguiya.symbol_separator == '_'
         assert ouguiya.localized_symbol == 'أ.م'
         assert ouguiya.convertion == '٠١٢٣٤٥٦٧٨٩-'
-        assert ouguiya.__hash__() == hash((decimal, 'MRU', '929'))
+        assert ouguiya.__hash__() == hash(
+            (ouguiya.__class__, decimal, 'MRU', '929'))
         assert ouguiya.__repr__() == (
             'Ouguiya(amount: 1000, '
             'alpha_code: "MRU", '
@@ -137,7 +139,6 @@ class TestOuguiya:
             'convertion: "٠١٢٣٤٥٦٧٨٩-", '
             'international: True)')
         assert ouguiya.__str__() == 'MRU 10,00.00000'
-
 
     def test_ouguiya_changed(self):
         """test_couguiya_changed."""
@@ -195,7 +196,6 @@ class TestOuguiya:
                 match='can\'t set attribute'):
             ouguiya.international = True
 
-
     def test_ouguiya_math_add(self):
         """test_ouguiya_math_add."""
         ouguiya_one = Ouguiya(amount=1)
@@ -208,14 +208,14 @@ class TestOuguiya:
             _ = ouguiya_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'ouguiya.Ouguiya\'> '
                     'and <class \'str\'>.')):
             _ = ouguiya_one.__add__('1.00')
         assert (
             ouguiya_one +
             ouguiya_two) == ouguiya_three
-
 
     def test_ouguiya_slots(self):
         """test_ouguiya_slots."""

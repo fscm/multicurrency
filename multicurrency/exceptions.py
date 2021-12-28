@@ -9,7 +9,7 @@
 from typing import Any, TypeVar
 
 
-Currency = TypeVar('Currency')
+Currency = TypeVar('Currency', bound='Currency')
 
 
 class CurrencyException(Exception):

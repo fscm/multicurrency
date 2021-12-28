@@ -23,6 +23,7 @@ from multicurrency import CroatianKuna
 
 
 class TestCroatianKuna:
+    """CroatianKuna currency tests."""
 
     def test_croatian_kuna(self):
         """test_croatian_kuna."""
@@ -42,7 +43,8 @@ class TestCroatianKuna:
         assert croatian_kuna.symbol_separator == '\u00A0'
         assert croatian_kuna.localized_symbol == 'Kn'
         assert croatian_kuna.convertion == ''
-        assert croatian_kuna.__hash__() == hash((decimal, 'HRK', '191'))
+        assert croatian_kuna.__hash__() == hash(
+            (croatian_kuna.__class__, decimal, 'HRK', '191'))
         assert croatian_kuna.__repr__() == (
             'CroatianKuna(amount: 0.1428571428571428571428571429, '
             'alpha_code: "HRK", '
@@ -58,7 +60,6 @@ class TestCroatianKuna:
             'convertion: "", '
             'international: False)')
         assert croatian_kuna.__str__() == '0,14 Kn'
-
 
     def test_croatian_kuna_negative(self):
         """test_croatian_kuna_negative."""
@@ -77,7 +78,8 @@ class TestCroatianKuna:
         assert croatian_kuna.symbol_separator == '\u00A0'
         assert croatian_kuna.localized_symbol == 'Kn'
         assert croatian_kuna.convertion == ''
-        assert croatian_kuna.__hash__() == hash((decimal, 'HRK', '191'))
+        assert croatian_kuna.__hash__() == hash(
+            (croatian_kuna.__class__, decimal, 'HRK', '191'))
         assert croatian_kuna.__repr__() == (
             'CroatianKuna(amount: -100, '
             'alpha_code: "HRK", '
@@ -93,7 +95,6 @@ class TestCroatianKuna:
             'convertion: "", '
             'international: False)')
         assert croatian_kuna.__str__() == '-100,00 Kn'
-
 
     def test_croatian_kuna_custom(self):
         """test_croatian_kuna_custom."""
@@ -121,7 +122,8 @@ class TestCroatianKuna:
         assert croatian_kuna.symbol_separator == '_'
         assert croatian_kuna.localized_symbol == 'Kn'
         assert croatian_kuna.convertion == ''
-        assert croatian_kuna.__hash__() == hash((decimal, 'HRK', '191'))
+        assert croatian_kuna.__hash__() == hash(
+            (croatian_kuna.__class__, decimal, 'HRK', '191'))
         assert croatian_kuna.__repr__() == (
             'CroatianKuna(amount: 1000, '
             'alpha_code: "HRK", '
@@ -137,7 +139,6 @@ class TestCroatianKuna:
             'convertion: "", '
             'international: True)')
         assert croatian_kuna.__str__() == 'HRK 10,00.00000'
-
 
     def test_croatian_kuna_changed(self):
         """test_ccroatian_kuna_changed."""
@@ -195,7 +196,6 @@ class TestCroatianKuna:
                 match='can\'t set attribute'):
             croatian_kuna.international = True
 
-
     def test_croatian_kuna_math_add(self):
         """test_croatian_kuna_math_add."""
         croatian_kuna_one = CroatianKuna(amount=1)
@@ -208,14 +208,14 @@ class TestCroatianKuna:
             _ = croatian_kuna_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'kuna.CroatianKuna\'> '
                     'and <class \'str\'>.')):
             _ = croatian_kuna_one.__add__('1.00')
         assert (
             croatian_kuna_one +
             croatian_kuna_two) == croatian_kuna_three
-
 
     def test_croatian_kuna_slots(self):
         """test_croatian_kuna_slots."""

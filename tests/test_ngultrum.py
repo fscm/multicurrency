@@ -23,6 +23,7 @@ from multicurrency import Ngultrum
 
 
 class TestNgultrum:
+    """Ngultrum currency tests."""
 
     def test_ngultrum(self):
         """test_ngultrum."""
@@ -42,7 +43,8 @@ class TestNgultrum:
         assert ngultrum.symbol_separator == '\u00A0'
         assert ngultrum.localized_symbol == 'Nu.'
         assert ngultrum.convertion == '༠༡༢༣༤༥༦༧༨༩-'
-        assert ngultrum.__hash__() == hash((decimal, 'BTN', '064'))
+        assert ngultrum.__hash__() == hash(
+            (ngultrum.__class__, decimal, 'BTN', '064'))
         assert ngultrum.__repr__() == (
             'Ngultrum(amount: 0.1428571428571428571428571429, '
             'alpha_code: "BTN", '
@@ -58,7 +60,6 @@ class TestNgultrum:
             'convertion: "༠༡༢༣༤༥༦༧༨༩-", '
             'international: False)')
         assert ngultrum.__str__() == 'Nu. ༠.༡༤'
-
 
     def test_ngultrum_negative(self):
         """test_ngultrum_negative."""
@@ -77,7 +78,8 @@ class TestNgultrum:
         assert ngultrum.symbol_separator == '\u00A0'
         assert ngultrum.localized_symbol == 'Nu.'
         assert ngultrum.convertion == '༠༡༢༣༤༥༦༧༨༩-'
-        assert ngultrum.__hash__() == hash((decimal, 'BTN', '064'))
+        assert ngultrum.__hash__() == hash(
+            (ngultrum.__class__, decimal, 'BTN', '064'))
         assert ngultrum.__repr__() == (
             'Ngultrum(amount: -100, '
             'alpha_code: "BTN", '
@@ -93,7 +95,6 @@ class TestNgultrum:
             'convertion: "༠༡༢༣༤༥༦༧༨༩-", '
             'international: False)')
         assert ngultrum.__str__() == 'Nu. -༡༠༠.༠༠'
-
 
     def test_ngultrum_custom(self):
         """test_ngultrum_custom."""
@@ -121,7 +122,8 @@ class TestNgultrum:
         assert ngultrum.symbol_separator == '_'
         assert ngultrum.localized_symbol == 'Nu.'
         assert ngultrum.convertion == '༠༡༢༣༤༥༦༧༨༩-'
-        assert ngultrum.__hash__() == hash((decimal, 'BTN', '064'))
+        assert ngultrum.__hash__() == hash(
+            (ngultrum.__class__, decimal, 'BTN', '064'))
         assert ngultrum.__repr__() == (
             'Ngultrum(amount: 1000, '
             'alpha_code: "BTN", '
@@ -137,7 +139,6 @@ class TestNgultrum:
             'convertion: "༠༡༢༣༤༥༦༧༨༩-", '
             'international: True)')
         assert ngultrum.__str__() == 'BTN 10,00.00000'
-
 
     def test_ngultrum_changed(self):
         """test_cngultrum_changed."""
@@ -195,7 +196,6 @@ class TestNgultrum:
                 match='can\'t set attribute'):
             ngultrum.international = True
 
-
     def test_ngultrum_math_add(self):
         """test_ngultrum_math_add."""
         ngultrum_one = Ngultrum(amount=1)
@@ -208,14 +208,14 @@ class TestNgultrum:
             _ = ngultrum_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'ngultrum.Ngultrum\'> '
                     'and <class \'str\'>.')):
             _ = ngultrum_one.__add__('1.00')
         assert (
             ngultrum_one +
             ngultrum_two) == ngultrum_three
-
 
     def test_ngultrum_slots(self):
         """test_ngultrum_slots."""

@@ -23,6 +23,7 @@ from multicurrency import CordobaOro
 
 
 class TestCordobaOro:
+    """CordobaOro currency tests."""
 
     def test_cordoba_oro(self):
         """test_cordoba_oro."""
@@ -42,7 +43,8 @@ class TestCordobaOro:
         assert cordoba_oro.symbol_separator == ''
         assert cordoba_oro.localized_symbol == 'C$'
         assert cordoba_oro.convertion == ''
-        assert cordoba_oro.__hash__() == hash((decimal, 'NIO', '558'))
+        assert cordoba_oro.__hash__() == hash(
+            (cordoba_oro.__class__, decimal, 'NIO', '558'))
         assert cordoba_oro.__repr__() == (
             'CordobaOro(amount: 0.1428571428571428571428571429, '
             'alpha_code: "NIO", '
@@ -58,7 +60,6 @@ class TestCordobaOro:
             'convertion: "", '
             'international: False)')
         assert cordoba_oro.__str__() == 'C$0.14'
-
 
     def test_cordoba_oro_negative(self):
         """test_cordoba_oro_negative."""
@@ -77,7 +78,8 @@ class TestCordobaOro:
         assert cordoba_oro.symbol_separator == ''
         assert cordoba_oro.localized_symbol == 'C$'
         assert cordoba_oro.convertion == ''
-        assert cordoba_oro.__hash__() == hash((decimal, 'NIO', '558'))
+        assert cordoba_oro.__hash__() == hash(
+            (cordoba_oro.__class__, decimal, 'NIO', '558'))
         assert cordoba_oro.__repr__() == (
             'CordobaOro(amount: -100, '
             'alpha_code: "NIO", '
@@ -93,7 +95,6 @@ class TestCordobaOro:
             'convertion: "", '
             'international: False)')
         assert cordoba_oro.__str__() == 'C$-100.00'
-
 
     def test_cordoba_oro_custom(self):
         """test_cordoba_oro_custom."""
@@ -121,7 +122,8 @@ class TestCordobaOro:
         assert cordoba_oro.symbol_separator == '_'
         assert cordoba_oro.localized_symbol == 'C$'
         assert cordoba_oro.convertion == ''
-        assert cordoba_oro.__hash__() == hash((decimal, 'NIO', '558'))
+        assert cordoba_oro.__hash__() == hash(
+            (cordoba_oro.__class__, decimal, 'NIO', '558'))
         assert cordoba_oro.__repr__() == (
             'CordobaOro(amount: 1000, '
             'alpha_code: "NIO", '
@@ -137,7 +139,6 @@ class TestCordobaOro:
             'convertion: "", '
             'international: True)')
         assert cordoba_oro.__str__() == 'NIO 10,00.00000'
-
 
     def test_cordoba_oro_changed(self):
         """test_ccordoba_oro_changed."""
@@ -195,7 +196,6 @@ class TestCordobaOro:
                 match='can\'t set attribute'):
             cordoba_oro.international = True
 
-
     def test_cordoba_oro_math_add(self):
         """test_cordoba_oro_math_add."""
         cordoba_oro_one = CordobaOro(amount=1)
@@ -208,14 +208,14 @@ class TestCordobaOro:
             _ = cordoba_oro_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'oro.CordobaOro\'> '
                     'and <class \'str\'>.')):
             _ = cordoba_oro_one.__add__('1.00')
         assert (
             cordoba_oro_one +
             cordoba_oro_two) == cordoba_oro_three
-
 
     def test_cordoba_oro_slots(self):
         """test_cordoba_oro_slots."""

@@ -23,6 +23,7 @@ from multicurrency import BulgarianLev
 
 
 class TestBulgarianLev:
+    """BulgarianLev currency tests."""
 
     def test_bulgarian_lev(self):
         """test_bulgarian_lev."""
@@ -42,7 +43,8 @@ class TestBulgarianLev:
         assert bulgarian_lev.symbol_separator == '\u00A0'
         assert bulgarian_lev.localized_symbol == 'лв.'
         assert bulgarian_lev.convertion == ''
-        assert bulgarian_lev.__hash__() == hash((decimal, 'BGN', '975'))
+        assert bulgarian_lev.__hash__() == hash(
+            (bulgarian_lev.__class__, decimal, 'BGN', '975'))
         assert bulgarian_lev.__repr__() == (
             'BulgarianLev(amount: 0.1428571428571428571428571429, '
             'alpha_code: "BGN", '
@@ -58,7 +60,6 @@ class TestBulgarianLev:
             'convertion: "", '
             'international: False)')
         assert bulgarian_lev.__str__() == '0,14 лв.'
-
 
     def test_bulgarian_lev_negative(self):
         """test_bulgarian_lev_negative."""
@@ -77,7 +78,8 @@ class TestBulgarianLev:
         assert bulgarian_lev.symbol_separator == '\u00A0'
         assert bulgarian_lev.localized_symbol == 'лв.'
         assert bulgarian_lev.convertion == ''
-        assert bulgarian_lev.__hash__() == hash((decimal, 'BGN', '975'))
+        assert bulgarian_lev.__hash__() == hash(
+            (bulgarian_lev.__class__, decimal, 'BGN', '975'))
         assert bulgarian_lev.__repr__() == (
             'BulgarianLev(amount: -100, '
             'alpha_code: "BGN", '
@@ -93,7 +95,6 @@ class TestBulgarianLev:
             'convertion: "", '
             'international: False)')
         assert bulgarian_lev.__str__() == '-100,00 лв.'
-
 
     def test_bulgarian_lev_custom(self):
         """test_bulgarian_lev_custom."""
@@ -121,7 +122,8 @@ class TestBulgarianLev:
         assert bulgarian_lev.symbol_separator == '_'
         assert bulgarian_lev.localized_symbol == 'лв.'
         assert bulgarian_lev.convertion == ''
-        assert bulgarian_lev.__hash__() == hash((decimal, 'BGN', '975'))
+        assert bulgarian_lev.__hash__() == hash(
+            (bulgarian_lev.__class__, decimal, 'BGN', '975'))
         assert bulgarian_lev.__repr__() == (
             'BulgarianLev(amount: 1000, '
             'alpha_code: "BGN", '
@@ -137,7 +139,6 @@ class TestBulgarianLev:
             'convertion: "", '
             'international: True)')
         assert bulgarian_lev.__str__() == 'BGN 10,00.00000'
-
 
     def test_bulgarian_lev_changed(self):
         """test_cbulgarian_lev_changed."""
@@ -195,7 +196,6 @@ class TestBulgarianLev:
                 match='can\'t set attribute'):
             bulgarian_lev.international = True
 
-
     def test_bulgarian_lev_math_add(self):
         """test_bulgarian_lev_math_add."""
         bulgarian_lev_one = BulgarianLev(amount=1)
@@ -208,14 +208,14 @@ class TestBulgarianLev:
             _ = bulgarian_lev_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'lev.BulgarianLev\'> '
                     'and <class \'str\'>.')):
             _ = bulgarian_lev_one.__add__('1.00')
         assert (
             bulgarian_lev_one +
             bulgarian_lev_two) == bulgarian_lev_three
-
 
     def test_bulgarian_lev_slots(self):
         """test_bulgarian_lev_slots."""

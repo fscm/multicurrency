@@ -23,6 +23,7 @@ from multicurrency import Kyat
 
 
 class TestKyat:
+    """Kyat currency tests."""
 
     def test_kyat(self):
         """test_kyat."""
@@ -42,7 +43,8 @@ class TestKyat:
         assert kyat.symbol_separator == '\u00A0'
         assert kyat.localized_symbol == 'K'
         assert kyat.convertion == '၀၁၂၃၄၅၆၇၈၉-'
-        assert kyat.__hash__() == hash((decimal, 'MMK', '104'))
+        assert kyat.__hash__() == hash(
+            (kyat.__class__, decimal, 'MMK', '104'))
         assert kyat.__repr__() == (
             'Kyat(amount: 0.1428571428571428571428571429, '
             'alpha_code: "MMK", '
@@ -58,7 +60,6 @@ class TestKyat:
             'convertion: "၀၁၂၃၄၅၆၇၈၉-", '
             'international: False)')
         assert kyat.__str__() == '၀.၁၄ K'
-
 
     def test_kyat_negative(self):
         """test_kyat_negative."""
@@ -77,7 +78,8 @@ class TestKyat:
         assert kyat.symbol_separator == '\u00A0'
         assert kyat.localized_symbol == 'K'
         assert kyat.convertion == '၀၁၂၃၄၅၆၇၈၉-'
-        assert kyat.__hash__() == hash((decimal, 'MMK', '104'))
+        assert kyat.__hash__() == hash(
+            (kyat.__class__, decimal, 'MMK', '104'))
         assert kyat.__repr__() == (
             'Kyat(amount: -100, '
             'alpha_code: "MMK", '
@@ -93,7 +95,6 @@ class TestKyat:
             'convertion: "၀၁၂၃၄၅၆၇၈၉-", '
             'international: False)')
         assert kyat.__str__() == '-၁၀၀.၀၀ K'
-
 
     def test_kyat_custom(self):
         """test_kyat_custom."""
@@ -121,7 +122,8 @@ class TestKyat:
         assert kyat.symbol_separator == '_'
         assert kyat.localized_symbol == 'K'
         assert kyat.convertion == '၀၁၂၃၄၅၆၇၈၉-'
-        assert kyat.__hash__() == hash((decimal, 'MMK', '104'))
+        assert kyat.__hash__() == hash(
+            (kyat.__class__, decimal, 'MMK', '104'))
         assert kyat.__repr__() == (
             'Kyat(amount: 1000, '
             'alpha_code: "MMK", '
@@ -137,7 +139,6 @@ class TestKyat:
             'convertion: "၀၁၂၃၄၅၆၇၈၉-", '
             'international: True)')
         assert kyat.__str__() == 'MMK 10,00.00000'
-
 
     def test_kyat_changed(self):
         """test_ckyat_changed."""
@@ -195,7 +196,6 @@ class TestKyat:
                 match='can\'t set attribute'):
             kyat.international = True
 
-
     def test_kyat_math_add(self):
         """test_kyat_math_add."""
         kyat_one = Kyat(amount=1)
@@ -208,14 +208,14 @@ class TestKyat:
             _ = kyat_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'kyat.Kyat\'> '
                     'and <class \'str\'>.')):
             _ = kyat_one.__add__('1.00')
         assert (
             kyat_one +
             kyat_two) == kyat_three
-
 
     def test_kyat_slots(self):
         """test_kyat_slots."""

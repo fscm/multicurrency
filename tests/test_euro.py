@@ -23,6 +23,7 @@ from multicurrency import Euro
 
 
 class TestEuro:
+    """Euro currency tests."""
 
     def test_euro(self):
         """test_euro."""
@@ -42,7 +43,8 @@ class TestEuro:
         assert euro.symbol_separator == '\u00A0'
         assert euro.localized_symbol == '€'
         assert euro.convertion == ''
-        assert euro.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euro.__hash__() == hash(
+            (euro.__class__, decimal, 'EUR', '978'))
         assert euro.__repr__() == (
             'Euro(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EUR", '
@@ -58,7 +60,6 @@ class TestEuro:
             'convertion: "", '
             'international: False)')
         assert euro.__str__() == '0,14 €'
-
 
     def test_euro_negative(self):
         """test_euro_negative."""
@@ -77,7 +78,8 @@ class TestEuro:
         assert euro.symbol_separator == '\u00A0'
         assert euro.localized_symbol == '€'
         assert euro.convertion == ''
-        assert euro.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euro.__hash__() == hash(
+            (euro.__class__, decimal, 'EUR', '978'))
         assert euro.__repr__() == (
             'Euro(amount: -100, '
             'alpha_code: "EUR", '
@@ -93,7 +95,6 @@ class TestEuro:
             'convertion: "", '
             'international: False)')
         assert euro.__str__() == '-100,00 €'
-
 
     def test_euro_custom(self):
         """test_euro_custom."""
@@ -121,7 +122,8 @@ class TestEuro:
         assert euro.symbol_separator == '_'
         assert euro.localized_symbol == '€'
         assert euro.convertion == ''
-        assert euro.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euro.__hash__() == hash(
+            (euro.__class__, decimal, 'EUR', '978'))
         assert euro.__repr__() == (
             'Euro(amount: 1000, '
             'alpha_code: "EUR", '
@@ -137,7 +139,6 @@ class TestEuro:
             'convertion: "", '
             'international: True)')
         assert euro.__str__() == 'EUR 10,00.00000'
-
 
     def test_euro_changed(self):
         """test_ceuro_changed."""
@@ -195,7 +196,6 @@ class TestEuro:
                 match='can\'t set attribute'):
             euro.international = True
 
-
     def test_euro_math_add(self):
         """test_euro_math_add."""
         euro_one = Euro(amount=1)
@@ -208,14 +208,14 @@ class TestEuro:
             _ = euro_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'euro.Euro\'> '
                     'and <class \'str\'>.')):
             _ = euro_one.__add__('1.00')
         assert (
             euro_one +
             euro_two) == euro_three
-
 
     def test_euro_slots(self):
         """test_euro_slots."""
@@ -234,6 +234,7 @@ from multicurrency import EuroSBA
 
 
 class TestEuroSBA:
+    """EuroSBA currency tests."""
 
     def test_eurosba(self):
         """test_eurosba."""
@@ -253,7 +254,8 @@ class TestEuroSBA:
         assert eurosba.symbol_separator == '\u00A0'
         assert eurosba.localized_symbol == '€'
         assert eurosba.convertion == ''
-        assert eurosba.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurosba.__hash__() == hash(
+            (eurosba.__class__, decimal, 'EUR', '978'))
         assert eurosba.__repr__() == (
             'EuroSBA(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EUR", '
@@ -269,7 +271,6 @@ class TestEuroSBA:
             'convertion: "", '
             'international: False)')
         assert eurosba.__str__() == '0,14 €'
-
 
     def test_eurosba_negative(self):
         """test_eurosba_negative."""
@@ -288,7 +289,8 @@ class TestEuroSBA:
         assert eurosba.symbol_separator == '\u00A0'
         assert eurosba.localized_symbol == '€'
         assert eurosba.convertion == ''
-        assert eurosba.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurosba.__hash__() == hash(
+            (eurosba.__class__, decimal, 'EUR', '978'))
         assert eurosba.__repr__() == (
             'EuroSBA(amount: -100, '
             'alpha_code: "EUR", '
@@ -304,7 +306,6 @@ class TestEuroSBA:
             'convertion: "", '
             'international: False)')
         assert eurosba.__str__() == '-100,00 €'
-
 
     def test_eurosba_custom(self):
         """test_eurosba_custom."""
@@ -332,7 +333,8 @@ class TestEuroSBA:
         assert eurosba.symbol_separator == '_'
         assert eurosba.localized_symbol == '€'
         assert eurosba.convertion == ''
-        assert eurosba.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurosba.__hash__() == hash(
+            (eurosba.__class__, decimal, 'EUR', '978'))
         assert eurosba.__repr__() == (
             'EuroSBA(amount: 1000, '
             'alpha_code: "EUR", '
@@ -348,7 +350,6 @@ class TestEuroSBA:
             'convertion: "", '
             'international: True)')
         assert eurosba.__str__() == 'EUR 10,00.00000'
-
 
     def test_eurosba_changed(self):
         """test_ceurosba_changed."""
@@ -406,7 +407,6 @@ class TestEuroSBA:
                 match='can\'t set attribute'):
             eurosba.international = True
 
-
     def test_eurosba_math_add(self):
         """test_eurosba_math_add."""
         eurosba_one = EuroSBA(amount=1)
@@ -419,14 +419,14 @@ class TestEuroSBA:
             _ = eurosba_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'euro.EuroSBA\'> '
                     'and <class \'str\'>.')):
             _ = eurosba_one.__add__('1.00')
         assert (
             eurosba_one +
             eurosba_two) == eurosba_three
-
 
     def test_eurosba_slots(self):
         """test_eurosba_slots."""
@@ -445,6 +445,7 @@ from multicurrency import EuroAD
 
 
 class TestEuroAD:
+    """EuroAD currency tests."""
 
     def test_euroad(self):
         """test_euroad."""
@@ -464,7 +465,8 @@ class TestEuroAD:
         assert euroad.symbol_separator == '\u00A0'
         assert euroad.localized_symbol == 'AD€'
         assert euroad.convertion == ''
-        assert euroad.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euroad.__hash__() == hash(
+            (euroad.__class__, decimal, 'EUR', '978'))
         assert euroad.__repr__() == (
             'EuroAD(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EUR", '
@@ -480,7 +482,6 @@ class TestEuroAD:
             'convertion: "", '
             'international: False)')
         assert euroad.__str__() == '0,14 €'
-
 
     def test_euroad_negative(self):
         """test_euroad_negative."""
@@ -499,7 +500,8 @@ class TestEuroAD:
         assert euroad.symbol_separator == '\u00A0'
         assert euroad.localized_symbol == 'AD€'
         assert euroad.convertion == ''
-        assert euroad.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euroad.__hash__() == hash(
+            (euroad.__class__, decimal, 'EUR', '978'))
         assert euroad.__repr__() == (
             'EuroAD(amount: -100, '
             'alpha_code: "EUR", '
@@ -515,7 +517,6 @@ class TestEuroAD:
             'convertion: "", '
             'international: False)')
         assert euroad.__str__() == '-100,00 €'
-
 
     def test_euroad_custom(self):
         """test_euroad_custom."""
@@ -543,7 +544,8 @@ class TestEuroAD:
         assert euroad.symbol_separator == '_'
         assert euroad.localized_symbol == 'AD€'
         assert euroad.convertion == ''
-        assert euroad.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euroad.__hash__() == hash(
+            (euroad.__class__, decimal, 'EUR', '978'))
         assert euroad.__repr__() == (
             'EuroAD(amount: 1000, '
             'alpha_code: "EUR", '
@@ -559,7 +561,6 @@ class TestEuroAD:
             'convertion: "", '
             'international: True)')
         assert euroad.__str__() == 'EUR 10,00.00000'
-
 
     def test_euroad_changed(self):
         """test_ceuroad_changed."""
@@ -617,7 +618,6 @@ class TestEuroAD:
                 match='can\'t set attribute'):
             euroad.international = True
 
-
     def test_euroad_math_add(self):
         """test_euroad_math_add."""
         euroad_one = EuroAD(amount=1)
@@ -630,14 +630,14 @@ class TestEuroAD:
             _ = euroad_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'euro.EuroAD\'> '
                     'and <class \'str\'>.')):
             _ = euroad_one.__add__('1.00')
         assert (
             euroad_one +
             euroad_two) == euroad_three
-
 
     def test_euroad_slots(self):
         """test_euroad_slots."""
@@ -656,6 +656,7 @@ from multicurrency import EuroAT
 
 
 class TestEuroAT:
+    """EuroAT currency tests."""
 
     def test_euroat(self):
         """test_euroat."""
@@ -675,7 +676,8 @@ class TestEuroAT:
         assert euroat.symbol_separator == '\u00A0'
         assert euroat.localized_symbol == 'AT€'
         assert euroat.convertion == ''
-        assert euroat.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euroat.__hash__() == hash(
+            (euroat.__class__, decimal, 'EUR', '978'))
         assert euroat.__repr__() == (
             'EuroAT(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EUR", '
@@ -691,7 +693,6 @@ class TestEuroAT:
             'convertion: "", '
             'international: False)')
         assert euroat.__str__() == '€ 0,14'
-
 
     def test_euroat_negative(self):
         """test_euroat_negative."""
@@ -710,7 +711,8 @@ class TestEuroAT:
         assert euroat.symbol_separator == '\u00A0'
         assert euroat.localized_symbol == 'AT€'
         assert euroat.convertion == ''
-        assert euroat.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euroat.__hash__() == hash(
+            (euroat.__class__, decimal, 'EUR', '978'))
         assert euroat.__repr__() == (
             'EuroAT(amount: -100, '
             'alpha_code: "EUR", '
@@ -726,7 +728,6 @@ class TestEuroAT:
             'convertion: "", '
             'international: False)')
         assert euroat.__str__() == '€ -100,00'
-
 
     def test_euroat_custom(self):
         """test_euroat_custom."""
@@ -754,7 +755,8 @@ class TestEuroAT:
         assert euroat.symbol_separator == '_'
         assert euroat.localized_symbol == 'AT€'
         assert euroat.convertion == ''
-        assert euroat.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euroat.__hash__() == hash(
+            (euroat.__class__, decimal, 'EUR', '978'))
         assert euroat.__repr__() == (
             'EuroAT(amount: 1000, '
             'alpha_code: "EUR", '
@@ -770,7 +772,6 @@ class TestEuroAT:
             'convertion: "", '
             'international: True)')
         assert euroat.__str__() == 'EUR 10,00.00000'
-
 
     def test_euroat_changed(self):
         """test_ceuroat_changed."""
@@ -828,7 +829,6 @@ class TestEuroAT:
                 match='can\'t set attribute'):
             euroat.international = True
 
-
     def test_euroat_math_add(self):
         """test_euroat_math_add."""
         euroat_one = EuroAT(amount=1)
@@ -841,14 +841,14 @@ class TestEuroAT:
             _ = euroat_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'euro.EuroAT\'> '
                     'and <class \'str\'>.')):
             _ = euroat_one.__add__('1.00')
         assert (
             euroat_one +
             euroat_two) == euroat_three
-
 
     def test_euroat_slots(self):
         """test_euroat_slots."""
@@ -867,6 +867,7 @@ from multicurrency import EuroBE
 
 
 class TestEuroBE:
+    """EuroBE currency tests."""
 
     def test_eurobe(self):
         """test_eurobe."""
@@ -886,7 +887,8 @@ class TestEuroBE:
         assert eurobe.symbol_separator == '\u00A0'
         assert eurobe.localized_symbol == 'BE€'
         assert eurobe.convertion == ''
-        assert eurobe.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurobe.__hash__() == hash(
+            (eurobe.__class__, decimal, 'EUR', '978'))
         assert eurobe.__repr__() == (
             'EuroBE(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EUR", '
@@ -902,7 +904,6 @@ class TestEuroBE:
             'convertion: "", '
             'international: False)')
         assert eurobe.__str__() == '€ 0,14'
-
 
     def test_eurobe_negative(self):
         """test_eurobe_negative."""
@@ -921,7 +922,8 @@ class TestEuroBE:
         assert eurobe.symbol_separator == '\u00A0'
         assert eurobe.localized_symbol == 'BE€'
         assert eurobe.convertion == ''
-        assert eurobe.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurobe.__hash__() == hash(
+            (eurobe.__class__, decimal, 'EUR', '978'))
         assert eurobe.__repr__() == (
             'EuroBE(amount: -100, '
             'alpha_code: "EUR", '
@@ -937,7 +939,6 @@ class TestEuroBE:
             'convertion: "", '
             'international: False)')
         assert eurobe.__str__() == '€ -100,00'
-
 
     def test_eurobe_custom(self):
         """test_eurobe_custom."""
@@ -965,7 +966,8 @@ class TestEuroBE:
         assert eurobe.symbol_separator == '_'
         assert eurobe.localized_symbol == 'BE€'
         assert eurobe.convertion == ''
-        assert eurobe.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurobe.__hash__() == hash(
+            (eurobe.__class__, decimal, 'EUR', '978'))
         assert eurobe.__repr__() == (
             'EuroBE(amount: 1000, '
             'alpha_code: "EUR", '
@@ -981,7 +983,6 @@ class TestEuroBE:
             'convertion: "", '
             'international: True)')
         assert eurobe.__str__() == 'EUR 10,00.00000'
-
 
     def test_eurobe_changed(self):
         """test_ceurobe_changed."""
@@ -1039,7 +1040,6 @@ class TestEuroBE:
                 match='can\'t set attribute'):
             eurobe.international = True
 
-
     def test_eurobe_math_add(self):
         """test_eurobe_math_add."""
         eurobe_one = EuroBE(amount=1)
@@ -1052,14 +1052,14 @@ class TestEuroBE:
             _ = eurobe_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'euro.EuroBE\'> '
                     'and <class \'str\'>.')):
             _ = eurobe_one.__add__('1.00')
         assert (
             eurobe_one +
             eurobe_two) == eurobe_three
-
 
     def test_eurobe_slots(self):
         """test_eurobe_slots."""
@@ -1078,6 +1078,7 @@ from multicurrency import EuroCY
 
 
 class TestEuroCY:
+    """EuroCY currency tests."""
 
     def test_eurocy(self):
         """test_eurocy."""
@@ -1097,7 +1098,8 @@ class TestEuroCY:
         assert eurocy.symbol_separator == '\u00A0'
         assert eurocy.localized_symbol == 'CY€'
         assert eurocy.convertion == ''
-        assert eurocy.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurocy.__hash__() == hash(
+            (eurocy.__class__, decimal, 'EUR', '978'))
         assert eurocy.__repr__() == (
             'EuroCY(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EUR", '
@@ -1113,7 +1115,6 @@ class TestEuroCY:
             'convertion: "", '
             'international: False)')
         assert eurocy.__str__() == '0,14 €'
-
 
     def test_eurocy_negative(self):
         """test_eurocy_negative."""
@@ -1132,7 +1133,8 @@ class TestEuroCY:
         assert eurocy.symbol_separator == '\u00A0'
         assert eurocy.localized_symbol == 'CY€'
         assert eurocy.convertion == ''
-        assert eurocy.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurocy.__hash__() == hash(
+            (eurocy.__class__, decimal, 'EUR', '978'))
         assert eurocy.__repr__() == (
             'EuroCY(amount: -100, '
             'alpha_code: "EUR", '
@@ -1148,7 +1150,6 @@ class TestEuroCY:
             'convertion: "", '
             'international: False)')
         assert eurocy.__str__() == '-100,00 €'
-
 
     def test_eurocy_custom(self):
         """test_eurocy_custom."""
@@ -1176,7 +1177,8 @@ class TestEuroCY:
         assert eurocy.symbol_separator == '_'
         assert eurocy.localized_symbol == 'CY€'
         assert eurocy.convertion == ''
-        assert eurocy.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurocy.__hash__() == hash(
+            (eurocy.__class__, decimal, 'EUR', '978'))
         assert eurocy.__repr__() == (
             'EuroCY(amount: 1000, '
             'alpha_code: "EUR", '
@@ -1192,7 +1194,6 @@ class TestEuroCY:
             'convertion: "", '
             'international: True)')
         assert eurocy.__str__() == 'EUR 10,00.00000'
-
 
     def test_eurocy_changed(self):
         """test_ceurocy_changed."""
@@ -1250,7 +1251,6 @@ class TestEuroCY:
                 match='can\'t set attribute'):
             eurocy.international = True
 
-
     def test_eurocy_math_add(self):
         """test_eurocy_math_add."""
         eurocy_one = EuroCY(amount=1)
@@ -1263,14 +1263,14 @@ class TestEuroCY:
             _ = eurocy_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'euro.EuroCY\'> '
                     'and <class \'str\'>.')):
             _ = eurocy_one.__add__('1.00')
         assert (
             eurocy_one +
             eurocy_two) == eurocy_three
-
 
     def test_eurocy_slots(self):
         """test_eurocy_slots."""
@@ -1289,6 +1289,7 @@ from multicurrency import EuroEE
 
 
 class TestEuroEE:
+    """EuroEE currency tests."""
 
     def test_euroee(self):
         """test_euroee."""
@@ -1308,7 +1309,8 @@ class TestEuroEE:
         assert euroee.symbol_separator == '\u00A0'
         assert euroee.localized_symbol == 'EE€'
         assert euroee.convertion == ''
-        assert euroee.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euroee.__hash__() == hash(
+            (euroee.__class__, decimal, 'EUR', '978'))
         assert euroee.__repr__() == (
             'EuroEE(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EUR", '
@@ -1324,7 +1326,6 @@ class TestEuroEE:
             'convertion: "", '
             'international: False)')
         assert euroee.__str__() == '0,14 €'
-
 
     def test_euroee_negative(self):
         """test_euroee_negative."""
@@ -1343,7 +1344,8 @@ class TestEuroEE:
         assert euroee.symbol_separator == '\u00A0'
         assert euroee.localized_symbol == 'EE€'
         assert euroee.convertion == ''
-        assert euroee.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euroee.__hash__() == hash(
+            (euroee.__class__, decimal, 'EUR', '978'))
         assert euroee.__repr__() == (
             'EuroEE(amount: -100, '
             'alpha_code: "EUR", '
@@ -1359,7 +1361,6 @@ class TestEuroEE:
             'convertion: "", '
             'international: False)')
         assert euroee.__str__() == '-100,00 €'
-
 
     def test_euroee_custom(self):
         """test_euroee_custom."""
@@ -1387,7 +1388,8 @@ class TestEuroEE:
         assert euroee.symbol_separator == '_'
         assert euroee.localized_symbol == 'EE€'
         assert euroee.convertion == ''
-        assert euroee.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euroee.__hash__() == hash(
+            (euroee.__class__, decimal, 'EUR', '978'))
         assert euroee.__repr__() == (
             'EuroEE(amount: 1000, '
             'alpha_code: "EUR", '
@@ -1403,7 +1405,6 @@ class TestEuroEE:
             'convertion: "", '
             'international: True)')
         assert euroee.__str__() == 'EUR 10,00.00000'
-
 
     def test_euroee_changed(self):
         """test_ceuroee_changed."""
@@ -1461,7 +1462,6 @@ class TestEuroEE:
                 match='can\'t set attribute'):
             euroee.international = True
 
-
     def test_euroee_math_add(self):
         """test_euroee_math_add."""
         euroee_one = EuroEE(amount=1)
@@ -1474,14 +1474,14 @@ class TestEuroEE:
             _ = euroee_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'euro.EuroEE\'> '
                     'and <class \'str\'>.')):
             _ = euroee_one.__add__('1.00')
         assert (
             euroee_one +
             euroee_two) == euroee_three
-
 
     def test_euroee_slots(self):
         """test_euroee_slots."""
@@ -1500,6 +1500,7 @@ from multicurrency import EuroFI
 
 
 class TestEuroFI:
+    """EuroFI currency tests."""
 
     def test_eurofi(self):
         """test_eurofi."""
@@ -1519,7 +1520,8 @@ class TestEuroFI:
         assert eurofi.symbol_separator == '\u00A0'
         assert eurofi.localized_symbol == 'FI€'
         assert eurofi.convertion == ''
-        assert eurofi.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurofi.__hash__() == hash(
+            (eurofi.__class__, decimal, 'EUR', '978'))
         assert eurofi.__repr__() == (
             'EuroFI(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EUR", '
@@ -1535,7 +1537,6 @@ class TestEuroFI:
             'convertion: "", '
             'international: False)')
         assert eurofi.__str__() == '0,14 €'
-
 
     def test_eurofi_negative(self):
         """test_eurofi_negative."""
@@ -1554,7 +1555,8 @@ class TestEuroFI:
         assert eurofi.symbol_separator == '\u00A0'
         assert eurofi.localized_symbol == 'FI€'
         assert eurofi.convertion == ''
-        assert eurofi.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurofi.__hash__() == hash(
+            (eurofi.__class__, decimal, 'EUR', '978'))
         assert eurofi.__repr__() == (
             'EuroFI(amount: -100, '
             'alpha_code: "EUR", '
@@ -1570,7 +1572,6 @@ class TestEuroFI:
             'convertion: "", '
             'international: False)')
         assert eurofi.__str__() == '-100,00 €'
-
 
     def test_eurofi_custom(self):
         """test_eurofi_custom."""
@@ -1598,7 +1599,8 @@ class TestEuroFI:
         assert eurofi.symbol_separator == '_'
         assert eurofi.localized_symbol == 'FI€'
         assert eurofi.convertion == ''
-        assert eurofi.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurofi.__hash__() == hash(
+            (eurofi.__class__, decimal, 'EUR', '978'))
         assert eurofi.__repr__() == (
             'EuroFI(amount: 1000, '
             'alpha_code: "EUR", '
@@ -1614,7 +1616,6 @@ class TestEuroFI:
             'convertion: "", '
             'international: True)')
         assert eurofi.__str__() == 'EUR 10,00.00000'
-
 
     def test_eurofi_changed(self):
         """test_ceurofi_changed."""
@@ -1672,7 +1673,6 @@ class TestEuroFI:
                 match='can\'t set attribute'):
             eurofi.international = True
 
-
     def test_eurofi_math_add(self):
         """test_eurofi_math_add."""
         eurofi_one = EuroFI(amount=1)
@@ -1685,14 +1685,14 @@ class TestEuroFI:
             _ = eurofi_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'euro.EuroFI\'> '
                     'and <class \'str\'>.')):
             _ = eurofi_one.__add__('1.00')
         assert (
             eurofi_one +
             eurofi_two) == eurofi_three
-
 
     def test_eurofi_slots(self):
         """test_eurofi_slots."""
@@ -1711,6 +1711,7 @@ from multicurrency import EuroFR
 
 
 class TestEuroFR:
+    """EuroFR currency tests."""
 
     def test_eurofr(self):
         """test_eurofr."""
@@ -1730,7 +1731,8 @@ class TestEuroFR:
         assert eurofr.symbol_separator == '\u00A0'
         assert eurofr.localized_symbol == 'FR€'
         assert eurofr.convertion == ''
-        assert eurofr.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurofr.__hash__() == hash(
+            (eurofr.__class__, decimal, 'EUR', '978'))
         assert eurofr.__repr__() == (
             'EuroFR(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EUR", '
@@ -1746,7 +1748,6 @@ class TestEuroFR:
             'convertion: "", '
             'international: False)')
         assert eurofr.__str__() == '0,14 €'
-
 
     def test_eurofr_negative(self):
         """test_eurofr_negative."""
@@ -1765,7 +1766,8 @@ class TestEuroFR:
         assert eurofr.symbol_separator == '\u00A0'
         assert eurofr.localized_symbol == 'FR€'
         assert eurofr.convertion == ''
-        assert eurofr.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurofr.__hash__() == hash(
+            (eurofr.__class__, decimal, 'EUR', '978'))
         assert eurofr.__repr__() == (
             'EuroFR(amount: -100, '
             'alpha_code: "EUR", '
@@ -1781,7 +1783,6 @@ class TestEuroFR:
             'convertion: "", '
             'international: False)')
         assert eurofr.__str__() == '-100,00 €'
-
 
     def test_eurofr_custom(self):
         """test_eurofr_custom."""
@@ -1809,7 +1810,8 @@ class TestEuroFR:
         assert eurofr.symbol_separator == '_'
         assert eurofr.localized_symbol == 'FR€'
         assert eurofr.convertion == ''
-        assert eurofr.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurofr.__hash__() == hash(
+            (eurofr.__class__, decimal, 'EUR', '978'))
         assert eurofr.__repr__() == (
             'EuroFR(amount: 1000, '
             'alpha_code: "EUR", '
@@ -1825,7 +1827,6 @@ class TestEuroFR:
             'convertion: "", '
             'international: True)')
         assert eurofr.__str__() == 'EUR 10,00.00000'
-
 
     def test_eurofr_changed(self):
         """test_ceurofr_changed."""
@@ -1883,7 +1884,6 @@ class TestEuroFR:
                 match='can\'t set attribute'):
             eurofr.international = True
 
-
     def test_eurofr_math_add(self):
         """test_eurofr_math_add."""
         eurofr_one = EuroFR(amount=1)
@@ -1896,14 +1896,14 @@ class TestEuroFR:
             _ = eurofr_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'euro.EuroFR\'> '
                     'and <class \'str\'>.')):
             _ = eurofr_one.__add__('1.00')
         assert (
             eurofr_one +
             eurofr_two) == eurofr_three
-
 
     def test_eurofr_slots(self):
         """test_eurofr_slots."""
@@ -1922,6 +1922,7 @@ from multicurrency import EuroDE
 
 
 class TestEuroDE:
+    """EuroDE currency tests."""
 
     def test_eurode(self):
         """test_eurode."""
@@ -1941,7 +1942,8 @@ class TestEuroDE:
         assert eurode.symbol_separator == '\u00A0'
         assert eurode.localized_symbol == 'DE€'
         assert eurode.convertion == ''
-        assert eurode.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurode.__hash__() == hash(
+            (eurode.__class__, decimal, 'EUR', '978'))
         assert eurode.__repr__() == (
             'EuroDE(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EUR", '
@@ -1957,7 +1959,6 @@ class TestEuroDE:
             'convertion: "", '
             'international: False)')
         assert eurode.__str__() == '0,14 €'
-
 
     def test_eurode_negative(self):
         """test_eurode_negative."""
@@ -1976,7 +1977,8 @@ class TestEuroDE:
         assert eurode.symbol_separator == '\u00A0'
         assert eurode.localized_symbol == 'DE€'
         assert eurode.convertion == ''
-        assert eurode.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurode.__hash__() == hash(
+            (eurode.__class__, decimal, 'EUR', '978'))
         assert eurode.__repr__() == (
             'EuroDE(amount: -100, '
             'alpha_code: "EUR", '
@@ -1992,7 +1994,6 @@ class TestEuroDE:
             'convertion: "", '
             'international: False)')
         assert eurode.__str__() == '-100,00 €'
-
 
     def test_eurode_custom(self):
         """test_eurode_custom."""
@@ -2020,7 +2021,8 @@ class TestEuroDE:
         assert eurode.symbol_separator == '_'
         assert eurode.localized_symbol == 'DE€'
         assert eurode.convertion == ''
-        assert eurode.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurode.__hash__() == hash(
+            (eurode.__class__, decimal, 'EUR', '978'))
         assert eurode.__repr__() == (
             'EuroDE(amount: 1000, '
             'alpha_code: "EUR", '
@@ -2036,7 +2038,6 @@ class TestEuroDE:
             'convertion: "", '
             'international: True)')
         assert eurode.__str__() == 'EUR 10,00.00000'
-
 
     def test_eurode_changed(self):
         """test_ceurode_changed."""
@@ -2094,7 +2095,6 @@ class TestEuroDE:
                 match='can\'t set attribute'):
             eurode.international = True
 
-
     def test_eurode_math_add(self):
         """test_eurode_math_add."""
         eurode_one = EuroDE(amount=1)
@@ -2107,14 +2107,14 @@ class TestEuroDE:
             _ = eurode_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'euro.EuroDE\'> '
                     'and <class \'str\'>.')):
             _ = eurode_one.__add__('1.00')
         assert (
             eurode_one +
             eurode_two) == eurode_three
-
 
     def test_eurode_slots(self):
         """test_eurode_slots."""
@@ -2133,6 +2133,7 @@ from multicurrency import EuroGR
 
 
 class TestEuroGR:
+    """EuroGR currency tests."""
 
     def test_eurogr(self):
         """test_eurogr."""
@@ -2152,7 +2153,8 @@ class TestEuroGR:
         assert eurogr.symbol_separator == '\u00A0'
         assert eurogr.localized_symbol == 'GR€'
         assert eurogr.convertion == ''
-        assert eurogr.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurogr.__hash__() == hash(
+            (eurogr.__class__, decimal, 'EUR', '978'))
         assert eurogr.__repr__() == (
             'EuroGR(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EUR", '
@@ -2168,7 +2170,6 @@ class TestEuroGR:
             'convertion: "", '
             'international: False)')
         assert eurogr.__str__() == '0,14 €'
-
 
     def test_eurogr_negative(self):
         """test_eurogr_negative."""
@@ -2187,7 +2188,8 @@ class TestEuroGR:
         assert eurogr.symbol_separator == '\u00A0'
         assert eurogr.localized_symbol == 'GR€'
         assert eurogr.convertion == ''
-        assert eurogr.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurogr.__hash__() == hash(
+            (eurogr.__class__, decimal, 'EUR', '978'))
         assert eurogr.__repr__() == (
             'EuroGR(amount: -100, '
             'alpha_code: "EUR", '
@@ -2203,7 +2205,6 @@ class TestEuroGR:
             'convertion: "", '
             'international: False)')
         assert eurogr.__str__() == '-100,00 €'
-
 
     def test_eurogr_custom(self):
         """test_eurogr_custom."""
@@ -2231,7 +2232,8 @@ class TestEuroGR:
         assert eurogr.symbol_separator == '_'
         assert eurogr.localized_symbol == 'GR€'
         assert eurogr.convertion == ''
-        assert eurogr.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurogr.__hash__() == hash(
+            (eurogr.__class__, decimal, 'EUR', '978'))
         assert eurogr.__repr__() == (
             'EuroGR(amount: 1000, '
             'alpha_code: "EUR", '
@@ -2247,7 +2249,6 @@ class TestEuroGR:
             'convertion: "", '
             'international: True)')
         assert eurogr.__str__() == 'EUR 10,00.00000'
-
 
     def test_eurogr_changed(self):
         """test_ceurogr_changed."""
@@ -2305,7 +2306,6 @@ class TestEuroGR:
                 match='can\'t set attribute'):
             eurogr.international = True
 
-
     def test_eurogr_math_add(self):
         """test_eurogr_math_add."""
         eurogr_one = EuroGR(amount=1)
@@ -2318,14 +2318,14 @@ class TestEuroGR:
             _ = eurogr_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'euro.EuroGR\'> '
                     'and <class \'str\'>.')):
             _ = eurogr_one.__add__('1.00')
         assert (
             eurogr_one +
             eurogr_two) == eurogr_three
-
 
     def test_eurogr_slots(self):
         """test_eurogr_slots."""
@@ -2344,6 +2344,7 @@ from multicurrency import EuroIE
 
 
 class TestEuroIE:
+    """EuroIE currency tests."""
 
     def test_euroie(self):
         """test_euroie."""
@@ -2363,7 +2364,8 @@ class TestEuroIE:
         assert euroie.symbol_separator == ''
         assert euroie.localized_symbol == 'IR€'
         assert euroie.convertion == ''
-        assert euroie.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euroie.__hash__() == hash(
+            (euroie.__class__, decimal, 'EUR', '978'))
         assert euroie.__repr__() == (
             'EuroIE(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EUR", '
@@ -2379,7 +2381,6 @@ class TestEuroIE:
             'convertion: "", '
             'international: False)')
         assert euroie.__str__() == '€0.14'
-
 
     def test_euroie_negative(self):
         """test_euroie_negative."""
@@ -2398,7 +2399,8 @@ class TestEuroIE:
         assert euroie.symbol_separator == ''
         assert euroie.localized_symbol == 'IR€'
         assert euroie.convertion == ''
-        assert euroie.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euroie.__hash__() == hash(
+            (euroie.__class__, decimal, 'EUR', '978'))
         assert euroie.__repr__() == (
             'EuroIE(amount: -100, '
             'alpha_code: "EUR", '
@@ -2414,7 +2416,6 @@ class TestEuroIE:
             'convertion: "", '
             'international: False)')
         assert euroie.__str__() == '€-100.00'
-
 
     def test_euroie_custom(self):
         """test_euroie_custom."""
@@ -2442,7 +2443,8 @@ class TestEuroIE:
         assert euroie.symbol_separator == '_'
         assert euroie.localized_symbol == 'IR€'
         assert euroie.convertion == ''
-        assert euroie.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euroie.__hash__() == hash(
+            (euroie.__class__, decimal, 'EUR', '978'))
         assert euroie.__repr__() == (
             'EuroIE(amount: 1000, '
             'alpha_code: "EUR", '
@@ -2458,7 +2460,6 @@ class TestEuroIE:
             'convertion: "", '
             'international: True)')
         assert euroie.__str__() == 'EUR 10,00.00000'
-
 
     def test_euroie_changed(self):
         """test_ceuroie_changed."""
@@ -2516,7 +2517,6 @@ class TestEuroIE:
                 match='can\'t set attribute'):
             euroie.international = True
 
-
     def test_euroie_math_add(self):
         """test_euroie_math_add."""
         euroie_one = EuroIE(amount=1)
@@ -2529,14 +2529,14 @@ class TestEuroIE:
             _ = euroie_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'euro.EuroIE\'> '
                     'and <class \'str\'>.')):
             _ = euroie_one.__add__('1.00')
         assert (
             euroie_one +
             euroie_two) == euroie_three
-
 
     def test_euroie_slots(self):
         """test_euroie_slots."""
@@ -2555,6 +2555,7 @@ from multicurrency import EuroIT
 
 
 class TestEuroIT:
+    """EuroIT currency tests."""
 
     def test_euroit(self):
         """test_euroit."""
@@ -2574,7 +2575,8 @@ class TestEuroIT:
         assert euroit.symbol_separator == '\u00A0'
         assert euroit.localized_symbol == 'IT€'
         assert euroit.convertion == ''
-        assert euroit.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euroit.__hash__() == hash(
+            (euroit.__class__, decimal, 'EUR', '978'))
         assert euroit.__repr__() == (
             'EuroIT(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EUR", '
@@ -2590,7 +2592,6 @@ class TestEuroIT:
             'convertion: "", '
             'international: False)')
         assert euroit.__str__() == '0,14 €'
-
 
     def test_euroit_negative(self):
         """test_euroit_negative."""
@@ -2609,7 +2610,8 @@ class TestEuroIT:
         assert euroit.symbol_separator == '\u00A0'
         assert euroit.localized_symbol == 'IT€'
         assert euroit.convertion == ''
-        assert euroit.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euroit.__hash__() == hash(
+            (euroit.__class__, decimal, 'EUR', '978'))
         assert euroit.__repr__() == (
             'EuroIT(amount: -100, '
             'alpha_code: "EUR", '
@@ -2625,7 +2627,6 @@ class TestEuroIT:
             'convertion: "", '
             'international: False)')
         assert euroit.__str__() == '-100,00 €'
-
 
     def test_euroit_custom(self):
         """test_euroit_custom."""
@@ -2653,7 +2654,8 @@ class TestEuroIT:
         assert euroit.symbol_separator == '_'
         assert euroit.localized_symbol == 'IT€'
         assert euroit.convertion == ''
-        assert euroit.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euroit.__hash__() == hash(
+            (euroit.__class__, decimal, 'EUR', '978'))
         assert euroit.__repr__() == (
             'EuroIT(amount: 1000, '
             'alpha_code: "EUR", '
@@ -2669,7 +2671,6 @@ class TestEuroIT:
             'convertion: "", '
             'international: True)')
         assert euroit.__str__() == 'EUR 10,00.00000'
-
 
     def test_euroit_changed(self):
         """test_ceuroit_changed."""
@@ -2727,7 +2728,6 @@ class TestEuroIT:
                 match='can\'t set attribute'):
             euroit.international = True
 
-
     def test_euroit_math_add(self):
         """test_euroit_math_add."""
         euroit_one = EuroIT(amount=1)
@@ -2740,14 +2740,14 @@ class TestEuroIT:
             _ = euroit_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'euro.EuroIT\'> '
                     'and <class \'str\'>.')):
             _ = euroit_one.__add__('1.00')
         assert (
             euroit_one +
             euroit_two) == euroit_three
-
 
     def test_euroit_slots(self):
         """test_euroit_slots."""
@@ -2766,6 +2766,7 @@ from multicurrency import EuroXK
 
 
 class TestEuroXK:
+    """EuroXK currency tests."""
 
     def test_euroxk(self):
         """test_euroxk."""
@@ -2785,7 +2786,8 @@ class TestEuroXK:
         assert euroxk.symbol_separator == '\u00A0'
         assert euroxk.localized_symbol == 'XK€'
         assert euroxk.convertion == ''
-        assert euroxk.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euroxk.__hash__() == hash(
+            (euroxk.__class__, decimal, 'EUR', '978'))
         assert euroxk.__repr__() == (
             'EuroXK(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EUR", '
@@ -2801,7 +2803,6 @@ class TestEuroXK:
             'convertion: "", '
             'international: False)')
         assert euroxk.__str__() == '0,14 €'
-
 
     def test_euroxk_negative(self):
         """test_euroxk_negative."""
@@ -2820,7 +2821,8 @@ class TestEuroXK:
         assert euroxk.symbol_separator == '\u00A0'
         assert euroxk.localized_symbol == 'XK€'
         assert euroxk.convertion == ''
-        assert euroxk.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euroxk.__hash__() == hash(
+            (euroxk.__class__, decimal, 'EUR', '978'))
         assert euroxk.__repr__() == (
             'EuroXK(amount: -100, '
             'alpha_code: "EUR", '
@@ -2836,7 +2838,6 @@ class TestEuroXK:
             'convertion: "", '
             'international: False)')
         assert euroxk.__str__() == '-100,00 €'
-
 
     def test_euroxk_custom(self):
         """test_euroxk_custom."""
@@ -2864,7 +2865,8 @@ class TestEuroXK:
         assert euroxk.symbol_separator == '_'
         assert euroxk.localized_symbol == 'XK€'
         assert euroxk.convertion == ''
-        assert euroxk.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euroxk.__hash__() == hash(
+            (euroxk.__class__, decimal, 'EUR', '978'))
         assert euroxk.__repr__() == (
             'EuroXK(amount: 1000, '
             'alpha_code: "EUR", '
@@ -2880,7 +2882,6 @@ class TestEuroXK:
             'convertion: "", '
             'international: True)')
         assert euroxk.__str__() == 'EUR 10,00.00000'
-
 
     def test_euroxk_changed(self):
         """test_ceuroxk_changed."""
@@ -2938,7 +2939,6 @@ class TestEuroXK:
                 match='can\'t set attribute'):
             euroxk.international = True
 
-
     def test_euroxk_math_add(self):
         """test_euroxk_math_add."""
         euroxk_one = EuroXK(amount=1)
@@ -2951,14 +2951,14 @@ class TestEuroXK:
             _ = euroxk_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'euro.EuroXK\'> '
                     'and <class \'str\'>.')):
             _ = euroxk_one.__add__('1.00')
         assert (
             euroxk_one +
             euroxk_two) == euroxk_three
-
 
     def test_euroxk_slots(self):
         """test_euroxk_slots."""
@@ -2977,6 +2977,7 @@ from multicurrency import EuroLV
 
 
 class TestEuroLV:
+    """EuroLV currency tests."""
 
     def test_eurolv(self):
         """test_eurolv."""
@@ -2996,7 +2997,8 @@ class TestEuroLV:
         assert eurolv.symbol_separator == '\u00A0'
         assert eurolv.localized_symbol == 'LV€'
         assert eurolv.convertion == ''
-        assert eurolv.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurolv.__hash__() == hash(
+            (eurolv.__class__, decimal, 'EUR', '978'))
         assert eurolv.__repr__() == (
             'EuroLV(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EUR", '
@@ -3012,7 +3014,6 @@ class TestEuroLV:
             'convertion: "", '
             'international: False)')
         assert eurolv.__str__() == '0,14 €'
-
 
     def test_eurolv_negative(self):
         """test_eurolv_negative."""
@@ -3031,7 +3032,8 @@ class TestEuroLV:
         assert eurolv.symbol_separator == '\u00A0'
         assert eurolv.localized_symbol == 'LV€'
         assert eurolv.convertion == ''
-        assert eurolv.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurolv.__hash__() == hash(
+            (eurolv.__class__, decimal, 'EUR', '978'))
         assert eurolv.__repr__() == (
             'EuroLV(amount: -100, '
             'alpha_code: "EUR", '
@@ -3047,7 +3049,6 @@ class TestEuroLV:
             'convertion: "", '
             'international: False)')
         assert eurolv.__str__() == '-100,00 €'
-
 
     def test_eurolv_custom(self):
         """test_eurolv_custom."""
@@ -3075,7 +3076,8 @@ class TestEuroLV:
         assert eurolv.symbol_separator == '_'
         assert eurolv.localized_symbol == 'LV€'
         assert eurolv.convertion == ''
-        assert eurolv.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurolv.__hash__() == hash(
+            (eurolv.__class__, decimal, 'EUR', '978'))
         assert eurolv.__repr__() == (
             'EuroLV(amount: 1000, '
             'alpha_code: "EUR", '
@@ -3091,7 +3093,6 @@ class TestEuroLV:
             'convertion: "", '
             'international: True)')
         assert eurolv.__str__() == 'EUR 10,00.00000'
-
 
     def test_eurolv_changed(self):
         """test_ceurolv_changed."""
@@ -3149,7 +3150,6 @@ class TestEuroLV:
                 match='can\'t set attribute'):
             eurolv.international = True
 
-
     def test_eurolv_math_add(self):
         """test_eurolv_math_add."""
         eurolv_one = EuroLV(amount=1)
@@ -3162,14 +3162,14 @@ class TestEuroLV:
             _ = eurolv_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'euro.EuroLV\'> '
                     'and <class \'str\'>.')):
             _ = eurolv_one.__add__('1.00')
         assert (
             eurolv_one +
             eurolv_two) == eurolv_three
-
 
     def test_eurolv_slots(self):
         """test_eurolv_slots."""
@@ -3188,6 +3188,7 @@ from multicurrency import EuroLT
 
 
 class TestEuroLT:
+    """EuroLT currency tests."""
 
     def test_eurolt(self):
         """test_eurolt."""
@@ -3207,7 +3208,8 @@ class TestEuroLT:
         assert eurolt.symbol_separator == '\u00A0'
         assert eurolt.localized_symbol == 'LT€'
         assert eurolt.convertion == ''
-        assert eurolt.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurolt.__hash__() == hash(
+            (eurolt.__class__, decimal, 'EUR', '978'))
         assert eurolt.__repr__() == (
             'EuroLT(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EUR", '
@@ -3223,7 +3225,6 @@ class TestEuroLT:
             'convertion: "", '
             'international: False)')
         assert eurolt.__str__() == '0,14 €'
-
 
     def test_eurolt_negative(self):
         """test_eurolt_negative."""
@@ -3242,7 +3243,8 @@ class TestEuroLT:
         assert eurolt.symbol_separator == '\u00A0'
         assert eurolt.localized_symbol == 'LT€'
         assert eurolt.convertion == ''
-        assert eurolt.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurolt.__hash__() == hash(
+            (eurolt.__class__, decimal, 'EUR', '978'))
         assert eurolt.__repr__() == (
             'EuroLT(amount: -100, '
             'alpha_code: "EUR", '
@@ -3258,7 +3260,6 @@ class TestEuroLT:
             'convertion: "", '
             'international: False)')
         assert eurolt.__str__() == '-100,00 €'
-
 
     def test_eurolt_custom(self):
         """test_eurolt_custom."""
@@ -3286,7 +3287,8 @@ class TestEuroLT:
         assert eurolt.symbol_separator == '_'
         assert eurolt.localized_symbol == 'LT€'
         assert eurolt.convertion == ''
-        assert eurolt.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurolt.__hash__() == hash(
+            (eurolt.__class__, decimal, 'EUR', '978'))
         assert eurolt.__repr__() == (
             'EuroLT(amount: 1000, '
             'alpha_code: "EUR", '
@@ -3302,7 +3304,6 @@ class TestEuroLT:
             'convertion: "", '
             'international: True)')
         assert eurolt.__str__() == 'EUR 10,00.00000'
-
 
     def test_eurolt_changed(self):
         """test_ceurolt_changed."""
@@ -3360,7 +3361,6 @@ class TestEuroLT:
                 match='can\'t set attribute'):
             eurolt.international = True
 
-
     def test_eurolt_math_add(self):
         """test_eurolt_math_add."""
         eurolt_one = EuroLT(amount=1)
@@ -3373,14 +3373,14 @@ class TestEuroLT:
             _ = eurolt_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'euro.EuroLT\'> '
                     'and <class \'str\'>.')):
             _ = eurolt_one.__add__('1.00')
         assert (
             eurolt_one +
             eurolt_two) == eurolt_three
-
 
     def test_eurolt_slots(self):
         """test_eurolt_slots."""
@@ -3399,6 +3399,7 @@ from multicurrency import EuroLU
 
 
 class TestEuroLU:
+    """EuroLU currency tests."""
 
     def test_eurolu(self):
         """test_eurolu."""
@@ -3418,7 +3419,8 @@ class TestEuroLU:
         assert eurolu.symbol_separator == '\u00A0'
         assert eurolu.localized_symbol == 'LU€'
         assert eurolu.convertion == ''
-        assert eurolu.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurolu.__hash__() == hash(
+            (eurolu.__class__, decimal, 'EUR', '978'))
         assert eurolu.__repr__() == (
             'EuroLU(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EUR", '
@@ -3434,7 +3436,6 @@ class TestEuroLU:
             'convertion: "", '
             'international: False)')
         assert eurolu.__str__() == '0,14 €'
-
 
     def test_eurolu_negative(self):
         """test_eurolu_negative."""
@@ -3453,7 +3454,8 @@ class TestEuroLU:
         assert eurolu.symbol_separator == '\u00A0'
         assert eurolu.localized_symbol == 'LU€'
         assert eurolu.convertion == ''
-        assert eurolu.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurolu.__hash__() == hash(
+            (eurolu.__class__, decimal, 'EUR', '978'))
         assert eurolu.__repr__() == (
             'EuroLU(amount: -100, '
             'alpha_code: "EUR", '
@@ -3469,7 +3471,6 @@ class TestEuroLU:
             'convertion: "", '
             'international: False)')
         assert eurolu.__str__() == '-100,00 €'
-
 
     def test_eurolu_custom(self):
         """test_eurolu_custom."""
@@ -3497,7 +3498,8 @@ class TestEuroLU:
         assert eurolu.symbol_separator == '_'
         assert eurolu.localized_symbol == 'LU€'
         assert eurolu.convertion == ''
-        assert eurolu.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurolu.__hash__() == hash(
+            (eurolu.__class__, decimal, 'EUR', '978'))
         assert eurolu.__repr__() == (
             'EuroLU(amount: 1000, '
             'alpha_code: "EUR", '
@@ -3513,7 +3515,6 @@ class TestEuroLU:
             'convertion: "", '
             'international: True)')
         assert eurolu.__str__() == 'EUR 10,00.00000'
-
 
     def test_eurolu_changed(self):
         """test_ceurolu_changed."""
@@ -3571,7 +3572,6 @@ class TestEuroLU:
                 match='can\'t set attribute'):
             eurolu.international = True
 
-
     def test_eurolu_math_add(self):
         """test_eurolu_math_add."""
         eurolu_one = EuroLU(amount=1)
@@ -3584,14 +3584,14 @@ class TestEuroLU:
             _ = eurolu_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'euro.EuroLU\'> '
                     'and <class \'str\'>.')):
             _ = eurolu_one.__add__('1.00')
         assert (
             eurolu_one +
             eurolu_two) == eurolu_three
-
 
     def test_eurolu_slots(self):
         """test_eurolu_slots."""
@@ -3610,6 +3610,7 @@ from multicurrency import EuroMT
 
 
 class TestEuroMT:
+    """EuroMT currency tests."""
 
     def test_euromt(self):
         """test_euromt."""
@@ -3629,7 +3630,8 @@ class TestEuroMT:
         assert euromt.symbol_separator == ''
         assert euromt.localized_symbol == 'MT€'
         assert euromt.convertion == ''
-        assert euromt.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euromt.__hash__() == hash(
+            (euromt.__class__, decimal, 'EUR', '978'))
         assert euromt.__repr__() == (
             'EuroMT(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EUR", '
@@ -3645,7 +3647,6 @@ class TestEuroMT:
             'convertion: "", '
             'international: False)')
         assert euromt.__str__() == '€0.14'
-
 
     def test_euromt_negative(self):
         """test_euromt_negative."""
@@ -3664,7 +3665,8 @@ class TestEuroMT:
         assert euromt.symbol_separator == ''
         assert euromt.localized_symbol == 'MT€'
         assert euromt.convertion == ''
-        assert euromt.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euromt.__hash__() == hash(
+            (euromt.__class__, decimal, 'EUR', '978'))
         assert euromt.__repr__() == (
             'EuroMT(amount: -100, '
             'alpha_code: "EUR", '
@@ -3680,7 +3682,6 @@ class TestEuroMT:
             'convertion: "", '
             'international: False)')
         assert euromt.__str__() == '€-100.00'
-
 
     def test_euromt_custom(self):
         """test_euromt_custom."""
@@ -3708,7 +3709,8 @@ class TestEuroMT:
         assert euromt.symbol_separator == '_'
         assert euromt.localized_symbol == 'MT€'
         assert euromt.convertion == ''
-        assert euromt.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euromt.__hash__() == hash(
+            (euromt.__class__, decimal, 'EUR', '978'))
         assert euromt.__repr__() == (
             'EuroMT(amount: 1000, '
             'alpha_code: "EUR", '
@@ -3724,7 +3726,6 @@ class TestEuroMT:
             'convertion: "", '
             'international: True)')
         assert euromt.__str__() == 'EUR 10,00.00000'
-
 
     def test_euromt_changed(self):
         """test_ceuromt_changed."""
@@ -3782,7 +3783,6 @@ class TestEuroMT:
                 match='can\'t set attribute'):
             euromt.international = True
 
-
     def test_euromt_math_add(self):
         """test_euromt_math_add."""
         euromt_one = EuroMT(amount=1)
@@ -3795,14 +3795,14 @@ class TestEuroMT:
             _ = euromt_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'euro.EuroMT\'> '
                     'and <class \'str\'>.')):
             _ = euromt_one.__add__('1.00')
         assert (
             euromt_one +
             euromt_two) == euromt_three
-
 
     def test_euromt_slots(self):
         """test_euromt_slots."""
@@ -3821,6 +3821,7 @@ from multicurrency import EuroMC
 
 
 class TestEuroMC:
+    """EuroMC currency tests."""
 
     def test_euromc(self):
         """test_euromc."""
@@ -3840,7 +3841,8 @@ class TestEuroMC:
         assert euromc.symbol_separator == '\u00A0'
         assert euromc.localized_symbol == 'MC€'
         assert euromc.convertion == ''
-        assert euromc.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euromc.__hash__() == hash(
+            (euromc.__class__, decimal, 'EUR', '978'))
         assert euromc.__repr__() == (
             'EuroMC(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EUR", '
@@ -3856,7 +3858,6 @@ class TestEuroMC:
             'convertion: "", '
             'international: False)')
         assert euromc.__str__() == '0,14 €'
-
 
     def test_euromc_negative(self):
         """test_euromc_negative."""
@@ -3875,7 +3876,8 @@ class TestEuroMC:
         assert euromc.symbol_separator == '\u00A0'
         assert euromc.localized_symbol == 'MC€'
         assert euromc.convertion == ''
-        assert euromc.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euromc.__hash__() == hash(
+            (euromc.__class__, decimal, 'EUR', '978'))
         assert euromc.__repr__() == (
             'EuroMC(amount: -100, '
             'alpha_code: "EUR", '
@@ -3891,7 +3893,6 @@ class TestEuroMC:
             'convertion: "", '
             'international: False)')
         assert euromc.__str__() == '-100,00 €'
-
 
     def test_euromc_custom(self):
         """test_euromc_custom."""
@@ -3919,7 +3920,8 @@ class TestEuroMC:
         assert euromc.symbol_separator == '_'
         assert euromc.localized_symbol == 'MC€'
         assert euromc.convertion == ''
-        assert euromc.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euromc.__hash__() == hash(
+            (euromc.__class__, decimal, 'EUR', '978'))
         assert euromc.__repr__() == (
             'EuroMC(amount: 1000, '
             'alpha_code: "EUR", '
@@ -3935,7 +3937,6 @@ class TestEuroMC:
             'convertion: "", '
             'international: True)')
         assert euromc.__str__() == 'EUR 10,00.00000'
-
 
     def test_euromc_changed(self):
         """test_ceuromc_changed."""
@@ -3993,7 +3994,6 @@ class TestEuroMC:
                 match='can\'t set attribute'):
             euromc.international = True
 
-
     def test_euromc_math_add(self):
         """test_euromc_math_add."""
         euromc_one = EuroMC(amount=1)
@@ -4006,14 +4006,14 @@ class TestEuroMC:
             _ = euromc_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'euro.EuroMC\'> '
                     'and <class \'str\'>.')):
             _ = euromc_one.__add__('1.00')
         assert (
             euromc_one +
             euromc_two) == euromc_three
-
 
     def test_euromc_slots(self):
         """test_euromc_slots."""
@@ -4032,6 +4032,7 @@ from multicurrency import EuroME
 
 
 class TestEuroME:
+    """EuroME currency tests."""
 
     def test_eurome(self):
         """test_eurome."""
@@ -4051,7 +4052,8 @@ class TestEuroME:
         assert eurome.symbol_separator == '\u00A0'
         assert eurome.localized_symbol == 'ME€'
         assert eurome.convertion == ''
-        assert eurome.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurome.__hash__() == hash(
+            (eurome.__class__, decimal, 'EUR', '978'))
         assert eurome.__repr__() == (
             'EuroME(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EUR", '
@@ -4067,7 +4069,6 @@ class TestEuroME:
             'convertion: "", '
             'international: False)')
         assert eurome.__str__() == '0,14 €'
-
 
     def test_eurome_negative(self):
         """test_eurome_negative."""
@@ -4086,7 +4087,8 @@ class TestEuroME:
         assert eurome.symbol_separator == '\u00A0'
         assert eurome.localized_symbol == 'ME€'
         assert eurome.convertion == ''
-        assert eurome.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurome.__hash__() == hash(
+            (eurome.__class__, decimal, 'EUR', '978'))
         assert eurome.__repr__() == (
             'EuroME(amount: -100, '
             'alpha_code: "EUR", '
@@ -4102,7 +4104,6 @@ class TestEuroME:
             'convertion: "", '
             'international: False)')
         assert eurome.__str__() == '-100,00 €'
-
 
     def test_eurome_custom(self):
         """test_eurome_custom."""
@@ -4130,7 +4131,8 @@ class TestEuroME:
         assert eurome.symbol_separator == '_'
         assert eurome.localized_symbol == 'ME€'
         assert eurome.convertion == ''
-        assert eurome.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurome.__hash__() == hash(
+            (eurome.__class__, decimal, 'EUR', '978'))
         assert eurome.__repr__() == (
             'EuroME(amount: 1000, '
             'alpha_code: "EUR", '
@@ -4146,7 +4148,6 @@ class TestEuroME:
             'convertion: "", '
             'international: True)')
         assert eurome.__str__() == 'EUR 10,00.00000'
-
 
     def test_eurome_changed(self):
         """test_ceurome_changed."""
@@ -4204,7 +4205,6 @@ class TestEuroME:
                 match='can\'t set attribute'):
             eurome.international = True
 
-
     def test_eurome_math_add(self):
         """test_eurome_math_add."""
         eurome_one = EuroME(amount=1)
@@ -4217,14 +4217,14 @@ class TestEuroME:
             _ = eurome_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'euro.EuroME\'> '
                     'and <class \'str\'>.')):
             _ = eurome_one.__add__('1.00')
         assert (
             eurome_one +
             eurome_two) == eurome_three
-
 
     def test_eurome_slots(self):
         """test_eurome_slots."""
@@ -4243,6 +4243,7 @@ from multicurrency import EuroNL
 
 
 class TestEuroNL:
+    """EuroNL currency tests."""
 
     def test_euronl(self):
         """test_euronl."""
@@ -4262,7 +4263,8 @@ class TestEuroNL:
         assert euronl.symbol_separator == '\u00A0'
         assert euronl.localized_symbol == 'NL€'
         assert euronl.convertion == ''
-        assert euronl.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euronl.__hash__() == hash(
+            (euronl.__class__, decimal, 'EUR', '978'))
         assert euronl.__repr__() == (
             'EuroNL(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EUR", '
@@ -4278,7 +4280,6 @@ class TestEuroNL:
             'convertion: "", '
             'international: False)')
         assert euronl.__str__() == '€ 0,14'
-
 
     def test_euronl_negative(self):
         """test_euronl_negative."""
@@ -4297,7 +4298,8 @@ class TestEuroNL:
         assert euronl.symbol_separator == '\u00A0'
         assert euronl.localized_symbol == 'NL€'
         assert euronl.convertion == ''
-        assert euronl.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euronl.__hash__() == hash(
+            (euronl.__class__, decimal, 'EUR', '978'))
         assert euronl.__repr__() == (
             'EuroNL(amount: -100, '
             'alpha_code: "EUR", '
@@ -4313,7 +4315,6 @@ class TestEuroNL:
             'convertion: "", '
             'international: False)')
         assert euronl.__str__() == '€ -100,00'
-
 
     def test_euronl_custom(self):
         """test_euronl_custom."""
@@ -4341,7 +4342,8 @@ class TestEuroNL:
         assert euronl.symbol_separator == '_'
         assert euronl.localized_symbol == 'NL€'
         assert euronl.convertion == ''
-        assert euronl.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euronl.__hash__() == hash(
+            (euronl.__class__, decimal, 'EUR', '978'))
         assert euronl.__repr__() == (
             'EuroNL(amount: 1000, '
             'alpha_code: "EUR", '
@@ -4357,7 +4359,6 @@ class TestEuroNL:
             'convertion: "", '
             'international: True)')
         assert euronl.__str__() == 'EUR 10,00.00000'
-
 
     def test_euronl_changed(self):
         """test_ceuronl_changed."""
@@ -4415,7 +4416,6 @@ class TestEuroNL:
                 match='can\'t set attribute'):
             euronl.international = True
 
-
     def test_euronl_math_add(self):
         """test_euronl_math_add."""
         euronl_one = EuroNL(amount=1)
@@ -4428,14 +4428,14 @@ class TestEuroNL:
             _ = euronl_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'euro.EuroNL\'> '
                     'and <class \'str\'>.')):
             _ = euronl_one.__add__('1.00')
         assert (
             euronl_one +
             euronl_two) == euronl_three
-
 
     def test_euronl_slots(self):
         """test_euronl_slots."""
@@ -4454,6 +4454,7 @@ from multicurrency import EuroPT
 
 
 class TestEuroPT:
+    """EuroPT currency tests."""
 
     def test_europt(self):
         """test_europt."""
@@ -4473,7 +4474,8 @@ class TestEuroPT:
         assert europt.symbol_separator == '\u00A0'
         assert europt.localized_symbol == 'PT€'
         assert europt.convertion == ''
-        assert europt.__hash__() == hash((decimal, 'EUR', '978'))
+        assert europt.__hash__() == hash(
+            (europt.__class__, decimal, 'EUR', '978'))
         assert europt.__repr__() == (
             'EuroPT(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EUR", '
@@ -4489,7 +4491,6 @@ class TestEuroPT:
             'convertion: "", '
             'international: False)')
         assert europt.__str__() == '€ 0,14'
-
 
     def test_europt_negative(self):
         """test_europt_negative."""
@@ -4508,7 +4509,8 @@ class TestEuroPT:
         assert europt.symbol_separator == '\u00A0'
         assert europt.localized_symbol == 'PT€'
         assert europt.convertion == ''
-        assert europt.__hash__() == hash((decimal, 'EUR', '978'))
+        assert europt.__hash__() == hash(
+            (europt.__class__, decimal, 'EUR', '978'))
         assert europt.__repr__() == (
             'EuroPT(amount: -100, '
             'alpha_code: "EUR", '
@@ -4524,7 +4526,6 @@ class TestEuroPT:
             'convertion: "", '
             'international: False)')
         assert europt.__str__() == '€ -100,00'
-
 
     def test_europt_custom(self):
         """test_europt_custom."""
@@ -4552,7 +4553,8 @@ class TestEuroPT:
         assert europt.symbol_separator == '_'
         assert europt.localized_symbol == 'PT€'
         assert europt.convertion == ''
-        assert europt.__hash__() == hash((decimal, 'EUR', '978'))
+        assert europt.__hash__() == hash(
+            (europt.__class__, decimal, 'EUR', '978'))
         assert europt.__repr__() == (
             'EuroPT(amount: 1000, '
             'alpha_code: "EUR", '
@@ -4568,7 +4570,6 @@ class TestEuroPT:
             'convertion: "", '
             'international: True)')
         assert europt.__str__() == 'EUR 10,00.00000'
-
 
     def test_europt_changed(self):
         """test_ceuropt_changed."""
@@ -4626,7 +4627,6 @@ class TestEuroPT:
                 match='can\'t set attribute'):
             europt.international = True
 
-
     def test_europt_math_add(self):
         """test_europt_math_add."""
         europt_one = EuroPT(amount=1)
@@ -4639,14 +4639,14 @@ class TestEuroPT:
             _ = europt_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'euro.EuroPT\'> '
                     'and <class \'str\'>.')):
             _ = europt_one.__add__('1.00')
         assert (
             europt_one +
             europt_two) == europt_three
-
 
     def test_europt_slots(self):
         """test_europt_slots."""
@@ -4665,6 +4665,7 @@ from multicurrency import EuroSM
 
 
 class TestEuroSM:
+    """EuroSM currency tests."""
 
     def test_eurosm(self):
         """test_eurosm."""
@@ -4684,7 +4685,8 @@ class TestEuroSM:
         assert eurosm.symbol_separator == '\u00A0'
         assert eurosm.localized_symbol == 'SM€'
         assert eurosm.convertion == ''
-        assert eurosm.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurosm.__hash__() == hash(
+            (eurosm.__class__, decimal, 'EUR', '978'))
         assert eurosm.__repr__() == (
             'EuroSM(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EUR", '
@@ -4700,7 +4702,6 @@ class TestEuroSM:
             'convertion: "", '
             'international: False)')
         assert eurosm.__str__() == '0,14 €'
-
 
     def test_eurosm_negative(self):
         """test_eurosm_negative."""
@@ -4719,7 +4720,8 @@ class TestEuroSM:
         assert eurosm.symbol_separator == '\u00A0'
         assert eurosm.localized_symbol == 'SM€'
         assert eurosm.convertion == ''
-        assert eurosm.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurosm.__hash__() == hash(
+            (eurosm.__class__, decimal, 'EUR', '978'))
         assert eurosm.__repr__() == (
             'EuroSM(amount: -100, '
             'alpha_code: "EUR", '
@@ -4735,7 +4737,6 @@ class TestEuroSM:
             'convertion: "", '
             'international: False)')
         assert eurosm.__str__() == '-100,00 €'
-
 
     def test_eurosm_custom(self):
         """test_eurosm_custom."""
@@ -4763,7 +4764,8 @@ class TestEuroSM:
         assert eurosm.symbol_separator == '_'
         assert eurosm.localized_symbol == 'SM€'
         assert eurosm.convertion == ''
-        assert eurosm.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurosm.__hash__() == hash(
+            (eurosm.__class__, decimal, 'EUR', '978'))
         assert eurosm.__repr__() == (
             'EuroSM(amount: 1000, '
             'alpha_code: "EUR", '
@@ -4779,7 +4781,6 @@ class TestEuroSM:
             'convertion: "", '
             'international: True)')
         assert eurosm.__str__() == 'EUR 10,00.00000'
-
 
     def test_eurosm_changed(self):
         """test_ceurosm_changed."""
@@ -4837,7 +4838,6 @@ class TestEuroSM:
                 match='can\'t set attribute'):
             eurosm.international = True
 
-
     def test_eurosm_math_add(self):
         """test_eurosm_math_add."""
         eurosm_one = EuroSM(amount=1)
@@ -4850,14 +4850,14 @@ class TestEuroSM:
             _ = eurosm_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'euro.EuroSM\'> '
                     'and <class \'str\'>.')):
             _ = eurosm_one.__add__('1.00')
         assert (
             eurosm_one +
             eurosm_two) == eurosm_three
-
 
     def test_eurosm_slots(self):
         """test_eurosm_slots."""
@@ -4876,6 +4876,7 @@ from multicurrency import EuroSK
 
 
 class TestEuroSK:
+    """EuroSK currency tests."""
 
     def test_eurosk(self):
         """test_eurosk."""
@@ -4895,7 +4896,8 @@ class TestEuroSK:
         assert eurosk.symbol_separator == '\u00A0'
         assert eurosk.localized_symbol == 'SK€'
         assert eurosk.convertion == ''
-        assert eurosk.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurosk.__hash__() == hash(
+            (eurosk.__class__, decimal, 'EUR', '978'))
         assert eurosk.__repr__() == (
             'EuroSK(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EUR", '
@@ -4911,7 +4913,6 @@ class TestEuroSK:
             'convertion: "", '
             'international: False)')
         assert eurosk.__str__() == '0,14 €'
-
 
     def test_eurosk_negative(self):
         """test_eurosk_negative."""
@@ -4930,7 +4931,8 @@ class TestEuroSK:
         assert eurosk.symbol_separator == '\u00A0'
         assert eurosk.localized_symbol == 'SK€'
         assert eurosk.convertion == ''
-        assert eurosk.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurosk.__hash__() == hash(
+            (eurosk.__class__, decimal, 'EUR', '978'))
         assert eurosk.__repr__() == (
             'EuroSK(amount: -100, '
             'alpha_code: "EUR", '
@@ -4946,7 +4948,6 @@ class TestEuroSK:
             'convertion: "", '
             'international: False)')
         assert eurosk.__str__() == '-100,00 €'
-
 
     def test_eurosk_custom(self):
         """test_eurosk_custom."""
@@ -4974,7 +4975,8 @@ class TestEuroSK:
         assert eurosk.symbol_separator == '_'
         assert eurosk.localized_symbol == 'SK€'
         assert eurosk.convertion == ''
-        assert eurosk.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurosk.__hash__() == hash(
+            (eurosk.__class__, decimal, 'EUR', '978'))
         assert eurosk.__repr__() == (
             'EuroSK(amount: 1000, '
             'alpha_code: "EUR", '
@@ -4990,7 +4992,6 @@ class TestEuroSK:
             'convertion: "", '
             'international: True)')
         assert eurosk.__str__() == 'EUR 10,00.00000'
-
 
     def test_eurosk_changed(self):
         """test_ceurosk_changed."""
@@ -5048,7 +5049,6 @@ class TestEuroSK:
                 match='can\'t set attribute'):
             eurosk.international = True
 
-
     def test_eurosk_math_add(self):
         """test_eurosk_math_add."""
         eurosk_one = EuroSK(amount=1)
@@ -5061,14 +5061,14 @@ class TestEuroSK:
             _ = eurosk_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'euro.EuroSK\'> '
                     'and <class \'str\'>.')):
             _ = eurosk_one.__add__('1.00')
         assert (
             eurosk_one +
             eurosk_two) == eurosk_three
-
 
     def test_eurosk_slots(self):
         """test_eurosk_slots."""
@@ -5087,6 +5087,7 @@ from multicurrency import EuroSI
 
 
 class TestEuroSI:
+    """EuroSI currency tests."""
 
     def test_eurosi(self):
         """test_eurosi."""
@@ -5106,7 +5107,8 @@ class TestEuroSI:
         assert eurosi.symbol_separator == '\u00A0'
         assert eurosi.localized_symbol == 'SI€'
         assert eurosi.convertion == ''
-        assert eurosi.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurosi.__hash__() == hash(
+            (eurosi.__class__, decimal, 'EUR', '978'))
         assert eurosi.__repr__() == (
             'EuroSI(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EUR", '
@@ -5122,7 +5124,6 @@ class TestEuroSI:
             'convertion: "", '
             'international: False)')
         assert eurosi.__str__() == '0,14 €'
-
 
     def test_eurosi_negative(self):
         """test_eurosi_negative."""
@@ -5141,7 +5142,8 @@ class TestEuroSI:
         assert eurosi.symbol_separator == '\u00A0'
         assert eurosi.localized_symbol == 'SI€'
         assert eurosi.convertion == ''
-        assert eurosi.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurosi.__hash__() == hash(
+            (eurosi.__class__, decimal, 'EUR', '978'))
         assert eurosi.__repr__() == (
             'EuroSI(amount: -100, '
             'alpha_code: "EUR", '
@@ -5157,7 +5159,6 @@ class TestEuroSI:
             'convertion: "", '
             'international: False)')
         assert eurosi.__str__() == '-100,00 €'
-
 
     def test_eurosi_custom(self):
         """test_eurosi_custom."""
@@ -5185,7 +5186,8 @@ class TestEuroSI:
         assert eurosi.symbol_separator == '_'
         assert eurosi.localized_symbol == 'SI€'
         assert eurosi.convertion == ''
-        assert eurosi.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurosi.__hash__() == hash(
+            (eurosi.__class__, decimal, 'EUR', '978'))
         assert eurosi.__repr__() == (
             'EuroSI(amount: 1000, '
             'alpha_code: "EUR", '
@@ -5201,7 +5203,6 @@ class TestEuroSI:
             'convertion: "", '
             'international: True)')
         assert eurosi.__str__() == 'EUR 10,00.00000'
-
 
     def test_eurosi_changed(self):
         """test_ceurosi_changed."""
@@ -5259,7 +5260,6 @@ class TestEuroSI:
                 match='can\'t set attribute'):
             eurosi.international = True
 
-
     def test_eurosi_math_add(self):
         """test_eurosi_math_add."""
         eurosi_one = EuroSI(amount=1)
@@ -5272,14 +5272,14 @@ class TestEuroSI:
             _ = eurosi_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'euro.EuroSI\'> '
                     'and <class \'str\'>.')):
             _ = eurosi_one.__add__('1.00')
         assert (
             eurosi_one +
             eurosi_two) == eurosi_three
-
 
     def test_eurosi_slots(self):
         """test_eurosi_slots."""
@@ -5298,6 +5298,7 @@ from multicurrency import EuroES
 
 
 class TestEuroES:
+    """EuroES currency tests."""
 
     def test_euroes(self):
         """test_euroes."""
@@ -5317,7 +5318,8 @@ class TestEuroES:
         assert euroes.symbol_separator == '\u00A0'
         assert euroes.localized_symbol == 'ES€'
         assert euroes.convertion == ''
-        assert euroes.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euroes.__hash__() == hash(
+            (euroes.__class__, decimal, 'EUR', '978'))
         assert euroes.__repr__() == (
             'EuroES(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EUR", '
@@ -5333,7 +5335,6 @@ class TestEuroES:
             'convertion: "", '
             'international: False)')
         assert euroes.__str__() == '0,14 €'
-
 
     def test_euroes_negative(self):
         """test_euroes_negative."""
@@ -5352,7 +5353,8 @@ class TestEuroES:
         assert euroes.symbol_separator == '\u00A0'
         assert euroes.localized_symbol == 'ES€'
         assert euroes.convertion == ''
-        assert euroes.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euroes.__hash__() == hash(
+            (euroes.__class__, decimal, 'EUR', '978'))
         assert euroes.__repr__() == (
             'EuroES(amount: -100, '
             'alpha_code: "EUR", '
@@ -5368,7 +5370,6 @@ class TestEuroES:
             'convertion: "", '
             'international: False)')
         assert euroes.__str__() == '-100,00 €'
-
 
     def test_euroes_custom(self):
         """test_euroes_custom."""
@@ -5396,7 +5397,8 @@ class TestEuroES:
         assert euroes.symbol_separator == '_'
         assert euroes.localized_symbol == 'ES€'
         assert euroes.convertion == ''
-        assert euroes.__hash__() == hash((decimal, 'EUR', '978'))
+        assert euroes.__hash__() == hash(
+            (euroes.__class__, decimal, 'EUR', '978'))
         assert euroes.__repr__() == (
             'EuroES(amount: 1000, '
             'alpha_code: "EUR", '
@@ -5412,7 +5414,6 @@ class TestEuroES:
             'convertion: "", '
             'international: True)')
         assert euroes.__str__() == 'EUR 10,00.00000'
-
 
     def test_euroes_changed(self):
         """test_ceuroes_changed."""
@@ -5470,7 +5471,6 @@ class TestEuroES:
                 match='can\'t set attribute'):
             euroes.international = True
 
-
     def test_euroes_math_add(self):
         """test_euroes_math_add."""
         euroes_one = EuroES(amount=1)
@@ -5483,14 +5483,14 @@ class TestEuroES:
             _ = euroes_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'euro.EuroES\'> '
                     'and <class \'str\'>.')):
             _ = euroes_one.__add__('1.00')
         assert (
             euroes_one +
             euroes_two) == euroes_three
-
 
     def test_euroes_slots(self):
         """test_euroes_slots."""
@@ -5509,6 +5509,7 @@ from multicurrency import EuroVA
 
 
 class TestEuroVA:
+    """EuroVA currency tests."""
 
     def test_eurova(self):
         """test_eurova."""
@@ -5528,7 +5529,8 @@ class TestEuroVA:
         assert eurova.symbol_separator == ''
         assert eurova.localized_symbol == 'VA€'
         assert eurova.convertion == ''
-        assert eurova.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurova.__hash__() == hash(
+            (eurova.__class__, decimal, 'EUR', '978'))
         assert eurova.__repr__() == (
             'EuroVA(amount: 0.1428571428571428571428571429, '
             'alpha_code: "EUR", '
@@ -5544,7 +5546,6 @@ class TestEuroVA:
             'convertion: "", '
             'international: False)')
         assert eurova.__str__() == '€0.14'
-
 
     def test_eurova_negative(self):
         """test_eurova_negative."""
@@ -5563,7 +5564,8 @@ class TestEuroVA:
         assert eurova.symbol_separator == ''
         assert eurova.localized_symbol == 'VA€'
         assert eurova.convertion == ''
-        assert eurova.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurova.__hash__() == hash(
+            (eurova.__class__, decimal, 'EUR', '978'))
         assert eurova.__repr__() == (
             'EuroVA(amount: -100, '
             'alpha_code: "EUR", '
@@ -5579,7 +5581,6 @@ class TestEuroVA:
             'convertion: "", '
             'international: False)')
         assert eurova.__str__() == '€-100.00'
-
 
     def test_eurova_custom(self):
         """test_eurova_custom."""
@@ -5607,7 +5608,8 @@ class TestEuroVA:
         assert eurova.symbol_separator == '_'
         assert eurova.localized_symbol == 'VA€'
         assert eurova.convertion == ''
-        assert eurova.__hash__() == hash((decimal, 'EUR', '978'))
+        assert eurova.__hash__() == hash(
+            (eurova.__class__, decimal, 'EUR', '978'))
         assert eurova.__repr__() == (
             'EuroVA(amount: 1000, '
             'alpha_code: "EUR", '
@@ -5623,7 +5625,6 @@ class TestEuroVA:
             'convertion: "", '
             'international: True)')
         assert eurova.__str__() == 'EUR 10,00.00000'
-
 
     def test_eurova_changed(self):
         """test_ceurova_changed."""
@@ -5681,7 +5682,6 @@ class TestEuroVA:
                 match='can\'t set attribute'):
             eurova.international = True
 
-
     def test_eurova_math_add(self):
         """test_eurova_math_add."""
         eurova_one = EuroVA(amount=1)
@@ -5694,14 +5694,14 @@ class TestEuroVA:
             _ = eurova_one + currency
         with raises(
                 CurrencyTypeException,
-                match=('unsupported operation between <class \'multicurrency.'
+                match=(
+                    'unsupported operation between <class \'multicurrency.'
                     'euro.EuroVA\'> '
                     'and <class \'str\'>.')):
             _ = eurova_one.__add__('1.00')
         assert (
             eurova_one +
             eurova_two) == eurova_three
-
 
     def test_eurova_slots(self):
         """test_eurova_slots."""
