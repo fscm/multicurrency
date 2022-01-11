@@ -12,14 +12,13 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import CzechKoruna
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the Czech Koruna representation."""
-
-from multicurrency import CzechKoruna
 
 
 class TestCzechKoruna:

@@ -12,14 +12,25 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import (
+    EgyptianPound,
+    FalklandIslandsPound,
+    PoundSterling,
+    PoundSterlingGG,
+    PoundSterlingIO,
+    PoundSterlingGB,
+    PoundSterlingIM,
+    GibraltarPound,
+    LebanesePound,
+    SudanesePound,
+    SaintHelenaPound,
+    SyrianPound)
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the Egyptian Pound representation."""
-
-from multicurrency import EgyptianPound
 
 
 class TestEgyptianPound:
@@ -230,8 +241,6 @@ class TestEgyptianPound:
 
 """Tests for the Falkland Islands Pound representation."""
 
-from multicurrency import FalklandIslandsPound
-
 
 class TestFalklandIslandsPound:
     """FalklandIslandsPound currency tests."""
@@ -440,8 +449,6 @@ class TestFalklandIslandsPound:
 
 
 """Tests for the Pound Sterling representation."""
-
-from multicurrency import PoundSterling
 
 
 class TestPoundSterling:
@@ -652,8 +659,6 @@ class TestPoundSterling:
 
 """Tests for the Pound Sterling GG representation."""
 
-from multicurrency import PoundSterlingGG
-
 
 class TestPoundSterlingGG:
     """PoundSterlingGG currency tests."""
@@ -862,8 +867,6 @@ class TestPoundSterlingGG:
 
 
 """Tests for the Pound Sterling IO representation."""
-
-from multicurrency import PoundSterlingIO
 
 
 class TestPoundSterlingIO:
@@ -1074,8 +1077,6 @@ class TestPoundSterlingIO:
 
 """Tests for the Pound Sterling GB representation."""
 
-from multicurrency import PoundSterlingGB
-
 
 class TestPoundSterlingGB:
     """PoundSterlingGB currency tests."""
@@ -1284,8 +1285,6 @@ class TestPoundSterlingGB:
 
 
 """Tests for the Pound Sterling IM representation."""
-
-from multicurrency import PoundSterlingIM
 
 
 class TestPoundSterlingIM:
@@ -1496,8 +1495,6 @@ class TestPoundSterlingIM:
 
 """Tests for the Gibraltar Pound representation."""
 
-from multicurrency import GibraltarPound
-
 
 class TestGibraltarPound:
     """GibraltarPound currency tests."""
@@ -1706,8 +1703,6 @@ class TestGibraltarPound:
 
 
 """Tests for the Lebanese Pound representation."""
-
-from multicurrency import LebanesePound
 
 
 class TestLebanesePound:
@@ -1918,8 +1913,6 @@ class TestLebanesePound:
 
 """Tests for the Sudanese Pound representation."""
 
-from multicurrency import SudanesePound
-
 
 class TestSudanesePound:
     """SudanesePound currency tests."""
@@ -2129,8 +2122,6 @@ class TestSudanesePound:
 
 """Tests for the Saint Helena Pound representation."""
 
-from multicurrency import SaintHelenaPound
-
 
 class TestSaintHelenaPound:
     """SaintHelenaPound currency tests."""
@@ -2339,8 +2330,6 @@ class TestSaintHelenaPound:
 
 
 """Tests for the Syrian Pound representation."""
-
-from multicurrency import SyrianPound
 
 
 class TestSyrianPound:

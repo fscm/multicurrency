@@ -12,14 +12,13 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import ArmenianDram
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the Armenian Dram representation."""
-
-from multicurrency import ArmenianDram
 
 
 class TestArmenianDram:

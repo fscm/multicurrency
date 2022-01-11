@@ -8,7 +8,7 @@
 
 from decimal import Decimal
 from typing import Optional, Union
-from .currency import Currency
+from ._currency import Currency
 
 
 class CzechKoruna(Currency):
@@ -22,7 +22,7 @@ class CzechKoruna(Currency):
         >>> print(czech_koruna)
         123 456,79 Kč
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

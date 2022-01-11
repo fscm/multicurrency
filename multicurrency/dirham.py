@@ -8,7 +8,7 @@
 
 from decimal import Decimal
 from typing import Optional, Union
-from .currency import Currency
+from ._currency import Currency
 
 
 class UAEDirham(Currency):
@@ -22,7 +22,7 @@ class UAEDirham(Currency):
         >>> print(uae_dirham)
         د.إ. ١٢٣٬٤٥٦٫٧٩
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -87,7 +87,7 @@ class MoroccanDirham(Currency):
         >>> print(moroccan_dirham)
         د.م. ١٢٣٬٤٥٦٫٧٩
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

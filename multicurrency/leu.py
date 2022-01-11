@@ -8,7 +8,7 @@
 
 from decimal import Decimal
 from typing import Optional, Union
-from .currency import Currency
+from ._currency import Currency
 
 
 class MoldovanLeu(Currency):
@@ -22,7 +22,7 @@ class MoldovanLeu(Currency):
         >>> print(moldovan_leu)
         123.456,79 L
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -87,7 +87,7 @@ class Leu(Currency):
         >>> print(leu)
         123.456,79 L
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

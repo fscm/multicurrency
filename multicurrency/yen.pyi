@@ -1,4 +1,4 @@
-from .currency import Currency
+from ._currency import Currency
 from decimal import Decimal
 from typing import Optional, Union
 

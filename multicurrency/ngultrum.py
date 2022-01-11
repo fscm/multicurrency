@@ -8,7 +8,7 @@
 
 from decimal import Decimal
 from typing import Optional, Union
-from .currency import Currency
+from ._currency import Currency
 
 
 class Ngultrum(Currency):
@@ -22,7 +22,7 @@ class Ngultrum(Currency):
         >>> print(ngultrum)
         Nu. ༡༢༣,༤༥༦.༧༩
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

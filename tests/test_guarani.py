@@ -12,14 +12,13 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import Guarani
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the Guarani representation."""
-
-from multicurrency import Guarani
 
 
 class TestGuarani:

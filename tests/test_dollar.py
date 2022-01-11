@@ -12,14 +12,72 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import (
+    AustralianDollar,
+    AustralianDollarAU,
+    AustralianDollarKI,
+    AustralianDollarCC,
+    AustralianDollarMR,
+    AustralianDollarTV,
+    BarbadosDollar,
+    BermudianDollar,
+    BruneiDollar,
+    BruneiDollarBN,
+    BruneiDollarSG,
+    BahamianDollar,
+    BelizeDollar,
+    CanadianDollarEN,
+    CanadianDollarFR,
+    FijiDollar,
+    GuyanaDollar,
+    HongKongDollar,
+    JamaicanDollar,
+    CaymanIslandsDollar,
+    LiberianDollar,
+    NamibiaDollar,
+    NewZealandDollar,
+    NewZealandDollarCK,
+    NewZealandDollarNZ,
+    NewZealandDollarNU,
+    NewZealandDollarPN,
+    SolomonIslandsDollar,
+    SingaporeDollar,
+    SingaporeDollarBN,
+    SingaporeDollarSG,
+    SurinameDollar,
+    TrinidadandTobagoDollar,
+    TaiwanDollar,
+    USDollar,
+    USDollarAS,
+    USDollarIO,
+    USDollarVG,
+    USDollarGU,
+    USDollarHT,
+    USDollarMH,
+    USDollarFM,
+    USDollarMP,
+    USDollarPC,
+    USDollarPW,
+    USDollarPA,
+    USDollarPR,
+    USDollarTC,
+    USDollarVI,
+    EasternCaribbeanDollar,
+    EasternCaribbeanDollarAI,
+    EasternCaribbeanDollarAG,
+    EasternCaribbeanDollarDM,
+    EasternCaribbeanDollarGD,
+    EasternCaribbeanDollarMS,
+    EasternCaribbeanDollarKN,
+    EasternCaribbeanDollarLC,
+    EasternCaribbeanDollarVC,
+    ZimbabweDollar)
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the Australian Dollar representation."""
-
-from multicurrency import AustralianDollar
 
 
 class TestAustralianDollar:
@@ -230,8 +288,6 @@ class TestAustralianDollar:
 
 """Tests for the Australian Dollar AU representation."""
 
-from multicurrency import AustralianDollarAU
-
 
 class TestAustralianDollarAU:
     """AustralianDollarAU currency tests."""
@@ -440,8 +496,6 @@ class TestAustralianDollarAU:
 
 
 """Tests for the Australian Dollar KI representation."""
-
-from multicurrency import AustralianDollarKI
 
 
 class TestAustralianDollarKI:
@@ -652,8 +706,6 @@ class TestAustralianDollarKI:
 
 """Tests for the Australian Dollar CC representation."""
 
-from multicurrency import AustralianDollarCC
-
 
 class TestAustralianDollarCC:
     """AustralianDollarCC currency tests."""
@@ -862,8 +914,6 @@ class TestAustralianDollarCC:
 
 
 """Tests for the Australian Dollar MR representation."""
-
-from multicurrency import AustralianDollarMR
 
 
 class TestAustralianDollarMR:
@@ -1074,8 +1124,6 @@ class TestAustralianDollarMR:
 
 """Tests for the Australian Dollar TV representation."""
 
-from multicurrency import AustralianDollarTV
-
 
 class TestAustralianDollarTV:
     """AustralianDollarTV currency tests."""
@@ -1284,8 +1332,6 @@ class TestAustralianDollarTV:
 
 
 """Tests for the Barbados Dollar representation."""
-
-from multicurrency import BarbadosDollar
 
 
 class TestBarbadosDollar:
@@ -1496,8 +1542,6 @@ class TestBarbadosDollar:
 
 """Tests for the Bermudian Dollar representation."""
 
-from multicurrency import BermudianDollar
-
 
 class TestBermudianDollar:
     """BermudianDollar currency tests."""
@@ -1706,8 +1750,6 @@ class TestBermudianDollar:
 
 
 """Tests for the Brunei Dollar representation."""
-
-from multicurrency import BruneiDollar
 
 
 class TestBruneiDollar:
@@ -1918,8 +1960,6 @@ class TestBruneiDollar:
 
 """Tests for the Brunei Dollar BN representation."""
 
-from multicurrency import BruneiDollarBN
-
 
 class TestBruneiDollarBN:
     """BruneiDollarBN currency tests."""
@@ -2128,8 +2168,6 @@ class TestBruneiDollarBN:
 
 
 """Tests for the Brunei Dollar SG representation."""
-
-from multicurrency import BruneiDollarSG
 
 
 class TestBruneiDollarSG:
@@ -2340,8 +2378,6 @@ class TestBruneiDollarSG:
 
 """Tests for the Bahamian Dollar representation."""
 
-from multicurrency import BahamianDollar
-
 
 class TestBahamianDollar:
     """BahamianDollar currency tests."""
@@ -2550,8 +2586,6 @@ class TestBahamianDollar:
 
 
 """Tests for the Belize Dollar representation."""
-
-from multicurrency import BelizeDollar
 
 
 class TestBelizeDollar:
@@ -2762,8 +2796,6 @@ class TestBelizeDollar:
 
 """Tests for the Canadian Dollar EN representation."""
 
-from multicurrency import CanadianDollarEN
-
 
 class TestCanadianDollarEN:
     """CanadianDollarEN currency tests."""
@@ -2972,8 +3004,6 @@ class TestCanadianDollarEN:
 
 
 """Tests for the Canadian Dollar FR representation."""
-
-from multicurrency import CanadianDollarFR
 
 
 class TestCanadianDollarFR:
@@ -3184,8 +3214,6 @@ class TestCanadianDollarFR:
 
 """Tests for the Fiji Dollar representation."""
 
-from multicurrency import FijiDollar
-
 
 class TestFijiDollar:
     """FijiDollar currency tests."""
@@ -3394,8 +3422,6 @@ class TestFijiDollar:
 
 
 """Tests for the Guyana Dollar representation."""
-
-from multicurrency import GuyanaDollar
 
 
 class TestGuyanaDollar:
@@ -3606,8 +3632,6 @@ class TestGuyanaDollar:
 
 """Tests for the Hong Kong Dollar representation."""
 
-from multicurrency import HongKongDollar
-
 
 class TestHongKongDollar:
     """HongKongDollar currency tests."""
@@ -3816,8 +3840,6 @@ class TestHongKongDollar:
 
 
 """Tests for the Jamaican Dollar representation."""
-
-from multicurrency import JamaicanDollar
 
 
 class TestJamaicanDollar:
@@ -4028,8 +4050,6 @@ class TestJamaicanDollar:
 
 """Tests for the Cayman Islands Dollar representation."""
 
-from multicurrency import CaymanIslandsDollar
-
 
 class TestCaymanIslandsDollar:
     """CaymanIslandsDollar currency tests."""
@@ -4238,8 +4258,6 @@ class TestCaymanIslandsDollar:
 
 
 """Tests for the Liberian Dollar representation."""
-
-from multicurrency import LiberianDollar
 
 
 class TestLiberianDollar:
@@ -4450,8 +4468,6 @@ class TestLiberianDollar:
 
 """Tests for the Namibia Dollar representation."""
 
-from multicurrency import NamibiaDollar
-
 
 class TestNamibiaDollar:
     """NamibiaDollar currency tests."""
@@ -4660,8 +4676,6 @@ class TestNamibiaDollar:
 
 
 """Tests for the New Zealand Dollar representation."""
-
-from multicurrency import NewZealandDollar
 
 
 class TestNewZealandDollar:
@@ -4872,8 +4886,6 @@ class TestNewZealandDollar:
 
 """Tests for the New Zealand Dollar CK representation."""
 
-from multicurrency import NewZealandDollarCK
-
 
 class TestNewZealandDollarCK:
     """NewZealandDollarCK currency tests."""
@@ -5082,8 +5094,6 @@ class TestNewZealandDollarCK:
 
 
 """Tests for the New Zealand Dollar NZ representation."""
-
-from multicurrency import NewZealandDollarNZ
 
 
 class TestNewZealandDollarNZ:
@@ -5294,8 +5304,6 @@ class TestNewZealandDollarNZ:
 
 """Tests for the New Zealand Dollar NU representation."""
 
-from multicurrency import NewZealandDollarNU
-
 
 class TestNewZealandDollarNU:
     """NewZealandDollarNU currency tests."""
@@ -5504,8 +5512,6 @@ class TestNewZealandDollarNU:
 
 
 """Tests for the New Zealand Dollar PN representation."""
-
-from multicurrency import NewZealandDollarPN
 
 
 class TestNewZealandDollarPN:
@@ -5716,8 +5722,6 @@ class TestNewZealandDollarPN:
 
 """Tests for the Solomon Islands Dollar representation."""
 
-from multicurrency import SolomonIslandsDollar
-
 
 class TestSolomonIslandsDollar:
     """SolomonIslandsDollar currency tests."""
@@ -5926,8 +5930,6 @@ class TestSolomonIslandsDollar:
 
 
 """Tests for the Singapore Dollar representation."""
-
-from multicurrency import SingaporeDollar
 
 
 class TestSingaporeDollar:
@@ -6138,8 +6140,6 @@ class TestSingaporeDollar:
 
 """Tests for the Singapore Dollar BN representation."""
 
-from multicurrency import SingaporeDollarBN
-
 
 class TestSingaporeDollarBN:
     """SingaporeDollarBN currency tests."""
@@ -6348,8 +6348,6 @@ class TestSingaporeDollarBN:
 
 
 """Tests for the Singapore Dollar SG representation."""
-
-from multicurrency import SingaporeDollarSG
 
 
 class TestSingaporeDollarSG:
@@ -6560,8 +6558,6 @@ class TestSingaporeDollarSG:
 
 """Tests for the Suriname Dollar representation."""
 
-from multicurrency import SurinameDollar
-
 
 class TestSurinameDollar:
     """SurinameDollar currency tests."""
@@ -6770,8 +6766,6 @@ class TestSurinameDollar:
 
 
 """Tests for the Trinidad and Tobago Dollar representation."""
-
-from multicurrency import TrinidadandTobagoDollar
 
 
 class TestTrinidadandTobagoDollar:
@@ -6982,8 +6976,6 @@ class TestTrinidadandTobagoDollar:
 
 """Tests for the Taiwan Dollar representation."""
 
-from multicurrency import TaiwanDollar
-
 
 class TestTaiwanDollar:
     """TaiwanDollar currency tests."""
@@ -7192,8 +7184,6 @@ class TestTaiwanDollar:
 
 
 """Tests for the US Dollar representation."""
-
-from multicurrency import USDollar
 
 
 class TestUSDollar:
@@ -7404,8 +7394,6 @@ class TestUSDollar:
 
 """Tests for the US Dollar AS representation."""
 
-from multicurrency import USDollarAS
-
 
 class TestUSDollarAS:
     """USDollarAS currency tests."""
@@ -7614,8 +7602,6 @@ class TestUSDollarAS:
 
 
 """Tests for the US Dollar IO representation."""
-
-from multicurrency import USDollarIO
 
 
 class TestUSDollarIO:
@@ -7826,8 +7812,6 @@ class TestUSDollarIO:
 
 """Tests for the US Dollar VG representation."""
 
-from multicurrency import USDollarVG
-
 
 class TestUSDollarVG:
     """USDollarVG currency tests."""
@@ -8036,8 +8020,6 @@ class TestUSDollarVG:
 
 
 """Tests for the US Dollar GU representation."""
-
-from multicurrency import USDollarGU
 
 
 class TestUSDollarGU:
@@ -8248,8 +8230,6 @@ class TestUSDollarGU:
 
 """Tests for the US Dollar HT representation."""
 
-from multicurrency import USDollarHT
-
 
 class TestUSDollarHT:
     """USDollarHT currency tests."""
@@ -8458,8 +8438,6 @@ class TestUSDollarHT:
 
 
 """Tests for the US Dollar MH representation."""
-
-from multicurrency import USDollarMH
 
 
 class TestUSDollarMH:
@@ -8670,8 +8648,6 @@ class TestUSDollarMH:
 
 """Tests for the US Dollar FM representation."""
 
-from multicurrency import USDollarFM
-
 
 class TestUSDollarFM:
     """USDollarFM currency tests."""
@@ -8880,8 +8856,6 @@ class TestUSDollarFM:
 
 
 """Tests for the US Dollar MP representation."""
-
-from multicurrency import USDollarMP
 
 
 class TestUSDollarMP:
@@ -9092,8 +9066,6 @@ class TestUSDollarMP:
 
 """Tests for the US Dollar PC representation."""
 
-from multicurrency import USDollarPC
-
 
 class TestUSDollarPC:
     """USDollarPC currency tests."""
@@ -9302,8 +9274,6 @@ class TestUSDollarPC:
 
 
 """Tests for the US Dollar PW representation."""
-
-from multicurrency import USDollarPW
 
 
 class TestUSDollarPW:
@@ -9514,8 +9484,6 @@ class TestUSDollarPW:
 
 """Tests for the US Dollar PA representation."""
 
-from multicurrency import USDollarPA
-
 
 class TestUSDollarPA:
     """USDollarPA currency tests."""
@@ -9724,8 +9692,6 @@ class TestUSDollarPA:
 
 
 """Tests for the US Dollar PR representation."""
-
-from multicurrency import USDollarPR
 
 
 class TestUSDollarPR:
@@ -9936,8 +9902,6 @@ class TestUSDollarPR:
 
 """Tests for the US Dollar TC representation."""
 
-from multicurrency import USDollarTC
-
 
 class TestUSDollarTC:
     """USDollarTC currency tests."""
@@ -10146,8 +10110,6 @@ class TestUSDollarTC:
 
 
 """Tests for the US Dollar VI representation."""
-
-from multicurrency import USDollarVI
 
 
 class TestUSDollarVI:
@@ -10358,8 +10320,6 @@ class TestUSDollarVI:
 
 """Tests for the Eastern Caribbean Dollar representation."""
 
-from multicurrency import EasternCaribbeanDollar
-
 
 class TestEasternCaribbeanDollar:
     """EasternCaribbeanDollar currency tests."""
@@ -10568,8 +10528,6 @@ class TestEasternCaribbeanDollar:
 
 
 """Tests for the Eastern Caribbean Dollar AI representation."""
-
-from multicurrency import EasternCaribbeanDollarAI
 
 
 class TestEasternCaribbeanDollarAI:
@@ -10780,8 +10738,6 @@ class TestEasternCaribbeanDollarAI:
 
 """Tests for the Eastern Caribbean Dollar AG representation."""
 
-from multicurrency import EasternCaribbeanDollarAG
-
 
 class TestEasternCaribbeanDollarAG:
     """EasternCaribbeanDollarAG currency tests."""
@@ -10990,8 +10946,6 @@ class TestEasternCaribbeanDollarAG:
 
 
 """Tests for the Eastern Caribbean Dollar DM representation."""
-
-from multicurrency import EasternCaribbeanDollarDM
 
 
 class TestEasternCaribbeanDollarDM:
@@ -11202,8 +11156,6 @@ class TestEasternCaribbeanDollarDM:
 
 """Tests for the Eastern Caribbean Dollar GD representation."""
 
-from multicurrency import EasternCaribbeanDollarGD
-
 
 class TestEasternCaribbeanDollarGD:
     """EasternCaribbeanDollarGD currency tests."""
@@ -11412,8 +11364,6 @@ class TestEasternCaribbeanDollarGD:
 
 
 """Tests for the Eastern Caribbean Dollar MS representation."""
-
-from multicurrency import EasternCaribbeanDollarMS
 
 
 class TestEasternCaribbeanDollarMS:
@@ -11624,8 +11574,6 @@ class TestEasternCaribbeanDollarMS:
 
 """Tests for the Eastern Caribbean Dollar KN representation."""
 
-from multicurrency import EasternCaribbeanDollarKN
-
 
 class TestEasternCaribbeanDollarKN:
     """EasternCaribbeanDollarKN currency tests."""
@@ -11834,8 +11782,6 @@ class TestEasternCaribbeanDollarKN:
 
 
 """Tests for the Eastern Caribbean Dollar LC representation."""
-
-from multicurrency import EasternCaribbeanDollarLC
 
 
 class TestEasternCaribbeanDollarLC:
@@ -12046,8 +11992,6 @@ class TestEasternCaribbeanDollarLC:
 
 """Tests for the Eastern Caribbean Dollar VC representation."""
 
-from multicurrency import EasternCaribbeanDollarVC
-
 
 class TestEasternCaribbeanDollarVC:
     """EasternCaribbeanDollarVC currency tests."""
@@ -12256,8 +12200,6 @@ class TestEasternCaribbeanDollarVC:
 
 
 """Tests for the Zimbabwe Dollar representation."""
-
-from multicurrency import ZimbabweDollar
 
 
 class TestZimbabweDollar:

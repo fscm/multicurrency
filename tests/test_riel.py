@@ -12,14 +12,13 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import Riel
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the Riel representation."""
-
-from multicurrency import Riel
 
 
 class TestRiel:

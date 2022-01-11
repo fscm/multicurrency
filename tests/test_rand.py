@@ -12,14 +12,17 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import (
+    Rand,
+    RandLS,
+    RandNA,
+    RandZA)
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the Rand representation."""
-
-from multicurrency import Rand
 
 
 class TestRand:
@@ -230,8 +233,6 @@ class TestRand:
 
 """Tests for the Rand LS representation."""
 
-from multicurrency import RandLS
-
 
 class TestRandLS:
     """RandLS currency tests."""
@@ -441,8 +442,6 @@ class TestRandLS:
 
 """Tests for the Rand NA representation."""
 
-from multicurrency import RandNA
-
 
 class TestRandNA:
     """RandNA currency tests."""
@@ -651,8 +650,6 @@ class TestRandNA:
 
 
 """Tests for the Rand ZA representation."""
-
-from multicurrency import RandZA
 
 
 class TestRandZA:

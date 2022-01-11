@@ -12,14 +12,13 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import UzbekistanSum
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the Uzbekistan Sum representation."""
-
-from multicurrency import UzbekistanSum
 
 
 class TestUzbekistanSum:

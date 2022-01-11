@@ -12,14 +12,15 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import (
+    IcelandKrona,
+    SwedishKrona)
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the Iceland Krona representation."""
-
-from multicurrency import IcelandKrona
 
 
 class TestIcelandKrona:
@@ -229,8 +230,6 @@ class TestIcelandKrona:
 
 
 """Tests for the Swedish Krona representation."""
-
-from multicurrency import SwedishKrona
 
 
 class TestSwedishKrona:

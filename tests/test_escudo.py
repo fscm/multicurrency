@@ -12,14 +12,13 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import CapeVerdeEscudo
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the Cape Verde Escudo representation."""
-
-from multicurrency import CapeVerdeEscudo
 
 
 class TestCapeVerdeEscudo:

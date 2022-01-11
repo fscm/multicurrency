@@ -12,14 +12,17 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import (
+    BelarusianRuble,
+    RussianRuble,
+    RussianRubleRU,
+    RussianRubleGE)
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the Belarusian Ruble representation."""
-
-from multicurrency import BelarusianRuble
 
 
 class TestBelarusianRuble:
@@ -230,8 +233,6 @@ class TestBelarusianRuble:
 
 """Tests for the Russian Ruble representation."""
 
-from multicurrency import RussianRuble
-
 
 class TestRussianRuble:
     """RussianRuble currency tests."""
@@ -441,8 +442,6 @@ class TestRussianRuble:
 
 """Tests for the Russian Ruble RU representation."""
 
-from multicurrency import RussianRubleRU
-
 
 class TestRussianRubleRU:
     """RussianRubleRU currency tests."""
@@ -651,8 +650,6 @@ class TestRussianRubleRU:
 
 
 """Tests for the Russian Ruble GE representation."""
-
-from multicurrency import RussianRubleGE
 
 
 class TestRussianRubleGE:

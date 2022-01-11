@@ -8,7 +8,7 @@
 
 from decimal import Decimal
 from typing import Optional, Union
-from .currency import Currency
+from ._currency import Currency
 
 
 class BelarusianRuble(Currency):
@@ -22,7 +22,7 @@ class BelarusianRuble(Currency):
         >>> print(belarusian_ruble)
         123 456,79 Br
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -87,7 +87,7 @@ class RussianRuble(Currency):
         >>> print(russian_ruble)
         123 456,79 ₽
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -152,7 +152,7 @@ class RussianRubleRU(Currency):
         >>> print(russian_ruble_ru)
         123 456,79 ₽
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -217,7 +217,7 @@ class RussianRubleGE(Currency):
         >>> print(russian_ruble_ge)
         123 456,79 ₽
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

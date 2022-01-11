@@ -12,14 +12,22 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import (
+    BahrainiDinar,
+    AlgerianDinar,
+    IraqiDinar,
+    JordanianDinar,
+    KuwaitiDinar,
+    LibyanDinar,
+    SerbianDinarXK,
+    SerbianDinarSR,
+    TunisianDinar)
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the Bahraini Dinar representation."""
-
-from multicurrency import BahrainiDinar
 
 
 class TestBahrainiDinar:
@@ -230,8 +238,6 @@ class TestBahrainiDinar:
 
 """Tests for the Algerian Dinar representation."""
 
-from multicurrency import AlgerianDinar
-
 
 class TestAlgerianDinar:
     """AlgerianDinar currency tests."""
@@ -440,8 +446,6 @@ class TestAlgerianDinar:
 
 
 """Tests for the Iraqi Dinar representation."""
-
-from multicurrency import IraqiDinar
 
 
 class TestIraqiDinar:
@@ -652,8 +656,6 @@ class TestIraqiDinar:
 
 """Tests for the Jordanian Dinar representation."""
 
-from multicurrency import JordanianDinar
-
 
 class TestJordanianDinar:
     """JordanianDinar currency tests."""
@@ -862,8 +864,6 @@ class TestJordanianDinar:
 
 
 """Tests for the Kuwaiti Dinar representation."""
-
-from multicurrency import KuwaitiDinar
 
 
 class TestKuwaitiDinar:
@@ -1074,8 +1074,6 @@ class TestKuwaitiDinar:
 
 """Tests for the Libyan Dinar representation."""
 
-from multicurrency import LibyanDinar
-
 
 class TestLibyanDinar:
     """LibyanDinar currency tests."""
@@ -1284,8 +1282,6 @@ class TestLibyanDinar:
 
 
 """Tests for the Serbian Dinar XK representation."""
-
-from multicurrency import SerbianDinarXK
 
 
 class TestSerbianDinarXK:
@@ -1496,8 +1492,6 @@ class TestSerbianDinarXK:
 
 """Tests for the Serbian Dinar SR representation."""
 
-from multicurrency import SerbianDinarSR
-
 
 class TestSerbianDinarSR:
     """SerbianDinarSR currency tests."""
@@ -1706,8 +1700,6 @@ class TestSerbianDinarSR:
 
 
 """Tests for the Tunisian Dinar representation."""
-
-from multicurrency import TunisianDinar
 
 
 class TestTunisianDinar:

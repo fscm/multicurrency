@@ -68,7 +68,7 @@ def test_multicurrency_invalid_division_exception():
     with raises(
             CurrencyInvalidDivision,
             match=('division not supported between <class \'multicurrency.'
-                   'currency.Currency\'> and <class \'str\'>.')):
+                   '_currency.Currency\'> and <class \'str\'>.')):
         aux_multicurrency_invalid_division_exception()
 
 
@@ -77,7 +77,7 @@ def test_multicurrency_invalid_multiplication_exception():
     with raises(
             CurrencyInvalidMultiplication,
             match=('multiplication not supported between <class '
-                   '\'multicurrency.currency.Currency\'> and <class '
+                   '\'multicurrency._currency.Currency\'> and <class '
                    '\'str\'>.')):
         aux_multicurrency_invalid_multiplication_exception()
 
@@ -87,7 +87,7 @@ def test_multicurrency_invalid_operation_exception():
     with raises(
             CurrencyInvalidOperation,
             match=('unsupported operation \'name\' with <class '
-                   '\'multicurrency.currency.Currency\'>.')):
+                   '\'multicurrency._currency.Currency\'>.')):
         aux_multicurrency_invalid_operation_exception()
 
 
@@ -96,5 +96,5 @@ def test_multicurrency_type_exception():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'currency.Currency\'> and <class \'str\'>.')):
+                   '_currency.Currency\'> and <class \'str\'>.')):
         aux_multicurrency_type_exception()

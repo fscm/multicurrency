@@ -8,7 +8,7 @@
 
 from decimal import Decimal
 from typing import Optional, Union
-from .currency import Currency
+from ._currency import Currency
 
 
 class MalagasyAriary(Currency):
@@ -22,7 +22,7 @@ class MalagasyAriary(Currency):
         >>> print(malagasy_ariary)
         123 457 Ar
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

@@ -12,14 +12,15 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import (
+    MoldovanLeu,
+    Leu)
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the Moldovan Leu representation."""
-
-from multicurrency import MoldovanLeu
 
 
 class TestMoldovanLeu:
@@ -229,8 +230,6 @@ class TestMoldovanLeu:
 
 
 """Tests for the Leu representation."""
-
-from multicurrency import Leu
 
 
 class TestLeu:

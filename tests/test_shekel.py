@@ -12,14 +12,16 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import (
+    NewIsraeliShekel,
+    NewIsraeliShekelIL,
+    NewIsraeliShekelPS)
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the New Israeli Shekel representation."""
-
-from multicurrency import NewIsraeliShekel
 
 
 class TestNewIsraeliShekel:
@@ -230,8 +232,6 @@ class TestNewIsraeliShekel:
 
 """Tests for the New Israeli Shekel IL representation."""
 
-from multicurrency import NewIsraeliShekelIL
-
 
 class TestNewIsraeliShekelIL:
     """NewIsraeliShekelIL currency tests."""
@@ -440,8 +440,6 @@ class TestNewIsraeliShekelIL:
 
 
 """Tests for the New Israeli Shekel PS representation."""
-
-from multicurrency import NewIsraeliShekelPS
 
 
 class TestNewIsraeliShekelPS:

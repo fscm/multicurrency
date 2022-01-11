@@ -12,14 +12,15 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import (
+    Kwacha,
+    ZambianKwacha)
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the Kwacha representation."""
-
-from multicurrency import Kwacha
 
 
 class TestKwacha:
@@ -229,8 +230,6 @@ class TestKwacha:
 
 
 """Tests for the Zambian Kwacha representation."""
-
-from multicurrency import ZambianKwacha
 
 
 class TestZambianKwacha:

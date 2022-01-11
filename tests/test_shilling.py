@@ -12,14 +12,17 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import (
+    KenyanShilling,
+    SomaliShilling,
+    TanzanianShilling,
+    UgandaShilling)
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the Kenyan Shilling representation."""
-
-from multicurrency import KenyanShilling
 
 
 class TestKenyanShilling:
@@ -230,8 +233,6 @@ class TestKenyanShilling:
 
 """Tests for the Somali Shilling representation."""
 
-from multicurrency import SomaliShilling
-
 
 class TestSomaliShilling:
     """SomaliShilling currency tests."""
@@ -441,8 +442,6 @@ class TestSomaliShilling:
 
 """Tests for the Tanzanian Shilling representation."""
 
-from multicurrency import TanzanianShilling
-
 
 class TestTanzanianShilling:
     """TanzanianShilling currency tests."""
@@ -651,8 +650,6 @@ class TestTanzanianShilling:
 
 
 """Tests for the Uganda Shilling representation."""
-
-from multicurrency import UgandaShilling
 
 
 class TestUgandaShilling:

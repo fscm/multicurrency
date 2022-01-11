@@ -12,14 +12,15 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import (
+    UAEDirham,
+    MoroccanDirham)
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the UAE Dirham representation."""
-
-from multicurrency import UAEDirham
 
 
 class TestUAEDirham:
@@ -229,8 +230,6 @@ class TestUAEDirham:
 
 
 """Tests for the Moroccan Dirham representation."""
-
-from multicurrency import MoroccanDirham
 
 
 class TestMoroccanDirham:

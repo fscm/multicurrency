@@ -46,8 +46,8 @@ currency = Currency(
     international=True)
 
 
-def test_currency_default():
-    """test_currency_default."""
+def test__currency_default():
+    """test__currency_default."""
     amount = CONTEXT.create_decimal(1) / CONTEXT.create_decimal(7)
     default = Currency(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
@@ -82,8 +82,8 @@ def test_currency_default():
     assert default.__str__() == '0.14'
 
 
-def test_currency_negative():
-    """test_currency_negative."""
+def test__currency_negative():
+    """test__currency_negative."""
     amount = -100
     default = Currency(amount=amount)
     decimal = CONTEXT.create_decimal(amount)
@@ -116,8 +116,8 @@ def test_currency_negative():
     assert default.__str__() == '-100.00'
 
 
-def test_currency_custom():
-    """test_currency_custom."""
+def test__currency_custom():
+    """test__currency_custom."""
     amount = 1000
     euro = Currency(
         amount=amount,
@@ -165,8 +165,8 @@ def test_currency_custom():
     assert euro.__str__() == 'EUR 1,000.00'
 
 
-def test_currency_decimal_places():
-    """test_currency_decimal_places."""
+def test__currency_decimal_places():
+    """test__currency_decimal_places."""
     euro = Currency(
         amount=1000,
         alpha_code='EUR',
@@ -187,8 +187,8 @@ def test_currency_decimal_places():
     assert euro.pstr(1) == '1,000.0\u00A0€'
 
 
-def test_currency_grouping_places():
-    """test_currency_grouping_places."""
+def test__currency_grouping_places():
+    """test__currency_grouping_places."""
     euro = Currency(
         amount=100000000,
         alpha_code='EUR',
@@ -211,8 +211,8 @@ def test_currency_grouping_places():
     assert euro.pstr(1) == '1,0000,0000.0\u00A0€'
 
 
-def test_currency_grouping_places_negative():
-    """test_currency_grouping_places_negative."""
+def test__currency_grouping_places_negative():
+    """test__currency_grouping_places_negative."""
     euro = Currency(
         amount=100000000,
         alpha_code='EUR',
@@ -235,8 +235,8 @@ def test_currency_grouping_places_negative():
     assert euro.pstr(1) == '100000000.0\u00A0€'
 
 
-def test_currency_convertion():
-    """test_currency_convertion."""
+def test__currency_convertion():
+    """test__currency_convertion."""
     euro = Currency(
         amount=123456789,
         alpha_code='EUR',
@@ -258,8 +258,8 @@ def test_currency_convertion():
     assert euro.pstr(1) == 'abc,def,ghi.z\u00A0€'
 
 
-def test_currency_changed():
-    """test_currency_changed."""
+def test__currency_changed():
+    """test__currency_changed."""
     euro = Currency(amount=1000)
     with raises(
             AttributeError,
@@ -311,8 +311,8 @@ def test_currency_changed():
         euro.international = True
 
 
-def test_currency_slots():
-    """test_currency_slots."""
+def test__currency_slots():
+    """test__currency_slots."""
     euro = Currency(amount=1000)
     with raises(
             AttributeError,
@@ -322,8 +322,8 @@ def test_currency_slots():
         euro.new_variable = 'fail'  # pylint: disable=assigning-non-slot
 
 
-def test_currency_comparison_eq():
-    """test_currency_comparison_eq."""
+def test__currency_comparison_eq():
+    """test__currency_comparison_eq."""
     assert currency_euro_one == currency_another_euro_one
     assert currency_euro_negative_one == currency_another_euro_negative_one
     assert currency_euro_one.__eq__(currency_another_euro_one)
@@ -333,8 +333,8 @@ def test_currency_comparison_eq():
     assert not currency_euro_negative_one.__eq__(currency_euro_negative_two)
 
 
-def test_currency_comparison_ge():
-    """test_currency_comparison_ge."""
+def test__currency_comparison_ge():
+    """test__currency_comparison_ge."""
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency EUR and USD.'):
@@ -342,7 +342,7 @@ def test_currency_comparison_ge():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'currency.Currency\'> and <class \'str\'>.')):
+                   '_currency.Currency\'> and <class \'str\'>.')):
         currency_euro_one.__ge__('1.00')
     assert currency_euro_one >= currency_another_euro_one
     assert currency_euro_two >= currency_euro_one
@@ -355,8 +355,8 @@ def test_currency_comparison_ge():
     assert not currency_euro_negative_two.__ge__(currency_euro_negative_one)
 
 
-def test_currency_comparison_gt():
-    """test_currency_comparison_gt."""
+def test__currency_comparison_gt():
+    """test__currency_comparison_gt."""
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency EUR and USD.'):
@@ -364,7 +364,7 @@ def test_currency_comparison_gt():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'currency.Currency\'> and <class \'str\'>.')):
+                   '_currency.Currency\'> and <class \'str\'>.')):
         currency_euro_one.__gt__('1.00')
     assert currency_euro_two > currency_euro_one
     assert currency_euro_two.__gt__(currency_euro_one)
@@ -374,8 +374,8 @@ def test_currency_comparison_gt():
         currency_another_euro_negative_one)
 
 
-def test_currency_comparison_le():
-    """test_currency_comparison_le."""
+def test__currency_comparison_le():
+    """test__currency_comparison_le."""
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency EUR and USD.'):
@@ -383,7 +383,7 @@ def test_currency_comparison_le():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'currency.Currency\'> and <class \'str\'>.')):
+                   '_currency.Currency\'> and <class \'str\'>.')):
         currency_euro_one.__le__('1.00')
     assert currency_euro_one <= currency_another_euro_one
     assert currency_euro_one <= currency_euro_two
@@ -396,8 +396,8 @@ def test_currency_comparison_le():
     assert not currency_euro_negative_one.__le__(currency_euro_negative_two)
 
 
-def test_currency_comparison_lt():
-    """test_currency_comparison_lt."""
+def test__currency_comparison_lt():
+    """test__currency_comparison_lt."""
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency EUR and USD.'):
@@ -405,7 +405,7 @@ def test_currency_comparison_lt():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'currency.Currency\'> and <class \'str\'>.')):
+                   '_currency.Currency\'> and <class \'str\'>.')):
         currency_euro_one.__lt__('1.00')
     assert currency_euro_one < currency_euro_two
     assert currency_euro_one.__lt__(currency_euro_two)
@@ -415,8 +415,8 @@ def test_currency_comparison_lt():
         currency_another_euro_negative_one)
 
 
-def test_currency_comparison_ne():
-    """test_currency_comparison_ne."""
+def test__currency_comparison_ne():
+    """test__currency_comparison_ne."""
     assert currency_euro_one != currency_euro_two
     assert currency_euro_negative_one != currency_euro_negative_two
     assert currency_euro_one.__ne__(currency_euro_two)
@@ -427,8 +427,8 @@ def test_currency_comparison_ne():
         currency_another_euro_negative_one)
 
 
-def test_currency_math_add():
-    """test_currency_math_add."""
+def test__currency_math_add():
+    """test__currency_math_add."""
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency EUR and USD.'):
@@ -436,19 +436,19 @@ def test_currency_math_add():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'currency.Currency\'> and <class \'str\'>.')):
+                   '_currency.Currency\'> and <class \'str\'>.')):
         _ = currency_euro_one.__add__('1.00')
     assert (currency_euro_one + currency_euro_two) == currency_euro_three
     assert (currency_euro_negative_one + currency_euro_negative_two) == (
         currency_euro_negative_three)
 
 
-def test_currency_math_divmod():
-    """test_currency_math_divmod."""
+def test__currency_math_divmod():
+    """test__currency_math_divmod."""
     with raises(
             CurrencyInvalidDivision,
             match=('division not supported between <class \'multicurrency.'
-                   'currency.Currency\'> and <class \'str\'>.')):
+                   '_currency.Currency\'> and <class \'str\'>.')):
         _ = currency_euro_fifteen.__divmod__('1')
     with raises(
             ZeroDivisionError,
@@ -462,12 +462,12 @@ def test_currency_math_divmod():
         currency_euro_two, currency_euro_one)
 
 
-def test_currency_math_floordiv():
-    """test_currency_math_floordiv."""
+def test__currency_math_floordiv():
+    """test__currency_math_floordiv."""
     with raises(
             CurrencyInvalidDivision,
             match=('division not supported between <class \'multicurrency.'
-                   'currency.Currency\'> and <class \'str\'>.')):
+                   '_currency.Currency\'> and <class \'str\'>.')):
         _ = currency_euro_fifteen.__floordiv__('1')
     with raises(
             ZeroDivisionError,
@@ -478,12 +478,12 @@ def test_currency_math_floordiv():
     assert currency_euro_fifteen.__floordiv__(7) == currency_euro_two
 
 
-def test_currency_math_mod():
-    """test_currency_math_mod."""
+def test__currency_math_mod():
+    """test__currency_math_mod."""
     with raises(
             CurrencyInvalidDivision,
             match=('division not supported between <class \'multicurrency.'
-                   'currency.Currency\'> and <class \'str\'>.')):
+                   '_currency.Currency\'> and <class \'str\'>.')):
         _ = currency_euro_fifteen.__mod__('1')
     with raises(
             ZeroDivisionError,
@@ -494,12 +494,12 @@ def test_currency_math_mod():
     assert currency_euro_fifteen.__mod__(4) == currency_euro_three
 
 
-def test_currency_math_mul_rmul():
-    """test_currency_math_mul_rmul."""
+def test__currency_math_mul_rmul():
+    """test__currency_math_mul_rmul."""
     with raises(
             CurrencyInvalidMultiplication,
             match=('multiplication not supported between <class '
-                   '\'multicurrency.currency.Currency\'> and <class '
+                   '\'multicurrency._currency.Currency\'> and <class '
                    '\'str\'>.')):
         _ = currency_euro_one.__mul__('1')
     assert (currency_euro_one * 3) == currency_euro_three
@@ -507,8 +507,8 @@ def test_currency_math_mul_rmul():
     assert currency_euro_one.__mul__(3) == currency_euro_three
 
 
-def test_currency_math_rsub():
-    """test_currency_math_rsub."""
+def test__currency_math_rsub():
+    """test__currency_math_rsub."""
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency USD and EUR.'):
@@ -516,7 +516,7 @@ def test_currency_math_rsub():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'str\'> and '
-                   '<class \'multicurrency.currency.Currency\'>.')):
+                   '<class \'multicurrency._currency.Currency\'>.')):
         _ = currency_euro_one.__rsub__('1.00')
     assert (currency_euro_one.__rsub__(currency_euro_three)) == (
         currency_euro_two)
@@ -524,8 +524,8 @@ def test_currency_math_rsub():
         currency_euro_negative_three) == currency_euro_negative_two
 
 
-def test_currency_math_sub():
-    """test_currency_math_sub."""
+def test__currency_math_sub():
+    """test__currency_math_sub."""
     with raises(
             CurrencyMismatchException,
             match='unsupported operation between currency EUR and USD.'):
@@ -533,19 +533,19 @@ def test_currency_math_sub():
     with raises(
             CurrencyTypeException,
             match=('unsupported operation between <class \'multicurrency.'
-                   'currency.Currency\'> and <class \'str\'>.')):
+                   '_currency.Currency\'> and <class \'str\'>.')):
         _ = currency_euro_one.__sub__('1.00')
     assert (currency_euro_three - currency_euro_one) == currency_euro_two
     assert (currency_euro_negative_three - currency_euro_negative_one) == (
         currency_euro_negative_two)
 
 
-def test_currency_math_truediv():
-    """test_currency_math_truediv."""
+def test__currency_math_truediv():
+    """test__currency_math_truediv."""
     with raises(
             CurrencyInvalidDivision,
             match=('division not supported between <class \'multicurrency.'
-                   'currency.Currency\'> and <class \'str\'>.')):
+                   '_currency.Currency\'> and <class \'str\'>.')):
         _ = currency_euro_one.__truediv__('1')
     with raises(
             ZeroDivisionError,
@@ -555,30 +555,30 @@ def test_currency_math_truediv():
     assert currency_euro_three.__truediv__(3) == currency_euro_one
 
 
-def test_currency_abs():
-    """test_currency_abs."""
+def test__currency_abs():
+    """test__currency_abs."""
     assert abs(currency_euro_one) == currency_euro_one
     assert abs(currency_euro_negative_one) == currency_euro_one
     assert currency_euro_one.__abs__() == currency_euro_one
     assert currency_euro_negative_one.__abs__() == currency_euro_one
 
 
-def test_currency_bool():
-    """test_currency_bool."""
+def test__currency_bool():
+    """test__currency_bool."""
     assert not currency_euro_zero
     assert currency_euro_one
     assert not currency_euro_zero.__bool__()
     assert currency_euro_one.__bool__()
 
 
-def test_currency_ceil():
-    """test_currency_ceil."""
+def test__currency_ceil():
+    """test__currency_ceil."""
     assert math.ceil(currency) == currency_euro_one
     assert currency.__ceil__() == currency_euro_one
 
 
-def test_currency_copy():
-    """test_currency_copy."""
+def test__currency_copy():
+    """test__currency_copy."""
     new_currency = currency.__copy__()
     assert new_currency == currency
     assert new_currency is not currency
@@ -611,8 +611,8 @@ def test_currency_copy():
     assert new_currency.__str__() == 'EUR 0.14'
 
 
-def test_currency_deepcopy():
-    """test_currency_deepcopy."""
+def test__currency_deepcopy():
+    """test__currency_deepcopy."""
     new_currency = currency.__deepcopy__()
     assert new_currency == currency
     assert new_currency is not currency
@@ -645,20 +645,20 @@ def test_currency_deepcopy():
     assert new_currency.__str__() == 'EUR 0.14'
 
 
-def test_currency_float():
-    """test_currency_float."""
+def test__currency_float():
+    """test__currency_float."""
     assert float(currency) == 0.14285714285714285
     assert currency.__float__() == 0.14285714285714285
 
 
-def test_currency_floor():
-    """test_currency_floor."""
+def test__currency_floor():
+    """test__currency_floor."""
     assert math.floor(currency) == currency_euro_zero
     assert currency.__floor__() == currency_euro_zero
 
 
-def test_currency_format():
-    """test_currency_format."""
+def test__currency_format():
+    """test__currency_format."""
     f_euro = Currency(
         amount=(
             CONTEXT.create_decimal(1) /
@@ -718,14 +718,14 @@ def test_currency_format():
     assert format(f_euro_alt, '.,') == '142,857.14\u00A0€'
 
 
-def test_currency_int():
-    """test_currency_int."""
+def test__currency_int():
+    """test__currency_int."""
     assert int(currency) == 0
     assert currency.__int__() == 0
 
 
-def test_currency_neg():
-    """test_currency_neg."""
+def test__currency_neg():
+    """test__currency_neg."""
     assert currency != -currency
     assert currency.amount != -currency.amount
     assert currency_euro_negative_one == -currency_euro_one
@@ -734,36 +734,36 @@ def test_currency_neg():
     assert currency_euro_negative_one == currency_euro_one.__neg__()
 
 
-def test_currency_pos():
-    """test_currency_pos."""
+def test__currency_pos():
+    """test__currency_pos."""
     assert currency == +currency
     assert currency.amount == +currency.amount
     assert currency == currency.__pos__()
     assert currency.amount == currency.amount.__pos__()
 
 
-def test_currency_reduce():
-    """test_currency_reduce."""
+def test__currency_reduce():
+    """test__currency_reduce."""
     representation = pickle.dumps(currency)
     unpickled_currency = pickle.loads(representation)
     assert currency == unpickled_currency
 
 
-def test_currency_round():
-    """test_currency_round."""
+def test__currency_round():
+    """test__currency_round."""
     assert round(currency).amount == CONTEXT.create_decimal('0')
     assert round(currency, 2).amount == round(
         CONTEXT.create_decimal('0.14'), 2)
 
 
-def test_currency_is_signed():
-    """test_currency_is_signed."""
+def test__currency_is_signed():
+    """test__currency_is_signed."""
     assert currency_euro_negative_one.is_signed()
     assert not currency_euro_one.is_signed()
 
 
-def test_currency_localized_1():
-    """test_currency_localized_1."""
+def test__currency_localized_1():
+    """test__currency_localized_1."""
     roundings = {
         'ROUND_HALF_EVEN': {2: 'PT€0.14', 3: 'PT€0.143', 4: 'PT€0.1429'}}
     for mode, results in roundings.items():
@@ -781,8 +781,8 @@ def test_currency_localized_1():
     CurrencyContext.prec = 28
 
 
-def test_currency_localized_2():
-    """test_currency_localized_2."""
+def test__currency_localized_2():
+    """test__currency_localized_2."""
     roundings = {
         'ROUND_HALF_EVEN': {2: 'PT€0.14', 3: 'PT€0.143', 4: 'PT€0.1429'}}
     for mode, results in roundings.items():
@@ -801,8 +801,8 @@ def test_currency_localized_2():
     CurrencyContext.prec = 28
 
 
-def test_currency_localized_3():
-    """test_currency_localized_3."""
+def test__currency_localized_3():
+    """test__currency_localized_3."""
     localized_currency = Currency(
         amount=1/7,
         alpha_code='EUR',
@@ -815,8 +815,8 @@ def test_currency_localized_3():
     assert localized_currency.lstr(0) == '0PT€'
 
 
-def test_currency_precision_1():
-    """test_currency_precision_1."""
+def test__currency_precision_1():
+    """test__currency_precision_1."""
     test_currency = (Currency(1.01) - Currency(0.99)) * 1e18
     assert test_currency.amount == (
         (CONTEXT.create_decimal('1.01') - CONTEXT.create_decimal('0.99')) *
@@ -824,23 +824,23 @@ def test_currency_precision_1():
     assert test_currency.__str__() == '20,000,000,000,000,000.00'
 
 
-def test_currency_precision_2():
-    """test_currency_precision_2."""
+def test__currency_precision_2():
+    """test__currency_precision_2."""
     test_currency = (Currency(0.1) + Currency(0.1) + Currency(0.1))
     assert test_currency == Currency(0.3)
     assert test_currency.amount == CONTEXT.create_decimal('0.3')
     assert test_currency.__str__() == '0.30'
 
 
-def test_currency_precision_international():
-    """test_currency_precision_international."""
+def test__currency_precision_international():
+    """test__currency_precision_international."""
     test_currency = Currency(0.1, alpha_code='EUR', international=True)
     assert test_currency.amount == CONTEXT.create_decimal('0.1')
     assert test_currency.pstr(precision=4) == 'EUR 0.1000'
 
 
-def test_currency_roundings_positive():
-    """test_currency_roundings_positive."""
+def test__currency_roundings_positive():
+    """test__currency_roundings_positive."""
     roundings = {
         'ROUND_CEILING': {2: '0.15', 3: '0.143', 4: '0.1429'},
         'ROUND_DOWN': {2: '0.14', 3: '0.142', 4: '0.1428'},
@@ -860,8 +860,8 @@ def test_currency_roundings_positive():
     CurrencyContext.prec = 28
 
 
-def test_currency_roundings_negative():
-    """test_currency_roundings_negative."""
+def test__currency_roundings_negative():
+    """test__currency_roundings_negative."""
     roundings = {
         'ROUND_CEILING': {2: '-0.14', 3: '-0.142', 4: '-0.1428'},
         'ROUND_DOWN': {2: '-0.14', 3: '-0.142', 4: '-0.1428'},

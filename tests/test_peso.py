@@ -12,14 +12,21 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import (
+    ArgentinePeso,
+    ChileanPeso,
+    ColombianPeso,
+    CubanPeso,
+    DominicanPeso,
+    MexicanPeso,
+    PhilippinePeso,
+    PesoUruguayo)
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the Argentine Peso representation."""
-
-from multicurrency import ArgentinePeso
 
 
 class TestArgentinePeso:
@@ -230,8 +237,6 @@ class TestArgentinePeso:
 
 """Tests for the Chilean Peso representation."""
 
-from multicurrency import ChileanPeso
-
 
 class TestChileanPeso:
     """ChileanPeso currency tests."""
@@ -440,8 +445,6 @@ class TestChileanPeso:
 
 
 """Tests for the Colombian Peso representation."""
-
-from multicurrency import ColombianPeso
 
 
 class TestColombianPeso:
@@ -652,8 +655,6 @@ class TestColombianPeso:
 
 """Tests for the Cuban Peso representation."""
 
-from multicurrency import CubanPeso
-
 
 class TestCubanPeso:
     """CubanPeso currency tests."""
@@ -862,8 +863,6 @@ class TestCubanPeso:
 
 
 """Tests for the Dominican Peso representation."""
-
-from multicurrency import DominicanPeso
 
 
 class TestDominicanPeso:
@@ -1074,8 +1073,6 @@ class TestDominicanPeso:
 
 """Tests for the Mexican Peso representation."""
 
-from multicurrency import MexicanPeso
-
 
 class TestMexicanPeso:
     """MexicanPeso currency tests."""
@@ -1285,8 +1282,6 @@ class TestMexicanPeso:
 
 """Tests for the Philippine Peso representation."""
 
-from multicurrency import PhilippinePeso
-
 
 class TestPhilippinePeso:
     """PhilippinePeso currency tests."""
@@ -1495,8 +1490,6 @@ class TestPhilippinePeso:
 
 
 """Tests for the Peso Uruguayo representation."""
-
-from multicurrency import PesoUruguayo
 
 
 class TestPesoUruguayo:

@@ -12,14 +12,13 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import MalaysianRinggit
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the Malaysian Ringgit representation."""
-
-from multicurrency import MalaysianRinggit
 
 
 class TestMalaysianRinggit:

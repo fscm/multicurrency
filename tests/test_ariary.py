@@ -12,14 +12,13 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import MalagasyAriary
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the Malagasy Ariary representation."""
-
-from multicurrency import MalagasyAriary
 
 
 class TestMalagasyAriary:

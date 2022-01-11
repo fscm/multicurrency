@@ -12,14 +12,15 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import (
+    NorthKoreanWon,
+    SouthKoreanWon)
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the North Korean Won representation."""
-
-from multicurrency import NorthKoreanWon
 
 
 class TestNorthKoreanWon:
@@ -229,8 +230,6 @@ class TestNorthKoreanWon:
 
 
 """Tests for the South Korean Won representation."""
-
-from multicurrency import SouthKoreanWon
 
 
 class TestSouthKoreanWon:

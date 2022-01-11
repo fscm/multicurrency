@@ -12,14 +12,41 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import (
+    BurundiFranc,
+    CongoleseFranc,
+    SwissFranc,
+    SwissFrancLI,
+    SwissFrancCH,
+    DjiboutiFranc,
+    GuineaFranc,
+    RwandaFranc,
+    CFAFrancBEAC,
+    CFAFrancBEACCM,
+    CFAFrancBEACCF,
+    CFAFrancBEACTD,
+    CFAFrancBEACCD,
+    CFAFrancBEACGQ,
+    CFAFrancBEACGA,
+    CFAFrancBCEAO,
+    CFAFrancBCEAOBJ,
+    CFAFrancBCEAOBF,
+    CFAFrancBCEAOCI,
+    CFAFrancBCEAOGW,
+    CFAFrancBCEAOML,
+    CFAFrancBCEAONG,
+    CFAFrancBCEAOSN,
+    CFAFrancBCEAOTG,
+    CFPFranc,
+    CFPFrancPF,
+    CFPFrancNC,
+    CFPFrancWF)
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the Burundi Franc representation."""
-
-from multicurrency import BurundiFranc
 
 
 class TestBurundiFranc:
@@ -230,8 +257,6 @@ class TestBurundiFranc:
 
 """Tests for the Congolese Franc representation."""
 
-from multicurrency import CongoleseFranc
-
 
 class TestCongoleseFranc:
     """CongoleseFranc currency tests."""
@@ -440,8 +465,6 @@ class TestCongoleseFranc:
 
 
 """Tests for the Swiss Franc representation."""
-
-from multicurrency import SwissFranc
 
 
 class TestSwissFranc:
@@ -652,8 +675,6 @@ class TestSwissFranc:
 
 """Tests for the Swiss Franc LI representation."""
 
-from multicurrency import SwissFrancLI
-
 
 class TestSwissFrancLI:
     """SwissFrancLI currency tests."""
@@ -862,8 +883,6 @@ class TestSwissFrancLI:
 
 
 """Tests for the Swiss Franc CH representation."""
-
-from multicurrency import SwissFrancCH
 
 
 class TestSwissFrancCH:
@@ -1074,8 +1093,6 @@ class TestSwissFrancCH:
 
 """Tests for the Djibouti Franc representation."""
 
-from multicurrency import DjiboutiFranc
-
 
 class TestDjiboutiFranc:
     """DjiboutiFranc currency tests."""
@@ -1284,8 +1301,6 @@ class TestDjiboutiFranc:
 
 
 """Tests for the Guinea Franc representation."""
-
-from multicurrency import GuineaFranc
 
 
 class TestGuineaFranc:
@@ -1496,8 +1511,6 @@ class TestGuineaFranc:
 
 """Tests for the Rwanda Franc representation."""
 
-from multicurrency import RwandaFranc
-
 
 class TestRwandaFranc:
     """RwandaFranc currency tests."""
@@ -1706,8 +1719,6 @@ class TestRwandaFranc:
 
 
 """Tests for the CFA Franc BEAC representation."""
-
-from multicurrency import CFAFrancBEAC
 
 
 class TestCFAFrancBEAC:
@@ -1918,8 +1929,6 @@ class TestCFAFrancBEAC:
 
 """Tests for the CFA Franc BEAC CM representation."""
 
-from multicurrency import CFAFrancBEACCM
-
 
 class TestCFAFrancBEACCM:
     """CFAFrancBEACCM currency tests."""
@@ -2128,8 +2137,6 @@ class TestCFAFrancBEACCM:
 
 
 """Tests for the CFA Franc BEAC CF representation."""
-
-from multicurrency import CFAFrancBEACCF
 
 
 class TestCFAFrancBEACCF:
@@ -2340,8 +2347,6 @@ class TestCFAFrancBEACCF:
 
 """Tests for the CFA Franc BEAC TD representation."""
 
-from multicurrency import CFAFrancBEACTD
-
 
 class TestCFAFrancBEACTD:
     """CFAFrancBEACTD currency tests."""
@@ -2550,8 +2555,6 @@ class TestCFAFrancBEACTD:
 
 
 """Tests for the CFA Franc BEAC CD representation."""
-
-from multicurrency import CFAFrancBEACCD
 
 
 class TestCFAFrancBEACCD:
@@ -2762,8 +2765,6 @@ class TestCFAFrancBEACCD:
 
 """Tests for the CFA Franc BEAC GQ representation."""
 
-from multicurrency import CFAFrancBEACGQ
-
 
 class TestCFAFrancBEACGQ:
     """CFAFrancBEACGQ currency tests."""
@@ -2972,8 +2973,6 @@ class TestCFAFrancBEACGQ:
 
 
 """Tests for the CFA Franc BEAC GA representation."""
-
-from multicurrency import CFAFrancBEACGA
 
 
 class TestCFAFrancBEACGA:
@@ -3184,8 +3183,6 @@ class TestCFAFrancBEACGA:
 
 """Tests for the CFA Franc BCEAO representation."""
 
-from multicurrency import CFAFrancBCEAO
-
 
 class TestCFAFrancBCEAO:
     """CFAFrancBCEAO currency tests."""
@@ -3394,8 +3391,6 @@ class TestCFAFrancBCEAO:
 
 
 """Tests for the CFA Franc BCEAO BJ representation."""
-
-from multicurrency import CFAFrancBCEAOBJ
 
 
 class TestCFAFrancBCEAOBJ:
@@ -3606,8 +3601,6 @@ class TestCFAFrancBCEAOBJ:
 
 """Tests for the CFA Franc BCEAO BF representation."""
 
-from multicurrency import CFAFrancBCEAOBF
-
 
 class TestCFAFrancBCEAOBF:
     """CFAFrancBCEAOBF currency tests."""
@@ -3816,8 +3809,6 @@ class TestCFAFrancBCEAOBF:
 
 
 """Tests for the CFA Franc BCEAO CI representation."""
-
-from multicurrency import CFAFrancBCEAOCI
 
 
 class TestCFAFrancBCEAOCI:
@@ -4028,8 +4019,6 @@ class TestCFAFrancBCEAOCI:
 
 """Tests for the CFA Franc BCEAO GW representation."""
 
-from multicurrency import CFAFrancBCEAOGW
-
 
 class TestCFAFrancBCEAOGW:
     """CFAFrancBCEAOGW currency tests."""
@@ -4238,8 +4227,6 @@ class TestCFAFrancBCEAOGW:
 
 
 """Tests for the CFA Franc BCEAO ML representation."""
-
-from multicurrency import CFAFrancBCEAOML
 
 
 class TestCFAFrancBCEAOML:
@@ -4450,8 +4437,6 @@ class TestCFAFrancBCEAOML:
 
 """Tests for the CFA Franc BCEAO NG representation."""
 
-from multicurrency import CFAFrancBCEAONG
-
 
 class TestCFAFrancBCEAONG:
     """CFAFrancBCEAONG currency tests."""
@@ -4660,8 +4645,6 @@ class TestCFAFrancBCEAONG:
 
 
 """Tests for the CFA Franc BCEAO SN representation."""
-
-from multicurrency import CFAFrancBCEAOSN
 
 
 class TestCFAFrancBCEAOSN:
@@ -4872,8 +4855,6 @@ class TestCFAFrancBCEAOSN:
 
 """Tests for the CFA Franc BCEAO TG representation."""
 
-from multicurrency import CFAFrancBCEAOTG
-
 
 class TestCFAFrancBCEAOTG:
     """CFAFrancBCEAOTG currency tests."""
@@ -5082,8 +5063,6 @@ class TestCFAFrancBCEAOTG:
 
 
 """Tests for the CFP Franc representation."""
-
-from multicurrency import CFPFranc
 
 
 class TestCFPFranc:
@@ -5294,8 +5273,6 @@ class TestCFPFranc:
 
 """Tests for the CFP Franc PF representation."""
 
-from multicurrency import CFPFrancPF
-
 
 class TestCFPFrancPF:
     """CFPFrancPF currency tests."""
@@ -5505,8 +5482,6 @@ class TestCFPFrancPF:
 
 """Tests for the CFP Franc NC representation."""
 
-from multicurrency import CFPFrancNC
-
 
 class TestCFPFrancNC:
     """CFPFrancNC currency tests."""
@@ -5715,8 +5690,6 @@ class TestCFPFrancNC:
 
 
 """Tests for the CFP Franc WF representation."""
-
-from multicurrency import CFPFrancWF
 
 
 class TestCFPFrancWF:

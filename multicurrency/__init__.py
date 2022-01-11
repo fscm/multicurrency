@@ -295,7 +295,7 @@ Simple usage example:
     1.000,50 €
 
 Unsupported currencies can be represented by creating a generic
-`multicurrency.currency.Currency` object with the desired settings.
+`multicurrency.Currency` object with the desired settings.
 
     >>> from multicurrency import Currency
     >>> bitcoin = Currency(
@@ -402,13 +402,13 @@ Default values can be restored with:
     28 ROUND_HALF_EVEN
 
 Supported rounding methods are described on the
-`multicurrency.currency.CurrencyContext` class.
+`multicurrency.CurrencyContext` class.
 
 ## Formatting
 
-The `multicurrency.currency.Currency` class allows you to create and
-customize your own value formatting behaviors using the same
-implementation as the built-in `format()` method.
+The `multicurrency.Currency` class allows you to create and customize
+your own value formatting behaviors using the same implementation as
+the built-in `format()` method.
 
 The specification for the formatting feature is as follows:
 
@@ -437,7 +437,7 @@ The available string currency parts for `[spec]` are:
 | %s   | The currency's symbol.                                                                                                      |
 | %_   | The currency's symbol separator.                                                                                            |
 
-Basic examples of how to use the `multicurrency.currency.Currency`
+Basic examples of how to use the `multicurrency.Currency`
 formatting feature:
 
     Using the built-in `format()` method
@@ -461,7 +461,7 @@ formatting feature:
         >>> f'{euro:4%a}'
         '142.857,1429'
 
-Some more examples of the `multicurrency.currency.Currency` formatting
+Some more examples of the `multicurrency.Currency` formatting
 feature usage (using the `f-string` method):
 
     >>> from multicurrency import Euro
@@ -620,7 +620,7 @@ Several operations are supported by the several library classes.
 
 * Hash
 
-    Produces a hash representation of the `multicurrency.currency.Currency`.
+    Produces a hash representation of the `multicurrency.Currency`.
 
         >>> from multicurrency import Euro
         >>> hash(Euro(7)) # doctest: +SKIP
@@ -695,12 +695,12 @@ Several operations are supported by the several library classes.
         True
 """  # pylint: disable=line-too-long
 
-from .currency import (
+from ._currency import (
     Currency,
     CurrencyContext,
     DEFAULT_PRECISION,
     DEFAULT_ROUNDING)
-from .exceptions import (
+from ._exceptions import (
     CurrencyException,
     CurrencyInvalidDivision,
     CurrencyInvalidMultiplication,

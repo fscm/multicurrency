@@ -12,14 +12,13 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import ArubanFlorin
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the Aruban Florin representation."""
-
-from multicurrency import ArubanFlorin
 
 
 class TestArubanFlorin:

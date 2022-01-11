@@ -8,7 +8,7 @@
 
 from decimal import Decimal
 from typing import Optional, Union
-from .currency import Currency
+from ._currency import Currency
 
 
 class Euro(Currency):
@@ -22,7 +22,7 @@ class Euro(Currency):
         >>> print(euro)
         123.456,79 €
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -87,7 +87,7 @@ class EuroSBA(Currency):
         >>> print(eurosba)
         123.456,79 €
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -152,7 +152,7 @@ class EuroAD(Currency):
         >>> print(euroad)
         123.456,79 €
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -217,7 +217,7 @@ class EuroAT(Currency):
         >>> print(euroat)
         € 123.456,79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -282,7 +282,7 @@ class EuroBE(Currency):
         >>> print(eurobe)
         € 123.456,79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -347,7 +347,7 @@ class EuroCY(Currency):
         >>> print(eurocy)
         123.456,79 €
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -412,7 +412,7 @@ class EuroEE(Currency):
         >>> print(euroee)
         123 456,79 €
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -477,7 +477,7 @@ class EuroFI(Currency):
         >>> print(eurofi)
         123 456,79 €
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -542,7 +542,7 @@ class EuroFR(Currency):
         >>> print(eurofr)
         123 456,79 €
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -607,7 +607,7 @@ class EuroDE(Currency):
         >>> print(eurode)
         123.456,79 €
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -672,7 +672,7 @@ class EuroGR(Currency):
         >>> print(eurogr)
         123.456,79 €
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -737,7 +737,7 @@ class EuroIE(Currency):
         >>> print(euroie)
         €123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -802,7 +802,7 @@ class EuroIT(Currency):
         >>> print(euroit)
         123.456,79 €
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -867,7 +867,7 @@ class EuroXK(Currency):
         >>> print(euroxk)
         123 456,79 €
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -932,7 +932,7 @@ class EuroLV(Currency):
         >>> print(eurolv)
         123 456,79 €
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -997,7 +997,7 @@ class EuroLT(Currency):
         >>> print(eurolt)
         123 456,79 €
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1062,7 +1062,7 @@ class EuroLU(Currency):
         >>> print(eurolu)
         123.456,79 €
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1127,7 +1127,7 @@ class EuroMT(Currency):
         >>> print(euromt)
         €123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1192,7 +1192,7 @@ class EuroMC(Currency):
         >>> print(euromc)
         123 456,79 €
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1257,7 +1257,7 @@ class EuroME(Currency):
         >>> print(eurome)
         123.456,79 €
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1322,7 +1322,7 @@ class EuroNL(Currency):
         >>> print(euronl)
         € 123.456,79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1387,7 +1387,7 @@ class EuroPT(Currency):
         >>> print(europt)
         € 123.456,79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1452,7 +1452,7 @@ class EuroSM(Currency):
         >>> print(eurosm)
         123.456,79 €
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1517,7 +1517,7 @@ class EuroSK(Currency):
         >>> print(eurosk)
         123 456,79 €
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1582,7 +1582,7 @@ class EuroSI(Currency):
         >>> print(eurosi)
         123.456,79 €
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1647,7 +1647,7 @@ class EuroES(Currency):
         >>> print(euroes)
         123.456,79 €
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1712,7 +1712,7 @@ class EuroVA(Currency):
         >>> print(eurova)
         €123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

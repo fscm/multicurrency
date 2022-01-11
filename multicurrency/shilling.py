@@ -8,7 +8,7 @@
 
 from decimal import Decimal
 from typing import Optional, Union
-from .currency import Currency
+from ._currency import Currency
 
 
 class KenyanShilling(Currency):
@@ -22,7 +22,7 @@ class KenyanShilling(Currency):
         >>> print(kenyan_shilling)
         Ksh 123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -87,7 +87,7 @@ class SomaliShilling(Currency):
         >>> print(somali_shilling)
         SSh 123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -152,7 +152,7 @@ class TanzanianShilling(Currency):
         >>> print(tanzanian_shilling)
         TSh 123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -217,7 +217,7 @@ class UgandaShilling(Currency):
         >>> print(uganda_shilling)
         USh 123,457
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

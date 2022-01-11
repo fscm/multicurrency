@@ -8,7 +8,7 @@
 
 from decimal import Decimal
 from typing import Optional, Union
-from .currency import Currency
+from ._currency import Currency
 
 
 class Kyat(Currency):
@@ -22,7 +22,7 @@ class Kyat(Currency):
         >>> print(kyat)
         ၁၂၃,၄၅၆.၇၉ K
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

@@ -8,7 +8,7 @@
 
 from decimal import Decimal
 from typing import Optional, Union
-from .currency import Currency
+from ._currency import Currency
 
 
 class NorthKoreanWon(Currency):
@@ -22,7 +22,7 @@ class NorthKoreanWon(Currency):
         >>> print(north_korean_won)
         ₩ 123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -87,7 +87,7 @@ class SouthKoreanWon(Currency):
         >>> print(south_korean_won)
         ₩123,457
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

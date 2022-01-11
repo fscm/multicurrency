@@ -8,7 +8,7 @@
 
 from decimal import Decimal
 from typing import Optional, Union
-from .currency import Currency
+from ._currency import Currency
 
 
 class UzbekistanSum(Currency):
@@ -22,7 +22,7 @@ class UzbekistanSum(Currency):
         >>> print(uzbekistan_sum)
         123 456,79 сўм
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

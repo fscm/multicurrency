@@ -8,7 +8,7 @@
 
 from decimal import Decimal
 from typing import Optional, Union
-from .currency import Currency
+from ._currency import Currency
 
 
 class NewIsraeliShekel(Currency):
@@ -22,7 +22,7 @@ class NewIsraeliShekel(Currency):
         >>> print(new_israeli_shekel)
         123,456.79 ₪
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -87,7 +87,7 @@ class NewIsraeliShekelIL(Currency):
         >>> print(new_israeli_shekel_il)
         123,456.79 ₪
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -152,7 +152,7 @@ class NewIsraeliShekelPS(Currency):
         >>> print(new_israeli_shekel_ps)
         123,456.79 ₪
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

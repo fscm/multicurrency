@@ -12,14 +12,13 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import EthiopianBirr
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the Ethiopian Birr representation."""
-
-from multicurrency import EthiopianBirr
 
 
 class TestEthiopianBirr:

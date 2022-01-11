@@ -12,14 +12,21 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import (
+    EOS,
+    Ethereum,
+    Bitcoin,
+    StellarLumens,
+    Monero,
+    Ripple,
+    Tezos,
+    Zcash)
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the EOS representation."""
-
-from multicurrency import EOS
 
 
 class TestEOS:
@@ -230,8 +237,6 @@ class TestEOS:
 
 """Tests for the Ethereum representation."""
 
-from multicurrency import Ethereum
-
 
 class TestEthereum:
     """Ethereum currency tests."""
@@ -440,8 +445,6 @@ class TestEthereum:
 
 
 """Tests for the Bitcoin representation."""
-
-from multicurrency import Bitcoin
 
 
 class TestBitcoin:
@@ -652,8 +655,6 @@ class TestBitcoin:
 
 """Tests for the Stellar Lumens representation."""
 
-from multicurrency import StellarLumens
-
 
 class TestStellarLumens:
     """StellarLumens currency tests."""
@@ -862,8 +863,6 @@ class TestStellarLumens:
 
 
 """Tests for the Monero representation."""
-
-from multicurrency import Monero
 
 
 class TestMonero:
@@ -1074,8 +1073,6 @@ class TestMonero:
 
 """Tests for the Ripple representation."""
 
-from multicurrency import Ripple
-
 
 class TestRipple:
     """Ripple currency tests."""
@@ -1285,8 +1282,6 @@ class TestRipple:
 
 """Tests for the Tezos representation."""
 
-from multicurrency import Tezos
-
 
 class TestTezos:
     """Tezos currency tests."""
@@ -1495,8 +1490,6 @@ class TestTezos:
 
 
 """Tests for the Zcash representation."""
-
-from multicurrency import Zcash
 
 
 class TestZcash:

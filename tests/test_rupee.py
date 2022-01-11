@@ -12,14 +12,21 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import (
+    IndianRupee,
+    IndianRupeeBT,
+    IndianRupeeIN,
+    SriLankaRupee,
+    MauritiusRupee,
+    NepaleseRupee,
+    PakistanRupee,
+    SeychellesRupee)
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the Indian Rupee representation."""
-
-from multicurrency import IndianRupee
 
 
 class TestIndianRupee:
@@ -230,8 +237,6 @@ class TestIndianRupee:
 
 """Tests for the Indian Rupee BT representation."""
 
-from multicurrency import IndianRupeeBT
-
 
 class TestIndianRupeeBT:
     """IndianRupeeBT currency tests."""
@@ -440,8 +445,6 @@ class TestIndianRupeeBT:
 
 
 """Tests for the Indian Rupee IN representation."""
-
-from multicurrency import IndianRupeeIN
 
 
 class TestIndianRupeeIN:
@@ -652,8 +655,6 @@ class TestIndianRupeeIN:
 
 """Tests for the Sri Lanka Rupee representation."""
 
-from multicurrency import SriLankaRupee
-
 
 class TestSriLankaRupee:
     """SriLankaRupee currency tests."""
@@ -862,8 +863,6 @@ class TestSriLankaRupee:
 
 
 """Tests for the Mauritius Rupee representation."""
-
-from multicurrency import MauritiusRupee
 
 
 class TestMauritiusRupee:
@@ -1074,8 +1073,6 @@ class TestMauritiusRupee:
 
 """Tests for the Nepalese Rupee representation."""
 
-from multicurrency import NepaleseRupee
-
 
 class TestNepaleseRupee:
     """NepaleseRupee currency tests."""
@@ -1285,8 +1282,6 @@ class TestNepaleseRupee:
 
 """Tests for the Pakistan Rupee representation."""
 
-from multicurrency import PakistanRupee
-
 
 class TestPakistanRupee:
     """PakistanRupee currency tests."""
@@ -1495,8 +1490,6 @@ class TestPakistanRupee:
 
 
 """Tests for the Seychelles Rupee representation."""
-
-from multicurrency import SeychellesRupee
 
 
 class TestSeychellesRupee:

@@ -12,14 +12,16 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import (
+    TurkishLira,
+    TurkishLiraCY,
+    TurkishLiraTR)
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the Turkish Lira representation."""
-
-from multicurrency import TurkishLira
 
 
 class TestTurkishLira:
@@ -230,8 +232,6 @@ class TestTurkishLira:
 
 """Tests for the Turkish Lira CY representation."""
 
-from multicurrency import TurkishLiraCY
-
 
 class TestTurkishLiraCY:
     """TurkishLiraCY currency tests."""
@@ -440,8 +440,6 @@ class TestTurkishLiraCY:
 
 
 """Tests for the Turkish Lira TR representation."""
-
-from multicurrency import TurkishLiraTR
 
 
 class TestTurkishLiraTR:

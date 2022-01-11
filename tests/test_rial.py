@@ -12,14 +12,17 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import (
+    IranianRial,
+    RialOmani,
+    QatariRial,
+    YemeniRial)
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the Iranian Rial representation."""
-
-from multicurrency import IranianRial
 
 
 class TestIranianRial:
@@ -230,8 +233,6 @@ class TestIranianRial:
 
 """Tests for the Rial Omani representation."""
 
-from multicurrency import RialOmani
-
 
 class TestRialOmani:
     """RialOmani currency tests."""
@@ -441,8 +442,6 @@ class TestRialOmani:
 
 """Tests for the Qatari Rial representation."""
 
-from multicurrency import QatariRial
-
 
 class TestQatariRial:
     """QatariRial currency tests."""
@@ -651,8 +650,6 @@ class TestQatariRial:
 
 
 """Tests for the Yemeni Rial representation."""
-
-from multicurrency import YemeniRial
 
 
 class TestYemeniRial:

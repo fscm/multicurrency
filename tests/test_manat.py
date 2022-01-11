@@ -12,14 +12,15 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import (
+    AzerbaijanianManat,
+    Manat)
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the Azerbaijanian Manat representation."""
-
-from multicurrency import AzerbaijanianManat
 
 
 class TestAzerbaijanianManat:
@@ -229,8 +230,6 @@ class TestAzerbaijanianManat:
 
 
 """Tests for the Manat representation."""
-
-from multicurrency import Manat
 
 
 class TestManat:

@@ -12,14 +12,40 @@ from multicurrency import Currency
 from multicurrency import (
     CurrencyMismatchException,
     CurrencyTypeException)
+from multicurrency import (
+    Euro,
+    EuroSBA,
+    EuroAD,
+    EuroAT,
+    EuroBE,
+    EuroCY,
+    EuroEE,
+    EuroFI,
+    EuroFR,
+    EuroDE,
+    EuroGR,
+    EuroIE,
+    EuroIT,
+    EuroXK,
+    EuroLV,
+    EuroLT,
+    EuroLU,
+    EuroMT,
+    EuroMC,
+    EuroME,
+    EuroNL,
+    EuroPT,
+    EuroSM,
+    EuroSK,
+    EuroSI,
+    EuroES,
+    EuroVA)
 
 
 CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 
 
 """Tests for the Euro representation."""
-
-from multicurrency import Euro
 
 
 class TestEuro:
@@ -230,8 +256,6 @@ class TestEuro:
 
 """Tests for the EuroSBA representation."""
 
-from multicurrency import EuroSBA
-
 
 class TestEuroSBA:
     """EuroSBA currency tests."""
@@ -440,8 +464,6 @@ class TestEuroSBA:
 
 
 """Tests for the EuroAD representation."""
-
-from multicurrency import EuroAD
 
 
 class TestEuroAD:
@@ -652,8 +674,6 @@ class TestEuroAD:
 
 """Tests for the EuroAT representation."""
 
-from multicurrency import EuroAT
-
 
 class TestEuroAT:
     """EuroAT currency tests."""
@@ -862,8 +882,6 @@ class TestEuroAT:
 
 
 """Tests for the EuroBE representation."""
-
-from multicurrency import EuroBE
 
 
 class TestEuroBE:
@@ -1074,8 +1092,6 @@ class TestEuroBE:
 
 """Tests for the EuroCY representation."""
 
-from multicurrency import EuroCY
-
 
 class TestEuroCY:
     """EuroCY currency tests."""
@@ -1284,8 +1300,6 @@ class TestEuroCY:
 
 
 """Tests for the EuroEE representation."""
-
-from multicurrency import EuroEE
 
 
 class TestEuroEE:
@@ -1496,8 +1510,6 @@ class TestEuroEE:
 
 """Tests for the EuroFI representation."""
 
-from multicurrency import EuroFI
-
 
 class TestEuroFI:
     """EuroFI currency tests."""
@@ -1706,8 +1718,6 @@ class TestEuroFI:
 
 
 """Tests for the EuroFR representation."""
-
-from multicurrency import EuroFR
 
 
 class TestEuroFR:
@@ -1918,8 +1928,6 @@ class TestEuroFR:
 
 """Tests for the EuroDE representation."""
 
-from multicurrency import EuroDE
-
 
 class TestEuroDE:
     """EuroDE currency tests."""
@@ -2128,8 +2136,6 @@ class TestEuroDE:
 
 
 """Tests for the EuroGR representation."""
-
-from multicurrency import EuroGR
 
 
 class TestEuroGR:
@@ -2340,8 +2346,6 @@ class TestEuroGR:
 
 """Tests for the EuroIE representation."""
 
-from multicurrency import EuroIE
-
 
 class TestEuroIE:
     """EuroIE currency tests."""
@@ -2550,8 +2554,6 @@ class TestEuroIE:
 
 
 """Tests for the EuroIT representation."""
-
-from multicurrency import EuroIT
 
 
 class TestEuroIT:
@@ -2762,8 +2764,6 @@ class TestEuroIT:
 
 """Tests for the EuroXK representation."""
 
-from multicurrency import EuroXK
-
 
 class TestEuroXK:
     """EuroXK currency tests."""
@@ -2972,8 +2972,6 @@ class TestEuroXK:
 
 
 """Tests for the EuroLV representation."""
-
-from multicurrency import EuroLV
 
 
 class TestEuroLV:
@@ -3184,8 +3182,6 @@ class TestEuroLV:
 
 """Tests for the EuroLT representation."""
 
-from multicurrency import EuroLT
-
 
 class TestEuroLT:
     """EuroLT currency tests."""
@@ -3394,8 +3390,6 @@ class TestEuroLT:
 
 
 """Tests for the EuroLU representation."""
-
-from multicurrency import EuroLU
 
 
 class TestEuroLU:
@@ -3606,8 +3600,6 @@ class TestEuroLU:
 
 """Tests for the EuroMT representation."""
 
-from multicurrency import EuroMT
-
 
 class TestEuroMT:
     """EuroMT currency tests."""
@@ -3816,8 +3808,6 @@ class TestEuroMT:
 
 
 """Tests for the EuroMC representation."""
-
-from multicurrency import EuroMC
 
 
 class TestEuroMC:
@@ -4028,8 +4018,6 @@ class TestEuroMC:
 
 """Tests for the EuroME representation."""
 
-from multicurrency import EuroME
-
 
 class TestEuroME:
     """EuroME currency tests."""
@@ -4238,8 +4226,6 @@ class TestEuroME:
 
 
 """Tests for the EuroNL representation."""
-
-from multicurrency import EuroNL
 
 
 class TestEuroNL:
@@ -4450,8 +4436,6 @@ class TestEuroNL:
 
 """Tests for the EuroPT representation."""
 
-from multicurrency import EuroPT
-
 
 class TestEuroPT:
     """EuroPT currency tests."""
@@ -4660,8 +4644,6 @@ class TestEuroPT:
 
 
 """Tests for the EuroSM representation."""
-
-from multicurrency import EuroSM
 
 
 class TestEuroSM:
@@ -4872,8 +4854,6 @@ class TestEuroSM:
 
 """Tests for the EuroSK representation."""
 
-from multicurrency import EuroSK
-
 
 class TestEuroSK:
     """EuroSK currency tests."""
@@ -5082,8 +5062,6 @@ class TestEuroSK:
 
 
 """Tests for the EuroSI representation."""
-
-from multicurrency import EuroSI
 
 
 class TestEuroSI:
@@ -5294,8 +5272,6 @@ class TestEuroSI:
 
 """Tests for the EuroES representation."""
 
-from multicurrency import EuroES
-
 
 class TestEuroES:
     """EuroES currency tests."""
@@ -5504,8 +5480,6 @@ class TestEuroES:
 
 
 """Tests for the EuroVA representation."""
-
-from multicurrency import EuroVA
 
 
 class TestEuroVA:

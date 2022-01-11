@@ -8,7 +8,7 @@
 
 from decimal import Decimal
 from typing import Optional, Union
-from .currency import Currency
+from ._currency import Currency
 
 
 class AustralianDollar(Currency):
@@ -22,7 +22,7 @@ class AustralianDollar(Currency):
         >>> print(australian_dollar)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -87,7 +87,7 @@ class AustralianDollarAU(Currency):
         >>> print(australian_dollar_au)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -152,7 +152,7 @@ class AustralianDollarKI(Currency):
         >>> print(australian_dollar_ki)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -217,7 +217,7 @@ class AustralianDollarCC(Currency):
         >>> print(australian_dollar_cc)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -282,7 +282,7 @@ class AustralianDollarMR(Currency):
         >>> print(australian_dollar_mr)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -347,7 +347,7 @@ class AustralianDollarTV(Currency):
         >>> print(australian_dollar_tv)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -412,7 +412,7 @@ class BarbadosDollar(Currency):
         >>> print(barbados_dollar)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -477,7 +477,7 @@ class BermudianDollar(Currency):
         >>> print(bermudian_dollar)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -542,7 +542,7 @@ class BruneiDollar(Currency):
         >>> print(brunei_dollar)
         $ 123.456,79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -607,7 +607,7 @@ class BruneiDollarBN(Currency):
         >>> print(brunei_dollar_bn)
         $ 123.456,79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -672,7 +672,7 @@ class BruneiDollarSG(Currency):
         >>> print(brunei_dollar_sg)
         $ 123.456,79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -737,7 +737,7 @@ class BahamianDollar(Currency):
         >>> print(bahamian_dollar)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -802,7 +802,7 @@ class BelizeDollar(Currency):
         >>> print(belize_dollar)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -867,7 +867,7 @@ class CanadianDollarEN(Currency):
         >>> print(canadian_dollar_en)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -932,7 +932,7 @@ class CanadianDollarFR(Currency):
         >>> print(canadian_dollar_fr)
         123 456,79 $
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -997,7 +997,7 @@ class FijiDollar(Currency):
         >>> print(fiji_dollar)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1062,7 +1062,7 @@ class GuyanaDollar(Currency):
         >>> print(guyana_dollar)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1127,7 +1127,7 @@ class HongKongDollar(Currency):
         >>> print(hong_kong_dollar)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1192,7 +1192,7 @@ class JamaicanDollar(Currency):
         >>> print(jamaican_dollar)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1257,7 +1257,7 @@ class CaymanIslandsDollar(Currency):
         >>> print(cayman_islands_dollar)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1322,7 +1322,7 @@ class LiberianDollar(Currency):
         >>> print(liberian_dollar)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1387,7 +1387,7 @@ class NamibiaDollar(Currency):
         >>> print(namibia_dollar)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1452,7 +1452,7 @@ class NewZealandDollar(Currency):
         >>> print(new_zealand_dollar)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1517,7 +1517,7 @@ class NewZealandDollarCK(Currency):
         >>> print(new_zealand_dollar_ck)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1582,7 +1582,7 @@ class NewZealandDollarNZ(Currency):
         >>> print(new_zealand_dollar_nz)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1647,7 +1647,7 @@ class NewZealandDollarNU(Currency):
         >>> print(new_zealand_dollar_nu)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1712,7 +1712,7 @@ class NewZealandDollarPN(Currency):
         >>> print(new_zealand_dollar_pn)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1777,7 +1777,7 @@ class SolomonIslandsDollar(Currency):
         >>> print(solomon_islands_dollar)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1842,7 +1842,7 @@ class SingaporeDollar(Currency):
         >>> print(singapore_dollar)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1907,7 +1907,7 @@ class SingaporeDollarBN(Currency):
         >>> print(singapore_dollar_bn)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1972,7 +1972,7 @@ class SingaporeDollarSG(Currency):
         >>> print(singapore_dollar_sg)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -2037,7 +2037,7 @@ class SurinameDollar(Currency):
         >>> print(suriname_dollar)
         $ 123.456,79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -2102,7 +2102,7 @@ class TrinidadandTobagoDollar(Currency):
         >>> print(trinidad_and_tobago_dollar)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -2167,7 +2167,7 @@ class TaiwanDollar(Currency):
         >>> print(taiwan_dollar)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -2232,7 +2232,7 @@ class USDollar(Currency):
         >>> print(us_dollar)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -2297,7 +2297,7 @@ class USDollarAS(Currency):
         >>> print(us_dollar_as)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -2362,7 +2362,7 @@ class USDollarIO(Currency):
         >>> print(us_dollar_io)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -2427,7 +2427,7 @@ class USDollarVG(Currency):
         >>> print(us_dollar_vg)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -2492,7 +2492,7 @@ class USDollarGU(Currency):
         >>> print(us_dollar_gu)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -2557,7 +2557,7 @@ class USDollarHT(Currency):
         >>> print(us_dollar_ht)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -2622,7 +2622,7 @@ class USDollarMH(Currency):
         >>> print(us_dollar_mh)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -2687,7 +2687,7 @@ class USDollarFM(Currency):
         >>> print(us_dollar_fm)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -2752,7 +2752,7 @@ class USDollarMP(Currency):
         >>> print(us_dollar_mp)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -2817,7 +2817,7 @@ class USDollarPC(Currency):
         >>> print(us_dollar_pc)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -2882,7 +2882,7 @@ class USDollarPW(Currency):
         >>> print(us_dollar_pw)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -2947,7 +2947,7 @@ class USDollarPA(Currency):
         >>> print(us_dollar_pa)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -3012,7 +3012,7 @@ class USDollarPR(Currency):
         >>> print(us_dollar_pr)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -3077,7 +3077,7 @@ class USDollarTC(Currency):
         >>> print(us_dollar_tc)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -3142,7 +3142,7 @@ class USDollarVI(Currency):
         >>> print(us_dollar_vi)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -3207,7 +3207,7 @@ class EasternCaribbeanDollar(Currency):
         >>> print(eastern_caribbean_dollar)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -3272,7 +3272,7 @@ class EasternCaribbeanDollarAI(Currency):
         >>> print(eastern_caribbean_dollar_ai)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -3337,7 +3337,7 @@ class EasternCaribbeanDollarAG(Currency):
         >>> print(eastern_caribbean_dollar_ag)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -3402,7 +3402,7 @@ class EasternCaribbeanDollarDM(Currency):
         >>> print(eastern_caribbean_dollar_dm)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -3467,7 +3467,7 @@ class EasternCaribbeanDollarGD(Currency):
         >>> print(eastern_caribbean_dollar_gd)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -3532,7 +3532,7 @@ class EasternCaribbeanDollarMS(Currency):
         >>> print(eastern_caribbean_dollar_ms)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -3597,7 +3597,7 @@ class EasternCaribbeanDollarKN(Currency):
         >>> print(eastern_caribbean_dollar_kn)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -3662,7 +3662,7 @@ class EasternCaribbeanDollarLC(Currency):
         >>> print(eastern_caribbean_dollar_lc)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -3727,7 +3727,7 @@ class EasternCaribbeanDollarVC(Currency):
         >>> print(eastern_caribbean_dollar_vc)
         $123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -3792,7 +3792,7 @@ class ZimbabweDollar(Currency):
         >>> print(zimbabwe_dollar)
         $ 123,456.79
 
-    For more details see `multicurrency.currency.Currency` .
+    For more details see `multicurrency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
