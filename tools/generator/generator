@@ -5,7 +5,7 @@
 # author: Frederico Martins <http://github.com/fscm>
 # license: SPDX-License-Identifier: MIT
 
-# pylint: disable=eval-used,invalid-name,line-too-long,unspecified-encoding
+# pylint: disable=invalid-name,line-too-long
 """Currency generator.
 
 Creates specific versions of Currency based on the info present on the
@@ -51,16 +51,15 @@ CONTEXT = Context(prec=28, rounding='ROUND_HALF_EVEN').copy()
 CSV_FILE = 'currency.csv'
 CURRENCY_CLASS = 'currency_class.tmpl'
 CURRENCY_MODULE = 'currency_module.tmpl'
-#CURRENCY_TESTS = 'currency_tests.tmpl'
 TEST_CLASS = 'test_class.tmpl'
 TEST_MODULE = 'test_module.tmpl'
 
 workfolder = os.path.dirname(os.path.realpath(__file__))
 #workfolder = os.getcwd()
 re_nospace = dict(
-    (re.escape(k), v) for k,v in {' ': '', '’': '', '\'': ''}.items())
+    (re.escape(k), v) for k, v in {' ': '', '’': '', '\'': ''}.items())
 re_underscore = dict(
-    (re.escape(k), v) for k,v in {' ': '_', '’': '', '\'': ''}.items())
+    (re.escape(k), v) for k, v in {' ': '_', '’': '', '\'': ''}.items())
 comp_nospace = re.compile('|'.join(re_nospace.keys()))
 comp_underscore = re.compile('|'.join(re_underscore.keys()))
 
@@ -75,23 +74,32 @@ text_module = ''
 text_class = ''
 text_tests = ''
 
-with open(f'{workfolder}/{CURRENCY_MODULE}', 'r') as file_in_module:
+with open(
+        f'{workfolder}/{CURRENCY_MODULE}',
+        mode='r',
+        encoding='utf-8') as file_in_module:
     text_module = file_in_module.read()
 
-with open(f'{workfolder}/{CURRENCY_CLASS}', 'r') as file_in_class:
+with open(
+        f'{workfolder}/{CURRENCY_CLASS}',
+        mode='r',
+        encoding='utf-8') as file_in_class:
     text_class = file_in_class.read()
 
-# with open(f'{workfolder}/{CURRENCY_TESTS}', 'r') as file_in_tests:
-#     text_tests = file_in_tests.read()
-
-with open(f'{workfolder}/{TEST_MODULE}', 'r') as file_in_test_module:
+with open(
+        f'{workfolder}/{TEST_MODULE}',
+        mode='r',
+        encoding='utf-8') as file_in_test_module:
     text_test_module = file_in_test_module.read()
 
-with open(f'{workfolder}/{TEST_CLASS}', 'r') as file_in_test_class:
+with open(
+        f'{workfolder}/{TEST_CLASS}',
+        mode='r',
+        encoding='utf-8') as file_in_test_class:
     text_test_class = file_in_test_class.read()
 
 
-def _format( # pylint: disable=missing-return-doc,missing-return-type-doc
+def _format(  # pylint: disable=missing-return-doc,missing-return-type-doc
         _amount,
         _decimal_places,
         _grouping_places,
@@ -105,7 +113,6 @@ def _format( # pylint: disable=missing-return-doc,missing-return-type-doc
         _convertion,
         _international=False,
         _localized=False):
-    #_converted = f'{round(_amount, _decimal_places):,.{_decimal_places}f}'
     _p = max(_decimal_places, 0)
     _rounded = str(round(_amount, _p))
     if not _p:
@@ -115,16 +122,26 @@ def _format( # pylint: disable=missing-return-doc,missing-return-type-doc
     if not _p:
         _converted = _converted[:-1]
     _grouping_sign = bytes(_grouping_sign, 'utf-8').decode('unicode_escape')
-    _symbol_separator = bytes(_symbol_separator, 'utf-8').decode('unicode_escape')
+    _symbol_separator = bytes(
+        _symbol_separator,
+        'utf-8').decode('unicode_escape')
     if _international:
         return f'{_alpha_code} {_converted}'
     if _convertion:
-        _c = re.sub(r'\\u[0-9a-fA-F]{4}', lambda x:eval('"' + x.group() + '"'), _convertion)
+        _c = re.sub(
+            r'\\u[0-9a-fA-F]{4}',
+            lambda x: eval('"' + x.group() + '"'), # pylint: disable=eval-used
+            _convertion)
         _t = dict(zip('0123456789-,.', _c))
-        #_t = dict(zip('0123456789-,.', _convertion))
         _converted = ''.join([_t.get(c, c) for c in _converted])
-    _d = re.sub(r'\\u[0-9a-fA-F]{4}', lambda x:eval('"' + x.group() + '"'), _decimal_sign)
-    _g = re.sub(r'\\u[0-9a-fA-F]{4}', lambda x:eval('"' + x.group() + '"'), _grouping_sign)
+    _d = re.sub(
+        r'\\u[0-9a-fA-F]{4}',
+        lambda x: eval('"' + x.group() + '"'), # pylint: disable=eval-used
+        _decimal_sign)
+    _g = re.sub(
+        r'\\u[0-9a-fA-F]{4}',
+        lambda x: eval('"' + x.group() + '"'), # pylint: disable=eval-used
+        _grouping_sign)
     _converted = _converted.replace('.', 'X').replace(',', _g).replace('X', _d)
     if _localized:
         _symbol = _localized_symbol
@@ -134,7 +151,7 @@ def _format( # pylint: disable=missing-return-doc,missing-return-type-doc
 
 
 print('Loading CSV data...')
-with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
+with open(f'{workfolder}/{CSV_FILE}', mode='r', encoding='utf-8') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     headers = [
         f'{h.lower().replace(" ", "_")}' for h in next(csv_reader, None)]
@@ -156,6 +173,7 @@ with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
         decimal_part = f'{decimal_sign}{decimal_zeros}'
         grouping_sign_alt = f'\\{currency["grouping_sign"]}' if currency[
             'grouping_sign'] == '\'' else f'{currency["grouping_sign"]}'
+        symbol_ahead = currency['symbol_ahead'] == 'True'
         _ = countries.setdefault(
             currency['country'],
             (currency['name'], f'{currency_module}.{currency_class}'))
@@ -188,8 +206,7 @@ with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
             '__SYMBOL_SEPARATOR_STR__': bytes(
                 currency['symbol_separator'], 'utf-8').decode('unicode_escape'),
             '__SYMBOL_AHEAD__': currency['symbol_ahead'],
-            '__SYMBOL_AHEAD_ALT__': '' if bool(
-                eval(currency['symbol_ahead'])) else 'not ',
+            '__SYMBOL_AHEAD_ALT__': '' if symbol_ahead else 'not ',
             '__LOCALIZED_SYMBOL__': currency['localized_symbol'],
             '__EXAMPLE_OUTPUT__': _format(
                 example,
@@ -199,7 +216,7 @@ with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
                 currency['grouping_sign'],
                 currency['decimal_sign'],
                 currency['symbol'],
-                eval(currency['symbol_ahead']),
+                symbol_ahead,
                 currency['symbol_separator'],
                 currency['localized_symbol'],
                 currency['convertion']),
@@ -211,7 +228,7 @@ with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
                 currency['grouping_sign'],
                 currency['decimal_sign'],
                 currency['symbol'],
-                eval(currency['symbol_ahead']),
+                symbol_ahead,
                 currency['symbol_separator'],
                 currency['localized_symbol'],
                 currency['convertion']),
@@ -223,7 +240,7 @@ with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
                 currency['grouping_sign'],
                 currency['decimal_sign'],
                 currency['symbol'],
-                eval(currency['symbol_ahead']),
+                symbol_ahead,
                 currency['symbol_separator'],
                 currency['localized_symbol'],
                 currency['convertion']),
@@ -249,7 +266,7 @@ with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
                 currency['grouping_sign'],
                 currency['decimal_sign'],
                 currency['symbol'],
-                eval(currency['symbol_ahead']),
+                symbol_ahead,
                 currency['symbol_separator'],
                 currency['localized_symbol'],
                 currency['convertion'],
@@ -259,64 +276,93 @@ with open(f'{workfolder}/{CSV_FILE}', 'r') as csv_file:
 
 
 print('Creating currency types...')
-for currency_module in currencies:
+for currency_module, currency_info in currencies.items():
     out_text = re.sub(
         '__CURRENCY_MODULE__',
-        currencies[currency_module]['name'], text_module)
-    for _, values in currencies[currency_module]['currencies'].items():
-        re_values = dict((re.escape(k), v) for k,v in values.items())
+        currency_info['name'], text_module)
+    for _, values in currency_info['currencies'].items():
+        re_values = dict((re.escape(k), v) for k, v in values.items())
         comp_values = re.compile('|'.join(re_values.keys()))
         out_text = out_text + comp_values.sub(
-            lambda l: re_values[re.escape(l.group(0))], text_class) # pylint: disable=cell-var-from-loop
+            lambda l: re_values[re.escape(l.group(0))], # pylint: disable=cell-var-from-loop
+            text_class)
     with open(
             f'{workfolder}/_multicurrency/{currency_module}.py',
-            'w+') as file_out:
+            mode='w+',
+            encoding='utf-8') as file_out:
         _ = file_out.write(out_text)
         _ = file_out.truncate()
-for currency_module in crypto_currencies:
+for currency_module, currency_info in crypto_currencies.items():
     out_text = re.sub(
         '__CURRENCY_MODULE__',
-        crypto_currencies[currency_module]['name'], text_module)
-    for _, values in crypto_currencies[currency_module]['currencies'].items():
-        re_values = dict((re.escape(k), v) for k,v in values.items())
+        currency_info['name'], text_module)
+    for _, values in currency_info['currencies'].items():
+        re_values = dict((re.escape(k), v) for k, v in values.items())
         comp_values = re.compile('|'.join(re_values.keys()))
         out_text = out_text + comp_values.sub(
-            lambda l: re_values[re.escape(l.group(0))], text_class) # pylint: disable=cell-var-from-loop
+            lambda l: re_values[re.escape(l.group(0))], # pylint: disable=cell-var-from-loop
+            text_class)
     with open(
             f'{workfolder}/_multicurrency/{currency_module}.py',
-            'w+') as file_out:
+            mode='w+',
+            encoding='utf-8') as file_out:
         _ = file_out.write(out_text)
         _ = file_out.truncate()
 
 
 print('Creating currency tests...')
-for currency_module in currencies:
+for currency_module, currency_info in currencies.items():
     out_text = re.sub(
         '__CURRENCY_MODULE__',
-        currencies[currency_module]['name'], text_test_module)
-    for currency, values in currencies[currency_module]['currencies'].items():
-        re_values = dict((re.escape(k), v) for k,v in values.items())
+        currency_info['name'], text_test_module)
+    currency_class_list = []
+    for currency, values in currency_info['currencies'].items():
+        currency_class_list.append(values['__CURRENCY_CLASS__'])
+        re_values = dict((re.escape(k), v) for k, v in values.items())
         comp_values = re.compile('|'.join(re_values.keys()))
         out_text = out_text + comp_values.sub(
-            lambda l: re_values[re.escape(l.group(0))], text_test_class)
+            lambda l: re_values[re.escape(l.group(0))],  # pylint: disable=cell-var-from-loop
+            text_test_class)
         out_text = re.sub('__CURRENCY_MODULE__', currency_module, out_text)
+    if len(currency_class_list) > 1:
+        __CURRENCY_CLASS_LIST__ = '(\n    ' + ',\n    '.join(currency_class_list) + ')'
+    else:
+        __CURRENCY_CLASS_LIST__ = currency_class_list[0]
+    out_text = re.sub(
+        '__CURRENCY_CLASS_LIST__',
+        __CURRENCY_CLASS_LIST__,
+        out_text)
     with open(
             f'{workfolder}/_tests/test_{currency_module}.py',
-            'w+') as file_out:
+            mode='w+',
+            encoding='utf-8') as file_out:
         _ = file_out.write(out_text)
         _ = file_out.truncate()
-for currency_module in crypto_currencies:
+for currency_module, currency_info in crypto_currencies.items():
     out_text = re.sub(
         '__CURRENCY_MODULE__',
-        crypto_currencies[currency_module]['name'], text_test_module)
-    for currency, values in crypto_currencies[currency_module]['currencies'].items():
-        re_values = dict((re.escape(k), v) for k,v in values.items())
+        currency_info['name'], text_test_module)
+    currency_class_list = []
+    for currency, values in currency_info['currencies'].items():
+        currency_class_list.append(values['__CURRENCY_CLASS__'])
+        re_values = dict((re.escape(k), v) for k, v in values.items())
         comp_values = re.compile('|'.join(re_values.keys()))
         out_text = out_text + comp_values.sub(
-            lambda l: re_values[re.escape(l.group(0))], text_test_class)
+            lambda l: re_values[re.escape(l.group(0))],  # pylint: disable=cell-var-from-loop
+            text_test_class)
         out_text = re.sub('__CURRENCY_MODULE__', currency_module, out_text)
+    if len(currency_class_list) > 1:
+        __CURRENCY_CLASS_LIST__ = '(\n    ' + ',\n    '.join(currency_class_list) + ')'
+    else:
+        __CURRENCY_CLASS_LIST__ = currency_class_list[0]
+    out_text = re.sub(
+        '__CURRENCY_CLASS_LIST__',
+        __CURRENCY_CLASS_LIST__,
+        out_text)
     with open(
-            f'{workfolder}/_tests/test_{currency_module}.py', 'w+') as file_out:
+            f'{workfolder}/_tests/test_{currency_module}.py',
+            mode='w+',
+            encoding='utf-8') as file_out:
         _ = file_out.write(out_text)
         _ = file_out.truncate()
 
@@ -396,4 +442,4 @@ supported_crypto_sorted = [c[1] for _, c in sorted(supported_crypto)]
 print(',\n'.join(supported_crypto_sorted))
 print()
 
-# pylint: enable=eval-used,invalid-name,line-too-long
+# pylint: enable=invalid-name,line-too-long
