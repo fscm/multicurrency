@@ -344,7 +344,7 @@ currency representation:
     >>> from multicurrency import TaiwanDollar, USDollar
     >>> tw_dollar = TaiwanDollar('27.65')
     >>> us_dollar = USDollar('1')
-    >>> print(us_dollar.lstr(), '=', tw_dollar.lstr())
+    >>> print(us_dollar.localized(), '=', tw_dollar.localized())
     US$1.00 = TW$27.65
 
 ## Precision

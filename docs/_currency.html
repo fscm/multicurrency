@@ -761,6 +761,26 @@ sign.</p>
 <dd>True if the value is negative. False otherwise.</dd>
 </dl></div>
 </dd>
+<dt id="multicurrency._currency.Currency.localized"><code class="name flex">
+<span>def <span class="ident">localized</span></span>(<span>self, precision: int = 2) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>String value of this class formated with the
+<code>localized_symbol</code> and the <code><a title="multicurrency._currency.CurrencyContext" href="#multicurrency._currency.CurrencyContext">CurrencyContext</a></code> precision
+value (<code>prec</code>).</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>precision</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Precision. Defaults to <code>2</code>.
+Values lower than 0 (zero) will be converted to 0
+(zero).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>value</dd>
+</dl></div>
+</dd>
 <dt id="multicurrency._currency.Currency.lstr"><code class="name flex">
 <span>def <span class="ident">lstr</span></span>(<span>self, precision: int = 2) ‑> str</span>
 </code></dt>
@@ -768,6 +788,11 @@ sign.</p>
 <div class="desc"><p>String value of this class formated with the
 <code>localized_symbol</code> and the <code><a title="multicurrency._currency.CurrencyContext" href="#multicurrency._currency.CurrencyContext">CurrencyContext</a></code> precision
 value (<code>prec</code>).</p>
+<div class="admonition note">
+<p class="admonition-title">Note:&ensp;Deprecated in version 1.0.0</p>
+<p>will be removed in a future release, it was replaced by the
+<code><a title="multicurrency._currency.Currency.localized" href="#multicurrency._currency.Currency.localized">Currency.localized()</a></code> method.</p>
+</div>
 <h2 id="args">Args</h2>
 <dl>
 <dt><strong><code>precision</code></strong> :&ensp;<code>int</code>, optional</dt>
@@ -859,6 +884,7 @@ Values lower than 0 (zero) will be converted to 0
 <li><code><a title="multicurrency._currency.Currency.grouping_sign" href="#multicurrency._currency.Currency.grouping_sign">grouping_sign</a></code></li>
 <li><code><a title="multicurrency._currency.Currency.international" href="#multicurrency._currency.Currency.international">international</a></code></li>
 <li><code><a title="multicurrency._currency.Currency.is_signed" href="#multicurrency._currency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency._currency.Currency.localized" href="#multicurrency._currency.Currency.localized">localized</a></code></li>
 <li><code><a title="multicurrency._currency.Currency.localized_symbol" href="#multicurrency._currency.Currency.localized_symbol">localized_symbol</a></code></li>
 <li><code><a title="multicurrency._currency.Currency.lstr" href="#multicurrency._currency.Currency.lstr">lstr</a></code></li>
 <li><code><a title="multicurrency._currency.Currency.numeric_code" href="#multicurrency._currency.Currency.numeric_code">numeric_code</a></code></li>

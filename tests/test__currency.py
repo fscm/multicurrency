@@ -10,6 +10,7 @@ import math
 import pickle
 from decimal import Context
 from pytest import raises
+from warnings import catch_warnings
 from multicurrency import Currency, CurrencyContext
 from multicurrency import (
     CurrencyMismatchException,
@@ -776,7 +777,7 @@ def test__currency_localized_1():
                 symbol='€',
                 localized_symbol='PT€',
                 numeric_code='978')
-            assert localized_currency.lstr(precision) == result
+            assert localized_currency.localized(precision) == result
     CurrencyContext.rounding = 'ROUND_HALF_EVEN'
     CurrencyContext.prec = 28
 
@@ -796,7 +797,7 @@ def test__currency_localized_2():
                 localized_symbol='PT€',
                 numeric_code='978',
                 international=True)
-            assert localized_currency.lstr(precision) == result
+            assert localized_currency.localized(precision) == result
     CurrencyContext.rounding = 'ROUND_HALF_EVEN'
     CurrencyContext.prec = 28
 
@@ -811,8 +812,27 @@ def test__currency_localized_3():
         localized_symbol='PT€',
         numeric_code='978',
         convertion='0123456789-')
-    assert localized_currency.lstr(-2) == '0PT€'
-    assert localized_currency.lstr(0) == '0PT€'
+    assert localized_currency.localized(-2) == '0PT€'
+    assert localized_currency.localized(0) == '0PT€'
+
+
+def test__currency_localized_deprecated():
+    """test__currency_localized_deprecated."""
+    localized_currency = Currency(
+        amount=1/7,
+        alpha_code='EUR',
+        symbol='€',
+        symbol_ahead=False,
+        localized_symbol='PT€',
+        numeric_code='978',
+        convertion='0123456789-')
+    with catch_warnings(record=True) as w:
+        assert localized_currency.lstr(2) == '0.14PT€'
+        assert localized_currency.lstr(-2) == '0PT€'
+        assert localized_currency.lstr(0) == '0PT€'
+        assert len(w) == 3
+        assert issubclass(w[0].category, DeprecationWarning)
+        assert str(w[0].message) == 'This method is deprecated; version=1.0.0'
 
 
 def test__currency_precision_1():

@@ -269,6 +269,7 @@ from re import (
     match as _match,
     sub as _sub)
 from typing import Any, Optional, Tuple, Union
+from warnings import warn
 from ._exceptions import (
     CurrencyInvalidDivision,
     CurrencyInvalidMultiplication,
@@ -1201,7 +1202,7 @@ class Currency:
         """
         return self._amount.is_signed()
 
-    def lstr(self, precision: int = 2) -> str:
+    def localized(self, precision: int = 2) -> str:
         """String value of this class formated with the
             `localized_symbol` and the `CurrencyContext` precision
             value (`prec`).
@@ -1233,6 +1234,29 @@ class Currency:
             return (
                 f'{self._localized_symbol}{self._symbol_separator}{converted}')
         return f'{converted}{self._symbol_separator}{self._localized_symbol}'
+
+    def lstr(self, precision: int = 2) -> str:
+        """String value of this class formated with the
+            `localized_symbol` and the `CurrencyContext` precision
+            value (`prec`).
+
+        .. note:: Deprecated in version 1.0.0
+            will be removed in a future release, it was replaced by the
+            `Currency.localized` method.
+
+        Args:
+            precision (int, optional): Precision. Defaults to `2`.
+                Values lower than 0 (zero) will be converted to 0
+                (zero).
+
+        Returns:
+            str: value
+        """
+        warn(
+            'This method is deprecated; version=1.0.0',
+            DeprecationWarning,
+            stacklevel=2)
+        return self.localized(precision=precision)
 
     def pstr(self, precision: int = 2) -> str:
         """String value of this class formated with
