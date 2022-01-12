@@ -1,6 +1,17 @@
 # Changelog
 
-## [v0.11.0](https://github.com/fscm/multicurrency/tree/v0.11.0) (2021-12-??)
+## [v1.0.0](https://github.com/fscm/multicurrency/tree/v1.0.0) (2022-01-12)
+
+### [changes](https://github.com/fscm/multicurrency/compare/v0.11.0...v1.0.0)
+
+* 'pstr' deprecated and replaced with 'precision'
+* 'lstr' deprecated and replaced with 'localized'
+* 'currency' e 'exceptions' are now private
+* documentation updated
+* generator tool updated
+* first stable release
+
+## [v0.11.0](https://github.com/fscm/multicurrency/tree/v0.11.0) (2021-12-28)
 
 ### [changes](https://github.com/fscm/multicurrency/compare/v0.10.0...v0.11.0)
 

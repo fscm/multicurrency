@@ -98,7 +98,7 @@ currency representation:
 >>> from multicurrency import TaiwanDollar, USDollar
 >>> tw_dollar = TaiwanDollar('27.65')
 >>> us_dollar = USDollar('1')
->>> print(us_dollar.lstr(), '=', tw_dollar.lstr())
+>>> print(us_dollar.localized(), '=', tw_dollar.localized())
 US$1.00 = TW$27.65
 ```
 
@@ -112,7 +112,7 @@ places) which can be as large as needed for a given problem:
 >>> for precision in [1, 2, 3, 4, 5, 6]:
 ...     CurrencyContext.prec = precision
 ...     result = Euro(1) / 7
-...     print(result.pstr(precision))
+...     print(result.precision(precision))
 0,1 €
 0,14 €
 0,143 €
@@ -138,7 +138,7 @@ which can be changed as needed:
 ...         'ROUND_05UP']:
 ...     CurrencyContext.rounding = rounding
 ...     result = Euro(1) / 7
-...     print(f'{rounding:16}', result.pstr(4))
+...     print(f'{rounding:16}', result.precision(4))
 ...
 ROUND_CEILING    0,1429 €
 ROUND_DOWN       0,1428 €
