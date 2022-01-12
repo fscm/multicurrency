@@ -22,7 +22,7 @@ class NewIsraeliShekel(Currency):
         >>> print(new_israeli_shekel)
         123,456.79 ₪
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -87,7 +87,7 @@ class NewIsraeliShekelIL(Currency):
         >>> print(new_israeli_shekel_il)
         123,456.79 ₪
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -152,7 +152,7 @@ class NewIsraeliShekelPS(Currency):
         >>> print(new_israeli_shekel_ps)
         123,456.79 ₪
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

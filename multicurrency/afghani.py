@@ -22,7 +22,7 @@ class Afghani(Currency):
         >>> print(afghani)
         ؋ ۱۲۳٬۴۵۶٫۷۹
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

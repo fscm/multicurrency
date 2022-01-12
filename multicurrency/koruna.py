@@ -22,7 +22,7 @@ class CzechKoruna(Currency):
         >>> print(czech_koruna)
         123 456,79 Kč
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

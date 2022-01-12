@@ -22,7 +22,7 @@ class BahrainiDinar(Currency):
         >>> print(bahraini_dinar)
         د.ب. ١٢٣٬٤٥٦٫٧٨٩
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -87,7 +87,7 @@ class AlgerianDinar(Currency):
         >>> print(algerian_dinar)
         123.456,79 د.ج.
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -152,7 +152,7 @@ class IraqiDinar(Currency):
         >>> print(iraqi_dinar)
         د.ع. ١٢٣٬٤٥٦٫٧٨٩
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -217,7 +217,7 @@ class JordanianDinar(Currency):
         >>> print(jordanian_dinar)
         د.أ. ١٢٣٬٤٥٦٫٧٨٩
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -282,7 +282,7 @@ class KuwaitiDinar(Currency):
         >>> print(kuwaiti_dinar)
         د.ك. ١٢٣٬٤٥٦٫٧٨٩
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -347,7 +347,7 @@ class LibyanDinar(Currency):
         >>> print(libyan_dinar)
         د.ل. 123.456,789
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -412,7 +412,7 @@ class SerbianDinarXK(Currency):
         >>> print(serbian_dinar_xk)
         123.456,79 дин.
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -477,7 +477,7 @@ class SerbianDinarSR(Currency):
         >>> print(serbian_dinar_sr)
         123 456,79 дин.
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -542,7 +542,7 @@ class TunisianDinar(Currency):
         >>> print(tunisian_dinar)
         د.ت. 123.456,789
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

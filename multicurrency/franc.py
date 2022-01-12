@@ -22,7 +22,7 @@ class BurundiFranc(Currency):
         >>> print(burundi_franc)
         123 457 ₣
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -87,7 +87,7 @@ class CongoleseFranc(Currency):
         >>> print(congolese_franc)
         123 456,79 ₣
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -152,7 +152,7 @@ class SwissFranc(Currency):
         >>> print(swiss_franc)
         ₣ 123'456.79
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -217,7 +217,7 @@ class SwissFrancLI(Currency):
         >>> print(swiss_franc_li)
         ₣ 123'456.79
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -282,7 +282,7 @@ class SwissFrancCH(Currency):
         >>> print(swiss_franc_ch)
         ₣ 123'456.79
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -347,7 +347,7 @@ class DjiboutiFranc(Currency):
         >>> print(djibouti_franc)
         123 457 ₣
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -412,7 +412,7 @@ class GuineaFranc(Currency):
         >>> print(guinea_franc)
         123 457 ₣
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -477,7 +477,7 @@ class RwandaFranc(Currency):
         >>> print(rwanda_franc)
         ₣ 123.457
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -542,7 +542,7 @@ class CFAFrancBEAC(Currency):
         >>> print(cfa_franc_beac)
         123 457 ₣
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -607,7 +607,7 @@ class CFAFrancBEACCM(Currency):
         >>> print(cfa_franc_beac_cm)
         123 457 ₣
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -672,7 +672,7 @@ class CFAFrancBEACCF(Currency):
         >>> print(cfa_franc_beac_cf)
         123 457 ₣
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -737,7 +737,7 @@ class CFAFrancBEACTD(Currency):
         >>> print(cfa_franc_beac_td)
         123 457 ₣
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -802,7 +802,7 @@ class CFAFrancBEACCD(Currency):
         >>> print(cfa_franc_beac_cd)
         123 457 ₣
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -867,7 +867,7 @@ class CFAFrancBEACGQ(Currency):
         >>> print(cfa_franc_beac_gq)
         123 457 ₣
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -932,7 +932,7 @@ class CFAFrancBEACGA(Currency):
         >>> print(cfa_franc_beac_ga)
         123 457 ₣
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -997,7 +997,7 @@ class CFAFrancBCEAO(Currency):
         >>> print(cfa_franc_bceao)
         123 457 ₣
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1062,7 +1062,7 @@ class CFAFrancBCEAOBJ(Currency):
         >>> print(cfa_franc_bceao_bj)
         123 457 ₣
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1127,7 +1127,7 @@ class CFAFrancBCEAOBF(Currency):
         >>> print(cfa_franc_bceao_bf)
         123 457 ₣
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1192,7 +1192,7 @@ class CFAFrancBCEAOCI(Currency):
         >>> print(cfa_franc_bceao_ci)
         123 457 ₣
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1257,7 +1257,7 @@ class CFAFrancBCEAOGW(Currency):
         >>> print(cfa_franc_bceao_gw)
         123 457 ₣
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1322,7 +1322,7 @@ class CFAFrancBCEAOML(Currency):
         >>> print(cfa_franc_bceao_ml)
         123 457 ₣
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1387,7 +1387,7 @@ class CFAFrancBCEAONG(Currency):
         >>> print(cfa_franc_bceao_ng)
         123 457 ₣
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1452,7 +1452,7 @@ class CFAFrancBCEAOSN(Currency):
         >>> print(cfa_franc_bceao_sn)
         123 457 ₣
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1517,7 +1517,7 @@ class CFAFrancBCEAOTG(Currency):
         >>> print(cfa_franc_bceao_tg)
         123 457 ₣
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1582,7 +1582,7 @@ class CFPFranc(Currency):
         >>> print(cfp_franc)
         123 457 ₣
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1647,7 +1647,7 @@ class CFPFrancPF(Currency):
         >>> print(cfp_franc_pf)
         123 457 ₣
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1712,7 +1712,7 @@ class CFPFrancNC(Currency):
         >>> print(cfp_franc_nc)
         123 457 ₣
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -1777,7 +1777,7 @@ class CFPFrancWF(Currency):
         >>> print(cfp_franc_wf)
         123 457 ₣
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

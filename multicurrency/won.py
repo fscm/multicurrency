@@ -22,7 +22,7 @@ class NorthKoreanWon(Currency):
         >>> print(north_korean_won)
         ₩ 123,456.79
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -87,7 +87,7 @@ class SouthKoreanWon(Currency):
         >>> print(south_korean_won)
         ₩123,457
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

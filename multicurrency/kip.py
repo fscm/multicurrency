@@ -22,7 +22,7 @@ class Kip(Currency):
         >>> print(kip)
         ₭123.456,79
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

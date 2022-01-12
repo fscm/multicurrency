@@ -22,7 +22,7 @@ class IranianRial(Currency):
         >>> print(iranian_rial)
         ۱۲۳٬۴۵۶٫۷۹ ﷼
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -87,7 +87,7 @@ class RialOmani(Currency):
         >>> print(rial_omani)
         ر.ع. ١٢٣٬٤٥٦٫٧٨٩
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -152,7 +152,7 @@ class QatariRial(Currency):
         >>> print(qatari_rial)
         ر.ق. ١٢٣٬٤٥٦٫٧٩
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -217,7 +217,7 @@ class YemeniRial(Currency):
         >>> print(yemeni_rial)
         ١٢٣٬٤٥٦٫٧٩ ﷼
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

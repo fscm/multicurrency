@@ -22,7 +22,7 @@ class MalagasyAriary(Currency):
         >>> print(malagasy_ariary)
         123 457 Ar
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

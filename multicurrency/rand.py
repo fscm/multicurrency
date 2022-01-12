@@ -22,7 +22,7 @@ class Rand(Currency):
         >>> print(rand)
         R 123 456.79
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -87,7 +87,7 @@ class RandLS(Currency):
         >>> print(rand_ls)
         R 123,456.79
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -152,7 +152,7 @@ class RandNA(Currency):
         >>> print(rand_na)
         R 123 456.79
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -217,7 +217,7 @@ class RandZA(Currency):
         >>> print(rand_za)
         R 123 456.79
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

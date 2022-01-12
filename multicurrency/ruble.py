@@ -22,7 +22,7 @@ class BelarusianRuble(Currency):
         >>> print(belarusian_ruble)
         123 456,79 Br
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -87,7 +87,7 @@ class RussianRuble(Currency):
         >>> print(russian_ruble)
         123 456,79 ₽
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -152,7 +152,7 @@ class RussianRubleRU(Currency):
         >>> print(russian_ruble_ru)
         123 456,79 ₽
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -217,7 +217,7 @@ class RussianRubleGE(Currency):
         >>> print(russian_ruble_ge)
         123 456,79 ₽
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

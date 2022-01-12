@@ -22,7 +22,7 @@ class MoldovanLeu(Currency):
         >>> print(moldovan_leu)
         123.456,79 L
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -87,7 +87,7 @@ class Leu(Currency):
         >>> print(leu)
         123.456,79 L
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

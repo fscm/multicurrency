@@ -22,7 +22,7 @@ class Vatu(Currency):
         >>> print(vatu)
         Vt 123,457
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

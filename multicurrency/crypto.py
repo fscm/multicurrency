@@ -22,7 +22,7 @@ class EOS(Currency):
         >>> print(eos)
         ε123,456.7890
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -87,7 +87,7 @@ class Ethereum(Currency):
         >>> print(ethereum)
         Ξ123,456.789000000000000000
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -152,7 +152,7 @@ class Bitcoin(Currency):
         >>> print(bitcoin)
         ₿123,456.78900000
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -217,7 +217,7 @@ class StellarLumens(Currency):
         >>> print(stellar_lumens)
         *123,456.7890000
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -282,7 +282,7 @@ class Monero(Currency):
         >>> print(monero)
         ɱ123,456.789000000000
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -347,7 +347,7 @@ class Ripple(Currency):
         >>> print(ripple)
         ✕123,456.789000
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -412,7 +412,7 @@ class Tezos(Currency):
         >>> print(tezos)
         ꜩ123,456.789000
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -477,7 +477,7 @@ class Zcash(Currency):
         >>> print(zcash)
         ⓩ123,456.78900000
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

@@ -22,7 +22,7 @@ class Forint(Currency):
         >>> print(forint)
         123 457 Ft
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

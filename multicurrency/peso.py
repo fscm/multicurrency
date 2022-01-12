@@ -22,7 +22,7 @@ class ArgentinePeso(Currency):
         >>> print(argentine_peso)
         $ 123.456,79
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -87,7 +87,7 @@ class ChileanPeso(Currency):
         >>> print(chilean_peso)
         $123.457
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -152,7 +152,7 @@ class ColombianPeso(Currency):
         >>> print(colombian_peso)
         $ 123.456,79
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -217,7 +217,7 @@ class CubanPeso(Currency):
         >>> print(cuban_peso)
         $123,456.79
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -282,7 +282,7 @@ class DominicanPeso(Currency):
         >>> print(dominican_peso)
         $123,456.79
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -347,7 +347,7 @@ class MexicanPeso(Currency):
         >>> print(mexican_peso)
         $123,456.79
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -412,7 +412,7 @@ class PhilippinePeso(Currency):
         >>> print(philippine_peso)
         ₱123,456.79
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -477,7 +477,7 @@ class PesoUruguayo(Currency):
         >>> print(peso_uruguayo)
         $ 123.456,79
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

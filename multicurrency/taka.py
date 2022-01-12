@@ -22,7 +22,7 @@ class Taka(Currency):
         >>> print(taka)
         ১২৩,৪৫৬.৭৯৳
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

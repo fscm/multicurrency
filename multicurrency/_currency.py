@@ -17,9 +17,9 @@ Simple usage example:
 
 ## Formatting
 
-The `multicurrency.Currency` class allows you to create and customize
-your own value formatting behaviors using the same implementation as
-the built-in `format()` method.
+The `multicurrency._currency.Currency` class allows you to create
+and customize your own value formatting behaviors using the same
+implementation as the built-in `format()` method.
 
 The specification for the formatting feature is as follows:
 
@@ -49,8 +49,8 @@ The available string currency parts for `[spec]` are:
 | %S   | The currency's localized symbol.                                                                                                      |
 | %_   | The currency's symbol separator.                                                                                            |
 
-Basic examples of how to use the `multicurrency.Currency` formatting
-feature:
+Basic examples of how to use the `multicurrency._currency.Currency`
+formatting feature:
 
     Using the built-in `format()` method
 
@@ -75,11 +75,13 @@ feature:
 
 ## Supported operations
 
-Several operations are supported by the `multicurrency.Currency` type.
+Several operations are supported by the
+`multicurrency._currency.Currency` type.
 
 ### Absolute
 
-Produces the absolute value of a given `multicurrency.Currency`.
+Produces a new `multicurrency._currency.Currency` with the absolute
+value of the given `multicurrency._currency.Currency`.
 
     >>> from multicurrency import Currency
     >>> c = abs(Currency(amount=-2))
@@ -88,8 +90,8 @@ Produces the absolute value of a given `multicurrency.Currency`.
 
 ### Addiction
 
-Addiction is supported only between `multicurrency.Currency` of the
-same type.
+Addiction is supported only between `multicurrency._currency.Currency`
+of the same type.
 
     >>> from multicurrency import Currency
     >>> c1 = Currency(amount=2)
@@ -99,8 +101,8 @@ same type.
 
 ### Boolean
 
-Produces 'True' for values of `multicurrency.Currency` other than zero.
-'False' otherwise
+Produces 'True' for values of `multicurrency._currency.Currency` other
+than zero. 'False' otherwise
 
     >>> from multicurrency import Currency
     >>> bool(Currency(amount=0))
@@ -110,7 +112,8 @@ Produces 'True' for values of `multicurrency.Currency` other than zero.
 
 ### Ceiling
 
-Produces a `multicurrency.Currency` rounded up to the nearest integer.
+Produces a `multicurrency._currency.Currency` rounded up to the nearest
+integer.
 
     >>> from multicurrency import Currency
     >>> from math import ceil
@@ -129,8 +132,9 @@ Produces a copy of itself.
 
 ### Division
 
-Produces a `multicurrency.Currency` with the value of the division of
-the currency by either an `int`, `float`, or `decimal.Decimal`.
+Produces a `multicurrency._currency.Currency` with the value of
+the division of the currency by either an `int`, `float`, or
+`decimal.Decimal`.
 
     >>> from multicurrency import Currency
     >>> d = Currency(7) / 2
@@ -158,7 +162,8 @@ Produces a `float` with the value of the currency amount.
 
 ### Flooring
 
-Produces a `multicurrency.Currency` rounded down to the nearest integer.
+Produces a `multicurrency._currency.Currency` rounded down to the
+nearest integer.
 
     >>> from multicurrency import Currency
     >>> from math import floor
@@ -167,9 +172,9 @@ Produces a `multicurrency.Currency` rounded down to the nearest integer.
 
 ### Floordiv
 
-Produces a `multicurrency.Currency` with the integral part of the
-quotient of the division of the currency by either an `int`, `float`,
-or `decimal.Decimal`.
+Produces a `multicurrency._currency.Currency` with the integral part
+of the quotient of the division of the currency by either an `int`,
+`float`, or `decimal.Decimal`.
 
     >>> from multicurrency import Currency
     >>> fd = Currency(7) // 2
@@ -178,7 +183,8 @@ or `decimal.Decimal`.
 
 ### Hash
 
-Produces a hash representation of the `multicurrency.Currency`.
+Produces a hash representation of the
+`multicurrency._currency.Currency`.
 
     >>> from multicurrency import Currency
     >>> hash(Currency(7, alpha_code='EUR', numeric_code='978') # doctest: +SKIP
@@ -194,9 +200,9 @@ Produces an `int` with the value of the currency amount.
 
 ### Mod
 
-Produces a `multicurrency.Currency` with the value of the remainder
-of the division of the currency by either an `int`, `float`, or
-`decimal.Decimal`.
+Produces a `multicurrency._currency.Currency` with the value of the
+remainder of the division of the currency by either an `int`, `float`,
+or `decimal.Decimal`.
 
     >>> from multicurrency import Currency
     >>> m = Currency(7) % 2
@@ -205,8 +211,8 @@ of the division of the currency by either an `int`, `float`, or
 
 ### Multiplication
 
-Multiplication is supported between `multicurrency.Currency` and `int`,
-`float`, or `decimal.Decimal`.
+Multiplication is supported between `multicurrency._currency.Currency`
+and `int`, `float`, or `decimal.Decimal`.
 
     >>> from multicurrency import Currency
     >>> c = Currency(amount=2)
@@ -215,8 +221,8 @@ Multiplication is supported between `multicurrency.Currency` and `int`,
 
 ### Round
 
-Produces a `multicurrency.Currency` with the amount of the currency
-rounded to a given precision.
+Produces a `multicurrency._currency.Currency` with the amount of the
+currency rounded to a given precision.
 
     >>> from multicurrency import Currency
     >>> r = round(Currency(1/7), 3)
@@ -225,8 +231,8 @@ rounded to a given precision.
 
 ### Subtraction
 
-Subtraction is supported only between `multicurrency.Currency` of the
-same type.
+Subtraction is supported only between `multicurrency._currency.Currency`
+of the same type.
 
     >>> from multicurrency import Currency
     >>> c1 = Currency(amount=2)
@@ -473,7 +479,7 @@ class Currency:
         """Adds `other` to this.
 
         Args:
-            other (multicurrency.Currency): Currency to add.
+            other (multicurrency._currency.Currency): Currency to add.
 
         Returns:
             Currency: result of the adding operation.
@@ -1075,7 +1081,8 @@ class Currency:
         """Subtract this from `other`.
 
         Args:
-            other (multicurrency.Currency): Currency to subtract from.
+            other (multicurrency._currency.Currency): Currency to
+            subtract from.
 
         Returns:
             Currency: result of the subtraction operation.
@@ -1117,7 +1124,8 @@ class Currency:
         """Subtract `other` from this.
 
         Args:
-            other (multicurrency.Currency): Currency to subtract.
+            other (multicurrency._currency.Currency): Currency to
+            subtract.
 
         Returns:
             Currency: result of the subtraction operation.

@@ -22,7 +22,7 @@ class CapeVerdeEscudo(Currency):
         >>> print(cape_verde_escudo)
         123 456$79
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

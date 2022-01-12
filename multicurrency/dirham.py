@@ -22,7 +22,7 @@ class UAEDirham(Currency):
         >>> print(uae_dirham)
         د.إ. ١٢٣٬٤٥٦٫٧٩
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -87,7 +87,7 @@ class MoroccanDirham(Currency):
         >>> print(moroccan_dirham)
         د.م. ١٢٣٬٤٥٦٫٧٩
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

@@ -22,7 +22,7 @@ class Metical(Currency):
         >>> print(metical)
         123.457 MTn
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

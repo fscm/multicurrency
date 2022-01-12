@@ -22,7 +22,7 @@ class EgyptianPound(Currency):
         >>> print(egyptian_pound)
         ج.م. ١٢٣٬٤٥٦٫٧٩
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -87,7 +87,7 @@ class FalklandIslandsPound(Currency):
         >>> print(falkland_islands_pound)
         £123,456.79
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -152,7 +152,7 @@ class PoundSterling(Currency):
         >>> print(pound_sterling)
         £123,456.79
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -217,7 +217,7 @@ class PoundSterlingGG(Currency):
         >>> print(pound_sterling_gg)
         £123,456.79
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -282,7 +282,7 @@ class PoundSterlingIO(Currency):
         >>> print(pound_sterling_io)
         £123,456.79
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -347,7 +347,7 @@ class PoundSterlingGB(Currency):
         >>> print(pound_sterling_gb)
         £123,456.79
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -412,7 +412,7 @@ class PoundSterlingIM(Currency):
         >>> print(pound_sterling_im)
         £123,456.79
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -477,7 +477,7 @@ class GibraltarPound(Currency):
         >>> print(gibraltar_pound)
         £123,456.79
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -542,7 +542,7 @@ class LebanesePound(Currency):
         >>> print(lebanese_pound)
         ل.ل. ١٢٣٬٤٥٧
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -607,7 +607,7 @@ class SudanesePound(Currency):
         >>> print(sudanese_pound)
         ١٢٣٬٤٥٦٫٧٩ ج.س
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -672,7 +672,7 @@ class SaintHelenaPound(Currency):
         >>> print(saint_helena_pound)
         £123,456.79
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -737,7 +737,7 @@ class SyrianPound(Currency):
         >>> print(syrian_pound)
         ١٢٣٬٤٥٦٫٧٩ ل.س
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

@@ -22,7 +22,7 @@ class AzerbaijanianManat(Currency):
         >>> print(azerbaijanian_manat)
         123.456,79 ₼
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -87,7 +87,7 @@ class Manat(Currency):
         >>> print(manat)
         123 456,79 m
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

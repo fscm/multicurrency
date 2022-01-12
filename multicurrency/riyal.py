@@ -22,7 +22,7 @@ class SaudiRiyal(Currency):
         >>> print(saudi_riyal)
         ر.س. ١٢٣٬٤٥٦٫٧٩
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

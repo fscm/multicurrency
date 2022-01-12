@@ -22,7 +22,7 @@ class Denar(Currency):
         >>> print(denar)
         123.456,79 ден.
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

@@ -22,7 +22,7 @@ class IcelandKrona(Currency):
         >>> print(iceland_krona)
         123.457 Kr
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.
@@ -87,7 +87,7 @@ class SwedishKrona(Currency):
         >>> print(swedish_krona)
         123 456,79 kr
 
-    For more details see `multicurrency.Currency` .
+    For more details see `multicurrency._currency.Currency` .
 
     Args:
         amount (Union[int, float, Decimal]): Represented value.

@@ -295,7 +295,7 @@ Simple usage example:
     1.000,50 €
 
 Unsupported currencies can be represented by creating a generic
-`multicurrency.Currency` object with the desired settings.
+`multicurrency._currency.Currency` object with the desired settings.
 
     >>> from multicurrency import Currency
     >>> bitcoin = Currency(
@@ -402,13 +402,13 @@ Default values can be restored with:
     28 ROUND_HALF_EVEN
 
 Supported rounding methods are described on the
-`multicurrency.CurrencyContext` class.
+`multicurrency._currency.CurrencyContext` class.
 
 ## Formatting
 
-The `multicurrency.Currency` class allows you to create and customize
-your own value formatting behaviors using the same implementation as
-the built-in `format()` method.
+The `multicurrency._currency.Currency` class allows you to create
+and customize your own value formatting behaviors using the same
+implementation as the built-in `format()` method.
 
 The specification for the formatting feature is as follows:
 
@@ -435,9 +435,10 @@ The available string currency parts for `[spec]` are:
 | %A   | The currency's amount in (western) arabic numerals.                                                                         |
 | %c   | The currency's alpha code (as seen on the international representation of the currency).                                    |
 | %s   | The currency's symbol.                                                                                                      |
+| %S   | The currency's localized symbol.                                                                                                      |
 | %_   | The currency's symbol separator.                                                                                            |
 
-Basic examples of how to use the `multicurrency.Currency`
+Basic examples of how to use the `multicurrency._currency.Currency`
 formatting feature:
 
     Using the built-in `format()` method
@@ -461,7 +462,7 @@ formatting feature:
         >>> f'{euro:4%a}'
         '142.857,1429'
 
-Some more examples of the `multicurrency.Currency` formatting
+Some more examples of the `multicurrency._currency.Currency` formatting
 feature usage (using the `f-string` method):
 
     >>> from multicurrency import Euro
@@ -620,7 +621,8 @@ Several operations are supported by the several library classes.
 
 * Hash
 
-    Produces a hash representation of the `multicurrency.Currency`.
+    Produces a hash representation of the
+    `multicurrency._currency.Currency`.
 
         >>> from multicurrency import Euro
         >>> hash(Euro(7)) # doctest: +SKIP
@@ -1261,3 +1263,8 @@ __author__: str = 'Frederico Martins'
 __license__: str = 'MIT'
 __project__: str = __package__
 __version__: str = '0.11.0'
+
+# add private classes to the doc
+__pdoc__ = {}
+__pdoc__['multicurrency._exceptions'] = True
+__pdoc__['multicurrency._currency'] = True
