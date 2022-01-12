@@ -183,9 +183,9 @@ def test__currency_decimal_places():
     assert euro.symbol_separator == '\u00A0'
     assert not euro.international
     assert euro.__str__() == '1,000\u00A0€'
-    assert euro.pstr(-2) == '1,000\u00A0€'
-    assert euro.pstr(0) == '1,000\u00A0€'
-    assert euro.pstr(1) == '1,000.0\u00A0€'
+    assert euro.precision(-2) == '1,000\u00A0€'
+    assert euro.precision(0) == '1,000\u00A0€'
+    assert euro.precision(1) == '1,000.0\u00A0€'
 
 
 def test__currency_grouping_places():
@@ -207,9 +207,9 @@ def test__currency_grouping_places():
     assert euro.symbol_separator == '\u00A0'
     assert not euro.international
     assert euro.__str__() == '1,0000,0000.00\u00A0€'
-    assert euro.pstr(-2) == '1,0000,0000\u00A0€'
-    assert euro.pstr(0) == '1,0000,0000\u00A0€'
-    assert euro.pstr(1) == '1,0000,0000.0\u00A0€'
+    assert euro.precision(-2) == '1,0000,0000\u00A0€'
+    assert euro.precision(0) == '1,0000,0000\u00A0€'
+    assert euro.precision(1) == '1,0000,0000.0\u00A0€'
 
 
 def test__currency_grouping_places_negative():
@@ -231,9 +231,9 @@ def test__currency_grouping_places_negative():
     assert euro.symbol_separator == '\u00A0'
     assert not euro.international
     assert euro.__str__() == '100000000.00\u00A0€'
-    assert euro.pstr(-2) == '100000000\u00A0€'
-    assert euro.pstr(0) == '100000000\u00A0€'
-    assert euro.pstr(1) == '100000000.0\u00A0€'
+    assert euro.precision(-2) == '100000000\u00A0€'
+    assert euro.precision(0) == '100000000\u00A0€'
+    assert euro.precision(1) == '100000000.0\u00A0€'
 
 
 def test__currency_convertion():
@@ -254,9 +254,9 @@ def test__currency_convertion():
     assert euro.symbol_separator == '\u00A0'
     assert not euro.international
     assert euro.__str__() == 'abc,def,ghi.zz\u00A0€'
-    assert euro.pstr(-2) == 'abc,def,ghi\u00A0€'
-    assert euro.pstr(0) == 'abc,def,ghi\u00A0€'
-    assert euro.pstr(1) == 'abc,def,ghi.z\u00A0€'
+    assert euro.precision(-2) == 'abc,def,ghi\u00A0€'
+    assert euro.precision(0) == 'abc,def,ghi\u00A0€'
+    assert euro.precision(1) == 'abc,def,ghi.z\u00A0€'
 
 
 def test__currency_changed():
@@ -852,11 +852,21 @@ def test__currency_precision_2():
     assert test_currency.__str__() == '0.30'
 
 
+def test__currency_precision_deprecated():
+    """test__currency_precision_deprecated."""
+    test_currency = (Currency(0.1) + Currency(0.1) + Currency(0.1))
+    with catch_warnings(record=True) as w:
+        assert test_currency.pstr(4) == '0.3000'
+        assert len(w) == 1
+        assert issubclass(w[0].category, DeprecationWarning)
+        assert str(w[0].message) == 'This method is deprecated; version=1.0.0'
+
+
 def test__currency_precision_international():
     """test__currency_precision_international."""
     test_currency = Currency(0.1, alpha_code='EUR', international=True)
     assert test_currency.amount == CONTEXT.create_decimal('0.1')
-    assert test_currency.pstr(precision=4) == 'EUR 0.1000'
+    assert test_currency.precision(precision=4) == 'EUR 0.1000'
 
 
 def test__currency_roundings_positive():
@@ -875,7 +885,7 @@ def test__currency_roundings_positive():
         for precision, result in results.items():
             CurrencyContext.prec = precision
             test_currency = currency_euro_one / 7
-            assert test_currency.pstr(precision) == result
+            assert test_currency.precision(precision) == result
     CurrencyContext.rounding = 'ROUND_HALF_EVEN'
     CurrencyContext.prec = 28
 
@@ -896,6 +906,6 @@ def test__currency_roundings_negative():
         for precision, result in results.items():
             CurrencyContext.prec = precision
             test_currency = currency_euro_negative_one / 7
-            assert test_currency.pstr(precision) == result
+            assert test_currency.precision(precision) == result
     CurrencyContext.rounding = 'ROUND_HALF_EVEN'
     CurrencyContext.prec = 28

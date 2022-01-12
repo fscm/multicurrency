@@ -806,12 +806,36 @@ Values lower than 0 (zero) will be converted to 0
 <dd>value</dd>
 </dl></div>
 </dd>
+<dt id="multicurrency._currency.Currency.precision"><code class="name flex">
+<span>def <span class="ident">precision</span></span>(<span>self, precision: int = 2) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>String value of this class formated with
+<code><a title="multicurrency._currency.CurrencyContext" href="#multicurrency._currency.CurrencyContext">CurrencyContext</a></code> precision value (<code>prec</code>).</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>precision</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Precision. Defaults to <code>2</code>.
+Values lower than 0 (zero) will be converted to 0
+(zero).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>value</dd>
+</dl></div>
+</dd>
 <dt id="multicurrency._currency.Currency.pstr"><code class="name flex">
 <span>def <span class="ident">pstr</span></span>(<span>self, precision: int = 2) ‑> str</span>
 </code></dt>
 <dd>
 <div class="desc"><p>String value of this class formated with
 <code><a title="multicurrency._currency.CurrencyContext" href="#multicurrency._currency.CurrencyContext">CurrencyContext</a></code> precision value (<code>prec</code>).</p>
+<div class="admonition note">
+<p class="admonition-title">Note:&ensp;Deprecated in version 1.0.0</p>
+<p>will be removed in a future release, it was replaced by the
+<code><a title="multicurrency._currency.Currency.precision" href="#multicurrency._currency.Currency.precision">Currency.precision()</a></code> method.</p>
+</div>
 <h2 id="args">Args</h2>
 <dl>
 <dt><strong><code>precision</code></strong> :&ensp;<code>int</code>, optional</dt>
@@ -888,6 +912,7 @@ Values lower than 0 (zero) will be converted to 0
 <li><code><a title="multicurrency._currency.Currency.localized_symbol" href="#multicurrency._currency.Currency.localized_symbol">localized_symbol</a></code></li>
 <li><code><a title="multicurrency._currency.Currency.lstr" href="#multicurrency._currency.Currency.lstr">lstr</a></code></li>
 <li><code><a title="multicurrency._currency.Currency.numeric_code" href="#multicurrency._currency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency._currency.Currency.precision" href="#multicurrency._currency.Currency.precision">precision</a></code></li>
 <li><code><a title="multicurrency._currency.Currency.pstr" href="#multicurrency._currency.Currency.pstr">pstr</a></code></li>
 <li><code><a title="multicurrency._currency.Currency.symbol" href="#multicurrency._currency.Currency.symbol">symbol</a></code></li>
 <li><code><a title="multicurrency._currency.Currency.symbol_ahead" href="#multicurrency._currency.Currency.symbol_ahead">symbol_ahead</a></code></li>

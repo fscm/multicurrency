@@ -1119,7 +1119,7 @@ class Currency:
         Returns:
             str: value
         """
-        return self.pstr(precision=self._decimal_places)
+        return self.precision(precision=self._decimal_places)
 
     def __sub__(self, other: Any) -> 'Currency':
         """Subtract `other` from this.
@@ -1258,7 +1258,7 @@ class Currency:
             stacklevel=2)
         return self.localized(precision=precision)
 
-    def pstr(self, precision: int = 2) -> str:
+    def precision(self, precision: int = 2) -> str:
         """String value of this class formated with
             `CurrencyContext` precision value (`prec`).
 
@@ -1290,6 +1290,28 @@ class Currency:
         if self._symbol_ahead:
             return f'{self._symbol}{self._symbol_separator}{converted}'
         return f'{converted}{self._symbol_separator}{self._symbol}'
+
+    def pstr(self, precision: int = 2) -> str:
+        """String value of this class formated with
+            `CurrencyContext` precision value (`prec`).
+
+        .. note:: Deprecated in version 1.0.0
+            will be removed in a future release, it was replaced by the
+            `Currency.precision` method.
+
+        Args:
+            precision (int, optional): Precision. Defaults to `2`.
+                Values lower than 0 (zero) will be converted to 0
+                (zero).
+
+        Returns:
+            str: value
+        """
+        warn(
+            'This method is deprecated; version=1.0.0',
+            DeprecationWarning,
+            stacklevel=2)
+        return self.precision(precision=precision)
 
     @property
     def amount(self) -> Decimal:

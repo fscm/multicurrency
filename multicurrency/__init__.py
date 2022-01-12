@@ -356,7 +356,7 @@ The multicurrency library has a user alterable precision (defaulting to
     >>> for precision in [1, 2, 3, 4, 5, 6]:
     ...     CurrencyContext.prec = precision
     ...     result = Euro(1) / 7
-    ...     print(result.pstr(precision))
+    ...     print(result.precision(precision))
     0,1 €
     0,14 €
     0,143 €
@@ -380,7 +380,7 @@ ROUND_HALF_EVEN) which can be changed as needed:
     ...         'ROUND_05UP']:
     ...     CurrencyContext.rounding = rounding
     ...     result = Euro(1) / 7
-    ...     print(f'{rounding:16}', result.pstr(4))
+    ...     print(f'{rounding:16}', result.precision(4))
     ROUND_CEILING    0,1429 €
     ROUND_DOWN       0,1428 €
     ROUND_FLOOR      0,1428 €
