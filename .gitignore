@@ -1,6 +1,7 @@
 # Project
 tools/generator/_multicurrency/*
 tools/generator/_tests/*
+tools/profiler/report.html
 venv/*
 .venv/*
 !.gitkeep

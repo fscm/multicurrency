@@ -1,77 +1,738 @@
-#!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 #
 # copyright: 2020-2022, Frederico Martins
 # author: Frederico Martins <http://github.com/fscm>
 # license: SPDX-License-Identifier: MIT
 
-"""Profiler.
+# pylint: disable=missing-return-doc,undefined-variable,missing-function-docstring,line-too-long
+"""Profiler."""
 
-Simple usage example:
-
-    ./profiler
-"""
-
-from cProfile import Profile
-from io import StringIO
-from pstats import Stats
-from multicurrency import Currency
-
-
-# pylint: disable=missing-function-docstring
-# pylint: disable=missing-return-doc,missing-return-type-doc
-
-def profile(sortargs=['cumulative'], printargs=[10]):
-    profiler = Profile()
-    def decorator(fn):
-        def inner(*args, **kwargs):
-            results = None
-            try:
-                results = profiler.runcall(fn, *args, **kwargs)
-            finally:
-                string_io = StringIO()
-                stats = Stats(profiler, stream=string_io)
-                #stats.sort_stats(*sortargs).print_stats(*printargs)
-                stats.strip_dirs().sort_stats(*sortargs).print_stats(*printargs)
-                print(string_io.getvalue())
-            return results
-        return inner
-    return decorator
+import sys
+from decimal import Decimal, Context
+from typing import Any, Optional, Tuple, Union
+from re import (
+    escape as _escape,
+    compile as _compile,
+    match as _match,
+    sub as _sub)
 
 
-@profile()
-def create_currency():
-    for value in range(10_000):
-        _ = Currency(
-            amount=value,
-            alpha_code='EUR',
-            numeric_code='978',
-            symbol='€',
-            symbol_ahead=True,
-            decimal_places=2,
-            decimal_sign=',',
-            grouping_sign='.',
-            international=False)
+DEFAULT_PRECISION: int = 28
+DEFAULT_ROUNDING: str = 'ROUND_HALF_EVEN'
+
+CurrencyContext: Context = Context(
+    prec=DEFAULT_PRECISION,
+    rounding=DEFAULT_ROUNDING).copy()
 
 
-@profile(printargs=[20])
-def create_currency_string():
+class Currency:
+
+    __slots__ = [
+        '_alpha_code',
+        '_amount',
+        '_convertion',
+        '_decimal_places',
+        '_decimal_sign',
+        '_grouping_places',
+        '_grouping_sign',
+        '_international',
+        '_localized_symbol',
+        '_numeric_code',
+        '_symbol',
+        '_symbol_ahead',
+        '_symbol_separator']
+
+    @profile
+    def __new__(
+            cls,
+            amount: Union[int, float, Decimal],
+            alpha_code: Optional[str] = '',
+            numeric_code: Optional[str] = '0',
+            symbol: Optional[str] = '',
+            symbol_ahead: Optional[bool] = True,
+            symbol_separator: Optional[str] = '',
+            localized_symbol: Optional[str] = '',
+            decimal_places: Optional[int] = 2,
+            decimal_sign: Optional[str] = '.',
+            grouping_places: Optional[int] = 3,
+            grouping_sign: Optional[str] = ',',
+            convertion: Optional[str] = '',
+            international: Optional[bool] = False) -> 'Currency':
+        self = object.__new__(cls)
+        self._amount = CurrencyContext.create_decimal(str(amount))
+        self._alpha_code = alpha_code
+        self._decimal_places = max(decimal_places, 0)
+        self._decimal_sign = decimal_sign
+        self._grouping_places = max(grouping_places, 0)
+        self._grouping_sign = grouping_sign
+        self._international = international
+        self._localized_symbol = localized_symbol or symbol
+        self._numeric_code = numeric_code
+        self._symbol = symbol
+        self._symbol_ahead = symbol_ahead
+        self._symbol_separator = symbol_separator
+        self._convertion = convertion
+        return self
+
+    @profile
+    def __abs__(self) -> 'Currency':
+        return self.__class__(
+            amount=abs(self._amount),
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
+            symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
+            decimal_places=self._decimal_places,
+            decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
+            grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
+            international=self._international)
+
+    @profile
+    def __add__(self, other: Any) -> 'Currency':
+        if not isinstance(other, Currency):
+            raise Exception('CurrencyTypeException')
+        if self._alpha_code != other.alpha_code:
+            raise Exception('CurrencyMismatchException')
+        return self.__class__(
+            amount=self._amount + other.amount,
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
+            symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
+            decimal_places=self._decimal_places,
+            decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
+            grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
+            international=self._international)
+
+    @profile
+    def __bool__(self) -> bool:
+        return bool(self._amount)
+
+    @profile
+    def __ceil__(self) -> 'Currency':
+        return self.__class__(
+            amount=self._amount.__ceil__(),
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
+            symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
+            decimal_places=self._decimal_places,
+            decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
+            grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
+            international=self._international)
+
+    @profile
+    def __copy__(self) -> 'Currency':
+        return self.__class__(
+            amount=self._amount,
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
+            symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
+            decimal_places=self._decimal_places,
+            decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
+            grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
+            international=self._international)
+
+    @profile
+    def __divmod__(self, other: Any) -> Tuple['Currency', 'Currency']:
+        if not isinstance(other, (int, float, Decimal)):
+            raise Exception('CurrencyInvalidDivision')
+        if other == 0:
+            raise ZeroDivisionError()
+        quotient, remainder = self._amount.__divmod__(
+            CurrencyContext.create_decimal(str(other)))
+        return (
+            self.__class__(
+                amount=quotient,
+                alpha_code=self._alpha_code,
+                numeric_code=self._numeric_code,
+                symbol=self._symbol,
+                symbol_ahead=self._symbol_ahead,
+                symbol_separator=self._symbol_separator,
+                localized_symbol=self._localized_symbol,
+                decimal_places=self._decimal_places,
+                decimal_sign=self._decimal_sign,
+                grouping_places=self._grouping_places,
+                grouping_sign=self._grouping_sign,
+                convertion=self._convertion,
+                international=self._international),
+            self.__class__(
+                amount=remainder,
+                alpha_code=self._alpha_code,
+                numeric_code=self._numeric_code,
+                symbol=self._symbol,
+                symbol_ahead=self._symbol_ahead,
+                symbol_separator=self._symbol_separator,
+                localized_symbol=self._localized_symbol,
+                decimal_places=self._decimal_places,
+                decimal_sign=self._decimal_sign,
+                grouping_places=self._grouping_places,
+                grouping_sign=self._grouping_sign,
+                convertion=self._convertion,
+                international=self._international))
+
+    @profile
+    def __eq__(self, other: Any) -> bool:
+        if isinstance(other, self.__class__):
+            return (
+                (self._amount, self._alpha_code) ==
+                (other.amount, other.alpha_code))
+        return False
+
+    @profile
+    def __float__(self) -> float:
+        return float(self._amount)
+
+    @profile
+    def __floor__(self) -> 'Currency':
+        return self.__class__(
+            amount=self._amount.__floor__(),
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
+            symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
+            decimal_places=self._decimal_places,
+            decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
+            grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
+            international=self._international)
+
+    @profile
+    def __floordiv__(self, other: Any) -> 'Currency':
+        if not isinstance(other, (int, float, Decimal)):
+            raise Exception('CurrencyInvalidDivision')
+        if other == 0:
+            raise ZeroDivisionError()
+        return self.__class__(
+            amount=self._amount.__floordiv__(
+                CurrencyContext.create_decimal(str(other))),
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
+            symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
+            decimal_places=self._decimal_places,
+            decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
+            grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
+            international=self._international)
+
+    @profile
+    def __format__(self, fmt: str = '') -> str:
+        if not isinstance(fmt, str):
+            raise TypeError(f'must be str, not {type(fmt).__qualname__}.')
+        if not fmt.strip():   # maybe fmt shoud be striped by default?
+            return self.__str__()
+        regxpr = (
+            r'^(?P<decimal_places>\d*)'
+            r'(?P<decimal_sign>[^\d%]?)'
+            r'(?P<grouping_sign>[^\d%]?)'
+            r'(?P<grouping_places>\d*)'
+            r'(?P<format>%.*|$)')
+        matches = _match(regxpr, fmt)
+        if not matches:
+            raise ValueError('invalid format.')
+        decimal_places = max(
+            int(matches.group('decimal_places') or self._decimal_places), 0)
+        decimal_sign = matches.group('decimal_sign') or self._decimal_sign
+        grouping_sign = matches.group('grouping_sign') or self._grouping_sign
+        grouping_places = int(
+            matches.group('grouping_places') or self._grouping_places)
+        currency_format = matches.group('format')
+        amount = _sub(
+            rf'(\d)(?=(\d{{{grouping_places or -1}}})+\.)',
+            r'\1,',
+            f'{round(self._amount, decimal_places or 1)}')
+        if decimal_places < 1:
+            amount = amount.split('.')[0]
+        converted = amount
+        if self._convertion:
+            t = dict(zip('0123456789-', self._convertion))
+            converted = ''.join([t.get(c, c) for c in converted])
+        converted = converted.replace('.', 'X').replace(
+            ',', grouping_sign).replace('X', decimal_sign)
+        if not currency_format:
+            if self._symbol_ahead:
+                return f'{self._symbol}{self._symbol_separator}{converted}'
+            return f'{converted}{self._symbol_separator}{self._symbol}'
+        rep = {
+            '%s': self._symbol,
+            '%S': self._localized_symbol,
+            '%c': self._alpha_code,
+            '%a': converted,
+            '%A': amount,
+            '%_': self._symbol_separator}
+        rep = dict((_escape(k), v) for k, v in rep.items())
+        pattern = _compile('|'.join(rep.keys()))
+        formatted = pattern.sub(
+            lambda m: rep[_escape(m.group(0))],
+            currency_format)
+        return formatted
+
+    @profile
+    def __ge__(self, other: Any) -> bool:
+        if not isinstance(other, self.__class__):
+            raise Exception('CurrencyTypeException')
+        if self._alpha_code != other.alpha_code:
+            raise Exception('CurrencyMismatchException')
+        return self._amount >= other.amount
+
+    @profile
+    def __gt__(self, other: Any) -> bool:
+        if not isinstance(other, self.__class__):
+            raise Exception('CurrencyTypeException')
+        if self._alpha_code != other.alpha_code:
+            raise Exception('CurrencyMismatchException')
+        return self._amount > other.amount
+
+    @profile
+    def __hash__(self) -> int:
+        return hash((
+            self.__class__,
+            self._amount,
+            self._alpha_code,
+            self._numeric_code))
+
+    @profile
+    def __int__(self) -> int:
+        return int(self._amount)
+
+    @profile
+    def __le__(self, other: Any) -> bool:
+        if not isinstance(other, self.__class__):
+            raise Exception('CurrencyTypeException')
+        if self._alpha_code != other.alpha_code:
+            raise Exception('CurrencyMismatchException')
+        return self._amount <= other.amount
+
+    @profile
+    def __lt__(self, other: Any) -> bool:
+        if not isinstance(other, self.__class__):
+            raise Exception('CurrencyTypeException')
+        if self._alpha_code != other.alpha_code:
+            raise Exception('CurrencyMismatchException')
+        return self._amount < other.amount
+
+    @profile
+    def __mod__(self, other: Any) -> 'Currency':
+        if not isinstance(other, (int, float, Decimal)):
+            raise Exception('CurrencyInvalidDivision')
+        if other == 0:
+            raise ZeroDivisionError()
+        return self.__class__(
+            amount=self._amount.__mod__(
+                CurrencyContext.create_decimal(str(other))),
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
+            symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
+            decimal_places=self._decimal_places,
+            decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
+            grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
+            international=self._international)
+
+    @profile
+    def __mul__(self, other: Any) -> 'Currency':
+        if not isinstance(other, (int, float, Decimal)):
+            raise Exception('CurrencyInvalidMultiplication')
+        return self.__class__(
+            amount=self._amount * CurrencyContext.create_decimal(str(other)),
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
+            symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
+            decimal_places=self._decimal_places,
+            decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
+            grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
+            international=self._international)
+
+    @profile
+    def __ne__(self, other: Any) -> bool:
+        return not self == other
+
+    @profile
+    def __neg__(self) -> 'Currency':
+        return self.__class__(
+            amount=self._amount.__neg__(),
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
+            symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
+            decimal_places=self._decimal_places,
+            decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
+            grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
+            international=self._international)
+
+    @profile
+    def __pos__(self) -> 'Currency':
+        return self.__class__(
+            amount=self._amount.__pos__(),
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
+            symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
+            decimal_places=self._decimal_places,
+            decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
+            grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
+            international=self._international)
+
+    @profile
+    def __reduce__(self) -> Tuple[type, Tuple[Any, ...]]:
+        return (
+            self.__class__,
+            (
+                self._amount,
+                self._alpha_code,
+                self._numeric_code,
+                self._symbol,
+                self._symbol_ahead,
+                self._symbol_separator,
+                self._localized_symbol,
+                self._decimal_places,
+                self._decimal_sign,
+                self._grouping_places,
+                self._grouping_sign,
+                self._convertion,
+                self._international))
+
+    @profile
+    def __repr__(self) -> str:
+        return (
+            f'{self.__class__.__name__}('
+            f'amount: {self._amount}, '
+            f'alpha_code: "{self._alpha_code}", '
+            f'symbol: "{self._symbol}", '
+            f'symbol_ahead: {self._symbol_ahead}, '
+            f'symbol_separator: "{self._symbol_separator}", '
+            f'localized_symbol: "{self._localized_symbol}", '
+            f'numeric_code: "{self._numeric_code}", '
+            f'decimal_places: "{self._decimal_places}", '
+            f'decimal_sign: "{self._decimal_sign}", '
+            f'grouping_places: "{self._grouping_places}", '
+            f'grouping_sign: "{self._grouping_sign}", '
+            f'convertion: "{self._convertion}", '
+            f'international: {self._international})')
+
+    @profile
+    def __round__(self, precision: Optional[int] = None) -> 'Currency':
+        return self.__class__(
+            amount=(self._amount.__round__(precision) if precision
+                    else self._amount.__round__()),
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
+            symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
+            decimal_places=self._decimal_places,
+            decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
+            grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
+            international=self._international)
+
+    @profile
+    def __rsub__(self, other: Any) -> 'Currency':
+        if not isinstance(other, self.__class__):
+            raise Exception('CurrencyTypeException')
+        if self._alpha_code != other.alpha_code:
+            raise Exception('CurrencyMismatchException')
+        return self.__class__(
+            amount=other.amount - self._amount,
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
+            symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
+            decimal_places=self._decimal_places,
+            decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
+            grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
+            international=self._international)
+
+    @profile
+    def __str__(self) -> str:
+        return self.precision(precision=self._decimal_places)
+
+    @profile
+    def __sub__(self, other: Any) -> 'Currency':
+        if not isinstance(other, self.__class__):
+            raise Exception('CurrencyTypeException')
+        if self._alpha_code != other.alpha_code:
+            raise Exception('CurrencyMismatchException')
+        return self.__class__(
+            amount=self._amount - other.amount,
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
+            symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
+            decimal_places=self._decimal_places,
+            decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
+            grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
+            international=self._international)
+
+    @profile
+    def __truediv__(self, other: Any) -> 'Currency':
+        if not isinstance(other, (int, float, Decimal)):
+            raise Exception('CurrencyInvalidDivision')
+        if other == 0:
+            raise ZeroDivisionError()
+        return self.__class__(
+            amount=self._amount.__truediv__(
+                CurrencyContext.create_decimal(str(other))),
+            alpha_code=self._alpha_code,
+            numeric_code=self._numeric_code,
+            symbol=self._symbol,
+            symbol_ahead=self._symbol_ahead,
+            symbol_separator=self._symbol_separator,
+            localized_symbol=self._localized_symbol,
+            decimal_places=self._decimal_places,
+            decimal_sign=self._decimal_sign,
+            grouping_places=self._grouping_places,
+            grouping_sign=self._grouping_sign,
+            convertion=self._convertion,
+            international=self._international)
+
+    @profile
+    def is_signed(self) -> bool:
+        return self._amount.is_signed()
+
+    @profile
+    def localized(self, precision: int = 2) -> str:
+        p = max(precision, 0)
+        _rounded = str(round(self._amount, p))
+        if not p:
+            _rounded = f'{_rounded}.'
+        converted = _sub(
+            rf'(\d)(?=(\d{{{self._grouping_places or -1}}})+\.)',
+            r'\1,',
+            _rounded)
+        if not p:
+            converted = converted[:-1]
+        if self._convertion:
+            t = dict(zip('0123456789-', self._convertion))
+            converted = ''.join([t.get(c, c) for c in converted])
+        converted = converted.replace('.', 'X').replace(
+            ',', self._grouping_sign).replace('X', self._decimal_sign)
+        if self._symbol_ahead:
+            return (
+                f'{self._localized_symbol}{self._symbol_separator}{converted}')
+        return f'{converted}{self._symbol_separator}{self._localized_symbol}'
+
+    @profile
+    def precision(self, precision: int = 2) -> str:
+        p = max(precision, 0)
+        _rounded = str(round(self._amount, p))
+        if not p:
+            _rounded = f'{_rounded}.'
+        converted = _sub(
+            rf'(\d)(?=(\d{{{self._grouping_places or -1}}})+\.)',
+            r'\1,',
+            _rounded)
+        if not p:
+            converted = converted[:-1]
+        if self._international:
+            return f'{self._alpha_code} {converted}'
+        if self._convertion:
+            t = dict(zip('0123456789-', self._convertion))
+            converted = ''.join([t.get(c, c) for c in converted])
+        converted = converted.replace('.', 'X').replace(
+            ',', self._grouping_sign).replace('X', self._decimal_sign)
+        if self._symbol_ahead:
+            return f'{self._symbol}{self._symbol_separator}{converted}'
+        return f'{converted}{self._symbol_separator}{self._symbol}'
+
+    @property
+    def amount(self) -> Decimal:
+        """Decimal: amount."""
+        return self._amount
+
+    @property
+    def numeric_code(self) -> str:
+        """str: numeric_code."""
+        return self._numeric_code
+
+    @property
+    def alpha_code(self) -> str:
+        """str: alpha_code."""
+        return self._alpha_code
+
+    @property
+    def convertion(self) -> str:
+        """str: convertion."""
+        return self._convertion
+
+    @property
+    def decimal_places(self) -> int:
+        """int: decimal_places."""
+        return self._decimal_places
+
+    @property
+    def decimal_sign(self) -> str:
+        """str: decimal_sign."""
+        return self._decimal_sign
+
+    @property
+    def grouping_places(self) -> int:
+        """int: grouping_places."""
+        return self._grouping_places
+
+    @property
+    def grouping_sign(self) -> str:
+        """str: grouping_sign."""
+        return self._grouping_sign
+
+    @property
+    def international(self) -> bool:
+        """bool: international."""
+        return self._international
+
+    @property
+    def localized_symbol(self) -> str:
+        """str: localized_symbol."""
+        return self._localized_symbol
+
+    @property
+    def symbol(self) -> str:
+        """str: symbol."""
+        return self._symbol
+
+    @property
+    def symbol_ahead(self) -> bool:
+        """bool: symbol_ahead."""
+        return self._symbol_ahead
+
+    @property
+    def symbol_separator(self) -> str:
+        """str: symbol_separator."""
+        return self._symbol_separator
+
+
+@profile
+def main() -> None:
+    """main method"""
     currency = Currency(
-        amount=0.00000001 - 10000000,
+        amount=CurrencyContext.create_decimal(1) / CurrencyContext.create_decimal(7),
         alpha_code='EUR',
-        numeric_code='978',
         symbol='€',
         symbol_ahead=True,
+        symbol_separator='',
+        localized_symbol='€',
+        numeric_code='978',
         decimal_places=2,
         decimal_sign=',',
+        grouping_places=3,
         grouping_sign='.',
-        international=False)
-    for _ in range(10_000):
-        _ = currency.__str__()
+        convertion='',
+        international=True)
+    for _ in range(100_000):
+        _abs = abs(currency)
+        _add = currency.__add__(currency)
+        _ceil = currency.__ceil__()
+        _copy = currency.__copy__()
+        _divmod1, _divmod2 = currency.__divmod__(2)
+        _eq = currency.__eq__(currency)
+        _float = currency.__float__()
+        _floor = currency.__floor__()
+        _floordiv = currency.__floordiv__(2)
+        _format = format(currency, '3.,2%s%_%a %A%_%c')
+        _ge = currency.__ge__(currency)
+        _gt = currency.__gt__(currency)
+        _hash = currency.__hash__()
+        _int = currency.__int__()
+        _le = currency.__le__(currency)
+        _lt = currency.__lt__(currency)
+        _mod = currency.__mod__(4)
+        _mul = currency.__mul__(3)
+        _ne = currency.__ne__(currency)
+        _neg = currency.__neg__()
+        _pos = currency.__pos__()
+        _reduce = currency.__reduce__()
+        _repr = currency.__repr__()
+        _round = round(currency)
+        _rsub = currency.__rsub__(currency)
+        _str = currency.__str__()
+        _sub = currency.__sub__(currency)
+        _truediv = currency.__truediv__(2)
+        _is_signed = currency.is_signed()
+        _localized = currency.localized(6)
+        _precision = currency.precision(6)
+    print('_abs ->', _abs)
+    print('_add ->', _add)
+    print('_ceil ->', _ceil)
+    print('_copy ->', _copy)
+    print('_divmod1 ->', _divmod1, '_divmod2 ->', _divmod2)
+    print('_eq ->', _eq)
+    print('_float ->', _float)
+    print('_floor ->', _floor)
+    print('_floordiv ->', _floordiv)
+    print('_format ->', _format)
+    print('_ge ->', _ge)
+    print('_gt ->', _gt)
+    print('_hash ->', _hash)
+    print('_int ->', _int)
+    print('_le ->', _le)
+    print('_lt ->', _lt)
+    print('_mod ->', _mod)
+    print('_mul ->', _mul)
+    print('_ne ->', _ne)
+    print('_neg ->', _neg)
+    print('_pos ->', _pos)
+    print('_reduce ->', _reduce)
+    print('_repr ->', _repr)
+    print('_round ->', _round)
+    print('_rsub ->', _rsub)
+    print('_str ->', _str)
+    print('_sub ->', _sub)
+    print('_truediv ->', _truediv)
+    print('_is_signed ->', _is_signed)
+    print('_localized ->', _localized)
+    print('_precision ->', _precision)
 
 
-create_currency()
-create_currency_string()
-
-# pylint: enable=missing-return-doc,missing-return-type-doc
-# pylint: enable=missing-function-docstring
+if __name__ == '__main__':
+    sys.exit(main())
