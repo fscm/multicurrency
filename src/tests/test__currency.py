@@ -772,7 +772,7 @@ def test__currency_localized_1():
         for precision, result in results.items():
             CurrencyContext.prec = precision
             localized_currency = Currency(
-                amount=1/7,
+                amount=1 / 7,
                 alpha_code='EUR',
                 symbol='€',
                 localized_symbol='PT€',
@@ -791,7 +791,7 @@ def test__currency_localized_2():
         for precision, result in results.items():
             CurrencyContext.prec = precision
             localized_currency = Currency(
-                amount=1/7,
+                amount=1 / 7,
                 alpha_code='EUR',
                 symbol='€',
                 localized_symbol='PT€',
@@ -805,7 +805,7 @@ def test__currency_localized_2():
 def test__currency_localized_3():
     """test__currency_localized_3."""
     localized_currency = Currency(
-        amount=1/7,
+        amount=1 / 7,
         alpha_code='EUR',
         symbol='€',
         symbol_ahead=False,
@@ -819,7 +819,7 @@ def test__currency_localized_3():
 def test__currency_localized_deprecated():
     """test__currency_localized_deprecated."""
     localized_currency = Currency(
-        amount=1/7,
+        amount=1 / 7,
         alpha_code='EUR',
         symbol='€',
         symbol_ahead=False,
