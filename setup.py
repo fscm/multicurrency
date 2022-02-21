@@ -27,6 +27,7 @@ CLASSIFIERS = [
     'Topic :: Software Development :: Libraries',
     'Typing :: Typed']
 DESCRIPTION = 'Currency representation library.'
+ENTRY_POINTS = {}
 KEYWORDS = ['currency', 'library', 'monetary']
 PROJECT_URLS = {
     'Documentation': f'http://fscm.github.io/{__project__}',
@@ -47,7 +48,7 @@ if __name__ == '__main__':
         author=__author__,
         classifiers=CLASSIFIERS,
         description=DESCRIPTION,
-        entry_points={},
+        entry_points=ENTRY_POINTS,
         install_requires=DEPENDENCIES,
         keywords=KEYWORDS,
         license=__license__,

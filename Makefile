@@ -24,6 +24,7 @@ VERMIN := vermin
 
 # Shell                                                          Shell --------
 SHELL := /bin/sh
+.SHELLFLAGS += -e
 
 # Python Macros/Variables                      Python Macros/Variables --------
 REQUIREMENTS := requirements.txt
@@ -104,7 +105,7 @@ clean-docs:
 # -- clean stubs                                               clean stubs ----
 clean-stubs:
 	@echo "Deleting stubs..."
-	@rm -rf "$(SOURCE_DIR)"/$(PACKAGE_NAME)/*.pyi
+	@find "$(SOURCE_DIR)/$(PACKAGE_NAME)" -type f -name "*.pyi" -delete
 
 # Python Targets                                        Python Targets --------
 .PHONY: dev dev-upgrade autopep8 docs flake8 lint minversion stubs tests \
@@ -142,7 +143,7 @@ autopep8: $(VENV_DIR)/bin/activate
 	@echo "Formating tests..."
 	@"$(VENV_DIR)"/bin/$(AUTOPEP) --aggressive --aggressive --in-place \
 		--recursive --global-config "$(PROJECT_DIR)"/.pep8 \
-		"$(PROJECT_DIR)/tests"
+		"$(SOURCE_DIR)/tests"
 
 # -- coverage                                                     coverage ----
 coverage: $(VENV_DIR)/bin/activate tests
@@ -162,7 +163,7 @@ docs: $(VENV_DIR)/bin/activate
 	@"$(VENV_DIR)"/bin/$(PDOC) --force --html --skip-errors \
 		--config show_source_code=False --output-dir "$(PROJECT_DIR)/docs" \
 		"$(SOURCE_DIR)/$(PACKAGE_NAME)"
-	@mv "$(PROJECT_DIR)/docs/$(PACKAGE_NAME)"/*.html "$(PROJECT_DIR)/docs/"
+	@mv "$(PROJECT_DIR)/docs/$(PACKAGE_NAME)"/* "$(PROJECT_DIR)/docs/"
 	@rm -rf "$(PROJECT_DIR)/docs/$(PACKAGE_NAME)"
 
 # -- flake8                                                         flake8 ----
@@ -188,6 +189,7 @@ minversion: $(VENV_DIR)/bin/activate
 # -- stubs                                                           stubs ----
 stubs: $(VENV_DIR)/bin/activate
 	@echo "Generating stubs..."
+	@cd "$(SOURCE_DIR)"
 	@"$(VENV_DIR)"/bin/$(STUBGEN) --export-less --package "$(PACKAGE_NAME)" \
 		--search-path "$(SOURCE_DIR)" --output $(SOURCE_DIR)
 
@@ -195,13 +197,13 @@ stubs: $(VENV_DIR)/bin/activate
 tests: $(VENV_DIR)/bin/activate
 	@echo "Running tests..."
 	@"$(VENV_DIR)"/bin/$(PYTEST) --quiet --no-header --color=auto \
-		--cov="${PACKAGE_NAME}" --rootdir="$(PROJECT_DIR)"
+		--cov="${PACKAGE_NAME}" --rootdir="$(SOURCE_DIR)"
 
 tests-verbose: $(VENV_DIR)/bin/activate
 	@echo "Running tests (verbose mode)..."
 	@"$(VENV_DIR)"/bin/$(PYTEST) --verbose --verbose --color=auto \
 		--cache-clear --capture=tee-sys \
-		--cov="${PACKAGE_NAME}" --rootdir="$(PROJECT_DIR)"
+		--cov="${PACKAGE_NAME}" --rootdir="$(SOURCE_DIR)"
 
 # Build Targets                                          Build Targets --------
 .PHONY: build publish publish-test
