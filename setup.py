@@ -6,14 +6,16 @@
 # license: SPDX-License-Identifier: MIT
 
 """Setup."""
-
-from setuptools import find_packages, setup
+import sys
 from pathlib import Path
+from setuptools import find_packages, setup
+
+HERE = Path(__file__).parent.resolve()
+sys.path.insert(0, f'{HERE}/src')
+
 from multicurrency import (
     __author__, __license__, __project__, __version__)
 
-
-HERE = Path(__file__).parent.resolve()
 
 CLASSIFIERS = [
     'Development Status :: 5 - Production/Stable',
@@ -59,9 +61,11 @@ if __name__ == '__main__':
         long_description=LONG_DESCRIPTION,
         long_description_content_type='text/markdown',
         name=__project__,
+        package_dir={'': 'src'},
         package_data={__project__: ['py.typed', '*.pyi']},
-        packages=find_packages(exclude=['tests']),
+        packages=find_packages(where='src', exclude=['tests']),
         project_urls=PROJECT_URLS,
         python_requires=PYTHON_REQUIRES,
         url=URL,
-        version=__version__)
+        version=__version__,
+        zip_safe=True)

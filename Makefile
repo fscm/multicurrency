@@ -29,7 +29,7 @@ SHELL := /bin/sh
 # Python Macros/Variables                      Python Macros/Variables --------
 REQUIREMENTS := requirements.txt
 REQUIREMENTS_DEV := requirements-dev.txt
-SOURCE_DIR := $(PROJECT_DIR)
+SOURCE_DIR := $(PROJECT_DIR)/src
 SOURCE_FILES := $(wildcard $(SOURCE_DIR)/$(PACKAGE_NAME)/*.py)
 VENV_DIR := $(PROJECT_DIR)/.venv
 
@@ -197,13 +197,13 @@ stubs: $(VENV_DIR)/bin/activate
 tests: $(VENV_DIR)/bin/activate
 	@echo "Running tests..."
 	@"$(VENV_DIR)"/bin/$(PYTEST) --quiet --no-header --color=auto \
-		--cov="${PACKAGE_NAME}" --rootdir="$(SOURCE_DIR)"
+		--code-highlight=yes --cov="${PACKAGE_NAME}" --rootdir="$(SOURCE_DIR)"
 
 tests-verbose: $(VENV_DIR)/bin/activate
 	@echo "Running tests (verbose mode)..."
 	@"$(VENV_DIR)"/bin/$(PYTEST) --verbose --verbose --color=auto \
 		--cache-clear --capture=tee-sys \
-		--cov="${PACKAGE_NAME}" --rootdir="$(SOURCE_DIR)"
+		--code-highlight=yes --cov="${PACKAGE_NAME}" --rootdir="$(SOURCE_DIR)"
 
 # Build Targets                                          Build Targets --------
 .PHONY: build publish publish-test
