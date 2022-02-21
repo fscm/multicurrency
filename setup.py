@@ -13,7 +13,7 @@ from setuptools import find_packages, setup
 HERE = Path(__file__).parent.resolve()
 sys.path.insert(0, f'{HERE}/src')
 
-from multicurrency import (
+from multicurrency import (  # pylint: disable=import-error,wrong-import-position
     __author__, __license__, __project__, __version__)
 
 
