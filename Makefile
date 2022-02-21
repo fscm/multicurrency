@@ -189,8 +189,8 @@ minversion: $(VENV_DIR)/bin/activate
 # -- stubs                                                           stubs ----
 stubs: $(VENV_DIR)/bin/activate
 	@echo "Generating stubs..."
-	@cd "$(SOURCE_DIR)"
-	@"$(VENV_DIR)"/bin/$(STUBGEN) --export-less --package "$(PACKAGE_NAME)" \
+	@cd "$(SOURCE_DIR)" && \
+	"$(VENV_DIR)"/bin/$(STUBGEN) --export-less --package "$(PACKAGE_NAME)" \
 		--search-path "$(SOURCE_DIR)" --output $(SOURCE_DIR)
 
 # -- tests                                                           tests ----
