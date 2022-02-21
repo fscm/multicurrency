@@ -224,6 +224,7 @@ else
 	@"$(VENV_DIR)"/bin/$(TWINE) upload "$(PROJECT_DIR)"/dist/*
 endif
 
+# -- publish-test                                             publish-test ----
 publish-test: $(VENV_DIR)/bin/activate
 ifeq (,$(wildcard $(PROJECT_DIR)/dist))
 	@echo "Packages not found."

@@ -8,9 +8,12 @@
 """Setup."""
 
 from setuptools import find_packages, setup
+from pathlib import Path
 from multicurrency import (
     __author__, __license__, __project__, __version__)
 
+
+HERE = Path(__file__).parent.resolve()
 
 CLASSIFIERS = [
     'Development Status :: 5 - Production/Stable',
@@ -36,10 +39,10 @@ PYTHON_REQUIRES = '>=3.6, <4'
 URL = f'https://github.com/fscm/{__project__}'
 
 
-with open('requirements.txt', 'r', encoding='utf-8') as r:
+with open(f'{HERE}/requirements.txt', 'r', encoding='utf-8') as r:
     DEPENDENCIES = [p.strip() for p in r if not p.strip().startswith('#')]
 
-with open('README.md', 'r', encoding='utf-8') as d:
+with open(f'{HERE}/README.md', 'r', encoding='utf-8') as d:
     LONG_DESCRIPTION = d.read()
 
 
