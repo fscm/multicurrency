@@ -435,7 +435,7 @@ The available string currency parts for `[spec]` are:
 | %A   | The currency's amount in (western) arabic numerals.                                                                         |
 | %c   | The currency's alpha code (as seen on the international representation of the currency).                                    |
 | %s   | The currency's symbol.                                                                                                      |
-| %S   | The currency's localized symbol.                                                                                                      |
+| %S   | The currency's localized symbol.                                                                                            |
 | %_   | The currency's symbol separator.                                                                                            |
 
 Basic examples of how to use the `multicurrency._currency.Currency`
@@ -593,6 +593,7 @@ Several operations are supported by the several library classes.
         3,00 € 1,00 €
 
 * Float
+
     Produces a `float` with the value of the currency amount.
 
         >>> from multicurrency import Euro
@@ -629,6 +630,7 @@ Several operations are supported by the several library classes.
         1166476495300974230
 
 * Int
+
     Produces an `int` with the value of the currency amount.
 
         >>> from multicurrency import Euro

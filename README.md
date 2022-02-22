@@ -372,6 +372,7 @@ Several operations are supported by the several library classes.
     ```
 
 * Float
+
     Produces a `float` with the value of the currency amount.
 
     ```python
@@ -414,6 +415,7 @@ Several operations are supported by the several library classes.
     ```
 
 * Int
+
     Produces an `int` with the value of the currency amount.
 
     ```python
