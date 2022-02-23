@@ -161,7 +161,8 @@ docs: $(VENV_DIR)/bin/activate
 		--rootdir="$(PROJECT_DIR)" "$(SOURCE_DIR)/$(PACKAGE_NAME)"
 	@echo "Generating documentation..."
 	@"$(VENV_DIR)"/bin/$(PDOC) --force --html --skip-errors \
-		--config show_source_code=False --output-dir "$(PROJECT_DIR)/docs" \
+		--template-dir "$(SOURCE_DIR)"/docs/templates \
+		--output-dir "$(PROJECT_DIR)/docs" \
 		"$(SOURCE_DIR)/$(PACKAGE_NAME)"
 	@mv "$(PROJECT_DIR)/docs/$(PACKAGE_NAME)"/* "$(PROJECT_DIR)/docs/"
 	@rm -rf "$(PROJECT_DIR)/docs/$(PACKAGE_NAME)"
