@@ -2,6 +2,7 @@
 exclude =
     .git,
     .pytest_cache,
+    .venv,
     __pycache__,
     venv
 filename = *.py

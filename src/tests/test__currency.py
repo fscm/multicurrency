@@ -9,8 +9,8 @@
 import math
 import pickle
 from decimal import Context
-from pytest import raises
 from warnings import catch_warnings
+from pytest import raises
 from multicurrency import Currency, CurrencyContext
 from multicurrency import (
     CurrencyMismatchException,
