@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.0.1](https://github.com/fscm/multicurrency/tree/v1.0.1) (2022-03-17)
+
+### [changes](https://github.com/fscm/multicurrency/compare/v1.0.0...v1.0.1)
+
+* small changes to comply with 'pyanalyze'
+
 ## [v1.0.0](https://github.com/fscm/multicurrency/tree/v1.0.0) (2022-01-12)
 
 ### [changes](https://github.com/fscm/multicurrency/compare/v0.11.0...v1.0.0)

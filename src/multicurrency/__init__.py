@@ -1264,7 +1264,7 @@ __all__ = [
 __author__: str = 'Frederico Martins'
 __license__: str = 'MIT'
 __project__: str = __package__
-__version__: str = '1.0.0'
+__version__: str = '1.0.1'
 
 # add private classes to the doc
 __pdoc__ = {}
