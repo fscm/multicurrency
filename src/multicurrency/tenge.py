@@ -53,11 +53,11 @@ class Tenge(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'Tenge':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            Tenge: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,

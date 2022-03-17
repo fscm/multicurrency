@@ -53,11 +53,11 @@ class Baht(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'Baht':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            Baht: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,

@@ -53,11 +53,11 @@ class ArubanFlorin(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'ArubanFlorin':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            ArubanFlorin: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,

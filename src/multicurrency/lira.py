@@ -53,11 +53,11 @@ class TurkishLira(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'TurkishLira':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            TurkishLira: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -118,11 +118,11 @@ class TurkishLiraCY(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'TurkishLiraCY':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            TurkishLiraCY: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -183,11 +183,11 @@ class TurkishLiraTR(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'TurkishLiraTR':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            TurkishLiraTR: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,

@@ -42,11 +42,11 @@ class __CURRENCY_CLASS__(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = __SYMBOL_AHEAD__,
             symbol_separator: Optional[str] = '__SYMBOL_SEPARATOR__',
-            **other) -> '__CURRENCY_CLASS__':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            __CURRENCY_CLASS__: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,

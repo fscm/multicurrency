@@ -53,11 +53,11 @@ class Kwanza(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'Kwanza':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            Kwanza: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,

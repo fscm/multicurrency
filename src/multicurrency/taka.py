@@ -53,11 +53,11 @@ class Taka(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '',
-            **other) -> 'Taka':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            Taka: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,

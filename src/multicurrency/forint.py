@@ -53,11 +53,11 @@ class Forint(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'Forint':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            Forint: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,

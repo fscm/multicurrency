@@ -53,11 +53,11 @@ class Rand(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'Rand':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            Rand: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -118,11 +118,11 @@ class RandLS(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'RandLS':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            RandLS: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -183,11 +183,11 @@ class RandNA(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'RandNA':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            RandNA: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -248,11 +248,11 @@ class RandZA(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'RandZA':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            RandZA: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,

@@ -53,11 +53,11 @@ class BurundiFranc(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'BurundiFranc':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            BurundiFranc: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -118,11 +118,11 @@ class CongoleseFranc(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'CongoleseFranc':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            CongoleseFranc: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -183,11 +183,11 @@ class SwissFranc(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'SwissFranc':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            SwissFranc: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -248,11 +248,11 @@ class SwissFrancLI(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'SwissFrancLI':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            SwissFrancLI: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -313,11 +313,11 @@ class SwissFrancCH(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'SwissFrancCH':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            SwissFrancCH: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -378,11 +378,11 @@ class DjiboutiFranc(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'DjiboutiFranc':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            DjiboutiFranc: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -443,11 +443,11 @@ class GuineaFranc(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'GuineaFranc':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            GuineaFranc: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -508,11 +508,11 @@ class RwandaFranc(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'RwandaFranc':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            RwandaFranc: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -573,11 +573,11 @@ class CFAFrancBEAC(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'CFAFrancBEAC':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            CFAFrancBEAC: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -638,11 +638,11 @@ class CFAFrancBEACCM(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'CFAFrancBEACCM':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            CFAFrancBEACCM: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -703,11 +703,11 @@ class CFAFrancBEACCF(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'CFAFrancBEACCF':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            CFAFrancBEACCF: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -768,11 +768,11 @@ class CFAFrancBEACTD(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'CFAFrancBEACTD':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            CFAFrancBEACTD: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -833,11 +833,11 @@ class CFAFrancBEACCD(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'CFAFrancBEACCD':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            CFAFrancBEACCD: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -898,11 +898,11 @@ class CFAFrancBEACGQ(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'CFAFrancBEACGQ':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            CFAFrancBEACGQ: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -963,11 +963,11 @@ class CFAFrancBEACGA(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'CFAFrancBEACGA':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            CFAFrancBEACGA: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -1028,11 +1028,11 @@ class CFAFrancBCEAO(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'CFAFrancBCEAO':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            CFAFrancBCEAO: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -1093,11 +1093,11 @@ class CFAFrancBCEAOBJ(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'CFAFrancBCEAOBJ':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            CFAFrancBCEAOBJ: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -1158,11 +1158,11 @@ class CFAFrancBCEAOBF(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'CFAFrancBCEAOBF':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            CFAFrancBCEAOBF: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -1223,11 +1223,11 @@ class CFAFrancBCEAOCI(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'CFAFrancBCEAOCI':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            CFAFrancBCEAOCI: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -1288,11 +1288,11 @@ class CFAFrancBCEAOGW(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'CFAFrancBCEAOGW':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            CFAFrancBCEAOGW: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -1353,11 +1353,11 @@ class CFAFrancBCEAOML(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'CFAFrancBCEAOML':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            CFAFrancBCEAOML: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -1418,11 +1418,11 @@ class CFAFrancBCEAONG(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'CFAFrancBCEAONG':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            CFAFrancBCEAONG: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -1483,11 +1483,11 @@ class CFAFrancBCEAOSN(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'CFAFrancBCEAOSN':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            CFAFrancBCEAOSN: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -1548,11 +1548,11 @@ class CFAFrancBCEAOTG(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'CFAFrancBCEAOTG':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            CFAFrancBCEAOTG: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -1613,11 +1613,11 @@ class CFPFranc(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'CFPFranc':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            CFPFranc: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -1678,11 +1678,11 @@ class CFPFrancPF(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'CFPFrancPF':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            CFPFrancPF: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -1743,11 +1743,11 @@ class CFPFrancNC(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'CFPFrancNC':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            CFPFrancNC: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -1808,11 +1808,11 @@ class CFPFrancWF(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'CFPFrancWF':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            CFPFrancWF: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,

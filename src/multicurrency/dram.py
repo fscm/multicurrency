@@ -53,11 +53,11 @@ class ArmenianDram(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'ArmenianDram':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            ArmenianDram: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,

@@ -53,11 +53,11 @@ class EgyptianPound(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'EgyptianPound':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EgyptianPound: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -118,11 +118,11 @@ class FalklandIslandsPound(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'FalklandIslandsPound':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            FalklandIslandsPound: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -183,11 +183,11 @@ class PoundSterling(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'PoundSterling':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            PoundSterling: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -248,11 +248,11 @@ class PoundSterlingGG(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'PoundSterlingGG':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            PoundSterlingGG: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -313,11 +313,11 @@ class PoundSterlingIO(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'PoundSterlingIO':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            PoundSterlingIO: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -378,11 +378,11 @@ class PoundSterlingGB(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'PoundSterlingGB':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            PoundSterlingGB: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -443,11 +443,11 @@ class PoundSterlingIM(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'PoundSterlingIM':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            PoundSterlingIM: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -508,11 +508,11 @@ class GibraltarPound(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'GibraltarPound':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            GibraltarPound: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -573,11 +573,11 @@ class LebanesePound(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'LebanesePound':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            LebanesePound: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -638,11 +638,11 @@ class SudanesePound(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'SudanesePound':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            SudanesePound: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -703,11 +703,11 @@ class SaintHelenaPound(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'SaintHelenaPound':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            SaintHelenaPound: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -768,11 +768,11 @@ class SyrianPound(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'SyrianPound':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            SyrianPound: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,

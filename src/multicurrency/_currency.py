@@ -260,7 +260,7 @@ objects of the same currency.
     False
     >>> c1 != c2
     True
-"""  # pylint: disable=line-too-long
+"""  # pylint: disable=line-too-long  # noqa: E501,W505
 
 from decimal import Decimal, Context
 from re import (
@@ -1190,8 +1190,8 @@ class Currency:
             convertion=self._convertion,
             international=self._international)
 
-    __deepcopy__: 'Currency' = __copy__
-    __rmul__: 'Currency' = __mul__
+    __deepcopy__ = __copy__
+    __rmul__ = __mul__
 
     def is_signed(self) -> bool:
         """Check if the value of this class is preceded with the minus

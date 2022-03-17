@@ -53,11 +53,11 @@ class Euro(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'Euro':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            Euro: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -118,11 +118,11 @@ class EuroSBA(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'EuroSBA':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EuroSBA: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -183,11 +183,11 @@ class EuroAD(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'EuroAD':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EuroAD: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -248,11 +248,11 @@ class EuroAT(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'EuroAT':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EuroAT: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -313,11 +313,11 @@ class EuroBE(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'EuroBE':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EuroBE: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -378,11 +378,11 @@ class EuroCY(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'EuroCY':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EuroCY: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -443,11 +443,11 @@ class EuroEE(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'EuroEE':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EuroEE: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -508,11 +508,11 @@ class EuroFI(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'EuroFI':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EuroFI: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -573,11 +573,11 @@ class EuroFR(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'EuroFR':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EuroFR: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -638,11 +638,11 @@ class EuroDE(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'EuroDE':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EuroDE: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -703,11 +703,11 @@ class EuroGR(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'EuroGR':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EuroGR: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -768,11 +768,11 @@ class EuroIE(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'EuroIE':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EuroIE: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -833,11 +833,11 @@ class EuroIT(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'EuroIT':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EuroIT: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -898,11 +898,11 @@ class EuroXK(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'EuroXK':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EuroXK: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -963,11 +963,11 @@ class EuroLV(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'EuroLV':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EuroLV: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -1028,11 +1028,11 @@ class EuroLT(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'EuroLT':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EuroLT: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -1093,11 +1093,11 @@ class EuroLU(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'EuroLU':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EuroLU: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -1158,11 +1158,11 @@ class EuroMT(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'EuroMT':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EuroMT: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -1223,11 +1223,11 @@ class EuroMC(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'EuroMC':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EuroMC: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -1288,11 +1288,11 @@ class EuroME(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'EuroME':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EuroME: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -1353,11 +1353,11 @@ class EuroNL(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'EuroNL':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EuroNL: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -1418,11 +1418,11 @@ class EuroPT(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'EuroPT':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EuroPT: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -1483,11 +1483,11 @@ class EuroSM(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'EuroSM':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EuroSM: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -1548,11 +1548,11 @@ class EuroSK(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'EuroSK':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EuroSK: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -1613,11 +1613,11 @@ class EuroSI(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'EuroSI':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EuroSI: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -1678,11 +1678,11 @@ class EuroES(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'EuroES':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EuroES: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -1743,11 +1743,11 @@ class EuroVA(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'EuroVA':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EuroVA: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,

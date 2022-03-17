@@ -53,11 +53,11 @@ class UAEDirham(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'UAEDirham':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            UAEDirham: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -118,11 +118,11 @@ class MoroccanDirham(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'MoroccanDirham':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            MoroccanDirham: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,

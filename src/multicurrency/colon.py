@@ -53,11 +53,11 @@ class CostaRicanColon(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'CostaRicanColon':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            CostaRicanColon: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,

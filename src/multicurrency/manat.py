@@ -53,11 +53,11 @@ class AzerbaijanianManat(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'AzerbaijanianManat':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            AzerbaijanianManat: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -118,11 +118,11 @@ class Manat(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'Manat':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            Manat: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,

@@ -53,11 +53,11 @@ class Tala(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'Tala':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            Tala: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,

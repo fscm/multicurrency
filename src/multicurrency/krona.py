@@ -53,11 +53,11 @@ class IcelandKrona(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'IcelandKrona':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            IcelandKrona: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -118,11 +118,11 @@ class SwedishKrona(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'SwedishKrona':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            SwedishKrona: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,

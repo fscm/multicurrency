@@ -53,11 +53,11 @@ class IndianRupee(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'IndianRupee':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            IndianRupee: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -118,11 +118,11 @@ class IndianRupeeBT(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'IndianRupeeBT':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            IndianRupeeBT: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -183,11 +183,11 @@ class IndianRupeeIN(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'IndianRupeeIN':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            IndianRupeeIN: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -248,11 +248,11 @@ class SriLankaRupee(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'SriLankaRupee':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            SriLankaRupee: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -313,11 +313,11 @@ class MauritiusRupee(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'MauritiusRupee':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            MauritiusRupee: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -378,11 +378,11 @@ class NepaleseRupee(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'NepaleseRupee':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            NepaleseRupee: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -443,11 +443,11 @@ class PakistanRupee(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'PakistanRupee':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            PakistanRupee: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -508,11 +508,11 @@ class SeychellesRupee(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'SeychellesRupee':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            SeychellesRupee: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,

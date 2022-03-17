@@ -53,11 +53,11 @@ class CapeVerdeEscudo(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '',
-            **other) -> 'CapeVerdeEscudo':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            CapeVerdeEscudo: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,

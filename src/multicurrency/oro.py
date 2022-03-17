@@ -53,11 +53,11 @@ class CordobaOro(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'CordobaOro':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            CordobaOro: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,

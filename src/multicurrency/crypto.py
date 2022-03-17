@@ -53,11 +53,11 @@ class EOS(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'EOS':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            EOS: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -118,11 +118,11 @@ class Ethereum(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'Ethereum':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            Ethereum: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -183,11 +183,11 @@ class Bitcoin(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'Bitcoin':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            Bitcoin: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -248,11 +248,11 @@ class StellarLumens(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'StellarLumens':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            StellarLumens: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -313,11 +313,11 @@ class Monero(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'Monero':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            Monero: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -378,11 +378,11 @@ class Ripple(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'Ripple':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            Ripple: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -443,11 +443,11 @@ class Tezos(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'Tezos':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            Tezos: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -508,11 +508,11 @@ class Zcash(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'Zcash':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            Zcash: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,

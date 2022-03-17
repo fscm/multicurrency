@@ -53,11 +53,11 @@ class BolivarFuerte(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'BolivarFuerte':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            BolivarFuerte: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,

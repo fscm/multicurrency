@@ -53,11 +53,11 @@ class KenyanShilling(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'KenyanShilling':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            KenyanShilling: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -118,11 +118,11 @@ class SomaliShilling(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'SomaliShilling':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            SomaliShilling: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -183,11 +183,11 @@ class TanzanianShilling(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'TanzanianShilling':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            TanzanianShilling: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -248,11 +248,11 @@ class UgandaShilling(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'UgandaShilling':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            UgandaShilling: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,

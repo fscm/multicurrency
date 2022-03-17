@@ -697,7 +697,7 @@ Several operations are supported by the several library classes.
         False
         >>> euro1 != euro2
         True
-"""  # pylint: disable=line-too-long
+"""  # pylint: disable=line-too-long  # noqa: E501,W505
 
 from ._currency import (
     Currency,

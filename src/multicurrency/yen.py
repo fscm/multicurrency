@@ -53,11 +53,11 @@ class Yen(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = True,
             symbol_separator: Optional[str] = '',
-            **other) -> 'Yen':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            Yen: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,

@@ -53,11 +53,11 @@ class BelarusianRuble(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'BelarusianRuble':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            BelarusianRuble: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -118,11 +118,11 @@ class RussianRuble(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'RussianRuble':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            RussianRuble: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -183,11 +183,11 @@ class RussianRubleRU(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'RussianRubleRU':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            RussianRubleRU: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -248,11 +248,11 @@ class RussianRubleGE(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'RussianRubleGE':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            RussianRubleGE: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,

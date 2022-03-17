@@ -53,11 +53,11 @@ class NewIsraeliShekel(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'NewIsraeliShekel':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            NewIsraeliShekel: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -118,11 +118,11 @@ class NewIsraeliShekelIL(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'NewIsraeliShekelIL':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            NewIsraeliShekelIL: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
@@ -183,11 +183,11 @@ class NewIsraeliShekelPS(Currency):
             international: Optional[bool] = False,
             symbol_ahead: Optional[bool] = False,
             symbol_separator: Optional[str] = '\u00A0',
-            **other) -> 'NewIsraeliShekelPS':
+            **other) -> Currency:
         """Class creator.
 
         Returns:
-            NewIsraeliShekelPS: new opbject.
+            Currency: new `Currency` object.
         """
         return Currency.__new__(
             cls,
