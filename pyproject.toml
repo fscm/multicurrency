@@ -1,0 +1,331 @@
+# build
+[build-system]
+requires = [
+    'setuptools>=61',
+    'wheel',
+]
+build-backend = 'setuptools.build_meta'
+
+[project]
+authors = [
+    {name = 'Frederico Martins'},
+]
+classifiers = [
+    'Development Status :: 5 - Production/Stable',
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: MIT License',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3 :: Only',
+    'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Topic :: Software Development :: Libraries',
+    'Typing :: Typed',
+]
+dependencies = []
+description = 'Currency representation library.'
+dynamic = [
+    'version',
+]
+keywords = [
+    'currency',
+    'library',
+    'monetary',
+]
+license = {file = 'LICENSE'}
+name = 'multicurrency'
+requires-python = '>=3.6, <4'
+
+[project.optional-dependencies]
+dev = [
+    'Mako>=1.2.0',
+    'autopep8>=1.6.0',
+    'build>=0.8.0',
+    'coverage[toml]>=6.4.1',
+    'mypy>=0.950',
+    'pdoc3>=0.10.0',
+    'pylint>=2.13.9',
+    'pytest>=7.1.2',
+    'pytest-cov>=3.0.0',
+    'tabulate>=0.8.9',
+    'twine>=4.0.0',
+    'vermin>=1.3.3',
+]
+
+[project.readme]
+file = 'README.md'
+content-type = 'text/markdown'
+
+[project.urls]
+Documentation = 'http://fscm.github.io/multicurrency'
+Homepage = 'https://github.com/fscm//multicurrency'
+Source = 'https://github.com/fscm/multicurrency'
+
+[tool.setuptools]
+include-package-data = true
+# package-dir = {'' = 'src'}
+
+[tool.setuptools.dynamic]
+version = {attr = 'multicurrency.__version__'}
+
+[tool.setuptools.packages.find]
+where = [
+    'src',
+]
+exclude = [
+    'docs*',
+    'tests*',
+    'tools*',
+]
+
+[tool.setuptools.package-data]
+multicurrency = [
+    'py.typed',
+    '*.pyi',
+    '**/*.pyi',
+    '*.h']
+
+# pytest
+[tool.pytest.ini_options]
+addopts = '--strict-config --strict-markers --cov-config=.coveragerc --cov-report=term-missing'
+minversion = '7.1'
+norecursedirs = [
+    '.*',
+]
+required_plugins = [
+    'pytest-cov',
+]
+testpaths = [
+    'tests',
+]
+
+# mypy
+[tool.mypy]
+mypy_path = 'src'
+check_untyped_defs = true
+disallow_any_generics = true
+ignore_missing_imports = true
+no_implicit_optional = true
+show_error_codes = true
+strict_equality = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_configs = true
+no_implicit_reexport = true
+
+# autopep8
+[tool.autopep8]
+indent_size = 4
+max_line_length = 79
+max_doc_length = 72
+
+# coverage
+[tool.coverage.run]
+branch = true
+data_file = '.coverage'
+parallel = true
+
+[tool.coverage.report]
+exclude_lines = [
+    'pragma: no cover',
+    'except ImportError:',
+    'if TYPE_CHECKING:',
+    'if __name__ == .__main__.:',
+]
+precision = 2
+show_missing = true
+skip_covered = true
+skip_empty = true
+
+# pylint
+[tool.pylint.master]
+ignore = [
+    '.git',
+    'third_party',
+]
+ignore-patterns = '.*\.pyi$'
+jobs = 0
+load-plugins = [
+    'pylint.extensions.docstyle',
+    'pylint.extensions.docparams',
+    'pylint.extensions.overlapping_exceptions',
+    'pylint.extensions.redefined_variable_type',
+]
+persistent = false
+suggestion-mode = true
+unsafe-load-any-extension = false
+
+[tool.pylint.messages_control]
+disable=[
+    'duplicate-code',
+]
+
+[tool.pylint.reports]
+evaluation = '10.0 - ((float(5 * error + warning + refactor + convention) / statement) * 10)'
+output-format = 'text'
+reports = false
+score = true
+
+[tool.pylint.refactoring]
+max-nested-blocks = 5
+never-returning-functions = [
+    'sys.exit',
+]
+
+[tool.pylint.logging]
+logging-format-style = 'new'
+logging-modules = [
+    'logging',
+]
+
+[tool.pylint.spelling]
+max-spelling-suggestions = 4
+spelling-store-unknown-words = false
+
+[tool.pylint.miscellaneous]
+notes = [
+    'FIXME',
+    'XXX',
+    'TODO',
+]
+
+[tool.pylint.typecheck]
+contextmanager-decorators = 'contextlib.contextmanager'
+ignore-mixin-members = true
+ignore-none = true
+ignore-on-opaque-inference = true
+ignored-classes = [
+    'optparse.Values',
+    'thread._local',
+    '_thread._local',
+]
+missing-member-hint = true
+missing-member-hint-distance = 1
+missing-member-max-choices = 1
+
+[tool.pylint.variables]
+allow-global-unused-variables = true
+callbacks = [
+    'cb_',
+    '_cb',
+]
+dummy-variables-rgx = '^\*{0,2}(_$|unused_|dummy_)'
+init-import = false
+redefining-builtins-modules = [
+    'six',
+    'six.moves',
+    'past.builtins',
+    'future.builtins',
+    'functools',
+]
+
+[tool.pylint.format]
+ignore-long-lines = '^\s*(\#\ )?<?https?://\S+>?$|^\s*(\|.*\|$)'
+indent-after-paren = 4
+indent-string = '    '
+max-line-length = 79
+max-module-lines = 4000
+single-line-class-stmt = false
+single-line-if-stmt = true
+
+[tool.pylint.similarities]
+ignore-comments = true
+ignore-docstrings = true
+ignore-imports = false
+min-similarity-lines = 4
+
+[tool.pylint.basic]
+argument-naming-style = 'snake_case'
+attr-naming-style = 'snake_case'
+class-attribute-naming-style = 'any'
+class-naming-style = 'PascalCase'
+const-naming-style = 'UPPER_CASE'
+docstring-min-length = 10
+function-naming-style = 'snake_case'
+good-names = [
+    'main',
+    '_',
+]
+include-naming-hint = false
+inlinevar-naming-style = 'any'
+method-naming-style = 'snake_case'
+module-naming-style = 'snake_case'
+no-docstring-rgx = '^(__.*__|main|test.*|.*test|.*Test)$'
+property-classes = [
+    'abc.abstractproperty',
+]
+variable-naming-style = 'snake_case'
+
+[tool.pylint.string]
+check-quote-consistency = true
+check-str-concat-over-line-jumps = false
+
+[tool.pylint.imports]
+allow-wildcard-with-all = false
+analyse-fallback-blocks = false
+deprecated-modules = [
+    'optparse',
+    'regsub',
+    'rexec',
+    'sets',
+    'tkinter.tix',
+    'Bastion',
+    'TERMIOS',
+]
+known-third-party = [
+    'enchant',
+    'absl',
+]
+
+[tool.pylint.classes]
+defining-attr-methods = [
+    '__init__',
+    '__new__',
+    '__post_init__',
+    'setUp',
+]
+exclude-protected = [
+    '_asdict',
+    '_fields',
+    '_replace',
+    '_source',
+    '_make',
+]
+valid-classmethod-first-arg = [
+    'cls',
+    'class_',
+]
+valid-metaclass-classmethod-first-arg = [
+    'cls',
+    'mcs',
+]
+
+[tool.pylint.design]
+max-args = 10
+max-attributes = 11
+max-bool-expr = 5
+max-branches = 12
+max-locals = 20
+max-parents = 7
+max-public-methods = 20
+max-returns = 6
+max-statements = 50
+min-public-methods = 1
+
+[tool.pylint.exceptions]
+overgeneral-exceptions = [
+    'BaseException',
+    'Exception',
+    'StandardError',
+]
+
+[tool.pylint.parameter_documentation]
+accept-no-param-doc = false
+accept-no-raise-doc = false
+accept-no-return-doc = false
+accept-no-yields-doc = false
+default-docstring-type = 'google'

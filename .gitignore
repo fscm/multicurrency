@@ -1,9 +1,8 @@
 # Project
-tools/generator/_multicurrency/*
-tools/generator/_tests/*
-tools/profiler/report.html
+src/tools/generator/output/*
 venv/*
 .venv/*
+*.so
 !.gitkeep
 !.nojekyll
 

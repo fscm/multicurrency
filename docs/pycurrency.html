@@ -1,0 +1,810 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<title>multicurrency.pycurrency API documentation</title>
+<meta name="description" content="Currency representation …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github.min.css" integrity="sha512-0aPQyyeZrWj9sCA46UlmWgKOP0mUipLQ6OZXu8l4IcAmD2u31EPEy9VcIMvl7SoAaKe8bLXZhYoMaE/in+gcgA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js" integrity="sha512-IaaKO80nPNs5j+VLxd42eK/7sYuXQmr+fyywCNA0e+C6gtQnuCXNtORe9xR4LqGPz5U9VpH+ff41wKs/ZmC3iA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>multicurrency.pycurrency</code></h1>
+</header>
+<section id="section-intro">
+<p>Currency representation.</p>
+<p>Representation of a currency value.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import Currency
+&gt;&gt;&gt; euro = Currency(amount=1, alpha_code='EUR', symbol='€')
+&gt;&gt;&gt; print(euro)
+1.00€
+</code></pre>
+<h2 id="formatting">Formatting</h2>
+<p>The <code><a title="multicurrency.pycurrency.Currency" href="#multicurrency.pycurrency.Currency">Currency</a></code> class allows you to create
+and customize your own value formatting behaviors using the same
+implementation as the built-in <code>format()</code> method.</p>
+<p>The specification for the formatting feature is as follows:</p>
+<pre><code>[dp][ds][gs][gp][spec]
+</code></pre>
+<p>The meaning of the various alignment options is as follows:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Option</th>
+<th align="left">Type</th>
+<th align="left">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">[dp]</td>
+<td align="left">int+</td>
+<td align="left">The number of decimal places (integer number with one or more digits). Must be grater or equal to 0 (zero).</td>
+</tr>
+<tr>
+<td align="left">[ds]</td>
+<td align="left">str{1}</td>
+<td align="left">The decimal sign (single non-digit character).</td>
+</tr>
+<tr>
+<td align="left">[gs]</td>
+<td align="left">str{1}</td>
+<td align="left">The grouping sign (single non-digit character).</td>
+</tr>
+<tr>
+<td align="left">[gp]</td>
+<td align="left">int+</td>
+<td align="left">The number of digits to group the number by (integer number with one or more digits). Must be grater or equal to 0 (zero).</td>
+</tr>
+<tr>
+<td align="left">[spec]</td>
+<td align="left">str</td>
+<td align="left">The formatting spec (a strig with the order of currency parts).</td>
+</tr>
+</tbody>
+</table>
+<p>All fields are optional although for the first four fields when setting
+one the fields on the left of that are required to be set as well.</p>
+<p>The available string currency parts for <code>[spec]</code> are:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Part</th>
+<th align="left">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">%a</td>
+<td align="left">The currency's amount as seen in the default representation of the currency (the numeral system of the currency's country).</td>
+</tr>
+<tr>
+<td align="left">%A</td>
+<td align="left">The currency's amount in (western) arabic numerals.</td>
+</tr>
+<tr>
+<td align="left">%c</td>
+<td align="left">The currency's alpha code (as seen on the international representation of the currency).</td>
+</tr>
+<tr>
+<td align="left">%s</td>
+<td align="left">The currency's symbol.</td>
+</tr>
+<tr>
+<td align="left">%S</td>
+<td align="left">The currency's localized symbol.</td>
+</tr>
+<tr>
+<td align="left">%u</td>
+<td align="left">The currency's unsign amount as seen in the default representation of the currency (the numeral system of the currency's country).</td>
+</tr>
+<tr>
+<td align="left">%U</td>
+<td align="left">The currency's unsign amount in (western) arabic numerals.</td>
+</tr>
+<tr>
+<td align="left">%-</td>
+<td align="left">The currency's amount sign.</td>
+</tr>
+<tr>
+<td align="left">%%</td>
+<td align="left">The <code>%</code> symbol.</td>
+</tr>
+</tbody>
+</table>
+<p>Basic examples of how to use the <code><a title="multicurrency.pycurrency.Currency" href="#multicurrency.pycurrency.Currency">Currency</a></code>
+formatting feature:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import Currency
+&gt;&gt;&gt; euro = Currency(1000000*(1/7), alpha_code='EUR', symbol='€')
+&gt;&gt;&gt; # Using the built-in &lt;code&gt;format()&lt;/code&gt; method
+&gt;&gt;&gt; format(euro, '4%a')
+'142,857.1429'
+&gt;&gt;&gt; # Using the `'new' string` formating method
+&gt;&gt;&gt; '{:4%a}'.format(euro)
+'142,857.1429'
+&gt;&gt;&gt; # Using the `f-string` method
+&gt;&gt;&gt; f'{euro:4%a}'
+'142,857.1429'
+</code></pre>
+<h2 id="supported-operations">Supported operations</h2>
+<p>Several operations are supported by the
+<code><a title="multicurrency.pycurrency.Currency" href="#multicurrency.pycurrency.Currency">Currency</a></code> type.</p>
+<h3 id="absolute">Absolute</h3>
+<p>Produces a new <code><a title="multicurrency.pycurrency.Currency" href="#multicurrency.pycurrency.Currency">Currency</a></code> with the absolute
+value of the given <code><a title="multicurrency.pycurrency.Currency" href="#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import Currency
+&gt;&gt;&gt; c = abs(Currency(amount=-2))
+&gt;&gt;&gt; print(c)
+2.00
+</code></pre>
+<h3 id="addiction">Addiction</h3>
+<p>Addiction is supported only between <code><a title="multicurrency.pycurrency.Currency" href="#multicurrency.pycurrency.Currency">Currency</a></code>
+of the same type.</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import Currency
+&gt;&gt;&gt; c1 = Currency(amount=2)
+&gt;&gt;&gt; c2 = Currency(amount=3)
+&gt;&gt;&gt; print(c1 + c2)
+5.00
+</code></pre>
+<h3 id="boolean">Boolean</h3>
+<p>Produces 'True' for values of <code><a title="multicurrency.pycurrency.Currency" href="#multicurrency.pycurrency.Currency">Currency</a></code> other
+than zero. 'False' otherwise</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import Currency
+&gt;&gt;&gt; bool(Currency(amount=0))
+False
+&gt;&gt;&gt; bool(Currency(amount=1))
+True
+</code></pre>
+<h3 id="ceiling">Ceiling</h3>
+<p>Produces a <code><a title="multicurrency.pycurrency.Currency" href="#multicurrency.pycurrency.Currency">Currency</a></code> rounded up to the nearest
+integer.</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import Currency
+&gt;&gt;&gt; from math import ceil
+&gt;&gt;&gt; print(ceil(Currency(1/7)))
+1.00
+</code></pre>
+<h3 id="copy">Copy</h3>
+<p>Produces a copy of itself.</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import Currency
+&gt;&gt;&gt; from copy import copy
+&gt;&gt;&gt; c = copy(Currency(1/7))
+&gt;&gt;&gt; print(c)
+0.14
+</code></pre>
+<h3 id="division">Division</h3>
+<p>Produces a <code><a title="multicurrency.pycurrency.Currency" href="#multicurrency.pycurrency.Currency">Currency</a></code> with the value of
+the division of the currency by either an <code>int</code>, <code>float</code>, or
+<code>decimal.Decimal</code>.</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import Currency
+&gt;&gt;&gt; d = Currency(7) / 2
+&gt;&gt;&gt; print(d)
+3.50
+</code></pre>
+<h3 id="divmod">Divmod</h3>
+<p>Produces a tuple consisting of the currencies with the quotient and
+the remainder of the division of the currency by either an <code>int</code>,
+<code>float</code>, or <code>decimal.Decimal</code>.</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import Currency
+&gt;&gt;&gt; q, r = divmod(Currency(7), 2)
+&gt;&gt;&gt; print(q, r)
+3.00 1.00
+</code></pre>
+<h3 id="float">Float</h3>
+<p>Produces a <code>float</code> with the value of the currency amount.</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import Currency
+&gt;&gt;&gt; float(Currency(1/7))
+0.14285714285714285
+</code></pre>
+<h3 id="flooring">Flooring</h3>
+<p>Produces a <code><a title="multicurrency.pycurrency.Currency" href="#multicurrency.pycurrency.Currency">Currency</a></code> rounded down to the
+nearest integer.</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import Currency
+&gt;&gt;&gt; from math import floor
+&gt;&gt;&gt; print(floor(Currency(1/7)))
+0.00
+</code></pre>
+<h3 id="floordiv">Floordiv</h3>
+<p>Produces a <code><a title="multicurrency.pycurrency.Currency" href="#multicurrency.pycurrency.Currency">Currency</a></code> with the integral part
+of the quotient of the division of the currency by either an <code>int</code>,
+<code>float</code>, or <code>decimal.Decimal</code>.</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import Currency
+&gt;&gt;&gt; fd = Currency(7) // 2
+&gt;&gt;&gt; print(fd)
+3.00
+</code></pre>
+<h3 id="hash">Hash</h3>
+<p>Produces a hash representation of the
+<code><a title="multicurrency.pycurrency.Currency" href="#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import Currency
+&gt;&gt;&gt; c = Currency(7, alpha_code='EUR', numeric_code='978')
+&gt;&gt;&gt; hash(c) # doctest: +SKIP
+1166476495300974230
+</code></pre>
+<h3 id="int">Int</h3>
+<p>Produces an <code>int</code> with the value of the currency amount.</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import Currency
+&gt;&gt;&gt; int(Currency(1/7))
+0
+</code></pre>
+<h3 id="mod">Mod</h3>
+<p>Produces a <code><a title="multicurrency.pycurrency.Currency" href="#multicurrency.pycurrency.Currency">Currency</a></code> with the value of the
+remainder of the division of the currency by either an <code>int</code>, <code>float</code>,
+or <code>decimal.Decimal</code>.</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import Currency
+&gt;&gt;&gt; m = Currency(7) % 2
+&gt;&gt;&gt; print(m)
+1.00
+</code></pre>
+<h3 id="multiplication">Multiplication</h3>
+<p>Multiplication is supported between <code><a title="multicurrency.pycurrency.Currency" href="#multicurrency.pycurrency.Currency">Currency</a></code>
+and <code>int</code>, <code>float</code>, or <code>decimal.Decimal</code>.</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import Currency
+&gt;&gt;&gt; c = Currency(amount=2)
+&gt;&gt;&gt; print(c * 2.5)
+5.00
+</code></pre>
+<h3 id="round">Round</h3>
+<p>Produces a <code><a title="multicurrency.pycurrency.Currency" href="#multicurrency.pycurrency.Currency">Currency</a></code> with the amount of the
+currency rounded to a given precision.</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import Currency
+&gt;&gt;&gt; r = round(Currency(1/7), 3)
+&gt;&gt;&gt; print(r.amount)
+0.143
+</code></pre>
+<h3 id="subtraction">Subtraction</h3>
+<p>Subtraction is supported only between <code><a title="multicurrency.pycurrency.Currency" href="#multicurrency.pycurrency.Currency">Currency</a></code>
+of the same type.</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import Currency
+&gt;&gt;&gt; c1 = Currency(amount=2)
+&gt;&gt;&gt; c2 = Currency(amount=3)
+&gt;&gt;&gt; print(c1 - c2)
+-1.00
+</code></pre>
+<h2 id="other-operations">Other Operations</h2>
+<p>This type also supports the basic comparison operations between two
+objects of the same currency.</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import Currency
+&gt;&gt;&gt; c1 = Currency(amount=2)
+&gt;&gt;&gt; c2 = Currency(amount=3)
+&gt;&gt;&gt; c1 &gt; c2
+False
+&gt;&gt;&gt; c1 &gt;= c2
+False
+&gt;&gt;&gt; c1 &lt; c2
+True
+&gt;&gt;&gt; c1 &lt;= c2
+True
+&gt;&gt;&gt; c1 == c2
+False
+&gt;&gt;&gt; c1 != c2
+True
+</code></pre>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="multicurrency.pycurrency.Currency"><code class="flex name class">
+<span>class <span class="ident">Currency</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], alpha_code: Optional[str] = '', numeric_code: Optional[str] = '0', symbol: Optional[str] = '', localized_symbol: Optional[str] = '', convertion: Optional[str] = '', pattern: Optional[str] = '2.,3%a%s')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Currency representation.</p>
+<p>This class is a generic representation of Money, a certain amount
+of currency value of a particular country.</p>
+<p>The value (<code>amount</code>) represented by this class is by default
+showned with 2 (two) decimal places and rounded away from zero if
+the last significant digit is greater than 5 (five), towards zero
+if less than 5 (five). When the last significant digit is 5 (five)
+the preceding digit is examined, even values cause the result to be
+rounded down and odd digits cause the result to be rounded up.</p>
+<p>The <code>alpha_code</code> should be set accordingly to the three-letter
+numeric code defined by the ISO-4217 for the represented language.</p>
+<p>The <code>numeric_code</code> argument should be set accordingly to the
+three-digit numeric code defined by the ISO-4217 for the
+represented language.</p>
+<p>The <code>symbol</code>, when set, will be used to identify the currency when
+printing out the value.</p>
+<p>The <code>convertion</code> string, when set, will be used to replace the
+Western Arabic numerals - as well as the symbols - with the
+equivalent ones on the currency language. The string must be
+created with the numbers from 0 (zero) to 9 (nine) followed by the
+minus sign without any separation mark (e.g.: '0123456789-').</p>
+<p>The <code>pattern</code> string, when set, will have to be in the form
+<code>[dp][ds][gs][gp][format]</code>.</p>
+<p>The <code>pattern</code> fields are:
+[dp] (int+): The number of decimal places (integer number
+with one or more digits). Must be grater or equal to 0
+(zero).
+[ds] (char{1}): The decimal sign (single non-digit
+character).
+[gs] (char{1}): The grouping sign (single non-digit
+character).
+[gp] (int+): The number of digits to group the number by
+(integer number with one or more digits). Must be grater
+or equal to 0 (zero).
+[format] (str): The formatting pattern (a string with the
+order of the currency parts).</p>
+<p>The currency parts that can be used on the <code>format</code> string are:
+%a: The currency's amount as seen in the default
+representation of the currency (the numeral system of
+the currency's country).
+%A: The currency's amount in (western) arabic numerals.
+%c: The currency's alpha code (as seen on the international
+representation of the currency).
+%s: The currency's symbol.
+%S: The currency's localized symbol.
+%u: The currency's unsign amount as seen in the default
+representation of the currency (the numeral system of
+the currency's country).
+%U: The currency's unsign amount in (western) arabic numerals.
+%-: The currency's amount sign.
+%%: The <code>%</code> symbol.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>alpha_code</code></strong> :&ensp;<code>str, optionsl</code></dt>
+<dd>Represented currency alpha code.
+Defaults to ''.</dd>
+<dt><strong><code>numeric_code</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Represented currency numeric
+code. Defaults to 0.</dd>
+<dt><strong><code>symbol</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Represented currency symbol. Defaults
+to ''.</dd>
+<dt>localized_symbol ((str, optional)): Represented currency</dt>
+<dt>localizedsymbol. Defaults to the value of <code>symbol</code>.</dt>
+<dt><strong><code>convertion</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>String with the numbers from 0 to 9
+followed by the minus ('-') sign. Defaults to ''.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'2.,3%A%s'.</dd>
+</dl></div>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="multicurrency.currencies.afghani.Afghani" href="currencies/afghani.html#multicurrency.currencies.afghani.Afghani">Afghani</a></li>
+<li><a title="multicurrency.currencies.ariary.MalagasyAriary" href="currencies/ariary.html#multicurrency.currencies.ariary.MalagasyAriary">MalagasyAriary</a></li>
+<li><a title="multicurrency.currencies.baht.Baht" href="currencies/baht.html#multicurrency.currencies.baht.Baht">Baht</a></li>
+<li><a title="multicurrency.currencies.balboa.Balboa" href="currencies/balboa.html#multicurrency.currencies.balboa.Balboa">Balboa</a></li>
+<li><a title="multicurrency.currencies.birr.EthiopianBirr" href="currencies/birr.html#multicurrency.currencies.birr.EthiopianBirr">EthiopianBirr</a></li>
+<li><a title="multicurrency.currencies.boliviano.Boliviano" href="currencies/boliviano.html#multicurrency.currencies.boliviano.Boliviano">Boliviano</a></li>
+<li><a title="multicurrency.currencies.cedi.Cedi" href="currencies/cedi.html#multicurrency.currencies.cedi.Cedi">Cedi</a></li>
+<li><a title="multicurrency.currencies.colon.CostaRicanColon" href="currencies/colon.html#multicurrency.currencies.colon.CostaRicanColon">CostaRicanColon</a></li>
+<li><a title="multicurrency.currencies.crypto.Bitcoin" href="currencies/crypto.html#multicurrency.currencies.crypto.Bitcoin">Bitcoin</a></li>
+<li><a title="multicurrency.currencies.crypto.EOS" href="currencies/crypto.html#multicurrency.currencies.crypto.EOS">EOS</a></li>
+<li><a title="multicurrency.currencies.crypto.Ethereum" href="currencies/crypto.html#multicurrency.currencies.crypto.Ethereum">Ethereum</a></li>
+<li><a title="multicurrency.currencies.crypto.Monero" href="currencies/crypto.html#multicurrency.currencies.crypto.Monero">Monero</a></li>
+<li><a title="multicurrency.currencies.crypto.Ripple" href="currencies/crypto.html#multicurrency.currencies.crypto.Ripple">Ripple</a></li>
+<li><a title="multicurrency.currencies.crypto.StellarLumens" href="currencies/crypto.html#multicurrency.currencies.crypto.StellarLumens">StellarLumens</a></li>
+<li><a title="multicurrency.currencies.crypto.Tezos" href="currencies/crypto.html#multicurrency.currencies.crypto.Tezos">Tezos</a></li>
+<li><a title="multicurrency.currencies.crypto.Zcash" href="currencies/crypto.html#multicurrency.currencies.crypto.Zcash">Zcash</a></li>
+<li><a title="multicurrency.currencies.dalasi.Dalasi" href="currencies/dalasi.html#multicurrency.currencies.dalasi.Dalasi">Dalasi</a></li>
+<li><a title="multicurrency.currencies.denar.Denar" href="currencies/denar.html#multicurrency.currencies.denar.Denar">Denar</a></li>
+<li><a title="multicurrency.currencies.dinar.AlgerianDinar" href="currencies/dinar.html#multicurrency.currencies.dinar.AlgerianDinar">AlgerianDinar</a></li>
+<li><a title="multicurrency.currencies.dinar.BahrainiDinar" href="currencies/dinar.html#multicurrency.currencies.dinar.BahrainiDinar">BahrainiDinar</a></li>
+<li><a title="multicurrency.currencies.dinar.IraqiDinar" href="currencies/dinar.html#multicurrency.currencies.dinar.IraqiDinar">IraqiDinar</a></li>
+<li><a title="multicurrency.currencies.dinar.JordanianDinar" href="currencies/dinar.html#multicurrency.currencies.dinar.JordanianDinar">JordanianDinar</a></li>
+<li><a title="multicurrency.currencies.dinar.KuwaitiDinar" href="currencies/dinar.html#multicurrency.currencies.dinar.KuwaitiDinar">KuwaitiDinar</a></li>
+<li><a title="multicurrency.currencies.dinar.LibyanDinar" href="currencies/dinar.html#multicurrency.currencies.dinar.LibyanDinar">LibyanDinar</a></li>
+<li><a title="multicurrency.currencies.dinar.SerbianDinarSR" href="currencies/dinar.html#multicurrency.currencies.dinar.SerbianDinarSR">SerbianDinarSR</a></li>
+<li><a title="multicurrency.currencies.dinar.SerbianDinarXK" href="currencies/dinar.html#multicurrency.currencies.dinar.SerbianDinarXK">SerbianDinarXK</a></li>
+<li><a title="multicurrency.currencies.dinar.TunisianDinar" href="currencies/dinar.html#multicurrency.currencies.dinar.TunisianDinar">TunisianDinar</a></li>
+<li><a title="multicurrency.currencies.dirham.MoroccanDirham" href="currencies/dirham.html#multicurrency.currencies.dirham.MoroccanDirham">MoroccanDirham</a></li>
+<li><a title="multicurrency.currencies.dirham.UAEDirham" href="currencies/dirham.html#multicurrency.currencies.dirham.UAEDirham">UAEDirham</a></li>
+<li><a title="multicurrency.currencies.dobra.Dobra" href="currencies/dobra.html#multicurrency.currencies.dobra.Dobra">Dobra</a></li>
+<li><a title="multicurrency.currencies.dollar.AustralianDollar" href="currencies/dollar.html#multicurrency.currencies.dollar.AustralianDollar">AustralianDollar</a></li>
+<li><a title="multicurrency.currencies.dollar.AustralianDollarAU" href="currencies/dollar.html#multicurrency.currencies.dollar.AustralianDollarAU">AustralianDollarAU</a></li>
+<li><a title="multicurrency.currencies.dollar.AustralianDollarCC" href="currencies/dollar.html#multicurrency.currencies.dollar.AustralianDollarCC">AustralianDollarCC</a></li>
+<li><a title="multicurrency.currencies.dollar.AustralianDollarKI" href="currencies/dollar.html#multicurrency.currencies.dollar.AustralianDollarKI">AustralianDollarKI</a></li>
+<li><a title="multicurrency.currencies.dollar.AustralianDollarMR" href="currencies/dollar.html#multicurrency.currencies.dollar.AustralianDollarMR">AustralianDollarMR</a></li>
+<li><a title="multicurrency.currencies.dollar.AustralianDollarTV" href="currencies/dollar.html#multicurrency.currencies.dollar.AustralianDollarTV">AustralianDollarTV</a></li>
+<li><a title="multicurrency.currencies.dollar.BahamianDollar" href="currencies/dollar.html#multicurrency.currencies.dollar.BahamianDollar">BahamianDollar</a></li>
+<li><a title="multicurrency.currencies.dollar.BarbadosDollar" href="currencies/dollar.html#multicurrency.currencies.dollar.BarbadosDollar">BarbadosDollar</a></li>
+<li><a title="multicurrency.currencies.dollar.BelizeDollar" href="currencies/dollar.html#multicurrency.currencies.dollar.BelizeDollar">BelizeDollar</a></li>
+<li><a title="multicurrency.currencies.dollar.BermudianDollar" href="currencies/dollar.html#multicurrency.currencies.dollar.BermudianDollar">BermudianDollar</a></li>
+<li><a title="multicurrency.currencies.dollar.BruneiDollar" href="currencies/dollar.html#multicurrency.currencies.dollar.BruneiDollar">BruneiDollar</a></li>
+<li><a title="multicurrency.currencies.dollar.BruneiDollarBN" href="currencies/dollar.html#multicurrency.currencies.dollar.BruneiDollarBN">BruneiDollarBN</a></li>
+<li><a title="multicurrency.currencies.dollar.BruneiDollarSG" href="currencies/dollar.html#multicurrency.currencies.dollar.BruneiDollarSG">BruneiDollarSG</a></li>
+<li><a title="multicurrency.currencies.dollar.CanadianDollarEN" href="currencies/dollar.html#multicurrency.currencies.dollar.CanadianDollarEN">CanadianDollarEN</a></li>
+<li><a title="multicurrency.currencies.dollar.CanadianDollarFR" href="currencies/dollar.html#multicurrency.currencies.dollar.CanadianDollarFR">CanadianDollarFR</a></li>
+<li><a title="multicurrency.currencies.dollar.CaymanIslandsDollar" href="currencies/dollar.html#multicurrency.currencies.dollar.CaymanIslandsDollar">CaymanIslandsDollar</a></li>
+<li><a title="multicurrency.currencies.dollar.EasternCaribbeanDollar" href="currencies/dollar.html#multicurrency.currencies.dollar.EasternCaribbeanDollar">EasternCaribbeanDollar</a></li>
+<li><a title="multicurrency.currencies.dollar.EasternCaribbeanDollarAG" href="currencies/dollar.html#multicurrency.currencies.dollar.EasternCaribbeanDollarAG">EasternCaribbeanDollarAG</a></li>
+<li><a title="multicurrency.currencies.dollar.EasternCaribbeanDollarAI" href="currencies/dollar.html#multicurrency.currencies.dollar.EasternCaribbeanDollarAI">EasternCaribbeanDollarAI</a></li>
+<li><a title="multicurrency.currencies.dollar.EasternCaribbeanDollarDM" href="currencies/dollar.html#multicurrency.currencies.dollar.EasternCaribbeanDollarDM">EasternCaribbeanDollarDM</a></li>
+<li><a title="multicurrency.currencies.dollar.EasternCaribbeanDollarGD" href="currencies/dollar.html#multicurrency.currencies.dollar.EasternCaribbeanDollarGD">EasternCaribbeanDollarGD</a></li>
+<li><a title="multicurrency.currencies.dollar.EasternCaribbeanDollarKN" href="currencies/dollar.html#multicurrency.currencies.dollar.EasternCaribbeanDollarKN">EasternCaribbeanDollarKN</a></li>
+<li><a title="multicurrency.currencies.dollar.EasternCaribbeanDollarLC" href="currencies/dollar.html#multicurrency.currencies.dollar.EasternCaribbeanDollarLC">EasternCaribbeanDollarLC</a></li>
+<li><a title="multicurrency.currencies.dollar.EasternCaribbeanDollarMS" href="currencies/dollar.html#multicurrency.currencies.dollar.EasternCaribbeanDollarMS">EasternCaribbeanDollarMS</a></li>
+<li><a title="multicurrency.currencies.dollar.EasternCaribbeanDollarVC" href="currencies/dollar.html#multicurrency.currencies.dollar.EasternCaribbeanDollarVC">EasternCaribbeanDollarVC</a></li>
+<li><a title="multicurrency.currencies.dollar.FijiDollar" href="currencies/dollar.html#multicurrency.currencies.dollar.FijiDollar">FijiDollar</a></li>
+<li><a title="multicurrency.currencies.dollar.GuyanaDollar" href="currencies/dollar.html#multicurrency.currencies.dollar.GuyanaDollar">GuyanaDollar</a></li>
+<li><a title="multicurrency.currencies.dollar.HongKongDollar" href="currencies/dollar.html#multicurrency.currencies.dollar.HongKongDollar">HongKongDollar</a></li>
+<li><a title="multicurrency.currencies.dollar.JamaicanDollar" href="currencies/dollar.html#multicurrency.currencies.dollar.JamaicanDollar">JamaicanDollar</a></li>
+<li><a title="multicurrency.currencies.dollar.LiberianDollar" href="currencies/dollar.html#multicurrency.currencies.dollar.LiberianDollar">LiberianDollar</a></li>
+<li><a title="multicurrency.currencies.dollar.NamibiaDollar" href="currencies/dollar.html#multicurrency.currencies.dollar.NamibiaDollar">NamibiaDollar</a></li>
+<li><a title="multicurrency.currencies.dollar.NewZealandDollar" href="currencies/dollar.html#multicurrency.currencies.dollar.NewZealandDollar">NewZealandDollar</a></li>
+<li><a title="multicurrency.currencies.dollar.NewZealandDollarCK" href="currencies/dollar.html#multicurrency.currencies.dollar.NewZealandDollarCK">NewZealandDollarCK</a></li>
+<li><a title="multicurrency.currencies.dollar.NewZealandDollarNU" href="currencies/dollar.html#multicurrency.currencies.dollar.NewZealandDollarNU">NewZealandDollarNU</a></li>
+<li><a title="multicurrency.currencies.dollar.NewZealandDollarNZ" href="currencies/dollar.html#multicurrency.currencies.dollar.NewZealandDollarNZ">NewZealandDollarNZ</a></li>
+<li><a title="multicurrency.currencies.dollar.NewZealandDollarPN" href="currencies/dollar.html#multicurrency.currencies.dollar.NewZealandDollarPN">NewZealandDollarPN</a></li>
+<li><a title="multicurrency.currencies.dollar.SingaporeDollar" href="currencies/dollar.html#multicurrency.currencies.dollar.SingaporeDollar">SingaporeDollar</a></li>
+<li><a title="multicurrency.currencies.dollar.SingaporeDollarBN" href="currencies/dollar.html#multicurrency.currencies.dollar.SingaporeDollarBN">SingaporeDollarBN</a></li>
+<li><a title="multicurrency.currencies.dollar.SingaporeDollarSG" href="currencies/dollar.html#multicurrency.currencies.dollar.SingaporeDollarSG">SingaporeDollarSG</a></li>
+<li><a title="multicurrency.currencies.dollar.SolomonIslandsDollar" href="currencies/dollar.html#multicurrency.currencies.dollar.SolomonIslandsDollar">SolomonIslandsDollar</a></li>
+<li><a title="multicurrency.currencies.dollar.SurinameDollar" href="currencies/dollar.html#multicurrency.currencies.dollar.SurinameDollar">SurinameDollar</a></li>
+<li><a title="multicurrency.currencies.dollar.TaiwanDollar" href="currencies/dollar.html#multicurrency.currencies.dollar.TaiwanDollar">TaiwanDollar</a></li>
+<li><a title="multicurrency.currencies.dollar.TrinidadandTobagoDollar" href="currencies/dollar.html#multicurrency.currencies.dollar.TrinidadandTobagoDollar">TrinidadandTobagoDollar</a></li>
+<li><a title="multicurrency.currencies.dollar.USDollar" href="currencies/dollar.html#multicurrency.currencies.dollar.USDollar">USDollar</a></li>
+<li><a title="multicurrency.currencies.dollar.USDollarAS" href="currencies/dollar.html#multicurrency.currencies.dollar.USDollarAS">USDollarAS</a></li>
+<li><a title="multicurrency.currencies.dollar.USDollarFM" href="currencies/dollar.html#multicurrency.currencies.dollar.USDollarFM">USDollarFM</a></li>
+<li><a title="multicurrency.currencies.dollar.USDollarGU" href="currencies/dollar.html#multicurrency.currencies.dollar.USDollarGU">USDollarGU</a></li>
+<li><a title="multicurrency.currencies.dollar.USDollarHT" href="currencies/dollar.html#multicurrency.currencies.dollar.USDollarHT">USDollarHT</a></li>
+<li><a title="multicurrency.currencies.dollar.USDollarIO" href="currencies/dollar.html#multicurrency.currencies.dollar.USDollarIO">USDollarIO</a></li>
+<li><a title="multicurrency.currencies.dollar.USDollarMH" href="currencies/dollar.html#multicurrency.currencies.dollar.USDollarMH">USDollarMH</a></li>
+<li><a title="multicurrency.currencies.dollar.USDollarMP" href="currencies/dollar.html#multicurrency.currencies.dollar.USDollarMP">USDollarMP</a></li>
+<li><a title="multicurrency.currencies.dollar.USDollarPA" href="currencies/dollar.html#multicurrency.currencies.dollar.USDollarPA">USDollarPA</a></li>
+<li><a title="multicurrency.currencies.dollar.USDollarPC" href="currencies/dollar.html#multicurrency.currencies.dollar.USDollarPC">USDollarPC</a></li>
+<li><a title="multicurrency.currencies.dollar.USDollarPR" href="currencies/dollar.html#multicurrency.currencies.dollar.USDollarPR">USDollarPR</a></li>
+<li><a title="multicurrency.currencies.dollar.USDollarPW" href="currencies/dollar.html#multicurrency.currencies.dollar.USDollarPW">USDollarPW</a></li>
+<li><a title="multicurrency.currencies.dollar.USDollarTC" href="currencies/dollar.html#multicurrency.currencies.dollar.USDollarTC">USDollarTC</a></li>
+<li><a title="multicurrency.currencies.dollar.USDollarVG" href="currencies/dollar.html#multicurrency.currencies.dollar.USDollarVG">USDollarVG</a></li>
+<li><a title="multicurrency.currencies.dollar.USDollarVI" href="currencies/dollar.html#multicurrency.currencies.dollar.USDollarVI">USDollarVI</a></li>
+<li><a title="multicurrency.currencies.dollar.ZimbabweDollar" href="currencies/dollar.html#multicurrency.currencies.dollar.ZimbabweDollar">ZimbabweDollar</a></li>
+<li><a title="multicurrency.currencies.dong.Dong" href="currencies/dong.html#multicurrency.currencies.dong.Dong">Dong</a></li>
+<li><a title="multicurrency.currencies.dram.ArmenianDram" href="currencies/dram.html#multicurrency.currencies.dram.ArmenianDram">ArmenianDram</a></li>
+<li><a title="multicurrency.currencies.escudo.CapeVerdeEscudo" href="currencies/escudo.html#multicurrency.currencies.escudo.CapeVerdeEscudo">CapeVerdeEscudo</a></li>
+<li><a title="multicurrency.currencies.euro.Euro" href="currencies/euro.html#multicurrency.currencies.euro.Euro">Euro</a></li>
+<li><a title="multicurrency.currencies.euro.EuroAD" href="currencies/euro.html#multicurrency.currencies.euro.EuroAD">EuroAD</a></li>
+<li><a title="multicurrency.currencies.euro.EuroAT" href="currencies/euro.html#multicurrency.currencies.euro.EuroAT">EuroAT</a></li>
+<li><a title="multicurrency.currencies.euro.EuroBE" href="currencies/euro.html#multicurrency.currencies.euro.EuroBE">EuroBE</a></li>
+<li><a title="multicurrency.currencies.euro.EuroCY" href="currencies/euro.html#multicurrency.currencies.euro.EuroCY">EuroCY</a></li>
+<li><a title="multicurrency.currencies.euro.EuroDE" href="currencies/euro.html#multicurrency.currencies.euro.EuroDE">EuroDE</a></li>
+<li><a title="multicurrency.currencies.euro.EuroEE" href="currencies/euro.html#multicurrency.currencies.euro.EuroEE">EuroEE</a></li>
+<li><a title="multicurrency.currencies.euro.EuroES" href="currencies/euro.html#multicurrency.currencies.euro.EuroES">EuroES</a></li>
+<li><a title="multicurrency.currencies.euro.EuroFI" href="currencies/euro.html#multicurrency.currencies.euro.EuroFI">EuroFI</a></li>
+<li><a title="multicurrency.currencies.euro.EuroFR" href="currencies/euro.html#multicurrency.currencies.euro.EuroFR">EuroFR</a></li>
+<li><a title="multicurrency.currencies.euro.EuroGR" href="currencies/euro.html#multicurrency.currencies.euro.EuroGR">EuroGR</a></li>
+<li><a title="multicurrency.currencies.euro.EuroIE" href="currencies/euro.html#multicurrency.currencies.euro.EuroIE">EuroIE</a></li>
+<li><a title="multicurrency.currencies.euro.EuroIT" href="currencies/euro.html#multicurrency.currencies.euro.EuroIT">EuroIT</a></li>
+<li><a title="multicurrency.currencies.euro.EuroLT" href="currencies/euro.html#multicurrency.currencies.euro.EuroLT">EuroLT</a></li>
+<li><a title="multicurrency.currencies.euro.EuroLU" href="currencies/euro.html#multicurrency.currencies.euro.EuroLU">EuroLU</a></li>
+<li><a title="multicurrency.currencies.euro.EuroLV" href="currencies/euro.html#multicurrency.currencies.euro.EuroLV">EuroLV</a></li>
+<li><a title="multicurrency.currencies.euro.EuroMC" href="currencies/euro.html#multicurrency.currencies.euro.EuroMC">EuroMC</a></li>
+<li><a title="multicurrency.currencies.euro.EuroME" href="currencies/euro.html#multicurrency.currencies.euro.EuroME">EuroME</a></li>
+<li><a title="multicurrency.currencies.euro.EuroMT" href="currencies/euro.html#multicurrency.currencies.euro.EuroMT">EuroMT</a></li>
+<li><a title="multicurrency.currencies.euro.EuroNL" href="currencies/euro.html#multicurrency.currencies.euro.EuroNL">EuroNL</a></li>
+<li><a title="multicurrency.currencies.euro.EuroPT" href="currencies/euro.html#multicurrency.currencies.euro.EuroPT">EuroPT</a></li>
+<li><a title="multicurrency.currencies.euro.EuroSBA" href="currencies/euro.html#multicurrency.currencies.euro.EuroSBA">EuroSBA</a></li>
+<li><a title="multicurrency.currencies.euro.EuroSI" href="currencies/euro.html#multicurrency.currencies.euro.EuroSI">EuroSI</a></li>
+<li><a title="multicurrency.currencies.euro.EuroSK" href="currencies/euro.html#multicurrency.currencies.euro.EuroSK">EuroSK</a></li>
+<li><a title="multicurrency.currencies.euro.EuroSM" href="currencies/euro.html#multicurrency.currencies.euro.EuroSM">EuroSM</a></li>
+<li><a title="multicurrency.currencies.euro.EuroVA" href="currencies/euro.html#multicurrency.currencies.euro.EuroVA">EuroVA</a></li>
+<li><a title="multicurrency.currencies.euro.EuroXK" href="currencies/euro.html#multicurrency.currencies.euro.EuroXK">EuroXK</a></li>
+<li><a title="multicurrency.currencies.florin.ArubanFlorin" href="currencies/florin.html#multicurrency.currencies.florin.ArubanFlorin">ArubanFlorin</a></li>
+<li><a title="multicurrency.currencies.forint.Forint" href="currencies/forint.html#multicurrency.currencies.forint.Forint">Forint</a></li>
+<li><a title="multicurrency.currencies.franc.BurundiFranc" href="currencies/franc.html#multicurrency.currencies.franc.BurundiFranc">BurundiFranc</a></li>
+<li><a title="multicurrency.currencies.franc.CFAFrancBCEAO" href="currencies/franc.html#multicurrency.currencies.franc.CFAFrancBCEAO">CFAFrancBCEAO</a></li>
+<li><a title="multicurrency.currencies.franc.CFAFrancBCEAOBF" href="currencies/franc.html#multicurrency.currencies.franc.CFAFrancBCEAOBF">CFAFrancBCEAOBF</a></li>
+<li><a title="multicurrency.currencies.franc.CFAFrancBCEAOBJ" href="currencies/franc.html#multicurrency.currencies.franc.CFAFrancBCEAOBJ">CFAFrancBCEAOBJ</a></li>
+<li><a title="multicurrency.currencies.franc.CFAFrancBCEAOCI" href="currencies/franc.html#multicurrency.currencies.franc.CFAFrancBCEAOCI">CFAFrancBCEAOCI</a></li>
+<li><a title="multicurrency.currencies.franc.CFAFrancBCEAOGW" href="currencies/franc.html#multicurrency.currencies.franc.CFAFrancBCEAOGW">CFAFrancBCEAOGW</a></li>
+<li><a title="multicurrency.currencies.franc.CFAFrancBCEAOML" href="currencies/franc.html#multicurrency.currencies.franc.CFAFrancBCEAOML">CFAFrancBCEAOML</a></li>
+<li><a title="multicurrency.currencies.franc.CFAFrancBCEAONG" href="currencies/franc.html#multicurrency.currencies.franc.CFAFrancBCEAONG">CFAFrancBCEAONG</a></li>
+<li><a title="multicurrency.currencies.franc.CFAFrancBCEAOSN" href="currencies/franc.html#multicurrency.currencies.franc.CFAFrancBCEAOSN">CFAFrancBCEAOSN</a></li>
+<li><a title="multicurrency.currencies.franc.CFAFrancBCEAOTG" href="currencies/franc.html#multicurrency.currencies.franc.CFAFrancBCEAOTG">CFAFrancBCEAOTG</a></li>
+<li><a title="multicurrency.currencies.franc.CFAFrancBEAC" href="currencies/franc.html#multicurrency.currencies.franc.CFAFrancBEAC">CFAFrancBEAC</a></li>
+<li><a title="multicurrency.currencies.franc.CFAFrancBEACCD" href="currencies/franc.html#multicurrency.currencies.franc.CFAFrancBEACCD">CFAFrancBEACCD</a></li>
+<li><a title="multicurrency.currencies.franc.CFAFrancBEACCF" href="currencies/franc.html#multicurrency.currencies.franc.CFAFrancBEACCF">CFAFrancBEACCF</a></li>
+<li><a title="multicurrency.currencies.franc.CFAFrancBEACCM" href="currencies/franc.html#multicurrency.currencies.franc.CFAFrancBEACCM">CFAFrancBEACCM</a></li>
+<li><a title="multicurrency.currencies.franc.CFAFrancBEACGA" href="currencies/franc.html#multicurrency.currencies.franc.CFAFrancBEACGA">CFAFrancBEACGA</a></li>
+<li><a title="multicurrency.currencies.franc.CFAFrancBEACGQ" href="currencies/franc.html#multicurrency.currencies.franc.CFAFrancBEACGQ">CFAFrancBEACGQ</a></li>
+<li><a title="multicurrency.currencies.franc.CFAFrancBEACTD" href="currencies/franc.html#multicurrency.currencies.franc.CFAFrancBEACTD">CFAFrancBEACTD</a></li>
+<li><a title="multicurrency.currencies.franc.CFPFranc" href="currencies/franc.html#multicurrency.currencies.franc.CFPFranc">CFPFranc</a></li>
+<li><a title="multicurrency.currencies.franc.CFPFrancNC" href="currencies/franc.html#multicurrency.currencies.franc.CFPFrancNC">CFPFrancNC</a></li>
+<li><a title="multicurrency.currencies.franc.CFPFrancPF" href="currencies/franc.html#multicurrency.currencies.franc.CFPFrancPF">CFPFrancPF</a></li>
+<li><a title="multicurrency.currencies.franc.CFPFrancWF" href="currencies/franc.html#multicurrency.currencies.franc.CFPFrancWF">CFPFrancWF</a></li>
+<li><a title="multicurrency.currencies.franc.CongoleseFranc" href="currencies/franc.html#multicurrency.currencies.franc.CongoleseFranc">CongoleseFranc</a></li>
+<li><a title="multicurrency.currencies.franc.DjiboutiFranc" href="currencies/franc.html#multicurrency.currencies.franc.DjiboutiFranc">DjiboutiFranc</a></li>
+<li><a title="multicurrency.currencies.franc.GuineaFranc" href="currencies/franc.html#multicurrency.currencies.franc.GuineaFranc">GuineaFranc</a></li>
+<li><a title="multicurrency.currencies.franc.RwandaFranc" href="currencies/franc.html#multicurrency.currencies.franc.RwandaFranc">RwandaFranc</a></li>
+<li><a title="multicurrency.currencies.franc.SwissFranc" href="currencies/franc.html#multicurrency.currencies.franc.SwissFranc">SwissFranc</a></li>
+<li><a title="multicurrency.currencies.franc.SwissFrancCH" href="currencies/franc.html#multicurrency.currencies.franc.SwissFrancCH">SwissFrancCH</a></li>
+<li><a title="multicurrency.currencies.franc.SwissFrancLI" href="currencies/franc.html#multicurrency.currencies.franc.SwissFrancLI">SwissFrancLI</a></li>
+<li><a title="multicurrency.currencies.fuerte.BolivarFuerte" href="currencies/fuerte.html#multicurrency.currencies.fuerte.BolivarFuerte">BolivarFuerte</a></li>
+<li><a title="multicurrency.currencies.gourde.Gourde" href="currencies/gourde.html#multicurrency.currencies.gourde.Gourde">Gourde</a></li>
+<li><a title="multicurrency.currencies.guarani.Guarani" href="currencies/guarani.html#multicurrency.currencies.guarani.Guarani">Guarani</a></li>
+<li><a title="multicurrency.currencies.hryvnia.Hryvnia" href="currencies/hryvnia.html#multicurrency.currencies.hryvnia.Hryvnia">Hryvnia</a></li>
+<li><a title="multicurrency.currencies.kina.Kina" href="currencies/kina.html#multicurrency.currencies.kina.Kina">Kina</a></li>
+<li><a title="multicurrency.currencies.kip.Kip" href="currencies/kip.html#multicurrency.currencies.kip.Kip">Kip</a></li>
+<li><a title="multicurrency.currencies.koruna.CzechKoruna" href="currencies/koruna.html#multicurrency.currencies.koruna.CzechKoruna">CzechKoruna</a></li>
+<li><a title="multicurrency.currencies.krona.IcelandKrona" href="currencies/krona.html#multicurrency.currencies.krona.IcelandKrona">IcelandKrona</a></li>
+<li><a title="multicurrency.currencies.krona.SwedishKrona" href="currencies/krona.html#multicurrency.currencies.krona.SwedishKrona">SwedishKrona</a></li>
+<li><a title="multicurrency.currencies.krone.DanishKrone" href="currencies/krone.html#multicurrency.currencies.krone.DanishKrone">DanishKrone</a></li>
+<li><a title="multicurrency.currencies.krone.NorwegianKrone" href="currencies/krone.html#multicurrency.currencies.krone.NorwegianKrone">NorwegianKrone</a></li>
+<li><a title="multicurrency.currencies.kuna.CroatianKuna" href="currencies/kuna.html#multicurrency.currencies.kuna.CroatianKuna">CroatianKuna</a></li>
+<li><a title="multicurrency.currencies.kwacha.Kwacha" href="currencies/kwacha.html#multicurrency.currencies.kwacha.Kwacha">Kwacha</a></li>
+<li><a title="multicurrency.currencies.kwacha.ZambianKwacha" href="currencies/kwacha.html#multicurrency.currencies.kwacha.ZambianKwacha">ZambianKwacha</a></li>
+<li><a title="multicurrency.currencies.kwanza.Kwanza" href="currencies/kwanza.html#multicurrency.currencies.kwanza.Kwanza">Kwanza</a></li>
+<li><a title="multicurrency.currencies.kyat.Kyat" href="currencies/kyat.html#multicurrency.currencies.kyat.Kyat">Kyat</a></li>
+<li><a title="multicurrency.currencies.lari.GeorgiaLari" href="currencies/lari.html#multicurrency.currencies.lari.GeorgiaLari">GeorgiaLari</a></li>
+<li><a title="multicurrency.currencies.lari.Lari" href="currencies/lari.html#multicurrency.currencies.lari.Lari">Lari</a></li>
+<li><a title="multicurrency.currencies.lari.SouthOssetiaLari" href="currencies/lari.html#multicurrency.currencies.lari.SouthOssetiaLari">SouthOssetiaLari</a></li>
+<li><a title="multicurrency.currencies.lek.Lek" href="currencies/lek.html#multicurrency.currencies.lek.Lek">Lek</a></li>
+<li><a title="multicurrency.currencies.lempira.Lempira" href="currencies/lempira.html#multicurrency.currencies.lempira.Lempira">Lempira</a></li>
+<li><a title="multicurrency.currencies.leone.Leone" href="currencies/leone.html#multicurrency.currencies.leone.Leone">Leone</a></li>
+<li><a title="multicurrency.currencies.leu.Leu" href="currencies/leu.html#multicurrency.currencies.leu.Leu">Leu</a></li>
+<li><a title="multicurrency.currencies.leu.MoldovanLeu" href="currencies/leu.html#multicurrency.currencies.leu.MoldovanLeu">MoldovanLeu</a></li>
+<li><a title="multicurrency.currencies.lev.BulgarianLev" href="currencies/lev.html#multicurrency.currencies.lev.BulgarianLev">BulgarianLev</a></li>
+<li><a title="multicurrency.currencies.lilangeni.Lilangeni" href="currencies/lilangeni.html#multicurrency.currencies.lilangeni.Lilangeni">Lilangeni</a></li>
+<li><a title="multicurrency.currencies.lira.TurkishLira" href="currencies/lira.html#multicurrency.currencies.lira.TurkishLira">TurkishLira</a></li>
+<li><a title="multicurrency.currencies.lira.TurkishLiraCY" href="currencies/lira.html#multicurrency.currencies.lira.TurkishLiraCY">TurkishLiraCY</a></li>
+<li><a title="multicurrency.currencies.lira.TurkishLiraTR" href="currencies/lira.html#multicurrency.currencies.lira.TurkishLiraTR">TurkishLiraTR</a></li>
+<li><a title="multicurrency.currencies.loti.Loti" href="currencies/loti.html#multicurrency.currencies.loti.Loti">Loti</a></li>
+<li><a title="multicurrency.currencies.manat.AzerbaijanianManat" href="currencies/manat.html#multicurrency.currencies.manat.AzerbaijanianManat">AzerbaijanianManat</a></li>
+<li><a title="multicurrency.currencies.manat.Manat" href="currencies/manat.html#multicurrency.currencies.manat.Manat">Manat</a></li>
+<li><a title="multicurrency.currencies.marka.KonvertibilnaMarka" href="currencies/marka.html#multicurrency.currencies.marka.KonvertibilnaMarka">KonvertibilnaMarka</a></li>
+<li><a title="multicurrency.currencies.metical.Metical" href="currencies/metical.html#multicurrency.currencies.metical.Metical">Metical</a></li>
+<li><a title="multicurrency.currencies.naira.Naira" href="currencies/naira.html#multicurrency.currencies.naira.Naira">Naira</a></li>
+<li><a title="multicurrency.currencies.nakfa.Nakfa" href="currencies/nakfa.html#multicurrency.currencies.nakfa.Nakfa">Nakfa</a></li>
+<li><a title="multicurrency.currencies.ngultrum.Ngultrum" href="currencies/ngultrum.html#multicurrency.currencies.ngultrum.Ngultrum">Ngultrum</a></li>
+<li><a title="multicurrency.currencies.nuevo_sol.NuevoSol" href="currencies/nuevo_sol.html#multicurrency.currencies.nuevo_sol.NuevoSol">NuevoSol</a></li>
+<li><a title="multicurrency.currencies.oro.CordobaOro" href="currencies/oro.html#multicurrency.currencies.oro.CordobaOro">CordobaOro</a></li>
+<li><a title="multicurrency.currencies.ouguiya.Ouguiya" href="currencies/ouguiya.html#multicurrency.currencies.ouguiya.Ouguiya">Ouguiya</a></li>
+<li><a title="multicurrency.currencies.paanga.Paanga" href="currencies/paanga.html#multicurrency.currencies.paanga.Paanga">Paanga</a></li>
+<li><a title="multicurrency.currencies.pataca.Pataca" href="currencies/pataca.html#multicurrency.currencies.pataca.Pataca">Pataca</a></li>
+<li><a title="multicurrency.currencies.peso.ArgentinePeso" href="currencies/peso.html#multicurrency.currencies.peso.ArgentinePeso">ArgentinePeso</a></li>
+<li><a title="multicurrency.currencies.peso.ChileanPeso" href="currencies/peso.html#multicurrency.currencies.peso.ChileanPeso">ChileanPeso</a></li>
+<li><a title="multicurrency.currencies.peso.ColombianPeso" href="currencies/peso.html#multicurrency.currencies.peso.ColombianPeso">ColombianPeso</a></li>
+<li><a title="multicurrency.currencies.peso.CubanPeso" href="currencies/peso.html#multicurrency.currencies.peso.CubanPeso">CubanPeso</a></li>
+<li><a title="multicurrency.currencies.peso.DominicanPeso" href="currencies/peso.html#multicurrency.currencies.peso.DominicanPeso">DominicanPeso</a></li>
+<li><a title="multicurrency.currencies.peso.MexicanPeso" href="currencies/peso.html#multicurrency.currencies.peso.MexicanPeso">MexicanPeso</a></li>
+<li><a title="multicurrency.currencies.peso.PesoUruguayo" href="currencies/peso.html#multicurrency.currencies.peso.PesoUruguayo">PesoUruguayo</a></li>
+<li><a title="multicurrency.currencies.peso.PhilippinePeso" href="currencies/peso.html#multicurrency.currencies.peso.PhilippinePeso">PhilippinePeso</a></li>
+<li><a title="multicurrency.currencies.pound.EgyptianPound" href="currencies/pound.html#multicurrency.currencies.pound.EgyptianPound">EgyptianPound</a></li>
+<li><a title="multicurrency.currencies.pound.FalklandIslandsPound" href="currencies/pound.html#multicurrency.currencies.pound.FalklandIslandsPound">FalklandIslandsPound</a></li>
+<li><a title="multicurrency.currencies.pound.GibraltarPound" href="currencies/pound.html#multicurrency.currencies.pound.GibraltarPound">GibraltarPound</a></li>
+<li><a title="multicurrency.currencies.pound.LebanesePound" href="currencies/pound.html#multicurrency.currencies.pound.LebanesePound">LebanesePound</a></li>
+<li><a title="multicurrency.currencies.pound.PoundSterling" href="currencies/pound.html#multicurrency.currencies.pound.PoundSterling">PoundSterling</a></li>
+<li><a title="multicurrency.currencies.pound.PoundSterlingGB" href="currencies/pound.html#multicurrency.currencies.pound.PoundSterlingGB">PoundSterlingGB</a></li>
+<li><a title="multicurrency.currencies.pound.PoundSterlingGG" href="currencies/pound.html#multicurrency.currencies.pound.PoundSterlingGG">PoundSterlingGG</a></li>
+<li><a title="multicurrency.currencies.pound.PoundSterlingIM" href="currencies/pound.html#multicurrency.currencies.pound.PoundSterlingIM">PoundSterlingIM</a></li>
+<li><a title="multicurrency.currencies.pound.PoundSterlingIO" href="currencies/pound.html#multicurrency.currencies.pound.PoundSterlingIO">PoundSterlingIO</a></li>
+<li><a title="multicurrency.currencies.pound.SaintHelenaPound" href="currencies/pound.html#multicurrency.currencies.pound.SaintHelenaPound">SaintHelenaPound</a></li>
+<li><a title="multicurrency.currencies.pound.SaintHelenaPoundAI" href="currencies/pound.html#multicurrency.currencies.pound.SaintHelenaPoundAI">SaintHelenaPoundAI</a></li>
+<li><a title="multicurrency.currencies.pound.SaintHelenaPoundTC" href="currencies/pound.html#multicurrency.currencies.pound.SaintHelenaPoundTC">SaintHelenaPoundTC</a></li>
+<li><a title="multicurrency.currencies.pound.SudanesePound" href="currencies/pound.html#multicurrency.currencies.pound.SudanesePound">SudanesePound</a></li>
+<li><a title="multicurrency.currencies.pound.SyrianPound" href="currencies/pound.html#multicurrency.currencies.pound.SyrianPound">SyrianPound</a></li>
+<li><a title="multicurrency.currencies.pula.Pula" href="currencies/pula.html#multicurrency.currencies.pula.Pula">Pula</a></li>
+<li><a title="multicurrency.currencies.pzloty.PZloty" href="currencies/pzloty.html#multicurrency.currencies.pzloty.PZloty">PZloty</a></li>
+<li><a title="multicurrency.currencies.quetzal.Quetzal" href="currencies/quetzal.html#multicurrency.currencies.quetzal.Quetzal">Quetzal</a></li>
+<li><a title="multicurrency.currencies.rand.Rand" href="currencies/rand.html#multicurrency.currencies.rand.Rand">Rand</a></li>
+<li><a title="multicurrency.currencies.rand.RandLS" href="currencies/rand.html#multicurrency.currencies.rand.RandLS">RandLS</a></li>
+<li><a title="multicurrency.currencies.rand.RandNA" href="currencies/rand.html#multicurrency.currencies.rand.RandNA">RandNA</a></li>
+<li><a title="multicurrency.currencies.rand.RandZA" href="currencies/rand.html#multicurrency.currencies.rand.RandZA">RandZA</a></li>
+<li><a title="multicurrency.currencies.real.BrazilianReal" href="currencies/real.html#multicurrency.currencies.real.BrazilianReal">BrazilianReal</a></li>
+<li><a title="multicurrency.currencies.rial.IranianRial" href="currencies/rial.html#multicurrency.currencies.rial.IranianRial">IranianRial</a></li>
+<li><a title="multicurrency.currencies.rial.QatariRial" href="currencies/rial.html#multicurrency.currencies.rial.QatariRial">QatariRial</a></li>
+<li><a title="multicurrency.currencies.rial.RialOmani" href="currencies/rial.html#multicurrency.currencies.rial.RialOmani">RialOmani</a></li>
+<li><a title="multicurrency.currencies.rial.YemeniRial" href="currencies/rial.html#multicurrency.currencies.rial.YemeniRial">YemeniRial</a></li>
+<li><a title="multicurrency.currencies.riel.Riel" href="currencies/riel.html#multicurrency.currencies.riel.Riel">Riel</a></li>
+<li><a title="multicurrency.currencies.ringgit.MalaysianRinggit" href="currencies/ringgit.html#multicurrency.currencies.ringgit.MalaysianRinggit">MalaysianRinggit</a></li>
+<li><a title="multicurrency.currencies.riyal.SaudiRiyal" href="currencies/riyal.html#multicurrency.currencies.riyal.SaudiRiyal">SaudiRiyal</a></li>
+<li><a title="multicurrency.currencies.ruble.BelarusianRuble" href="currencies/ruble.html#multicurrency.currencies.ruble.BelarusianRuble">BelarusianRuble</a></li>
+<li><a title="multicurrency.currencies.ruble.RussianRuble" href="currencies/ruble.html#multicurrency.currencies.ruble.RussianRuble">RussianRuble</a></li>
+<li><a title="multicurrency.currencies.ruble.RussianRubleGE" href="currencies/ruble.html#multicurrency.currencies.ruble.RussianRubleGE">RussianRubleGE</a></li>
+<li><a title="multicurrency.currencies.ruble.RussianRubleRU" href="currencies/ruble.html#multicurrency.currencies.ruble.RussianRubleRU">RussianRubleRU</a></li>
+<li><a title="multicurrency.currencies.rufiyaa.Rufiyaa" href="currencies/rufiyaa.html#multicurrency.currencies.rufiyaa.Rufiyaa">Rufiyaa</a></li>
+<li><a title="multicurrency.currencies.rupee.IndianRupee" href="currencies/rupee.html#multicurrency.currencies.rupee.IndianRupee">IndianRupee</a></li>
+<li><a title="multicurrency.currencies.rupee.IndianRupeeBT" href="currencies/rupee.html#multicurrency.currencies.rupee.IndianRupeeBT">IndianRupeeBT</a></li>
+<li><a title="multicurrency.currencies.rupee.IndianRupeeIN" href="currencies/rupee.html#multicurrency.currencies.rupee.IndianRupeeIN">IndianRupeeIN</a></li>
+<li><a title="multicurrency.currencies.rupee.MauritiusRupee" href="currencies/rupee.html#multicurrency.currencies.rupee.MauritiusRupee">MauritiusRupee</a></li>
+<li><a title="multicurrency.currencies.rupee.NepaleseRupee" href="currencies/rupee.html#multicurrency.currencies.rupee.NepaleseRupee">NepaleseRupee</a></li>
+<li><a title="multicurrency.currencies.rupee.PakistanRupee" href="currencies/rupee.html#multicurrency.currencies.rupee.PakistanRupee">PakistanRupee</a></li>
+<li><a title="multicurrency.currencies.rupee.SeychellesRupee" href="currencies/rupee.html#multicurrency.currencies.rupee.SeychellesRupee">SeychellesRupee</a></li>
+<li><a title="multicurrency.currencies.rupee.SriLankaRupee" href="currencies/rupee.html#multicurrency.currencies.rupee.SriLankaRupee">SriLankaRupee</a></li>
+<li><a title="multicurrency.currencies.rupiah.Rupiah" href="currencies/rupiah.html#multicurrency.currencies.rupiah.Rupiah">Rupiah</a></li>
+<li><a title="multicurrency.currencies.shekel.NewIsraeliShekel" href="currencies/shekel.html#multicurrency.currencies.shekel.NewIsraeliShekel">NewIsraeliShekel</a></li>
+<li><a title="multicurrency.currencies.shekel.NewIsraeliShekelIL" href="currencies/shekel.html#multicurrency.currencies.shekel.NewIsraeliShekelIL">NewIsraeliShekelIL</a></li>
+<li><a title="multicurrency.currencies.shekel.NewIsraeliShekelPS" href="currencies/shekel.html#multicurrency.currencies.shekel.NewIsraeliShekelPS">NewIsraeliShekelPS</a></li>
+<li><a title="multicurrency.currencies.shilling.KenyanShilling" href="currencies/shilling.html#multicurrency.currencies.shilling.KenyanShilling">KenyanShilling</a></li>
+<li><a title="multicurrency.currencies.shilling.SomaliShilling" href="currencies/shilling.html#multicurrency.currencies.shilling.SomaliShilling">SomaliShilling</a></li>
+<li><a title="multicurrency.currencies.shilling.TanzanianShilling" href="currencies/shilling.html#multicurrency.currencies.shilling.TanzanianShilling">TanzanianShilling</a></li>
+<li><a title="multicurrency.currencies.shilling.UgandaShilling" href="currencies/shilling.html#multicurrency.currencies.shilling.UgandaShilling">UgandaShilling</a></li>
+<li><a title="multicurrency.currencies.som.Som" href="currencies/som.html#multicurrency.currencies.som.Som">Som</a></li>
+<li><a title="multicurrency.currencies.somoni.Somoni" href="currencies/somoni.html#multicurrency.currencies.somoni.Somoni">Somoni</a></li>
+<li><a title="multicurrency.currencies.sum.UzbekistanSum" href="currencies/sum.html#multicurrency.currencies.sum.UzbekistanSum">UzbekistanSum</a></li>
+<li><a title="multicurrency.currencies.taka.Taka" href="currencies/taka.html#multicurrency.currencies.taka.Taka">Taka</a></li>
+<li><a title="multicurrency.currencies.tala.Tala" href="currencies/tala.html#multicurrency.currencies.tala.Tala">Tala</a></li>
+<li><a title="multicurrency.currencies.tenge.Tenge" href="currencies/tenge.html#multicurrency.currencies.tenge.Tenge">Tenge</a></li>
+<li><a title="multicurrency.currencies.tugrik.Tugrik" href="currencies/tugrik.html#multicurrency.currencies.tugrik.Tugrik">Tugrik</a></li>
+<li><a title="multicurrency.currencies.vatu.Vatu" href="currencies/vatu.html#multicurrency.currencies.vatu.Vatu">Vatu</a></li>
+<li><a title="multicurrency.currencies.won.NorthKoreanWon" href="currencies/won.html#multicurrency.currencies.won.NorthKoreanWon">NorthKoreanWon</a></li>
+<li><a title="multicurrency.currencies.won.SouthKoreanWon" href="currencies/won.html#multicurrency.currencies.won.SouthKoreanWon">SouthKoreanWon</a></li>
+<li><a title="multicurrency.currencies.yen.Yen" href="currencies/yen.html#multicurrency.currencies.yen.Yen">Yen</a></li>
+<li><a title="multicurrency.currencies.yuan.Yuan" href="currencies/yuan.html#multicurrency.currencies.yuan.Yuan">Yuan</a></li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="multicurrency.pycurrency.Currency.alpha_code"><code class="name">var <span class="ident">alpha_code</span> : str</code></dt>
+<dd>
+<div class="desc"><p>str: alpha_code.</p></div>
+</dd>
+<dt id="multicurrency.pycurrency.Currency.amount"><code class="name">var <span class="ident">amount</span> : decimal.Decimal</code></dt>
+<dd>
+<div class="desc"><p>Decimal: amount.</p></div>
+</dd>
+<dt id="multicurrency.pycurrency.Currency.convertion"><code class="name">var <span class="ident">convertion</span> : str</code></dt>
+<dd>
+<div class="desc"><p>str: convertion.</p></div>
+</dd>
+<dt id="multicurrency.pycurrency.Currency.localized_symbol"><code class="name">var <span class="ident">localized_symbol</span> : str</code></dt>
+<dd>
+<div class="desc"><p>str: localized_symbol.</p></div>
+</dd>
+<dt id="multicurrency.pycurrency.Currency.numeric_code"><code class="name">var <span class="ident">numeric_code</span> : str</code></dt>
+<dd>
+<div class="desc"><p>int: numeric_code.</p></div>
+</dd>
+<dt id="multicurrency.pycurrency.Currency.pattern"><code class="name">var <span class="ident">pattern</span> : str</code></dt>
+<dd>
+<div class="desc"><p>str: pattern.</p></div>
+</dd>
+<dt id="multicurrency.pycurrency.Currency.symbol"><code class="name">var <span class="ident">symbol</span> : str</code></dt>
+<dd>
+<div class="desc"><p>str: symbol.</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="multicurrency.pycurrency.Currency.international"><code class="name flex">
+<span>def <span class="ident">international</span></span>(<span>self, precision: int = None) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>String value of this class formated with the alpha code.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>precision</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Precision. Defaults to the value
+prensent in the currency <code>pattern</code>. Values lower than 0
+(zero) will be converted to 0 (zero).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>value</dd>
+</dl></div>
+</dd>
+<dt id="multicurrency.pycurrency.Currency.is_signed"><code class="name flex">
+<span>def <span class="ident">is_signed</span></span>(<span>self) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check if the value of this class is preceded with the minus
+sign.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>bool</code></dt>
+<dd>True if the value is negative. False otherwise.</dd>
+</dl></div>
+</dd>
+<dt id="multicurrency.pycurrency.Currency.localized"><code class="name flex">
+<span>def <span class="ident">localized</span></span>(<span>self, precision: int = None) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>String value of this class formated with the
+<code>localized_symbol</code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>precision</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Precision. Defaults to the value
+prensent in the currency <code>pattern</code>. Values lower than 0
+(zero) will be converted to 0 (zero).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>value</dd>
+</dl></div>
+</dd>
+<dt id="multicurrency.pycurrency.Currency.precision"><code class="name flex">
+<span>def <span class="ident">precision</span></span>(<span>self, precision: int = None) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>String value of this class formated with the <code>precision</code>
+value.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>precision</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Precision. Defaults to the value
+prensent in the currency <code>pattern</code>. Values lower than 0
+(zero) will be converted to 0 (zero).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>value</dd>
+</dl></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul>
+<li><a href="#formatting">Formatting</a></li>
+<li><a href="#supported-operations">Supported operations</a><ul>
+<li><a href="#absolute">Absolute</a></li>
+<li><a href="#addiction">Addiction</a></li>
+<li><a href="#boolean">Boolean</a></li>
+<li><a href="#ceiling">Ceiling</a></li>
+<li><a href="#copy">Copy</a></li>
+<li><a href="#division">Division</a></li>
+<li><a href="#divmod">Divmod</a></li>
+<li><a href="#float">Float</a></li>
+<li><a href="#flooring">Flooring</a></li>
+<li><a href="#floordiv">Floordiv</a></li>
+<li><a href="#hash">Hash</a></li>
+<li><a href="#int">Int</a></li>
+<li><a href="#mod">Mod</a></li>
+<li><a href="#multiplication">Multiplication</a></li>
+<li><a href="#round">Round</a></li>
+<li><a href="#subtraction">Subtraction</a></li>
+</ul>
+</li>
+<li><a href="#other-operations">Other Operations</a></li>
+</ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="multicurrency" href="index.html">multicurrency</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="multicurrency.pycurrency.Currency" href="#multicurrency.pycurrency.Currency">Currency</a></code></h4>
+<ul class="two-column">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Copyright &#169; 2022, Frederico Martins</p>
+</footer>
+</body>
+</html>

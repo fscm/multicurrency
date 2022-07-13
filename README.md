@@ -51,11 +51,9 @@ object with the desired settings.
 ...     alpha_code='XBT',
 ...     numeric_code='0',
 ...     symbol='₿',
-...     symbol_ahead=True,
-...     symbol_separator='',
-...     decimal_places=8,
-...     decimal_sign='.',
-...     grouping_sign=',')
+...     localized_symbol='₿',
+...     convertion='',
+...     pattern='8.,3%-%s%u')
 >>> print(bitcoin)
 ₿1,000.00000000
 ```
@@ -69,11 +67,9 @@ dictionary and used when needed:
 ...     'alpha_code':'XBT',
 ...     'numeric_code':'0',
 ...     'symbol':'₿',
-...     'symbol_ahead':True,
-...     'symbol_separator':'',
-...     'decimal_places':8,
-...     'decimal_sign':'.',
-...     'grouping_sign':','}
+...     'localized_symbol':'₿',
+...     'convertion':'',
+...     'pattern':'8.,3%-%s%u'}
 >>> bitcoin = Currency(1000, **settings)
 >>> print(bitcoin)
 ₿1,000.00000000
@@ -84,9 +80,9 @@ of the `symbol`.
 
 ```python
 >>> from multicurrency import Euro
->>> euro = Euro(1000, international=True)
->>> print(euro)
-EUR 1,000.00
+>>> euro = Euro(1000)
+>>> print(euro.international())
+1,000.00 EUR
 ```
 
 ## Localization
@@ -104,66 +100,72 @@ US$1.00 = TW$27.65
 
 ## Precision
 
-The multicurrency library has a user alterable precision (defaulting to 28
-places) which can be as large as needed for a given problem:
+The multicurrency library uses `decimal.Decimal` (to represent the `amount`
+value) which has a user alterable precision and rounding settings (defaulting
+to `28` places and `ROUND_HALF_EVEN` respectively).
+
+To change the default precision value of a currency one can simply use the
+`precision` method provided by that currency (up to the value of the
+`decimal.Decimal` precision minus 3):
 
 ```python
->>> from multicurrency import CurrencyContext, Euro
->>> for precision in [1, 2, 3, 4, 5, 6]:
-...     CurrencyContext.prec = precision
-...     result = Euro(1) / 7
+>>> from multicurrency import Euro
+>>> for precision in [-1, 0, 1, 2, 3, 4, 5, 6, 25]:
+...     result = Euro(1_000/7)
 ...     print(result.precision(precision))
-0,1 €
-0,14 €
-0,143 €
-0,1429 €
-0,14286 €
-0,142857 €
+143 €
+143 €
+142,9 €
+142,86 €
+142,857 €
+142,8571 €
+142,85714 €
+142,857143 €
+142,8571428571428600000000000 €
 ```
 
-It also has a user alterable rounding method (defaulting to ROUND_HALF_EVEN)
-which can be changed as needed:
+If a larger precision is required the default `decimal.Context` precision value
+will have to be changed:
 
 ```python
->>> from multicurrency import CurrencyContext, Euro
->>> CurrencyContext.prec = 4
->>> for rounding in [
-...         'ROUND_CEILING',
-...         'ROUND_DOWN',
-...         'ROUND_FLOOR',
-...         'ROUND_HALF_DOWN',
-...         'ROUND_HALF_EVEN',
-...         'ROUND_HALF_UP',
-...         'ROUND_UP',
-...         'ROUND_05UP']:
-...     CurrencyContext.rounding = rounding
-...     result = Euro(1) / 7
-...     print(f'{rounding:16}', result.precision(4))
-...
-ROUND_CEILING    0,1429 €
-ROUND_DOWN       0,1428 €
-ROUND_FLOOR      0,1428 €
-ROUND_HALF_DOWN  0,1429 €
-ROUND_HALF_EVEN  0,1429 €
-ROUND_HALF_UP    0,1429 €
-ROUND_UP         0,1429 €
-ROUND_05UP       0,1428 €
+>>> from decimal import localcontext
+>>> from multicurrency import Euro
+>>> with localcontext() as context:
+...     precision = 50
+...     context.prec = precision + 3
+...     result = Euro(1_000/7)
+...     print(result.precision(50))
+142,85714285714286000000000000000000000000000000000000 €
 ```
 
-Default values can be restored with:
+To change the rounding method the default `decimal.Context` rounding
+value needs to be changed:
 
 ```python
->>> from multicurrency import (
-...     CurrencyContext,
-...     DEFAULT_PRECISION,
-...     DEFAULT_ROUNDING)
->>> CurrencyContext.prec = DEFAULT_PRECISION
->>> CurrencyContext.rounding = DEFAULT_ROUNDING
->>> print(CurrencyContext.prec, CurrencyContext.rounding)
-28 ROUND_HALF_EVEN
+>>> from decimal import localcontext
+>>> from multicurrency import Euro
+>>> with localcontext() as context:
+...     for rounding in [
+...             'ROUND_CEILING',
+...             'ROUND_DOWN',
+...             'ROUND_FLOOR',
+...             'ROUND_HALF_DOWN',
+...             'ROUND_HALF_EVEN',
+...             'ROUND_HALF_UP',
+...             'ROUND_UP',
+...             'ROUND_05UP']:
+...         context.rounding = rounding
+...         result = Euro(1_000/7)
+...         print(f'{rounding:16}', result.precision(3))
+ROUND_CEILING    142,858 €
+ROUND_DOWN       142,857 €
+ROUND_FLOOR      142,857 €
+ROUND_HALF_DOWN  142,857 €
+ROUND_HALF_EVEN  142,857 €
+ROUND_HALF_UP    142,857 €
+ROUND_UP         142,858 €
+ROUND_05UP       142,857 €
 ```
-
-Supported rounding methods are described on the `CurrencyContext` class.
 
 ## Formatting
 
@@ -174,31 +176,35 @@ method.
 The specification for the formatting feature is as follows:
 
 ```null
-[dp][ds][gs][gp][spec]
+[dp][ds][gs][gp][format]
 ```
 
 The meaning of the various alignment options is as follows:
 
-| Option | Type   | Meaning                                                                               |
-|:-------|:-------|:--------------------------------------------------------------------------------------|
-| [dp]   | int+   | The number of decimal places (integer number with one or more digits).                |
-| [ds]   | str{1} | The decimal sign (single non-digit character).                                        |
-| [gs]   | str{1} | The grouping sign (single non-digit character).                                       |
-| [gp]   | int+   | The number of digits to group the number by (integer number with one or more digits). |
-| [spec] | str    | The formatting spec (a strig with the order of currency parts).                       |
+| Option   | Type    | Meaning                                                                                                                   |
+|:---------|:--------|:--------------------------------------------------------------------------------------------------------------------------|
+| [dp]     | int+    | The number of decimal places (integer number with one or more digits). Must be grater or equal to 0 (zero.)               |
+| [ds]     | char{1} | The decimal sign (single non-digit character).                                                                            |
+| [gs]     | char{1} | The grouping sign (single non-digit character).                                                                           |
+| [gp]     | int+    | The number of digits to group the number by (integer number with one or more digits).Must be grater or equal to 0 (zero.) |
+| [format] | str     | The formatting pattern (a string with the order of the currency parts).                                                   |
 
-All fields are optional although for the first four fields when setting
-one the fields on the left of that are required to be set as well.
+All fields are optional although for the first four fields when setting one the
+fields on the left of that are required to be set as well.
 
-The available string currency parts for `[spec]` are:
+The available string currency parts for `[format]` are:
 
-| Part | Meaning                                                                                                                     |
-|:-----|:----------------------------------------------------------------------------------------------------------------------------|
-| %a   | The currency's amount as seen in the default representation of the currency (the numeral system of the currency's country). |
-| %A   | The currency's amount in (western) arabic numerals.                                                                         |
-| %c   | The currency's alpha code (as seen on the international representation of the currency).                                    |
-| %s   | The currency's symbol.                                                                                                      |
-| %_   | The currency's symbol separator.                                                                                            |
+| Part | Meaning                                                                                                                            |
+|:-----|:-----------------------------------------------------------------------------------------------------------------------------------|
+| %a   | The currency's amount as seen in the default representation of the currency (the numeral system of the currency's country).        |
+| %A   | The currency's amount in (western) arabic numerals.                                                                                |
+| %c   | The currency's alpha code (as seen on the international representation of the currency).                                           |
+| %s   | The currency's symbol.                                                                                                             |
+| %S   | The currency's localized symbol.                                                                                                   |
+| %u   | The currency's unsign amount as seen in the default representation of the currency (the numeral system of the currency's country). |
+| %U   | The currency's unsign amount in (western) arabic numerals.                                                                         |
+| %-   | The currency's amount sign.                                                                                                        |
+| %%   | The `%` symbol.                                                                                                                    |
 
 Basic examples of how to use the `Currency` formatting feature:
 
@@ -244,11 +250,11 @@ Some more examples of the `Currency` formatting feature usage (using the
 >>> print(f'{euro:.,}')
 142,857.14 €
 
->>> print(f'{euro:3.,}')
-142,857.143 €
+>>> print(f'{euro:4.,}')
+142,857.1429 €
 
->>> print(f'{euro:3.,2}')
-14,28,57.143 €
+>>> print(f'{euro:4.,2}')
+14,28,57.1429 €
 
 >>> print(f'{euro:_2}')
 14.28.57_14 €
@@ -277,7 +283,7 @@ Some more examples of the `Currency` formatting feature usage (using the
 >>> print(f'{euro:%a}')
 142.857,14
 
->>> print(f'{euro:%a%_%c}')
+>>> print(f'{euro:%a\u00A0%c}')
 142.857,14 EUR
 
 >>> print(f'{euro:%a %c}')
@@ -496,268 +502,278 @@ Several operations are supported by the several library classes.
 
 ## Supported Currencies
 
-List of supported currencies (and default format):
+Table of supported currencies (and default format):
 
-* `Afghani` (؋ ۱۲۳٬۴۵۶٫۷۹ | ؋ ۱۲۳٬۴۵۶٫۷۹ | AFN 123,456.79),
-* `AlgerianDinar` (123.456,79 د.ج. | 123.456,79 د.ج. | DZD 123,456.79),
-* `ArgentinePeso` ($ 123.456,79 | AR$ 123.456,79 | ARS 123,456.79),
-* `ArmenianDram` (123 456,79 Դ | 123 456,79 Դ | AMD 123,456.79),
-* `ArubanFlorin` (ƒ123,456.79 | ƒ123,456.79 | AWG 123,456.79),
-* `AustralianDollar` ($123,456.79 | $123,456.79 | AUD 123,456.79),
-* `AustralianDollarAU` ($123,456.79 | AU$123,456.79 | AUD 123,456.79),
-* `AustralianDollarCC` ($123,456.79 | CC$123,456.79 | AUD 123,456.79),
-* `AustralianDollarKI` ($123,456.79 | KI$123,456.79 | AUD 123,456.79),
-* `AustralianDollarMR` ($123,456.79 | NR$123,456.79 | AUD 123,456.79),
-* `AustralianDollarTV` ($123,456.79 | TV$123,456.79 | AUD 123,456.79),
-* `AzerbaijanianManat` (123.456,79 ₼ | 123.456,79 ₼ | AZN 123,456.79),
-* `BahamianDollar` ($123,456.79 | BS$123,456.79 | BSD 123,456.79),
-* `BahrainiDinar` (د.ب. ١٢٣٬٤٥٦٫٧٨٩ | د.ب. ١٢٣٬٤٥٦٫٧٨٩ | BHD 123,456.789),
-* `Baht` (฿123,456.79 | ฿123,456.79 | THB 123,456.79),
-* `Balboa` (B/. 123,456.79 | B/. 123,456.79 | PAB 123,456.79),
-* `BarbadosDollar` ($123,456.79 | BB$123,456.79 | BBD 123,456.79),
-* `BelarusianRuble` (123 456,79 Br | 123 456,79 Br | BYN 123,456.79),
-* `BelizeDollar` ($123,456.79 | BZ$123,456.79 | BZD 123,456.79),
-* `BermudianDollar` ($123,456.79 | BM$123,456.79 | BMD 123,456.79),
-* `BolivarFuerte` (Bs.F. 123.456,79 | Bs.F. 123.456,79 | VEF 123,456.79),
-* `Boliviano` (Bs. 123.456,79 | Bs. 123.456,79 | BOB 123,456.79),
-* `BrazilianReal` (R$ 123.456,79 | R$ 123.456,79 | BRL 123,456.79),
-* `BruneiDollar` ($ 123.456,79 | $ 123.456,79 | BND 123,456.79),
-* `BruneiDollarBN` ($ 123.456,79 | BN$ 123.456,79 | BND 123,456.79),
-* `BruneiDollarSG` ($ 123.456,79 | SG$ 123.456,79 | BND 123,456.79),
-* `BulgarianLev` (123456,79 лв. | 123456,79 лв. | BGN 123,456.79),
-* `BurundiFranc` (123 457 ₣ | 123 457 BI₣ | BIF 123,457),
-* `CFAFrancBCEAO` (123 457 ₣ | 123 457 ₣ | XOF 123,457),
-* `CFAFrancBCEAO_BF` (123 457 ₣ | 123 457 BF₣ | XOF 123,457),
-* `CFAFrancBCEAO_BJ` (123 457 ₣ | 123 457 BJ₣ | XOF 123,457),
-* `CFAFrancBCEAO_CI` (123 457 ₣ | 123 457 CI₣ | XOF 123,457),
-* `CFAFrancBCEAO_GW` (123 457 ₣ | 123 457 GW₣ | XOF 123,457),
-* `CFAFrancBCEAO_ML` (123 457 ₣ | 123 457 ML₣ | XOF 123,457),
-* `CFAFrancBCEAO_NG` (123 457 ₣ | 123 457 NG₣ | XOF 123,457),
-* `CFAFrancBCEAO_SN` (123 457 ₣ | 123 457 SN₣ | XOF 123,457),
-* `CFAFrancBCEAO_TG` (123 457 ₣ | 123 457 TG₣ | XOF 123,457),
-* `CFAFrancBEAC` (123 457 ₣ | 123 457 ₣ | XAF 123,457),
-* `CFAFrancBEAC_CD` (123 457 ₣ | 123 457 CD₣ | XAF 123,457),
-* `CFAFrancBEAC_CF` (123 457 ₣ | 123 457 CF₣ | XAF 123,457),
-* `CFAFrancBEAC_CM` (123 457 ₣ | 123 457 CM₣ | XAF 123,457),
-* `CFAFrancBEAC_GA` (123 457 ₣ | 123 457 GA₣ | XAF 123,457),
-* `CFAFrancBEAC_GQ` (123 457 ₣ | 123 457 GQ₣ | XAF 123,457),
-* `CFAFrancBEAC_TD` (123 457 ₣ | 123 457 TD₣ | XAF 123,457),
-* `CFPFranc` (123 457 ₣ | 123 457 ₣ | XPF 123,457),
-* `CFPFrancNC` (123 457 ₣ | 123 457 NC₣ | XPF 123,457),
-* `CFPFrancPF` (123 457 ₣ | 123 457 PF₣ | XPF 123,457),
-* `CFPFrancWF` (123 457 ₣ | 123 457 WF₣ | XPF 123,457),
-* `CanadianDollarEN` ($123,456.79 | CA$123,456.79 | CAD 123,456.79),
-* `CanadianDollarFR` (123 456,79 $ | 123 456,79 CA$ | CAD 123,456.79),
-* `CapeVerdeEscudo` (123 456$79 | 123 456$79 | CVE 123,456.79),
-* `CaymanIslandsDollar` ($123,456.79 | KY$123,456.79 | KYD 123,456.79),
-* `Cedi` (₵123,456.79 | ₵123,456.79 | GHS 123,456.79),
-* `ChileanPeso` ($123.457 | CL$123.457 | CLP 123,457),
-* `ColombianPeso` ($ 123.456,79 | CO$ 123.456,79 | COP 123,456.79),
-* `CongoleseFranc` (123 456,79 ₣ | 123 456,79 CD₣ | CDF 123,456.79),
-* `CordobaOro` (C$123,456.79 | C$123,456.79 | NIO 123,456.79),
-* `CostaRicanColon` (₡123 456,79 | ₡123 456,79 | CRC 123,456.79),
-* `CroatianKuna` (123.456,79 Kn | 123.456,79 Kn | HRK 123,456.79),
-* `CubanPeso` ($123,456.79 | CU$123,456.79 | CUP 123,456.79),
-* `CzechKoruna` (123 456,79 Kč | 123 456,79 Kč | CZK 123,456.79),
-* `Dalasi` (D 123,456.79 | D 123,456.79 | GMD 123,456.79),
-* `DanishKrone` (123.456,79 kr | 123.456,79 kr | DKK 123,456.79),
-* `Denar` (123.456,79 ден. | 123.456,79 ден. | MKD 123,456.79),
-* `DjiboutiFranc` (123 457 ₣ | 123 457 DJ₣ | DJF 123,457),
-* `Dobra` (123.456,79 Db | 123.456,79 Db | STN 123,456.79),
-* `DominicanPeso` ($123,456.79 | DO$123,456.79 | DOP 123,456.79),
-* `Dong` (123.457 ₫ | 123.457 ₫ | VND 123,457),
-* `EasternCaribbeanDollar` ($123,456.79 | $123,456.79 | XCD 123,456.79),
-* `EasternCaribbeanDollarAG` ($123,456.79 | AG$123,456.79 | XCD 123,456.79),
-* `EasternCaribbeanDollarAI` ($123,456.79 | AI$123,456.79 | XCD 123,456.79),
-* `EasternCaribbeanDollarDM` ($123,456.79 | DM$123,456.79 | XCD 123,456.79),
-* `EasternCaribbeanDollarGD` ($123,456.79 | GD$123,456.79 | XCD 123,456.79),
-* `EasternCaribbeanDollarKN` ($123,456.79 | KN$123,456.79 | XCD 123,456.79),
-* `EasternCaribbeanDollarLC` ($123,456.79 | LC$123,456.79 | XCD 123,456.79),
-* `EasternCaribbeanDollarMS` ($123,456.79 | MS$123,456.79 | XCD 123,456.79),
-* `EasternCaribbeanDollarVC` ($123,456.79 | VC$123,456.79 | XCD 123,456.79),
-* `EgyptianPound` (ج.م. ١٢٣٬٤٥٦٫٧٩ | ج.م. ١٢٣٬٤٥٦٫٧٩ | EGP 123,456.79),
-* `EthiopianBirr` (ብር 123,456.79 | ብር 123,456.79 | ETB 123,456.79),
-* `Euro` (123.456,79 € | 123.456,79 € | EUR 123,456.79),
-* `EuroAD` (123.456,79 € | 123.456,79 AD€ | EUR 123,456.79),
-* `EuroAT` (€ 123.456,79 | AT€ 123.456,79 | EUR 123,456.79),
-* `EuroBE` (€ 123.456,79 | BE€ 123.456,79 | EUR 123,456.79),
-* `EuroCY` (123.456,79 € | 123.456,79 CY€ | EUR 123,456.79),
-* `EuroDE` (123.456,79 € | 123.456,79 DE€ | EUR 123,456.79),
-* `EuroEE` (123 456,79 € | 123 456,79 EE€ | EUR 123,456.79),
-* `EuroES` (123.456,79 € | 123.456,79 ES€ | EUR 123,456.79),
-* `EuroFI` (123 456,79 € | 123 456,79 FI€ | EUR 123,456.79),
-* `EuroFR` (123 456,79 € | 123 456,79 FR€ | EUR 123,456.79),
-* `EuroGR` (123.456,79 € | 123.456,79 GR€ | EUR 123,456.79),
-* `EuroIE` (€123,456.79 | IR€123,456.79 | EUR 123,456.79),
-* `EuroIT` (123.456,79 € | 123.456,79 IT€ | EUR 123,456.79),
-* `EuroLT` (123 456,79 € | 123 456,79 LT€ | EUR 123,456.79),
-* `EuroLU` (123.456,79 € | 123.456,79 LU€ | EUR 123,456.79),
-* `EuroLV` (123 456,79 € | 123 456,79 LV€ | EUR 123,456.79),
-* `EuroMC` (123 456,79 € | 123 456,79 MC€ | EUR 123,456.79),
-* `EuroME` (123.456,79 € | 123.456,79 ME€ | EUR 123,456.79),
-* `EuroMT` (€123,456.79 | MT€123,456.79 | EUR 123,456.79),
-* `EuroNL` (€ 123.456,79 | NL€ 123.456,79 | EUR 123,456.79),
-* `EuroPT` (€ 123.456,79 | PT€ 123.456,79 | EUR 123,456.79),
-* `EuroSBA` (123.456,79 € | 123.456,79 € | EUR 123,456.79),
-* `EuroSI` (123.456,79 € | 123.456,79 SI€ | EUR 123,456.79),
-* `EuroSK` (123 456,79 € | 123 456,79 SK€ | EUR 123,456.79),
-* `EuroSM` (123.456,79 € | 123.456,79 SM€ | EUR 123,456.79),
-* `EuroVA` (€123,456.79 | VA€123,456.79 | EUR 123,456.79),
-* `EuroXK` (123 456,79 € | 123 456,79 XK€ | EUR 123,456.79),
-* `FalklandIslandsPound` (£123,456.79 | FK£123,456.79 | FKP 123,456.79),
-* `FijiDollar` ($123,456.79 | FJ$123,456.79 | FJD 123,456.79),
-* `Forint` (123 457 Ft | 123 457 Ft | HUF 123,457),
-* `GibraltarPound` (£123,456.79 | GI£123,456.79 | GIP 123,456.79),
-* `Gourde` (G 123,456.79 | G 123,456.79 | HTG 123,456.79),
-* `Guarani` (₲ 123.457 | ₲ 123.457 | PYG 123,457),
-* `GuineaFranc` (123 457 ₣ | 123 457 GN₣ | GNF 123,457),
-* `GuyanaDollar` ($123,456.79 | GY$123,456.79 | GYD 123,456.79),
-* `HongKongDollar` ($123,456.79 | HK$123,456.79 | HKD 123,456.79),
-* `Hryvnia` (123 456,79 ₴ | 123 456,79 ₴ | UAH 123,456.79),
-* `IcelandKrona` (123.457 Kr | 123.457 Kr | ISK 123,457),
-* `IndianRupee` (₹123,456.79 | ₹123,456.79 | INR 123,456.79),
-* `IndianRupeeBT` (₹123,456.79 | BT₹123,456.79 | INR 123,456.79),
-* `IndianRupeeIN` (₹123,456.79 | IN₹123,456.79 | INR 123,456.79),
-* `IranianRial` (۱۲۳٬۴۵۶٫۷۹ ﷼ | ۱۲۳٬۴۵۶٫۷۹ ﷼ | IRR 123,456.79),
-* `IraqiDinar` (د.ع. ١٢٣٬٤٥٦٫٧٨٩ | د.ع. ١٢٣٬٤٥٦٫٧٨٩ | IQD 123,456.789),
-* `JamaicanDollar` ($123,456.79 | JM$123,456.79 | JMD 123,456.79),
-* `JordanianDinar` (د.أ. ١٢٣٬٤٥٦٫٧٨٩ | د.أ. ١٢٣٬٤٥٦٫٧٨٩ | JOD 123,456.789),
-* `KenyanShilling` (Ksh 123,456.79 | Ksh 123,456.79 | KES 123,456.79),
-* `Kina` (K 123,456.79 | K 123,456.79 | PGK 123,456.79),
-* `Kip` (₭123.456,79 | ₭123.456,79 | LAK 123,456.79),
-* `KonvertibilnaMarka` (123,456.79 КМ | 123,456.79 КМ | BAM 123,456.79),
-* `KuwaitiDinar` (د.ك. ١٢٣٬٤٥٦٫٧٨٩ | د.ك. ١٢٣٬٤٥٦٫٧٨٩ | KWD 123,456.789),
-* `Kwacha` (MK 123,456.79 | MK 123,456.79 | MWK 123,456.79),
-* `Kwanza` (123 456,79 Kz | 123 456,79 Kz | AOA 123,456.79),
-* `Kyat` (၁၂၃,၄၅၆.၇၉ K | ၁၂၃,၄၅၆.၇၉ K | MMK 123,456.79),
-* `Lari` (123 456,79 ლ | 123 456,79 GEლ | GEL 123,456.79),
-* `LebanesePound` (ل.ل. ١٢٣٬٤٥٧ | ل.ل. ١٢٣٬٤٥٧ | LBP 123,457),
-* `Lek` (123 456,79 Lek | 123 456,79 Lek | ALL 123,456.79),
-* `Lempira` (L 123,456.79 | L 123,456.79 | HNL 123,456.79),
-* `Leone` (Le 123,456.79 | Le 123,456.79 | SLL 123,456.79),
-* `Leu` (123.456,79 L | 123.456,79 L | RON 123,456.79),
-* `LiberianDollar` ($123,456.79 | LR$123,456.79 | LRD 123,456.79),
-* `LibyanDinar` (د.ل. 123.456,789 | د.ل. 123.456,789 | LYD 123,456.789),
-* `Lilangeni` (L 123,456.79 | L 123,456.79 | SZL 123,456.79),
-* `Loti` (L 123,456.79 | L 123,456.79 | LSL 123,456.79),
-* `MalagasyAriary` (123 457 Ar | 123 457 Ar | MGA 123,457),
-* `MalaysianRinggit` (RM 123,456.79 | RM 123,456.79 | MYR 123,456.79),
-* `Manat` (123 456,79 m | 123 456,79 m | TMT 123,456.79),
-* `MauritiusRupee` (₨ 123,456.79 | ₨ 123,456.79 | MUR 123,456.79),
-* `Metical` (123.457 MTn | 123.457 MTn | MZN 123,457),
-* `MexicanPeso` ($123,456.79 | MX$123,456.79 | MXN 123,456.79),
-* `MoldovanLeu` (123.456,79 L | 123.456,79 L | MDL 123,456.79),
-* `MoroccanDirham` (د.م. ١٢٣٬٤٥٦٫٧٩ | د.م. ١٢٣٬٤٥٦٫٧٩ | MAD 123,456.79),
-* `Naira` (₦123,456.79 | ₦123,456.79 | NGN 123,456.79),
-* `Nakfa` (Nfk 123,456.79 | Nfk 123,456.79 | ERN 123,456.79),
-* `NamibiaDollar` ($123,456.79 | NA$123,456.79 | NAD 123,456.79),
-* `NepaleseRupee` (नेरू १२३,४५६.७९ | नेरू १२३,४५६.७९ | NPR 123,456.79),
-* `NewIsraeliShekel` (123,456.79 ₪ | 123,456.79 ₪ | ILS 123,456.79),
-* `NewIsraeliShekelIL` (123,456.79 ₪ | 123,456.79 IL₪ | ILS 123,456.79),
-* `NewIsraeliShekelPS` (123,456.79 ₪ | 123,456.79 PS₪ | ILS 123,456.79),
-* `NewZealandDollar` ($123,456.79 | $123,456.79 | NZD 123,456.79),
-* `NewZealandDollarCK` ($123,456.79 | CK$123,456.79 | NZD 123,456.79),
-* `NewZealandDollarNU` ($123,456.79 | NU$123,456.79 | NZD 123,456.79),
-* `NewZealandDollarNZ` ($123,456.79 | NZ$123,456.79 | NZD 123,456.79),
-* `NewZealandDollarPN` ($123,456.79 | PN$123,456.79 | NZD 123,456.79),
-* `Ngultrum` (Nu. ༡༢༣,༤༥༦.༧༩ | Nu. ༡༢༣,༤༥༦.༧༩ | BTN 123,456.79),
-* `NorthKoreanWon` (₩ 123,456.79 | ₩ 123,456.79 | KPW 123,456.79),
-* `NorwegianKrone` (kr 123 456,79 | kr 123 456,79 | NOK 123,456.79),
-* `NuevoSol` (S/. 123,456.79 | S/. 123,456.79 | PEN 123,456.79),
-* `Ouguiya` (١٢٣٬٤٥٦٫٧٩ أ.م | ١٢٣٬٤٥٦٫٧٩ أ.م | MRU 123,456.79),
-* `PZloty` (123 456,79 zł | 123 456,79 zł | PLN 123,456.79),
-* `Paanga` (T$ 123,456.79 | T$ 123,456.79 | TOP 123,456.79),
-* `PakistanRupee` (₨ 123,456.79 | ₨ 123,456.79 | PKR 123,456.79),
-* `Pataca` (P 123,456.79 | P 123,456.79 | MOP 123,456.79),
-* `PesoUruguayo` ($ 123.456,79 | UY$ 123.456,79 | UYU 123,456.79),
-* `PhilippinePeso` (₱123,456.79 | ₱123,456.79 | PHP 123,456.79),
-* `PoundSterling` (£123,456.79 | £123,456.79 | GBP 123,456.79),
-* `PoundSterlingGB` (£123,456.79 | GB£123,456.79 | GBP 123,456.79),
-* `PoundSterlingGG` (£123,456.79 | GG£123,456.79 | GBP 123,456.79),
-* `PoundSterlingIM` (£123,456.79 | IM£123,456.79 | GBP 123,456.79),
-* `PoundSterlingIO` (£123,456.79 | IO£123,456.79 | GBP 123,456.79),
-* `Pula` (P 123,456.79 | P 123,456.79 | BWP 123,456.79),
-* `QatariRial` (ر.ق. ١٢٣٬٤٥٦٫٧٩ | ر.ق. ١٢٣٬٤٥٦٫٧٩ | QAR 123,456.79),
-* `Quetzal` (Q 123,456.79 | Q 123,456.79 | GTQ 123,456.79),
-* `Rand` (R 123 456.79 | R 123 456.79 | ZAR 123,456.79),
-* `RandLS` (R 123,456.79 | LSR 123,456.79 | ZAR 123,456.79),
-* `RandNA` (R 123 456.79 | NAR 123 456.79 | ZAR 123,456.79),
-* `RandZA` (R 123 456.79 | ZAR 123 456.79 | ZAR 123,456.79),
-* `RialOmani` (ر.ع. ١٢٣٬٤٥٦٫٧٨٩ | ر.ع. ١٢٣٬٤٥٦٫٧٨٩ | OMR 123,456.789),
-* `Riel` (123.456,79៛ | 123.456,79៛ | KHR 123,456.79),
-* `Rufiyaa` (ރ. 123,456.79 | ރ. 123,456.79 | MVR 123,456.79),
-* `Rupiah` (Rp 123.456,79 | Rp 123.456,79 | IDR 123,456.79),
-* `RussianRuble` (123 456,79 ₽ | 123 456,79 ₽ | RUB 123,456.79),
-* `RussianRubleGE` (123 456,79 ₽ | 123 456,79 GE₽ | RUB 123,456.79),
-* `RussianRubleRU` (123 456,79 ₽ | 123 456,79 RU₽ | RUB 123,456.79),
-* `RwandaFranc` (₣ 123.457 | RW₣ 123.457 | RWF 123,457),
-* `SaintHelenaPound` (£123,456.79 | SH£123,456.79 | SHP 123,456.79),
-* `SaudiRiyal` (ر.س. ١٢٣٬٤٥٦٫٧٩ | ر.س. ١٢٣٬٤٥٦٫٧٩ | SAR 123,456.79),
-* `SerbianDinarSR` (123 456,79 дин. | 123 456,79 дин. | RSD 123,456.79),
-* `SerbianDinarXK` (123.456,79 дин. | 123.456,79 дин. | RSD 123,456.79),
-* `SeychellesRupee` (₨ 123,456.79 | ₨ 123,456.79 | SCR 123,456.79),
-* `SingaporeDollar` ($123,456.79 | $123,456.79 | SGD 123,456.79),
-* `SingaporeDollarBN` ($123,456.79 | BN$123,456.79 | SGD 123,456.79),
-* `SingaporeDollarSG` ($123,456.79 | SG$123,456.79 | SGD 123,456.79),
-* `SolomonIslandsDollar` ($123,456.79 | SB$123,456.79 | SBD 123,456.79),
-* `Som` (123 456,79 Лв | 123 456,79 Лв | KGS 123,456.79),
-* `SomaliShilling` (SSh 123,456.79 | SSh 123,456.79 | SOS 123,456.79),
-* `Somoni` (ЅМ 123,456.79 | ЅМ 123,456.79 | TJS 123,456.79),
-* `SouthKoreanWon` (₩123,457 | ₩123,457 | KRW 123,457),
-* `SriLankaRupee` (රු. 123,456.79 | රු. 123,456.79 | LKR 123,456.79),
-* `SudanesePound` (١٢٣٬٤٥٦٫٧٩ ج.س | ١٢٣٬٤٥٦٫٧٩ ج.س | SDG 123,456.79),
-* `SurinameDollar` ($ 123.456,79 | SR$ 123.456,79 | SRD 123,456.79),
-* `SwedishKrona` (123 456,79 kr | 123 456,79 kr | SEK 123,456.79),
-* `SwissFranc` (₣ 123'456.79 | ₣ 123'456.79 | CHF 123,456.79),
-* `SwissFrancCH` (₣ 123'456.79 | CH₣ 123'456.79 | CHF 123,456.79),
-* `SwissFrancLI` (₣ 123'456.79 | LI₣ 123'456.79 | CHF 123,456.79),
-* `SyrianPound` (١٢٣٬٤٥٦٫٧٩ ل.س | ١٢٣٬٤٥٦٫٧٩ ل.س | SYP 123,456.79),
-* `TaiwanDollar` ($123,456.79 | TW$123,456.79 | TWD 123,456.79),
-* `Taka` (১২৩,৪৫৬.৭৯৳ | ১২৩,৪৫৬.৭৯৳ | BDT 123,456.79),
-* `Tala` (T 123,456.79 | T 123,456.79 | WST 123,456.79),
-* `TanzanianShilling` (TSh 123,456.79 | TSh 123,456.79 | TZS 123,456.79),
-* `Tenge` (123 456,79 〒 | 123 456,79 〒 | KZT 123,456.79),
-* `TrinidadandTobagoDollar` ($123,456.79 | TT$123,456.79 | TTD 123,456.79),
-* `Tugrik` (₮ 123,456.79 | ₮ 123,456.79 | MNT 123,456.79),
-* `TunisianDinar` (د.ت. 123.456,789 | د.ت. 123.456,789 | TND 123,456.789),
-* `TurkishLira` (₤123.456,79 | ₤123.456,79 | TRY 123,456.79),
-* `TurkishLiraCY` (₤123.456,79 | CY₤123.456,79 | TRY 123,456.79),
-* `TurkishLiraTR` (₤123.456,79 | TR₤123.456,79 | TRY 123,456.79),
-* `UAEDirham` (د.إ. ١٢٣٬٤٥٦٫٧٩ | د.إ. ١٢٣٬٤٥٦٫٧٩ | AED 123,456.79),
-* `USDollar` ($123,456.79 | US$123,456.79 | USD 123,456.79),
-* `USDollarAS` ($123,456.79 | AS$123,456.79 | USD 123,456.79),
-* `USDollarFM` ($123,456.79 | FM$123,456.79 | USD 123,456.79),
-* `USDollarGU` ($123,456.79 | GU$123,456.79 | USD 123,456.79),
-* `USDollarHT` ($123,456.79 | HT$123,456.79 | USD 123,456.79),
-* `USDollarIO` ($123,456.79 | IO$123,456.79 | USD 123,456.79),
-* `USDollarMH` ($123,456.79 | MH$123,456.79 | USD 123,456.79),
-* `USDollarMP` ($123,456.79 | MP$123,456.79 | USD 123,456.79),
-* `USDollarPA` ($123,456.79 | PA$123,456.79 | USD 123,456.79),
-* `USDollarPC` ($123,456.79 | PC$123,456.79 | USD 123,456.79),
-* `USDollarPR` ($123,456.79 | PR$123,456.79 | USD 123,456.79),
-* `USDollarPW` ($123,456.79 | PW$123,456.79 | USD 123,456.79),
-* `USDollarTC` ($123,456.79 | TC$123,456.79 | USD 123,456.79),
-* `USDollarVG` ($123,456.79 | VG$123,456.79 | USD 123,456.79),
-* `USDollarVI` ($123,456.79 | VI$123,456.79 | USD 123,456.79),
-* `UgandaShilling` (USh 123,457 | USh 123,457 | UGX 123,457),
-* `UzbekistanSum` (123 456,79 сўм | 123 456,79 сўм | UZS 123,456.79),
-* `Vatu` (Vt 123,457 | Vt 123,457 | VUV 123,457),
-* `YemeniRial` (١٢٣٬٤٥٦٫٧٩ ﷼ | ١٢٣٬٤٥٦٫٧٩ ﷼ | YER 123,456.79),
-* `Yen` (¥123,457 | ¥123,457 | JPY 123,457),
-* `Yuan` (¥123,456.79 | ¥123,456.79 | CNY 123,456.79),
-* `ZambianKwacha` (ZK 123,456.79 | ZK 123,456.79 | ZMW 123,456.79),
-* `ZimbabweDollar` ($ 123,456.79 | ZW$ 123,456.79 | ZWL 123,456.79)
+| Currency                                                   | Country                                         |          Default |        Localized |   International |
+|:-----------------------------------------------------------|:------------------------------------------------|-----------------:|-----------------:|----------------:|
+| `multicurrency.currencies.afghani.Afghani`                 | Afghanistan                                     |     ؋ ۱۲۳٬۴۵۶٫۷۹ |     ؋ ۱۲۳٬۴۵۶٫۷۹ |  123,456.79 AFN |
+| `multicurrency.currencies.dinar.AlgerianDinar`             | Algeria                                         |  123.456,79 د.ج. |  123.456,79 د.ج. |  123,456.79 DZD |
+| `multicurrency.currencies.peso.ArgentinePeso`              | Argentina                                       |     $ 123.456,79 |   AR$ 123.456,79 |  123,456.79 ARS |
+| `multicurrency.currencies.dram.ArmenianDram`               | Armenia                                         |     123 456,79 Դ |     123 456,79 Դ |  123,456.79 AMD |
+| `multicurrency.currencies.florin.ArubanFlorin`             | Aruba                                           |      ƒ123,456.79 |      ƒ123,456.79 |  123,456.79 AWG |
+| `multicurrency.currencies.dollar.AustralianDollar`         | Australia                                       |     $ 123,456.79 |     $ 123,456.79 |  123,456.79 AUD |
+| `multicurrency.currencies.dollar.AustralianDollarAU`       | Australia                                       |      $123,456.79 |    AU$123,456.79 |  123,456.79 AUD |
+| `multicurrency.currencies.dollar.AustralianDollarCC`       | Coconut Islands                                 |      $123,456.79 |    CC$123,456.79 |  123,456.79 AUD |
+| `multicurrency.currencies.dollar.AustralianDollarKI`       | Kiribati                                        |      $123,456.79 |    KI$123,456.79 |  123,456.79 AUD |
+| `multicurrency.currencies.dollar.AustralianDollarMR`       | Nauru                                           |      $123,456.79 |    NR$123,456.79 |  123,456.79 AUD |
+| `multicurrency.currencies.dollar.AustralianDollarTV`       | Tuvalu                                          |      $123,456.79 |    TV$123,456.79 |  123,456.79 AUD |
+| `multicurrency.currencies.manat.AzerbaijanianManat`        | Azerbaijan                                      |     123.456,79 ₼ |     123.456,79 ₼ |  123,456.79 AZN |
+| `multicurrency.currencies.dollar.BahamianDollar`           | Bahamas                                         |      $123,456.79 |    BS$123,456.79 |  123,456.79 BSD |
+| `multicurrency.currencies.dinar.BahrainiDinar`             | Bahrain                                         | د.ب. ١٢٣٬٤٥٦٫٧٨٩ | د.ب. ١٢٣٬٤٥٦٫٧٨٩ | 123,456.789 BHD |
+| `multicurrency.currencies.baht.Baht`                       | Thailand                                        |      ฿123,456.79 |      ฿123,456.79 |  123,456.79 THB |
+| `multicurrency.currencies.balboa.Balboa`                   | Panama                                          |   B/. 123,456.79 |   B/. 123,456.79 |  123,456.79 PAB |
+| `multicurrency.currencies.dollar.BarbadosDollar`           | Barbados                                        |      $123,456.79 |    BB$123,456.79 |  123,456.79 BBD |
+| `multicurrency.currencies.ruble.BelarusianRuble`           | Belarus                                         |    123 456,79 Br |    123 456,79 Br |  123,456.79 BYN |
+| `multicurrency.currencies.dollar.BelizeDollar`             | Belize                                          |      $123,456.79 |    BZ$123,456.79 |  123,456.79 BZD |
+| `multicurrency.currencies.dollar.BermudianDollar`          | Bermuda                                         |      $123,456.79 |    BM$123,456.79 |  123,456.79 BMD |
+| `multicurrency.currencies.fuerte.BolivarFuerte`            | Venezuela                                       | Bs.F. 123.456,79 | Bs.F. 123.456,79 |  123,456.79 VEF |
+| `multicurrency.currencies.boliviano.Boliviano`             | Bolivia                                         |   Bs. 123.456,79 |   Bs. 123.456,79 |  123,456.79 BOB |
+| `multicurrency.currencies.real.BrazilianReal`              | Brazil                                          |    R$ 123.456,79 |    R$ 123.456,79 |  123,456.79 BRL |
+| `multicurrency.currencies.dollar.BruneiDollar`             | Brunei                                          |     $ 123.456,79 |     $ 123.456,79 |  123,456.79 BND |
+| `multicurrency.currencies.dollar.BruneiDollarBN`           | Brunei                                          |     $ 123.456,79 |   BN$ 123.456,79 |  123,456.79 BND |
+| `multicurrency.currencies.dollar.BruneiDollarSG`           | Singapore                                       |     $ 123.456,79 |   SG$ 123.456,79 |  123,456.79 BND |
+| `multicurrency.currencies.lev.BulgarianLev`                | Bulgaria                                        |   123 456,79 лв. |   123 456,79 лв. |  123,456.79 BGN |
+| `multicurrency.currencies.franc.BurundiFranc`              | Burundi                                         |        123 457 ₣ |      123 457 BI₣ |     123,457 BIF |
+| `multicurrency.currencies.franc.CFAFrancBCEAO`             | Senegal                                         |        123 457 ₣ |        123 457 ₣ |     123,457 XOF |
+| `multicurrency.currencies.franc.CFAFrancBCEAOBF`           | Burkina Faso                                    |        123 457 ₣ |      123 457 BF₣ |     123,457 XOF |
+| `multicurrency.currencies.franc.CFAFrancBCEAOBJ`           | Benin                                           |        123 457 ₣ |      123 457 BJ₣ |     123,457 XOF |
+| `multicurrency.currencies.franc.CFAFrancBCEAOCI`           | Côte d'Ivoire                                   |        123 457 ₣ |      123 457 CI₣ |     123,457 XOF |
+| `multicurrency.currencies.franc.CFAFrancBCEAOGW`           | Guinea-Bissau                                   |        123 457 ₣ |      123 457 GW₣ |     123,457 XOF |
+| `multicurrency.currencies.franc.CFAFrancBCEAOML`           | Mali                                            |        123 457 ₣ |      123 457 ML₣ |     123,457 XOF |
+| `multicurrency.currencies.franc.CFAFrancBCEAONG`           | Niger                                           |        123 457 ₣ |      123 457 NG₣ |     123,457 XOF |
+| `multicurrency.currencies.franc.CFAFrancBCEAOSN`           | Senegal                                         |        123 457 ₣ |      123 457 SN₣ |     123,457 XOF |
+| `multicurrency.currencies.franc.CFAFrancBCEAOTG`           | Togo                                            |        123 457 ₣ |      123 457 TG₣ |     123,457 XOF |
+| `multicurrency.currencies.franc.CFAFrancBEAC`              | Cameroon                                        |        123 457 ₣ |        123 457 ₣ |     123,457 XAF |
+| `multicurrency.currencies.franc.CFAFrancBEACCD`            | Congo (Brazzaville)                             |        123 457 ₣ |      123 457 CD₣ |     123,457 XAF |
+| `multicurrency.currencies.franc.CFAFrancBEACCF`            | Central African Republic                        |        123 457 ₣ |      123 457 CF₣ |     123,457 XAF |
+| `multicurrency.currencies.franc.CFAFrancBEACCM`            | Cameroon                                        |        123 457 ₣ |      123 457 CM₣ |     123,457 XAF |
+| `multicurrency.currencies.franc.CFAFrancBEACGA`            | Gabon                                           |        123 457 ₣ |      123 457 GA₣ |     123,457 XAF |
+| `multicurrency.currencies.franc.CFAFrancBEACGQ`            | Equatorial Guinea                               |        123 457 ₣ |      123 457 GQ₣ |     123,457 XAF |
+| `multicurrency.currencies.franc.CFAFrancBEACTD`            | Chad                                            |        123 457 ₣ |      123 457 TD₣ |     123,457 XAF |
+| `multicurrency.currencies.franc.CFPFranc`                  | French Polynesia                                |        123 457 ₣ |        123 457 ₣ |     123,457 XPF |
+| `multicurrency.currencies.franc.CFPFrancNC`                | New Caledonia                                   |        123 457 ₣ |      123 457 NC₣ |     123,457 XPF |
+| `multicurrency.currencies.franc.CFPFrancPF`                | French Polynesia                                |        123 457 ₣ |      123 457 PF₣ |     123,457 XPF |
+| `multicurrency.currencies.franc.CFPFrancWF`                | Wallis and Futuna                               |        123 457 ₣ |      123 457 WF₣ |     123,457 XPF |
+| `multicurrency.currencies.dollar.CanadianDollarEN`         | Canada                                          |      $123,456.79 |    CA$123,456.79 |  123,456.79 CAD |
+| `multicurrency.currencies.dollar.CanadianDollarFR`         | Canada                                          |     123 456,79 $ |   123 456,79 CA$ |  123,456.79 CAD |
+| `multicurrency.currencies.escudo.CapeVerdeEscudo`          | Cape Verde                                      |       123 456$79 |       123 456$79 |  123,456.79 CVE |
+| `multicurrency.currencies.dollar.CaymanIslandsDollar`      | Cayman Islands                                  |      $123,456.79 |    KY$123,456.79 |  123,456.79 KYD |
+| `multicurrency.currencies.cedi.Cedi`                       | Ghana                                           |      ₵123,456.79 |      ₵123,456.79 |  123,456.79 GHS |
+| `multicurrency.currencies.peso.ChileanPeso`                | Chile                                           |         $123.457 |       CL$123.457 |     123,457 CLP |
+| `multicurrency.currencies.peso.ColombianPeso`              | Colombia                                        |     $ 123.456,79 |   CO$ 123.456,79 |  123,456.79 COP |
+| `multicurrency.currencies.franc.CongoleseFranc`            | Congo (Kinshasa)                                |     123 456,79 ₣ |   123 456,79 CD₣ |  123,456.79 CDF |
+| `multicurrency.currencies.oro.CordobaOro`                  | Nicaragua                                       |     C$123,456.79 |     C$123,456.79 |  123,456.79 NIO |
+| `multicurrency.currencies.colon.CostaRicanColon`           | Costa Rica                                      |      ₡123 456,79 |      ₡123 456,79 |  123,456.79 CRC |
+| `multicurrency.currencies.kuna.CroatianKuna`               | Croatia                                         |    123.456,79 Kn |    123.456,79 Kn |  123,456.79 HRK |
+| `multicurrency.currencies.peso.CubanPeso`                  | Cuba                                            |      $123,456.79 |    CU$123,456.79 |  123,456.79 CUP |
+| `multicurrency.currencies.koruna.CzechKoruna`              | Czech Republic                                  |    123 456,79 Kč |    123 456,79 Kč |  123,456.79 CZK |
+| `multicurrency.currencies.dalasi.Dalasi`                   | Gambia                                          |     D 123,456.79 |     D 123,456.79 |  123,456.79 GMD |
+| `multicurrency.currencies.krone.DanishKrone`               | Denmark                                         |    123.456,79 kr |    123.456,79 kr |  123,456.79 DKK |
+| `multicurrency.currencies.denar.Denar`                     | Macedonia                                       |  123.456,79 ден. |  123.456,79 ден. |  123,456.79 MKD |
+| `multicurrency.currencies.franc.DjiboutiFranc`             | Djibouti                                        |        123 457 ₣ |      123 457 DJ₣ |     123,457 DJF |
+| `multicurrency.currencies.dobra.Dobra`                     | Sao Tome and Principe                           |    123.456,79 Db |    123.456,79 Db |  123,456.79 STN |
+| `multicurrency.currencies.peso.DominicanPeso`              | Dominican Republic                              |      $123,456.79 |    DO$123,456.79 |  123,456.79 DOP |
+| `multicurrency.currencies.dong.Dong`                       | Vietnam                                         |        123.457 ₫ |        123.457 ₫ |     123,457 VND |
+| `multicurrency.currencies.dollar.EasternCaribbeanDollar`   | Organisation of Eastern Caribbean States (OECS) |      $123,456.79 |      $123,456.79 |  123,456.79 XCD |
+| `multicurrency.currencies.dollar.EasternCaribbeanDollarAG` | Antigua and Barbuda                             |      $123,456.79 |    AG$123,456.79 |  123,456.79 XCD |
+| `multicurrency.currencies.dollar.EasternCaribbeanDollarAI` | Anguilla                                        |      $123,456.79 |    AI$123,456.79 |  123,456.79 XCD |
+| `multicurrency.currencies.dollar.EasternCaribbeanDollarDM` | Dominica                                        |      $123,456.79 |    DM$123,456.79 |  123,456.79 XCD |
+| `multicurrency.currencies.dollar.EasternCaribbeanDollarGD` | Grenada                                         |      $123,456.79 |    GD$123,456.79 |  123,456.79 XCD |
+| `multicurrency.currencies.dollar.EasternCaribbeanDollarKN` | Saint Kitts and Nevis                           |      $123,456.79 |    KN$123,456.79 |  123,456.79 XCD |
+| `multicurrency.currencies.dollar.EasternCaribbeanDollarLC` | Saint Lucia                                     |      $123,456.79 |    LC$123,456.79 |  123,456.79 XCD |
+| `multicurrency.currencies.dollar.EasternCaribbeanDollarMS` | Montserrat                                      |      $123,456.79 |    MS$123,456.79 |  123,456.79 XCD |
+| `multicurrency.currencies.dollar.EasternCaribbeanDollarVC` | Saint Vincent and Grenadine                     |      $123,456.79 |    VC$123,456.79 |  123,456.79 XCD |
+| `multicurrency.currencies.pound.EgyptianPound`             | Egypt                                           |  ج.م. ١٢٣٬٤٥٦٫٧٩ |  ج.م. ١٢٣٬٤٥٦٫٧٩ |  123,456.79 EGP |
+| `multicurrency.currencies.birr.EthiopianBirr`              | Ethiopia                                        |    ብር 123,456.79 |    ብር 123,456.79 |  123,456.79 ETB |
+| `multicurrency.currencies.euro.Euro`                       |                                                 |     123.456,79 € |     123.456,79 € |  123,456.79 EUR |
+| `multicurrency.currencies.euro.EuroAD`                     | Andorra                                         |     123.456,79 € |   123.456,79 AD€ |  123,456.79 EUR |
+| `multicurrency.currencies.euro.EuroAT`                     | Austria                                         |     € 123.456,79 |   AT€ 123.456,79 |  123,456.79 EUR |
+| `multicurrency.currencies.euro.EuroBE`                     | Belgium                                         |     € 123.456,79 |   BE€ 123.456,79 |  123,456.79 EUR |
+| `multicurrency.currencies.euro.EuroCY`                     | Cyprus                                          |     123.456,79 € |   123.456,79 CY€ |  123,456.79 EUR |
+| `multicurrency.currencies.euro.EuroDE`                     | Germany                                         |     123.456,79 € |   123.456,79 DE€ |  123,456.79 EUR |
+| `multicurrency.currencies.euro.EuroEE`                     | Estonia                                         |     123 456,79 € |   123 456,79 EE€ |  123,456.79 EUR |
+| `multicurrency.currencies.euro.EuroES`                     | Spain                                           |     123.456,79 € |   123.456,79 ES€ |  123,456.79 EUR |
+| `multicurrency.currencies.euro.EuroFI`                     | Finland                                         |     123 456,79 € |   123 456,79 FI€ |  123,456.79 EUR |
+| `multicurrency.currencies.euro.EuroFR`                     | France                                          |     123 456,79 € |   123 456,79 FR€ |  123,456.79 EUR |
+| `multicurrency.currencies.euro.EuroGR`                     | Greece                                          |     123.456,79 € |   123.456,79 GR€ |  123,456.79 EUR |
+| `multicurrency.currencies.euro.EuroIE`                     | Ireland                                         |      €123,456.79 |    IR€123,456.79 |  123,456.79 EUR |
+| `multicurrency.currencies.euro.EuroIT`                     | Italy                                           |     123.456,79 € |   123.456,79 IT€ |  123,456.79 EUR |
+| `multicurrency.currencies.euro.EuroLT`                     | Lithuania                                       |     123 456,79 € |   123 456,79 LT€ |  123,456.79 EUR |
+| `multicurrency.currencies.euro.EuroLU`                     | Luxembourg                                      |     123.456,79 € |   123.456,79 LU€ |  123,456.79 EUR |
+| `multicurrency.currencies.euro.EuroLV`                     | Latvia                                          |     123 456,79 € |   123 456,79 LV€ |  123,456.79 EUR |
+| `multicurrency.currencies.euro.EuroMC`                     | Monaco                                          |     123 456,79 € |   123 456,79 MC€ |  123,456.79 EUR |
+| `multicurrency.currencies.euro.EuroME`                     | Montenegro                                      |     123.456,79 € |   123.456,79 ME€ |  123,456.79 EUR |
+| `multicurrency.currencies.euro.EuroMT`                     | Malta                                           |      €123,456.79 |    MT€123,456.79 |  123,456.79 EUR |
+| `multicurrency.currencies.euro.EuroNL`                     | Netherlands                                     |     € 123.456,79 |   NL€ 123.456,79 |  123,456.79 EUR |
+| `multicurrency.currencies.euro.EuroPT`                     | Portugal                                        |     € 123.456,79 |   PT€ 123.456,79 |  123,456.79 EUR |
+| `multicurrency.currencies.euro.EuroSBA`                    | Akrotiri and Dhekelia                           |     123.456,79 € |     123.456,79 € |  123,456.79 EUR |
+| `multicurrency.currencies.euro.EuroSI`                     | Slovenia                                        |     123.456,79 € |   123.456,79 SI€ |  123,456.79 EUR |
+| `multicurrency.currencies.euro.EuroSK`                     | Slovakia                                        |     123 456,79 € |   123 456,79 SK€ |  123,456.79 EUR |
+| `multicurrency.currencies.euro.EuroSM`                     | San-Marino                                      |     123.456,79 € |   123.456,79 SM€ |  123,456.79 EUR |
+| `multicurrency.currencies.euro.EuroVA`                     | Vatican                                         |      €123,456.79 |    VA€123,456.79 |  123,456.79 EUR |
+| `multicurrency.currencies.euro.EuroXK`                     | Kosovo                                          |     123 456,79 € |   123 456,79 XK€ |  123,456.79 EUR |
+| `multicurrency.currencies.pound.FalklandIslandsPound`      | Falkland Islands                                |      £123,456.79 |    FK£123,456.79 |  123,456.79 FKP |
+| `multicurrency.currencies.dollar.FijiDollar`               | Fiji                                            |      $123,456.79 |    FJ$123,456.79 |  123,456.79 FJD |
+| `multicurrency.currencies.forint.Forint`                   | Hungary                                         |       123 457 Ft |       123 457 Ft |     123,457 HUF |
+| `multicurrency.currencies.lari.GeorgiaLari`                | Georgia                                         |     123 456,79 ლ |   123 456,79 GEლ |  123,456.79 GEL |
+| `multicurrency.currencies.pound.GibraltarPound`            | Gibraltar                                       |      £123,456.79 |    GI£123,456.79 |  123,456.79 GIP |
+| `multicurrency.currencies.gourde.Gourde`                   | Haiti                                           |     G 123,456.79 |     G 123,456.79 |  123,456.79 HTG |
+| `multicurrency.currencies.guarani.Guarani`                 | Paraguay                                        |        ₲ 123.457 |        ₲ 123.457 |     123,457 PYG |
+| `multicurrency.currencies.franc.GuineaFranc`               | Guinea                                          |        123 457 ₣ |      123 457 GN₣ |     123,457 GNF |
+| `multicurrency.currencies.dollar.GuyanaDollar`             | Guyana                                          |      $123,456.79 |    GY$123,456.79 |  123,456.79 GYD |
+| `multicurrency.currencies.dollar.HongKongDollar`           | Hong Kong                                       |      $123,456.79 |    HK$123,456.79 |  123,456.79 HKD |
+| `multicurrency.currencies.hryvnia.Hryvnia`                 | Ukraine                                         |     123 456,79 ₴ |     123 456,79 ₴ |  123,456.79 UAH |
+| `multicurrency.currencies.krona.IcelandKrona`              | Iceland                                         |       123.457 Kr |       123.457 Kr |     123,457 ISK |
+| `multicurrency.currencies.rupee.IndianRupee`               | India                                           |      ₹123,456.79 |      ₹123,456.79 |  123,456.79 INR |
+| `multicurrency.currencies.rupee.IndianRupeeBT`             | Bhutan                                          |      ₹123,456.79 |    BT₹123,456.79 |  123,456.79 INR |
+| `multicurrency.currencies.rupee.IndianRupeeIN`             | India                                           |      ₹123,456.79 |    IN₹123,456.79 |  123,456.79 INR |
+| `multicurrency.currencies.rial.IranianRial`                | Iran                                            |     ۱۲۳٬۴۵۶٫۷۹ ﷼ |     ۱۲۳٬۴۵۶٫۷۹ ﷼ |  123,456.79 IRR |
+| `multicurrency.currencies.dinar.IraqiDinar`                | Iraq                                            | د.ع. ١٢٣٬٤٥٦٫٧٨٩ | د.ع. ١٢٣٬٤٥٦٫٧٨٩ | 123,456.789 IQD |
+| `multicurrency.currencies.dollar.JamaicanDollar`           | Jamaica                                         |      $123,456.79 |    JM$123,456.79 |  123,456.79 JMD |
+| `multicurrency.currencies.dinar.JordanianDinar`            | Jordan                                          | د.أ. ١٢٣٬٤٥٦٫٧٨٩ | د.أ. ١٢٣٬٤٥٦٫٧٨٩ | 123,456.789 JOD |
+| `multicurrency.currencies.shilling.KenyanShilling`         | Kenya                                           |   Ksh 123,456.79 |   Ksh 123,456.79 |  123,456.79 KES |
+| `multicurrency.currencies.kina.Kina`                       | Papua New Guinea                                |     K 123,456.79 |     K 123,456.79 |  123,456.79 PGK |
+| `multicurrency.currencies.kip.Kip`                         | Laos                                            |      ₭123.456,79 |      ₭123.456,79 |  123,456.79 LAK |
+| `multicurrency.currencies.marka.KonvertibilnaMarka`        | Bosnia and Herzegovina                          |    123,456.79 КМ |    123,456.79 КМ |  123,456.79 BAM |
+| `multicurrency.currencies.dinar.KuwaitiDinar`              | Kuwait                                          | د.ك. ١٢٣٬٤٥٦٫٧٨٩ | د.ك. ١٢٣٬٤٥٦٫٧٨٩ | 123,456.789 KWD |
+| `multicurrency.currencies.kwacha.Kwacha`                   | Malawi                                          |    MK 123,456.79 |    MK 123,456.79 |  123,456.79 MWK |
+| `multicurrency.currencies.kwanza.Kwanza`                   | Angola                                          |    123 456,79 Kz |    123 456,79 Kz |  123,456.79 AOA |
+| `multicurrency.currencies.kyat.Kyat`                       | Myanmar (Burma)                                 |     ၁၂၃,၄၅၆.၇၉ K |     ၁၂၃,၄၅၆.၇၉ K |  123,456.79 MMK |
+| `multicurrency.currencies.lari.Lari`                       |                                                 |     123 456,79 ლ |   123 456,79 GEლ |  123,456.79 GEL |
+| `multicurrency.currencies.pound.LebanesePound`             | Lebanon                                         |     ل.ل. ١٢٣٬٤٥٧ |     ل.ل. ١٢٣٬٤٥٧ |     123,457 LBP |
+| `multicurrency.currencies.lek.Lek`                         | Albania                                         |   123 456,79 Lek |   123 456,79 Lek |  123,456.79 ALL |
+| `multicurrency.currencies.lempira.Lempira`                 | Honduras                                        |     L 123,456.79 |     L 123,456.79 |  123,456.79 HNL |
+| `multicurrency.currencies.leone.Leone`                     | Sierra Leone                                    |    Le 123,456.79 |    Le 123,456.79 |  123,456.79 SLL |
+| `multicurrency.currencies.leu.Leu`                         | Romania                                         |     123.456,79 L |     123.456,79 L |  123,456.79 RON |
+| `multicurrency.currencies.dollar.LiberianDollar`           | Liberia                                         |      $123,456.79 |    LR$123,456.79 |  123,456.79 LRD |
+| `multicurrency.currencies.dinar.LibyanDinar`               | Libya                                           | د.ل. 123.456,789 | د.ل. 123.456,789 | 123,456.789 LYD |
+| `multicurrency.currencies.lilangeni.Lilangeni`             | Swaziland                                       |     L 123,456.79 |     L 123,456.79 |  123,456.79 SZL |
+| `multicurrency.currencies.loti.Loti`                       | Lesotho                                         |     L 123,456.79 |     L 123,456.79 |  123,456.79 LSL |
+| `multicurrency.currencies.ariary.MalagasyAriary`           | Madagascar                                      |       123 457 Ar |       123 457 Ar |     123,457 MGA |
+| `multicurrency.currencies.ringgit.MalaysianRinggit`        | Malaysia                                        |    RM 123,456.79 |    RM 123,456.79 |  123,456.79 MYR |
+| `multicurrency.currencies.manat.Manat`                     | Turkmenistan                                    |     123 456,79 m |     123 456,79 m |  123,456.79 TMT |
+| `multicurrency.currencies.rupee.MauritiusRupee`            | Mauritius                                       |     ₨ 123,456.79 |     ₨ 123,456.79 |  123,456.79 MUR |
+| `multicurrency.currencies.metical.Metical`                 | Mozambique                                      |      123.457 MTn |      123.457 MTn |     123,457 MZN |
+| `multicurrency.currencies.peso.MexicanPeso`                | Mexico                                          |      $123,456.79 |    MX$123,456.79 |  123,456.79 MXN |
+| `multicurrency.currencies.leu.MoldovanLeu`                 | Moldova                                         |     123.456,79 L |     123.456,79 L |  123,456.79 MDL |
+| `multicurrency.currencies.dirham.MoroccanDirham`           | Morocco                                         |  ١٢٣٬٤٥٦٫٧٩ د.م. |  ١٢٣٬٤٥٦٫٧٩ د.م. |  123,456.79 MAD |
+| `multicurrency.currencies.naira.Naira`                     | Nigeria                                         |      ₦123,456.79 |      ₦123,456.79 |  123,456.79 NGN |
+| `multicurrency.currencies.nakfa.Nakfa`                     | Eritrea                                         |   Nfk 123,456.79 |   Nfk 123,456.79 |  123,456.79 ERN |
+| `multicurrency.currencies.dollar.NamibiaDollar`            | Namibia                                         |      $123,456.79 |    NA$123,456.79 |  123,456.79 NAD |
+| `multicurrency.currencies.rupee.NepaleseRupee`             | Nepal                                           |  नेरू १२३,४५६.७९ |  नेरू १२३,४५६.७९ |  123,456.79 NPR |
+| `multicurrency.currencies.shekel.NewIsraeliShekel`         | Israel                                          |     123,456.79 ₪ |     123,456.79 ₪ |  123,456.79 ILS |
+| `multicurrency.currencies.shekel.NewIsraeliShekelIL`       | Israel                                          |     123,456.79 ₪ |   123,456.79 IL₪ |  123,456.79 ILS |
+| `multicurrency.currencies.shekel.NewIsraeliShekelPS`       | Palestine                                       |     123,456.79 ₪ |   123,456.79 PS₪ |  123,456.79 ILS |
+| `multicurrency.currencies.dollar.NewZealandDollar`         | New Zealand                                     |      $123,456.79 |      $123,456.79 |  123,456.79 NZD |
+| `multicurrency.currencies.dollar.NewZealandDollarCK`       | Cook Islands                                    |      $123,456.79 |    CK$123,456.79 |  123,456.79 NZD |
+| `multicurrency.currencies.dollar.NewZealandDollarNU`       | Niue                                            |      $123,456.79 |    NU$123,456.79 |  123,456.79 NZD |
+| `multicurrency.currencies.dollar.NewZealandDollarNZ`       | New Zealand                                     |      $123,456.79 |    NZ$123,456.79 |  123,456.79 NZD |
+| `multicurrency.currencies.dollar.NewZealandDollarPN`       | Pitcairn Island                                 |      $123,456.79 |    PN$123,456.79 |  123,456.79 NZD |
+| `multicurrency.currencies.ngultrum.Ngultrum`               | Bhutan                                          |   Nu. ༡༢༣,༤༥༦.༧༩ |   Nu. ༡༢༣,༤༥༦.༧༩ |  123,456.79 BTN |
+| `multicurrency.currencies.won.NorthKoreanWon`              | North Korea                                     |     ₩ 123,456.79 |     ₩ 123,456.79 |  123,456.79 KPW |
+| `multicurrency.currencies.krone.NorwegianKrone`            | Norway                                          |    kr 123 456,79 |    kr 123 456,79 |  123,456.79 NOK |
+| `multicurrency.currencies.nuevo_sol.NuevoSol`              | Peru                                            |   S/. 123,456.79 |   S/. 123,456.79 |  123,456.79 PEN |
+| `multicurrency.currencies.ouguiya.Ouguiya`                 | Mauritania                                      |   ١٢٣٬٤٥٦٫٧٩ أ.م |   ١٢٣٬٤٥٦٫٧٩ أ.م |  123,456.79 MRU |
+| `multicurrency.currencies.pzloty.PZloty`                   | Poland                                          |    123 456,79 zł |    123 456,79 zł |  123,456.79 PLN |
+| `multicurrency.currencies.paanga.Paanga`                   | Tonga                                           |    T$ 123,456.79 |    T$ 123,456.79 |  123,456.79 TOP |
+| `multicurrency.currencies.rupee.PakistanRupee`             | Pakistan                                        |     ₨ 123,456.79 |     ₨ 123,456.79 |  123,456.79 PKR |
+| `multicurrency.currencies.pataca.Pataca`                   | Macao                                           |     P 123,456.79 |     P 123,456.79 |  123,456.79 MOP |
+| `multicurrency.currencies.peso.PesoUruguayo`               | Uruguay                                         |     $ 123.456,79 |   UY$ 123.456,79 |  123,456.79 UYU |
+| `multicurrency.currencies.peso.PhilippinePeso`             | Philippines                                     |      ₱123,456.79 |      ₱123,456.79 |  123,456.79 PHP |
+| `multicurrency.currencies.pound.PoundSterling`             | Great Britain                                   |      £123,456.79 |      £123,456.79 |  123,456.79 GBP |
+| `multicurrency.currencies.pound.PoundSterlingGB`           | Great Britain                                   |      £123,456.79 |    GB£123,456.79 |  123,456.79 GBP |
+| `multicurrency.currencies.pound.PoundSterlingGG`           | Alderney                                        |      £123,456.79 |    GG£123,456.79 |  123,456.79 GBP |
+| `multicurrency.currencies.pound.PoundSterlingIM`           | Isle of Man                                     |      £123,456.79 |    IM£123,456.79 |  123,456.79 GBP |
+| `multicurrency.currencies.pound.PoundSterlingIO`           | British Indian Ocean Territory                  |      £123,456.79 |    IO£123,456.79 |  123,456.79 GBP |
+| `multicurrency.currencies.pula.Pula`                       | Botswana                                        |     P 123,456.79 |     P 123,456.79 |  123,456.79 BWP |
+| `multicurrency.currencies.rial.QatariRial`                 | Qatar                                           |  ر.ق. ١٢٣٬٤٥٦٫٧٩ |  ر.ق. ١٢٣٬٤٥٦٫٧٩ |  123,456.79 QAR |
+| `multicurrency.currencies.quetzal.Quetzal`                 | Guatemala                                       |     Q 123,456.79 |     Q 123,456.79 |  123,456.79 GTQ |
+| `multicurrency.currencies.rand.Rand`                       | South Africa                                    |     R 123 456.79 |     R 123 456.79 |  123,456.79 ZAR |
+| `multicurrency.currencies.rand.RandLS`                     | Lesotho                                         |     R 123,456.79 |   LSR 123,456.79 |  123,456.79 ZAR |
+| `multicurrency.currencies.rand.RandNA`                     | Namibia                                         |     R 123 456.79 |   NAR 123 456.79 |  123,456.79 ZAR |
+| `multicurrency.currencies.rand.RandZA`                     | South Africa                                    |     R 123 456.79 |   ZAR 123 456.79 |  123,456.79 ZAR |
+| `multicurrency.currencies.rial.RialOmani`                  | Oman                                            | ر.ع. ١٢٣٬٤٥٦٫٧٨٩ | ر.ع. ١٢٣٬٤٥٦٫٧٨٩ | 123,456.789 OMR |
+| `multicurrency.currencies.riel.Riel`                       | Cambodia                                        |      123.456,79៛ |      123.456,79៛ |  123,456.79 KHR |
+| `multicurrency.currencies.rufiyaa.Rufiyaa`                 | Maldives                                        |    ރ. 123,456.79 |    ރ. 123,456.79 |  123,456.79 MVR |
+| `multicurrency.currencies.rupiah.Rupiah`                   | Indonesia                                       |    Rp 123.456,79 |    Rp 123.456,79 |  123,456.79 IDR |
+| `multicurrency.currencies.ruble.RussianRuble`              | Russia                                          |     123 456,79 ₽ |     123 456,79 ₽ |  123,456.79 RUB |
+| `multicurrency.currencies.ruble.RussianRubleGE`            | South Ossetia                                   |     123 456,79 ₽ |   123 456,79 GE₽ |  123,456.79 RUB |
+| `multicurrency.currencies.ruble.RussianRubleRU`            | Russia                                          |     123 456,79 ₽ |   123 456,79 RU₽ |  123,456.79 RUB |
+| `multicurrency.currencies.franc.RwandaFranc`               | Rwanda                                          |        ₣ 123.457 |      RW₣ 123.457 |     123,457 RWF |
+| `multicurrency.currencies.pound.SaintHelenaPound`          | Saint Helena                                    |      £123,456.79 |    SH£123,456.79 |  123,456.79 SHP |
+| `multicurrency.currencies.pound.SaintHelenaPoundAI`        | Ascension Island                                |      £123,456.79 |    SH£123,456.79 |  123,456.79 SHP |
+| `multicurrency.currencies.pound.SaintHelenaPoundTC`        | Tristan da Cunha                                |      £123,456.79 |    SH£123,456.79 |  123,456.79 SHP |
+| `multicurrency.currencies.riyal.SaudiRiyal`                | Saudi Arabia                                    |  ر.س. ١٢٣٬٤٥٦٫٧٩ |  ر.س. ١٢٣٬٤٥٦٫٧٩ |  123,456.79 SAR |
+| `multicurrency.currencies.dinar.SerbianDinarSR`            | Serbia                                          |  123 456,79 дин. |  123 456,79 дин. |  123,456.79 RSD |
+| `multicurrency.currencies.dinar.SerbianDinarXK`            | Kosovo                                          |  123.456,79 дин. |  123.456,79 дин. |  123,456.79 RSD |
+| `multicurrency.currencies.rupee.SeychellesRupee`           | Seychelles                                      |     ₨ 123,456.79 |     ₨ 123,456.79 |  123,456.79 SCR |
+| `multicurrency.currencies.dollar.SingaporeDollar`          | Singapore                                       |      $123,456.79 |      $123,456.79 |  123,456.79 SGD |
+| `multicurrency.currencies.dollar.SingaporeDollarBN`        | Brunei                                          |      $123,456.79 |    BN$123,456.79 |  123,456.79 SGD |
+| `multicurrency.currencies.dollar.SingaporeDollarSG`        | Singapore                                       |      $123,456.79 |    SG$123,456.79 |  123,456.79 SGD |
+| `multicurrency.currencies.dollar.SolomonIslandsDollar`     | Solomon Islands                                 |      $123,456.79 |    SB$123,456.79 |  123,456.79 SBD |
+| `multicurrency.currencies.som.Som`                         | Kyrgyzstan                                      |    123 456,79 Лв |    123 456,79 Лв |  123,456.79 KGS |
+| `multicurrency.currencies.shilling.SomaliShilling`         | Somalia                                         |   SSh 123,456.79 |   SSh 123,456.79 |  123,456.79 SOS |
+| `multicurrency.currencies.somoni.Somoni`                   | Tajikistan                                      |    ЅМ 123,456.79 |    ЅМ 123,456.79 |  123,456.79 TJS |
+| `multicurrency.currencies.won.SouthKoreanWon`              | South Korea                                     |         ₩123,457 |         ₩123,457 |     123,457 KRW |
+| `multicurrency.currencies.lari.SouthOssetiaLari`           | South Ossetia                                   |     123 456,79 ლ |   123 456,79 GEლ |  123,456.79 GEL |
+| `multicurrency.currencies.rupee.SriLankaRupee`             | Sri Lanka                                       |   රු. 123,456.79 |   රු. 123,456.79 |  123,456.79 LKR |
+| `multicurrency.currencies.pound.SudanesePound`             | Sudan                                           |   ١٢٣٬٤٥٦٫٧٩ ج.س |   ١٢٣٬٤٥٦٫٧٩ ج.س |  123,456.79 SDG |
+| `multicurrency.currencies.dollar.SurinameDollar`           | Suriname                                        |     $ 123.456,79 |   SR$ 123.456,79 |  123,456.79 SRD |
+| `multicurrency.currencies.krona.SwedishKrona`              | Sweden                                          |    123 456,79 kr |    123 456,79 kr |  123,456.79 SEK |
+| `multicurrency.currencies.franc.SwissFranc`                | Switzerland                                     |     ₣ 123'456.79 |     ₣ 123'456.79 |  123,456.79 CHF |
+| `multicurrency.currencies.franc.SwissFrancCH`              | Switzerland                                     |     ₣ 123'456.79 |   CH₣ 123'456.79 |  123,456.79 CHF |
+| `multicurrency.currencies.franc.SwissFrancLI`              | Liechtenstein                                   |     ₣ 123'456.79 |   LI₣ 123'456.79 |  123,456.79 CHF |
+| `multicurrency.currencies.pound.SyrianPound`               | Syria                                           |   ١٢٣٬٤٥٦٫٧٩ ل.س |   ١٢٣٬٤٥٦٫٧٩ ل.س |  123,456.79 SYP |
+| `multicurrency.currencies.dollar.TaiwanDollar`             | Taiwan                                          |      $123,456.79 |    TW$123,456.79 |  123,456.79 TWD |
+| `multicurrency.currencies.taka.Taka`                       | Bangladesh                                      |      ১২৩,৪৫৬.৭৯৳ |      ১২৩,৪৫৬.৭৯৳ |  123,456.79 BDT |
+| `multicurrency.currencies.tala.Tala`                       | Samoa                                           |     T 123,456.79 |     T 123,456.79 |  123,456.79 WST |
+| `multicurrency.currencies.shilling.TanzanianShilling`      | Tanzania                                        |   TSh 123,456.79 |   TSh 123,456.79 |  123,456.79 TZS |
+| `multicurrency.currencies.tenge.Tenge`                     | Kazakhstan                                      |     123 456,79 〒 |     123 456,79 〒 |  123,456.79 KZT |
+| `multicurrency.currencies.dollar.TrinidadandTobagoDollar`  | Trinidad and Tobago                             |      $123,456.79 |    TT$123,456.79 |  123,456.79 TTD |
+| `multicurrency.currencies.tugrik.Tugrik`                   | Mongolia                                        |     ₮ 123,456.79 |     ₮ 123,456.79 |  123,456.79 MNT |
+| `multicurrency.currencies.dinar.TunisianDinar`             | Tunisia                                         | د.ت. 123.456,789 | د.ت. 123.456,789 | 123,456.789 TND |
+| `multicurrency.currencies.lira.TurkishLira`                | Turkey                                          |      ₤123.456,79 |      ₤123.456,79 |  123,456.79 TRY |
+| `multicurrency.currencies.lira.TurkishLiraCY`              | North Cyprus                                    |      ₤123.456,79 |    CY₤123.456,79 |  123,456.79 TRY |
+| `multicurrency.currencies.lira.TurkishLiraTR`              | Turkey                                          |      ₤123.456,79 |    TR₤123.456,79 |  123,456.79 TRY |
+| `multicurrency.currencies.dirham.UAEDirham`                | UAE                                             |  د.إ. ١٢٣٬٤٥٦٫٧٩ |  د.إ. ١٢٣٬٤٥٦٫٧٩ |  123,456.79 AED |
+| `multicurrency.currencies.dollar.USDollar`                 | United States of America                        |      $123,456.79 |    US$123,456.79 |  123,456.79 USD |
+| `multicurrency.currencies.dollar.USDollarAS`               | American Samoa                                  |      $123,456.79 |    AS$123,456.79 |  123,456.79 USD |
+| `multicurrency.currencies.dollar.USDollarFM`               | Micronesia                                      |      $123,456.79 |    FM$123,456.79 |  123,456.79 USD |
+| `multicurrency.currencies.dollar.USDollarGU`               | Guam                                            |      $123,456.79 |    GU$123,456.79 |  123,456.79 USD |
+| `multicurrency.currencies.dollar.USDollarHT`               | Haiti                                           |      $123,456.79 |    HT$123,456.79 |  123,456.79 USD |
+| `multicurrency.currencies.dollar.USDollarIO`               | British Indian Ocean Territory                  |      $123,456.79 |    IO$123,456.79 |  123,456.79 USD |
+| `multicurrency.currencies.dollar.USDollarMH`               | Marshall Islands                                |      $123,456.79 |    MH$123,456.79 |  123,456.79 USD |
+| `multicurrency.currencies.dollar.USDollarMP`               | Northern Mariana Islands                        |      $123,456.79 |    MP$123,456.79 |  123,456.79 USD |
+| `multicurrency.currencies.dollar.USDollarPA`               | Panama                                          |      $123,456.79 |    PA$123,456.79 |  123,456.79 USD |
+| `multicurrency.currencies.dollar.USDollarPC`               | Pacific Remote Islands                          |      $123,456.79 |    PC$123,456.79 |  123,456.79 USD |
+| `multicurrency.currencies.dollar.USDollarPR`               | Puerto Rico                                     |      $123,456.79 |    PR$123,456.79 |  123,456.79 USD |
+| `multicurrency.currencies.dollar.USDollarPW`               | Palau                                           |      $123,456.79 |    PW$123,456.79 |  123,456.79 USD |
+| `multicurrency.currencies.dollar.USDollarTC`               | Turks and Caicos Islands                        |      $123,456.79 |    TC$123,456.79 |  123,456.79 USD |
+| `multicurrency.currencies.dollar.USDollarVG`               | British Virgin Islands                          |      $123,456.79 |    VG$123,456.79 |  123,456.79 USD |
+| `multicurrency.currencies.dollar.USDollarVI`               | US Virgin Islands                               |      $123,456.79 |    VI$123,456.79 |  123,456.79 USD |
+| `multicurrency.currencies.shilling.UgandaShilling`         | Uganda                                          |      USh 123,457 |      USh 123,457 |     123,457 UGX |
+| `multicurrency.currencies.sum.UzbekistanSum`               | Uzbekistan                                      |   123 456,79 сўм |   123 456,79 сўм |  123,456.79 UZS |
+| `multicurrency.currencies.vatu.Vatu`                       | Vanuatu                                         |       Vt 123,457 |       Vt 123,457 |     123,457 VUV |
+| `multicurrency.currencies.rial.YemeniRial`                 | Yemen                                           |     ١٢٣٬٤٥٦٫٧٩ ﷼ |     ١٢٣٬٤٥٦٫٧٩ ﷼ |  123,456.79 YER |
+| `multicurrency.currencies.yen.Yen`                         | Japan                                           |         ¥123,457 |         ¥123,457 |     123,457 JPY |
+| `multicurrency.currencies.yuan.Yuan`                       | China                                           |      ¥123,456.79 |      ¥123,456.79 |  123,456.79 CNY |
+| `multicurrency.currencies.kwacha.ZambianKwacha`            | Zambia                                          |    ZK 123,456.79 |    ZK 123,456.79 |  123,456.79 ZMW |
+| `multicurrency.currencies.dollar.ZimbabweDollar`           | Zimbabwe                                        |     $ 123,456.79 |   ZW$ 123,456.79 |  123,456.79 ZWL |
 
-List of supported cryptocurrencies (and default format):
+## Supported Cryptocurrencies
 
-* `Bitcoin` (₿123,456.78900000 | ₿123,456.78900000 | XBT 123,456.78900000),
-* `EOS` (ε123,456.7890 | ε123,456.7890 | EOS 123,456.7890),
-* `Ethereum` (Ξ123,456.789000000000000000 | Ξ123,456.789000000000000000 | ETH 123,456.789000000000000000),
-* `Monero` (ɱ123,456.789000000000 | ɱ123,456.789000000000 | XMR 123,456.789000000000),
-* `Ripple` (✕123,456.789000 | ✕123,456.789000 | XRP 123,456.789000),
-* `StellarLumens` (*123,456.7890000 | *123,456.7890000 | XLM 123,456.7890000),
-* `Tezos` (ꜩ123,456.789000 | ꜩ123,456.789000 | XTZ 123,456.789000),
-* `Zcash` (ⓩ123,456.78900000 | ⓩ123,456.78900000 | ZEC 123,456.78900000)
+Table of supported cryptocurrencies (and default format):
+
+| Cryptocurrency                                  |                     Default |                   Localized |                  International |
+|:------------------------------------------------|----------------------------:|----------------------------:|-------------------------------:|
+| `multicurrency.currencies.crypto.Bitcoin`       |           ₿123,456.78900000 |           ₿123,456.78900000 |           123,456.78900000 XBT |
+| `multicurrency.currencies.crypto.EOS`           |               ε123,456.7890 |               ε123,456.7890 |               123,456.7890 EOS |
+| `multicurrency.currencies.crypto.Ethereum`      | Ξ123,456.789000000000000000 | Ξ123,456.789000000000000000 | 123,456.789000000000000000 ETH |
+| `multicurrency.currencies.crypto.Monero`        |       ɱ123,456.789000000000 |       ɱ123,456.789000000000 |       123,456.789000000000 XMR |
+| `multicurrency.currencies.crypto.Ripple`        |             ✕123,456.789000 |             ✕123,456.789000 |             123,456.789000 XRP |
+| `multicurrency.currencies.crypto.StellarLumens` |            *123,456.7890000 |            *123,456.7890000 |            123,456.7890000 XLM |
+| `multicurrency.currencies.crypto.Tezos`         |             ꜩ123,456.789000 |             ꜩ123,456.789000 |             123,456.789000 XTZ |
+| `multicurrency.currencies.crypto.Zcash`         |           ⓩ123,456.78900000 |           ⓩ123,456.78900000 |           123,456.78900000 ZEC |
 
 ## Build (from source)
 
@@ -773,13 +789,6 @@ A development environment can be created using the following command:
 make dev
 ```
 
-After creating the development environment activate the virtual enviroment
-that was created using the following command:
-
-```shell
-source .venv/bin/activate
-```
-
 To build a Python package for this library use the following command:
 
 ```shell
@@ -788,13 +797,6 @@ make build
 
 After this you should have a wheel file (`*.whl`) inside a folder called
 `dist`.
-
-You can now leave the virtual environment used to crete the Python package.
-Use the following command for that:
-
-```shell
-deactivate
-```
 
 The library can be install using the wheel file and pip3:
 

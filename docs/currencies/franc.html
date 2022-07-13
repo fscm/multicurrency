@@ -1,0 +1,1404 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<title>multicurrency.currencies.franc API documentation</title>
+<meta name="description" content="Franc currency representation(s)." />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github.min.css" integrity="sha512-0aPQyyeZrWj9sCA46UlmWgKOP0mUipLQ6OZXu8l4IcAmD2u31EPEy9VcIMvl7SoAaKe8bLXZhYoMaE/in+gcgA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js" integrity="sha512-IaaKO80nPNs5j+VLxd42eK/7sYuXQmr+fyywCNA0e+C6gtQnuCXNtORe9xR4LqGPz5U9VpH+ff41wKs/ZmC3iA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>multicurrency.currencies.franc</code></h1>
+</header>
+<section id="section-intro">
+<p>Franc currency representation(s).</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="multicurrency.currencies.franc.BurundiFranc"><code class="flex name class">
+<span>class <span class="ident">BurundiFranc</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '0,\u202f3%a\xa0%s')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (Burundi) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import BurundiFranc
+&gt;&gt;&gt; burundi_franc = BurundiFranc(
+...     amount=123456.789)
+&gt;&gt;&gt; print(burundi_franc)
+123 457 ₣
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'0, 3%a %s'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.currencies.franc.CFAFrancBCEAO"><code class="flex name class">
+<span>class <span class="ident">CFAFrancBCEAO</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '0,\u202f3%a\xa0%s')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (Senegal) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import CFAFrancBCEAO
+&gt;&gt;&gt; cfa_franc_bceao = CFAFrancBCEAO(
+...     amount=123456.789)
+&gt;&gt;&gt; print(cfa_franc_bceao)
+123 457 ₣
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'0, 3%a %s'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.currencies.franc.CFAFrancBCEAOBF"><code class="flex name class">
+<span>class <span class="ident">CFAFrancBCEAOBF</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '0,\u202f3%a\xa0%s')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (Burkina Faso) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import CFAFrancBCEAOBF
+&gt;&gt;&gt; cfa_franc_bceao_bf = CFAFrancBCEAOBF(
+...     amount=123456.789)
+&gt;&gt;&gt; print(cfa_franc_bceao_bf)
+123 457 ₣
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'0, 3%a %s'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.currencies.franc.CFAFrancBCEAOBJ"><code class="flex name class">
+<span>class <span class="ident">CFAFrancBCEAOBJ</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '0,\u202f3%a\xa0%s')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (Benin) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import CFAFrancBCEAOBJ
+&gt;&gt;&gt; cfa_franc_bceao_bj = CFAFrancBCEAOBJ(
+...     amount=123456.789)
+&gt;&gt;&gt; print(cfa_franc_bceao_bj)
+123 457 ₣
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'0, 3%a %s'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.currencies.franc.CFAFrancBCEAOCI"><code class="flex name class">
+<span>class <span class="ident">CFAFrancBCEAOCI</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '0,\u202f3%a\xa0%s')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (Côte d'Ivoire) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import CFAFrancBCEAOCI
+&gt;&gt;&gt; cfa_franc_bceao_ci = CFAFrancBCEAOCI(
+...     amount=123456.789)
+&gt;&gt;&gt; print(cfa_franc_bceao_ci)
+123 457 ₣
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'0, 3%a %s'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.currencies.franc.CFAFrancBCEAOGW"><code class="flex name class">
+<span>class <span class="ident">CFAFrancBCEAOGW</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '0,\u202f3%a\xa0%s')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (Guinea-Bissau) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import CFAFrancBCEAOGW
+&gt;&gt;&gt; cfa_franc_bceao_gw = CFAFrancBCEAOGW(
+...     amount=123456.789)
+&gt;&gt;&gt; print(cfa_franc_bceao_gw)
+123 457 ₣
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'0, 3%a %s'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.currencies.franc.CFAFrancBCEAOML"><code class="flex name class">
+<span>class <span class="ident">CFAFrancBCEAOML</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '0,\u202f3%a\xa0%s')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (Mali) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import CFAFrancBCEAOML
+&gt;&gt;&gt; cfa_franc_bceao_ml = CFAFrancBCEAOML(
+...     amount=123456.789)
+&gt;&gt;&gt; print(cfa_franc_bceao_ml)
+123 457 ₣
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'0, 3%a %s'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.currencies.franc.CFAFrancBCEAONG"><code class="flex name class">
+<span>class <span class="ident">CFAFrancBCEAONG</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '0,\u202f3%a\xa0%s')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (Niger) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import CFAFrancBCEAONG
+&gt;&gt;&gt; cfa_franc_bceao_ng = CFAFrancBCEAONG(
+...     amount=123456.789)
+&gt;&gt;&gt; print(cfa_franc_bceao_ng)
+123 457 ₣
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'0, 3%a %s'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.currencies.franc.CFAFrancBCEAOSN"><code class="flex name class">
+<span>class <span class="ident">CFAFrancBCEAOSN</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '0,\u202f3%a\xa0%s')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (Senegal) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import CFAFrancBCEAOSN
+&gt;&gt;&gt; cfa_franc_bceao_sn = CFAFrancBCEAOSN(
+...     amount=123456.789)
+&gt;&gt;&gt; print(cfa_franc_bceao_sn)
+123 457 ₣
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'0, 3%a %s'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.currencies.franc.CFAFrancBCEAOTG"><code class="flex name class">
+<span>class <span class="ident">CFAFrancBCEAOTG</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '0,\u202f3%a\xa0%s')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (Togo) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import CFAFrancBCEAOTG
+&gt;&gt;&gt; cfa_franc_bceao_tg = CFAFrancBCEAOTG(
+...     amount=123456.789)
+&gt;&gt;&gt; print(cfa_franc_bceao_tg)
+123 457 ₣
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'0, 3%a %s'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.currencies.franc.CFAFrancBEAC"><code class="flex name class">
+<span>class <span class="ident">CFAFrancBEAC</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '0,\u202f3%a\xa0%s')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (Cameroon) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import CFAFrancBEAC
+&gt;&gt;&gt; cfa_franc_beac = CFAFrancBEAC(
+...     amount=123456.789)
+&gt;&gt;&gt; print(cfa_franc_beac)
+123 457 ₣
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'0, 3%a %s'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.currencies.franc.CFAFrancBEACCD"><code class="flex name class">
+<span>class <span class="ident">CFAFrancBEACCD</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '0,\u202f3%a\xa0%s')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (Congo (Brazzaville)) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import CFAFrancBEACCD
+&gt;&gt;&gt; cfa_franc_beac_cd = CFAFrancBEACCD(
+...     amount=123456.789)
+&gt;&gt;&gt; print(cfa_franc_beac_cd)
+123 457 ₣
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'0, 3%a %s'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.currencies.franc.CFAFrancBEACCF"><code class="flex name class">
+<span>class <span class="ident">CFAFrancBEACCF</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '0,\u202f3%a\xa0%s')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (Central African Republic) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import CFAFrancBEACCF
+&gt;&gt;&gt; cfa_franc_beac_cf = CFAFrancBEACCF(
+...     amount=123456.789)
+&gt;&gt;&gt; print(cfa_franc_beac_cf)
+123 457 ₣
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'0, 3%a %s'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.currencies.franc.CFAFrancBEACCM"><code class="flex name class">
+<span>class <span class="ident">CFAFrancBEACCM</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '0,\u202f3%a\xa0%s')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (Cameroon) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import CFAFrancBEACCM
+&gt;&gt;&gt; cfa_franc_beac_cm = CFAFrancBEACCM(
+...     amount=123456.789)
+&gt;&gt;&gt; print(cfa_franc_beac_cm)
+123 457 ₣
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'0, 3%a %s'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.currencies.franc.CFAFrancBEACGA"><code class="flex name class">
+<span>class <span class="ident">CFAFrancBEACGA</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '0,\u202f3%a\xa0%s')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (Gabon) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import CFAFrancBEACGA
+&gt;&gt;&gt; cfa_franc_beac_ga = CFAFrancBEACGA(
+...     amount=123456.789)
+&gt;&gt;&gt; print(cfa_franc_beac_ga)
+123 457 ₣
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'0, 3%a %s'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.currencies.franc.CFAFrancBEACGQ"><code class="flex name class">
+<span>class <span class="ident">CFAFrancBEACGQ</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '0,\u202f3%a\xa0%s')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (Equatorial Guinea) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import CFAFrancBEACGQ
+&gt;&gt;&gt; cfa_franc_beac_gq = CFAFrancBEACGQ(
+...     amount=123456.789)
+&gt;&gt;&gt; print(cfa_franc_beac_gq)
+123 457 ₣
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'0, 3%a %s'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.currencies.franc.CFAFrancBEACTD"><code class="flex name class">
+<span>class <span class="ident">CFAFrancBEACTD</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '0,\u202f3%a\xa0%s')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (Chad) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import CFAFrancBEACTD
+&gt;&gt;&gt; cfa_franc_beac_td = CFAFrancBEACTD(
+...     amount=123456.789)
+&gt;&gt;&gt; print(cfa_franc_beac_td)
+123 457 ₣
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'0, 3%a %s'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.currencies.franc.CFPFranc"><code class="flex name class">
+<span>class <span class="ident">CFPFranc</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '0,\u202f3%a\xa0%s')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (French Polynesia) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import CFPFranc
+&gt;&gt;&gt; cfp_franc = CFPFranc(
+...     amount=123456.789)
+&gt;&gt;&gt; print(cfp_franc)
+123 457 ₣
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'0, 3%a %s'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.currencies.franc.CFPFrancNC"><code class="flex name class">
+<span>class <span class="ident">CFPFrancNC</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '0,\u202f3%a\xa0%s')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (New Caledonia) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import CFPFrancNC
+&gt;&gt;&gt; cfp_franc_nc = CFPFrancNC(
+...     amount=123456.789)
+&gt;&gt;&gt; print(cfp_franc_nc)
+123 457 ₣
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'0, 3%a %s'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.currencies.franc.CFPFrancPF"><code class="flex name class">
+<span>class <span class="ident">CFPFrancPF</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '0,\u202f3%a\xa0%s')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (French Polynesia) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import CFPFrancPF
+&gt;&gt;&gt; cfp_franc_pf = CFPFrancPF(
+...     amount=123456.789)
+&gt;&gt;&gt; print(cfp_franc_pf)
+123 457 ₣
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'0, 3%a %s'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.currencies.franc.CFPFrancWF"><code class="flex name class">
+<span>class <span class="ident">CFPFrancWF</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '0,\u202f3%a\xa0%s')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (Wallis and Futuna) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import CFPFrancWF
+&gt;&gt;&gt; cfp_franc_wf = CFPFrancWF(
+...     amount=123456.789)
+&gt;&gt;&gt; print(cfp_franc_wf)
+123 457 ₣
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'0, 3%a %s'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.currencies.franc.CongoleseFranc"><code class="flex name class">
+<span>class <span class="ident">CongoleseFranc</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '2,\u202f3%a\xa0%s')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (Congo (Kinshasa)) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import CongoleseFranc
+&gt;&gt;&gt; congolese_franc = CongoleseFranc(
+...     amount=123456.789)
+&gt;&gt;&gt; print(congolese_franc)
+123 456,79 ₣
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'2, 3%a %s'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.currencies.franc.DjiboutiFranc"><code class="flex name class">
+<span>class <span class="ident">DjiboutiFranc</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '0,\u202f3%a\xa0%s')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (Djibouti) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import DjiboutiFranc
+&gt;&gt;&gt; djibouti_franc = DjiboutiFranc(
+...     amount=123456.789)
+&gt;&gt;&gt; print(djibouti_franc)
+123 457 ₣
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'0, 3%a %s'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.currencies.franc.GuineaFranc"><code class="flex name class">
+<span>class <span class="ident">GuineaFranc</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '0,\u202f3%a\xa0%s')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (Guinea) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import GuineaFranc
+&gt;&gt;&gt; guinea_franc = GuineaFranc(
+...     amount=123456.789)
+&gt;&gt;&gt; print(guinea_franc)
+123 457 ₣
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'0, 3%a %s'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.currencies.franc.RwandaFranc"><code class="flex name class">
+<span>class <span class="ident">RwandaFranc</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '0,.3%s\xa0%a')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (Rwanda) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import RwandaFranc
+&gt;&gt;&gt; rwanda_franc = RwandaFranc(
+...     amount=123456.789)
+&gt;&gt;&gt; print(rwanda_franc)
+₣ 123.457
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'0,.3%s %a'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.currencies.franc.SwissFranc"><code class="flex name class">
+<span>class <span class="ident">SwissFranc</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = "2.'3%s\xa0%a")</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (Switzerland) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import SwissFranc
+&gt;&gt;&gt; swiss_franc = SwissFranc(
+...     amount=123456.789)
+&gt;&gt;&gt; print(swiss_franc)
+₣ 123'456.79
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'2.'3%s %a'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.currencies.franc.SwissFrancCH"><code class="flex name class">
+<span>class <span class="ident">SwissFrancCH</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = "2.'3%s\xa0%a")</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (Switzerland) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import SwissFrancCH
+&gt;&gt;&gt; swiss_franc_ch = SwissFrancCH(
+...     amount=123456.789)
+&gt;&gt;&gt; print(swiss_franc_ch)
+₣ 123'456.79
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'2.'3%s %a'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="multicurrency.currencies.franc.SwissFrancLI"><code class="flex name class">
+<span>class <span class="ident">SwissFrancLI</span></span>
+<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = "2.'3%s\xa0%a")</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Franc (Liechtenstein) currency representation.</p>
+<p>Simple usage example:</p>
+<pre><code>&gt;&gt;&gt; from multicurrency import SwissFrancLI
+&gt;&gt;&gt; swiss_franc_li = SwissFrancLI(
+...     amount=123456.789)
+&gt;&gt;&gt; print(swiss_franc_li)
+₣ 123'456.79
+</code></pre>
+<p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
+<dd>Represented value.</dd>
+<dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Currency format pattern. Defaults to
+'2.'3%s %a'.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="multicurrency.pycurrency.Currency.alpha_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.alpha_code">alpha_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.amount" href="../pycurrency.html#multicurrency.pycurrency.Currency.amount">amount</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.convertion" href="../pycurrency.html#multicurrency.pycurrency.Currency.convertion">convertion</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.international" href="../pycurrency.html#multicurrency.pycurrency.Currency.international">international</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.is_signed" href="../pycurrency.html#multicurrency.pycurrency.Currency.is_signed">is_signed</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized">localized</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.localized_symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.localized_symbol">localized_symbol</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.numeric_code" href="../pycurrency.html#multicurrency.pycurrency.Currency.numeric_code">numeric_code</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.pattern" href="../pycurrency.html#multicurrency.pycurrency.Currency.pattern">pattern</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.precision" href="../pycurrency.html#multicurrency.pycurrency.Currency.precision">precision</a></code></li>
+<li><code><a title="multicurrency.pycurrency.Currency.symbol" href="../pycurrency.html#multicurrency.pycurrency.Currency.symbol">symbol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="multicurrency.currencies" href="index.html">multicurrency.currencies</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.BurundiFranc" href="#multicurrency.currencies.franc.BurundiFranc">BurundiFranc</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.CFAFrancBCEAO" href="#multicurrency.currencies.franc.CFAFrancBCEAO">CFAFrancBCEAO</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.CFAFrancBCEAOBF" href="#multicurrency.currencies.franc.CFAFrancBCEAOBF">CFAFrancBCEAOBF</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.CFAFrancBCEAOBJ" href="#multicurrency.currencies.franc.CFAFrancBCEAOBJ">CFAFrancBCEAOBJ</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.CFAFrancBCEAOCI" href="#multicurrency.currencies.franc.CFAFrancBCEAOCI">CFAFrancBCEAOCI</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.CFAFrancBCEAOGW" href="#multicurrency.currencies.franc.CFAFrancBCEAOGW">CFAFrancBCEAOGW</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.CFAFrancBCEAOML" href="#multicurrency.currencies.franc.CFAFrancBCEAOML">CFAFrancBCEAOML</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.CFAFrancBCEAONG" href="#multicurrency.currencies.franc.CFAFrancBCEAONG">CFAFrancBCEAONG</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.CFAFrancBCEAOSN" href="#multicurrency.currencies.franc.CFAFrancBCEAOSN">CFAFrancBCEAOSN</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.CFAFrancBCEAOTG" href="#multicurrency.currencies.franc.CFAFrancBCEAOTG">CFAFrancBCEAOTG</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.CFAFrancBEAC" href="#multicurrency.currencies.franc.CFAFrancBEAC">CFAFrancBEAC</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.CFAFrancBEACCD" href="#multicurrency.currencies.franc.CFAFrancBEACCD">CFAFrancBEACCD</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.CFAFrancBEACCF" href="#multicurrency.currencies.franc.CFAFrancBEACCF">CFAFrancBEACCF</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.CFAFrancBEACCM" href="#multicurrency.currencies.franc.CFAFrancBEACCM">CFAFrancBEACCM</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.CFAFrancBEACGA" href="#multicurrency.currencies.franc.CFAFrancBEACGA">CFAFrancBEACGA</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.CFAFrancBEACGQ" href="#multicurrency.currencies.franc.CFAFrancBEACGQ">CFAFrancBEACGQ</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.CFAFrancBEACTD" href="#multicurrency.currencies.franc.CFAFrancBEACTD">CFAFrancBEACTD</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.CFPFranc" href="#multicurrency.currencies.franc.CFPFranc">CFPFranc</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.CFPFrancNC" href="#multicurrency.currencies.franc.CFPFrancNC">CFPFrancNC</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.CFPFrancPF" href="#multicurrency.currencies.franc.CFPFrancPF">CFPFrancPF</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.CFPFrancWF" href="#multicurrency.currencies.franc.CFPFrancWF">CFPFrancWF</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.CongoleseFranc" href="#multicurrency.currencies.franc.CongoleseFranc">CongoleseFranc</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.DjiboutiFranc" href="#multicurrency.currencies.franc.DjiboutiFranc">DjiboutiFranc</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.GuineaFranc" href="#multicurrency.currencies.franc.GuineaFranc">GuineaFranc</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.RwandaFranc" href="#multicurrency.currencies.franc.RwandaFranc">RwandaFranc</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.SwissFranc" href="#multicurrency.currencies.franc.SwissFranc">SwissFranc</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.SwissFrancCH" href="#multicurrency.currencies.franc.SwissFrancCH">SwissFrancCH</a></code></h4>
+</li>
+<li>
+<h4><code><a title="multicurrency.currencies.franc.SwissFrancLI" href="#multicurrency.currencies.franc.SwissFrancLI">SwissFrancLI</a></code></h4>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Copyright &#169; 2022, Frederico Martins</p>
+</footer>
+</body>
+</html>
