@@ -1,5 +1,12 @@
 # Changelog
 
+## [v2.0.0](https://github.com/fscm/multicurrency/tree/v2.0.2) (2022-07-13)
+
+### [changes](https://github.com/fscm/multicurrency/compare/v1.0.1...v2.0.0)
+
+* major refactoring of library code
+* breaks compatibiliy with previous versions
+
 ## [v1.0.1](https://github.com/fscm/multicurrency/tree/v1.0.1) (2022-03-17)
 
 ### [changes](https://github.com/fscm/multicurrency/compare/v1.0.0...v1.0.1)
