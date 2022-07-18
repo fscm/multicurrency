@@ -104,7 +104,7 @@ clean-all: clean _clean-stubs _clean-dev
 
 dev: $(__PYVENV_CFG__)
 
-docs: $(__PYVENV_CFG__) _clean-docs
+docs: dev _clean-docs
 	@echo "Checking documentation examples..."
 	@"$(VENV_DIR)"/bin/$(PYTEST) $(PYTEST_ARGS) $(PYTEST_DOC_ARGS) \
 		--rootdir="$(PROJECT_DIR)" "$(SOURCE_DIR)/$(PACKAGE_NAME)"
@@ -116,19 +116,19 @@ docs: $(__PYVENV_CFG__) _clean-docs
 	@$(MV) "$(PROJECT_DIR)/docs/$(PACKAGE_NAME)"/* "$(PROJECT_DIR)/docs/"
 	@$(RM) "$(PROJECT_DIR)/docs/$(PACKAGE_NAME)"
 
-format: $(__PYVENV_CFG__)
+format: dev
 	@echo "Formating code..."
 	@"$(VENV_DIR)"/bin/$(AUTOPEP) $(AUTOPEP_ARGS) "$(SOURCE_DIR)/$(PACKAGE_NAME)"
 
-lint: $(__PYVENV_CFG__)
+lint: dev
 	@echo "Checking the code..."
 	@"$(VENV_DIR)"/bin/$(PYLINT) $(PYLINT_ARGS) "$(SOURCE_DIR)/$(PACKAGE_NAME)"
 
-minversion: $(__PYVENV_CFG__)
+minversion: dev
 	@echo "Finding minimum Python version..."
 	@"$(VENV_DIR)"/bin/$(VERMIN) $(VERMIN_ARGS) "$(SOURCE_DIR)/$(PACKAGE_NAME)"
 
-publish: $(__PYVENV_CFG__)
+publish: dev
 ifeq (,$(wildcard $(PROJECT_DIR)/dist))
 	@echo "Packages not found."
 	@echo "Run 'make build' first to create them."
@@ -137,7 +137,7 @@ else
 	@"$(VENV_DIR)"/bin/$(TWINE) upload "$(PROJECT_DIR)"/dist/*
 endif
 
-publish-test: $(__PYVENV_CFG__)
+publish-test: dev
 ifeq (,$(wildcard $(PROJECT_DIR)/dist))
 	@echo "Packages not found."
 	@echo "Run 'make build' first to create them."
@@ -147,12 +147,12 @@ else
 		"$(PROJECT_DIR)"/dist/*
 endif
 
-stubs: $(__PYVENV_CFG__)
+stubs: dev
 	@echo "Generating stubs..."
 	@"$(VENV_DIR)"/bin/$(STUBGEN) $(STUBGEN_ARGS) --package "$(PACKAGE_NAME)" \
 		--search-path "$(SOURCE_DIR)" --output $(SOURCE_DIR)
 
-tests: $(__PYVENV_CFG__)
+tests: dev
 	@echo "Running tests..."
 	@"$(VENV_DIR)"/bin/$(PYTEST) $(PYTEST_ARGS) --cov="$(PACKAGE_NAME)" \
 		--rootdir="$(PROJECT_DIR)"
