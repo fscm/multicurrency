@@ -8,9 +8,10 @@
 MAKEFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
 PROJECT_DIR := $(realpath $(dir $(MAKEFILE_PATH)))
 PACKAGE_NAME := $(notdir $(PROJECT_DIR))
-PYPROJECT_TOML := $(PROJECT_DIR)/pyproject.toml
 SOURCE_DIR := $(PROJECT_DIR)/src
 VENV_DIR := $(PROJECT_DIR)/.venv
+__PYPROJECT_TOML__ := $(PROJECT_DIR)/pyproject.toml
+__PYVENV_CFG__ := $(VENV_DIR)/pyvenv.cfg
 
 BUILD_ARTIFACTS := build dist src/*.egg-info src/"$(PACKAGE_NAME)"/*.so
 CACHE_ITEMS := .mypy_cache .pytest_cache .coverage*
@@ -42,7 +43,7 @@ PYLINT_ARGS += --exit-zero
 PYTEST_ARGS += --quiet --no-header --color=auto --code-highlight=yes
 PYTEST_DOC_ARGS += --doctest-modules --doctest-continue-on-failure
 STUBGEN_ARGS += --quiet --export-less
-VERMIN_ARGS += --quiet --eval-annotations --no-parse-comments
+VERMIN_ARGS += --no-tips --eval-annotations --no-parse-comments
 
 # Rules
 .NOTPARALLEL:
@@ -55,7 +56,7 @@ VERMIN_ARGS += --quiet --eval-annotations --no-parse-comments
 # Targets
 default: help
 
-$(VENV_DIR)/bin/activate: $(PYPROJECT_TOML)
+$(__PYVENV_CFG__): $(__PYPROJECT_TOML__)
 	@echo "Creating the 'venv'..."
 	@$(PYTHON) -m venv --upgrade-deps "$(VENV_DIR)"
 	@echo "Instaling requirements..."
@@ -93,7 +94,7 @@ _clean-stubs:
 	@echo "Deleting stubs..."
 	@find "$(SOURCE_DIR)/$(PACKAGE_NAME)" -type f -name "*.pyi" -delete
 
-build: $(VENV_DIR)/bin/activate _clean-build
+build: $(__PYVENV_CFG__) _clean-build
 	@echo "Building wheel..."
 	@"$(VENV_DIR)"/bin/$(PYTHON) -m build "$(PROJECT_DIR)"
 
@@ -101,9 +102,9 @@ clean: _clean-build _clean-cache
 
 clean-all: clean _clean-stubs _clean-dev
 
-dev: $(VENV_DIR)/bin/activate
+dev: $(__PYVENV_CFG__)
 
-docs: $(VENV_DIR)/bin/activate _clean-docs
+docs: $(__PYVENV_CFG__) _clean-docs
 	@echo "Checking documentation examples..."
 	@"$(VENV_DIR)"/bin/$(PYTEST) $(PYTEST_ARGS) $(PYTEST_DOC_ARGS) \
 		--rootdir="$(PROJECT_DIR)" "$(SOURCE_DIR)/$(PACKAGE_NAME)"
@@ -115,19 +116,19 @@ docs: $(VENV_DIR)/bin/activate _clean-docs
 	@$(MV) "$(PROJECT_DIR)/docs/$(PACKAGE_NAME)"/* "$(PROJECT_DIR)/docs/"
 	@$(RM) "$(PROJECT_DIR)/docs/$(PACKAGE_NAME)"
 
-format: $(VENV_DIR)/bin/activate
+format: $(__PYVENV_CFG__)
 	@echo "Formating code..."
 	@"$(VENV_DIR)"/bin/$(AUTOPEP) $(AUTOPEP_ARGS) "$(SOURCE_DIR)/$(PACKAGE_NAME)"
 
-lint: $(VENV_DIR)/bin/activate
+lint: $(__PYVENV_CFG__)
 	@echo "Checking the code..."
 	@"$(VENV_DIR)"/bin/$(PYLINT) $(PYLINT_ARGS) "$(SOURCE_DIR)/$(PACKAGE_NAME)"
 
-minversion: $(VENV_DIR)/bin/activate
+minversion: $(__PYVENV_CFG__)
 	@echo "Finding minimum Python version..."
 	@"$(VENV_DIR)"/bin/$(VERMIN) $(VERMIN_ARGS) "$(SOURCE_DIR)/$(PACKAGE_NAME)"
 
-publish: $(VENV_DIR)/bin/activate
+publish: $(__PYVENV_CFG__)
 ifeq (,$(wildcard $(PROJECT_DIR)/dist))
 	@echo "Packages not found."
 	@echo "Run 'make build' first to create them."
@@ -136,7 +137,7 @@ else
 	@"$(VENV_DIR)"/bin/$(TWINE) upload "$(PROJECT_DIR)"/dist/*
 endif
 
-publish-test: $(VENV_DIR)/bin/activate
+publish-test: $(__PYVENV_CFG__)
 ifeq (,$(wildcard $(PROJECT_DIR)/dist))
 	@echo "Packages not found."
 	@echo "Run 'make build' first to create them."
@@ -146,12 +147,12 @@ else
 		"$(PROJECT_DIR)"/dist/*
 endif
 
-stubs: $(VENV_DIR)/bin/activate
+stubs: $(__PYVENV_CFG__)
 	@echo "Generating stubs..."
 	@"$(VENV_DIR)"/bin/$(STUBGEN) $(STUBGEN_ARGS) --package "$(PACKAGE_NAME)" \
 		--search-path "$(SOURCE_DIR)" --output $(SOURCE_DIR)
 
-tests: $(VENV_DIR)/bin/activate
+tests: $(__PYVENV_CFG__)
 	@echo "Running tests..."
 	@"$(VENV_DIR)"/bin/$(PYTEST) $(PYTEST_ARGS) --cov="$(PACKAGE_NAME)" \
 		--rootdir="$(PROJECT_DIR)"
