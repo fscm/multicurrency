@@ -30,7 +30,7 @@ class Euro(Currency):
             '2,.3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -88,7 +88,7 @@ class EuroSBA(Currency):
             '2,.3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -146,7 +146,7 @@ class EuroAD(Currency):
             '2,.3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -204,7 +204,7 @@ class EuroAT(Currency):
             '2,.3%s %a'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -262,7 +262,7 @@ class EuroBE(Currency):
             '2,.3%s %a'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -320,7 +320,7 @@ class EuroCY(Currency):
             '2,.3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -378,7 +378,7 @@ class EuroEE(Currency):
             '2, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -436,7 +436,7 @@ class EuroFI(Currency):
             '2, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -494,7 +494,7 @@ class EuroFR(Currency):
             '2, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -552,7 +552,7 @@ class EuroDE(Currency):
             '2,.3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -610,7 +610,7 @@ class EuroGR(Currency):
             '2,.3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -668,7 +668,7 @@ class EuroIE(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -726,7 +726,7 @@ class EuroIT(Currency):
             '2,.3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -784,7 +784,7 @@ class EuroXK(Currency):
             '2, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -842,7 +842,7 @@ class EuroLV(Currency):
             '2, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -900,7 +900,7 @@ class EuroLT(Currency):
             '2, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -958,7 +958,7 @@ class EuroLU(Currency):
             '2,.3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1016,7 +1016,7 @@ class EuroMT(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1074,7 +1074,7 @@ class EuroMC(Currency):
             '2, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1132,7 +1132,7 @@ class EuroME(Currency):
             '2,.3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1190,7 +1190,7 @@ class EuroNL(Currency):
             '2,.3%s %a'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1248,7 +1248,7 @@ class EuroPT(Currency):
             '2,.3%s %a'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1306,7 +1306,7 @@ class EuroSM(Currency):
             '2,.3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1364,7 +1364,7 @@ class EuroSK(Currency):
             '2, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1422,7 +1422,7 @@ class EuroSI(Currency):
             '2,.3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1480,7 +1480,7 @@ class EuroES(Currency):
             '2,.3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1538,7 +1538,7 @@ class EuroVA(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,

@@ -30,7 +30,7 @@ class Yen(Currency):
             '0.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,

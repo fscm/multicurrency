@@ -30,7 +30,7 @@ class TurkishLira(Currency):
             '2,.3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -88,7 +88,7 @@ class TurkishLiraCY(Currency):
             '2,.3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -146,7 +146,7 @@ class TurkishLiraTR(Currency):
             '2,.3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,

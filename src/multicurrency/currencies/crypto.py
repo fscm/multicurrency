@@ -30,7 +30,7 @@ class EOS(Currency):
             '4.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -88,7 +88,7 @@ class Ethereum(Currency):
             '18.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -146,7 +146,7 @@ class Bitcoin(Currency):
             '8.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -204,7 +204,7 @@ class StellarLumens(Currency):
             '7.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -262,7 +262,7 @@ class Monero(Currency):
             '12.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -320,7 +320,7 @@ class Ripple(Currency):
             '6.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -378,7 +378,7 @@ class Tezos(Currency):
             '6.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -436,7 +436,7 @@ class Zcash(Currency):
             '8.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,

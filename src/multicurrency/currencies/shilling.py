@@ -30,7 +30,7 @@ class KenyanShilling(Currency):
             '2.,3%s %a'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -88,7 +88,7 @@ class SomaliShilling(Currency):
             '2.,3%s %a'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -146,7 +146,7 @@ class TanzanianShilling(Currency):
             '2.,3%s %a'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -204,7 +204,7 @@ class UgandaShilling(Currency):
             '0.,3%s %a'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,

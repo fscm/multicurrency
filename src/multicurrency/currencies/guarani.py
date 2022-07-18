@@ -30,7 +30,7 @@ class Guarani(Currency):
             '0,.3%s %a'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,

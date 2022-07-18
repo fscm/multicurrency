@@ -30,7 +30,7 @@ class Rand(Currency):
             '2. 3%s %a'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -88,7 +88,7 @@ class RandLS(Currency):
             '2.,3%s %a'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -146,7 +146,7 @@ class RandNA(Currency):
             '2. 3%s %a'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -204,7 +204,7 @@ class RandZA(Currency):
             '2. 3%s %a'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,

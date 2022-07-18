@@ -30,7 +30,7 @@ class ArgentinePeso(Currency):
             '2,.3%s %a'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -88,7 +88,7 @@ class ChileanPeso(Currency):
             '0,.3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -146,7 +146,7 @@ class ColombianPeso(Currency):
             '2,.3%s %a'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -204,7 +204,7 @@ class CubanPeso(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -262,7 +262,7 @@ class DominicanPeso(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -320,7 +320,7 @@ class MexicanPeso(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -378,7 +378,7 @@ class PhilippinePeso(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -436,7 +436,7 @@ class PesoUruguayo(Currency):
             '2,.3%s %a'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,

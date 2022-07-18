@@ -30,7 +30,7 @@ class NewIsraeliShekel(Currency):
             '2.,3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -88,7 +88,7 @@ class NewIsraeliShekelIL(Currency):
             '2.,3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -146,7 +146,7 @@ class NewIsraeliShekelPS(Currency):
             '2.,3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,

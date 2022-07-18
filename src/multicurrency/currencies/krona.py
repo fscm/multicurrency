@@ -30,7 +30,7 @@ class IcelandKrona(Currency):
             '0,.3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -88,7 +88,7 @@ class SwedishKrona(Currency):
             '2, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,

@@ -353,9 +353,9 @@ class Currency:
             '2.,3%A%s'.
     """
 
-    __slots__ = [
+    __slots__ = (
         '_amount',
-        '_info']
+        '_info')
 
     def __new__(
             cls,

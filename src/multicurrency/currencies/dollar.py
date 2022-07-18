@@ -30,7 +30,7 @@ class AustralianDollar(Currency):
             '2.,3%s %a'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -88,7 +88,7 @@ class AustralianDollarAU(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -146,7 +146,7 @@ class AustralianDollarKI(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -204,7 +204,7 @@ class AustralianDollarCC(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -262,7 +262,7 @@ class AustralianDollarMR(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -320,7 +320,7 @@ class AustralianDollarTV(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -378,7 +378,7 @@ class BarbadosDollar(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -436,7 +436,7 @@ class BermudianDollar(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -494,7 +494,7 @@ class BruneiDollar(Currency):
             '2,.3%s %a'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -552,7 +552,7 @@ class BruneiDollarBN(Currency):
             '2,.3%s %a'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -610,7 +610,7 @@ class BruneiDollarSG(Currency):
             '2,.3%s %a'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -668,7 +668,7 @@ class BahamianDollar(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -726,7 +726,7 @@ class BelizeDollar(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -784,7 +784,7 @@ class CanadianDollarEN(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -842,7 +842,7 @@ class CanadianDollarFR(Currency):
             '2, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -900,7 +900,7 @@ class FijiDollar(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -958,7 +958,7 @@ class GuyanaDollar(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1016,7 +1016,7 @@ class HongKongDollar(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1074,7 +1074,7 @@ class JamaicanDollar(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1132,7 +1132,7 @@ class CaymanIslandsDollar(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1190,7 +1190,7 @@ class LiberianDollar(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1248,7 +1248,7 @@ class NamibiaDollar(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1306,7 +1306,7 @@ class NewZealandDollar(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1364,7 +1364,7 @@ class NewZealandDollarCK(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1422,7 +1422,7 @@ class NewZealandDollarNZ(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1480,7 +1480,7 @@ class NewZealandDollarNU(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1538,7 +1538,7 @@ class NewZealandDollarPN(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1596,7 +1596,7 @@ class SolomonIslandsDollar(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1654,7 +1654,7 @@ class SingaporeDollar(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1712,7 +1712,7 @@ class SingaporeDollarBN(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1770,7 +1770,7 @@ class SingaporeDollarSG(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1828,7 +1828,7 @@ class SurinameDollar(Currency):
             '2,.3%s %a'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1886,7 +1886,7 @@ class TrinidadandTobagoDollar(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1944,7 +1944,7 @@ class TaiwanDollar(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -2002,7 +2002,7 @@ class USDollar(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -2060,7 +2060,7 @@ class USDollarAS(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -2118,7 +2118,7 @@ class USDollarIO(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -2176,7 +2176,7 @@ class USDollarVG(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -2234,7 +2234,7 @@ class USDollarGU(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -2292,7 +2292,7 @@ class USDollarHT(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -2350,7 +2350,7 @@ class USDollarMH(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -2408,7 +2408,7 @@ class USDollarFM(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -2466,7 +2466,7 @@ class USDollarMP(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -2524,7 +2524,7 @@ class USDollarPC(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -2582,7 +2582,7 @@ class USDollarPW(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -2640,7 +2640,7 @@ class USDollarPA(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -2698,7 +2698,7 @@ class USDollarPR(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -2756,7 +2756,7 @@ class USDollarTC(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -2814,7 +2814,7 @@ class USDollarVI(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -2873,7 +2873,7 @@ class EasternCaribbeanDollar(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -2931,7 +2931,7 @@ class EasternCaribbeanDollarAI(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -2989,7 +2989,7 @@ class EasternCaribbeanDollarAG(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -3047,7 +3047,7 @@ class EasternCaribbeanDollarDM(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -3105,7 +3105,7 @@ class EasternCaribbeanDollarGD(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -3163,7 +3163,7 @@ class EasternCaribbeanDollarMS(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -3221,7 +3221,7 @@ class EasternCaribbeanDollarKN(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -3279,7 +3279,7 @@ class EasternCaribbeanDollarLC(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -3337,7 +3337,7 @@ class EasternCaribbeanDollarVC(Currency):
             '2.,3%-%s%u'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -3395,7 +3395,7 @@ class ZimbabweDollar(Currency):
             '2.,3%s %a'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,

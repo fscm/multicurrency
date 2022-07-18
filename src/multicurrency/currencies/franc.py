@@ -30,7 +30,7 @@ class BurundiFranc(Currency):
             '0, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -88,7 +88,7 @@ class CongoleseFranc(Currency):
             '2, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -146,7 +146,7 @@ class SwissFranc(Currency):
             '2.'3%s %a'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -204,7 +204,7 @@ class SwissFrancLI(Currency):
             '2.'3%s %a'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -262,7 +262,7 @@ class SwissFrancCH(Currency):
             '2.'3%s %a'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -320,7 +320,7 @@ class DjiboutiFranc(Currency):
             '0, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -378,7 +378,7 @@ class GuineaFranc(Currency):
             '0, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -436,7 +436,7 @@ class RwandaFranc(Currency):
             '0,.3%s %a'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -494,7 +494,7 @@ class CFAFrancBEAC(Currency):
             '0, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -552,7 +552,7 @@ class CFAFrancBEACCM(Currency):
             '0, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -610,7 +610,7 @@ class CFAFrancBEACCF(Currency):
             '0, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -668,7 +668,7 @@ class CFAFrancBEACTD(Currency):
             '0, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -726,7 +726,7 @@ class CFAFrancBEACCD(Currency):
             '0, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -784,7 +784,7 @@ class CFAFrancBEACGQ(Currency):
             '0, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -842,7 +842,7 @@ class CFAFrancBEACGA(Currency):
             '0, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -900,7 +900,7 @@ class CFAFrancBCEAO(Currency):
             '0, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -958,7 +958,7 @@ class CFAFrancBCEAOBJ(Currency):
             '0, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1016,7 +1016,7 @@ class CFAFrancBCEAOBF(Currency):
             '0, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1074,7 +1074,7 @@ class CFAFrancBCEAOCI(Currency):
             '0, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1132,7 +1132,7 @@ class CFAFrancBCEAOGW(Currency):
             '0, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1190,7 +1190,7 @@ class CFAFrancBCEAOML(Currency):
             '0, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1248,7 +1248,7 @@ class CFAFrancBCEAONG(Currency):
             '0, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1306,7 +1306,7 @@ class CFAFrancBCEAOSN(Currency):
             '0, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1364,7 +1364,7 @@ class CFAFrancBCEAOTG(Currency):
             '0, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1422,7 +1422,7 @@ class CFPFranc(Currency):
             '0, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1480,7 +1480,7 @@ class CFPFrancPF(Currency):
             '0, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1538,7 +1538,7 @@ class CFPFrancNC(Currency):
             '0, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
@@ -1596,7 +1596,7 @@ class CFPFrancWF(Currency):
             '0, 3%a %s'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,

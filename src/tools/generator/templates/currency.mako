@@ -39,7 +39,7 @@ docstring_start = '\n'.join(_lines_)
             '<% _pattern_ = bytes(currency.pattern, 'utf-8').decode('unicode_escape') %>${_pattern_}'.
     """
 
-    __slots__ = []
+    __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
         cls,
