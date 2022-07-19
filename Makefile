@@ -16,6 +16,19 @@ __PYVENV_CFG__ := $(VENV_DIR)/pyvenv.cfg
 BUILD_ARTIFACTS := build dist src/*.egg-info src/"$(PACKAGE_NAME)"/*.so
 CACHE_ITEMS := .mypy_cache .pytest_cache .coverage*
 
+# Defines
+define PRINT_HELP_SCRIPT
+import re, sys
+output = []
+for line in sys.stdin:
+    match = re.match(r'^([a-zA-Z_-]+):.*?## (.*)$$', line)
+    if match:
+        output.append('  {:<18} {}'.format(*match.groups()))
+print('make <target>\n\nTargets:')
+print('\n'.join(sorted(output)))
+endef
+export PRINT_HELP_SCRIPT
+
 # Shell
 SHELL := /bin/sh
 .SHELLFLAGS += -e
@@ -50,8 +63,9 @@ VERMIN_ARGS += --no-tips --eval-annotations --no-parse-comments
 
 .ONESHELL:
 
-.PHONY: build default dev docs help clean clean-all format lint tests publish \
-	publish-test
+.PHONY: _clean-build _clean-cache _clean-dev _clean-docs _clean-stubs
+.PHONY: build default dev docs help clean clean-all format lint tests
+.PHONY: publish publish-test
 
 # Targets
 default: help
@@ -94,17 +108,17 @@ _clean-stubs:
 	@echo "Deleting stubs..."
 	@find "$(SOURCE_DIR)/$(PACKAGE_NAME)" -type f -name "*.pyi" -delete
 
-build: $(__PYVENV_CFG__) _clean-build
+build: $(__PYVENV_CFG__) _clean-build ## Create library package(s).
 	@echo "Building wheel..."
 	@"$(VENV_DIR)"/bin/$(PYTHON) -m build "$(PROJECT_DIR)"
 
-clean: _clean-build _clean-cache
+clean: _clean-build _clean-cache ## Cleans the project caches and builds.
 
-clean-all: clean _clean-stubs _clean-dev
+clean-all: clean _clean-stubs _clean-dev ## cleans everything.
 
-dev: $(__PYVENV_CFG__)
+dev: $(__PYVENV_CFG__) ## Creates the development environment.
 
-docs: dev _clean-docs
+docs: dev _clean-docs ## Creates the project documentation.
 	@echo "Checking documentation examples..."
 	@"$(VENV_DIR)"/bin/$(PYTEST) $(PYTEST_ARGS) $(PYTEST_DOC_ARGS) \
 		--rootdir="$(PROJECT_DIR)" "$(SOURCE_DIR)/$(PACKAGE_NAME)"
@@ -116,19 +130,19 @@ docs: dev _clean-docs
 	@$(MV) "$(PROJECT_DIR)/docs/$(PACKAGE_NAME)"/* "$(PROJECT_DIR)/docs/"
 	@$(RM) "$(PROJECT_DIR)/docs/$(PACKAGE_NAME)"
 
-format: dev
+format: dev ## Formats the code.
 	@echo "Formating code..."
 	@"$(VENV_DIR)"/bin/$(AUTOPEP) $(AUTOPEP_ARGS) "$(SOURCE_DIR)/$(PACKAGE_NAME)"
 
-lint: dev
+lint: dev ## Checks the project for code smells.
 	@echo "Checking the code..."
 	@"$(VENV_DIR)"/bin/$(PYLINT) $(PYLINT_ARGS) "$(SOURCE_DIR)/$(PACKAGE_NAME)"
 
-minversion: dev
+minversion: dev ## Calculates python minimum version required.
 	@echo "Finding minimum Python version..."
 	@"$(VENV_DIR)"/bin/$(VERMIN) $(VERMIN_ARGS) "$(SOURCE_DIR)/$(PACKAGE_NAME)"
 
-publish: dev
+publish: dev ## Uploads the project to 'pypi.org'.
 ifeq (,$(wildcard $(PROJECT_DIR)/dist))
 	@echo "Packages not found."
 	@echo "Run 'make build' first to create them."
@@ -137,7 +151,7 @@ else
 	@"$(VENV_DIR)"/bin/$(TWINE) upload "$(PROJECT_DIR)"/dist/*
 endif
 
-publish-test: dev
+publish-test: dev ## Uploads the project to 'test.pypi.org'.
 ifeq (,$(wildcard $(PROJECT_DIR)/dist))
 	@echo "Packages not found."
 	@echo "Run 'make build' first to create them."
@@ -147,42 +161,15 @@ else
 		"$(PROJECT_DIR)"/dist/*
 endif
 
-stubs: dev
+stubs: dev ## Generates stubs for the project.
 	@echo "Generating stubs..."
 	@"$(VENV_DIR)"/bin/$(STUBGEN) $(STUBGEN_ARGS) --package "$(PACKAGE_NAME)" \
 		--search-path "$(SOURCE_DIR)" --output $(SOURCE_DIR)
 
-tests: dev
+tests: dev ## Runs the tests.
 	@echo "Running tests..."
 	@"$(VENV_DIR)"/bin/$(PYTEST) $(PYTEST_ARGS) --cov="$(PACKAGE_NAME)" \
 		--rootdir="$(PROJECT_DIR)"
 
-help:
-	@echo "make <target>"
-	@echo
-	@echo "targets:"
-	@echo "  build"
-	@echo "      Create library package(s)."
-	@echo "  clean"
-	@echo "      cleans the project caches and builds."
-	@echo "  clean-all"
-	@echo "      cleans everything."
-	@echo "  dev"
-	@echo "      creates the development environment."
-	@echo "  docs"
-	@echo "      creates the project documentation."
-	@echo "  format"
-	@echo "      formats the code."
-	@echo "  lint"
-	@echo "      check the project for code smells."
-	@echo "  minversion"
-	@echo "      calculates python minimum version required."
-	@echo "  publish"
-	@echo "      Uploads the project to 'pypi.org'."
-	@echo "  publish-test"
-	@echo "      Uploads the project to 'test.pypi.org'."
-	@echo "  stubs"
-	@echo "      generates stubs for the project."
-	@echo "  tests"
-	@echo "      runs the tests."
-	@echo
+help: ## Shows this help message.
+	@$(PYTHON) -c "$$PRINT_HELP_SCRIPT" < $(MAKEFILE_LIST)
