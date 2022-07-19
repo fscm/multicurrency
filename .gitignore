@@ -20,8 +20,12 @@ __pycache__/
 *.egg
 target/
 build/
+sdist/
 dist/
 out/
+
+# C extensions
+*.so
 
 # macOS
 *.DS_Store
