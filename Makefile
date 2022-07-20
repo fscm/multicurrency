@@ -114,7 +114,7 @@ build: $(__PYVENV_CFG__) _clean-build ## Create library package(s).
 
 clean: _clean-build _clean-cache ## Cleans the project caches and builds.
 
-clean-all: clean _clean-stubs _clean-dev ## cleans everything.
+clean-all: clean _clean-stubs _clean-dev ## Cleans everything.
 
 dev: $(__PYVENV_CFG__) ## Creates the development environment.
 
