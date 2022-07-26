@@ -49,7 +49,7 @@ MV := mv
 RM := rm -rf
 
 # Tools options
-AUTOPEP_ARGS += --aggressive --aggressive --in-place --recursive
+AUTOPEP_ARGS += --aggressive --aggressive --recursive
 PDOC_ARGS += --force --html --skip-errors
 PIP_ARGS += --quiet --upgrade --editable
 PYLINT_ARGS += --exit-zero
@@ -132,7 +132,13 @@ docs: dev _clean-docs ## Creates the project documentation.
 
 format: dev ## Formats the code.
 	@echo "Formating code..."
-	@"$(VENV_DIR)"/bin/$(AUTOPEP) $(AUTOPEP_ARGS) "$(SOURCE_DIR)/$(PACKAGE_NAME)"
+	@"$(VENV_DIR)"/bin/$(AUTOPEP) $(AUTOPEP_ARGS) --in-place \
+		"$(SOURCE_DIR)/$(PACKAGE_NAME)"
+
+format-show: dev ## Shows the required code formats.
+	@echo "Formating code..."
+	@"$(VENV_DIR)"/bin/$(AUTOPEP) $(AUTOPEP_ARGS) --diff \
+		"$(SOURCE_DIR)/$(PACKAGE_NAME)"
 
 lint: dev ## Checks the project for code smells.
 	@echo "Checking the code..."
