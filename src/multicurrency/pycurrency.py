@@ -840,7 +840,7 @@ class Currency:
         """
         return self.__recreate__(
             (self._amount.__round__(precision) if precision
-                    else self._amount.__round__()))
+                else self._amount.__round__()))
 
     def __rsub__(self, other: object) -> 'Currency':
         """Subtract this from `other`.
