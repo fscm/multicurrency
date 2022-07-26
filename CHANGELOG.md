@@ -1,6 +1,13 @@
 # Changelog
 
-## [v2.0.0](https://github.com/fscm/multicurrency/tree/v2.0.2) (2022-07-13)
+## [v2.0.1](https://github.com/fscm/multicurrency/tree/v2.0.1) (2022-07-13)
+
+### [changes](https://github.com/fscm/multicurrency/compare/v2.0.0...v2.0.1)
+
+* small optimizations
+* source code clean up
+
+## [v2.0.0](https://github.com/fscm/multicurrency/tree/v2.0.0) (2022-07-13)
 
 ### [changes](https://github.com/fscm/multicurrency/compare/v1.0.1...v2.0.0)
 
