@@ -18,7 +18,7 @@ class Lilangeni(Currency):
 
         >>> from multicurrency import Lilangeni
         >>> lilangeni = Lilangeni(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(lilangeni)
         L 123,456.79
 

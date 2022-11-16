@@ -18,7 +18,7 @@ class Guarani(Currency):
 
         >>> from multicurrency import Guarani
         >>> guarani = Guarani(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(guarani)
         ₲ 123.457
 

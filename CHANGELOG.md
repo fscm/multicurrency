@@ -1,5 +1,11 @@
 # Changelog
 
+## [v2.0.2](https://github.com/fscm/multicurrency/tree/v2.0.2) (2022-11-16)
+
+### [changes](https://github.com/fscm/multicurrency/compare/v2.0.1...v2.0.2)
+
+* precision behaviour changed to match the Decimal behaviour
+
 ## [v2.0.1](https://github.com/fscm/multicurrency/tree/v2.0.1) (2022-07-13)
 
 ### [changes](https://github.com/fscm/multicurrency/compare/v2.0.0...v2.0.1)

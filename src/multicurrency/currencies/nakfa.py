@@ -18,7 +18,7 @@ class Nakfa(Currency):
 
         >>> from multicurrency import Nakfa
         >>> nakfa = Nakfa(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(nakfa)
         Nfk 123,456.79
 

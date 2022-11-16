@@ -30,11 +30,11 @@ class TestTurkishLira:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '₤3,14'),
-        (3.14, '3.14', '₤3,14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '₤3,14'),
         (10, '10', '₤10,00'),
         (Decimal('10'), '10', '₤10,00'),
         ('-3.14', '-3.14', '-₤3,14'),
-        (-3.14, '-3.14', '-₤3,14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-₤3,14'),
         (-10, '-10', '-₤10,00'),
         (Decimal('-10'), '-10', '-₤10,00')
     ])
@@ -49,7 +49,7 @@ class TestTurkishLira:
         assert default.pattern == '2,.3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'TRY',
             '949'))
         assert default.__repr__() == (
@@ -181,11 +181,11 @@ class TestTurkishLiraCY:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '₤3,14'),
-        (3.14, '3.14', '₤3,14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '₤3,14'),
         (10, '10', '₤10,00'),
         (Decimal('10'), '10', '₤10,00'),
         ('-3.14', '-3.14', '-₤3,14'),
-        (-3.14, '-3.14', '-₤3,14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-₤3,14'),
         (-10, '-10', '-₤10,00'),
         (Decimal('-10'), '-10', '-₤10,00')
     ])
@@ -200,7 +200,7 @@ class TestTurkishLiraCY:
         assert default.pattern == '2,.3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'TRY',
             '949'))
         assert default.__repr__() == (
@@ -332,11 +332,11 @@ class TestTurkishLiraTR:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '₤3,14'),
-        (3.14, '3.14', '₤3,14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '₤3,14'),
         (10, '10', '₤10,00'),
         (Decimal('10'), '10', '₤10,00'),
         ('-3.14', '-3.14', '-₤3,14'),
-        (-3.14, '-3.14', '-₤3,14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-₤3,14'),
         (-10, '-10', '-₤10,00'),
         (Decimal('-10'), '-10', '-₤10,00')
     ])
@@ -351,7 +351,7 @@ class TestTurkishLiraTR:
         assert default.pattern == '2,.3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'TRY',
             '949'))
         assert default.__repr__() == (

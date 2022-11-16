@@ -18,7 +18,7 @@ class Paanga(Currency):
 
         >>> from multicurrency import Paanga
         >>> paanga = Paanga(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(paanga)
         T$ 123,456.79
 

@@ -18,7 +18,7 @@ class Euro(Currency):
 
         >>> from multicurrency import Euro
         >>> euro = Euro(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(euro)
         123.456,79 €
 
@@ -76,7 +76,7 @@ class EuroSBA(Currency):
 
         >>> from multicurrency import EuroSBA
         >>> eurosba = EuroSBA(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(eurosba)
         123.456,79 €
 
@@ -134,7 +134,7 @@ class EuroAD(Currency):
 
         >>> from multicurrency import EuroAD
         >>> euroad = EuroAD(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(euroad)
         123.456,79 €
 
@@ -192,7 +192,7 @@ class EuroAT(Currency):
 
         >>> from multicurrency import EuroAT
         >>> euroat = EuroAT(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(euroat)
         € 123.456,79
 
@@ -250,7 +250,7 @@ class EuroBE(Currency):
 
         >>> from multicurrency import EuroBE
         >>> eurobe = EuroBE(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(eurobe)
         € 123.456,79
 
@@ -308,7 +308,7 @@ class EuroCY(Currency):
 
         >>> from multicurrency import EuroCY
         >>> eurocy = EuroCY(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(eurocy)
         123.456,79 €
 
@@ -366,7 +366,7 @@ class EuroEE(Currency):
 
         >>> from multicurrency import EuroEE
         >>> euroee = EuroEE(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(euroee)
         123 456,79 €
 
@@ -424,7 +424,7 @@ class EuroFI(Currency):
 
         >>> from multicurrency import EuroFI
         >>> eurofi = EuroFI(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(eurofi)
         123 456,79 €
 
@@ -482,7 +482,7 @@ class EuroFR(Currency):
 
         >>> from multicurrency import EuroFR
         >>> eurofr = EuroFR(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(eurofr)
         123 456,79 €
 
@@ -540,7 +540,7 @@ class EuroDE(Currency):
 
         >>> from multicurrency import EuroDE
         >>> eurode = EuroDE(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(eurode)
         123.456,79 €
 
@@ -598,7 +598,7 @@ class EuroGR(Currency):
 
         >>> from multicurrency import EuroGR
         >>> eurogr = EuroGR(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(eurogr)
         123.456,79 €
 
@@ -656,7 +656,7 @@ class EuroIE(Currency):
 
         >>> from multicurrency import EuroIE
         >>> euroie = EuroIE(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(euroie)
         €123,456.79
 
@@ -714,7 +714,7 @@ class EuroIT(Currency):
 
         >>> from multicurrency import EuroIT
         >>> euroit = EuroIT(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(euroit)
         123.456,79 €
 
@@ -772,7 +772,7 @@ class EuroXK(Currency):
 
         >>> from multicurrency import EuroXK
         >>> euroxk = EuroXK(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(euroxk)
         123 456,79 €
 
@@ -830,7 +830,7 @@ class EuroLV(Currency):
 
         >>> from multicurrency import EuroLV
         >>> eurolv = EuroLV(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(eurolv)
         123 456,79 €
 
@@ -888,7 +888,7 @@ class EuroLT(Currency):
 
         >>> from multicurrency import EuroLT
         >>> eurolt = EuroLT(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(eurolt)
         123 456,79 €
 
@@ -946,7 +946,7 @@ class EuroLU(Currency):
 
         >>> from multicurrency import EuroLU
         >>> eurolu = EuroLU(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(eurolu)
         123.456,79 €
 
@@ -1004,7 +1004,7 @@ class EuroMT(Currency):
 
         >>> from multicurrency import EuroMT
         >>> euromt = EuroMT(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(euromt)
         €123,456.79
 
@@ -1062,7 +1062,7 @@ class EuroMC(Currency):
 
         >>> from multicurrency import EuroMC
         >>> euromc = EuroMC(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(euromc)
         123 456,79 €
 
@@ -1120,7 +1120,7 @@ class EuroME(Currency):
 
         >>> from multicurrency import EuroME
         >>> eurome = EuroME(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(eurome)
         123.456,79 €
 
@@ -1178,7 +1178,7 @@ class EuroNL(Currency):
 
         >>> from multicurrency import EuroNL
         >>> euronl = EuroNL(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(euronl)
         € 123.456,79
 
@@ -1236,7 +1236,7 @@ class EuroPT(Currency):
 
         >>> from multicurrency import EuroPT
         >>> europt = EuroPT(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(europt)
         € 123.456,79
 
@@ -1294,7 +1294,7 @@ class EuroSM(Currency):
 
         >>> from multicurrency import EuroSM
         >>> eurosm = EuroSM(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(eurosm)
         123.456,79 €
 
@@ -1352,7 +1352,7 @@ class EuroSK(Currency):
 
         >>> from multicurrency import EuroSK
         >>> eurosk = EuroSK(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(eurosk)
         123 456,79 €
 
@@ -1410,7 +1410,7 @@ class EuroSI(Currency):
 
         >>> from multicurrency import EuroSI
         >>> eurosi = EuroSI(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(eurosi)
         123.456,79 €
 
@@ -1468,7 +1468,7 @@ class EuroES(Currency):
 
         >>> from multicurrency import EuroES
         >>> euroes = EuroES(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(euroes)
         123.456,79 €
 
@@ -1526,7 +1526,7 @@ class EuroVA(Currency):
 
         >>> from multicurrency import EuroVA
         >>> eurova = EuroVA(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(eurova)
         €123,456.79
 

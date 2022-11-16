@@ -18,7 +18,7 @@ class ArubanFlorin(Currency):
 
         >>> from multicurrency import ArubanFlorin
         >>> aruban_florin = ArubanFlorin(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(aruban_florin)
         ƒ123,456.79
 

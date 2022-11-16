@@ -55,11 +55,11 @@ class TestBurundiFranc:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3\xa0₣'),
-        (3.14, '3.14', '3\xa0₣'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3\xa0₣'),
         (10, '10', '10\xa0₣'),
         (Decimal('10'), '10', '10\xa0₣'),
         ('-3.14', '-3.14', '-3\xa0₣'),
-        (-3.14, '-3.14', '-3\xa0₣'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3\xa0₣'),
         (-10, '-10', '-10\xa0₣'),
         (Decimal('-10'), '-10', '-10\xa0₣')
     ])
@@ -74,7 +74,7 @@ class TestBurundiFranc:
         assert default.pattern == '0,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'BIF',
             '108'))
         assert default.__repr__() == (
@@ -206,11 +206,11 @@ class TestCongoleseFranc:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0₣'),
-        (3.14, '3.14', '3,14\xa0₣'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0₣'),
         (10, '10', '10,00\xa0₣'),
         (Decimal('10'), '10', '10,00\xa0₣'),
         ('-3.14', '-3.14', '-3,14\xa0₣'),
-        (-3.14, '-3.14', '-3,14\xa0₣'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0₣'),
         (-10, '-10', '-10,00\xa0₣'),
         (Decimal('-10'), '-10', '-10,00\xa0₣')
     ])
@@ -225,7 +225,7 @@ class TestCongoleseFranc:
         assert default.pattern == '2,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'CDF',
             '976'))
         assert default.__repr__() == (
@@ -357,11 +357,11 @@ class TestSwissFranc:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '₣\xa03.14'),
-        (3.14, '3.14', '₣\xa03.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '₣\xa03.14'),
         (10, '10', '₣\xa010.00'),
         (Decimal('10'), '10', '₣\xa010.00'),
         ('-3.14', '-3.14', '₣\xa0-3.14'),
-        (-3.14, '-3.14', '₣\xa0-3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '₣\xa0-3.14'),
         (-10, '-10', '₣\xa0-10.00'),
         (Decimal('-10'), '-10', '₣\xa0-10.00')
     ])
@@ -376,7 +376,7 @@ class TestSwissFranc:
         assert default.pattern == '2.\u00273%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'CHF',
             '756'))
         assert default.__repr__() == (
@@ -508,11 +508,11 @@ class TestSwissFrancLI:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '₣\xa03.14'),
-        (3.14, '3.14', '₣\xa03.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '₣\xa03.14'),
         (10, '10', '₣\xa010.00'),
         (Decimal('10'), '10', '₣\xa010.00'),
         ('-3.14', '-3.14', '₣\xa0-3.14'),
-        (-3.14, '-3.14', '₣\xa0-3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '₣\xa0-3.14'),
         (-10, '-10', '₣\xa0-10.00'),
         (Decimal('-10'), '-10', '₣\xa0-10.00')
     ])
@@ -527,7 +527,7 @@ class TestSwissFrancLI:
         assert default.pattern == '2.\u00273%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'CHF',
             '756'))
         assert default.__repr__() == (
@@ -659,11 +659,11 @@ class TestSwissFrancCH:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '₣\xa03.14'),
-        (3.14, '3.14', '₣\xa03.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '₣\xa03.14'),
         (10, '10', '₣\xa010.00'),
         (Decimal('10'), '10', '₣\xa010.00'),
         ('-3.14', '-3.14', '₣\xa0-3.14'),
-        (-3.14, '-3.14', '₣\xa0-3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '₣\xa0-3.14'),
         (-10, '-10', '₣\xa0-10.00'),
         (Decimal('-10'), '-10', '₣\xa0-10.00')
     ])
@@ -678,7 +678,7 @@ class TestSwissFrancCH:
         assert default.pattern == '2.\u00273%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'CHF',
             '756'))
         assert default.__repr__() == (
@@ -810,11 +810,11 @@ class TestDjiboutiFranc:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3\xa0₣'),
-        (3.14, '3.14', '3\xa0₣'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3\xa0₣'),
         (10, '10', '10\xa0₣'),
         (Decimal('10'), '10', '10\xa0₣'),
         ('-3.14', '-3.14', '-3\xa0₣'),
-        (-3.14, '-3.14', '-3\xa0₣'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3\xa0₣'),
         (-10, '-10', '-10\xa0₣'),
         (Decimal('-10'), '-10', '-10\xa0₣')
     ])
@@ -829,7 +829,7 @@ class TestDjiboutiFranc:
         assert default.pattern == '0,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'DJF',
             '262'))
         assert default.__repr__() == (
@@ -961,11 +961,11 @@ class TestGuineaFranc:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3\xa0₣'),
-        (3.14, '3.14', '3\xa0₣'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3\xa0₣'),
         (10, '10', '10\xa0₣'),
         (Decimal('10'), '10', '10\xa0₣'),
         ('-3.14', '-3.14', '-3\xa0₣'),
-        (-3.14, '-3.14', '-3\xa0₣'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3\xa0₣'),
         (-10, '-10', '-10\xa0₣'),
         (Decimal('-10'), '-10', '-10\xa0₣')
     ])
@@ -980,7 +980,7 @@ class TestGuineaFranc:
         assert default.pattern == '0,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'GNF',
             '324'))
         assert default.__repr__() == (
@@ -1112,11 +1112,11 @@ class TestRwandaFranc:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '₣\xa03'),
-        (3.14, '3.14', '₣\xa03'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '₣\xa03'),
         (10, '10', '₣\xa010'),
         (Decimal('10'), '10', '₣\xa010'),
         ('-3.14', '-3.14', '₣\xa0-3'),
-        (-3.14, '-3.14', '₣\xa0-3'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '₣\xa0-3'),
         (-10, '-10', '₣\xa0-10'),
         (Decimal('-10'), '-10', '₣\xa0-10')
     ])
@@ -1131,7 +1131,7 @@ class TestRwandaFranc:
         assert default.pattern == '0,.3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'RWF',
             '646'))
         assert default.__repr__() == (
@@ -1263,11 +1263,11 @@ class TestCFAFrancBEAC:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3\xa0₣'),
-        (3.14, '3.14', '3\xa0₣'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3\xa0₣'),
         (10, '10', '10\xa0₣'),
         (Decimal('10'), '10', '10\xa0₣'),
         ('-3.14', '-3.14', '-3\xa0₣'),
-        (-3.14, '-3.14', '-3\xa0₣'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3\xa0₣'),
         (-10, '-10', '-10\xa0₣'),
         (Decimal('-10'), '-10', '-10\xa0₣')
     ])
@@ -1282,7 +1282,7 @@ class TestCFAFrancBEAC:
         assert default.pattern == '0,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XAF',
             '950'))
         assert default.__repr__() == (
@@ -1414,11 +1414,11 @@ class TestCFAFrancBEACCM:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3\xa0₣'),
-        (3.14, '3.14', '3\xa0₣'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3\xa0₣'),
         (10, '10', '10\xa0₣'),
         (Decimal('10'), '10', '10\xa0₣'),
         ('-3.14', '-3.14', '-3\xa0₣'),
-        (-3.14, '-3.14', '-3\xa0₣'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3\xa0₣'),
         (-10, '-10', '-10\xa0₣'),
         (Decimal('-10'), '-10', '-10\xa0₣')
     ])
@@ -1433,7 +1433,7 @@ class TestCFAFrancBEACCM:
         assert default.pattern == '0,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XAF',
             '950'))
         assert default.__repr__() == (
@@ -1565,11 +1565,11 @@ class TestCFAFrancBEACCF:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3\xa0₣'),
-        (3.14, '3.14', '3\xa0₣'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3\xa0₣'),
         (10, '10', '10\xa0₣'),
         (Decimal('10'), '10', '10\xa0₣'),
         ('-3.14', '-3.14', '-3\xa0₣'),
-        (-3.14, '-3.14', '-3\xa0₣'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3\xa0₣'),
         (-10, '-10', '-10\xa0₣'),
         (Decimal('-10'), '-10', '-10\xa0₣')
     ])
@@ -1584,7 +1584,7 @@ class TestCFAFrancBEACCF:
         assert default.pattern == '0,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XAF',
             '950'))
         assert default.__repr__() == (
@@ -1716,11 +1716,11 @@ class TestCFAFrancBEACTD:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3\xa0₣'),
-        (3.14, '3.14', '3\xa0₣'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3\xa0₣'),
         (10, '10', '10\xa0₣'),
         (Decimal('10'), '10', '10\xa0₣'),
         ('-3.14', '-3.14', '-3\xa0₣'),
-        (-3.14, '-3.14', '-3\xa0₣'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3\xa0₣'),
         (-10, '-10', '-10\xa0₣'),
         (Decimal('-10'), '-10', '-10\xa0₣')
     ])
@@ -1735,7 +1735,7 @@ class TestCFAFrancBEACTD:
         assert default.pattern == '0,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XAF',
             '950'))
         assert default.__repr__() == (
@@ -1867,11 +1867,11 @@ class TestCFAFrancBEACCD:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3\xa0₣'),
-        (3.14, '3.14', '3\xa0₣'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3\xa0₣'),
         (10, '10', '10\xa0₣'),
         (Decimal('10'), '10', '10\xa0₣'),
         ('-3.14', '-3.14', '-3\xa0₣'),
-        (-3.14, '-3.14', '-3\xa0₣'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3\xa0₣'),
         (-10, '-10', '-10\xa0₣'),
         (Decimal('-10'), '-10', '-10\xa0₣')
     ])
@@ -1886,7 +1886,7 @@ class TestCFAFrancBEACCD:
         assert default.pattern == '0,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XAF',
             '950'))
         assert default.__repr__() == (
@@ -2018,11 +2018,11 @@ class TestCFAFrancBEACGQ:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3\xa0₣'),
-        (3.14, '3.14', '3\xa0₣'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3\xa0₣'),
         (10, '10', '10\xa0₣'),
         (Decimal('10'), '10', '10\xa0₣'),
         ('-3.14', '-3.14', '-3\xa0₣'),
-        (-3.14, '-3.14', '-3\xa0₣'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3\xa0₣'),
         (-10, '-10', '-10\xa0₣'),
         (Decimal('-10'), '-10', '-10\xa0₣')
     ])
@@ -2037,7 +2037,7 @@ class TestCFAFrancBEACGQ:
         assert default.pattern == '0,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XAF',
             '950'))
         assert default.__repr__() == (
@@ -2169,11 +2169,11 @@ class TestCFAFrancBEACGA:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3\xa0₣'),
-        (3.14, '3.14', '3\xa0₣'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3\xa0₣'),
         (10, '10', '10\xa0₣'),
         (Decimal('10'), '10', '10\xa0₣'),
         ('-3.14', '-3.14', '-3\xa0₣'),
-        (-3.14, '-3.14', '-3\xa0₣'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3\xa0₣'),
         (-10, '-10', '-10\xa0₣'),
         (Decimal('-10'), '-10', '-10\xa0₣')
     ])
@@ -2188,7 +2188,7 @@ class TestCFAFrancBEACGA:
         assert default.pattern == '0,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XAF',
             '950'))
         assert default.__repr__() == (
@@ -2320,11 +2320,11 @@ class TestCFAFrancBCEAO:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3\xa0₣'),
-        (3.14, '3.14', '3\xa0₣'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3\xa0₣'),
         (10, '10', '10\xa0₣'),
         (Decimal('10'), '10', '10\xa0₣'),
         ('-3.14', '-3.14', '-3\xa0₣'),
-        (-3.14, '-3.14', '-3\xa0₣'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3\xa0₣'),
         (-10, '-10', '-10\xa0₣'),
         (Decimal('-10'), '-10', '-10\xa0₣')
     ])
@@ -2339,7 +2339,7 @@ class TestCFAFrancBCEAO:
         assert default.pattern == '0,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XOF',
             '952'))
         assert default.__repr__() == (
@@ -2471,11 +2471,11 @@ class TestCFAFrancBCEAOBJ:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3\xa0₣'),
-        (3.14, '3.14', '3\xa0₣'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3\xa0₣'),
         (10, '10', '10\xa0₣'),
         (Decimal('10'), '10', '10\xa0₣'),
         ('-3.14', '-3.14', '-3\xa0₣'),
-        (-3.14, '-3.14', '-3\xa0₣'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3\xa0₣'),
         (-10, '-10', '-10\xa0₣'),
         (Decimal('-10'), '-10', '-10\xa0₣')
     ])
@@ -2490,7 +2490,7 @@ class TestCFAFrancBCEAOBJ:
         assert default.pattern == '0,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XOF',
             '952'))
         assert default.__repr__() == (
@@ -2622,11 +2622,11 @@ class TestCFAFrancBCEAOBF:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3\xa0₣'),
-        (3.14, '3.14', '3\xa0₣'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3\xa0₣'),
         (10, '10', '10\xa0₣'),
         (Decimal('10'), '10', '10\xa0₣'),
         ('-3.14', '-3.14', '-3\xa0₣'),
-        (-3.14, '-3.14', '-3\xa0₣'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3\xa0₣'),
         (-10, '-10', '-10\xa0₣'),
         (Decimal('-10'), '-10', '-10\xa0₣')
     ])
@@ -2641,7 +2641,7 @@ class TestCFAFrancBCEAOBF:
         assert default.pattern == '0,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XOF',
             '952'))
         assert default.__repr__() == (
@@ -2773,11 +2773,11 @@ class TestCFAFrancBCEAOCI:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3\xa0₣'),
-        (3.14, '3.14', '3\xa0₣'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3\xa0₣'),
         (10, '10', '10\xa0₣'),
         (Decimal('10'), '10', '10\xa0₣'),
         ('-3.14', '-3.14', '-3\xa0₣'),
-        (-3.14, '-3.14', '-3\xa0₣'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3\xa0₣'),
         (-10, '-10', '-10\xa0₣'),
         (Decimal('-10'), '-10', '-10\xa0₣')
     ])
@@ -2792,7 +2792,7 @@ class TestCFAFrancBCEAOCI:
         assert default.pattern == '0,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XOF',
             '952'))
         assert default.__repr__() == (
@@ -2924,11 +2924,11 @@ class TestCFAFrancBCEAOGW:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3\xa0₣'),
-        (3.14, '3.14', '3\xa0₣'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3\xa0₣'),
         (10, '10', '10\xa0₣'),
         (Decimal('10'), '10', '10\xa0₣'),
         ('-3.14', '-3.14', '-3\xa0₣'),
-        (-3.14, '-3.14', '-3\xa0₣'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3\xa0₣'),
         (-10, '-10', '-10\xa0₣'),
         (Decimal('-10'), '-10', '-10\xa0₣')
     ])
@@ -2943,7 +2943,7 @@ class TestCFAFrancBCEAOGW:
         assert default.pattern == '0,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XOF',
             '952'))
         assert default.__repr__() == (
@@ -3075,11 +3075,11 @@ class TestCFAFrancBCEAOML:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3\xa0₣'),
-        (3.14, '3.14', '3\xa0₣'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3\xa0₣'),
         (10, '10', '10\xa0₣'),
         (Decimal('10'), '10', '10\xa0₣'),
         ('-3.14', '-3.14', '-3\xa0₣'),
-        (-3.14, '-3.14', '-3\xa0₣'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3\xa0₣'),
         (-10, '-10', '-10\xa0₣'),
         (Decimal('-10'), '-10', '-10\xa0₣')
     ])
@@ -3094,7 +3094,7 @@ class TestCFAFrancBCEAOML:
         assert default.pattern == '0,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XOF',
             '952'))
         assert default.__repr__() == (
@@ -3226,11 +3226,11 @@ class TestCFAFrancBCEAONG:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3\xa0₣'),
-        (3.14, '3.14', '3\xa0₣'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3\xa0₣'),
         (10, '10', '10\xa0₣'),
         (Decimal('10'), '10', '10\xa0₣'),
         ('-3.14', '-3.14', '-3\xa0₣'),
-        (-3.14, '-3.14', '-3\xa0₣'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3\xa0₣'),
         (-10, '-10', '-10\xa0₣'),
         (Decimal('-10'), '-10', '-10\xa0₣')
     ])
@@ -3245,7 +3245,7 @@ class TestCFAFrancBCEAONG:
         assert default.pattern == '0,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XOF',
             '952'))
         assert default.__repr__() == (
@@ -3377,11 +3377,11 @@ class TestCFAFrancBCEAOSN:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3\xa0₣'),
-        (3.14, '3.14', '3\xa0₣'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3\xa0₣'),
         (10, '10', '10\xa0₣'),
         (Decimal('10'), '10', '10\xa0₣'),
         ('-3.14', '-3.14', '-3\xa0₣'),
-        (-3.14, '-3.14', '-3\xa0₣'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3\xa0₣'),
         (-10, '-10', '-10\xa0₣'),
         (Decimal('-10'), '-10', '-10\xa0₣')
     ])
@@ -3396,7 +3396,7 @@ class TestCFAFrancBCEAOSN:
         assert default.pattern == '0,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XOF',
             '952'))
         assert default.__repr__() == (
@@ -3528,11 +3528,11 @@ class TestCFAFrancBCEAOTG:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3\xa0₣'),
-        (3.14, '3.14', '3\xa0₣'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3\xa0₣'),
         (10, '10', '10\xa0₣'),
         (Decimal('10'), '10', '10\xa0₣'),
         ('-3.14', '-3.14', '-3\xa0₣'),
-        (-3.14, '-3.14', '-3\xa0₣'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3\xa0₣'),
         (-10, '-10', '-10\xa0₣'),
         (Decimal('-10'), '-10', '-10\xa0₣')
     ])
@@ -3547,7 +3547,7 @@ class TestCFAFrancBCEAOTG:
         assert default.pattern == '0,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XOF',
             '952'))
         assert default.__repr__() == (
@@ -3679,11 +3679,11 @@ class TestCFPFranc:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3\xa0₣'),
-        (3.14, '3.14', '3\xa0₣'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3\xa0₣'),
         (10, '10', '10\xa0₣'),
         (Decimal('10'), '10', '10\xa0₣'),
         ('-3.14', '-3.14', '-3\xa0₣'),
-        (-3.14, '-3.14', '-3\xa0₣'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3\xa0₣'),
         (-10, '-10', '-10\xa0₣'),
         (Decimal('-10'), '-10', '-10\xa0₣')
     ])
@@ -3698,7 +3698,7 @@ class TestCFPFranc:
         assert default.pattern == '0,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XPF',
             '953'))
         assert default.__repr__() == (
@@ -3830,11 +3830,11 @@ class TestCFPFrancPF:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3\xa0₣'),
-        (3.14, '3.14', '3\xa0₣'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3\xa0₣'),
         (10, '10', '10\xa0₣'),
         (Decimal('10'), '10', '10\xa0₣'),
         ('-3.14', '-3.14', '-3\xa0₣'),
-        (-3.14, '-3.14', '-3\xa0₣'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3\xa0₣'),
         (-10, '-10', '-10\xa0₣'),
         (Decimal('-10'), '-10', '-10\xa0₣')
     ])
@@ -3849,7 +3849,7 @@ class TestCFPFrancPF:
         assert default.pattern == '0,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XPF',
             '953'))
         assert default.__repr__() == (
@@ -3981,11 +3981,11 @@ class TestCFPFrancNC:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3\xa0₣'),
-        (3.14, '3.14', '3\xa0₣'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3\xa0₣'),
         (10, '10', '10\xa0₣'),
         (Decimal('10'), '10', '10\xa0₣'),
         ('-3.14', '-3.14', '-3\xa0₣'),
-        (-3.14, '-3.14', '-3\xa0₣'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3\xa0₣'),
         (-10, '-10', '-10\xa0₣'),
         (Decimal('-10'), '-10', '-10\xa0₣')
     ])
@@ -4000,7 +4000,7 @@ class TestCFPFrancNC:
         assert default.pattern == '0,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XPF',
             '953'))
         assert default.__repr__() == (
@@ -4132,11 +4132,11 @@ class TestCFPFrancWF:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3\xa0₣'),
-        (3.14, '3.14', '3\xa0₣'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3\xa0₣'),
         (10, '10', '10\xa0₣'),
         (Decimal('10'), '10', '10\xa0₣'),
         ('-3.14', '-3.14', '-3\xa0₣'),
-        (-3.14, '-3.14', '-3\xa0₣'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3\xa0₣'),
         (-10, '-10', '-10\xa0₣'),
         (Decimal('-10'), '-10', '-10\xa0₣')
     ])
@@ -4151,7 +4151,7 @@ class TestCFPFrancWF:
         assert default.pattern == '0,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XPF',
             '953'))
         assert default.__repr__() == (

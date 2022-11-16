@@ -31,11 +31,11 @@ class TestIranianRial:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '۳٫۱۴\xa0﷼'),
-        (3.14, '3.14', '۳٫۱۴\xa0﷼'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '۳٫۱۴\xa0﷼'),
         (10, '10', '۱۰٫۰۰\xa0﷼'),
         (Decimal('10'), '10', '۱۰٫۰۰\xa0﷼'),
         ('-3.14', '-3.14', '-۳٫۱۴\xa0﷼'),
-        (-3.14, '-3.14', '-۳٫۱۴\xa0﷼'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-۳٫۱۴\xa0﷼'),
         (-10, '-10', '-۱۰٫۰۰\xa0﷼'),
         (Decimal('-10'), '-10', '-۱۰٫۰۰\xa0﷼')
     ])
@@ -50,7 +50,7 @@ class TestIranianRial:
         assert default.pattern == '2\u066B\u066C3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'IRR',
             '364'))
         assert default.__repr__() == (
@@ -182,11 +182,11 @@ class TestRialOmani:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', 'ر.ع.\xa0٣٫١٤٠'),
-        (3.14, '3.14', 'ر.ع.\xa0٣٫١٤٠'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', 'ر.ع.\xa0٣٫١٤٠'),
         (10, '10', 'ر.ع.\xa0١٠٫٠٠٠'),
         (Decimal('10'), '10', 'ر.ع.\xa0١٠٫٠٠٠'),
         ('-3.14', '-3.14', 'ر.ع.\xa0-٣٫١٤٠'),
-        (-3.14, '-3.14', 'ر.ع.\xa0-٣٫١٤٠'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', 'ر.ع.\xa0-٣٫١٤٠'),
         (-10, '-10', 'ر.ع.\xa0-١٠٫٠٠٠'),
         (Decimal('-10'), '-10', 'ر.ع.\xa0-١٠٫٠٠٠')
     ])
@@ -201,7 +201,7 @@ class TestRialOmani:
         assert default.pattern == '3\u066B\u066C3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'OMR',
             '512'))
         assert default.__repr__() == (
@@ -333,11 +333,11 @@ class TestQatariRial:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', 'ر.ق.\xa0٣٫١٤'),
-        (3.14, '3.14', 'ر.ق.\xa0٣٫١٤'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', 'ر.ق.\xa0٣٫١٤'),
         (10, '10', 'ر.ق.\xa0١٠٫٠٠'),
         (Decimal('10'), '10', 'ر.ق.\xa0١٠٫٠٠'),
         ('-3.14', '-3.14', 'ر.ق.\xa0-٣٫١٤'),
-        (-3.14, '-3.14', 'ر.ق.\xa0-٣٫١٤'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', 'ر.ق.\xa0-٣٫١٤'),
         (-10, '-10', 'ر.ق.\xa0-١٠٫٠٠'),
         (Decimal('-10'), '-10', 'ر.ق.\xa0-١٠٫٠٠')
     ])
@@ -352,7 +352,7 @@ class TestQatariRial:
         assert default.pattern == '2\u066B\u066C3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'QAR',
             '634'))
         assert default.__repr__() == (
@@ -484,11 +484,11 @@ class TestYemeniRial:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '٣٫١٤\xa0﷼'),
-        (3.14, '3.14', '٣٫١٤\xa0﷼'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '٣٫١٤\xa0﷼'),
         (10, '10', '١٠٫٠٠\xa0﷼'),
         (Decimal('10'), '10', '١٠٫٠٠\xa0﷼'),
         ('-3.14', '-3.14', '-٣٫١٤\xa0﷼'),
-        (-3.14, '-3.14', '-٣٫١٤\xa0﷼'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-٣٫١٤\xa0﷼'),
         (-10, '-10', '-١٠٫٠٠\xa0﷼'),
         (Decimal('-10'), '-10', '-١٠٫٠٠\xa0﷼')
     ])
@@ -503,7 +503,7 @@ class TestYemeniRial:
         assert default.pattern == '2\u066B\u066C3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'YER',
             '886'))
         assert default.__repr__() == (

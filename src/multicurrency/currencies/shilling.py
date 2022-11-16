@@ -18,7 +18,7 @@ class KenyanShilling(Currency):
 
         >>> from multicurrency import KenyanShilling
         >>> kenyan_shilling = KenyanShilling(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(kenyan_shilling)
         Ksh 123,456.79
 
@@ -76,7 +76,7 @@ class SomaliShilling(Currency):
 
         >>> from multicurrency import SomaliShilling
         >>> somali_shilling = SomaliShilling(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(somali_shilling)
         SSh 123,456.79
 
@@ -134,7 +134,7 @@ class TanzanianShilling(Currency):
 
         >>> from multicurrency import TanzanianShilling
         >>> tanzanian_shilling = TanzanianShilling(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(tanzanian_shilling)
         TSh 123,456.79
 
@@ -192,7 +192,7 @@ class UgandaShilling(Currency):
 
         >>> from multicurrency import UgandaShilling
         >>> uganda_shilling = UgandaShilling(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(uganda_shilling)
         USh 123,457
 

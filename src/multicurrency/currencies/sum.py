@@ -18,7 +18,7 @@ class UzbekistanSum(Currency):
 
         >>> from multicurrency import UzbekistanSum
         >>> uzbekistan_sum = UzbekistanSum(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(uzbekistan_sum)
         123 456,79 сўм
 

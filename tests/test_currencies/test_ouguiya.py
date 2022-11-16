@@ -27,11 +27,11 @@ class TestOuguiya:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '٣٫١٤\xa0أ.م'),
-        (3.14, '3.14', '٣٫١٤\xa0أ.م'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '٣٫١٤\xa0أ.م'),
         (10, '10', '١٠٫٠٠\xa0أ.م'),
         (Decimal('10'), '10', '١٠٫٠٠\xa0أ.م'),
         ('-3.14', '-3.14', '-٣٫١٤\xa0أ.م'),
-        (-3.14, '-3.14', '-٣٫١٤\xa0أ.م'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-٣٫١٤\xa0أ.م'),
         (-10, '-10', '-١٠٫٠٠\xa0أ.م'),
         (Decimal('-10'), '-10', '-١٠٫٠٠\xa0أ.م')
     ])
@@ -46,7 +46,7 @@ class TestOuguiya:
         assert default.pattern == '2\u066B\u066C3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'MRU',
             '929'))
         assert default.__repr__() == (

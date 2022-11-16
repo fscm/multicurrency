@@ -18,7 +18,7 @@ class Afghani(Currency):
 
         >>> from multicurrency import Afghani
         >>> afghani = Afghani(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(afghani)
         ؋ ۱۲۳٬۴۵۶٫۷۹
 

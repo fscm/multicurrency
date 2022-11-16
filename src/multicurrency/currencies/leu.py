@@ -18,7 +18,7 @@ class MoldovanLeu(Currency):
 
         >>> from multicurrency import MoldovanLeu
         >>> moldovan_leu = MoldovanLeu(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(moldovan_leu)
         123.456,79 L
 
@@ -76,7 +76,7 @@ class Leu(Currency):
 
         >>> from multicurrency import Leu
         >>> leu = Leu(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(leu)
         123.456,79 L
 

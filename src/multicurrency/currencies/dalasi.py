@@ -18,7 +18,7 @@ class Dalasi(Currency):
 
         >>> from multicurrency import Dalasi
         >>> dalasi = Dalasi(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(dalasi)
         D 123,456.79
 

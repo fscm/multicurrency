@@ -114,7 +114,8 @@ def _format(value, pattern, data) -> str:
     Returns:
         str: Formated value.
     """
-    value = Decimal(str(value))
+    #value = Decimal(str(value))
+    value = Decimal(value)
     pattern = pattern.encode().decode('unicode_escape')
     data_pattern = data.pattern.encode().decode('unicode_escape')
     regxpr = (
@@ -173,7 +174,8 @@ def _international(value, data) -> str:
     Returns:
         str: Formated value.
     """
-    value = Decimal(str(value))
+    #value = Decimal(str(value))
+    value = Decimal(value)
     regxpr = (
         r'^(?P<decimal_places>\d+)?'
         r'(?P<decimal_sign>[^\d%])?'
@@ -233,7 +235,7 @@ def main() -> None:
                 tests = None)
             c.tests = T(
                 test_default = tuple(
-                    str((v, str(v), _format(v, currency['format'], c)))
+                    str((v, str(Decimal(v)), _format(v, currency['format'], c)))
                     for v in TEST_DEFAULT_VALUES),
                 test_custom = tuple(
                     str((v, _format(v, r'5,.2%s%u%-', c)))
@@ -241,8 +243,8 @@ def main() -> None:
             c.example = E(
                 value=123456.789,
                 variable=c.class_lname,
-                output=_format(123456.789, currency['format'], c),
-                docstring=(_format(123456.789, c.pattern.replace('%s', '%S'), c), _international(123456.789, c)))
+                output=_format('123456.789', currency['format'], c),
+                docstring=(_format('123456.789', c.pattern.replace('%s', '%S'), c), _international('123456.789', c)))
             module = comp_underscore.sub(
                 lambda l: re_underscore[re.escape(l.group(0))],
                 currency['class'].lower())

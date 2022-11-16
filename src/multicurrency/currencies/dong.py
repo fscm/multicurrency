@@ -18,7 +18,7 @@ class Dong(Currency):
 
         >>> from multicurrency import Dong
         >>> dong = Dong(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(dong)
         123.457 ₫
 

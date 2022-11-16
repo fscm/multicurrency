@@ -18,7 +18,7 @@ class Cedi(Currency):
 
         >>> from multicurrency import Cedi
         >>> cedi = Cedi(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(cedi)
         ₵123,456.79
 

@@ -27,11 +27,11 @@ class TestNgultrum:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', 'Nu.\xa0༣.༡༤'),
-        (3.14, '3.14', 'Nu.\xa0༣.༡༤'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', 'Nu.\xa0༣.༡༤'),
         (10, '10', 'Nu.\xa0༡༠.༠༠'),
         (Decimal('10'), '10', 'Nu.\xa0༡༠.༠༠'),
         ('-3.14', '-3.14', 'Nu.\xa0-༣.༡༤'),
-        (-3.14, '-3.14', 'Nu.\xa0-༣.༡༤'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', 'Nu.\xa0-༣.༡༤'),
         (-10, '-10', 'Nu.\xa0-༡༠.༠༠'),
         (Decimal('-10'), '-10', 'Nu.\xa0-༡༠.༠༠')
     ])
@@ -46,7 +46,7 @@ class TestNgultrum:
         assert default.pattern == '2.,3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'BTN',
             '064'))
         assert default.__repr__() == (

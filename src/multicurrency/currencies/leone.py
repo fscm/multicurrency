@@ -18,7 +18,7 @@ class Leone(Currency):
 
         >>> from multicurrency import Leone
         >>> leone = Leone(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(leone)
         Le 123,456.79
 

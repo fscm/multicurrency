@@ -18,7 +18,7 @@ class IndianRupee(Currency):
 
         >>> from multicurrency import IndianRupee
         >>> indian_rupee = IndianRupee(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(indian_rupee)
         ₹123,456.79
 
@@ -76,7 +76,7 @@ class IndianRupeeBT(Currency):
 
         >>> from multicurrency import IndianRupeeBT
         >>> indian_rupee_bt = IndianRupeeBT(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(indian_rupee_bt)
         ₹123,456.79
 
@@ -134,7 +134,7 @@ class IndianRupeeIN(Currency):
 
         >>> from multicurrency import IndianRupeeIN
         >>> indian_rupee_in = IndianRupeeIN(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(indian_rupee_in)
         ₹123,456.79
 
@@ -192,7 +192,7 @@ class SriLankaRupee(Currency):
 
         >>> from multicurrency import SriLankaRupee
         >>> sri_lanka_rupee = SriLankaRupee(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(sri_lanka_rupee)
         රු. 123,456.79
 
@@ -250,7 +250,7 @@ class MauritiusRupee(Currency):
 
         >>> from multicurrency import MauritiusRupee
         >>> mauritius_rupee = MauritiusRupee(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(mauritius_rupee)
         ₨ 123,456.79
 
@@ -308,7 +308,7 @@ class NepaleseRupee(Currency):
 
         >>> from multicurrency import NepaleseRupee
         >>> nepalese_rupee = NepaleseRupee(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(nepalese_rupee)
         नेरू १२३,४५६.७९
 
@@ -366,7 +366,7 @@ class PakistanRupee(Currency):
 
         >>> from multicurrency import PakistanRupee
         >>> pakistan_rupee = PakistanRupee(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(pakistan_rupee)
         ₨ 123,456.79
 
@@ -424,7 +424,7 @@ class SeychellesRupee(Currency):
 
         >>> from multicurrency import SeychellesRupee
         >>> seychelles_rupee = SeychellesRupee(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(seychelles_rupee)
         ₨ 123,456.79
 

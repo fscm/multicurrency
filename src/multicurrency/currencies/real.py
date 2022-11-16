@@ -18,7 +18,7 @@ class BrazilianReal(Currency):
 
         >>> from multicurrency import BrazilianReal
         >>> brazilian_real = BrazilianReal(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(brazilian_real)
         R$ 123.456,79
 

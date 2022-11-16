@@ -18,7 +18,7 @@ class Somoni(Currency):
 
         >>> from multicurrency import Somoni
         >>> somoni = Somoni(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(somoni)
         ЅМ 123,456.79
 

@@ -18,7 +18,7 @@ class Rufiyaa(Currency):
 
         >>> from multicurrency import Rufiyaa
         >>> rufiyaa = Rufiyaa(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(rufiyaa)
         ރ. 123,456.79
 

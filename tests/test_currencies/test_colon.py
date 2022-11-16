@@ -27,11 +27,11 @@ class TestCostaRicanColon:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '₡3,14'),
-        (3.14, '3.14', '₡3,14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '₡3,14'),
         (10, '10', '₡10,00'),
         (Decimal('10'), '10', '₡10,00'),
         ('-3.14', '-3.14', '-₡3,14'),
-        (-3.14, '-3.14', '-₡3,14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-₡3,14'),
         (-10, '-10', '-₡10,00'),
         (Decimal('-10'), '-10', '-₡10,00')
     ])
@@ -46,7 +46,7 @@ class TestCostaRicanColon:
         assert default.pattern == '2,\u202F3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'CRC',
             '188'))
         assert default.__repr__() == (

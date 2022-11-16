@@ -18,7 +18,7 @@ class Kwacha(Currency):
 
         >>> from multicurrency import Kwacha
         >>> kwacha = Kwacha(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(kwacha)
         MK 123,456.79
 
@@ -76,7 +76,7 @@ class ZambianKwacha(Currency):
 
         >>> from multicurrency import ZambianKwacha
         >>> zambian_kwacha = ZambianKwacha(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(zambian_kwacha)
         ZK 123,456.79
 

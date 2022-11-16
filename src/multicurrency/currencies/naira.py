@@ -18,7 +18,7 @@ class Naira(Currency):
 
         >>> from multicurrency import Naira
         >>> naira = Naira(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(naira)
         ₦123,456.79
 

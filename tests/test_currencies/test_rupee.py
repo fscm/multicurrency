@@ -35,11 +35,11 @@ class TestIndianRupee:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '₹3.14'),
-        (3.14, '3.14', '₹3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '₹3.14'),
         (10, '10', '₹10.00'),
         (Decimal('10'), '10', '₹10.00'),
         ('-3.14', '-3.14', '-₹3.14'),
-        (-3.14, '-3.14', '-₹3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-₹3.14'),
         (-10, '-10', '-₹10.00'),
         (Decimal('-10'), '-10', '-₹10.00')
     ])
@@ -54,7 +54,7 @@ class TestIndianRupee:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'INR',
             '356'))
         assert default.__repr__() == (
@@ -186,11 +186,11 @@ class TestIndianRupeeBT:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '₹3.14'),
-        (3.14, '3.14', '₹3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '₹3.14'),
         (10, '10', '₹10.00'),
         (Decimal('10'), '10', '₹10.00'),
         ('-3.14', '-3.14', '-₹3.14'),
-        (-3.14, '-3.14', '-₹3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-₹3.14'),
         (-10, '-10', '-₹10.00'),
         (Decimal('-10'), '-10', '-₹10.00')
     ])
@@ -205,7 +205,7 @@ class TestIndianRupeeBT:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'INR',
             '356'))
         assert default.__repr__() == (
@@ -337,11 +337,11 @@ class TestIndianRupeeIN:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '₹3.14'),
-        (3.14, '3.14', '₹3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '₹3.14'),
         (10, '10', '₹10.00'),
         (Decimal('10'), '10', '₹10.00'),
         ('-3.14', '-3.14', '-₹3.14'),
-        (-3.14, '-3.14', '-₹3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-₹3.14'),
         (-10, '-10', '-₹10.00'),
         (Decimal('-10'), '-10', '-₹10.00')
     ])
@@ -356,7 +356,7 @@ class TestIndianRupeeIN:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'INR',
             '356'))
         assert default.__repr__() == (
@@ -488,11 +488,11 @@ class TestSriLankaRupee:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', 'රු.\xa03.14'),
-        (3.14, '3.14', 'රු.\xa03.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', 'රු.\xa03.14'),
         (10, '10', 'රු.\xa010.00'),
         (Decimal('10'), '10', 'රු.\xa010.00'),
         ('-3.14', '-3.14', 'රු.\xa0-3.14'),
-        (-3.14, '-3.14', 'රු.\xa0-3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', 'රු.\xa0-3.14'),
         (-10, '-10', 'රු.\xa0-10.00'),
         (Decimal('-10'), '-10', 'රු.\xa0-10.00')
     ])
@@ -507,7 +507,7 @@ class TestSriLankaRupee:
         assert default.pattern == '2.,3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'LKR',
             '144'))
         assert default.__repr__() == (
@@ -639,11 +639,11 @@ class TestMauritiusRupee:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '₨\xa03.14'),
-        (3.14, '3.14', '₨\xa03.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '₨\xa03.14'),
         (10, '10', '₨\xa010.00'),
         (Decimal('10'), '10', '₨\xa010.00'),
         ('-3.14', '-3.14', '₨\xa0-3.14'),
-        (-3.14, '-3.14', '₨\xa0-3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '₨\xa0-3.14'),
         (-10, '-10', '₨\xa0-10.00'),
         (Decimal('-10'), '-10', '₨\xa0-10.00')
     ])
@@ -658,7 +658,7 @@ class TestMauritiusRupee:
         assert default.pattern == '2.,3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'MUR',
             '480'))
         assert default.__repr__() == (
@@ -790,11 +790,11 @@ class TestNepaleseRupee:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', 'नेरू\xa0३.१४'),
-        (3.14, '3.14', 'नेरू\xa0३.१४'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', 'नेरू\xa0३.१४'),
         (10, '10', 'नेरू\xa0१०.००'),
         (Decimal('10'), '10', 'नेरू\xa0१०.००'),
         ('-3.14', '-3.14', 'नेरू\xa0-३.१४'),
-        (-3.14, '-3.14', 'नेरू\xa0-३.१४'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', 'नेरू\xa0-३.१४'),
         (-10, '-10', 'नेरू\xa0-१०.००'),
         (Decimal('-10'), '-10', 'नेरू\xa0-१०.००')
     ])
@@ -809,7 +809,7 @@ class TestNepaleseRupee:
         assert default.pattern == '2.,3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'NPR',
             '524'))
         assert default.__repr__() == (
@@ -941,11 +941,11 @@ class TestPakistanRupee:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '₨\xa03.14'),
-        (3.14, '3.14', '₨\xa03.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '₨\xa03.14'),
         (10, '10', '₨\xa010.00'),
         (Decimal('10'), '10', '₨\xa010.00'),
         ('-3.14', '-3.14', '₨\xa0-3.14'),
-        (-3.14, '-3.14', '₨\xa0-3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '₨\xa0-3.14'),
         (-10, '-10', '₨\xa0-10.00'),
         (Decimal('-10'), '-10', '₨\xa0-10.00')
     ])
@@ -960,7 +960,7 @@ class TestPakistanRupee:
         assert default.pattern == '2.,3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'PKR',
             '586'))
         assert default.__repr__() == (
@@ -1092,11 +1092,11 @@ class TestSeychellesRupee:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '₨\xa03.14'),
-        (3.14, '3.14', '₨\xa03.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '₨\xa03.14'),
         (10, '10', '₨\xa010.00'),
         (Decimal('10'), '10', '₨\xa010.00'),
         ('-3.14', '-3.14', '₨\xa0-3.14'),
-        (-3.14, '-3.14', '₨\xa0-3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '₨\xa0-3.14'),
         (-10, '-10', '₨\xa0-10.00'),
         (Decimal('-10'), '-10', '₨\xa0-10.00')
     ])
@@ -1111,7 +1111,7 @@ class TestSeychellesRupee:
         assert default.pattern == '2.,3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'SCR',
             '690'))
         assert default.__repr__() == (

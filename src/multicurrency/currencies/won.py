@@ -18,7 +18,7 @@ class NorthKoreanWon(Currency):
 
         >>> from multicurrency import NorthKoreanWon
         >>> north_korean_won = NorthKoreanWon(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(north_korean_won)
         ₩ 123,456.79
 
@@ -76,7 +76,7 @@ class SouthKoreanWon(Currency):
 
         >>> from multicurrency import SouthKoreanWon
         >>> south_korean_won = SouthKoreanWon(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(south_korean_won)
         ₩123,457
 

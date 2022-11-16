@@ -18,7 +18,7 @@ class Quetzal(Currency):
 
         >>> from multicurrency import Quetzal
         >>> quetzal = Quetzal(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(quetzal)
         Q 123,456.79
 

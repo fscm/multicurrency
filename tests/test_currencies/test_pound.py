@@ -41,11 +41,11 @@ class TestEgyptianPound:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', 'ج.م.\xa0٣٫١٤'),
-        (3.14, '3.14', 'ج.م.\xa0٣٫١٤'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', 'ج.م.\xa0٣٫١٤'),
         (10, '10', 'ج.م.\xa0١٠٫٠٠'),
         (Decimal('10'), '10', 'ج.م.\xa0١٠٫٠٠'),
         ('-3.14', '-3.14', 'ج.م.\xa0-٣٫١٤'),
-        (-3.14, '-3.14', 'ج.م.\xa0-٣٫١٤'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', 'ج.م.\xa0-٣٫١٤'),
         (-10, '-10', 'ج.م.\xa0-١٠٫٠٠'),
         (Decimal('-10'), '-10', 'ج.م.\xa0-١٠٫٠٠')
     ])
@@ -60,7 +60,7 @@ class TestEgyptianPound:
         assert default.pattern == '2\u066B\u066C3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EGP',
             '818'))
         assert default.__repr__() == (
@@ -192,11 +192,11 @@ class TestFalklandIslandsPound:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '£3.14'),
-        (3.14, '3.14', '£3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '£3.14'),
         (10, '10', '£10.00'),
         (Decimal('10'), '10', '£10.00'),
         ('-3.14', '-3.14', '-£3.14'),
-        (-3.14, '-3.14', '-£3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-£3.14'),
         (-10, '-10', '-£10.00'),
         (Decimal('-10'), '-10', '-£10.00')
     ])
@@ -211,7 +211,7 @@ class TestFalklandIslandsPound:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'FKP',
             '238'))
         assert default.__repr__() == (
@@ -343,11 +343,11 @@ class TestPoundSterling:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '£3.14'),
-        (3.14, '3.14', '£3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '£3.14'),
         (10, '10', '£10.00'),
         (Decimal('10'), '10', '£10.00'),
         ('-3.14', '-3.14', '-£3.14'),
-        (-3.14, '-3.14', '-£3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-£3.14'),
         (-10, '-10', '-£10.00'),
         (Decimal('-10'), '-10', '-£10.00')
     ])
@@ -362,7 +362,7 @@ class TestPoundSterling:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'GBP',
             '826'))
         assert default.__repr__() == (
@@ -494,11 +494,11 @@ class TestPoundSterlingGG:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '£3.14'),
-        (3.14, '3.14', '£3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '£3.14'),
         (10, '10', '£10.00'),
         (Decimal('10'), '10', '£10.00'),
         ('-3.14', '-3.14', '-£3.14'),
-        (-3.14, '-3.14', '-£3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-£3.14'),
         (-10, '-10', '-£10.00'),
         (Decimal('-10'), '-10', '-£10.00')
     ])
@@ -513,7 +513,7 @@ class TestPoundSterlingGG:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'GBP',
             '826'))
         assert default.__repr__() == (
@@ -645,11 +645,11 @@ class TestPoundSterlingIO:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '£3.14'),
-        (3.14, '3.14', '£3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '£3.14'),
         (10, '10', '£10.00'),
         (Decimal('10'), '10', '£10.00'),
         ('-3.14', '-3.14', '-£3.14'),
-        (-3.14, '-3.14', '-£3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-£3.14'),
         (-10, '-10', '-£10.00'),
         (Decimal('-10'), '-10', '-£10.00')
     ])
@@ -664,7 +664,7 @@ class TestPoundSterlingIO:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'GBP',
             '826'))
         assert default.__repr__() == (
@@ -796,11 +796,11 @@ class TestPoundSterlingGB:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '£3.14'),
-        (3.14, '3.14', '£3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '£3.14'),
         (10, '10', '£10.00'),
         (Decimal('10'), '10', '£10.00'),
         ('-3.14', '-3.14', '-£3.14'),
-        (-3.14, '-3.14', '-£3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-£3.14'),
         (-10, '-10', '-£10.00'),
         (Decimal('-10'), '-10', '-£10.00')
     ])
@@ -815,7 +815,7 @@ class TestPoundSterlingGB:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'GBP',
             '826'))
         assert default.__repr__() == (
@@ -947,11 +947,11 @@ class TestPoundSterlingIM:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '£3.14'),
-        (3.14, '3.14', '£3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '£3.14'),
         (10, '10', '£10.00'),
         (Decimal('10'), '10', '£10.00'),
         ('-3.14', '-3.14', '-£3.14'),
-        (-3.14, '-3.14', '-£3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-£3.14'),
         (-10, '-10', '-£10.00'),
         (Decimal('-10'), '-10', '-£10.00')
     ])
@@ -966,7 +966,7 @@ class TestPoundSterlingIM:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'GBP',
             '826'))
         assert default.__repr__() == (
@@ -1098,11 +1098,11 @@ class TestGibraltarPound:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '£3.14'),
-        (3.14, '3.14', '£3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '£3.14'),
         (10, '10', '£10.00'),
         (Decimal('10'), '10', '£10.00'),
         ('-3.14', '-3.14', '-£3.14'),
-        (-3.14, '-3.14', '-£3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-£3.14'),
         (-10, '-10', '-£10.00'),
         (Decimal('-10'), '-10', '-£10.00')
     ])
@@ -1117,7 +1117,7 @@ class TestGibraltarPound:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'GIP',
             '292'))
         assert default.__repr__() == (
@@ -1249,11 +1249,11 @@ class TestLebanesePound:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', 'ل.ل.\xa0٣'),
-        (3.14, '3.14', 'ل.ل.\xa0٣'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', 'ل.ل.\xa0٣'),
         (10, '10', 'ل.ل.\xa0١٠'),
         (Decimal('10'), '10', 'ل.ل.\xa0١٠'),
         ('-3.14', '-3.14', 'ل.ل.\xa0-٣'),
-        (-3.14, '-3.14', 'ل.ل.\xa0-٣'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', 'ل.ل.\xa0-٣'),
         (-10, '-10', 'ل.ل.\xa0-١٠'),
         (Decimal('-10'), '-10', 'ل.ل.\xa0-١٠')
     ])
@@ -1268,7 +1268,7 @@ class TestLebanesePound:
         assert default.pattern == '0\u066B\u066C3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'LBP',
             '422'))
         assert default.__repr__() == (
@@ -1400,11 +1400,11 @@ class TestSudanesePound:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '٣٫١٤\xa0ج.س'),
-        (3.14, '3.14', '٣٫١٤\xa0ج.س'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '٣٫١٤\xa0ج.س'),
         (10, '10', '١٠٫٠٠\xa0ج.س'),
         (Decimal('10'), '10', '١٠٫٠٠\xa0ج.س'),
         ('-3.14', '-3.14', '-٣٫١٤\xa0ج.س'),
-        (-3.14, '-3.14', '-٣٫١٤\xa0ج.س'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-٣٫١٤\xa0ج.س'),
         (-10, '-10', '-١٠٫٠٠\xa0ج.س'),
         (Decimal('-10'), '-10', '-١٠٫٠٠\xa0ج.س')
     ])
@@ -1419,7 +1419,7 @@ class TestSudanesePound:
         assert default.pattern == '2\u066B\u066C3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'SDG',
             '938'))
         assert default.__repr__() == (
@@ -1551,11 +1551,11 @@ class TestSaintHelenaPoundAI:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '£3.14'),
-        (3.14, '3.14', '£3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '£3.14'),
         (10, '10', '£10.00'),
         (Decimal('10'), '10', '£10.00'),
         ('-3.14', '-3.14', '-£3.14'),
-        (-3.14, '-3.14', '-£3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-£3.14'),
         (-10, '-10', '-£10.00'),
         (Decimal('-10'), '-10', '-£10.00')
     ])
@@ -1570,7 +1570,7 @@ class TestSaintHelenaPoundAI:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'SHP',
             '654'))
         assert default.__repr__() == (
@@ -1702,11 +1702,11 @@ class TestSaintHelenaPound:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '£3.14'),
-        (3.14, '3.14', '£3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '£3.14'),
         (10, '10', '£10.00'),
         (Decimal('10'), '10', '£10.00'),
         ('-3.14', '-3.14', '-£3.14'),
-        (-3.14, '-3.14', '-£3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-£3.14'),
         (-10, '-10', '-£10.00'),
         (Decimal('-10'), '-10', '-£10.00')
     ])
@@ -1721,7 +1721,7 @@ class TestSaintHelenaPound:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'SHP',
             '654'))
         assert default.__repr__() == (
@@ -1853,11 +1853,11 @@ class TestSaintHelenaPoundTC:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '£3.14'),
-        (3.14, '3.14', '£3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '£3.14'),
         (10, '10', '£10.00'),
         (Decimal('10'), '10', '£10.00'),
         ('-3.14', '-3.14', '-£3.14'),
-        (-3.14, '-3.14', '-£3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-£3.14'),
         (-10, '-10', '-£10.00'),
         (Decimal('-10'), '-10', '-£10.00')
     ])
@@ -1872,7 +1872,7 @@ class TestSaintHelenaPoundTC:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'SHP',
             '654'))
         assert default.__repr__() == (
@@ -2004,11 +2004,11 @@ class TestSyrianPound:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '٣٫١٤\xa0ل.س'),
-        (3.14, '3.14', '٣٫١٤\xa0ل.س'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '٣٫١٤\xa0ل.س'),
         (10, '10', '١٠٫٠٠\xa0ل.س'),
         (Decimal('10'), '10', '١٠٫٠٠\xa0ل.س'),
         ('-3.14', '-3.14', '-٣٫١٤\xa0ل.س'),
-        (-3.14, '-3.14', '-٣٫١٤\xa0ل.س'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-٣٫١٤\xa0ل.س'),
         (-10, '-10', '-١٠٫٠٠\xa0ل.س'),
         (Decimal('-10'), '-10', '-١٠٫٠٠\xa0ل.س')
     ])
@@ -2023,7 +2023,7 @@ class TestSyrianPound:
         assert default.pattern == '2\u066B\u066C3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'SYP',
             '760'))
         assert default.__repr__() == (

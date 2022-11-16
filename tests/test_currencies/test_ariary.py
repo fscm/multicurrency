@@ -27,11 +27,11 @@ class TestMalagasyAriary:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3\xa0Ar'),
-        (3.14, '3.14', '3\xa0Ar'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3\xa0Ar'),
         (10, '10', '10\xa0Ar'),
         (Decimal('10'), '10', '10\xa0Ar'),
         ('-3.14', '-3.14', '-3\xa0Ar'),
-        (-3.14, '-3.14', '-3\xa0Ar'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3\xa0Ar'),
         (-10, '-10', '-10\xa0Ar'),
         (Decimal('-10'), '-10', '-10\xa0Ar')
     ])
@@ -46,7 +46,7 @@ class TestMalagasyAriary:
         assert default.pattern == '0,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'MGA',
             '969'))
         assert default.__repr__() == (

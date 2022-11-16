@@ -27,11 +27,11 @@ class TestYen:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '¥3'),
-        (3.14, '3.14', '¥3'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '¥3'),
         (10, '10', '¥10'),
         (Decimal('10'), '10', '¥10'),
         ('-3.14', '-3.14', '-¥3'),
-        (-3.14, '-3.14', '-¥3'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-¥3'),
         (-10, '-10', '-¥10'),
         (Decimal('-10'), '-10', '-¥10')
     ])
@@ -46,7 +46,7 @@ class TestYen:
         assert default.pattern == '0.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'JPY',
             '392'))
         assert default.__repr__() == (

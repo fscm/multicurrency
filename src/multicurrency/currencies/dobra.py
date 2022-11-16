@@ -18,7 +18,7 @@ class Dobra(Currency):
 
         >>> from multicurrency import Dobra
         >>> dobra = Dobra(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(dobra)
         123.456,79 Db
 

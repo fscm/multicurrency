@@ -18,7 +18,7 @@ class PZloty(Currency):
 
         >>> from multicurrency import PZloty
         >>> pzloty = PZloty(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(pzloty)
         123 456,79 zł
 

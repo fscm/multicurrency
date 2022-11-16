@@ -18,7 +18,7 @@ class Kyat(Currency):
 
         >>> from multicurrency import Kyat
         >>> kyat = Kyat(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(kyat)
         ၁၂၃,၄၅၆.၇၉ K
 

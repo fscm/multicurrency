@@ -18,7 +18,7 @@ class CroatianKuna(Currency):
 
         >>> from multicurrency import CroatianKuna
         >>> croatian_kuna = CroatianKuna(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(croatian_kuna)
         123.456,79 Kn
 

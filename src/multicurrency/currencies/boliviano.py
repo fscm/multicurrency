@@ -18,7 +18,7 @@ class Boliviano(Currency):
 
         >>> from multicurrency import Boliviano
         >>> boliviano = Boliviano(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(boliviano)
         Bs. 123.456,79
 

@@ -40,7 +40,7 @@ class Test${currency.class_name}:
         assert default.pattern == '${currency.pattern}'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             '${currency.alpha_code}',
             '${currency.numeric_code}'))
         assert default.__repr__() == (

@@ -27,11 +27,11 @@ class TestKyat:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '၃.၁၄\xa0K'),
-        (3.14, '3.14', '၃.၁၄\xa0K'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '၃.၁၄\xa0K'),
         (10, '10', '၁၀.၀၀\xa0K'),
         (Decimal('10'), '10', '၁၀.၀၀\xa0K'),
         ('-3.14', '-3.14', '-၃.၁၄\xa0K'),
-        (-3.14, '-3.14', '-၃.၁၄\xa0K'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-၃.၁၄\xa0K'),
         (-10, '-10', '-၁၀.၀၀\xa0K'),
         (Decimal('-10'), '-10', '-၁၀.၀၀\xa0K')
     ])
@@ -46,7 +46,7 @@ class TestKyat:
         assert default.pattern == '2.,3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'MMK',
             '104'))
         assert default.__repr__() == (

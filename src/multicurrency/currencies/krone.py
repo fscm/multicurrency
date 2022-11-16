@@ -18,7 +18,7 @@ class DanishKrone(Currency):
 
         >>> from multicurrency import DanishKrone
         >>> danish_krone = DanishKrone(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(danish_krone)
         123.456,79 kr
 
@@ -76,7 +76,7 @@ class NorwegianKrone(Currency):
 
         >>> from multicurrency import NorwegianKrone
         >>> norwegian_krone = NorwegianKrone(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(norwegian_krone)
         kr 123 456,79
 

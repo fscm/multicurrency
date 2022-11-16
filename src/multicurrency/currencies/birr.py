@@ -18,7 +18,7 @@ class EthiopianBirr(Currency):
 
         >>> from multicurrency import EthiopianBirr
         >>> ethiopian_birr = EthiopianBirr(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(ethiopian_birr)
         ብር 123,456.79
 

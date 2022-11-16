@@ -18,7 +18,7 @@ class Ngultrum(Currency):
 
         >>> from multicurrency import Ngultrum
         >>> ngultrum = Ngultrum(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(ngultrum)
         Nu. ༡༢༣,༤༥༦.༧༩
 

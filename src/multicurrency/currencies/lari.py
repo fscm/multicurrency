@@ -18,7 +18,7 @@ class Lari(Currency):
 
         >>> from multicurrency import Lari
         >>> lari = Lari(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(lari)
         123 456,79 ლ
 
@@ -76,7 +76,7 @@ class GeorgiaLari(Currency):
 
         >>> from multicurrency import GeorgiaLari
         >>> georgia_lari = GeorgiaLari(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(georgia_lari)
         123 456,79 ლ
 
@@ -134,7 +134,7 @@ class SouthOssetiaLari(Currency):
 
         >>> from multicurrency import SouthOssetiaLari
         >>> south_ossetia_lari = SouthOssetiaLari(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(south_ossetia_lari)
         123 456,79 ლ
 

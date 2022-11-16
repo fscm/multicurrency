@@ -18,7 +18,7 @@ class MalagasyAriary(Currency):
 
         >>> from multicurrency import MalagasyAriary
         >>> malagasy_ariary = MalagasyAriary(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(malagasy_ariary)
         123 457 Ar
 

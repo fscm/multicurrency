@@ -18,7 +18,7 @@ class NewIsraeliShekel(Currency):
 
         >>> from multicurrency import NewIsraeliShekel
         >>> new_israeli_shekel = NewIsraeliShekel(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(new_israeli_shekel)
         123,456.79 ₪
 
@@ -76,7 +76,7 @@ class NewIsraeliShekelIL(Currency):
 
         >>> from multicurrency import NewIsraeliShekelIL
         >>> new_israeli_shekel_il = NewIsraeliShekelIL(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(new_israeli_shekel_il)
         123,456.79 ₪
 
@@ -134,7 +134,7 @@ class NewIsraeliShekelPS(Currency):
 
         >>> from multicurrency import NewIsraeliShekelPS
         >>> new_israeli_shekel_ps = NewIsraeliShekelPS(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(new_israeli_shekel_ps)
         123,456.79 ₪
 

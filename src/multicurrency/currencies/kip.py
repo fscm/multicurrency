@@ -18,7 +18,7 @@ class Kip(Currency):
 
         >>> from multicurrency import Kip
         >>> kip = Kip(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(kip)
         ₭123.456,79
 

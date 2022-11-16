@@ -18,7 +18,7 @@ class Vatu(Currency):
 
         >>> from multicurrency import Vatu
         >>> vatu = Vatu(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(vatu)
         Vt 123,457
 

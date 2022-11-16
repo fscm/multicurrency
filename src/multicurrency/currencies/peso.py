@@ -18,7 +18,7 @@ class ArgentinePeso(Currency):
 
         >>> from multicurrency import ArgentinePeso
         >>> argentine_peso = ArgentinePeso(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(argentine_peso)
         $ 123.456,79
 
@@ -76,7 +76,7 @@ class ChileanPeso(Currency):
 
         >>> from multicurrency import ChileanPeso
         >>> chilean_peso = ChileanPeso(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(chilean_peso)
         $123.457
 
@@ -134,7 +134,7 @@ class ColombianPeso(Currency):
 
         >>> from multicurrency import ColombianPeso
         >>> colombian_peso = ColombianPeso(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(colombian_peso)
         $ 123.456,79
 
@@ -192,7 +192,7 @@ class CubanPeso(Currency):
 
         >>> from multicurrency import CubanPeso
         >>> cuban_peso = CubanPeso(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(cuban_peso)
         $123,456.79
 
@@ -250,7 +250,7 @@ class DominicanPeso(Currency):
 
         >>> from multicurrency import DominicanPeso
         >>> dominican_peso = DominicanPeso(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(dominican_peso)
         $123,456.79
 
@@ -308,7 +308,7 @@ class MexicanPeso(Currency):
 
         >>> from multicurrency import MexicanPeso
         >>> mexican_peso = MexicanPeso(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(mexican_peso)
         $123,456.79
 
@@ -366,7 +366,7 @@ class PhilippinePeso(Currency):
 
         >>> from multicurrency import PhilippinePeso
         >>> philippine_peso = PhilippinePeso(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(philippine_peso)
         ₱123,456.79
 
@@ -424,7 +424,7 @@ class PesoUruguayo(Currency):
 
         >>> from multicurrency import PesoUruguayo
         >>> peso_uruguayo = PesoUruguayo(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(peso_uruguayo)
         $ 123.456,79
 

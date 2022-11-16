@@ -18,7 +18,7 @@ class Hryvnia(Currency):
 
         >>> from multicurrency import Hryvnia
         >>> hryvnia = Hryvnia(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(hryvnia)
         123 456,79 ₴
 

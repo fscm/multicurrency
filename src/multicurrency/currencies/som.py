@@ -18,7 +18,7 @@ class Som(Currency):
 
         >>> from multicurrency import Som
         >>> som = Som(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(som)
         123 456,79 Лв
 

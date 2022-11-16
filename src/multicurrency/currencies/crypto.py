@@ -18,7 +18,7 @@ class EOS(Currency):
 
         >>> from multicurrency import EOS
         >>> eos = EOS(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(eos)
         ε123,456.7890
 
@@ -76,7 +76,7 @@ class Ethereum(Currency):
 
         >>> from multicurrency import Ethereum
         >>> ethereum = Ethereum(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(ethereum)
         Ξ123,456.789000000000000000
 
@@ -134,7 +134,7 @@ class Bitcoin(Currency):
 
         >>> from multicurrency import Bitcoin
         >>> bitcoin = Bitcoin(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(bitcoin)
         ₿123,456.78900000
 
@@ -192,7 +192,7 @@ class StellarLumens(Currency):
 
         >>> from multicurrency import StellarLumens
         >>> stellar_lumens = StellarLumens(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(stellar_lumens)
         *123,456.7890000
 
@@ -250,7 +250,7 @@ class Monero(Currency):
 
         >>> from multicurrency import Monero
         >>> monero = Monero(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(monero)
         ɱ123,456.789000000000
 
@@ -308,7 +308,7 @@ class Ripple(Currency):
 
         >>> from multicurrency import Ripple
         >>> ripple = Ripple(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(ripple)
         ✕123,456.789000
 
@@ -366,7 +366,7 @@ class Tezos(Currency):
 
         >>> from multicurrency import Tezos
         >>> tezos = Tezos(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(tezos)
         ꜩ123,456.789000
 
@@ -424,7 +424,7 @@ class Zcash(Currency):
 
         >>> from multicurrency import Zcash
         >>> zcash = Zcash(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(zcash)
         ⓩ123,456.78900000
 

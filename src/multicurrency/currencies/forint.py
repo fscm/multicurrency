@@ -18,7 +18,7 @@ class Forint(Currency):
 
         >>> from multicurrency import Forint
         >>> forint = Forint(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(forint)
         123 457 Ft
 

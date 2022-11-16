@@ -27,11 +27,11 @@ class TestBolivarFuerte:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', 'Bs.F.\xa03,14'),
-        (3.14, '3.14', 'Bs.F.\xa03,14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', 'Bs.F.\xa03,14'),
         (10, '10', 'Bs.F.\xa010,00'),
         (Decimal('10'), '10', 'Bs.F.\xa010,00'),
         ('-3.14', '-3.14', 'Bs.F.\xa0-3,14'),
-        (-3.14, '-3.14', 'Bs.F.\xa0-3,14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', 'Bs.F.\xa0-3,14'),
         (-10, '-10', 'Bs.F.\xa0-10,00'),
         (Decimal('-10'), '-10', 'Bs.F.\xa0-10,00')
     ])
@@ -46,7 +46,7 @@ class TestBolivarFuerte:
         assert default.pattern == '2,.3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'VEF',
             '937'))
         assert default.__repr__() == (

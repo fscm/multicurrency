@@ -18,7 +18,7 @@ class CapeVerdeEscudo(Currency):
 
         >>> from multicurrency import CapeVerdeEscudo
         >>> cape_verde_escudo = CapeVerdeEscudo(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(cape_verde_escudo)
         123 456$79
 

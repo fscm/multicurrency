@@ -18,7 +18,7 @@ class CostaRicanColon(Currency):
 
         >>> from multicurrency import CostaRicanColon
         >>> costa_rican_colon = CostaRicanColon(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(costa_rican_colon)
         ₡123 456,79
 

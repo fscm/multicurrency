@@ -18,7 +18,7 @@ class BahrainiDinar(Currency):
 
         >>> from multicurrency import BahrainiDinar
         >>> bahraini_dinar = BahrainiDinar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(bahraini_dinar)
         د.ب. ١٢٣٬٤٥٦٫٧٨٩
 
@@ -76,7 +76,7 @@ class AlgerianDinar(Currency):
 
         >>> from multicurrency import AlgerianDinar
         >>> algerian_dinar = AlgerianDinar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(algerian_dinar)
         123.456,79 د.ج.
 
@@ -134,7 +134,7 @@ class IraqiDinar(Currency):
 
         >>> from multicurrency import IraqiDinar
         >>> iraqi_dinar = IraqiDinar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(iraqi_dinar)
         د.ع. ١٢٣٬٤٥٦٫٧٨٩
 
@@ -192,7 +192,7 @@ class JordanianDinar(Currency):
 
         >>> from multicurrency import JordanianDinar
         >>> jordanian_dinar = JordanianDinar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(jordanian_dinar)
         د.أ. ١٢٣٬٤٥٦٫٧٨٩
 
@@ -250,7 +250,7 @@ class KuwaitiDinar(Currency):
 
         >>> from multicurrency import KuwaitiDinar
         >>> kuwaiti_dinar = KuwaitiDinar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(kuwaiti_dinar)
         د.ك. ١٢٣٬٤٥٦٫٧٨٩
 
@@ -308,7 +308,7 @@ class LibyanDinar(Currency):
 
         >>> from multicurrency import LibyanDinar
         >>> libyan_dinar = LibyanDinar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(libyan_dinar)
         د.ل. 123.456,789
 
@@ -366,7 +366,7 @@ class SerbianDinarXK(Currency):
 
         >>> from multicurrency import SerbianDinarXK
         >>> serbian_dinar_xk = SerbianDinarXK(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(serbian_dinar_xk)
         123.456,79 дин.
 
@@ -424,7 +424,7 @@ class SerbianDinarSR(Currency):
 
         >>> from multicurrency import SerbianDinarSR
         >>> serbian_dinar_sr = SerbianDinarSR(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(serbian_dinar_sr)
         123 456,79 дин.
 
@@ -482,7 +482,7 @@ class TunisianDinar(Currency):
 
         >>> from multicurrency import TunisianDinar
         >>> tunisian_dinar = TunisianDinar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(tunisian_dinar)
         د.ت. 123.456,789
 

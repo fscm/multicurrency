@@ -30,11 +30,11 @@ class TestLari:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0ლ'),
-        (3.14, '3.14', '3,14\xa0ლ'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0ლ'),
         (10, '10', '10,00\xa0ლ'),
         (Decimal('10'), '10', '10,00\xa0ლ'),
         ('-3.14', '-3.14', '-3,14\xa0ლ'),
-        (-3.14, '-3.14', '-3,14\xa0ლ'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0ლ'),
         (-10, '-10', '-10,00\xa0ლ'),
         (Decimal('-10'), '-10', '-10,00\xa0ლ')
     ])
@@ -49,7 +49,7 @@ class TestLari:
         assert default.pattern == '2,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'GEL',
             '981'))
         assert default.__repr__() == (
@@ -181,11 +181,11 @@ class TestGeorgiaLari:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0ლ'),
-        (3.14, '3.14', '3,14\xa0ლ'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0ლ'),
         (10, '10', '10,00\xa0ლ'),
         (Decimal('10'), '10', '10,00\xa0ლ'),
         ('-3.14', '-3.14', '-3,14\xa0ლ'),
-        (-3.14, '-3.14', '-3,14\xa0ლ'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0ლ'),
         (-10, '-10', '-10,00\xa0ლ'),
         (Decimal('-10'), '-10', '-10,00\xa0ლ')
     ])
@@ -200,7 +200,7 @@ class TestGeorgiaLari:
         assert default.pattern == '2,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'GEL',
             '981'))
         assert default.__repr__() == (
@@ -332,11 +332,11 @@ class TestSouthOssetiaLari:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0ლ'),
-        (3.14, '3.14', '3,14\xa0ლ'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0ლ'),
         (10, '10', '10,00\xa0ლ'),
         (Decimal('10'), '10', '10,00\xa0ლ'),
         ('-3.14', '-3.14', '-3,14\xa0ლ'),
-        (-3.14, '-3.14', '-3,14\xa0ლ'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0ლ'),
         (-10, '-10', '-10,00\xa0ლ'),
         (Decimal('-10'), '-10', '-10,00\xa0ლ')
     ])
@@ -351,7 +351,7 @@ class TestSouthOssetiaLari:
         assert default.pattern == '2,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'GEL',
             '981'))
         assert default.__repr__() == (

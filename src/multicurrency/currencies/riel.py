@@ -18,7 +18,7 @@ class Riel(Currency):
 
         >>> from multicurrency import Riel
         >>> riel = Riel(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(riel)
         123.456,79៛
 

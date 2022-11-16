@@ -18,7 +18,7 @@ class Tala(Currency):
 
         >>> from multicurrency import Tala
         >>> tala = Tala(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(tala)
         T 123,456.79
 

@@ -18,7 +18,7 @@ class Rupiah(Currency):
 
         >>> from multicurrency import Rupiah
         >>> rupiah = Rupiah(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(rupiah)
         Rp 123.456,79
 

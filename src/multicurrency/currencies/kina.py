@@ -18,7 +18,7 @@ class Kina(Currency):
 
         >>> from multicurrency import Kina
         >>> kina = Kina(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(kina)
         K 123,456.79
 

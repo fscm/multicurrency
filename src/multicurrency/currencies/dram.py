@@ -18,7 +18,7 @@ class ArmenianDram(Currency):
 
         >>> from multicurrency import ArmenianDram
         >>> armenian_dram = ArmenianDram(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(armenian_dram)
         123 456,79 Դ
 

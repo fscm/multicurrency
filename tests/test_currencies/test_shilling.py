@@ -31,11 +31,11 @@ class TestKenyanShilling:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', 'Ksh\xa03.14'),
-        (3.14, '3.14', 'Ksh\xa03.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', 'Ksh\xa03.14'),
         (10, '10', 'Ksh\xa010.00'),
         (Decimal('10'), '10', 'Ksh\xa010.00'),
         ('-3.14', '-3.14', 'Ksh\xa0-3.14'),
-        (-3.14, '-3.14', 'Ksh\xa0-3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', 'Ksh\xa0-3.14'),
         (-10, '-10', 'Ksh\xa0-10.00'),
         (Decimal('-10'), '-10', 'Ksh\xa0-10.00')
     ])
@@ -50,7 +50,7 @@ class TestKenyanShilling:
         assert default.pattern == '2.,3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'KES',
             '404'))
         assert default.__repr__() == (
@@ -182,11 +182,11 @@ class TestSomaliShilling:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', 'SSh\xa03.14'),
-        (3.14, '3.14', 'SSh\xa03.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', 'SSh\xa03.14'),
         (10, '10', 'SSh\xa010.00'),
         (Decimal('10'), '10', 'SSh\xa010.00'),
         ('-3.14', '-3.14', 'SSh\xa0-3.14'),
-        (-3.14, '-3.14', 'SSh\xa0-3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', 'SSh\xa0-3.14'),
         (-10, '-10', 'SSh\xa0-10.00'),
         (Decimal('-10'), '-10', 'SSh\xa0-10.00')
     ])
@@ -201,7 +201,7 @@ class TestSomaliShilling:
         assert default.pattern == '2.,3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'SOS',
             '706'))
         assert default.__repr__() == (
@@ -333,11 +333,11 @@ class TestTanzanianShilling:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', 'TSh\xa03.14'),
-        (3.14, '3.14', 'TSh\xa03.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', 'TSh\xa03.14'),
         (10, '10', 'TSh\xa010.00'),
         (Decimal('10'), '10', 'TSh\xa010.00'),
         ('-3.14', '-3.14', 'TSh\xa0-3.14'),
-        (-3.14, '-3.14', 'TSh\xa0-3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', 'TSh\xa0-3.14'),
         (-10, '-10', 'TSh\xa0-10.00'),
         (Decimal('-10'), '-10', 'TSh\xa0-10.00')
     ])
@@ -352,7 +352,7 @@ class TestTanzanianShilling:
         assert default.pattern == '2.,3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'TZS',
             '834'))
         assert default.__repr__() == (
@@ -484,11 +484,11 @@ class TestUgandaShilling:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', 'USh\xa03'),
-        (3.14, '3.14', 'USh\xa03'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', 'USh\xa03'),
         (10, '10', 'USh\xa010'),
         (Decimal('10'), '10', 'USh\xa010'),
         ('-3.14', '-3.14', 'USh\xa0-3'),
-        (-3.14, '-3.14', 'USh\xa0-3'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', 'USh\xa0-3'),
         (-10, '-10', 'USh\xa0-10'),
         (Decimal('-10'), '-10', 'USh\xa0-10')
     ])
@@ -503,7 +503,7 @@ class TestUgandaShilling:
         assert default.pattern == '0.,3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'UGX',
             '800'))
         assert default.__repr__() == (

@@ -18,7 +18,7 @@ class Yuan(Currency):
 
         >>> from multicurrency import Yuan
         >>> yuan = Yuan(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(yuan)
         ¥123,456.79
 

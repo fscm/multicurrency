@@ -30,11 +30,11 @@ class TestNewIsraeliShekel:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3.14\xa0₪'),
-        (3.14, '3.14', '3.14\xa0₪'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3.14\xa0₪'),
         (10, '10', '10.00\xa0₪'),
         (Decimal('10'), '10', '10.00\xa0₪'),
         ('-3.14', '-3.14', '-3.14\xa0₪'),
-        (-3.14, '-3.14', '-3.14\xa0₪'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3.14\xa0₪'),
         (-10, '-10', '-10.00\xa0₪'),
         (Decimal('-10'), '-10', '-10.00\xa0₪')
     ])
@@ -49,7 +49,7 @@ class TestNewIsraeliShekel:
         assert default.pattern == '2.,3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'ILS',
             '376'))
         assert default.__repr__() == (
@@ -181,11 +181,11 @@ class TestNewIsraeliShekelIL:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3.14\xa0₪'),
-        (3.14, '3.14', '3.14\xa0₪'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3.14\xa0₪'),
         (10, '10', '10.00\xa0₪'),
         (Decimal('10'), '10', '10.00\xa0₪'),
         ('-3.14', '-3.14', '-3.14\xa0₪'),
-        (-3.14, '-3.14', '-3.14\xa0₪'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3.14\xa0₪'),
         (-10, '-10', '-10.00\xa0₪'),
         (Decimal('-10'), '-10', '-10.00\xa0₪')
     ])
@@ -200,7 +200,7 @@ class TestNewIsraeliShekelIL:
         assert default.pattern == '2.,3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'ILS',
             '376'))
         assert default.__repr__() == (
@@ -332,11 +332,11 @@ class TestNewIsraeliShekelPS:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3.14\xa0₪'),
-        (3.14, '3.14', '3.14\xa0₪'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3.14\xa0₪'),
         (10, '10', '10.00\xa0₪'),
         (Decimal('10'), '10', '10.00\xa0₪'),
         ('-3.14', '-3.14', '-3.14\xa0₪'),
-        (-3.14, '-3.14', '-3.14\xa0₪'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3.14\xa0₪'),
         (-10, '-10', '-10.00\xa0₪'),
         (Decimal('-10'), '-10', '-10.00\xa0₪')
     ])
@@ -351,7 +351,7 @@ class TestNewIsraeliShekelPS:
         assert default.pattern == '2.,3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'ILS',
             '376'))
         assert default.__repr__() == (

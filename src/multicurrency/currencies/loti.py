@@ -18,7 +18,7 @@ class Loti(Currency):
 
         >>> from multicurrency import Loti
         >>> loti = Loti(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(loti)
         L 123,456.79
 

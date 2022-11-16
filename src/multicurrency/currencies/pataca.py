@@ -18,7 +18,7 @@ class Pataca(Currency):
 
         >>> from multicurrency import Pataca
         >>> pataca = Pataca(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(pataca)
         P 123,456.79
 

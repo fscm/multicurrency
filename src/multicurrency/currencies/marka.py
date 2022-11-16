@@ -18,7 +18,7 @@ class KonvertibilnaMarka(Currency):
 
         >>> from multicurrency import KonvertibilnaMarka
         >>> konvertibilna_marka = KonvertibilnaMarka(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(konvertibilna_marka)
         123,456.79 КМ
 

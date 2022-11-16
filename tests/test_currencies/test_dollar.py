@@ -86,11 +86,11 @@ class TestAustralianDollar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$\xa03.14'),
-        (3.14, '3.14', '$\xa03.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$\xa03.14'),
         (10, '10', '$\xa010.00'),
         (Decimal('10'), '10', '$\xa010.00'),
         ('-3.14', '-3.14', '$\xa0-3.14'),
-        (-3.14, '-3.14', '$\xa0-3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '$\xa0-3.14'),
         (-10, '-10', '$\xa0-10.00'),
         (Decimal('-10'), '-10', '$\xa0-10.00')
     ])
@@ -105,7 +105,7 @@ class TestAustralianDollar:
         assert default.pattern == '2.,3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'AUD',
             '036'))
         assert default.__repr__() == (
@@ -237,11 +237,11 @@ class TestAustralianDollarAU:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -256,7 +256,7 @@ class TestAustralianDollarAU:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'AUD',
             '036'))
         assert default.__repr__() == (
@@ -388,11 +388,11 @@ class TestAustralianDollarKI:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -407,7 +407,7 @@ class TestAustralianDollarKI:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'AUD',
             '036'))
         assert default.__repr__() == (
@@ -539,11 +539,11 @@ class TestAustralianDollarCC:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -558,7 +558,7 @@ class TestAustralianDollarCC:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'AUD',
             '036'))
         assert default.__repr__() == (
@@ -690,11 +690,11 @@ class TestAustralianDollarMR:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -709,7 +709,7 @@ class TestAustralianDollarMR:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'AUD',
             '036'))
         assert default.__repr__() == (
@@ -841,11 +841,11 @@ class TestAustralianDollarTV:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -860,7 +860,7 @@ class TestAustralianDollarTV:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'AUD',
             '036'))
         assert default.__repr__() == (
@@ -992,11 +992,11 @@ class TestBarbadosDollar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -1011,7 +1011,7 @@ class TestBarbadosDollar:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'BBD',
             '052'))
         assert default.__repr__() == (
@@ -1143,11 +1143,11 @@ class TestBermudianDollar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -1162,7 +1162,7 @@ class TestBermudianDollar:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'BMD',
             '060'))
         assert default.__repr__() == (
@@ -1294,11 +1294,11 @@ class TestBruneiDollar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$\xa03,14'),
-        (3.14, '3.14', '$\xa03,14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$\xa03,14'),
         (10, '10', '$\xa010,00'),
         (Decimal('10'), '10', '$\xa010,00'),
         ('-3.14', '-3.14', '$\xa0-3,14'),
-        (-3.14, '-3.14', '$\xa0-3,14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '$\xa0-3,14'),
         (-10, '-10', '$\xa0-10,00'),
         (Decimal('-10'), '-10', '$\xa0-10,00')
     ])
@@ -1313,7 +1313,7 @@ class TestBruneiDollar:
         assert default.pattern == '2,.3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'BND',
             '096'))
         assert default.__repr__() == (
@@ -1445,11 +1445,11 @@ class TestBruneiDollarBN:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$\xa03,14'),
-        (3.14, '3.14', '$\xa03,14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$\xa03,14'),
         (10, '10', '$\xa010,00'),
         (Decimal('10'), '10', '$\xa010,00'),
         ('-3.14', '-3.14', '$\xa0-3,14'),
-        (-3.14, '-3.14', '$\xa0-3,14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '$\xa0-3,14'),
         (-10, '-10', '$\xa0-10,00'),
         (Decimal('-10'), '-10', '$\xa0-10,00')
     ])
@@ -1464,7 +1464,7 @@ class TestBruneiDollarBN:
         assert default.pattern == '2,.3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'BND',
             '096'))
         assert default.__repr__() == (
@@ -1596,11 +1596,11 @@ class TestBruneiDollarSG:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$\xa03,14'),
-        (3.14, '3.14', '$\xa03,14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$\xa03,14'),
         (10, '10', '$\xa010,00'),
         (Decimal('10'), '10', '$\xa010,00'),
         ('-3.14', '-3.14', '$\xa0-3,14'),
-        (-3.14, '-3.14', '$\xa0-3,14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '$\xa0-3,14'),
         (-10, '-10', '$\xa0-10,00'),
         (Decimal('-10'), '-10', '$\xa0-10,00')
     ])
@@ -1615,7 +1615,7 @@ class TestBruneiDollarSG:
         assert default.pattern == '2,.3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'BND',
             '096'))
         assert default.__repr__() == (
@@ -1747,11 +1747,11 @@ class TestBahamianDollar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -1766,7 +1766,7 @@ class TestBahamianDollar:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'BSD',
             '044'))
         assert default.__repr__() == (
@@ -1898,11 +1898,11 @@ class TestBelizeDollar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -1917,7 +1917,7 @@ class TestBelizeDollar:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'BZD',
             '084'))
         assert default.__repr__() == (
@@ -2049,11 +2049,11 @@ class TestCanadianDollarEN:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -2068,7 +2068,7 @@ class TestCanadianDollarEN:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'CAD',
             '124'))
         assert default.__repr__() == (
@@ -2200,11 +2200,11 @@ class TestCanadianDollarFR:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0$'),
-        (3.14, '3.14', '3,14\xa0$'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0$'),
         (10, '10', '10,00\xa0$'),
         (Decimal('10'), '10', '10,00\xa0$'),
         ('-3.14', '-3.14', '-3,14\xa0$'),
-        (-3.14, '-3.14', '-3,14\xa0$'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0$'),
         (-10, '-10', '-10,00\xa0$'),
         (Decimal('-10'), '-10', '-10,00\xa0$')
     ])
@@ -2219,7 +2219,7 @@ class TestCanadianDollarFR:
         assert default.pattern == '2,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'CAD',
             '124'))
         assert default.__repr__() == (
@@ -2351,11 +2351,11 @@ class TestFijiDollar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -2370,7 +2370,7 @@ class TestFijiDollar:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'FJD',
             '242'))
         assert default.__repr__() == (
@@ -2502,11 +2502,11 @@ class TestGuyanaDollar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -2521,7 +2521,7 @@ class TestGuyanaDollar:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'GYD',
             '328'))
         assert default.__repr__() == (
@@ -2653,11 +2653,11 @@ class TestHongKongDollar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -2672,7 +2672,7 @@ class TestHongKongDollar:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'HKD',
             '344'))
         assert default.__repr__() == (
@@ -2804,11 +2804,11 @@ class TestJamaicanDollar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -2823,7 +2823,7 @@ class TestJamaicanDollar:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'JMD',
             '388'))
         assert default.__repr__() == (
@@ -2955,11 +2955,11 @@ class TestCaymanIslandsDollar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -2974,7 +2974,7 @@ class TestCaymanIslandsDollar:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'KYD',
             '136'))
         assert default.__repr__() == (
@@ -3106,11 +3106,11 @@ class TestLiberianDollar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -3125,7 +3125,7 @@ class TestLiberianDollar:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'LRD',
             '430'))
         assert default.__repr__() == (
@@ -3257,11 +3257,11 @@ class TestNamibiaDollar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -3276,7 +3276,7 @@ class TestNamibiaDollar:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'NAD',
             '516'))
         assert default.__repr__() == (
@@ -3408,11 +3408,11 @@ class TestNewZealandDollar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -3427,7 +3427,7 @@ class TestNewZealandDollar:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'NZD',
             '554'))
         assert default.__repr__() == (
@@ -3559,11 +3559,11 @@ class TestNewZealandDollarCK:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -3578,7 +3578,7 @@ class TestNewZealandDollarCK:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'NZD',
             '554'))
         assert default.__repr__() == (
@@ -3710,11 +3710,11 @@ class TestNewZealandDollarNZ:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -3729,7 +3729,7 @@ class TestNewZealandDollarNZ:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'NZD',
             '554'))
         assert default.__repr__() == (
@@ -3861,11 +3861,11 @@ class TestNewZealandDollarNU:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -3880,7 +3880,7 @@ class TestNewZealandDollarNU:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'NZD',
             '554'))
         assert default.__repr__() == (
@@ -4012,11 +4012,11 @@ class TestNewZealandDollarPN:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -4031,7 +4031,7 @@ class TestNewZealandDollarPN:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'NZD',
             '554'))
         assert default.__repr__() == (
@@ -4163,11 +4163,11 @@ class TestSolomonIslandsDollar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -4182,7 +4182,7 @@ class TestSolomonIslandsDollar:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'SBD',
             '090'))
         assert default.__repr__() == (
@@ -4314,11 +4314,11 @@ class TestSingaporeDollar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -4333,7 +4333,7 @@ class TestSingaporeDollar:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'SGD',
             '702'))
         assert default.__repr__() == (
@@ -4465,11 +4465,11 @@ class TestSingaporeDollarBN:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -4484,7 +4484,7 @@ class TestSingaporeDollarBN:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'SGD',
             '702'))
         assert default.__repr__() == (
@@ -4616,11 +4616,11 @@ class TestSingaporeDollarSG:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -4635,7 +4635,7 @@ class TestSingaporeDollarSG:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'SGD',
             '702'))
         assert default.__repr__() == (
@@ -4767,11 +4767,11 @@ class TestSurinameDollar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$\xa03,14'),
-        (3.14, '3.14', '$\xa03,14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$\xa03,14'),
         (10, '10', '$\xa010,00'),
         (Decimal('10'), '10', '$\xa010,00'),
         ('-3.14', '-3.14', '$\xa0-3,14'),
-        (-3.14, '-3.14', '$\xa0-3,14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '$\xa0-3,14'),
         (-10, '-10', '$\xa0-10,00'),
         (Decimal('-10'), '-10', '$\xa0-10,00')
     ])
@@ -4786,7 +4786,7 @@ class TestSurinameDollar:
         assert default.pattern == '2,.3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'SRD',
             '968'))
         assert default.__repr__() == (
@@ -4918,11 +4918,11 @@ class TestTrinidadandTobagoDollar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -4937,7 +4937,7 @@ class TestTrinidadandTobagoDollar:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'TTD',
             '780'))
         assert default.__repr__() == (
@@ -5069,11 +5069,11 @@ class TestTaiwanDollar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -5088,7 +5088,7 @@ class TestTaiwanDollar:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'TWD',
             '901'))
         assert default.__repr__() == (
@@ -5220,11 +5220,11 @@ class TestUSDollar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -5239,7 +5239,7 @@ class TestUSDollar:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'USD',
             '840'))
         assert default.__repr__() == (
@@ -5371,11 +5371,11 @@ class TestUSDollarAS:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -5390,7 +5390,7 @@ class TestUSDollarAS:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'USD',
             '840'))
         assert default.__repr__() == (
@@ -5522,11 +5522,11 @@ class TestUSDollarIO:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -5541,7 +5541,7 @@ class TestUSDollarIO:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'USD',
             '840'))
         assert default.__repr__() == (
@@ -5673,11 +5673,11 @@ class TestUSDollarVG:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -5692,7 +5692,7 @@ class TestUSDollarVG:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'USD',
             '840'))
         assert default.__repr__() == (
@@ -5824,11 +5824,11 @@ class TestUSDollarGU:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -5843,7 +5843,7 @@ class TestUSDollarGU:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'USD',
             '840'))
         assert default.__repr__() == (
@@ -5975,11 +5975,11 @@ class TestUSDollarHT:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -5994,7 +5994,7 @@ class TestUSDollarHT:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'USD',
             '840'))
         assert default.__repr__() == (
@@ -6126,11 +6126,11 @@ class TestUSDollarMH:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -6145,7 +6145,7 @@ class TestUSDollarMH:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'USD',
             '840'))
         assert default.__repr__() == (
@@ -6277,11 +6277,11 @@ class TestUSDollarFM:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -6296,7 +6296,7 @@ class TestUSDollarFM:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'USD',
             '840'))
         assert default.__repr__() == (
@@ -6428,11 +6428,11 @@ class TestUSDollarMP:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -6447,7 +6447,7 @@ class TestUSDollarMP:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'USD',
             '840'))
         assert default.__repr__() == (
@@ -6579,11 +6579,11 @@ class TestUSDollarPC:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -6598,7 +6598,7 @@ class TestUSDollarPC:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'USD',
             '840'))
         assert default.__repr__() == (
@@ -6730,11 +6730,11 @@ class TestUSDollarPW:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -6749,7 +6749,7 @@ class TestUSDollarPW:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'USD',
             '840'))
         assert default.__repr__() == (
@@ -6881,11 +6881,11 @@ class TestUSDollarPA:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -6900,7 +6900,7 @@ class TestUSDollarPA:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'USD',
             '840'))
         assert default.__repr__() == (
@@ -7032,11 +7032,11 @@ class TestUSDollarPR:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -7051,7 +7051,7 @@ class TestUSDollarPR:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'USD',
             '840'))
         assert default.__repr__() == (
@@ -7183,11 +7183,11 @@ class TestUSDollarTC:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -7202,7 +7202,7 @@ class TestUSDollarTC:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'USD',
             '840'))
         assert default.__repr__() == (
@@ -7334,11 +7334,11 @@ class TestUSDollarVI:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -7353,7 +7353,7 @@ class TestUSDollarVI:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'USD',
             '840'))
         assert default.__repr__() == (
@@ -7485,11 +7485,11 @@ class TestEasternCaribbeanDollar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -7504,7 +7504,7 @@ class TestEasternCaribbeanDollar:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XCD',
             '951'))
         assert default.__repr__() == (
@@ -7636,11 +7636,11 @@ class TestEasternCaribbeanDollarAI:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -7655,7 +7655,7 @@ class TestEasternCaribbeanDollarAI:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XCD',
             '951'))
         assert default.__repr__() == (
@@ -7787,11 +7787,11 @@ class TestEasternCaribbeanDollarAG:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -7806,7 +7806,7 @@ class TestEasternCaribbeanDollarAG:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XCD',
             '951'))
         assert default.__repr__() == (
@@ -7938,11 +7938,11 @@ class TestEasternCaribbeanDollarDM:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -7957,7 +7957,7 @@ class TestEasternCaribbeanDollarDM:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XCD',
             '951'))
         assert default.__repr__() == (
@@ -8089,11 +8089,11 @@ class TestEasternCaribbeanDollarGD:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -8108,7 +8108,7 @@ class TestEasternCaribbeanDollarGD:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XCD',
             '951'))
         assert default.__repr__() == (
@@ -8240,11 +8240,11 @@ class TestEasternCaribbeanDollarMS:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -8259,7 +8259,7 @@ class TestEasternCaribbeanDollarMS:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XCD',
             '951'))
         assert default.__repr__() == (
@@ -8391,11 +8391,11 @@ class TestEasternCaribbeanDollarKN:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -8410,7 +8410,7 @@ class TestEasternCaribbeanDollarKN:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XCD',
             '951'))
         assert default.__repr__() == (
@@ -8542,11 +8542,11 @@ class TestEasternCaribbeanDollarLC:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -8561,7 +8561,7 @@ class TestEasternCaribbeanDollarLC:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XCD',
             '951'))
         assert default.__repr__() == (
@@ -8693,11 +8693,11 @@ class TestEasternCaribbeanDollarVC:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$3.14'),
-        (3.14, '3.14', '$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$3.14'),
         (10, '10', '$10.00'),
         (Decimal('10'), '10', '$10.00'),
         ('-3.14', '-3.14', '-$3.14'),
-        (-3.14, '-3.14', '-$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-$3.14'),
         (-10, '-10', '-$10.00'),
         (Decimal('-10'), '-10', '-$10.00')
     ])
@@ -8712,7 +8712,7 @@ class TestEasternCaribbeanDollarVC:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'XCD',
             '951'))
         assert default.__repr__() == (
@@ -8844,11 +8844,11 @@ class TestZimbabweDollar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '$\xa03.14'),
-        (3.14, '3.14', '$\xa03.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '$\xa03.14'),
         (10, '10', '$\xa010.00'),
         (Decimal('10'), '10', '$\xa010.00'),
         ('-3.14', '-3.14', '$\xa0-3.14'),
-        (-3.14, '-3.14', '$\xa0-3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '$\xa0-3.14'),
         (-10, '-10', '$\xa0-10.00'),
         (Decimal('-10'), '-10', '$\xa0-10.00')
     ])
@@ -8863,7 +8863,7 @@ class TestZimbabweDollar:
         assert default.pattern == '2.,3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'ZWL',
             '932'))
         assert default.__repr__() == (

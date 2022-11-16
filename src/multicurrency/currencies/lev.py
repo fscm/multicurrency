@@ -18,7 +18,7 @@ class BulgarianLev(Currency):
 
         >>> from multicurrency import BulgarianLev
         >>> bulgarian_lev = BulgarianLev(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(bulgarian_lev)
         123 456,79 лв.
 

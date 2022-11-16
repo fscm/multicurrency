@@ -121,7 +121,7 @@ To change the default precision value of a currency one can simply use the
 142,8571 €
 142,85714 €
 142,857143 €
-142,8571428571428600000000000 €
+142,8571428571428612031013472 €
 ```
 
 If a larger precision is required the default `decimal.Context` precision value
@@ -135,7 +135,7 @@ will have to be changed:
 ...     context.prec = precision + 3
 ...     result = Euro(1_000/7)
 ...     print(result.precision(50))
-142,85714285714286000000000000000000000000000000000000 €
+142,85714285714286120310134720057249069213867187500000 €
 ```
 
 To change the rounding method the default `decimal.Context` rounding

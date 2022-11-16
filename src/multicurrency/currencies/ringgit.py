@@ -18,7 +18,7 @@ class MalaysianRinggit(Currency):
 
         >>> from multicurrency import MalaysianRinggit
         >>> malaysian_ringgit = MalaysianRinggit(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(malaysian_ringgit)
         RM 123,456.79
 

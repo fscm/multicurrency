@@ -18,7 +18,7 @@ class Lek(Currency):
 
         >>> from multicurrency import Lek
         >>> lek = Lek(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(lek)
         123 456,79 Lek
 

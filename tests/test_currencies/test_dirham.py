@@ -29,11 +29,11 @@ class TestUAEDirham:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', 'د.إ.\xa0٣٫١٤'),
-        (3.14, '3.14', 'د.إ.\xa0٣٫١٤'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', 'د.إ.\xa0٣٫١٤'),
         (10, '10', 'د.إ.\xa0١٠٫٠٠'),
         (Decimal('10'), '10', 'د.إ.\xa0١٠٫٠٠'),
         ('-3.14', '-3.14', 'د.إ.\xa0-٣٫١٤'),
-        (-3.14, '-3.14', 'د.إ.\xa0-٣٫١٤'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', 'د.إ.\xa0-٣٫١٤'),
         (-10, '-10', 'د.إ.\xa0-١٠٫٠٠'),
         (Decimal('-10'), '-10', 'د.إ.\xa0-١٠٫٠٠')
     ])
@@ -48,7 +48,7 @@ class TestUAEDirham:
         assert default.pattern == '2\u066B\u066C3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'AED',
             '784'))
         assert default.__repr__() == (
@@ -180,11 +180,11 @@ class TestMoroccanDirham:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '٣٫١٤\xa0د.م.'),
-        (3.14, '3.14', '٣٫١٤\xa0د.م.'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '٣٫١٤\xa0د.م.'),
         (10, '10', '١٠٫٠٠\xa0د.م.'),
         (Decimal('10'), '10', '١٠٫٠٠\xa0د.م.'),
         ('-3.14', '-3.14', '-٣٫١٤\xa0د.م.'),
-        (-3.14, '-3.14', '-٣٫١٤\xa0د.م.'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-٣٫١٤\xa0د.م.'),
         (-10, '-10', '-١٠٫٠٠\xa0د.م.'),
         (Decimal('-10'), '-10', '-١٠٫٠٠\xa0د.م.')
     ])
@@ -199,7 +199,7 @@ class TestMoroccanDirham:
         assert default.pattern == '2\u066B\u066C3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'MAD',
             '504'))
         assert default.__repr__() == (

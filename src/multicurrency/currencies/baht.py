@@ -18,7 +18,7 @@ class Baht(Currency):
 
         >>> from multicurrency import Baht
         >>> baht = Baht(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(baht)
         ฿123,456.79
 

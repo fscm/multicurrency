@@ -18,7 +18,7 @@ class CordobaOro(Currency):
 
         >>> from multicurrency import CordobaOro
         >>> cordoba_oro = CordobaOro(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(cordoba_oro)
         C$123,456.79
 

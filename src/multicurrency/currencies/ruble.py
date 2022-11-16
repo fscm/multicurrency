@@ -18,7 +18,7 @@ class BelarusianRuble(Currency):
 
         >>> from multicurrency import BelarusianRuble
         >>> belarusian_ruble = BelarusianRuble(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(belarusian_ruble)
         123 456,79 Br
 
@@ -76,7 +76,7 @@ class RussianRuble(Currency):
 
         >>> from multicurrency import RussianRuble
         >>> russian_ruble = RussianRuble(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(russian_ruble)
         123 456,79 ₽
 
@@ -134,7 +134,7 @@ class RussianRubleRU(Currency):
 
         >>> from multicurrency import RussianRubleRU
         >>> russian_ruble_ru = RussianRubleRU(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(russian_ruble_ru)
         123 456,79 ₽
 
@@ -192,7 +192,7 @@ class RussianRubleGE(Currency):
 
         >>> from multicurrency import RussianRubleGE
         >>> russian_ruble_ge = RussianRubleGE(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(russian_ruble_ge)
         123 456,79 ₽
 

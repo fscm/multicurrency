@@ -27,11 +27,11 @@ class TestTaka:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '৩.১৪৳'),
-        (3.14, '3.14', '৩.১৪৳'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '৩.১৪৳'),
         (10, '10', '১০.০০৳'),
         (Decimal('10'), '10', '১০.০০৳'),
         ('-3.14', '-3.14', '-৩.১৪৳'),
-        (-3.14, '-3.14', '-৩.১৪৳'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-৩.১৪৳'),
         (-10, '-10', '-১০.০০৳'),
         (Decimal('-10'), '-10', '-১০.০০৳')
     ])
@@ -46,7 +46,7 @@ class TestTaka:
         assert default.pattern == '2.,3%a%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'BDT',
             '050'))
         assert default.__repr__() == (

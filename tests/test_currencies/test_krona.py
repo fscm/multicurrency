@@ -29,11 +29,11 @@ class TestIcelandKrona:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3\xa0Kr'),
-        (3.14, '3.14', '3\xa0Kr'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3\xa0Kr'),
         (10, '10', '10\xa0Kr'),
         (Decimal('10'), '10', '10\xa0Kr'),
         ('-3.14', '-3.14', '-3\xa0Kr'),
-        (-3.14, '-3.14', '-3\xa0Kr'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3\xa0Kr'),
         (-10, '-10', '-10\xa0Kr'),
         (Decimal('-10'), '-10', '-10\xa0Kr')
     ])
@@ -48,7 +48,7 @@ class TestIcelandKrona:
         assert default.pattern == '0,.3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'ISK',
             '352'))
         assert default.__repr__() == (
@@ -180,11 +180,11 @@ class TestSwedishKrona:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0kr'),
-        (3.14, '3.14', '3,14\xa0kr'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0kr'),
         (10, '10', '10,00\xa0kr'),
         (Decimal('10'), '10', '10,00\xa0kr'),
         ('-3.14', '-3.14', '-3,14\xa0kr'),
-        (-3.14, '-3.14', '-3,14\xa0kr'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0kr'),
         (-10, '-10', '-10,00\xa0kr'),
         (Decimal('-10'), '-10', '-10,00\xa0kr')
     ])
@@ -199,7 +199,7 @@ class TestSwedishKrona:
         assert default.pattern == '2,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'SEK',
             '752'))
         assert default.__repr__() == (

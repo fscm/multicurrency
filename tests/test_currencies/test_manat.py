@@ -29,11 +29,11 @@ class TestAzerbaijanianManat:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0₼'),
-        (3.14, '3.14', '3,14\xa0₼'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0₼'),
         (10, '10', '10,00\xa0₼'),
         (Decimal('10'), '10', '10,00\xa0₼'),
         ('-3.14', '-3.14', '-3,14\xa0₼'),
-        (-3.14, '-3.14', '-3,14\xa0₼'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0₼'),
         (-10, '-10', '-10,00\xa0₼'),
         (Decimal('-10'), '-10', '-10,00\xa0₼')
     ])
@@ -48,7 +48,7 @@ class TestAzerbaijanianManat:
         assert default.pattern == '2,.3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'AZN',
             '944'))
         assert default.__repr__() == (
@@ -180,11 +180,11 @@ class TestManat:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0m'),
-        (3.14, '3.14', '3,14\xa0m'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0m'),
         (10, '10', '10,00\xa0m'),
         (Decimal('10'), '10', '10,00\xa0m'),
         ('-3.14', '-3.14', '-3,14\xa0m'),
-        (-3.14, '-3.14', '-3,14\xa0m'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0m'),
         (-10, '-10', '-10,00\xa0m'),
         (Decimal('-10'), '-10', '-10,00\xa0m')
     ])
@@ -199,7 +199,7 @@ class TestManat:
         assert default.pattern == '2,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'TMT',
             '934'))
         assert default.__repr__() == (

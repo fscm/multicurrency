@@ -18,7 +18,7 @@ class CzechKoruna(Currency):
 
         >>> from multicurrency import CzechKoruna
         >>> czech_koruna = CzechKoruna(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(czech_koruna)
         123 456,79 Kč
 

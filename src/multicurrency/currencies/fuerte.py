@@ -18,7 +18,7 @@ class BolivarFuerte(Currency):
 
         >>> from multicurrency import BolivarFuerte
         >>> bolivar_fuerte = BolivarFuerte(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(bolivar_fuerte)
         Bs.F. 123.456,79
 

@@ -18,7 +18,7 @@ class EgyptianPound(Currency):
 
         >>> from multicurrency import EgyptianPound
         >>> egyptian_pound = EgyptianPound(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(egyptian_pound)
         ج.م. ١٢٣٬٤٥٦٫٧٩
 
@@ -76,7 +76,7 @@ class FalklandIslandsPound(Currency):
 
         >>> from multicurrency import FalklandIslandsPound
         >>> falkland_islands_pound = FalklandIslandsPound(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(falkland_islands_pound)
         £123,456.79
 
@@ -134,7 +134,7 @@ class PoundSterling(Currency):
 
         >>> from multicurrency import PoundSterling
         >>> pound_sterling = PoundSterling(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(pound_sterling)
         £123,456.79
 
@@ -192,7 +192,7 @@ class PoundSterlingGG(Currency):
 
         >>> from multicurrency import PoundSterlingGG
         >>> pound_sterling_gg = PoundSterlingGG(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(pound_sterling_gg)
         £123,456.79
 
@@ -250,7 +250,7 @@ class PoundSterlingIO(Currency):
 
         >>> from multicurrency import PoundSterlingIO
         >>> pound_sterling_io = PoundSterlingIO(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(pound_sterling_io)
         £123,456.79
 
@@ -308,7 +308,7 @@ class PoundSterlingGB(Currency):
 
         >>> from multicurrency import PoundSterlingGB
         >>> pound_sterling_gb = PoundSterlingGB(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(pound_sterling_gb)
         £123,456.79
 
@@ -366,7 +366,7 @@ class PoundSterlingIM(Currency):
 
         >>> from multicurrency import PoundSterlingIM
         >>> pound_sterling_im = PoundSterlingIM(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(pound_sterling_im)
         £123,456.79
 
@@ -424,7 +424,7 @@ class GibraltarPound(Currency):
 
         >>> from multicurrency import GibraltarPound
         >>> gibraltar_pound = GibraltarPound(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(gibraltar_pound)
         £123,456.79
 
@@ -482,7 +482,7 @@ class LebanesePound(Currency):
 
         >>> from multicurrency import LebanesePound
         >>> lebanese_pound = LebanesePound(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(lebanese_pound)
         ل.ل. ١٢٣٬٤٥٧
 
@@ -540,7 +540,7 @@ class SudanesePound(Currency):
 
         >>> from multicurrency import SudanesePound
         >>> sudanese_pound = SudanesePound(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(sudanese_pound)
         ١٢٣٬٤٥٦٫٧٩ ج.س
 
@@ -598,7 +598,7 @@ class SaintHelenaPoundAI(Currency):
 
         >>> from multicurrency import SaintHelenaPoundAI
         >>> saint_helena_pound_ai = SaintHelenaPoundAI(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(saint_helena_pound_ai)
         £123,456.79
 
@@ -656,7 +656,7 @@ class SaintHelenaPound(Currency):
 
         >>> from multicurrency import SaintHelenaPound
         >>> saint_helena_pound = SaintHelenaPound(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(saint_helena_pound)
         £123,456.79
 
@@ -714,7 +714,7 @@ class SaintHelenaPoundTC(Currency):
 
         >>> from multicurrency import SaintHelenaPoundTC
         >>> saint_helena_pound_tc = SaintHelenaPoundTC(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(saint_helena_pound_tc)
         £123,456.79
 
@@ -772,7 +772,7 @@ class SyrianPound(Currency):
 
         >>> from multicurrency import SyrianPound
         >>> syrian_pound = SyrianPound(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(syrian_pound)
         ١٢٣٬٤٥٦٫٧٩ ل.س
 

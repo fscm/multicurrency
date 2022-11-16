@@ -27,11 +27,11 @@ class TestForint:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3\xa0Ft'),
-        (3.14, '3.14', '3\xa0Ft'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3\xa0Ft'),
         (10, '10', '10\xa0Ft'),
         (Decimal('10'), '10', '10\xa0Ft'),
         ('-3.14', '-3.14', '-3\xa0Ft'),
-        (-3.14, '-3.14', '-3\xa0Ft'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3\xa0Ft'),
         (-10, '-10', '-10\xa0Ft'),
         (Decimal('-10'), '-10', '-10\xa0Ft')
     ])
@@ -46,7 +46,7 @@ class TestForint:
         assert default.pattern == '0,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'HUF',
             '348'))
         assert default.__repr__() == (

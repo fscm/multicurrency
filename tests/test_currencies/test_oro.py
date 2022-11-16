@@ -27,11 +27,11 @@ class TestCordobaOro:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', 'C$3.14'),
-        (3.14, '3.14', 'C$3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', 'C$3.14'),
         (10, '10', 'C$10.00'),
         (Decimal('10'), '10', 'C$10.00'),
         ('-3.14', '-3.14', '-C$3.14'),
-        (-3.14, '-3.14', '-C$3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-C$3.14'),
         (-10, '-10', '-C$10.00'),
         (Decimal('-10'), '-10', '-C$10.00')
     ])
@@ -46,7 +46,7 @@ class TestCordobaOro:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'NIO',
             '558'))
         assert default.__repr__() == (

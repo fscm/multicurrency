@@ -29,11 +29,11 @@ class TestMoldovanLeu:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0L'),
-        (3.14, '3.14', '3,14\xa0L'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0L'),
         (10, '10', '10,00\xa0L'),
         (Decimal('10'), '10', '10,00\xa0L'),
         ('-3.14', '-3.14', '-3,14\xa0L'),
-        (-3.14, '-3.14', '-3,14\xa0L'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0L'),
         (-10, '-10', '-10,00\xa0L'),
         (Decimal('-10'), '-10', '-10,00\xa0L')
     ])
@@ -48,7 +48,7 @@ class TestMoldovanLeu:
         assert default.pattern == '2,.3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'MDL',
             '498'))
         assert default.__repr__() == (
@@ -180,11 +180,11 @@ class TestLeu:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0L'),
-        (3.14, '3.14', '3,14\xa0L'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0L'),
         (10, '10', '10,00\xa0L'),
         (Decimal('10'), '10', '10,00\xa0L'),
         ('-3.14', '-3.14', '-3,14\xa0L'),
-        (-3.14, '-3.14', '-3,14\xa0L'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0L'),
         (-10, '-10', '-10,00\xa0L'),
         (Decimal('-10'), '-10', '-10,00\xa0L')
     ])
@@ -199,7 +199,7 @@ class TestLeu:
         assert default.pattern == '2,.3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'RON',
             '946'))
         assert default.__repr__() == (

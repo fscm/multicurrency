@@ -18,7 +18,7 @@ class Balboa(Currency):
 
         >>> from multicurrency import Balboa
         >>> balboa = Balboa(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(balboa)
         B/. 123,456.79
 

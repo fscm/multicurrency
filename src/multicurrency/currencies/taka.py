@@ -18,7 +18,7 @@ class Taka(Currency):
 
         >>> from multicurrency import Taka
         >>> taka = Taka(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(taka)
         ১২৩,৪৫৬.৭৯৳
 

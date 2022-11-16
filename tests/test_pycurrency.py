@@ -55,11 +55,11 @@ kyat_custom = Currency(
 
 @mark.parametrize('amount,result,printed', [
     ('3.14', '3.14', '3.14'),
-    (3.14, '3.14', '3.14'),
+    (3.14, '3.140000000000000124344978758017532527446746826171875', '3.14'),
     (10, '10', '10.00'),
     (Decimal(10), '10', '10.00'),
     ('-3.14', '-3.14', '-3.14'),
-    (-3.14, '-3.14', '-3.14'),
+    (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3.14'),
     (-10, '-10', '-10.00'),
     (Decimal(-10), '-10', '-10.00')
 ])
@@ -74,7 +74,7 @@ def test_pycurrency_default(amount, result, printed):
     assert default.pattern == r'2.,3%a%s'
     assert default.__hash__() == hash((
         default.__class__,
-        Decimal(str(amount)),
+        Decimal(amount),
         '',
         '0'))
     assert default.__repr__() == (
@@ -670,8 +670,8 @@ def test_pycurrency_precision(currency, precision, result):
 
 
 @mark.parametrize('currency,amount,string', [
-    ((Currency(1.01) - Currency(0.99)) * 1e18, Decimal('2E+16'), '20,000,000,000,000,000.00'),
-    (Currency(0.1) + Currency(0.1) + Currency(0.1), Decimal('0.3'), '0.30')
+    ((Currency('1.01') - Currency('0.99')) * 1e18, Decimal('2E+16'), '20,000,000,000,000,000.00'),
+    (Currency('0.1') + Currency('0.1') + Currency('0.1'), Decimal('0.3'), '0.30')
 ])
 def test_pycurrency_precision_amount(currency, amount, string):
     assert currency.amount == amount

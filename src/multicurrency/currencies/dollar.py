@@ -18,7 +18,7 @@ class AustralianDollar(Currency):
 
         >>> from multicurrency import AustralianDollar
         >>> australian_dollar = AustralianDollar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(australian_dollar)
         $ 123,456.79
 
@@ -76,7 +76,7 @@ class AustralianDollarAU(Currency):
 
         >>> from multicurrency import AustralianDollarAU
         >>> australian_dollar_au = AustralianDollarAU(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(australian_dollar_au)
         $123,456.79
 
@@ -134,7 +134,7 @@ class AustralianDollarKI(Currency):
 
         >>> from multicurrency import AustralianDollarKI
         >>> australian_dollar_ki = AustralianDollarKI(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(australian_dollar_ki)
         $123,456.79
 
@@ -192,7 +192,7 @@ class AustralianDollarCC(Currency):
 
         >>> from multicurrency import AustralianDollarCC
         >>> australian_dollar_cc = AustralianDollarCC(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(australian_dollar_cc)
         $123,456.79
 
@@ -250,7 +250,7 @@ class AustralianDollarMR(Currency):
 
         >>> from multicurrency import AustralianDollarMR
         >>> australian_dollar_mr = AustralianDollarMR(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(australian_dollar_mr)
         $123,456.79
 
@@ -308,7 +308,7 @@ class AustralianDollarTV(Currency):
 
         >>> from multicurrency import AustralianDollarTV
         >>> australian_dollar_tv = AustralianDollarTV(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(australian_dollar_tv)
         $123,456.79
 
@@ -366,7 +366,7 @@ class BarbadosDollar(Currency):
 
         >>> from multicurrency import BarbadosDollar
         >>> barbados_dollar = BarbadosDollar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(barbados_dollar)
         $123,456.79
 
@@ -424,7 +424,7 @@ class BermudianDollar(Currency):
 
         >>> from multicurrency import BermudianDollar
         >>> bermudian_dollar = BermudianDollar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(bermudian_dollar)
         $123,456.79
 
@@ -482,7 +482,7 @@ class BruneiDollar(Currency):
 
         >>> from multicurrency import BruneiDollar
         >>> brunei_dollar = BruneiDollar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(brunei_dollar)
         $ 123.456,79
 
@@ -540,7 +540,7 @@ class BruneiDollarBN(Currency):
 
         >>> from multicurrency import BruneiDollarBN
         >>> brunei_dollar_bn = BruneiDollarBN(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(brunei_dollar_bn)
         $ 123.456,79
 
@@ -598,7 +598,7 @@ class BruneiDollarSG(Currency):
 
         >>> from multicurrency import BruneiDollarSG
         >>> brunei_dollar_sg = BruneiDollarSG(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(brunei_dollar_sg)
         $ 123.456,79
 
@@ -656,7 +656,7 @@ class BahamianDollar(Currency):
 
         >>> from multicurrency import BahamianDollar
         >>> bahamian_dollar = BahamianDollar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(bahamian_dollar)
         $123,456.79
 
@@ -714,7 +714,7 @@ class BelizeDollar(Currency):
 
         >>> from multicurrency import BelizeDollar
         >>> belize_dollar = BelizeDollar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(belize_dollar)
         $123,456.79
 
@@ -772,7 +772,7 @@ class CanadianDollarEN(Currency):
 
         >>> from multicurrency import CanadianDollarEN
         >>> canadian_dollar_en = CanadianDollarEN(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(canadian_dollar_en)
         $123,456.79
 
@@ -830,7 +830,7 @@ class CanadianDollarFR(Currency):
 
         >>> from multicurrency import CanadianDollarFR
         >>> canadian_dollar_fr = CanadianDollarFR(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(canadian_dollar_fr)
         123 456,79 $
 
@@ -888,7 +888,7 @@ class FijiDollar(Currency):
 
         >>> from multicurrency import FijiDollar
         >>> fiji_dollar = FijiDollar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(fiji_dollar)
         $123,456.79
 
@@ -946,7 +946,7 @@ class GuyanaDollar(Currency):
 
         >>> from multicurrency import GuyanaDollar
         >>> guyana_dollar = GuyanaDollar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(guyana_dollar)
         $123,456.79
 
@@ -1004,7 +1004,7 @@ class HongKongDollar(Currency):
 
         >>> from multicurrency import HongKongDollar
         >>> hong_kong_dollar = HongKongDollar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(hong_kong_dollar)
         $123,456.79
 
@@ -1062,7 +1062,7 @@ class JamaicanDollar(Currency):
 
         >>> from multicurrency import JamaicanDollar
         >>> jamaican_dollar = JamaicanDollar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(jamaican_dollar)
         $123,456.79
 
@@ -1120,7 +1120,7 @@ class CaymanIslandsDollar(Currency):
 
         >>> from multicurrency import CaymanIslandsDollar
         >>> cayman_islands_dollar = CaymanIslandsDollar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(cayman_islands_dollar)
         $123,456.79
 
@@ -1178,7 +1178,7 @@ class LiberianDollar(Currency):
 
         >>> from multicurrency import LiberianDollar
         >>> liberian_dollar = LiberianDollar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(liberian_dollar)
         $123,456.79
 
@@ -1236,7 +1236,7 @@ class NamibiaDollar(Currency):
 
         >>> from multicurrency import NamibiaDollar
         >>> namibia_dollar = NamibiaDollar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(namibia_dollar)
         $123,456.79
 
@@ -1294,7 +1294,7 @@ class NewZealandDollar(Currency):
 
         >>> from multicurrency import NewZealandDollar
         >>> new_zealand_dollar = NewZealandDollar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(new_zealand_dollar)
         $123,456.79
 
@@ -1352,7 +1352,7 @@ class NewZealandDollarCK(Currency):
 
         >>> from multicurrency import NewZealandDollarCK
         >>> new_zealand_dollar_ck = NewZealandDollarCK(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(new_zealand_dollar_ck)
         $123,456.79
 
@@ -1410,7 +1410,7 @@ class NewZealandDollarNZ(Currency):
 
         >>> from multicurrency import NewZealandDollarNZ
         >>> new_zealand_dollar_nz = NewZealandDollarNZ(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(new_zealand_dollar_nz)
         $123,456.79
 
@@ -1468,7 +1468,7 @@ class NewZealandDollarNU(Currency):
 
         >>> from multicurrency import NewZealandDollarNU
         >>> new_zealand_dollar_nu = NewZealandDollarNU(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(new_zealand_dollar_nu)
         $123,456.79
 
@@ -1526,7 +1526,7 @@ class NewZealandDollarPN(Currency):
 
         >>> from multicurrency import NewZealandDollarPN
         >>> new_zealand_dollar_pn = NewZealandDollarPN(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(new_zealand_dollar_pn)
         $123,456.79
 
@@ -1584,7 +1584,7 @@ class SolomonIslandsDollar(Currency):
 
         >>> from multicurrency import SolomonIslandsDollar
         >>> solomon_islands_dollar = SolomonIslandsDollar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(solomon_islands_dollar)
         $123,456.79
 
@@ -1642,7 +1642,7 @@ class SingaporeDollar(Currency):
 
         >>> from multicurrency import SingaporeDollar
         >>> singapore_dollar = SingaporeDollar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(singapore_dollar)
         $123,456.79
 
@@ -1700,7 +1700,7 @@ class SingaporeDollarBN(Currency):
 
         >>> from multicurrency import SingaporeDollarBN
         >>> singapore_dollar_bn = SingaporeDollarBN(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(singapore_dollar_bn)
         $123,456.79
 
@@ -1758,7 +1758,7 @@ class SingaporeDollarSG(Currency):
 
         >>> from multicurrency import SingaporeDollarSG
         >>> singapore_dollar_sg = SingaporeDollarSG(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(singapore_dollar_sg)
         $123,456.79
 
@@ -1816,7 +1816,7 @@ class SurinameDollar(Currency):
 
         >>> from multicurrency import SurinameDollar
         >>> suriname_dollar = SurinameDollar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(suriname_dollar)
         $ 123.456,79
 
@@ -1874,7 +1874,7 @@ class TrinidadandTobagoDollar(Currency):
 
         >>> from multicurrency import TrinidadandTobagoDollar
         >>> trinidad_and_tobago_dollar = TrinidadandTobagoDollar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(trinidad_and_tobago_dollar)
         $123,456.79
 
@@ -1932,7 +1932,7 @@ class TaiwanDollar(Currency):
 
         >>> from multicurrency import TaiwanDollar
         >>> taiwan_dollar = TaiwanDollar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(taiwan_dollar)
         $123,456.79
 
@@ -1990,7 +1990,7 @@ class USDollar(Currency):
 
         >>> from multicurrency import USDollar
         >>> us_dollar = USDollar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(us_dollar)
         $123,456.79
 
@@ -2048,7 +2048,7 @@ class USDollarAS(Currency):
 
         >>> from multicurrency import USDollarAS
         >>> us_dollar_as = USDollarAS(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(us_dollar_as)
         $123,456.79
 
@@ -2106,7 +2106,7 @@ class USDollarIO(Currency):
 
         >>> from multicurrency import USDollarIO
         >>> us_dollar_io = USDollarIO(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(us_dollar_io)
         $123,456.79
 
@@ -2164,7 +2164,7 @@ class USDollarVG(Currency):
 
         >>> from multicurrency import USDollarVG
         >>> us_dollar_vg = USDollarVG(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(us_dollar_vg)
         $123,456.79
 
@@ -2222,7 +2222,7 @@ class USDollarGU(Currency):
 
         >>> from multicurrency import USDollarGU
         >>> us_dollar_gu = USDollarGU(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(us_dollar_gu)
         $123,456.79
 
@@ -2280,7 +2280,7 @@ class USDollarHT(Currency):
 
         >>> from multicurrency import USDollarHT
         >>> us_dollar_ht = USDollarHT(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(us_dollar_ht)
         $123,456.79
 
@@ -2338,7 +2338,7 @@ class USDollarMH(Currency):
 
         >>> from multicurrency import USDollarMH
         >>> us_dollar_mh = USDollarMH(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(us_dollar_mh)
         $123,456.79
 
@@ -2396,7 +2396,7 @@ class USDollarFM(Currency):
 
         >>> from multicurrency import USDollarFM
         >>> us_dollar_fm = USDollarFM(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(us_dollar_fm)
         $123,456.79
 
@@ -2454,7 +2454,7 @@ class USDollarMP(Currency):
 
         >>> from multicurrency import USDollarMP
         >>> us_dollar_mp = USDollarMP(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(us_dollar_mp)
         $123,456.79
 
@@ -2512,7 +2512,7 @@ class USDollarPC(Currency):
 
         >>> from multicurrency import USDollarPC
         >>> us_dollar_pc = USDollarPC(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(us_dollar_pc)
         $123,456.79
 
@@ -2570,7 +2570,7 @@ class USDollarPW(Currency):
 
         >>> from multicurrency import USDollarPW
         >>> us_dollar_pw = USDollarPW(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(us_dollar_pw)
         $123,456.79
 
@@ -2628,7 +2628,7 @@ class USDollarPA(Currency):
 
         >>> from multicurrency import USDollarPA
         >>> us_dollar_pa = USDollarPA(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(us_dollar_pa)
         $123,456.79
 
@@ -2686,7 +2686,7 @@ class USDollarPR(Currency):
 
         >>> from multicurrency import USDollarPR
         >>> us_dollar_pr = USDollarPR(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(us_dollar_pr)
         $123,456.79
 
@@ -2744,7 +2744,7 @@ class USDollarTC(Currency):
 
         >>> from multicurrency import USDollarTC
         >>> us_dollar_tc = USDollarTC(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(us_dollar_tc)
         $123,456.79
 
@@ -2802,7 +2802,7 @@ class USDollarVI(Currency):
 
         >>> from multicurrency import USDollarVI
         >>> us_dollar_vi = USDollarVI(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(us_dollar_vi)
         $123,456.79
 
@@ -2861,7 +2861,7 @@ class EasternCaribbeanDollar(Currency):
 
         >>> from multicurrency import EasternCaribbeanDollar
         >>> eastern_caribbean_dollar = EasternCaribbeanDollar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(eastern_caribbean_dollar)
         $123,456.79
 
@@ -2919,7 +2919,7 @@ class EasternCaribbeanDollarAI(Currency):
 
         >>> from multicurrency import EasternCaribbeanDollarAI
         >>> eastern_caribbean_dollar_ai = EasternCaribbeanDollarAI(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(eastern_caribbean_dollar_ai)
         $123,456.79
 
@@ -2977,7 +2977,7 @@ class EasternCaribbeanDollarAG(Currency):
 
         >>> from multicurrency import EasternCaribbeanDollarAG
         >>> eastern_caribbean_dollar_ag = EasternCaribbeanDollarAG(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(eastern_caribbean_dollar_ag)
         $123,456.79
 
@@ -3035,7 +3035,7 @@ class EasternCaribbeanDollarDM(Currency):
 
         >>> from multicurrency import EasternCaribbeanDollarDM
         >>> eastern_caribbean_dollar_dm = EasternCaribbeanDollarDM(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(eastern_caribbean_dollar_dm)
         $123,456.79
 
@@ -3093,7 +3093,7 @@ class EasternCaribbeanDollarGD(Currency):
 
         >>> from multicurrency import EasternCaribbeanDollarGD
         >>> eastern_caribbean_dollar_gd = EasternCaribbeanDollarGD(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(eastern_caribbean_dollar_gd)
         $123,456.79
 
@@ -3151,7 +3151,7 @@ class EasternCaribbeanDollarMS(Currency):
 
         >>> from multicurrency import EasternCaribbeanDollarMS
         >>> eastern_caribbean_dollar_ms = EasternCaribbeanDollarMS(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(eastern_caribbean_dollar_ms)
         $123,456.79
 
@@ -3209,7 +3209,7 @@ class EasternCaribbeanDollarKN(Currency):
 
         >>> from multicurrency import EasternCaribbeanDollarKN
         >>> eastern_caribbean_dollar_kn = EasternCaribbeanDollarKN(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(eastern_caribbean_dollar_kn)
         $123,456.79
 
@@ -3267,7 +3267,7 @@ class EasternCaribbeanDollarLC(Currency):
 
         >>> from multicurrency import EasternCaribbeanDollarLC
         >>> eastern_caribbean_dollar_lc = EasternCaribbeanDollarLC(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(eastern_caribbean_dollar_lc)
         $123,456.79
 
@@ -3325,7 +3325,7 @@ class EasternCaribbeanDollarVC(Currency):
 
         >>> from multicurrency import EasternCaribbeanDollarVC
         >>> eastern_caribbean_dollar_vc = EasternCaribbeanDollarVC(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(eastern_caribbean_dollar_vc)
         $123,456.79
 
@@ -3383,7 +3383,7 @@ class ZimbabweDollar(Currency):
 
         >>> from multicurrency import ZimbabweDollar
         >>> zimbabwe_dollar = ZimbabweDollar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(zimbabwe_dollar)
         $ 123,456.79
 

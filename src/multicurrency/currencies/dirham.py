@@ -18,7 +18,7 @@ class UAEDirham(Currency):
 
         >>> from multicurrency import UAEDirham
         >>> uae_dirham = UAEDirham(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(uae_dirham)
         د.إ. ١٢٣٬٤٥٦٫٧٩
 
@@ -76,7 +76,7 @@ class MoroccanDirham(Currency):
 
         >>> from multicurrency import MoroccanDirham
         >>> moroccan_dirham = MoroccanDirham(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(moroccan_dirham)
         ١٢٣٬٤٥٦٫٧٩ د.م.
 

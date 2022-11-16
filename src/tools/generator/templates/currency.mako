@@ -27,7 +27,7 @@ docstring_start = '\n'.join(_lines_)
 
         >>> from multicurrency import ${currency.class_name}
         >>> ${currency.example.variable} = ${currency.class_name}(
-        ...     amount=${currency.example.value})
+        ...     amount='${currency.example.value}')
         >>> print(${currency.example.variable})
         ${currency.example.output}
 

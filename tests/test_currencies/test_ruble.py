@@ -31,11 +31,11 @@ class TestBelarusianRuble:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0Br'),
-        (3.14, '3.14', '3,14\xa0Br'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0Br'),
         (10, '10', '10,00\xa0Br'),
         (Decimal('10'), '10', '10,00\xa0Br'),
         ('-3.14', '-3.14', '-3,14\xa0Br'),
-        (-3.14, '-3.14', '-3,14\xa0Br'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0Br'),
         (-10, '-10', '-10,00\xa0Br'),
         (Decimal('-10'), '-10', '-10,00\xa0Br')
     ])
@@ -50,7 +50,7 @@ class TestBelarusianRuble:
         assert default.pattern == '2,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'BYN',
             '933'))
         assert default.__repr__() == (
@@ -182,11 +182,11 @@ class TestRussianRuble:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0₽'),
-        (3.14, '3.14', '3,14\xa0₽'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0₽'),
         (10, '10', '10,00\xa0₽'),
         (Decimal('10'), '10', '10,00\xa0₽'),
         ('-3.14', '-3.14', '-3,14\xa0₽'),
-        (-3.14, '-3.14', '-3,14\xa0₽'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0₽'),
         (-10, '-10', '-10,00\xa0₽'),
         (Decimal('-10'), '-10', '-10,00\xa0₽')
     ])
@@ -201,7 +201,7 @@ class TestRussianRuble:
         assert default.pattern == '2,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'RUB',
             '643'))
         assert default.__repr__() == (
@@ -333,11 +333,11 @@ class TestRussianRubleRU:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0₽'),
-        (3.14, '3.14', '3,14\xa0₽'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0₽'),
         (10, '10', '10,00\xa0₽'),
         (Decimal('10'), '10', '10,00\xa0₽'),
         ('-3.14', '-3.14', '-3,14\xa0₽'),
-        (-3.14, '-3.14', '-3,14\xa0₽'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0₽'),
         (-10, '-10', '-10,00\xa0₽'),
         (Decimal('-10'), '-10', '-10,00\xa0₽')
     ])
@@ -352,7 +352,7 @@ class TestRussianRubleRU:
         assert default.pattern == '2,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'RUB',
             '643'))
         assert default.__repr__() == (
@@ -484,11 +484,11 @@ class TestRussianRubleGE:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0₽'),
-        (3.14, '3.14', '3,14\xa0₽'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0₽'),
         (10, '10', '10,00\xa0₽'),
         (Decimal('10'), '10', '10,00\xa0₽'),
         ('-3.14', '-3.14', '-3,14\xa0₽'),
-        (-3.14, '-3.14', '-3,14\xa0₽'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0₽'),
         (-10, '-10', '-10,00\xa0₽'),
         (Decimal('-10'), '-10', '-10,00\xa0₽')
     ])
@@ -503,7 +503,7 @@ class TestRussianRubleGE:
         assert default.pattern == '2,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'RUB',
             '643'))
         assert default.__repr__() == (

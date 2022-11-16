@@ -18,7 +18,7 @@ class SaudiRiyal(Currency):
 
         >>> from multicurrency import SaudiRiyal
         >>> saudi_riyal = SaudiRiyal(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(saudi_riyal)
         ر.س. ١٢٣٬٤٥٦٫٧٩
 

@@ -375,7 +375,7 @@ class Currency:
             CurrencyInvalidFormat: If `pattern` is not valid.
         """
         self = object.__new__(cls)
-        self._amount = Decimal(str(amount))
+        self._amount = Decimal(amount)
         regxpr = (
             r'^(?P<decimal_places>\d+)'
             r'(?P<decimal_sign>[^\d%])'
@@ -466,7 +466,7 @@ class Currency:
             raise CurrencyInvalidDivision()
         if other == 0:
             raise ZeroDivisionError()
-        quotient, remainder = self._amount.__divmod__(Decimal(str(other)))
+        quotient, remainder = self._amount.__divmod__(Decimal(other))
         return (
             self.__recreate__(quotient),
             self.__recreate__(remainder))
@@ -522,7 +522,7 @@ class Currency:
         if other == 0:
             raise ZeroDivisionError()
         return self.__recreate__(
-            self._amount.__floordiv__(Decimal(str(other))))
+            self._amount.__floordiv__(Decimal(other)))
 
     def __format__(self, fmt: str = '') -> str:
         """Returns the result of applying the formating specifications
@@ -745,7 +745,7 @@ class Currency:
             raise CurrencyInvalidDivision()
         if other == 0:
             raise ZeroDivisionError()
-        return self.__recreate__(self._amount.__mod__(Decimal(str(other))))
+        return self.__recreate__(self._amount.__mod__(Decimal(other)))
 
     def __mul__(self, other: Numerical) -> 'Currency':
         """Returns the multiplication by `other`.
@@ -762,7 +762,7 @@ class Currency:
         """
         if not isinstance(other, (int, float, Decimal)):
             raise CurrencyInvalidMultiplication()
-        return self.__recreate__(self._amount.__mul__(Decimal(str(other))))
+        return self.__recreate__(self._amount.__mul__(Decimal(other)))
 
     def __ne__(self, other: object) -> bool:
         """Checks if two currencies are different.
@@ -911,7 +911,7 @@ class Currency:
         if other == 0:
             raise ZeroDivisionError()
         return self.__recreate__(
-            self._amount.__truediv__(Decimal(str(other))))
+            self._amount.__truediv__(Decimal(other)))
 
     __deepcopy__: 'Currency' = __copy__
     __rmul__: 'Currency' = __mul__

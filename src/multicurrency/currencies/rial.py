@@ -18,7 +18,7 @@ class IranianRial(Currency):
 
         >>> from multicurrency import IranianRial
         >>> iranian_rial = IranianRial(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(iranian_rial)
         ۱۲۳٬۴۵۶٫۷۹ ﷼
 
@@ -76,7 +76,7 @@ class RialOmani(Currency):
 
         >>> from multicurrency import RialOmani
         >>> rial_omani = RialOmani(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(rial_omani)
         ر.ع. ١٢٣٬٤٥٦٫٧٨٩
 
@@ -134,7 +134,7 @@ class QatariRial(Currency):
 
         >>> from multicurrency import QatariRial
         >>> qatari_rial = QatariRial(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(qatari_rial)
         ر.ق. ١٢٣٬٤٥٦٫٧٩
 
@@ -192,7 +192,7 @@ class YemeniRial(Currency):
 
         >>> from multicurrency import YemeniRial
         >>> yemeni_rial = YemeniRial(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(yemeni_rial)
         ١٢٣٬٤٥٦٫٧٩ ﷼
 

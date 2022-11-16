@@ -18,7 +18,7 @@ class Tugrik(Currency):
 
         >>> from multicurrency import Tugrik
         >>> tugrik = Tugrik(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(tugrik)
         ₮ 123,456.79
 

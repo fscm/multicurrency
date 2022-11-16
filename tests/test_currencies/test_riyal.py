@@ -27,11 +27,11 @@ class TestSaudiRiyal:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', 'ر.س.\xa0٣٫١٤'),
-        (3.14, '3.14', 'ر.س.\xa0٣٫١٤'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', 'ر.س.\xa0٣٫١٤'),
         (10, '10', 'ر.س.\xa0١٠٫٠٠'),
         (Decimal('10'), '10', 'ر.س.\xa0١٠٫٠٠'),
         ('-3.14', '-3.14', 'ر.س.\xa0-٣٫١٤'),
-        (-3.14, '-3.14', 'ر.س.\xa0-٣٫١٤'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', 'ر.س.\xa0-٣٫١٤'),
         (-10, '-10', 'ر.س.\xa0-١٠٫٠٠'),
         (Decimal('-10'), '-10', 'ر.س.\xa0-١٠٫٠٠')
     ])
@@ -46,7 +46,7 @@ class TestSaudiRiyal:
         assert default.pattern == '2\u066B\u066C3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'SAR',
             '682'))
         assert default.__repr__() == (

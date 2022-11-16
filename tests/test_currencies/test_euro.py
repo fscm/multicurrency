@@ -54,11 +54,11 @@ class TestEuro:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0€'),
-        (3.14, '3.14', '3,14\xa0€'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0€'),
         (10, '10', '10,00\xa0€'),
         (Decimal('10'), '10', '10,00\xa0€'),
         ('-3.14', '-3.14', '-3,14\xa0€'),
-        (-3.14, '-3.14', '-3,14\xa0€'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0€'),
         (-10, '-10', '-10,00\xa0€'),
         (Decimal('-10'), '-10', '-10,00\xa0€')
     ])
@@ -73,7 +73,7 @@ class TestEuro:
         assert default.pattern == '2,.3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EUR',
             '978'))
         assert default.__repr__() == (
@@ -205,11 +205,11 @@ class TestEuroSBA:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0€'),
-        (3.14, '3.14', '3,14\xa0€'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0€'),
         (10, '10', '10,00\xa0€'),
         (Decimal('10'), '10', '10,00\xa0€'),
         ('-3.14', '-3.14', '-3,14\xa0€'),
-        (-3.14, '-3.14', '-3,14\xa0€'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0€'),
         (-10, '-10', '-10,00\xa0€'),
         (Decimal('-10'), '-10', '-10,00\xa0€')
     ])
@@ -224,7 +224,7 @@ class TestEuroSBA:
         assert default.pattern == '2,.3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EUR',
             '978'))
         assert default.__repr__() == (
@@ -356,11 +356,11 @@ class TestEuroAD:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0€'),
-        (3.14, '3.14', '3,14\xa0€'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0€'),
         (10, '10', '10,00\xa0€'),
         (Decimal('10'), '10', '10,00\xa0€'),
         ('-3.14', '-3.14', '-3,14\xa0€'),
-        (-3.14, '-3.14', '-3,14\xa0€'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0€'),
         (-10, '-10', '-10,00\xa0€'),
         (Decimal('-10'), '-10', '-10,00\xa0€')
     ])
@@ -375,7 +375,7 @@ class TestEuroAD:
         assert default.pattern == '2,.3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EUR',
             '978'))
         assert default.__repr__() == (
@@ -507,11 +507,11 @@ class TestEuroAT:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '€\xa03,14'),
-        (3.14, '3.14', '€\xa03,14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '€\xa03,14'),
         (10, '10', '€\xa010,00'),
         (Decimal('10'), '10', '€\xa010,00'),
         ('-3.14', '-3.14', '€\xa0-3,14'),
-        (-3.14, '-3.14', '€\xa0-3,14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '€\xa0-3,14'),
         (-10, '-10', '€\xa0-10,00'),
         (Decimal('-10'), '-10', '€\xa0-10,00')
     ])
@@ -526,7 +526,7 @@ class TestEuroAT:
         assert default.pattern == '2,.3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EUR',
             '978'))
         assert default.__repr__() == (
@@ -658,11 +658,11 @@ class TestEuroBE:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '€\xa03,14'),
-        (3.14, '3.14', '€\xa03,14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '€\xa03,14'),
         (10, '10', '€\xa010,00'),
         (Decimal('10'), '10', '€\xa010,00'),
         ('-3.14', '-3.14', '€\xa0-3,14'),
-        (-3.14, '-3.14', '€\xa0-3,14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '€\xa0-3,14'),
         (-10, '-10', '€\xa0-10,00'),
         (Decimal('-10'), '-10', '€\xa0-10,00')
     ])
@@ -677,7 +677,7 @@ class TestEuroBE:
         assert default.pattern == '2,.3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EUR',
             '978'))
         assert default.__repr__() == (
@@ -809,11 +809,11 @@ class TestEuroCY:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0€'),
-        (3.14, '3.14', '3,14\xa0€'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0€'),
         (10, '10', '10,00\xa0€'),
         (Decimal('10'), '10', '10,00\xa0€'),
         ('-3.14', '-3.14', '-3,14\xa0€'),
-        (-3.14, '-3.14', '-3,14\xa0€'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0€'),
         (-10, '-10', '-10,00\xa0€'),
         (Decimal('-10'), '-10', '-10,00\xa0€')
     ])
@@ -828,7 +828,7 @@ class TestEuroCY:
         assert default.pattern == '2,.3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EUR',
             '978'))
         assert default.__repr__() == (
@@ -960,11 +960,11 @@ class TestEuroEE:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0€'),
-        (3.14, '3.14', '3,14\xa0€'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0€'),
         (10, '10', '10,00\xa0€'),
         (Decimal('10'), '10', '10,00\xa0€'),
         ('-3.14', '-3.14', '-3,14\xa0€'),
-        (-3.14, '-3.14', '-3,14\xa0€'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0€'),
         (-10, '-10', '-10,00\xa0€'),
         (Decimal('-10'), '-10', '-10,00\xa0€')
     ])
@@ -979,7 +979,7 @@ class TestEuroEE:
         assert default.pattern == '2,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EUR',
             '978'))
         assert default.__repr__() == (
@@ -1111,11 +1111,11 @@ class TestEuroFI:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0€'),
-        (3.14, '3.14', '3,14\xa0€'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0€'),
         (10, '10', '10,00\xa0€'),
         (Decimal('10'), '10', '10,00\xa0€'),
         ('-3.14', '-3.14', '-3,14\xa0€'),
-        (-3.14, '-3.14', '-3,14\xa0€'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0€'),
         (-10, '-10', '-10,00\xa0€'),
         (Decimal('-10'), '-10', '-10,00\xa0€')
     ])
@@ -1130,7 +1130,7 @@ class TestEuroFI:
         assert default.pattern == '2,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EUR',
             '978'))
         assert default.__repr__() == (
@@ -1262,11 +1262,11 @@ class TestEuroFR:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0€'),
-        (3.14, '3.14', '3,14\xa0€'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0€'),
         (10, '10', '10,00\xa0€'),
         (Decimal('10'), '10', '10,00\xa0€'),
         ('-3.14', '-3.14', '-3,14\xa0€'),
-        (-3.14, '-3.14', '-3,14\xa0€'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0€'),
         (-10, '-10', '-10,00\xa0€'),
         (Decimal('-10'), '-10', '-10,00\xa0€')
     ])
@@ -1281,7 +1281,7 @@ class TestEuroFR:
         assert default.pattern == '2,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EUR',
             '978'))
         assert default.__repr__() == (
@@ -1413,11 +1413,11 @@ class TestEuroDE:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0€'),
-        (3.14, '3.14', '3,14\xa0€'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0€'),
         (10, '10', '10,00\xa0€'),
         (Decimal('10'), '10', '10,00\xa0€'),
         ('-3.14', '-3.14', '-3,14\xa0€'),
-        (-3.14, '-3.14', '-3,14\xa0€'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0€'),
         (-10, '-10', '-10,00\xa0€'),
         (Decimal('-10'), '-10', '-10,00\xa0€')
     ])
@@ -1432,7 +1432,7 @@ class TestEuroDE:
         assert default.pattern == '2,.3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EUR',
             '978'))
         assert default.__repr__() == (
@@ -1564,11 +1564,11 @@ class TestEuroGR:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0€'),
-        (3.14, '3.14', '3,14\xa0€'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0€'),
         (10, '10', '10,00\xa0€'),
         (Decimal('10'), '10', '10,00\xa0€'),
         ('-3.14', '-3.14', '-3,14\xa0€'),
-        (-3.14, '-3.14', '-3,14\xa0€'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0€'),
         (-10, '-10', '-10,00\xa0€'),
         (Decimal('-10'), '-10', '-10,00\xa0€')
     ])
@@ -1583,7 +1583,7 @@ class TestEuroGR:
         assert default.pattern == '2,.3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EUR',
             '978'))
         assert default.__repr__() == (
@@ -1715,11 +1715,11 @@ class TestEuroIE:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '€3.14'),
-        (3.14, '3.14', '€3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '€3.14'),
         (10, '10', '€10.00'),
         (Decimal('10'), '10', '€10.00'),
         ('-3.14', '-3.14', '-€3.14'),
-        (-3.14, '-3.14', '-€3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-€3.14'),
         (-10, '-10', '-€10.00'),
         (Decimal('-10'), '-10', '-€10.00')
     ])
@@ -1734,7 +1734,7 @@ class TestEuroIE:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EUR',
             '978'))
         assert default.__repr__() == (
@@ -1866,11 +1866,11 @@ class TestEuroIT:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0€'),
-        (3.14, '3.14', '3,14\xa0€'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0€'),
         (10, '10', '10,00\xa0€'),
         (Decimal('10'), '10', '10,00\xa0€'),
         ('-3.14', '-3.14', '-3,14\xa0€'),
-        (-3.14, '-3.14', '-3,14\xa0€'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0€'),
         (-10, '-10', '-10,00\xa0€'),
         (Decimal('-10'), '-10', '-10,00\xa0€')
     ])
@@ -1885,7 +1885,7 @@ class TestEuroIT:
         assert default.pattern == '2,.3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EUR',
             '978'))
         assert default.__repr__() == (
@@ -2017,11 +2017,11 @@ class TestEuroXK:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0€'),
-        (3.14, '3.14', '3,14\xa0€'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0€'),
         (10, '10', '10,00\xa0€'),
         (Decimal('10'), '10', '10,00\xa0€'),
         ('-3.14', '-3.14', '-3,14\xa0€'),
-        (-3.14, '-3.14', '-3,14\xa0€'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0€'),
         (-10, '-10', '-10,00\xa0€'),
         (Decimal('-10'), '-10', '-10,00\xa0€')
     ])
@@ -2036,7 +2036,7 @@ class TestEuroXK:
         assert default.pattern == '2,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EUR',
             '978'))
         assert default.__repr__() == (
@@ -2168,11 +2168,11 @@ class TestEuroLV:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0€'),
-        (3.14, '3.14', '3,14\xa0€'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0€'),
         (10, '10', '10,00\xa0€'),
         (Decimal('10'), '10', '10,00\xa0€'),
         ('-3.14', '-3.14', '-3,14\xa0€'),
-        (-3.14, '-3.14', '-3,14\xa0€'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0€'),
         (-10, '-10', '-10,00\xa0€'),
         (Decimal('-10'), '-10', '-10,00\xa0€')
     ])
@@ -2187,7 +2187,7 @@ class TestEuroLV:
         assert default.pattern == '2,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EUR',
             '978'))
         assert default.__repr__() == (
@@ -2319,11 +2319,11 @@ class TestEuroLT:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0€'),
-        (3.14, '3.14', '3,14\xa0€'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0€'),
         (10, '10', '10,00\xa0€'),
         (Decimal('10'), '10', '10,00\xa0€'),
         ('-3.14', '-3.14', '-3,14\xa0€'),
-        (-3.14, '-3.14', '-3,14\xa0€'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0€'),
         (-10, '-10', '-10,00\xa0€'),
         (Decimal('-10'), '-10', '-10,00\xa0€')
     ])
@@ -2338,7 +2338,7 @@ class TestEuroLT:
         assert default.pattern == '2,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EUR',
             '978'))
         assert default.__repr__() == (
@@ -2470,11 +2470,11 @@ class TestEuroLU:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0€'),
-        (3.14, '3.14', '3,14\xa0€'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0€'),
         (10, '10', '10,00\xa0€'),
         (Decimal('10'), '10', '10,00\xa0€'),
         ('-3.14', '-3.14', '-3,14\xa0€'),
-        (-3.14, '-3.14', '-3,14\xa0€'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0€'),
         (-10, '-10', '-10,00\xa0€'),
         (Decimal('-10'), '-10', '-10,00\xa0€')
     ])
@@ -2489,7 +2489,7 @@ class TestEuroLU:
         assert default.pattern == '2,.3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EUR',
             '978'))
         assert default.__repr__() == (
@@ -2621,11 +2621,11 @@ class TestEuroMT:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '€3.14'),
-        (3.14, '3.14', '€3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '€3.14'),
         (10, '10', '€10.00'),
         (Decimal('10'), '10', '€10.00'),
         ('-3.14', '-3.14', '-€3.14'),
-        (-3.14, '-3.14', '-€3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-€3.14'),
         (-10, '-10', '-€10.00'),
         (Decimal('-10'), '-10', '-€10.00')
     ])
@@ -2640,7 +2640,7 @@ class TestEuroMT:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EUR',
             '978'))
         assert default.__repr__() == (
@@ -2772,11 +2772,11 @@ class TestEuroMC:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0€'),
-        (3.14, '3.14', '3,14\xa0€'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0€'),
         (10, '10', '10,00\xa0€'),
         (Decimal('10'), '10', '10,00\xa0€'),
         ('-3.14', '-3.14', '-3,14\xa0€'),
-        (-3.14, '-3.14', '-3,14\xa0€'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0€'),
         (-10, '-10', '-10,00\xa0€'),
         (Decimal('-10'), '-10', '-10,00\xa0€')
     ])
@@ -2791,7 +2791,7 @@ class TestEuroMC:
         assert default.pattern == '2,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EUR',
             '978'))
         assert default.__repr__() == (
@@ -2923,11 +2923,11 @@ class TestEuroME:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0€'),
-        (3.14, '3.14', '3,14\xa0€'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0€'),
         (10, '10', '10,00\xa0€'),
         (Decimal('10'), '10', '10,00\xa0€'),
         ('-3.14', '-3.14', '-3,14\xa0€'),
-        (-3.14, '-3.14', '-3,14\xa0€'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0€'),
         (-10, '-10', '-10,00\xa0€'),
         (Decimal('-10'), '-10', '-10,00\xa0€')
     ])
@@ -2942,7 +2942,7 @@ class TestEuroME:
         assert default.pattern == '2,.3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EUR',
             '978'))
         assert default.__repr__() == (
@@ -3074,11 +3074,11 @@ class TestEuroNL:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '€\xa03,14'),
-        (3.14, '3.14', '€\xa03,14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '€\xa03,14'),
         (10, '10', '€\xa010,00'),
         (Decimal('10'), '10', '€\xa010,00'),
         ('-3.14', '-3.14', '€\xa0-3,14'),
-        (-3.14, '-3.14', '€\xa0-3,14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '€\xa0-3,14'),
         (-10, '-10', '€\xa0-10,00'),
         (Decimal('-10'), '-10', '€\xa0-10,00')
     ])
@@ -3093,7 +3093,7 @@ class TestEuroNL:
         assert default.pattern == '2,.3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EUR',
             '978'))
         assert default.__repr__() == (
@@ -3225,11 +3225,11 @@ class TestEuroPT:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '€\xa03,14'),
-        (3.14, '3.14', '€\xa03,14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '€\xa03,14'),
         (10, '10', '€\xa010,00'),
         (Decimal('10'), '10', '€\xa010,00'),
         ('-3.14', '-3.14', '€\xa0-3,14'),
-        (-3.14, '-3.14', '€\xa0-3,14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '€\xa0-3,14'),
         (-10, '-10', '€\xa0-10,00'),
         (Decimal('-10'), '-10', '€\xa0-10,00')
     ])
@@ -3244,7 +3244,7 @@ class TestEuroPT:
         assert default.pattern == '2,.3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EUR',
             '978'))
         assert default.__repr__() == (
@@ -3376,11 +3376,11 @@ class TestEuroSM:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0€'),
-        (3.14, '3.14', '3,14\xa0€'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0€'),
         (10, '10', '10,00\xa0€'),
         (Decimal('10'), '10', '10,00\xa0€'),
         ('-3.14', '-3.14', '-3,14\xa0€'),
-        (-3.14, '-3.14', '-3,14\xa0€'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0€'),
         (-10, '-10', '-10,00\xa0€'),
         (Decimal('-10'), '-10', '-10,00\xa0€')
     ])
@@ -3395,7 +3395,7 @@ class TestEuroSM:
         assert default.pattern == '2,.3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EUR',
             '978'))
         assert default.__repr__() == (
@@ -3527,11 +3527,11 @@ class TestEuroSK:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0€'),
-        (3.14, '3.14', '3,14\xa0€'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0€'),
         (10, '10', '10,00\xa0€'),
         (Decimal('10'), '10', '10,00\xa0€'),
         ('-3.14', '-3.14', '-3,14\xa0€'),
-        (-3.14, '-3.14', '-3,14\xa0€'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0€'),
         (-10, '-10', '-10,00\xa0€'),
         (Decimal('-10'), '-10', '-10,00\xa0€')
     ])
@@ -3546,7 +3546,7 @@ class TestEuroSK:
         assert default.pattern == '2,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EUR',
             '978'))
         assert default.__repr__() == (
@@ -3678,11 +3678,11 @@ class TestEuroSI:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0€'),
-        (3.14, '3.14', '3,14\xa0€'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0€'),
         (10, '10', '10,00\xa0€'),
         (Decimal('10'), '10', '10,00\xa0€'),
         ('-3.14', '-3.14', '-3,14\xa0€'),
-        (-3.14, '-3.14', '-3,14\xa0€'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0€'),
         (-10, '-10', '-10,00\xa0€'),
         (Decimal('-10'), '-10', '-10,00\xa0€')
     ])
@@ -3697,7 +3697,7 @@ class TestEuroSI:
         assert default.pattern == '2,.3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EUR',
             '978'))
         assert default.__repr__() == (
@@ -3829,11 +3829,11 @@ class TestEuroES:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0€'),
-        (3.14, '3.14', '3,14\xa0€'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0€'),
         (10, '10', '10,00\xa0€'),
         (Decimal('10'), '10', '10,00\xa0€'),
         ('-3.14', '-3.14', '-3,14\xa0€'),
-        (-3.14, '-3.14', '-3,14\xa0€'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0€'),
         (-10, '-10', '-10,00\xa0€'),
         (Decimal('-10'), '-10', '-10,00\xa0€')
     ])
@@ -3848,7 +3848,7 @@ class TestEuroES:
         assert default.pattern == '2,.3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EUR',
             '978'))
         assert default.__repr__() == (
@@ -3980,11 +3980,11 @@ class TestEuroVA:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '€3.14'),
-        (3.14, '3.14', '€3.14'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '€3.14'),
         (10, '10', '€10.00'),
         (Decimal('10'), '10', '€10.00'),
         ('-3.14', '-3.14', '-€3.14'),
-        (-3.14, '-3.14', '-€3.14'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-€3.14'),
         (-10, '-10', '-€10.00'),
         (Decimal('-10'), '-10', '-€10.00')
     ])
@@ -3999,7 +3999,7 @@ class TestEuroVA:
         assert default.pattern == '2.,3%-%s%u'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'EUR',
             '978'))
         assert default.__repr__() == (

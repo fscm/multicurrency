@@ -27,11 +27,11 @@ class TestAfghani:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '؋\xa0۳٫۱۴'),
-        (3.14, '3.14', '؋\xa0۳٫۱۴'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '؋\xa0۳٫۱۴'),
         (10, '10', '؋\xa0۱۰٫۰۰'),
         (Decimal('10'), '10', '؋\xa0۱۰٫۰۰'),
         ('-3.14', '-3.14', '؋\xa0-۳٫۱۴'),
-        (-3.14, '-3.14', '؋\xa0-۳٫۱۴'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '؋\xa0-۳٫۱۴'),
         (-10, '-10', '؋\xa0-۱۰٫۰۰'),
         (Decimal('-10'), '-10', '؋\xa0-۱۰٫۰۰')
     ])
@@ -46,7 +46,7 @@ class TestAfghani:
         assert default.pattern == '2\u066B\u066C3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'AFN',
             '971'))
         assert default.__repr__() == (

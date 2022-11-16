@@ -18,7 +18,7 @@ class Denar(Currency):
 
         >>> from multicurrency import Denar
         >>> denar = Denar(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(denar)
         123.456,79 ден.
 

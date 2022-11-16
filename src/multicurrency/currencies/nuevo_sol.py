@@ -18,7 +18,7 @@ class NuevoSol(Currency):
 
         >>> from multicurrency import NuevoSol
         >>> nuevo_sol = NuevoSol(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(nuevo_sol)
         S/. 123,456.79
 

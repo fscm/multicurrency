@@ -18,7 +18,7 @@ class Metical(Currency):
 
         >>> from multicurrency import Metical
         >>> metical = Metical(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(metical)
         123.457 MTn
 

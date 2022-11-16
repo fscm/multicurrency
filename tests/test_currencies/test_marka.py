@@ -27,11 +27,11 @@ class TestKonvertibilnaMarka:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3.14\xa0КМ'),
-        (3.14, '3.14', '3.14\xa0КМ'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3.14\xa0КМ'),
         (10, '10', '10.00\xa0КМ'),
         (Decimal('10'), '10', '10.00\xa0КМ'),
         ('-3.14', '-3.14', '-3.14\xa0КМ'),
-        (-3.14, '-3.14', '-3.14\xa0КМ'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3.14\xa0КМ'),
         (-10, '-10', '-10.00\xa0КМ'),
         (Decimal('-10'), '-10', '-10.00\xa0КМ')
     ])
@@ -46,7 +46,7 @@ class TestKonvertibilnaMarka:
         assert default.pattern == '2.,3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'BAM',
             '977'))
         assert default.__repr__() == (

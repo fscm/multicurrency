@@ -18,7 +18,7 @@ class Lempira(Currency):
 
         >>> from multicurrency import Lempira
         >>> lempira = Lempira(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(lempira)
         L 123,456.79
 

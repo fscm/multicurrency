@@ -18,7 +18,7 @@ class AzerbaijanianManat(Currency):
 
         >>> from multicurrency import AzerbaijanianManat
         >>> azerbaijanian_manat = AzerbaijanianManat(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(azerbaijanian_manat)
         123.456,79 ₼
 
@@ -76,7 +76,7 @@ class Manat(Currency):
 
         >>> from multicurrency import Manat
         >>> manat = Manat(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(manat)
         123 456,79 m
 

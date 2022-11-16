@@ -18,7 +18,7 @@ class TurkishLira(Currency):
 
         >>> from multicurrency import TurkishLira
         >>> turkish_lira = TurkishLira(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(turkish_lira)
         ₤123.456,79
 
@@ -76,7 +76,7 @@ class TurkishLiraCY(Currency):
 
         >>> from multicurrency import TurkishLiraCY
         >>> turkish_lira_cy = TurkishLiraCY(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(turkish_lira_cy)
         ₤123.456,79
 
@@ -134,7 +134,7 @@ class TurkishLiraTR(Currency):
 
         >>> from multicurrency import TurkishLiraTR
         >>> turkish_lira_tr = TurkishLiraTR(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(turkish_lira_tr)
         ₤123.456,79
 

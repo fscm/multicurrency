@@ -27,11 +27,11 @@ class TestMetical:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3\xa0MTn'),
-        (3.14, '3.14', '3\xa0MTn'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3\xa0MTn'),
         (10, '10', '10\xa0MTn'),
         (Decimal('10'), '10', '10\xa0MTn'),
         ('-3.14', '-3.14', '-3\xa0MTn'),
-        (-3.14, '-3.14', '-3\xa0MTn'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3\xa0MTn'),
         (-10, '-10', '-10\xa0MTn'),
         (Decimal('-10'), '-10', '-10\xa0MTn')
     ])
@@ -46,7 +46,7 @@ class TestMetical:
         assert default.pattern == '0,.3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'MZN',
             '943'))
         assert default.__repr__() == (

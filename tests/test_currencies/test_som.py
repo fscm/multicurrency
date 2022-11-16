@@ -27,11 +27,11 @@ class TestSom:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0Лв'),
-        (3.14, '3.14', '3,14\xa0Лв'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0Лв'),
         (10, '10', '10,00\xa0Лв'),
         (Decimal('10'), '10', '10,00\xa0Лв'),
         ('-3.14', '-3.14', '-3,14\xa0Лв'),
-        (-3.14, '-3.14', '-3,14\xa0Лв'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0Лв'),
         (-10, '-10', '-10,00\xa0Лв'),
         (Decimal('-10'), '-10', '-10,00\xa0Лв')
     ])
@@ -46,7 +46,7 @@ class TestSom:
         assert default.pattern == '2,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'KGS',
             '417'))
         assert default.__repr__() == (

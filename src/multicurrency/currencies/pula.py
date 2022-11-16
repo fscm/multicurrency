@@ -18,7 +18,7 @@ class Pula(Currency):
 
         >>> from multicurrency import Pula
         >>> pula = Pula(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(pula)
         P 123,456.79
 

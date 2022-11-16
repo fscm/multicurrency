@@ -18,7 +18,7 @@ class Ouguiya(Currency):
 
         >>> from multicurrency import Ouguiya
         >>> ouguiya = Ouguiya(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(ouguiya)
         ١٢٣٬٤٥٦٫٧٩ أ.م
 

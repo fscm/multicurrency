@@ -18,7 +18,7 @@ class Rand(Currency):
 
         >>> from multicurrency import Rand
         >>> rand = Rand(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(rand)
         R 123 456.79
 
@@ -76,7 +76,7 @@ class RandLS(Currency):
 
         >>> from multicurrency import RandLS
         >>> rand_ls = RandLS(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(rand_ls)
         R 123,456.79
 
@@ -134,7 +134,7 @@ class RandNA(Currency):
 
         >>> from multicurrency import RandNA
         >>> rand_na = RandNA(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(rand_na)
         R 123 456.79
 
@@ -192,7 +192,7 @@ class RandZA(Currency):
 
         >>> from multicurrency import RandZA
         >>> rand_za = RandZA(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(rand_za)
         R 123 456.79
 

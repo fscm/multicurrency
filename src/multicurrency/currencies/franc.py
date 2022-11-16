@@ -18,7 +18,7 @@ class BurundiFranc(Currency):
 
         >>> from multicurrency import BurundiFranc
         >>> burundi_franc = BurundiFranc(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(burundi_franc)
         123 457 ₣
 
@@ -76,7 +76,7 @@ class CongoleseFranc(Currency):
 
         >>> from multicurrency import CongoleseFranc
         >>> congolese_franc = CongoleseFranc(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(congolese_franc)
         123 456,79 ₣
 
@@ -134,7 +134,7 @@ class SwissFranc(Currency):
 
         >>> from multicurrency import SwissFranc
         >>> swiss_franc = SwissFranc(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(swiss_franc)
         ₣ 123'456.79
 
@@ -192,7 +192,7 @@ class SwissFrancLI(Currency):
 
         >>> from multicurrency import SwissFrancLI
         >>> swiss_franc_li = SwissFrancLI(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(swiss_franc_li)
         ₣ 123'456.79
 
@@ -250,7 +250,7 @@ class SwissFrancCH(Currency):
 
         >>> from multicurrency import SwissFrancCH
         >>> swiss_franc_ch = SwissFrancCH(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(swiss_franc_ch)
         ₣ 123'456.79
 
@@ -308,7 +308,7 @@ class DjiboutiFranc(Currency):
 
         >>> from multicurrency import DjiboutiFranc
         >>> djibouti_franc = DjiboutiFranc(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(djibouti_franc)
         123 457 ₣
 
@@ -366,7 +366,7 @@ class GuineaFranc(Currency):
 
         >>> from multicurrency import GuineaFranc
         >>> guinea_franc = GuineaFranc(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(guinea_franc)
         123 457 ₣
 
@@ -424,7 +424,7 @@ class RwandaFranc(Currency):
 
         >>> from multicurrency import RwandaFranc
         >>> rwanda_franc = RwandaFranc(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(rwanda_franc)
         ₣ 123.457
 
@@ -482,7 +482,7 @@ class CFAFrancBEAC(Currency):
 
         >>> from multicurrency import CFAFrancBEAC
         >>> cfa_franc_beac = CFAFrancBEAC(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(cfa_franc_beac)
         123 457 ₣
 
@@ -540,7 +540,7 @@ class CFAFrancBEACCM(Currency):
 
         >>> from multicurrency import CFAFrancBEACCM
         >>> cfa_franc_beac_cm = CFAFrancBEACCM(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(cfa_franc_beac_cm)
         123 457 ₣
 
@@ -598,7 +598,7 @@ class CFAFrancBEACCF(Currency):
 
         >>> from multicurrency import CFAFrancBEACCF
         >>> cfa_franc_beac_cf = CFAFrancBEACCF(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(cfa_franc_beac_cf)
         123 457 ₣
 
@@ -656,7 +656,7 @@ class CFAFrancBEACTD(Currency):
 
         >>> from multicurrency import CFAFrancBEACTD
         >>> cfa_franc_beac_td = CFAFrancBEACTD(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(cfa_franc_beac_td)
         123 457 ₣
 
@@ -714,7 +714,7 @@ class CFAFrancBEACCD(Currency):
 
         >>> from multicurrency import CFAFrancBEACCD
         >>> cfa_franc_beac_cd = CFAFrancBEACCD(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(cfa_franc_beac_cd)
         123 457 ₣
 
@@ -772,7 +772,7 @@ class CFAFrancBEACGQ(Currency):
 
         >>> from multicurrency import CFAFrancBEACGQ
         >>> cfa_franc_beac_gq = CFAFrancBEACGQ(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(cfa_franc_beac_gq)
         123 457 ₣
 
@@ -830,7 +830,7 @@ class CFAFrancBEACGA(Currency):
 
         >>> from multicurrency import CFAFrancBEACGA
         >>> cfa_franc_beac_ga = CFAFrancBEACGA(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(cfa_franc_beac_ga)
         123 457 ₣
 
@@ -888,7 +888,7 @@ class CFAFrancBCEAO(Currency):
 
         >>> from multicurrency import CFAFrancBCEAO
         >>> cfa_franc_bceao = CFAFrancBCEAO(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(cfa_franc_bceao)
         123 457 ₣
 
@@ -946,7 +946,7 @@ class CFAFrancBCEAOBJ(Currency):
 
         >>> from multicurrency import CFAFrancBCEAOBJ
         >>> cfa_franc_bceao_bj = CFAFrancBCEAOBJ(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(cfa_franc_bceao_bj)
         123 457 ₣
 
@@ -1004,7 +1004,7 @@ class CFAFrancBCEAOBF(Currency):
 
         >>> from multicurrency import CFAFrancBCEAOBF
         >>> cfa_franc_bceao_bf = CFAFrancBCEAOBF(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(cfa_franc_bceao_bf)
         123 457 ₣
 
@@ -1062,7 +1062,7 @@ class CFAFrancBCEAOCI(Currency):
 
         >>> from multicurrency import CFAFrancBCEAOCI
         >>> cfa_franc_bceao_ci = CFAFrancBCEAOCI(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(cfa_franc_bceao_ci)
         123 457 ₣
 
@@ -1120,7 +1120,7 @@ class CFAFrancBCEAOGW(Currency):
 
         >>> from multicurrency import CFAFrancBCEAOGW
         >>> cfa_franc_bceao_gw = CFAFrancBCEAOGW(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(cfa_franc_bceao_gw)
         123 457 ₣
 
@@ -1178,7 +1178,7 @@ class CFAFrancBCEAOML(Currency):
 
         >>> from multicurrency import CFAFrancBCEAOML
         >>> cfa_franc_bceao_ml = CFAFrancBCEAOML(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(cfa_franc_bceao_ml)
         123 457 ₣
 
@@ -1236,7 +1236,7 @@ class CFAFrancBCEAONG(Currency):
 
         >>> from multicurrency import CFAFrancBCEAONG
         >>> cfa_franc_bceao_ng = CFAFrancBCEAONG(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(cfa_franc_bceao_ng)
         123 457 ₣
 
@@ -1294,7 +1294,7 @@ class CFAFrancBCEAOSN(Currency):
 
         >>> from multicurrency import CFAFrancBCEAOSN
         >>> cfa_franc_bceao_sn = CFAFrancBCEAOSN(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(cfa_franc_bceao_sn)
         123 457 ₣
 
@@ -1352,7 +1352,7 @@ class CFAFrancBCEAOTG(Currency):
 
         >>> from multicurrency import CFAFrancBCEAOTG
         >>> cfa_franc_bceao_tg = CFAFrancBCEAOTG(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(cfa_franc_bceao_tg)
         123 457 ₣
 
@@ -1410,7 +1410,7 @@ class CFPFranc(Currency):
 
         >>> from multicurrency import CFPFranc
         >>> cfp_franc = CFPFranc(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(cfp_franc)
         123 457 ₣
 
@@ -1468,7 +1468,7 @@ class CFPFrancPF(Currency):
 
         >>> from multicurrency import CFPFrancPF
         >>> cfp_franc_pf = CFPFrancPF(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(cfp_franc_pf)
         123 457 ₣
 
@@ -1526,7 +1526,7 @@ class CFPFrancNC(Currency):
 
         >>> from multicurrency import CFPFrancNC
         >>> cfp_franc_nc = CFPFrancNC(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(cfp_franc_nc)
         123 457 ₣
 
@@ -1584,7 +1584,7 @@ class CFPFrancWF(Currency):
 
         >>> from multicurrency import CFPFrancWF
         >>> cfp_franc_wf = CFPFrancWF(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(cfp_franc_wf)
         123 457 ₣
 

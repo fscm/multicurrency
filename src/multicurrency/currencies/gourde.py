@@ -18,7 +18,7 @@ class Gourde(Currency):
 
         >>> from multicurrency import Gourde
         >>> gourde = Gourde(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(gourde)
         G 123,456.79
 

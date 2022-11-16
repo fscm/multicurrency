@@ -18,7 +18,7 @@ class Tenge(Currency):
 
         >>> from multicurrency import Tenge
         >>> tenge = Tenge(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(tenge)
         123 456,79 〒
 

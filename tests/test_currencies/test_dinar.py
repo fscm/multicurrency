@@ -36,11 +36,11 @@ class TestBahrainiDinar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', 'د.ب.\xa0٣٫١٤٠'),
-        (3.14, '3.14', 'د.ب.\xa0٣٫١٤٠'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', 'د.ب.\xa0٣٫١٤٠'),
         (10, '10', 'د.ب.\xa0١٠٫٠٠٠'),
         (Decimal('10'), '10', 'د.ب.\xa0١٠٫٠٠٠'),
         ('-3.14', '-3.14', 'د.ب.\xa0-٣٫١٤٠'),
-        (-3.14, '-3.14', 'د.ب.\xa0-٣٫١٤٠'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', 'د.ب.\xa0-٣٫١٤٠'),
         (-10, '-10', 'د.ب.\xa0-١٠٫٠٠٠'),
         (Decimal('-10'), '-10', 'د.ب.\xa0-١٠٫٠٠٠')
     ])
@@ -55,7 +55,7 @@ class TestBahrainiDinar:
         assert default.pattern == '3\u066B\u066C3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'BHD',
             '048'))
         assert default.__repr__() == (
@@ -187,11 +187,11 @@ class TestAlgerianDinar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0د.ج.'),
-        (3.14, '3.14', '3,14\xa0د.ج.'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0د.ج.'),
         (10, '10', '10,00\xa0د.ج.'),
         (Decimal('10'), '10', '10,00\xa0د.ج.'),
         ('-3.14', '-3.14', '-3,14\xa0د.ج.'),
-        (-3.14, '-3.14', '-3,14\xa0د.ج.'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0د.ج.'),
         (-10, '-10', '-10,00\xa0د.ج.'),
         (Decimal('-10'), '-10', '-10,00\xa0د.ج.')
     ])
@@ -206,7 +206,7 @@ class TestAlgerianDinar:
         assert default.pattern == '2,.3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'DZD',
             '012'))
         assert default.__repr__() == (
@@ -338,11 +338,11 @@ class TestIraqiDinar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', 'د.ع.\xa0٣٫١٤٠'),
-        (3.14, '3.14', 'د.ع.\xa0٣٫١٤٠'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', 'د.ع.\xa0٣٫١٤٠'),
         (10, '10', 'د.ع.\xa0١٠٫٠٠٠'),
         (Decimal('10'), '10', 'د.ع.\xa0١٠٫٠٠٠'),
         ('-3.14', '-3.14', 'د.ع.\xa0-٣٫١٤٠'),
-        (-3.14, '-3.14', 'د.ع.\xa0-٣٫١٤٠'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', 'د.ع.\xa0-٣٫١٤٠'),
         (-10, '-10', 'د.ع.\xa0-١٠٫٠٠٠'),
         (Decimal('-10'), '-10', 'د.ع.\xa0-١٠٫٠٠٠')
     ])
@@ -357,7 +357,7 @@ class TestIraqiDinar:
         assert default.pattern == '3\u066B\u066C3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'IQD',
             '368'))
         assert default.__repr__() == (
@@ -489,11 +489,11 @@ class TestJordanianDinar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', 'د.أ.\xa0٣٫١٤٠'),
-        (3.14, '3.14', 'د.أ.\xa0٣٫١٤٠'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', 'د.أ.\xa0٣٫١٤٠'),
         (10, '10', 'د.أ.\xa0١٠٫٠٠٠'),
         (Decimal('10'), '10', 'د.أ.\xa0١٠٫٠٠٠'),
         ('-3.14', '-3.14', 'د.أ.\xa0-٣٫١٤٠'),
-        (-3.14, '-3.14', 'د.أ.\xa0-٣٫١٤٠'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', 'د.أ.\xa0-٣٫١٤٠'),
         (-10, '-10', 'د.أ.\xa0-١٠٫٠٠٠'),
         (Decimal('-10'), '-10', 'د.أ.\xa0-١٠٫٠٠٠')
     ])
@@ -508,7 +508,7 @@ class TestJordanianDinar:
         assert default.pattern == '3\u066B\u066C3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'JOD',
             '400'))
         assert default.__repr__() == (
@@ -640,11 +640,11 @@ class TestKuwaitiDinar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', 'د.ك.\xa0٣٫١٤٠'),
-        (3.14, '3.14', 'د.ك.\xa0٣٫١٤٠'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', 'د.ك.\xa0٣٫١٤٠'),
         (10, '10', 'د.ك.\xa0١٠٫٠٠٠'),
         (Decimal('10'), '10', 'د.ك.\xa0١٠٫٠٠٠'),
         ('-3.14', '-3.14', 'د.ك.\xa0-٣٫١٤٠'),
-        (-3.14, '-3.14', 'د.ك.\xa0-٣٫١٤٠'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', 'د.ك.\xa0-٣٫١٤٠'),
         (-10, '-10', 'د.ك.\xa0-١٠٫٠٠٠'),
         (Decimal('-10'), '-10', 'د.ك.\xa0-١٠٫٠٠٠')
     ])
@@ -659,7 +659,7 @@ class TestKuwaitiDinar:
         assert default.pattern == '3\u066B\u066C3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'KWD',
             '414'))
         assert default.__repr__() == (
@@ -791,11 +791,11 @@ class TestLibyanDinar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', 'د.ل.\xa03,140'),
-        (3.14, '3.14', 'د.ل.\xa03,140'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', 'د.ل.\xa03,140'),
         (10, '10', 'د.ل.\xa010,000'),
         (Decimal('10'), '10', 'د.ل.\xa010,000'),
         ('-3.14', '-3.14', 'د.ل.\xa0-3,140'),
-        (-3.14, '-3.14', 'د.ل.\xa0-3,140'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', 'د.ل.\xa0-3,140'),
         (-10, '-10', 'د.ل.\xa0-10,000'),
         (Decimal('-10'), '-10', 'د.ل.\xa0-10,000')
     ])
@@ -810,7 +810,7 @@ class TestLibyanDinar:
         assert default.pattern == '3,.3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'LYD',
             '434'))
         assert default.__repr__() == (
@@ -942,11 +942,11 @@ class TestSerbianDinarXK:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0дин.'),
-        (3.14, '3.14', '3,14\xa0дин.'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0дин.'),
         (10, '10', '10,00\xa0дин.'),
         (Decimal('10'), '10', '10,00\xa0дин.'),
         ('-3.14', '-3.14', '-3,14\xa0дин.'),
-        (-3.14, '-3.14', '-3,14\xa0дин.'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0дин.'),
         (-10, '-10', '-10,00\xa0дин.'),
         (Decimal('-10'), '-10', '-10,00\xa0дин.')
     ])
@@ -961,7 +961,7 @@ class TestSerbianDinarXK:
         assert default.pattern == '2,.3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'RSD',
             '941'))
         assert default.__repr__() == (
@@ -1093,11 +1093,11 @@ class TestSerbianDinarSR:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '3,14\xa0дин.'),
-        (3.14, '3.14', '3,14\xa0дин.'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '3,14\xa0дин.'),
         (10, '10', '10,00\xa0дин.'),
         (Decimal('10'), '10', '10,00\xa0дин.'),
         ('-3.14', '-3.14', '-3,14\xa0дин.'),
-        (-3.14, '-3.14', '-3,14\xa0дин.'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '-3,14\xa0дин.'),
         (-10, '-10', '-10,00\xa0дин.'),
         (Decimal('-10'), '-10', '-10,00\xa0дин.')
     ])
@@ -1112,7 +1112,7 @@ class TestSerbianDinarSR:
         assert default.pattern == '2,\u202F3%a\u00A0%s'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'RSD',
             '941'))
         assert default.__repr__() == (
@@ -1244,11 +1244,11 @@ class TestTunisianDinar:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', 'د.ت.\xa03,140'),
-        (3.14, '3.14', 'د.ت.\xa03,140'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', 'د.ت.\xa03,140'),
         (10, '10', 'د.ت.\xa010,000'),
         (Decimal('10'), '10', 'د.ت.\xa010,000'),
         ('-3.14', '-3.14', 'د.ت.\xa0-3,140'),
-        (-3.14, '-3.14', 'د.ت.\xa0-3,140'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', 'د.ت.\xa0-3,140'),
         (-10, '-10', 'د.ت.\xa0-10,000'),
         (Decimal('-10'), '-10', 'د.ت.\xa0-10,000')
     ])
@@ -1263,7 +1263,7 @@ class TestTunisianDinar:
         assert default.pattern == '3,.3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'TND',
             '788'))
         assert default.__repr__() == (

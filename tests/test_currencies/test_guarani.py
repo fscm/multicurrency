@@ -27,11 +27,11 @@ class TestGuarani:
     @staticmethod
     @mark.parametrize('amount,result,printed', [
         ('3.14', '3.14', '₲\xa03'),
-        (3.14, '3.14', '₲\xa03'),
+        (3.14, '3.140000000000000124344978758017532527446746826171875', '₲\xa03'),
         (10, '10', '₲\xa010'),
         (Decimal('10'), '10', '₲\xa010'),
         ('-3.14', '-3.14', '₲\xa0-3'),
-        (-3.14, '-3.14', '₲\xa0-3'),
+        (-3.14, '-3.140000000000000124344978758017532527446746826171875', '₲\xa0-3'),
         (-10, '-10', '₲\xa0-10'),
         (Decimal('-10'), '-10', '₲\xa0-10')
     ])
@@ -46,7 +46,7 @@ class TestGuarani:
         assert default.pattern == '0,.3%s\u00A0%a'
         assert default.__hash__() == hash((
             default.__class__,
-            Decimal(str(amount)),
+            Decimal(amount),
             'PYG',
             '600'))
         assert default.__repr__() == (

@@ -18,7 +18,7 @@ class Yen(Currency):
 
         >>> from multicurrency import Yen
         >>> yen = Yen(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(yen)
         ¥123,457
 

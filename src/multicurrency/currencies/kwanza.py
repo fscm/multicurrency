@@ -18,7 +18,7 @@ class Kwanza(Currency):
 
         >>> from multicurrency import Kwanza
         >>> kwanza = Kwanza(
-        ...     amount=123456.789)
+        ...     amount='123456.789')
         >>> print(kwanza)
         123 456,79 Kz
 
