@@ -121,7 +121,7 @@ class TestMoldovanLeu:
         immutable = MoldovanLeu(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'MoldovanLeu\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -272,7 +272,7 @@ class TestLeu:
         immutable = Leu(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'Leu\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod

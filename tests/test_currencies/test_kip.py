@@ -119,7 +119,7 @@ class TestKip:
         immutable = Kip(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'Kip\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod

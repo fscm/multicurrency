@@ -127,7 +127,7 @@ class TestEOS:
         immutable = EOS(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EOS\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -278,7 +278,7 @@ class TestEthereum:
         immutable = Ethereum(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'Ethereum\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -429,7 +429,7 @@ class TestBitcoin:
         immutable = Bitcoin(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'Bitcoin\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -580,7 +580,7 @@ class TestStellarLumens:
         immutable = StellarLumens(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'StellarLumens\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -731,7 +731,7 @@ class TestMonero:
         immutable = Monero(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'Monero\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -882,7 +882,7 @@ class TestRipple:
         immutable = Ripple(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'Ripple\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -1033,7 +1033,7 @@ class TestTezos:
         immutable = Tezos(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'Tezos\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -1184,7 +1184,7 @@ class TestZcash:
         immutable = Zcash(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'Zcash\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod

@@ -119,7 +119,7 @@ class TestYuan:
         immutable = Yuan(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'Yuan\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod

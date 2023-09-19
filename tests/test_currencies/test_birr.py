@@ -119,7 +119,7 @@ class TestEthiopianBirr:
         immutable = EthiopianBirr(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EthiopianBirr\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod

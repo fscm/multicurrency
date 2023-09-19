@@ -123,7 +123,7 @@ class TestBelarusianRuble:
         immutable = BelarusianRuble(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'BelarusianRuble\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -274,7 +274,7 @@ class TestRussianRuble:
         immutable = RussianRuble(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'RussianRuble\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -425,7 +425,7 @@ class TestRussianRubleRU:
         immutable = RussianRubleRU(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'RussianRubleRU\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -576,7 +576,7 @@ class TestRussianRubleGE:
         immutable = RussianRubleGE(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'RussianRubleGE\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod

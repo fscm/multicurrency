@@ -121,7 +121,7 @@ class TestKwacha:
         immutable = Kwacha(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'Kwacha\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -272,7 +272,7 @@ class TestZambianKwacha:
         immutable = ZambianKwacha(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'ZambianKwacha\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod

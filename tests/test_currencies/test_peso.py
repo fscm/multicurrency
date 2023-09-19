@@ -127,7 +127,7 @@ class TestArgentinePeso:
         immutable = ArgentinePeso(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'ArgentinePeso\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -278,7 +278,7 @@ class TestChileanPeso:
         immutable = ChileanPeso(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'ChileanPeso\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -429,7 +429,7 @@ class TestColombianPeso:
         immutable = ColombianPeso(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'ColombianPeso\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -580,7 +580,7 @@ class TestCubanPeso:
         immutable = CubanPeso(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'CubanPeso\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -731,7 +731,7 @@ class TestDominicanPeso:
         immutable = DominicanPeso(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'DominicanPeso\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -882,7 +882,7 @@ class TestMexicanPeso:
         immutable = MexicanPeso(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'MexicanPeso\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -1033,7 +1033,7 @@ class TestPhilippinePeso:
         immutable = PhilippinePeso(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'PhilippinePeso\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -1184,7 +1184,7 @@ class TestPesoUruguayo:
         immutable = PesoUruguayo(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'PesoUruguayo\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod

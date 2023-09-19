@@ -123,7 +123,7 @@ class TestKenyanShilling:
         immutable = KenyanShilling(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'KenyanShilling\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -274,7 +274,7 @@ class TestSomaliShilling:
         immutable = SomaliShilling(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'SomaliShilling\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -425,7 +425,7 @@ class TestTanzanianShilling:
         immutable = TanzanianShilling(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'TanzanianShilling\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -576,7 +576,7 @@ class TestUgandaShilling:
         immutable = UgandaShilling(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'UgandaShilling\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod

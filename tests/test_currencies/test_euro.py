@@ -146,7 +146,7 @@ class TestEuro:
         immutable = Euro(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'Euro\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -297,7 +297,7 @@ class TestEuroSBA:
         immutable = EuroSBA(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EuroSBA\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -448,7 +448,7 @@ class TestEuroAD:
         immutable = EuroAD(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EuroAD\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -599,7 +599,7 @@ class TestEuroAT:
         immutable = EuroAT(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EuroAT\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -750,7 +750,7 @@ class TestEuroBE:
         immutable = EuroBE(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EuroBE\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -901,7 +901,7 @@ class TestEuroCY:
         immutable = EuroCY(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EuroCY\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -1052,7 +1052,7 @@ class TestEuroEE:
         immutable = EuroEE(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EuroEE\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -1203,7 +1203,7 @@ class TestEuroFI:
         immutable = EuroFI(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EuroFI\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -1354,7 +1354,7 @@ class TestEuroFR:
         immutable = EuroFR(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EuroFR\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -1505,7 +1505,7 @@ class TestEuroDE:
         immutable = EuroDE(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EuroDE\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -1656,7 +1656,7 @@ class TestEuroGR:
         immutable = EuroGR(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EuroGR\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -1807,7 +1807,7 @@ class TestEuroIE:
         immutable = EuroIE(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EuroIE\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -1958,7 +1958,7 @@ class TestEuroIT:
         immutable = EuroIT(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EuroIT\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -2109,7 +2109,7 @@ class TestEuroXK:
         immutable = EuroXK(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EuroXK\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -2260,7 +2260,7 @@ class TestEuroLV:
         immutable = EuroLV(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EuroLV\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -2411,7 +2411,7 @@ class TestEuroLT:
         immutable = EuroLT(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EuroLT\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -2562,7 +2562,7 @@ class TestEuroLU:
         immutable = EuroLU(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EuroLU\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -2713,7 +2713,7 @@ class TestEuroMT:
         immutable = EuroMT(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EuroMT\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -2864,7 +2864,7 @@ class TestEuroMC:
         immutable = EuroMC(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EuroMC\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -3015,7 +3015,7 @@ class TestEuroME:
         immutable = EuroME(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EuroME\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -3166,7 +3166,7 @@ class TestEuroNL:
         immutable = EuroNL(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EuroNL\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -3317,7 +3317,7 @@ class TestEuroPT:
         immutable = EuroPT(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EuroPT\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -3468,7 +3468,7 @@ class TestEuroSM:
         immutable = EuroSM(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EuroSM\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -3619,7 +3619,7 @@ class TestEuroSK:
         immutable = EuroSK(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EuroSK\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -3770,7 +3770,7 @@ class TestEuroSI:
         immutable = EuroSI(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EuroSI\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -3921,7 +3921,7 @@ class TestEuroES:
         immutable = EuroES(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EuroES\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -4072,7 +4072,7 @@ class TestEuroVA:
         immutable = EuroVA(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'EuroVA\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod

@@ -147,7 +147,7 @@ class TestBurundiFranc:
         immutable = BurundiFranc(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'BurundiFranc\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -298,7 +298,7 @@ class TestCongoleseFranc:
         immutable = CongoleseFranc(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'CongoleseFranc\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -449,7 +449,7 @@ class TestSwissFranc:
         immutable = SwissFranc(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'SwissFranc\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -600,7 +600,7 @@ class TestSwissFrancLI:
         immutable = SwissFrancLI(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'SwissFrancLI\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -751,7 +751,7 @@ class TestSwissFrancCH:
         immutable = SwissFrancCH(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'SwissFrancCH\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -902,7 +902,7 @@ class TestDjiboutiFranc:
         immutable = DjiboutiFranc(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'DjiboutiFranc\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -1053,7 +1053,7 @@ class TestGuineaFranc:
         immutable = GuineaFranc(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'GuineaFranc\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -1204,7 +1204,7 @@ class TestRwandaFranc:
         immutable = RwandaFranc(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'RwandaFranc\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -1355,7 +1355,7 @@ class TestCFAFrancBEAC:
         immutable = CFAFrancBEAC(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'CFAFrancBEAC\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -1506,7 +1506,7 @@ class TestCFAFrancBEACCM:
         immutable = CFAFrancBEACCM(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'CFAFrancBEACCM\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -1657,7 +1657,7 @@ class TestCFAFrancBEACCF:
         immutable = CFAFrancBEACCF(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'CFAFrancBEACCF\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -1808,7 +1808,7 @@ class TestCFAFrancBEACTD:
         immutable = CFAFrancBEACTD(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'CFAFrancBEACTD\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -1959,7 +1959,7 @@ class TestCFAFrancBEACCD:
         immutable = CFAFrancBEACCD(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'CFAFrancBEACCD\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -2110,7 +2110,7 @@ class TestCFAFrancBEACGQ:
         immutable = CFAFrancBEACGQ(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'CFAFrancBEACGQ\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -2261,7 +2261,7 @@ class TestCFAFrancBEACGA:
         immutable = CFAFrancBEACGA(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'CFAFrancBEACGA\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -2412,7 +2412,7 @@ class TestCFAFrancBCEAO:
         immutable = CFAFrancBCEAO(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'CFAFrancBCEAO\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -2563,7 +2563,7 @@ class TestCFAFrancBCEAOBJ:
         immutable = CFAFrancBCEAOBJ(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'CFAFrancBCEAOBJ\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -2714,7 +2714,7 @@ class TestCFAFrancBCEAOBF:
         immutable = CFAFrancBCEAOBF(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'CFAFrancBCEAOBF\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -2865,7 +2865,7 @@ class TestCFAFrancBCEAOCI:
         immutable = CFAFrancBCEAOCI(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'CFAFrancBCEAOCI\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -3016,7 +3016,7 @@ class TestCFAFrancBCEAOGW:
         immutable = CFAFrancBCEAOGW(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'CFAFrancBCEAOGW\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -3167,7 +3167,7 @@ class TestCFAFrancBCEAOML:
         immutable = CFAFrancBCEAOML(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'CFAFrancBCEAOML\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -3318,7 +3318,7 @@ class TestCFAFrancBCEAONG:
         immutable = CFAFrancBCEAONG(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'CFAFrancBCEAONG\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -3469,7 +3469,7 @@ class TestCFAFrancBCEAOSN:
         immutable = CFAFrancBCEAOSN(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'CFAFrancBCEAOSN\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -3620,7 +3620,7 @@ class TestCFAFrancBCEAOTG:
         immutable = CFAFrancBCEAOTG(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'CFAFrancBCEAOTG\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -3771,7 +3771,7 @@ class TestCFPFranc:
         immutable = CFPFranc(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'CFPFranc\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -3922,7 +3922,7 @@ class TestCFPFrancPF:
         immutable = CFPFrancPF(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'CFPFrancPF\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -4073,7 +4073,7 @@ class TestCFPFrancNC:
         immutable = CFPFrancNC(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'CFPFrancNC\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -4224,7 +4224,7 @@ class TestCFPFrancWF:
         immutable = CFPFrancWF(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'CFPFrancWF\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod

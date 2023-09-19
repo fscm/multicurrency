@@ -122,7 +122,7 @@ class TestNewIsraeliShekel:
         immutable = NewIsraeliShekel(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'NewIsraeliShekel\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -273,7 +273,7 @@ class TestNewIsraeliShekelIL:
         immutable = NewIsraeliShekelIL(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'NewIsraeliShekelIL\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -424,7 +424,7 @@ class TestNewIsraeliShekelPS:
         immutable = NewIsraeliShekelPS(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'NewIsraeliShekelPS\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod

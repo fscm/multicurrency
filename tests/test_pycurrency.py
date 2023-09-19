@@ -191,7 +191,9 @@ def test_pycurrency_convertion(amount, convertion, printed):
 ])
 def test_pycurrency_change_attributes(attribute, value):
     default = Currency(1000)
-    with raises(AttributeError, match=f'can\'t set attribute \'{attribute}\''):
+    with raises(
+            AttributeError,
+            match=f'property \'{attribute}\' of \'Currency\' object has no setter'):
         setattr(default, attribute, value)
 
 

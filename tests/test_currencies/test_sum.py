@@ -119,7 +119,7 @@ class TestUzbekistanSum:
         immutable = UzbekistanSum(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'UzbekistanSum\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod

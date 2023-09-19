@@ -121,7 +121,7 @@ class TestNorthKoreanWon:
         immutable = NorthKoreanWon(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'NorthKoreanWon\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -272,7 +272,7 @@ class TestSouthKoreanWon:
         immutable = SouthKoreanWon(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'SouthKoreanWon\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod

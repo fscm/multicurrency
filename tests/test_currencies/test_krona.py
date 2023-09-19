@@ -121,7 +121,7 @@ class TestIcelandKrona:
         immutable = IcelandKrona(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'IcelandKrona\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -272,7 +272,7 @@ class TestSwedishKrona:
         immutable = SwedishKrona(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'SwedishKrona\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod

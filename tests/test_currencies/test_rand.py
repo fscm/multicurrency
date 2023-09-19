@@ -123,7 +123,7 @@ class TestRand:
         immutable = Rand(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'Rand\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -274,7 +274,7 @@ class TestRandLS:
         immutable = RandLS(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'RandLS\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -425,7 +425,7 @@ class TestRandNA:
         immutable = RandNA(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'RandNA\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -576,7 +576,7 @@ class TestRandZA:
         immutable = RandZA(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'RandZA\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod

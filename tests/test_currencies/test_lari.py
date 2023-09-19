@@ -122,7 +122,7 @@ class TestLari:
         immutable = Lari(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'Lari\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -273,7 +273,7 @@ class TestGeorgiaLari:
         immutable = GeorgiaLari(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'GeorgiaLari\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
@@ -424,7 +424,7 @@ class TestSouthOssetiaLari:
         immutable = SouthOssetiaLari(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'SouthOssetiaLari\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod
