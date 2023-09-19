@@ -7,7 +7,8 @@
 """Dinar currency representation(s)."""
 
 from decimal import Decimal
-from typing import Optional, Union, cast
+from typing import Optional, Self, Union, cast
+
 from multicurrency.pycurrency import Currency
 
 
@@ -33,10 +34,10 @@ class BahrainiDinar(Currency):
     __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
-        cls,
-        amount: Union[str, int, float, Decimal],
-        pattern: Optional[str] = '3\u066B\u066C3%s\u00A0%a'
-    ) -> 'BahrainiDinar':
+        cls: Self,
+        amount: Union[str, float, Decimal],
+        pattern: Optional[str] = '3\u066B\u066C3%s\u00A0%a',
+    ) -> Self:
         """Class creator.
 
         Returns:
@@ -55,9 +56,9 @@ class BahrainiDinar(Currency):
                 pattern=pattern))
 
     def __recreate__(
-            self,
-            amount: Union[str, int, float, Decimal]
-    ) -> 'BahrainiDinar':
+            self: Self,
+            amount: Union[str, float, Decimal],
+    ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
@@ -91,10 +92,10 @@ class AlgerianDinar(Currency):
     __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
-        cls,
-        amount: Union[str, int, float, Decimal],
-        pattern: Optional[str] = '2,.3%a\u00A0%s'
-    ) -> 'AlgerianDinar':
+        cls: Self,
+        amount: Union[str, float, Decimal],
+        pattern: Optional[str] = '2,.3%a\u00A0%s',
+    ) -> Self:
         """Class creator.
 
         Returns:
@@ -113,9 +114,9 @@ class AlgerianDinar(Currency):
                 pattern=pattern))
 
     def __recreate__(
-            self,
-            amount: Union[str, int, float, Decimal]
-    ) -> 'AlgerianDinar':
+            self: Self,
+            amount: Union[str, float, Decimal],
+    ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
@@ -149,10 +150,10 @@ class IraqiDinar(Currency):
     __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
-        cls,
-        amount: Union[str, int, float, Decimal],
-        pattern: Optional[str] = '3\u066B\u066C3%s\u00A0%a'
-    ) -> 'IraqiDinar':
+        cls: Self,
+        amount: Union[str, float, Decimal],
+        pattern: Optional[str] = '3\u066B\u066C3%s\u00A0%a',
+    ) -> Self:
         """Class creator.
 
         Returns:
@@ -171,9 +172,9 @@ class IraqiDinar(Currency):
                 pattern=pattern))
 
     def __recreate__(
-            self,
-            amount: Union[str, int, float, Decimal]
-    ) -> 'IraqiDinar':
+            self: Self,
+            amount: Union[str, float, Decimal],
+    ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
@@ -207,10 +208,10 @@ class JordanianDinar(Currency):
     __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
-        cls,
-        amount: Union[str, int, float, Decimal],
-        pattern: Optional[str] = '3\u066B\u066C3%s\u00A0%a'
-    ) -> 'JordanianDinar':
+        cls: Self,
+        amount: Union[str, float, Decimal],
+        pattern: Optional[str] = '3\u066B\u066C3%s\u00A0%a',
+    ) -> Self:
         """Class creator.
 
         Returns:
@@ -229,9 +230,9 @@ class JordanianDinar(Currency):
                 pattern=pattern))
 
     def __recreate__(
-            self,
-            amount: Union[str, int, float, Decimal]
-    ) -> 'JordanianDinar':
+            self: Self,
+            amount: Union[str, float, Decimal],
+    ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
@@ -265,10 +266,10 @@ class KuwaitiDinar(Currency):
     __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
-        cls,
-        amount: Union[str, int, float, Decimal],
-        pattern: Optional[str] = '3\u066B\u066C3%s\u00A0%a'
-    ) -> 'KuwaitiDinar':
+        cls: Self,
+        amount: Union[str, float, Decimal],
+        pattern: Optional[str] = '3\u066B\u066C3%s\u00A0%a',
+    ) -> Self:
         """Class creator.
 
         Returns:
@@ -287,9 +288,9 @@ class KuwaitiDinar(Currency):
                 pattern=pattern))
 
     def __recreate__(
-            self,
-            amount: Union[str, int, float, Decimal]
-    ) -> 'KuwaitiDinar':
+            self: Self,
+            amount: Union[str, float, Decimal],
+    ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
@@ -323,10 +324,10 @@ class LibyanDinar(Currency):
     __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
-        cls,
-        amount: Union[str, int, float, Decimal],
-        pattern: Optional[str] = '3,.3%s\u00A0%a'
-    ) -> 'LibyanDinar':
+        cls: Self,
+        amount: Union[str, float, Decimal],
+        pattern: Optional[str] = '3,.3%s\u00A0%a',
+    ) -> Self:
         """Class creator.
 
         Returns:
@@ -345,9 +346,9 @@ class LibyanDinar(Currency):
                 pattern=pattern))
 
     def __recreate__(
-            self,
-            amount: Union[str, int, float, Decimal]
-    ) -> 'LibyanDinar':
+            self: Self,
+            amount: Union[str, float, Decimal],
+    ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
@@ -381,10 +382,10 @@ class SerbianDinarXK(Currency):
     __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
-        cls,
-        amount: Union[str, int, float, Decimal],
-        pattern: Optional[str] = '2,.3%a\u00A0%s'
-    ) -> 'SerbianDinarXK':
+        cls: Self,
+        amount: Union[str, float, Decimal],
+        pattern: Optional[str] = '2,.3%a\u00A0%s',
+    ) -> Self:
         """Class creator.
 
         Returns:
@@ -403,9 +404,9 @@ class SerbianDinarXK(Currency):
                 pattern=pattern))
 
     def __recreate__(
-            self,
-            amount: Union[str, int, float, Decimal]
-    ) -> 'SerbianDinarXK':
+            self: Self,
+            amount: Union[str, float, Decimal],
+    ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
@@ -439,10 +440,10 @@ class SerbianDinarSR(Currency):
     __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
-        cls,
-        amount: Union[str, int, float, Decimal],
-        pattern: Optional[str] = '2,\u202F3%a\u00A0%s'
-    ) -> 'SerbianDinarSR':
+        cls: Self,
+        amount: Union[str, float, Decimal],
+        pattern: Optional[str] = '2,\u202F3%a\u00A0%s',
+    ) -> Self:
         """Class creator.
 
         Returns:
@@ -461,9 +462,9 @@ class SerbianDinarSR(Currency):
                 pattern=pattern))
 
     def __recreate__(
-            self,
-            amount: Union[str, int, float, Decimal]
-    ) -> 'SerbianDinarSR':
+            self: Self,
+            amount: Union[str, float, Decimal],
+    ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
@@ -497,10 +498,10 @@ class TunisianDinar(Currency):
     __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
-        cls,
-        amount: Union[str, int, float, Decimal],
-        pattern: Optional[str] = '3,.3%s\u00A0%a'
-    ) -> 'TunisianDinar':
+        cls: Self,
+        amount: Union[str, float, Decimal],
+        pattern: Optional[str] = '3,.3%s\u00A0%a',
+    ) -> Self:
         """Class creator.
 
         Returns:
@@ -519,9 +520,9 @@ class TunisianDinar(Currency):
                 pattern=pattern))
 
     def __recreate__(
-            self,
-            amount: Union[str, int, float, Decimal]
-    ) -> 'TunisianDinar':
+            self: Self,
+            amount: Union[str, float, Decimal],
+    ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:

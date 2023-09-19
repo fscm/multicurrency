@@ -291,7 +291,7 @@ Table of supported cryptocurrencies:
 | `multicurrency.currencies.crypto.StellarLumens` |            *123,456.7890000 |            *123,456.7890000 |            123,456.7890000 XLM |
 | `multicurrency.currencies.crypto.Tezos`         |             ꜩ123,456.789000 |             ꜩ123,456.789000 |             123,456.789000 XTZ |
 | `multicurrency.currencies.crypto.Zcash`         |           ⓩ123,456.78900000 |           ⓩ123,456.78900000 |           123,456.78900000 ZEC |
-"""
+""" # pylint: disable=line-too-long  # noqa: E501,W505
 
 from multicurrency.currencies.afghani import Afghani
 from multicurrency.currencies.ariary import MalagasyAriary

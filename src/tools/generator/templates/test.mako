@@ -112,7 +112,7 @@ class Test${currency.class_name}:
         immutable = ${currency.class_name}(1000)
         with raises(
                 AttributeError,
-                match=f'can\'t set attribute \'{attribute}\''):
+                match=f'property \'{attribute}\' of \'${currency.class_name}\' object has no setter'):
             setattr(immutable, attribute, value)
 
     @staticmethod

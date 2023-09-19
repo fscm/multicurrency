@@ -4,10 +4,11 @@
 
 ### [changes](https://github.com/fscm/multicurrency/compare/v2.0.2...v2.1.0)
 
+* fixed tests
 * added 'ruff' linter
 * replaced 'setuptools' with 'hatchling' as the build system
-* replaced 'make' (Makefile) with 'just' (justfile).
-* removed the no longer needed 'setup.py' file.
+* replaced 'make' (Makefile) with 'just' (justfile)
+* removed the no longer needed 'setup.py' file
 
 ## [v2.0.2](https://github.com/fscm/multicurrency/tree/v2.0.2) (2022-11-16)
 

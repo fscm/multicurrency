@@ -50,7 +50,7 @@ Table of supported currencies:
 Table of supported cryptocurrencies:
 
 ${table_cryptocurrencies}
-"""
+""" # pylint: disable=line-too-long  # noqa: E501,W505
 
 % for module, info in sorted(currencies.items()):
 from multicurrency.currencies.${module} import <%

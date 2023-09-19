@@ -7,7 +7,8 @@
 """Pula currency representation(s)."""
 
 from decimal import Decimal
-from typing import Optional, Union, cast
+from typing import Optional, Self, Union, cast
+
 from multicurrency.pycurrency import Currency
 
 
@@ -33,10 +34,10 @@ class Pula(Currency):
     __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
-        cls,
-        amount: Union[str, int, float, Decimal],
-        pattern: Optional[str] = '2.,3%s\u00A0%a'
-    ) -> 'Pula':
+        cls: Self,
+        amount: Union[str, float, Decimal],
+        pattern: Optional[str] = '2.,3%s\u00A0%a',
+    ) -> Self:
         """Class creator.
 
         Returns:
@@ -55,9 +56,9 @@ class Pula(Currency):
                 pattern=pattern))
 
     def __recreate__(
-            self,
-            amount: Union[str, int, float, Decimal]
-    ) -> 'Pula':
+            self: Self,
+            amount: Union[str, float, Decimal],
+    ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:

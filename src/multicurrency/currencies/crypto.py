@@ -7,7 +7,8 @@
 """Crypto currency representation(s)."""
 
 from decimal import Decimal
-from typing import Optional, Union, cast
+from typing import Optional, Self, Union, cast
+
 from multicurrency.pycurrency import Currency
 
 
@@ -33,10 +34,10 @@ class EOS(Currency):
     __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
-        cls,
-        amount: Union[str, int, float, Decimal],
-        pattern: Optional[str] = '4.,3%-%s%u'
-    ) -> 'EOS':
+        cls: Self,
+        amount: Union[str, float, Decimal],
+        pattern: Optional[str] = '4.,3%-%s%u',
+    ) -> Self:
         """Class creator.
 
         Returns:
@@ -55,9 +56,9 @@ class EOS(Currency):
                 pattern=pattern))
 
     def __recreate__(
-            self,
-            amount: Union[str, int, float, Decimal]
-    ) -> 'EOS':
+            self: Self,
+            amount: Union[str, float, Decimal],
+    ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
@@ -91,10 +92,10 @@ class Ethereum(Currency):
     __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
-        cls,
-        amount: Union[str, int, float, Decimal],
-        pattern: Optional[str] = '18.,3%-%s%u'
-    ) -> 'Ethereum':
+        cls: Self,
+        amount: Union[str, float, Decimal],
+        pattern: Optional[str] = '18.,3%-%s%u',
+    ) -> Self:
         """Class creator.
 
         Returns:
@@ -113,9 +114,9 @@ class Ethereum(Currency):
                 pattern=pattern))
 
     def __recreate__(
-            self,
-            amount: Union[str, int, float, Decimal]
-    ) -> 'Ethereum':
+            self: Self,
+            amount: Union[str, float, Decimal],
+    ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
@@ -149,10 +150,10 @@ class Bitcoin(Currency):
     __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
-        cls,
-        amount: Union[str, int, float, Decimal],
-        pattern: Optional[str] = '8.,3%-%s%u'
-    ) -> 'Bitcoin':
+        cls: Self,
+        amount: Union[str, float, Decimal],
+        pattern: Optional[str] = '8.,3%-%s%u',
+    ) -> Self:
         """Class creator.
 
         Returns:
@@ -171,9 +172,9 @@ class Bitcoin(Currency):
                 pattern=pattern))
 
     def __recreate__(
-            self,
-            amount: Union[str, int, float, Decimal]
-    ) -> 'Bitcoin':
+            self: Self,
+            amount: Union[str, float, Decimal],
+    ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
@@ -207,10 +208,10 @@ class StellarLumens(Currency):
     __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
-        cls,
-        amount: Union[str, int, float, Decimal],
-        pattern: Optional[str] = '7.,3%-%s%u'
-    ) -> 'StellarLumens':
+        cls: Self,
+        amount: Union[str, float, Decimal],
+        pattern: Optional[str] = '7.,3%-%s%u',
+    ) -> Self:
         """Class creator.
 
         Returns:
@@ -229,9 +230,9 @@ class StellarLumens(Currency):
                 pattern=pattern))
 
     def __recreate__(
-            self,
-            amount: Union[str, int, float, Decimal]
-    ) -> 'StellarLumens':
+            self: Self,
+            amount: Union[str, float, Decimal],
+    ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
@@ -265,10 +266,10 @@ class Monero(Currency):
     __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
-        cls,
-        amount: Union[str, int, float, Decimal],
-        pattern: Optional[str] = '12.,3%-%s%u'
-    ) -> 'Monero':
+        cls: Self,
+        amount: Union[str, float, Decimal],
+        pattern: Optional[str] = '12.,3%-%s%u',
+    ) -> Self:
         """Class creator.
 
         Returns:
@@ -287,9 +288,9 @@ class Monero(Currency):
                 pattern=pattern))
 
     def __recreate__(
-            self,
-            amount: Union[str, int, float, Decimal]
-    ) -> 'Monero':
+            self: Self,
+            amount: Union[str, float, Decimal],
+    ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
@@ -323,10 +324,10 @@ class Ripple(Currency):
     __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
-        cls,
-        amount: Union[str, int, float, Decimal],
-        pattern: Optional[str] = '6.,3%-%s%u'
-    ) -> 'Ripple':
+        cls: Self,
+        amount: Union[str, float, Decimal],
+        pattern: Optional[str] = '6.,3%-%s%u',
+    ) -> Self:
         """Class creator.
 
         Returns:
@@ -345,9 +346,9 @@ class Ripple(Currency):
                 pattern=pattern))
 
     def __recreate__(
-            self,
-            amount: Union[str, int, float, Decimal]
-    ) -> 'Ripple':
+            self: Self,
+            amount: Union[str, float, Decimal],
+    ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
@@ -381,10 +382,10 @@ class Tezos(Currency):
     __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
-        cls,
-        amount: Union[str, int, float, Decimal],
-        pattern: Optional[str] = '6.,3%-%s%u'
-    ) -> 'Tezos':
+        cls: Self,
+        amount: Union[str, float, Decimal],
+        pattern: Optional[str] = '6.,3%-%s%u',
+    ) -> Self:
         """Class creator.
 
         Returns:
@@ -403,9 +404,9 @@ class Tezos(Currency):
                 pattern=pattern))
 
     def __recreate__(
-            self,
-            amount: Union[str, int, float, Decimal]
-    ) -> 'Tezos':
+            self: Self,
+            amount: Union[str, float, Decimal],
+    ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
@@ -439,10 +440,10 @@ class Zcash(Currency):
     __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
-        cls,
-        amount: Union[str, int, float, Decimal],
-        pattern: Optional[str] = '8.,3%-%s%u'
-    ) -> 'Zcash':
+        cls: Self,
+        amount: Union[str, float, Decimal],
+        pattern: Optional[str] = '8.,3%-%s%u',
+    ) -> Self:
         """Class creator.
 
         Returns:
@@ -461,9 +462,9 @@ class Zcash(Currency):
                 pattern=pattern))
 
     def __recreate__(
-            self,
-            amount: Union[str, int, float, Decimal]
-    ) -> 'Zcash':
+            self: Self,
+            amount: Union[str, float, Decimal],
+    ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:

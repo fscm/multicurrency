@@ -7,7 +7,8 @@
 """${module_name} currency representation(s)."""
 
 from decimal import Decimal
-from typing import Optional, Union, cast
+from typing import Optional, Self, Union, cast
+
 from multicurrency.pycurrency import Currency
 % for currency in currencies:
 
@@ -42,10 +43,10 @@ docstring_start = '\n'.join(_lines_)
     __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
-        cls,
-        amount: Union[str, int, float, Decimal],
-        pattern: Optional[str] = '${currency.pattern}'
-    ) -> '${currency.class_name}':
+        cls: Self,
+        amount: Union[str, float, Decimal],
+        pattern: Optional[str] = '${currency.pattern}',
+    ) -> Self:
         """Class creator.
 
         Returns:
@@ -64,9 +65,9 @@ docstring_start = '\n'.join(_lines_)
                 pattern=pattern))
 
     def __recreate__(
-            self,
-            amount: Union[str, int, float, Decimal]
-    ) -> '${currency.class_name}':
+            self: Self,
+            amount: Union[str, float, Decimal],
+    ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:

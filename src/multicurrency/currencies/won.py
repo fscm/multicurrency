@@ -7,7 +7,8 @@
 """Won currency representation(s)."""
 
 from decimal import Decimal
-from typing import Optional, Union, cast
+from typing import Optional, Self, Union, cast
+
 from multicurrency.pycurrency import Currency
 
 
@@ -33,10 +34,10 @@ class NorthKoreanWon(Currency):
     __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
-        cls,
-        amount: Union[str, int, float, Decimal],
-        pattern: Optional[str] = '2.,3%s\u00A0%a'
-    ) -> 'NorthKoreanWon':
+        cls: Self,
+        amount: Union[str, float, Decimal],
+        pattern: Optional[str] = '2.,3%s\u00A0%a',
+    ) -> Self:
         """Class creator.
 
         Returns:
@@ -55,9 +56,9 @@ class NorthKoreanWon(Currency):
                 pattern=pattern))
 
     def __recreate__(
-            self,
-            amount: Union[str, int, float, Decimal]
-    ) -> 'NorthKoreanWon':
+            self: Self,
+            amount: Union[str, float, Decimal],
+    ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
@@ -91,10 +92,10 @@ class SouthKoreanWon(Currency):
     __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
-        cls,
-        amount: Union[str, int, float, Decimal],
-        pattern: Optional[str] = '0.,3%-%s%u'
-    ) -> 'SouthKoreanWon':
+        cls: Self,
+        amount: Union[str, float, Decimal],
+        pattern: Optional[str] = '0.,3%-%s%u',
+    ) -> Self:
         """Class creator.
 
         Returns:
@@ -113,9 +114,9 @@ class SouthKoreanWon(Currency):
                 pattern=pattern))
 
     def __recreate__(
-            self,
-            amount: Union[str, int, float, Decimal]
-    ) -> 'SouthKoreanWon':
+            self: Self,
+            amount: Union[str, float, Decimal],
+    ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:

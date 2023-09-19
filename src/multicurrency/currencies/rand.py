@@ -7,7 +7,8 @@
 """Rand currency representation(s)."""
 
 from decimal import Decimal
-from typing import Optional, Union, cast
+from typing import Optional, Self, Union, cast
+
 from multicurrency.pycurrency import Currency
 
 
@@ -33,10 +34,10 @@ class Rand(Currency):
     __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
-        cls,
-        amount: Union[str, int, float, Decimal],
-        pattern: Optional[str] = '2.\u202F3%s\u00A0%a'
-    ) -> 'Rand':
+        cls: Self,
+        amount: Union[str, float, Decimal],
+        pattern: Optional[str] = '2.\u202F3%s\u00A0%a',
+    ) -> Self:
         """Class creator.
 
         Returns:
@@ -55,9 +56,9 @@ class Rand(Currency):
                 pattern=pattern))
 
     def __recreate__(
-            self,
-            amount: Union[str, int, float, Decimal]
-    ) -> 'Rand':
+            self: Self,
+            amount: Union[str, float, Decimal],
+    ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
@@ -91,10 +92,10 @@ class RandLS(Currency):
     __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
-        cls,
-        amount: Union[str, int, float, Decimal],
-        pattern: Optional[str] = '2.,3%s\u00A0%a'
-    ) -> 'RandLS':
+        cls: Self,
+        amount: Union[str, float, Decimal],
+        pattern: Optional[str] = '2.,3%s\u00A0%a',
+    ) -> Self:
         """Class creator.
 
         Returns:
@@ -113,9 +114,9 @@ class RandLS(Currency):
                 pattern=pattern))
 
     def __recreate__(
-            self,
-            amount: Union[str, int, float, Decimal]
-    ) -> 'RandLS':
+            self: Self,
+            amount: Union[str, float, Decimal],
+    ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
@@ -149,10 +150,10 @@ class RandNA(Currency):
     __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
-        cls,
-        amount: Union[str, int, float, Decimal],
-        pattern: Optional[str] = '2.\u202F3%s\u00A0%a'
-    ) -> 'RandNA':
+        cls: Self,
+        amount: Union[str, float, Decimal],
+        pattern: Optional[str] = '2.\u202F3%s\u00A0%a',
+    ) -> Self:
         """Class creator.
 
         Returns:
@@ -171,9 +172,9 @@ class RandNA(Currency):
                 pattern=pattern))
 
     def __recreate__(
-            self,
-            amount: Union[str, int, float, Decimal]
-    ) -> 'RandNA':
+            self: Self,
+            amount: Union[str, float, Decimal],
+    ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
@@ -207,10 +208,10 @@ class RandZA(Currency):
     __slots__ = ()
 
     def __new__(  # pylint: disable=signature-differs
-        cls,
-        amount: Union[str, int, float, Decimal],
-        pattern: Optional[str] = '2.\u202F3%s\u00A0%a'
-    ) -> 'RandZA':
+        cls: Self,
+        amount: Union[str, float, Decimal],
+        pattern: Optional[str] = '2.\u202F3%s\u00A0%a',
+    ) -> Self:
         """Class creator.
 
         Returns:
@@ -229,9 +230,9 @@ class RandZA(Currency):
                 pattern=pattern))
 
     def __recreate__(
-            self,
-            amount: Union[str, int, float, Decimal]
-    ) -> 'RandZA':
+            self: Self,
+            amount: Union[str, float, Decimal],
+    ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:

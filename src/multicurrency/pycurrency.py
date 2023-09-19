@@ -255,15 +255,16 @@ objects of the same currency.
     False
     >>> c1 != c2
     True
-"""
+""" # pylint: disable=line-too-long  # noqa: E501,W505
 
 from decimal import Decimal
 from re import (
-    escape as _escape,
     compile as _compile,
+    escape as _escape,
     match as _match,
     sub as _sub)
-from typing import Optional, Tuple, Union
+from typing import Optional, Self, Tuple, Union
+
 from multicurrency.exceptions import (
     CurrencyInvalidDivision,
     CurrencyInvalidFormat,
@@ -272,7 +273,7 @@ from multicurrency.exceptions import (
     CurrencyTypeException)
 
 
-Numerical = Union[int, float, Decimal]
+Numerical = Union[float, Decimal]
 
 
 class Currency:
@@ -358,14 +359,14 @@ class Currency:
         '_info')
 
     def __new__(
-            cls,
-            amount: Union[str, int, float, Decimal],
+            cls: Self,
+            amount: Union[str, float, Decimal],
             alpha_code: Optional[str] = '',
             numeric_code: Optional[str] = '0',
             symbol: Optional[str] = '',
             localized_symbol: Optional[str] = '',
             convertion: Optional[str] = '',
-            pattern: Optional[str] = r'2.,3%a%s') -> 'Currency':
+            pattern: Optional[str] = r'2.,3%a%s') -> Self:
         """Class creator.
 
         Returns:
@@ -391,10 +392,10 @@ class Currency:
                 convertion,
                 pattern)
         else:
-            raise CurrencyInvalidFormat()
+            raise CurrencyInvalidFormat
         return self
 
-    def __abs__(self) -> 'Currency':
+    def __abs__(self: Self) -> Self:
         """Returns the absolute value.
 
         Returns:
@@ -402,7 +403,7 @@ class Currency:
         """
         return self.__recreate__(abs(self._amount))
 
-    def __add__(self, other: object) -> 'Currency':
+    def __add__(self: Self, other: object) -> Self:
         """Adds `other` to this.
 
         Args:
@@ -418,12 +419,12 @@ class Currency:
                 differente from `alpha_code`.
         """
         if not isinstance(other, Currency):
-            raise CurrencyTypeException()
+            raise CurrencyTypeException
         if self._info[0] != other.alpha_code:
-            raise CurrencyMismatchException()
+            raise CurrencyMismatchException
         return self.__recreate__(self._amount + other.amount)
 
-    def __bool__(self) -> bool:
+    def __bool__(self: Self) -> bool:
         """Standard truth testing for this class.
 
         Returns:
@@ -431,7 +432,7 @@ class Currency:
         """
         return bool(self._amount)
 
-    def __ceil__(self) -> 'Currency':
+    def __ceil__(self: Self) -> Self:
         """Returns the ceiling.
 
         Returns:
@@ -439,7 +440,7 @@ class Currency:
         """
         return self.__recreate__(self._amount.__ceil__())
 
-    def __copy__(self) -> 'Currency':
+    def __copy__(self: Self) -> Self:
         """Returns a copy of self.
 
         Returns:
@@ -447,9 +448,8 @@ class Currency:
         """
         return self.__recreate__(self._amount)
 
-    def __divmod__(self, other: Numerical) -> Tuple['Currency', 'Currency']:
-        """Returns a pair with the quocient and remaider of the
-        division by `other`.
+    def __divmod__(self: Self, other: Numerical) -> Tuple[Self, Self]:
+        """Returns the quocient and remaider of the division.
 
         Args:
             other (Numerical): amount to divide by.
@@ -463,15 +463,15 @@ class Currency:
             ZeroDivisionError: If dividing by zero
         """
         if not isinstance(other, (int, float, Decimal)):
-            raise CurrencyInvalidDivision()
+            raise CurrencyInvalidDivision
         if other == 0:
-            raise ZeroDivisionError()
+            raise ZeroDivisionError
         quotient, remainder = self._amount.__divmod__(Decimal(other))
         return (
             self.__recreate__(quotient),
             self.__recreate__(remainder))
 
-    def __eq__(self, other: object) -> bool:
+    def __eq__(self: Self, other: object) -> bool:
         """Checks if two currencies are equal.
 
         Args:
@@ -486,7 +486,7 @@ class Currency:
                 (other.amount, other.alpha_code))
         return False
 
-    def __float__(self) -> float:
+    def __float__(self: Self) -> float:
         """Float representation.
 
         Returns:
@@ -494,7 +494,7 @@ class Currency:
         """
         return float(self._amount)
 
-    def __floor__(self) -> 'Currency':
+    def __floor__(self: Self) -> Self:
         """Returns the flooring.
 
         Returns:
@@ -502,9 +502,8 @@ class Currency:
         """
         return self.__recreate__(self._amount.__floor__())
 
-    def __floordiv__(self, other: Numerical) -> 'Currency':
-        """Returns the integral part of the quotient of the division
-        by `other`.
+    def __floordiv__(self: Self, other: Numerical) -> Self:
+        """Returns the integral part of the quotient of the division.
 
         Args:
             other (Numerical): amount to divide by.
@@ -518,15 +517,14 @@ class Currency:
             ZeroDivisionError: If dividing by zero
         """
         if not isinstance(other, (int, float, Decimal)):
-            raise CurrencyInvalidDivision()
+            raise CurrencyInvalidDivision
         if other == 0:
-            raise ZeroDivisionError()
+            raise ZeroDivisionError
         return self.__recreate__(
             self._amount.__floordiv__(Decimal(other)))
 
-    def __format__(self, fmt: str = '') -> str:
-        """Returns the result of applying the formating specifications
-        to the currency value.
+    def __format__(self: Self, fmt: str = '') -> str:
+        """Returns the currency value formated as specified.
 
         The supported formating specifications are:
             '[dp][ds][gs][gp][pattern]'
@@ -555,7 +553,8 @@ class Currency:
             %u: The currency's unsign amount as seen in the default
                 representation of the currency (the numeral system of
                 the currency's country).
-            %U: The currency's unsign amount in (western) arabic numerals.
+            %U: The currency's unsign amount in (western) arabic
+                numerals.
             %-: The currency's amount sign.
             %%: The `%` symbol.
 
@@ -573,7 +572,8 @@ class Currency:
             TypeError: If `fmt` not of type `str`.
         """
         if not isinstance(fmt, str):
-            raise TypeError(f'must be str, not {type(fmt).__qualname__}.')
+            msg = f'must be str, not {type(fmt).__qualname__}.'
+            raise TypeError(msg)
         regxpr = (
             r'^(?P<decimal_places>\d+)?'
             r'(?P<decimal_sign>[^\d%])?'
@@ -589,7 +589,6 @@ class Currency:
         grouping_sign = values['grouping_sign']
         grouping_places = int(values['grouping_places'])
         currency_format = values['format']
-        # parts = str(round(self._amount, decimal_places)).split('.')
         parts = f'{round(self._amount, decimal_places):f}'.split('.')
         parts[0] = _sub(
             rf'(\d)(?=(\d{{{grouping_places or -1}}})+$)',
@@ -614,14 +613,13 @@ class Currency:
             '%U': amount_unsign,
             '%-': '-' * self._amount.is_signed(),
             '%%': '%'}
-        rep = dict((_escape(k), v) for k, v in rep.items())
+        rep = {_escape(k): v for k, v in rep.items()}
         pattern = _compile('|'.join(rep.keys()))
-        formatted = pattern.sub(
+        return pattern.sub(
             lambda m: rep[_escape(m.group(0))],
             currency_format)
-        return formatted
 
-    def __ge__(self, other: object) -> bool:
+    def __ge__(self: Self, other: object) -> bool:
         """Checks if self is greater or equal than `other`.
 
         Args:
@@ -638,12 +636,12 @@ class Currency:
                 differente from `alpha_code`.
         """
         if not isinstance(other, self.__class__):
-            raise CurrencyTypeException()
+            raise CurrencyTypeException
         if self._info[0] != other.alpha_code:
-            raise CurrencyMismatchException()
+            raise CurrencyMismatchException
         return self._amount >= other.amount
 
-    def __gt__(self, other: object) -> bool:
+    def __gt__(self: Self, other: object) -> bool:
         """Checks if self is greater than `other`.
 
         Args:
@@ -659,12 +657,12 @@ class Currency:
                 differente from `alpha_code`.
         """
         if not isinstance(other, self.__class__):
-            raise CurrencyTypeException()
+            raise CurrencyTypeException
         if self._info[0] != other.alpha_code:
-            raise CurrencyMismatchException()
+            raise CurrencyMismatchException
         return self._amount > other.amount
 
-    def __hash__(self) -> int:
+    def __hash__(self: Self) -> int:
         """Hash representation of this class.
 
         Returns:
@@ -676,7 +674,7 @@ class Currency:
             self._info[0],
             self._info[1]))
 
-    def __int__(self) -> int:
+    def __int__(self: Self) -> int:
         """Integer representation.
 
         Returns:
@@ -684,7 +682,7 @@ class Currency:
         """
         return int(self._amount)
 
-    def __le__(self, other: object) -> bool:
+    def __le__(self: Self, other: object) -> bool:
         """Checks if self is less or equal than `other`.
 
         Args:
@@ -701,12 +699,12 @@ class Currency:
                 differente from `alpha_code`.
         """
         if not isinstance(other, self.__class__):
-            raise CurrencyTypeException()
+            raise CurrencyTypeException
         if self._info[0] != other.alpha_code:
-            raise CurrencyMismatchException()
+            raise CurrencyMismatchException
         return self._amount <= other.amount
 
-    def __lt__(self, other: object) -> bool:
+    def __lt__(self: Self, other: object) -> bool:
         """Checks if self is less than `other`.
 
         Args:
@@ -722,12 +720,12 @@ class Currency:
                 differente from `alpha_code`.
         """
         if not isinstance(other, self.__class__):
-            raise CurrencyTypeException()
+            raise CurrencyTypeException
         if self._info[0] != other.alpha_code:
-            raise CurrencyMismatchException()
+            raise CurrencyMismatchException
         return self._amount < other.amount
 
-    def __mod__(self, other: Numerical) -> 'Currency':
+    def __mod__(self: Self, other: Numerical) -> Self:
         """Returns the remainder of the division by `other`.
 
         Args:
@@ -742,12 +740,12 @@ class Currency:
             ZeroDivisionError: If dividing by zero
         """
         if not isinstance(other, (int, float, Decimal)):
-            raise CurrencyInvalidDivision()
+            raise CurrencyInvalidDivision
         if other == 0:
-            raise ZeroDivisionError()
+            raise ZeroDivisionError
         return self.__recreate__(self._amount.__mod__(Decimal(other)))
 
-    def __mul__(self, other: Numerical) -> 'Currency':
+    def __mul__(self: Self, other: Numerical) -> Self:
         """Returns the multiplication by `other`.
 
         Args:
@@ -761,10 +759,10 @@ class Currency:
                 `int`, `float` or `Decimal`.
         """
         if not isinstance(other, (int, float, Decimal)):
-            raise CurrencyInvalidMultiplication()
+            raise CurrencyInvalidMultiplication
         return self.__recreate__(self._amount.__mul__(Decimal(other)))
 
-    def __ne__(self, other: object) -> bool:
+    def __ne__(self: Self, other: object) -> bool:
         """Checks if two currencies are different.
 
         Args:
@@ -775,7 +773,7 @@ class Currency:
         """
         return not self == other
 
-    def __neg__(self) -> 'Currency':
+    def __neg__(self: Self) -> Self:
         """Returns a currency with the sign switched.
 
         Returns:
@@ -783,7 +781,7 @@ class Currency:
         """
         return self.__recreate__(self._amount.__neg__())
 
-    def __pos__(self) -> 'Currency':
+    def __pos__(self: Self) -> Self:
         """Returns a copy of self.
 
         Returns:
@@ -792,8 +790,8 @@ class Currency:
         return self.__recreate__(self._amount.__pos__())
 
     def __recreate__(
-            self,
-            amount: Union[str, int, float, Decimal]) -> 'Currency':
+            self: Self,
+            amount: Union[str, float, Decimal]) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
@@ -804,7 +802,7 @@ class Currency:
         """
         return self.__class__(amount, *self._info)
 
-    def __reduce__(self) -> Tuple[type, Tuple[object, ...]]:
+    def __reduce__(self: Self) -> Tuple[type, Tuple[object, ...]]:
         """Returns a Tuple with this class "reduce value".
 
         Returns:
@@ -813,7 +811,7 @@ class Currency:
         """
         return (self.__class__, (self._amount, *self._info))
 
-    def __repr__(self) -> str:
+    def __repr__(self: Self) -> str:
         """String representation of this class.
 
         Returns:
@@ -829,7 +827,7 @@ class Currency:
             f'convertion: "{self._info[4]}", '
             rf'pattern: "{self._info[5]}")')
 
-    def __round__(self, precision: Optional[int] = None) -> 'Currency':
+    def __round__(self: Self, precision: Optional[int] = None) -> Self:
         """Round to the nearest integer, or to a given precision.
 
         Args:
@@ -839,10 +837,10 @@ class Currency:
             Currency: rounded currency value.
         """
         return self.__recreate__(
-            (self._amount.__round__(precision) if precision
-                else self._amount.__round__()))
+            self._amount.__round__(precision) if precision
+                else self._amount.__round__())
 
-    def __rsub__(self, other: object) -> 'Currency':
+    def __rsub__(self: Self, other: object) -> Self:
         """Subtract this from `other`.
 
         Args:
@@ -858,12 +856,12 @@ class Currency:
                 differente from `alpha_code`.
         """
         if not isinstance(other, self.__class__):
-            raise CurrencyTypeException()
+            raise CurrencyTypeException
         if self._info[0] != other.alpha_code:
-            raise CurrencyMismatchException()
+            raise CurrencyMismatchException
         return self.__recreate__(other.amount - self._amount)
 
-    def __str__(self) -> str:
+    def __str__(self: Self) -> str:
         """String value of this class.
 
         Returns:
@@ -871,7 +869,7 @@ class Currency:
         """
         return self.__format__()
 
-    def __sub__(self, other: object) -> 'Currency':
+    def __sub__(self: Self, other: object) -> Self:
         """Subtract `other` from this.
 
         Args:
@@ -887,12 +885,12 @@ class Currency:
                 differente from `alpha_code`.
         """
         if not isinstance(other, self.__class__):
-            raise CurrencyTypeException()
+            raise CurrencyTypeException
         if self._info[0] != other.alpha_code:
-            raise CurrencyMismatchException()
+            raise CurrencyMismatchException
         return self.__recreate__(self._amount - other.amount)
 
-    def __truediv__(self, other: Numerical) -> 'Currency':
+    def __truediv__(self: Self, other: Numerical) -> Self:
         """Divide this currency by `other`.
 
         Args:
@@ -909,14 +907,14 @@ class Currency:
         if not isinstance(other, (int, float, Decimal)):
             raise CurrencyInvalidDivision(self, other)
         if other == 0:
-            raise ZeroDivisionError()
+            raise ZeroDivisionError
         return self.__recreate__(
             self._amount.__truediv__(Decimal(other)))
 
     __deepcopy__: 'Currency' = __copy__
     __rmul__: 'Currency' = __mul__
 
-    def international(self, precision: int = None) -> str:
+    def international(self: Self, precision: Optional[int] = None) -> str:
         """String value of this class formated with the alpha code.
 
         Args:
@@ -938,24 +936,21 @@ class Currency:
             decimal_places = int(values['decimal_places'])
         else:
             decimal_places = max(precision, 0)
-        # parts = str(round(self._amount, decimal_places)).split('.')
         parts = f'{round(self._amount, decimal_places):f}'.split('.')
         parts[0] = _sub(r'(\d)(?=(\d{3})+$)', r'\1,', parts[0])
         amount = '.'.join(parts)
         return f'{amount} {self._info[0]}'
 
-    def is_signed(self) -> bool:
-        """Check if the value of this class is preceded with the minus
-        sign.
+    def is_signed(self: Self) -> bool:
+        """Check if the value is preceded with the minus sign.
 
         Returns:
             bool: True if the value is negative. False otherwise.
         """
         return self._amount.is_signed()
 
-    def localized(self, precision: int = None) -> str:
-        """String value of this class formated with the
-            `localized_symbol`.
+    def localized(self: Self, precision: Optional[int] = None) -> str:
+        """String value of this class formated with `localized_symbol`.
 
         Args:
             precision (int, optional): Precision. Defaults to the value
@@ -971,9 +966,8 @@ class Currency:
             fmt = _sub(r'^\d+', f'{precision}', fmt)
         return format(self, fmt.replace('%s', '%S'))
 
-    def precision(self, precision: int = None) -> str:
-        """String value of this class formated with the `precision`
-            value.
+    def precision(self: Self, precision: Optional[int] = None) -> str:
+        """String value of this class formated with `precision`.
 
         Args:
             precision (int, optional): Precision. Defaults to the value
@@ -989,36 +983,36 @@ class Currency:
         return format(self)
 
     @property
-    def amount(self) -> Decimal:
+    def amount(self: Self) -> Decimal:
         """Decimal: amount."""
         return self._amount
 
     @property
-    def alpha_code(self) -> str:
+    def alpha_code(self: Self) -> str:
         """str: alpha_code."""
         return self._info[0]
 
     @property
-    def numeric_code(self) -> str:
+    def numeric_code(self: Self) -> str:
         """int: numeric_code."""
         return self._info[1]
 
     @property
-    def symbol(self) -> str:
+    def symbol(self: Self) -> str:
         """str: symbol."""
         return self._info[2]
 
     @property
-    def localized_symbol(self) -> str:
+    def localized_symbol(self: Self) -> str:
         """str: localized_symbol."""
         return self._info[3]
 
     @property
-    def convertion(self) -> str:
+    def convertion(self: Self) -> str:
         """str: convertion."""
         return self._info[4]
 
     @property
-    def pattern(self) -> str:
+    def pattern(self: Self) -> str:
         """str: pattern."""
         return self._info[5]

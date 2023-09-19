@@ -347,7 +347,7 @@ default-docstring-type = 'google'
 # ruff
 [tool.ruff]
 extend-exclude = ['*.pyi']
-# ignore = ['DTZ']
+ignore = ['FA100', 'RUF001', 'RUF002']
 line-length = 79
 select = ['ALL']
 src = ['src']
@@ -366,8 +366,8 @@ multiline-quotes = 'double'
 max-complexity = 5
 
 [tool.ruff.per-file-ignores]
-#'__init__.pyi' = ['D100']
-'__main__.py' = ['T201']
+'__init__.py' = ['F401', 'F403']
+'exceptions.py' = ['D107', 'N818']
 
 [tool.ruff.pycodestyle]
 max-doc-length = 72
