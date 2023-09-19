@@ -1,5 +1,14 @@
 # Changelog
 
+## [v2.1.0](https://github.com/fscm/multicurrency/tree/v2.1.0) (2023-09-19)
+
+### [changes](https://github.com/fscm/multicurrency/compare/v2.0.2...v2.1.0)
+
+* added 'ruff' linter
+* replaced 'setuptools' with 'hatchling' as the build system
+* replaced 'make' (Makefile) with 'just' (justfile).
+* removed the no longer needed 'setup.py' file.
+
 ## [v2.0.2](https://github.com/fscm/multicurrency/tree/v2.0.2) (2022-11-16)
 
 ### [changes](https://github.com/fscm/multicurrency/compare/v2.0.1...v2.0.2)
@@ -32,7 +41,7 @@
 
 * 'pstr' deprecated and replaced with 'precision'
 * 'lstr' deprecated and replaced with 'localized'
-* 'currency' e 'exceptions' are now private
+* 'currency' and 'exceptions' are now private
 * documentation updated
 * generator tool updated
 * first stable release

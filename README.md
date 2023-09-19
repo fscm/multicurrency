@@ -777,22 +777,22 @@ Table of supported cryptocurrencies (and default format):
 
 ## Build (from source)
 
-[GNU make](https://www.gnu.org/software/make/manual/make.html) is used to
-automate several steps of the development process.
+[just](https://just.systems) is used to automate several steps of the
+development process.
 
-All of the commands described bellow are to be executed on the root folder of
-this project.
+All of the commands described bellow are to be executed on the root folder
+of this project.
 
 A development environment can be created using the following command:
 
 ```shell
-make dev
+just init
 ```
 
 To build a Python package for this library use the following command:
 
 ```shell
-make build
+just build
 ```
 
 After this you should have a wheel file (`*.whl`) inside a folder called

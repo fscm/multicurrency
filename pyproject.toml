@@ -1,10 +1,9 @@
 # build
 [build-system]
 requires = [
-    'setuptools>=61',
-    'wheel',
+    'hatchling>=1.18.0',
 ]
-build-backend = 'setuptools.build_meta'
+build-backend = 'hatchling.build'
 
 [project]
 authors = [
@@ -50,6 +49,7 @@ dev = [
     'pylint>=2.13.9',
     'pytest>=7.1.2',
     'pytest-cov>=3.0.0',
+    'ruff>=0.0.282',
     'tabulate>=0.8.9',
     'twine>=4.0.0',
     'vermin>=1.4.0',
@@ -64,29 +64,43 @@ Documentation = 'http://fscm.github.io/multicurrency'
 Homepage = 'https://github.com/fscm//multicurrency'
 Source = 'https://github.com/fscm/multicurrency'
 
-[tool.setuptools]
-include-package-data = true
-# package-dir = {'' = 'src'}
+[tool.hatch.version]
+path = 'src/multicurrency/__init__.py'
+pattern = "(?i)^(?:__version__|VERSION)(?:\\:.*)? *= *(['\\\"])v?(?P<version>.+?)\\1"
 
-[tool.setuptools.dynamic]
-version = {attr = 'multicurrency.__version__'}
-
-[tool.setuptools.packages.find]
-where = [
-    'src',
-]
+[tool.hatch.build.targets.sdist]
 exclude = [
     'docs*',
-    'tests*',
     'tools*',
+    'CODE_OF_CONDUCT.md',
+    'CONTRIBUTING.md',
+    'Makefile',
+    'justfile',
 ]
 
-[tool.setuptools.package-data]
-multicurrency = [
-    'py.typed',
-    '*.pyi',
-    '**/*.pyi',
-    '*.h']
+# [tool.setuptools]
+# include-package-data = true
+# #package-dir = {'' = 'src'}
+
+# [tool.setuptools.dynamic]
+# version = {attr = 'multicurrency.__version__'}
+
+# [tool.setuptools.packages.find]
+# where = [
+#     'src',
+# ]
+# exclude = [
+#     'docs*',
+#     'tests*',
+#     'tools*',
+# ]
+
+# [tool.setuptools.package-data]
+# multicurrency = [
+#     'py.typed',
+#     '*.pyi',
+#     '**/*.pyi',
+#     '*.h']
 
 # pytest
 [tool.pytest.ini_options]
@@ -329,3 +343,40 @@ accept-no-raise-doc = false
 accept-no-return-doc = false
 accept-no-yields-doc = false
 default-docstring-type = 'google'
+
+# ruff
+[tool.ruff]
+extend-exclude = ['*.pyi']
+# ignore = ['DTZ']
+line-length = 79
+select = ['ALL']
+src = ['src']
+tab-size = 4
+target-version = 'py38'
+
+[tool.ruff.isort]
+combine-as-imports = true
+lines-after-imports = 2
+
+[tool.ruff.flake8-quotes]
+docstring-quotes = 'double'
+inline-quotes = 'single'
+multiline-quotes = 'double'
+[tool.ruff.mccabe]
+max-complexity = 5
+
+[tool.ruff.per-file-ignores]
+#'__init__.pyi' = ['D100']
+'__main__.py' = ['T201']
+
+[tool.ruff.pycodestyle]
+max-doc-length = 72
+
+[tool.ruff.pydocstyle]
+convention = 'google'
+
+[tool.ruff.pylint]
+max-args = 10
+max-branches = 12
+max-returns = 6
+max-statements = 50
