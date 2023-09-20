@@ -452,4 +452,4 @@ from multicurrency.exceptions import (
 from multicurrency.pycurrency import Currency
 
 
-__version__: str = '2.0.2'
+__version__: str = '2.1.0'
