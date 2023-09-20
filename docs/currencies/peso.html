@@ -34,7 +34,7 @@
 <dl>
 <dt id="multicurrency.currencies.peso.ArgentinePeso"><code class="flex name class">
 <span>class <span class="ident">ArgentinePeso</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '2,.3%s\xa0%a')</span>
+<span>(</span><span>amount: str | float | Decimal, pattern: str | None = '2,.3%s\xa0%a')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Peso (Argentina) currency representation.</p>
@@ -48,8 +48,7 @@ $ 123.456,79
 <p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Currency format pattern. Defaults to
 '2,.3%s %a'.</dd>
@@ -79,7 +78,7 @@ $ 123.456,79
 </dd>
 <dt id="multicurrency.currencies.peso.ChileanPeso"><code class="flex name class">
 <span>class <span class="ident">ChileanPeso</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '0,.3%-%s%u')</span>
+<span>(</span><span>amount: str | float | Decimal, pattern: str | None = '0,.3%-%s%u')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Peso (Chile) currency representation.</p>
@@ -93,8 +92,7 @@ $123.457
 <p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Currency format pattern. Defaults to
 '0,.3%-%s%u'.</dd>
@@ -124,7 +122,7 @@ $123.457
 </dd>
 <dt id="multicurrency.currencies.peso.ColombianPeso"><code class="flex name class">
 <span>class <span class="ident">ColombianPeso</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '2,.3%s\xa0%a')</span>
+<span>(</span><span>amount: str | float | Decimal, pattern: str | None = '2,.3%s\xa0%a')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Peso (Colombia) currency representation.</p>
@@ -138,8 +136,7 @@ $ 123.456,79
 <p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Currency format pattern. Defaults to
 '2,.3%s %a'.</dd>
@@ -169,7 +166,7 @@ $ 123.456,79
 </dd>
 <dt id="multicurrency.currencies.peso.CubanPeso"><code class="flex name class">
 <span>class <span class="ident">CubanPeso</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '2.,3%-%s%u')</span>
+<span>(</span><span>amount: str | float | Decimal, pattern: str | None = '2.,3%-%s%u')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Peso (Cuba) currency representation.</p>
@@ -183,8 +180,7 @@ $123,456.79
 <p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Currency format pattern. Defaults to
 '2.,3%-%s%u'.</dd>
@@ -214,7 +210,7 @@ $123,456.79
 </dd>
 <dt id="multicurrency.currencies.peso.DominicanPeso"><code class="flex name class">
 <span>class <span class="ident">DominicanPeso</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '2.,3%-%s%u')</span>
+<span>(</span><span>amount: str | float | Decimal, pattern: str | None = '2.,3%-%s%u')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Peso (Dominican Republic) currency representation.</p>
@@ -228,8 +224,7 @@ $123,456.79
 <p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Currency format pattern. Defaults to
 '2.,3%-%s%u'.</dd>
@@ -259,7 +254,7 @@ $123,456.79
 </dd>
 <dt id="multicurrency.currencies.peso.MexicanPeso"><code class="flex name class">
 <span>class <span class="ident">MexicanPeso</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '2.,3%-%s%u')</span>
+<span>(</span><span>amount: str | float | Decimal, pattern: str | None = '2.,3%-%s%u')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Peso (Mexico) currency representation.</p>
@@ -273,8 +268,7 @@ $123,456.79
 <p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Currency format pattern. Defaults to
 '2.,3%-%s%u'.</dd>
@@ -304,7 +298,7 @@ $123,456.79
 </dd>
 <dt id="multicurrency.currencies.peso.PesoUruguayo"><code class="flex name class">
 <span>class <span class="ident">PesoUruguayo</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '2,.3%s\xa0%a')</span>
+<span>(</span><span>amount: str | float | Decimal, pattern: str | None = '2,.3%s\xa0%a')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Peso (Uruguay) currency representation.</p>
@@ -318,8 +312,7 @@ $ 123.456,79
 <p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Currency format pattern. Defaults to
 '2,.3%s %a'.</dd>
@@ -349,7 +342,7 @@ $ 123.456,79
 </dd>
 <dt id="multicurrency.currencies.peso.PhilippinePeso"><code class="flex name class">
 <span>class <span class="ident">PhilippinePeso</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '2.,3%-%s%u')</span>
+<span>(</span><span>amount: str | float | Decimal, pattern: str | None = '2.,3%-%s%u')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Peso (Philippines) currency representation.</p>
@@ -363,8 +356,7 @@ $ 123.456,79
 <p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Currency format pattern. Defaults to
 '2.,3%-%s%u'.</dd>
@@ -438,7 +430,7 @@ $ 123.456,79
 </nav>
 </main>
 <footer id="footer">
-<p>Copyright &#169; 2022, Frederico Martins</p>
+<p>Copyright &#169; 2023, Frederico Martins</p>
 </footer>
 </body>
 </html>

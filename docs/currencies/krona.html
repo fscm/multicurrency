@@ -34,7 +34,7 @@
 <dl>
 <dt id="multicurrency.currencies.krona.IcelandKrona"><code class="flex name class">
 <span>class <span class="ident">IcelandKrona</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '0,.3%a\xa0%s')</span>
+<span>(</span><span>amount: str | float | Decimal, pattern: str | None = '0,.3%a\xa0%s')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Krona (Iceland) currency representation.</p>
@@ -48,8 +48,7 @@
 <p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Currency format pattern. Defaults to
 '0,.3%a %s'.</dd>
@@ -79,7 +78,7 @@
 </dd>
 <dt id="multicurrency.currencies.krona.SwedishKrona"><code class="flex name class">
 <span>class <span class="ident">SwedishKrona</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '2,\u202f3%a\xa0%s')</span>
+<span>(</span><span>amount: str | float | Decimal, pattern: str | None = '2,\u202f3%a\xa0%s')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Krona (Sweden) currency representation.</p>
@@ -93,8 +92,7 @@
 <p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Currency format pattern. Defaults to
 '2, 3%a %s'.</dd>
@@ -150,7 +148,7 @@
 </nav>
 </main>
 <footer id="footer">
-<p>Copyright &#169; 2022, Frederico Martins</p>
+<p>Copyright &#169; 2023, Frederico Martins</p>
 </footer>
 </body>
 </html>

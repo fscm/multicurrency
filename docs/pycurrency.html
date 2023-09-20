@@ -301,7 +301,7 @@ True
 <dl>
 <dt id="multicurrency.pycurrency.Currency"><code class="flex name class">
 <span>class <span class="ident">Currency</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], alpha_code: Optional[str] = '', numeric_code: Optional[str] = '0', symbol: Optional[str] = '', localized_symbol: Optional[str] = '', convertion: Optional[str] = '', pattern: Optional[str] = '2.,3%a%s')</span>
+<span>(</span><span>amount: str | float | Decimal, alpha_code: str | None = '', numeric_code: str | None = '0', symbol: str | None = '', localized_symbol: str | None = '', convertion: str | None = '', pattern: str | None = '2.,3%a%s')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Currency representation.</p>
@@ -357,8 +357,7 @@ the currency's country).
 %%: The <code>%</code> symbol.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>alpha_code</code></strong> :&ensp;<code>str, optionsl</code></dt>
 <dd>Represented currency alpha code.
 Defaults to ''.</dd>
@@ -368,8 +367,9 @@ code. Defaults to 0.</dd>
 <dt><strong><code>symbol</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Represented currency symbol. Defaults
 to ''.</dd>
-<dt>localized_symbol ((str, optional)): Represented currency</dt>
-<dt>localizedsymbol. Defaults to the value of <code>symbol</code>.</dt>
+<dt><strong><code>localized_symbol</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Represented currency
+localized symbol. Defaults to the value of <code>symbol</code>.</dd>
 <dt><strong><code>convertion</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>String with the numbers from 0 to 9
 followed by the minus ('-') sign. Defaults to ''.</dd>
@@ -675,7 +675,7 @@ followed by the minus ('-') sign. Defaults to ''.</dd>
 <h3>Methods</h3>
 <dl>
 <dt id="multicurrency.pycurrency.Currency.international"><code class="name flex">
-<span>def <span class="ident">international</span></span>(<span>self, precision: int = None) ‑> str</span>
+<span>def <span class="ident">international</span></span>(<span>self: Self, precision: int | None = None) ‑> str</span>
 </code></dt>
 <dd>
 <div class="desc"><p>String value of this class formated with the alpha code.</p>
@@ -693,11 +693,10 @@ prensent in the currency <code>pattern</code>. Values lower than 0
 </dl></div>
 </dd>
 <dt id="multicurrency.pycurrency.Currency.is_signed"><code class="name flex">
-<span>def <span class="ident">is_signed</span></span>(<span>self) ‑> bool</span>
+<span>def <span class="ident">is_signed</span></span>(<span>self: Self) ‑> bool</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Check if the value of this class is preceded with the minus
-sign.</p>
+<div class="desc"><p>Check if the value is preceded with the minus sign.</p>
 <h2 id="returns">Returns</h2>
 <dl>
 <dt><code>bool</code></dt>
@@ -705,11 +704,10 @@ sign.</p>
 </dl></div>
 </dd>
 <dt id="multicurrency.pycurrency.Currency.localized"><code class="name flex">
-<span>def <span class="ident">localized</span></span>(<span>self, precision: int = None) ‑> str</span>
+<span>def <span class="ident">localized</span></span>(<span>self: Self, precision: int | None = None) ‑> str</span>
 </code></dt>
 <dd>
-<div class="desc"><p>String value of this class formated with the
-<code>localized_symbol</code>.</p>
+<div class="desc"><p>String value of this class formated with <code>localized_symbol</code>.</p>
 <h2 id="args">Args</h2>
 <dl>
 <dt><strong><code>precision</code></strong> :&ensp;<code>int</code>, optional</dt>
@@ -724,11 +722,10 @@ prensent in the currency <code>pattern</code>. Values lower than 0
 </dl></div>
 </dd>
 <dt id="multicurrency.pycurrency.Currency.precision"><code class="name flex">
-<span>def <span class="ident">precision</span></span>(<span>self, precision: int = None) ‑> str</span>
+<span>def <span class="ident">precision</span></span>(<span>self: Self, precision: int | None = None) ‑> str</span>
 </code></dt>
 <dd>
-<div class="desc"><p>String value of this class formated with the <code>precision</code>
-value.</p>
+<div class="desc"><p>String value of this class formated with <code>precision</code>.</p>
 <h2 id="args">Args</h2>
 <dl>
 <dt><strong><code>precision</code></strong> :&ensp;<code>int</code>, optional</dt>
@@ -804,7 +801,7 @@ prensent in the currency <code>pattern</code>. Values lower than 0
 </nav>
 </main>
 <footer id="footer">
-<p>Copyright &#169; 2022, Frederico Martins</p>
+<p>Copyright &#169; 2023, Frederico Martins</p>
 </footer>
 </body>
 </html>

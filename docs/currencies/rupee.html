@@ -34,7 +34,7 @@
 <dl>
 <dt id="multicurrency.currencies.rupee.IndianRupee"><code class="flex name class">
 <span>class <span class="ident">IndianRupee</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '2.,3%-%s%u')</span>
+<span>(</span><span>amount: str | float | Decimal, pattern: str | None = '2.,3%-%s%u')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Rupee (India) currency representation.</p>
@@ -48,8 +48,7 @@
 <p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Currency format pattern. Defaults to
 '2.,3%-%s%u'.</dd>
@@ -79,7 +78,7 @@
 </dd>
 <dt id="multicurrency.currencies.rupee.IndianRupeeBT"><code class="flex name class">
 <span>class <span class="ident">IndianRupeeBT</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '2.,3%-%s%u')</span>
+<span>(</span><span>amount: str | float | Decimal, pattern: str | None = '2.,3%-%s%u')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Rupee (Bhutan) currency representation.</p>
@@ -93,8 +92,7 @@
 <p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Currency format pattern. Defaults to
 '2.,3%-%s%u'.</dd>
@@ -124,7 +122,7 @@
 </dd>
 <dt id="multicurrency.currencies.rupee.IndianRupeeIN"><code class="flex name class">
 <span>class <span class="ident">IndianRupeeIN</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '2.,3%-%s%u')</span>
+<span>(</span><span>amount: str | float | Decimal, pattern: str | None = '2.,3%-%s%u')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Rupee (India) currency representation.</p>
@@ -138,8 +136,7 @@
 <p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Currency format pattern. Defaults to
 '2.,3%-%s%u'.</dd>
@@ -169,7 +166,7 @@
 </dd>
 <dt id="multicurrency.currencies.rupee.MauritiusRupee"><code class="flex name class">
 <span>class <span class="ident">MauritiusRupee</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '2.,3%s\xa0%a')</span>
+<span>(</span><span>amount: str | float | Decimal, pattern: str | None = '2.,3%s\xa0%a')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Rupee (Mauritius) currency representation.</p>
@@ -183,8 +180,7 @@
 <p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Currency format pattern. Defaults to
 '2.,3%s %a'.</dd>
@@ -214,7 +210,7 @@
 </dd>
 <dt id="multicurrency.currencies.rupee.NepaleseRupee"><code class="flex name class">
 <span>class <span class="ident">NepaleseRupee</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '2.,3%s\xa0%a')</span>
+<span>(</span><span>amount: str | float | Decimal, pattern: str | None = '2.,3%s\xa0%a')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Rupee (Nepal) currency representation.</p>
@@ -228,8 +224,7 @@
 <p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Currency format pattern. Defaults to
 '2.,3%s %a'.</dd>
@@ -259,7 +254,7 @@
 </dd>
 <dt id="multicurrency.currencies.rupee.PakistanRupee"><code class="flex name class">
 <span>class <span class="ident">PakistanRupee</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '2.,3%s\xa0%a')</span>
+<span>(</span><span>amount: str | float | Decimal, pattern: str | None = '2.,3%s\xa0%a')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Rupee (Pakistan) currency representation.</p>
@@ -273,8 +268,7 @@
 <p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Currency format pattern. Defaults to
 '2.,3%s %a'.</dd>
@@ -304,7 +298,7 @@
 </dd>
 <dt id="multicurrency.currencies.rupee.SeychellesRupee"><code class="flex name class">
 <span>class <span class="ident">SeychellesRupee</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '2.,3%s\xa0%a')</span>
+<span>(</span><span>amount: str | float | Decimal, pattern: str | None = '2.,3%s\xa0%a')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Rupee (Seychelles) currency representation.</p>
@@ -318,8 +312,7 @@
 <p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Currency format pattern. Defaults to
 '2.,3%s %a'.</dd>
@@ -349,7 +342,7 @@
 </dd>
 <dt id="multicurrency.currencies.rupee.SriLankaRupee"><code class="flex name class">
 <span>class <span class="ident">SriLankaRupee</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '2.,3%s\xa0%a')</span>
+<span>(</span><span>amount: str | float | Decimal, pattern: str | None = '2.,3%s\xa0%a')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Rupee (Sri Lanka) currency representation.</p>
@@ -363,8 +356,7 @@
 <p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Currency format pattern. Defaults to
 '2.,3%s %a'.</dd>
@@ -438,7 +430,7 @@
 </nav>
 </main>
 <footer id="footer">
-<p>Copyright &#169; 2022, Frederico Martins</p>
+<p>Copyright &#169; 2023, Frederico Martins</p>
 </footer>
 </body>
 </html>

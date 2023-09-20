@@ -34,7 +34,7 @@
 <dl>
 <dt id="multicurrency.currencies.crypto.Bitcoin"><code class="flex name class">
 <span>class <span class="ident">Bitcoin</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '8.,3%-%s%u')</span>
+<span>(</span><span>amount: str | float | Decimal, pattern: str | None = '8.,3%-%s%u')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Crypto currency representation.</p>
@@ -48,8 +48,7 @@
 <p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Currency format pattern. Defaults to
 '8.,3%-%s%u'.</dd>
@@ -79,7 +78,7 @@
 </dd>
 <dt id="multicurrency.currencies.crypto.EOS"><code class="flex name class">
 <span>class <span class="ident">EOS</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '4.,3%-%s%u')</span>
+<span>(</span><span>amount: str | float | Decimal, pattern: str | None = '4.,3%-%s%u')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Crypto currency representation.</p>
@@ -93,8 +92,7 @@
 <p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Currency format pattern. Defaults to
 '4.,3%-%s%u'.</dd>
@@ -124,7 +122,7 @@
 </dd>
 <dt id="multicurrency.currencies.crypto.Ethereum"><code class="flex name class">
 <span>class <span class="ident">Ethereum</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '18.,3%-%s%u')</span>
+<span>(</span><span>amount: str | float | Decimal, pattern: str | None = '18.,3%-%s%u')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Crypto currency representation.</p>
@@ -138,8 +136,7 @@
 <p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Currency format pattern. Defaults to
 '18.,3%-%s%u'.</dd>
@@ -169,7 +166,7 @@
 </dd>
 <dt id="multicurrency.currencies.crypto.Monero"><code class="flex name class">
 <span>class <span class="ident">Monero</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '12.,3%-%s%u')</span>
+<span>(</span><span>amount: str | float | Decimal, pattern: str | None = '12.,3%-%s%u')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Crypto currency representation.</p>
@@ -183,8 +180,7 @@
 <p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Currency format pattern. Defaults to
 '12.,3%-%s%u'.</dd>
@@ -214,7 +210,7 @@
 </dd>
 <dt id="multicurrency.currencies.crypto.Ripple"><code class="flex name class">
 <span>class <span class="ident">Ripple</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '6.,3%-%s%u')</span>
+<span>(</span><span>amount: str | float | Decimal, pattern: str | None = '6.,3%-%s%u')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Crypto currency representation.</p>
@@ -228,8 +224,7 @@
 <p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Currency format pattern. Defaults to
 '6.,3%-%s%u'.</dd>
@@ -259,7 +254,7 @@
 </dd>
 <dt id="multicurrency.currencies.crypto.StellarLumens"><code class="flex name class">
 <span>class <span class="ident">StellarLumens</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '7.,3%-%s%u')</span>
+<span>(</span><span>amount: str | float | Decimal, pattern: str | None = '7.,3%-%s%u')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Crypto currency representation.</p>
@@ -273,8 +268,7 @@
 <p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Currency format pattern. Defaults to
 '7.,3%-%s%u'.</dd>
@@ -304,7 +298,7 @@
 </dd>
 <dt id="multicurrency.currencies.crypto.Tezos"><code class="flex name class">
 <span>class <span class="ident">Tezos</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '6.,3%-%s%u')</span>
+<span>(</span><span>amount: str | float | Decimal, pattern: str | None = '6.,3%-%s%u')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Crypto currency representation.</p>
@@ -318,8 +312,7 @@
 <p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Currency format pattern. Defaults to
 '6.,3%-%s%u'.</dd>
@@ -349,7 +342,7 @@
 </dd>
 <dt id="multicurrency.currencies.crypto.Zcash"><code class="flex name class">
 <span>class <span class="ident">Zcash</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '8.,3%-%s%u')</span>
+<span>(</span><span>amount: str | float | Decimal, pattern: str | None = '8.,3%-%s%u')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Crypto currency representation.</p>
@@ -363,8 +356,7 @@
 <p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Currency format pattern. Defaults to
 '8.,3%-%s%u'.</dd>
@@ -438,7 +430,7 @@
 </nav>
 </main>
 <footer id="footer">
-<p>Copyright &#169; 2022, Frederico Martins</p>
+<p>Copyright &#169; 2023, Frederico Martins</p>
 </footer>
 </body>
 </html>

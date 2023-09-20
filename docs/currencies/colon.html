@@ -34,7 +34,7 @@
 <dl>
 <dt id="multicurrency.currencies.colon.CostaRicanColon"><code class="flex name class">
 <span>class <span class="ident">CostaRicanColon</span></span>
-<span>(</span><span>amount: Union[str, int, float, decimal.Decimal], pattern: Optional[str] = '2,\u202f3%-%s%u')</span>
+<span>(</span><span>amount: str | float | Decimal, pattern: str | None = '2,\u202f3%-%s%u')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Colon (Costa Rica) currency representation.</p>
@@ -48,8 +48,7 @@
 <p>For more details see <code><a title="multicurrency.pycurrency.Currency" href="../pycurrency.html#multicurrency.pycurrency.Currency">Currency</a></code>.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>amount</code></strong> :&ensp;<code>Union[str, int, float, Decimal]</code></dt>
-<dd>Represented value.</dd>
+<dt>amount (str | int | float | Decimal): Represented value.</dt>
 <dt><strong><code>pattern</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Currency format pattern. Defaults to
 '2, 3%-%s%u'.</dd>
@@ -102,7 +101,7 @@
 </nav>
 </main>
 <footer id="footer">
-<p>Copyright &#169; 2022, Frederico Martins</p>
+<p>Copyright &#169; 2023, Frederico Martins</p>
 </footer>
 </body>
 </html>
