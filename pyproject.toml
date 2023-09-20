@@ -332,9 +332,9 @@ min-public-methods = 1
 
 [tool.pylint.exceptions]
 overgeneral-exceptions = [
-    'BaseException',
-    'Exception',
-    'StandardError',
+    'builtins.BaseException',
+    'builtins.Exception',
+    'builtins.StandardError',
 ]
 
 [tool.pylint.parameter_documentation]
@@ -347,7 +347,7 @@ default-docstring-type = 'google'
 # ruff
 [tool.ruff]
 extend-exclude = ['*.pyi']
-ignore = ['FA100', 'RUF001', 'RUF002']
+ignore = ['RUF001', 'RUF002']
 line-length = 79
 select = ['ALL']
 src = ['src']
