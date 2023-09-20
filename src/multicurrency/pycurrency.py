@@ -257,23 +257,24 @@ objects of the same currency.
     True
 """ # pylint: disable=line-too-long  # noqa: E501,W505
 
+from __future__ import annotations
+
 from decimal import Decimal
 from re import (
     compile as _compile,
     escape as _escape,
     match as _match,
-    sub as _sub)
-from typing import Optional, Self, Tuple, Union
+    sub as _sub,
+)
+from typing import Self
 
 from multicurrency.exceptions import (
     CurrencyInvalidDivision,
     CurrencyInvalidFormat,
     CurrencyInvalidMultiplication,
     CurrencyMismatchException,
-    CurrencyTypeException)
-
-
-Numerical = Union[float, Decimal]
+    CurrencyTypeException,
+)
 
 
 class Currency:
@@ -339,15 +340,15 @@ class Currency:
         %%: The `%` symbol.
 
     Args:
-        amount (Union[str, int, float, Decimal]): Represented value.
+        amount (str | int | float | Decimal): Represented value.
         alpha_code (str, optionsl): Represented currency alpha code.
             Defaults to ''.
         numeric_code (str, optional): Represented currency numeric
             code. Defaults to 0.
         symbol (str, optional): Represented currency symbol. Defaults
             to ''.
-        localized_symbol ((str, optional)): Represented currency
-            localizedsymbol. Defaults to the value of `symbol`.
+        localized_symbol (str, optional): Represented currency
+            localized symbol. Defaults to the value of `symbol`.
         convertion (str, optional): String with the numbers from 0 to 9
             followed by the minus ('-') sign. Defaults to ''.
         pattern (str, optional): Currency format pattern. Defaults to
@@ -360,13 +361,13 @@ class Currency:
 
     def __new__(
             cls: Self,
-            amount: Union[str, float, Decimal],
-            alpha_code: Optional[str] = '',
-            numeric_code: Optional[str] = '0',
-            symbol: Optional[str] = '',
-            localized_symbol: Optional[str] = '',
-            convertion: Optional[str] = '',
-            pattern: Optional[str] = r'2.,3%a%s') -> Self:
+            amount: str | float | Decimal,
+            alpha_code: str | None = '',
+            numeric_code: str | None = '0',
+            symbol: str | None = '',
+            localized_symbol: str | None = '',
+            convertion: str | None = '',
+            pattern: str | None = r'2.,3%a%s') -> Self:
         """Class creator.
 
         Returns:
@@ -448,14 +449,14 @@ class Currency:
         """
         return self.__recreate__(self._amount)
 
-    def __divmod__(self: Self, other: Numerical) -> Tuple[Self, Self]:
+    def __divmod__(self: Self, other: float | Decimal) -> tuple[Self, Self]:
         """Returns the quocient and remaider of the division.
 
         Args:
-            other (Numerical): amount to divide by.
+            other (int | float | Decimal): amount to divide by.
 
         Returns:
-            Tuple[Currency, Currency]: quotient, remainder.
+            tuple[Currency, Currency]: quotient, remainder.
 
         Raises:
             CurrencyInvalidDivision: If `other` not of types
@@ -502,11 +503,11 @@ class Currency:
         """
         return self.__recreate__(self._amount.__floor__())
 
-    def __floordiv__(self: Self, other: Numerical) -> Self:
+    def __floordiv__(self: Self, other: float | Decimal) -> Self:
         """Returns the integral part of the quotient of the division.
 
         Args:
-            other (Numerical): amount to divide by.
+            other (int | float | Decimal): amount to divide by.
 
         Returns:
             Currency: Integer quotient resulting from the division.
@@ -725,11 +726,11 @@ class Currency:
             raise CurrencyMismatchException
         return self._amount < other.amount
 
-    def __mod__(self: Self, other: Numerical) -> Self:
+    def __mod__(self: Self, other: float | Decimal) -> Self:
         """Returns the remainder of the division by `other`.
 
         Args:
-            other (Numerical): amount to divide by.
+            other (int | float | Decimal): amount to divide by.
 
         Returns:
             Currency: Remainder resulting from the division.
@@ -745,11 +746,11 @@ class Currency:
             raise ZeroDivisionError
         return self.__recreate__(self._amount.__mod__(Decimal(other)))
 
-    def __mul__(self: Self, other: Numerical) -> Self:
+    def __mul__(self: Self, other: float | Decimal) -> Self:
         """Returns the multiplication by `other`.
 
         Args:
-            other (Numerical): amount to multiply by.
+            other (int | float | Decimal): amount to multiply by.
 
         Returns:
             Currency: Result of the multiplication operation.
@@ -791,22 +792,22 @@ class Currency:
 
     def __recreate__(
             self: Self,
-            amount: Union[str, float, Decimal]) -> Self:
+            amount: str | float | Decimal) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
-            amount (Union[str, int, float, Decimal]): Represented value.
+            amount (str | int | float | Decimal): Represented value.
 
         Returns:
             Currency: new opbject.
         """
         return self.__class__(amount, *self._info)
 
-    def __reduce__(self: Self) -> Tuple[type, Tuple[object, ...]]:
-        """Returns a Tuple with this class "reduce value".
+    def __reduce__(self: Self) -> tuple[type, tuple[object, ...]]:
+        """Returns a `tuple` with this class "reduce value".
 
         Returns:
-            Tuple[type, Tuple[object, ...]]: pickle representation of
+            tuple[type, tuple[object, ...]]: pickle representation of
                 this currency.
         """
         return (self.__class__, (self._amount, *self._info))
@@ -827,7 +828,7 @@ class Currency:
             f'convertion: "{self._info[4]}", '
             rf'pattern: "{self._info[5]}")')
 
-    def __round__(self: Self, precision: Optional[int] = None) -> Self:
+    def __round__(self: Self, precision: int | None = None) -> Self:
         """Round to the nearest integer, or to a given precision.
 
         Args:
@@ -890,11 +891,11 @@ class Currency:
             raise CurrencyMismatchException
         return self.__recreate__(self._amount - other.amount)
 
-    def __truediv__(self: Self, other: Numerical) -> Self:
+    def __truediv__(self: Self, other: float | Decimal) -> Self:
         """Divide this currency by `other`.
 
         Args:
-            other (Numerical): amount to divide by.
+            other (int | float | Decimal): amount to divide by.
 
         Returns:
             Currency: result of the division operation.
@@ -911,10 +912,10 @@ class Currency:
         return self.__recreate__(
             self._amount.__truediv__(Decimal(other)))
 
-    __deepcopy__: 'Currency' = __copy__
-    __rmul__: 'Currency' = __mul__
+    __deepcopy__: Self = __copy__
+    __rmul__: Self = __mul__
 
-    def international(self: Self, precision: Optional[int] = None) -> str:
+    def international(self: Self, precision: int | None = None) -> str:
         """String value of this class formated with the alpha code.
 
         Args:
@@ -949,7 +950,7 @@ class Currency:
         """
         return self._amount.is_signed()
 
-    def localized(self: Self, precision: Optional[int] = None) -> str:
+    def localized(self: Self, precision: int | None = None) -> str:
         """String value of this class formated with `localized_symbol`.
 
         Args:
@@ -966,7 +967,7 @@ class Currency:
             fmt = _sub(r'^\d+', f'{precision}', fmt)
         return format(self, fmt.replace('%s', '%S'))
 
-    def precision(self: Self, precision: Optional[int] = None) -> str:
+    def precision(self: Self, precision: int | None = None) -> str:
         """String value of this class formated with `precision`.
 
         Args:

@@ -302,14 +302,15 @@ from multicurrency.currencies.boliviano import Boliviano
 from multicurrency.currencies.cedi import Cedi
 from multicurrency.currencies.colon import CostaRicanColon
 from multicurrency.currencies.crypto import (
-    Bitcoin,
     EOS,
+    Bitcoin,
     Ethereum,
     Monero,
     Ripple,
     StellarLumens,
     Tezos,
-    Zcash)
+    Zcash,
+)
 from multicurrency.currencies.dalasi import Dalasi
 from multicurrency.currencies.denar import Denar
 from multicurrency.currencies.dinar import (
@@ -321,10 +322,12 @@ from multicurrency.currencies.dinar import (
     LibyanDinar,
     SerbianDinarSR,
     SerbianDinarXK,
-    TunisianDinar)
+    TunisianDinar,
+)
 from multicurrency.currencies.dirham import (
     MoroccanDirham,
-    UAEDirham)
+    UAEDirham,
+)
 from multicurrency.currencies.dobra import Dobra
 from multicurrency.currencies.dollar import (
     AustralianDollar,
@@ -385,7 +388,8 @@ from multicurrency.currencies.dollar import (
     USDollarTC,
     USDollarVG,
     USDollarVI,
-    ZimbabweDollar)
+    ZimbabweDollar,
+)
 from multicurrency.currencies.dong import Dong
 from multicurrency.currencies.dram import ArmenianDram
 from multicurrency.currencies.escudo import CapeVerdeEscudo
@@ -416,7 +420,8 @@ from multicurrency.currencies.euro import (
     EuroSK,
     EuroSM,
     EuroVA,
-    EuroXK)
+    EuroXK,
+)
 from multicurrency.currencies.florin import ArubanFlorin
 from multicurrency.currencies.forint import Forint
 from multicurrency.currencies.franc import (
@@ -447,7 +452,8 @@ from multicurrency.currencies.franc import (
     RwandaFranc,
     SwissFranc,
     SwissFrancCH,
-    SwissFrancLI)
+    SwissFrancLI,
+)
 from multicurrency.currencies.fuerte import BolivarFuerte
 from multicurrency.currencies.gourde import Gourde
 from multicurrency.currencies.guarani import Guarani
@@ -457,36 +463,43 @@ from multicurrency.currencies.kip import Kip
 from multicurrency.currencies.koruna import CzechKoruna
 from multicurrency.currencies.krona import (
     IcelandKrona,
-    SwedishKrona)
+    SwedishKrona,
+)
 from multicurrency.currencies.krone import (
     DanishKrone,
-    NorwegianKrone)
+    NorwegianKrone,
+)
 from multicurrency.currencies.kuna import CroatianKuna
 from multicurrency.currencies.kwacha import (
     Kwacha,
-    ZambianKwacha)
+    ZambianKwacha,
+)
 from multicurrency.currencies.kwanza import Kwanza
 from multicurrency.currencies.kyat import Kyat
 from multicurrency.currencies.lari import (
     GeorgiaLari,
     Lari,
-    SouthOssetiaLari)
+    SouthOssetiaLari,
+)
 from multicurrency.currencies.lek import Lek
 from multicurrency.currencies.lempira import Lempira
 from multicurrency.currencies.leone import Leone
 from multicurrency.currencies.leu import (
     Leu,
-    MoldovanLeu)
+    MoldovanLeu,
+)
 from multicurrency.currencies.lev import BulgarianLev
 from multicurrency.currencies.lilangeni import Lilangeni
 from multicurrency.currencies.lira import (
     TurkishLira,
     TurkishLiraCY,
-    TurkishLiraTR)
+    TurkishLiraTR,
+)
 from multicurrency.currencies.loti import Loti
 from multicurrency.currencies.manat import (
     AzerbaijanianManat,
-    Manat)
+    Manat,
+)
 from multicurrency.currencies.marka import KonvertibilnaMarka
 from multicurrency.currencies.metical import Metical
 from multicurrency.currencies.naira import Naira
@@ -505,7 +518,8 @@ from multicurrency.currencies.peso import (
     DominicanPeso,
     MexicanPeso,
     PesoUruguayo,
-    PhilippinePeso)
+    PhilippinePeso,
+)
 from multicurrency.currencies.pound import (
     EgyptianPound,
     FalklandIslandsPound,
@@ -520,7 +534,8 @@ from multicurrency.currencies.pound import (
     SaintHelenaPoundAI,
     SaintHelenaPoundTC,
     SudanesePound,
-    SyrianPound)
+    SyrianPound,
+)
 from multicurrency.currencies.pula import Pula
 from multicurrency.currencies.pzloty import PZloty
 from multicurrency.currencies.quetzal import Quetzal
@@ -528,13 +543,15 @@ from multicurrency.currencies.rand import (
     Rand,
     RandLS,
     RandNA,
-    RandZA)
+    RandZA,
+)
 from multicurrency.currencies.real import BrazilianReal
 from multicurrency.currencies.rial import (
     IranianRial,
     QatariRial,
     RialOmani,
-    YemeniRial)
+    YemeniRial,
+)
 from multicurrency.currencies.riel import Riel
 from multicurrency.currencies.ringgit import MalaysianRinggit
 from multicurrency.currencies.riyal import SaudiRiyal
@@ -542,7 +559,8 @@ from multicurrency.currencies.ruble import (
     BelarusianRuble,
     RussianRuble,
     RussianRubleGE,
-    RussianRubleRU)
+    RussianRubleRU,
+)
 from multicurrency.currencies.rufiyaa import Rufiyaa
 from multicurrency.currencies.rupee import (
     IndianRupee,
@@ -552,17 +570,20 @@ from multicurrency.currencies.rupee import (
     NepaleseRupee,
     PakistanRupee,
     SeychellesRupee,
-    SriLankaRupee)
+    SriLankaRupee,
+)
 from multicurrency.currencies.rupiah import Rupiah
 from multicurrency.currencies.shekel import (
     NewIsraeliShekel,
     NewIsraeliShekelIL,
-    NewIsraeliShekelPS)
+    NewIsraeliShekelPS,
+)
 from multicurrency.currencies.shilling import (
     KenyanShilling,
     SomaliShilling,
     TanzanianShilling,
-    UgandaShilling)
+    UgandaShilling,
+)
 from multicurrency.currencies.som import Som
 from multicurrency.currencies.somoni import Somoni
 from multicurrency.currencies.sum import UzbekistanSum
@@ -573,11 +594,13 @@ from multicurrency.currencies.tugrik import Tugrik
 from multicurrency.currencies.vatu import Vatu
 from multicurrency.currencies.won import (
     NorthKoreanWon,
-    SouthKoreanWon)
+    SouthKoreanWon,
+)
 from multicurrency.currencies.yen import Yen
 from multicurrency.currencies.yuan import Yuan
 
-__all__ = [
+
+__all__ = (
     'Afghani',
     'AlgerianDinar',
     'ArgentinePeso',
@@ -838,4 +861,4 @@ __all__ = [
     'Yuan',
     'ZambianKwacha',
     'Zcash',
-    'ZimbabweDollar']
+    'ZimbabweDollar')

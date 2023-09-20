@@ -56,7 +56,7 @@ ${table_cryptocurrencies}
 from multicurrency.currencies.${module} import <%
     classes = [c.class_name for c in info['currencies']]
     if len(classes) > 1:
-        _classes_ = "(\n    " + ",\n    ".join(sorted(classes)) + ")"
+        _classes_ = "(\n    " + ",\n    ".join(sorted(classes)) + ",\n)"
     else:
         _classes_ = classes[0]
 %>${_classes_}
@@ -68,5 +68,6 @@ from multicurrency.currencies.${module} import <%
             all_list.append(currency.class_name)
     _all_list_ = "'" + "',\n    '".join(sorted(all_list)) + "'"
 %>
-__all__ = [
-    ${_all_list_}]
+
+__all__ = (
+    ${_all_list_})

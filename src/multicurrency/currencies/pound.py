@@ -6,10 +6,15 @@
 
 """Pound currency representation(s)."""
 
-from decimal import Decimal
-from typing import Optional, Self, Union, cast
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Self, cast
 
 from multicurrency.pycurrency import Currency
+
+
+if TYPE_CHECKING:
+    from decimal import Decimal
 
 
 class EgyptianPound(Currency):
@@ -26,7 +31,7 @@ class EgyptianPound(Currency):
     For more details see `multicurrency.pycurrency.Currency`.
 
     Args:
-        amount (Union[str, int, float, Decimal]): Represented value.
+        amount (str | int | float | Decimal): Represented value.
         pattern (str, optional): Currency format pattern. Defaults to
             '2٫٬3%s %a'.
     """
@@ -35,8 +40,8 @@ class EgyptianPound(Currency):
 
     def __new__(  # pylint: disable=signature-differs
         cls: Self,
-        amount: Union[str, float, Decimal],
-        pattern: Optional[str] = '2\u066B\u066C3%s\u00A0%a',
+        amount: str | float | Decimal,
+        pattern: str | None = '2\u066B\u066C3%s\u00A0%a',
     ) -> Self:
         """Class creator.
 
@@ -57,15 +62,15 @@ class EgyptianPound(Currency):
 
     def __recreate__(
             self: Self,
-            amount: Union[str, float, Decimal],
+            amount: str | float | Decimal,
     ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
-            amount (Union[str, int, float, Decimal]): Represented value.
+            amount (str | int | float | Decimal): Represented value.
 
         Returns:
-            Currency: new opbject.
+            EgyptianPound: new opbject.
         """
         return self.__class__(amount, self._info[5])
 
@@ -84,7 +89,7 @@ class FalklandIslandsPound(Currency):
     For more details see `multicurrency.pycurrency.Currency`.
 
     Args:
-        amount (Union[str, int, float, Decimal]): Represented value.
+        amount (str | int | float | Decimal): Represented value.
         pattern (str, optional): Currency format pattern. Defaults to
             '2.,3%-%s%u'.
     """
@@ -93,8 +98,8 @@ class FalklandIslandsPound(Currency):
 
     def __new__(  # pylint: disable=signature-differs
         cls: Self,
-        amount: Union[str, float, Decimal],
-        pattern: Optional[str] = '2.,3%-%s%u',
+        amount: str | float | Decimal,
+        pattern: str | None = '2.,3%-%s%u',
     ) -> Self:
         """Class creator.
 
@@ -115,15 +120,15 @@ class FalklandIslandsPound(Currency):
 
     def __recreate__(
             self: Self,
-            amount: Union[str, float, Decimal],
+            amount: str | float | Decimal,
     ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
-            amount (Union[str, int, float, Decimal]): Represented value.
+            amount (str | int | float | Decimal): Represented value.
 
         Returns:
-            Currency: new opbject.
+            FalklandIslandsPound: new opbject.
         """
         return self.__class__(amount, self._info[5])
 
@@ -142,7 +147,7 @@ class PoundSterling(Currency):
     For more details see `multicurrency.pycurrency.Currency`.
 
     Args:
-        amount (Union[str, int, float, Decimal]): Represented value.
+        amount (str | int | float | Decimal): Represented value.
         pattern (str, optional): Currency format pattern. Defaults to
             '2.,3%-%s%u'.
     """
@@ -151,8 +156,8 @@ class PoundSterling(Currency):
 
     def __new__(  # pylint: disable=signature-differs
         cls: Self,
-        amount: Union[str, float, Decimal],
-        pattern: Optional[str] = '2.,3%-%s%u',
+        amount: str | float | Decimal,
+        pattern: str | None = '2.,3%-%s%u',
     ) -> Self:
         """Class creator.
 
@@ -173,15 +178,15 @@ class PoundSterling(Currency):
 
     def __recreate__(
             self: Self,
-            amount: Union[str, float, Decimal],
+            amount: str | float | Decimal,
     ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
-            amount (Union[str, int, float, Decimal]): Represented value.
+            amount (str | int | float | Decimal): Represented value.
 
         Returns:
-            Currency: new opbject.
+            PoundSterling: new opbject.
         """
         return self.__class__(amount, self._info[5])
 
@@ -200,7 +205,7 @@ class PoundSterlingGG(Currency):
     For more details see `multicurrency.pycurrency.Currency`.
 
     Args:
-        amount (Union[str, int, float, Decimal]): Represented value.
+        amount (str | int | float | Decimal): Represented value.
         pattern (str, optional): Currency format pattern. Defaults to
             '2.,3%-%s%u'.
     """
@@ -209,8 +214,8 @@ class PoundSterlingGG(Currency):
 
     def __new__(  # pylint: disable=signature-differs
         cls: Self,
-        amount: Union[str, float, Decimal],
-        pattern: Optional[str] = '2.,3%-%s%u',
+        amount: str | float | Decimal,
+        pattern: str | None = '2.,3%-%s%u',
     ) -> Self:
         """Class creator.
 
@@ -231,15 +236,15 @@ class PoundSterlingGG(Currency):
 
     def __recreate__(
             self: Self,
-            amount: Union[str, float, Decimal],
+            amount: str | float | Decimal,
     ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
-            amount (Union[str, int, float, Decimal]): Represented value.
+            amount (str | int | float | Decimal): Represented value.
 
         Returns:
-            Currency: new opbject.
+            PoundSterlingGG: new opbject.
         """
         return self.__class__(amount, self._info[5])
 
@@ -258,7 +263,7 @@ class PoundSterlingIO(Currency):
     For more details see `multicurrency.pycurrency.Currency`.
 
     Args:
-        amount (Union[str, int, float, Decimal]): Represented value.
+        amount (str | int | float | Decimal): Represented value.
         pattern (str, optional): Currency format pattern. Defaults to
             '2.,3%-%s%u'.
     """
@@ -267,8 +272,8 @@ class PoundSterlingIO(Currency):
 
     def __new__(  # pylint: disable=signature-differs
         cls: Self,
-        amount: Union[str, float, Decimal],
-        pattern: Optional[str] = '2.,3%-%s%u',
+        amount: str | float | Decimal,
+        pattern: str | None = '2.,3%-%s%u',
     ) -> Self:
         """Class creator.
 
@@ -289,15 +294,15 @@ class PoundSterlingIO(Currency):
 
     def __recreate__(
             self: Self,
-            amount: Union[str, float, Decimal],
+            amount: str | float | Decimal,
     ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
-            amount (Union[str, int, float, Decimal]): Represented value.
+            amount (str | int | float | Decimal): Represented value.
 
         Returns:
-            Currency: new opbject.
+            PoundSterlingIO: new opbject.
         """
         return self.__class__(amount, self._info[5])
 
@@ -316,7 +321,7 @@ class PoundSterlingGB(Currency):
     For more details see `multicurrency.pycurrency.Currency`.
 
     Args:
-        amount (Union[str, int, float, Decimal]): Represented value.
+        amount (str | int | float | Decimal): Represented value.
         pattern (str, optional): Currency format pattern. Defaults to
             '2.,3%-%s%u'.
     """
@@ -325,8 +330,8 @@ class PoundSterlingGB(Currency):
 
     def __new__(  # pylint: disable=signature-differs
         cls: Self,
-        amount: Union[str, float, Decimal],
-        pattern: Optional[str] = '2.,3%-%s%u',
+        amount: str | float | Decimal,
+        pattern: str | None = '2.,3%-%s%u',
     ) -> Self:
         """Class creator.
 
@@ -347,15 +352,15 @@ class PoundSterlingGB(Currency):
 
     def __recreate__(
             self: Self,
-            amount: Union[str, float, Decimal],
+            amount: str | float | Decimal,
     ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
-            amount (Union[str, int, float, Decimal]): Represented value.
+            amount (str | int | float | Decimal): Represented value.
 
         Returns:
-            Currency: new opbject.
+            PoundSterlingGB: new opbject.
         """
         return self.__class__(amount, self._info[5])
 
@@ -374,7 +379,7 @@ class PoundSterlingIM(Currency):
     For more details see `multicurrency.pycurrency.Currency`.
 
     Args:
-        amount (Union[str, int, float, Decimal]): Represented value.
+        amount (str | int | float | Decimal): Represented value.
         pattern (str, optional): Currency format pattern. Defaults to
             '2.,3%-%s%u'.
     """
@@ -383,8 +388,8 @@ class PoundSterlingIM(Currency):
 
     def __new__(  # pylint: disable=signature-differs
         cls: Self,
-        amount: Union[str, float, Decimal],
-        pattern: Optional[str] = '2.,3%-%s%u',
+        amount: str | float | Decimal,
+        pattern: str | None = '2.,3%-%s%u',
     ) -> Self:
         """Class creator.
 
@@ -405,15 +410,15 @@ class PoundSterlingIM(Currency):
 
     def __recreate__(
             self: Self,
-            amount: Union[str, float, Decimal],
+            amount: str | float | Decimal,
     ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
-            amount (Union[str, int, float, Decimal]): Represented value.
+            amount (str | int | float | Decimal): Represented value.
 
         Returns:
-            Currency: new opbject.
+            PoundSterlingIM: new opbject.
         """
         return self.__class__(amount, self._info[5])
 
@@ -432,7 +437,7 @@ class GibraltarPound(Currency):
     For more details see `multicurrency.pycurrency.Currency`.
 
     Args:
-        amount (Union[str, int, float, Decimal]): Represented value.
+        amount (str | int | float | Decimal): Represented value.
         pattern (str, optional): Currency format pattern. Defaults to
             '2.,3%-%s%u'.
     """
@@ -441,8 +446,8 @@ class GibraltarPound(Currency):
 
     def __new__(  # pylint: disable=signature-differs
         cls: Self,
-        amount: Union[str, float, Decimal],
-        pattern: Optional[str] = '2.,3%-%s%u',
+        amount: str | float | Decimal,
+        pattern: str | None = '2.,3%-%s%u',
     ) -> Self:
         """Class creator.
 
@@ -463,15 +468,15 @@ class GibraltarPound(Currency):
 
     def __recreate__(
             self: Self,
-            amount: Union[str, float, Decimal],
+            amount: str | float | Decimal,
     ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
-            amount (Union[str, int, float, Decimal]): Represented value.
+            amount (str | int | float | Decimal): Represented value.
 
         Returns:
-            Currency: new opbject.
+            GibraltarPound: new opbject.
         """
         return self.__class__(amount, self._info[5])
 
@@ -490,7 +495,7 @@ class LebanesePound(Currency):
     For more details see `multicurrency.pycurrency.Currency`.
 
     Args:
-        amount (Union[str, int, float, Decimal]): Represented value.
+        amount (str | int | float | Decimal): Represented value.
         pattern (str, optional): Currency format pattern. Defaults to
             '0٫٬3%s %a'.
     """
@@ -499,8 +504,8 @@ class LebanesePound(Currency):
 
     def __new__(  # pylint: disable=signature-differs
         cls: Self,
-        amount: Union[str, float, Decimal],
-        pattern: Optional[str] = '0\u066B\u066C3%s\u00A0%a',
+        amount: str | float | Decimal,
+        pattern: str | None = '0\u066B\u066C3%s\u00A0%a',
     ) -> Self:
         """Class creator.
 
@@ -521,15 +526,15 @@ class LebanesePound(Currency):
 
     def __recreate__(
             self: Self,
-            amount: Union[str, float, Decimal],
+            amount: str | float | Decimal,
     ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
-            amount (Union[str, int, float, Decimal]): Represented value.
+            amount (str | int | float | Decimal): Represented value.
 
         Returns:
-            Currency: new opbject.
+            LebanesePound: new opbject.
         """
         return self.__class__(amount, self._info[5])
 
@@ -548,7 +553,7 @@ class SudanesePound(Currency):
     For more details see `multicurrency.pycurrency.Currency`.
 
     Args:
-        amount (Union[str, int, float, Decimal]): Represented value.
+        amount (str | int | float | Decimal): Represented value.
         pattern (str, optional): Currency format pattern. Defaults to
             '2٫٬3%a %s'.
     """
@@ -557,8 +562,8 @@ class SudanesePound(Currency):
 
     def __new__(  # pylint: disable=signature-differs
         cls: Self,
-        amount: Union[str, float, Decimal],
-        pattern: Optional[str] = '2\u066B\u066C3%a\u00A0%s',
+        amount: str | float | Decimal,
+        pattern: str | None = '2\u066B\u066C3%a\u00A0%s',
     ) -> Self:
         """Class creator.
 
@@ -579,15 +584,15 @@ class SudanesePound(Currency):
 
     def __recreate__(
             self: Self,
-            amount: Union[str, float, Decimal],
+            amount: str | float | Decimal,
     ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
-            amount (Union[str, int, float, Decimal]): Represented value.
+            amount (str | int | float | Decimal): Represented value.
 
         Returns:
-            Currency: new opbject.
+            SudanesePound: new opbject.
         """
         return self.__class__(amount, self._info[5])
 
@@ -606,7 +611,7 @@ class SaintHelenaPoundAI(Currency):
     For more details see `multicurrency.pycurrency.Currency`.
 
     Args:
-        amount (Union[str, int, float, Decimal]): Represented value.
+        amount (str | int | float | Decimal): Represented value.
         pattern (str, optional): Currency format pattern. Defaults to
             '2.,3%-%s%u'.
     """
@@ -615,8 +620,8 @@ class SaintHelenaPoundAI(Currency):
 
     def __new__(  # pylint: disable=signature-differs
         cls: Self,
-        amount: Union[str, float, Decimal],
-        pattern: Optional[str] = '2.,3%-%s%u',
+        amount: str | float | Decimal,
+        pattern: str | None = '2.,3%-%s%u',
     ) -> Self:
         """Class creator.
 
@@ -637,15 +642,15 @@ class SaintHelenaPoundAI(Currency):
 
     def __recreate__(
             self: Self,
-            amount: Union[str, float, Decimal],
+            amount: str | float | Decimal,
     ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
-            amount (Union[str, int, float, Decimal]): Represented value.
+            amount (str | int | float | Decimal): Represented value.
 
         Returns:
-            Currency: new opbject.
+            SaintHelenaPoundAI: new opbject.
         """
         return self.__class__(amount, self._info[5])
 
@@ -664,7 +669,7 @@ class SaintHelenaPound(Currency):
     For more details see `multicurrency.pycurrency.Currency`.
 
     Args:
-        amount (Union[str, int, float, Decimal]): Represented value.
+        amount (str | int | float | Decimal): Represented value.
         pattern (str, optional): Currency format pattern. Defaults to
             '2.,3%-%s%u'.
     """
@@ -673,8 +678,8 @@ class SaintHelenaPound(Currency):
 
     def __new__(  # pylint: disable=signature-differs
         cls: Self,
-        amount: Union[str, float, Decimal],
-        pattern: Optional[str] = '2.,3%-%s%u',
+        amount: str | float | Decimal,
+        pattern: str | None = '2.,3%-%s%u',
     ) -> Self:
         """Class creator.
 
@@ -695,15 +700,15 @@ class SaintHelenaPound(Currency):
 
     def __recreate__(
             self: Self,
-            amount: Union[str, float, Decimal],
+            amount: str | float | Decimal,
     ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
-            amount (Union[str, int, float, Decimal]): Represented value.
+            amount (str | int | float | Decimal): Represented value.
 
         Returns:
-            Currency: new opbject.
+            SaintHelenaPound: new opbject.
         """
         return self.__class__(amount, self._info[5])
 
@@ -722,7 +727,7 @@ class SaintHelenaPoundTC(Currency):
     For more details see `multicurrency.pycurrency.Currency`.
 
     Args:
-        amount (Union[str, int, float, Decimal]): Represented value.
+        amount (str | int | float | Decimal): Represented value.
         pattern (str, optional): Currency format pattern. Defaults to
             '2.,3%-%s%u'.
     """
@@ -731,8 +736,8 @@ class SaintHelenaPoundTC(Currency):
 
     def __new__(  # pylint: disable=signature-differs
         cls: Self,
-        amount: Union[str, float, Decimal],
-        pattern: Optional[str] = '2.,3%-%s%u',
+        amount: str | float | Decimal,
+        pattern: str | None = '2.,3%-%s%u',
     ) -> Self:
         """Class creator.
 
@@ -753,15 +758,15 @@ class SaintHelenaPoundTC(Currency):
 
     def __recreate__(
             self: Self,
-            amount: Union[str, float, Decimal],
+            amount: str | float | Decimal,
     ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
-            amount (Union[str, int, float, Decimal]): Represented value.
+            amount (str | int | float | Decimal): Represented value.
 
         Returns:
-            Currency: new opbject.
+            SaintHelenaPoundTC: new opbject.
         """
         return self.__class__(amount, self._info[5])
 
@@ -780,7 +785,7 @@ class SyrianPound(Currency):
     For more details see `multicurrency.pycurrency.Currency`.
 
     Args:
-        amount (Union[str, int, float, Decimal]): Represented value.
+        amount (str | int | float | Decimal): Represented value.
         pattern (str, optional): Currency format pattern. Defaults to
             '2٫٬3%a %s'.
     """
@@ -789,8 +794,8 @@ class SyrianPound(Currency):
 
     def __new__(  # pylint: disable=signature-differs
         cls: Self,
-        amount: Union[str, float, Decimal],
-        pattern: Optional[str] = '2\u066B\u066C3%a\u00A0%s',
+        amount: str | float | Decimal,
+        pattern: str | None = '2\u066B\u066C3%a\u00A0%s',
     ) -> Self:
         """Class creator.
 
@@ -811,14 +816,14 @@ class SyrianPound(Currency):
 
     def __recreate__(
             self: Self,
-            amount: Union[str, float, Decimal],
+            amount: str | float | Decimal,
     ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
-            amount (Union[str, int, float, Decimal]): Represented value.
+            amount (str | int | float | Decimal): Represented value.
 
         Returns:
-            Currency: new opbject.
+            SyrianPound: new opbject.
         """
         return self.__class__(amount, self._info[5])

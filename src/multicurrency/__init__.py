@@ -439,7 +439,7 @@ Several operations are supported by the several library classes.
         True
 """ # pylint: disable=line-too-long  # noqa: E501,W505
 
-from multicurrency.pycurrency import Currency
+from multicurrency.currencies import *
 from multicurrency.exceptions import (
     CurrencyException,
     CurrencyInvalidDivision,
@@ -447,8 +447,9 @@ from multicurrency.exceptions import (
     CurrencyInvalidMultiplication,
     CurrencyInvalidOperation,
     CurrencyMismatchException,
-    CurrencyTypeException)
-from multicurrency.currencies import *
+    CurrencyTypeException,
+)
+from multicurrency.pycurrency import Currency
 
 
 __version__: str = '2.0.2'

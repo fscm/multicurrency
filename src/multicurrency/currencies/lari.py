@@ -6,10 +6,15 @@
 
 """Lari currency representation(s)."""
 
-from decimal import Decimal
-from typing import Optional, Self, Union, cast
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Self, cast
 
 from multicurrency.pycurrency import Currency
+
+
+if TYPE_CHECKING:
+    from decimal import Decimal
 
 
 class Lari(Currency):
@@ -26,7 +31,7 @@ class Lari(Currency):
     For more details see `multicurrency.pycurrency.Currency`.
 
     Args:
-        amount (Union[str, int, float, Decimal]): Represented value.
+        amount (str | int | float | Decimal): Represented value.
         pattern (str, optional): Currency format pattern. Defaults to
             '2, 3%a %s'.
     """
@@ -35,8 +40,8 @@ class Lari(Currency):
 
     def __new__(  # pylint: disable=signature-differs
         cls: Self,
-        amount: Union[str, float, Decimal],
-        pattern: Optional[str] = '2,\u202F3%a\u00A0%s',
+        amount: str | float | Decimal,
+        pattern: str | None = '2,\u202F3%a\u00A0%s',
     ) -> Self:
         """Class creator.
 
@@ -57,15 +62,15 @@ class Lari(Currency):
 
     def __recreate__(
             self: Self,
-            amount: Union[str, float, Decimal],
+            amount: str | float | Decimal,
     ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
-            amount (Union[str, int, float, Decimal]): Represented value.
+            amount (str | int | float | Decimal): Represented value.
 
         Returns:
-            Currency: new opbject.
+            Lari: new opbject.
         """
         return self.__class__(amount, self._info[5])
 
@@ -84,7 +89,7 @@ class GeorgiaLari(Currency):
     For more details see `multicurrency.pycurrency.Currency`.
 
     Args:
-        amount (Union[str, int, float, Decimal]): Represented value.
+        amount (str | int | float | Decimal): Represented value.
         pattern (str, optional): Currency format pattern. Defaults to
             '2, 3%a %s'.
     """
@@ -93,8 +98,8 @@ class GeorgiaLari(Currency):
 
     def __new__(  # pylint: disable=signature-differs
         cls: Self,
-        amount: Union[str, float, Decimal],
-        pattern: Optional[str] = '2,\u202F3%a\u00A0%s',
+        amount: str | float | Decimal,
+        pattern: str | None = '2,\u202F3%a\u00A0%s',
     ) -> Self:
         """Class creator.
 
@@ -115,15 +120,15 @@ class GeorgiaLari(Currency):
 
     def __recreate__(
             self: Self,
-            amount: Union[str, float, Decimal],
+            amount: str | float | Decimal,
     ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
-            amount (Union[str, int, float, Decimal]): Represented value.
+            amount (str | int | float | Decimal): Represented value.
 
         Returns:
-            Currency: new opbject.
+            GeorgiaLari: new opbject.
         """
         return self.__class__(amount, self._info[5])
 
@@ -142,7 +147,7 @@ class SouthOssetiaLari(Currency):
     For more details see `multicurrency.pycurrency.Currency`.
 
     Args:
-        amount (Union[str, int, float, Decimal]): Represented value.
+        amount (str | int | float | Decimal): Represented value.
         pattern (str, optional): Currency format pattern. Defaults to
             '2, 3%a %s'.
     """
@@ -151,8 +156,8 @@ class SouthOssetiaLari(Currency):
 
     def __new__(  # pylint: disable=signature-differs
         cls: Self,
-        amount: Union[str, float, Decimal],
-        pattern: Optional[str] = '2,\u202F3%a\u00A0%s',
+        amount: str | float | Decimal,
+        pattern: str | None = '2,\u202F3%a\u00A0%s',
     ) -> Self:
         """Class creator.
 
@@ -173,14 +178,14 @@ class SouthOssetiaLari(Currency):
 
     def __recreate__(
             self: Self,
-            amount: Union[str, float, Decimal],
+            amount: str | float | Decimal,
     ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
-            amount (Union[str, int, float, Decimal]): Represented value.
+            amount (str | int | float | Decimal): Represented value.
 
         Returns:
-            Currency: new opbject.
+            SouthOssetiaLari: new opbject.
         """
         return self.__class__(amount, self._info[5])

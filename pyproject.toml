@@ -357,6 +357,7 @@ target-version = 'py38'
 [tool.ruff.isort]
 combine-as-imports = true
 lines-after-imports = 2
+split-on-trailing-comma = true
 
 [tool.ruff.flake8-quotes]
 docstring-quotes = 'double'

@@ -6,10 +6,15 @@
 <%! from textwrap import wrap %>
 """${module_name} currency representation(s)."""
 
-from decimal import Decimal
-from typing import Optional, Self, Union, cast
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Self, cast
 
 from multicurrency.pycurrency import Currency
+
+
+if TYPE_CHECKING:
+    from decimal import Decimal
 % for currency in currencies:
 
 
@@ -35,7 +40,7 @@ docstring_start = '\n'.join(_lines_)
     For more details see `multicurrency.pycurrency.Currency`.
 
     Args:
-        amount (Union[str, int, float, Decimal]): Represented value.
+        amount (str | int | float | Decimal): Represented value.
         pattern (str, optional): Currency format pattern. Defaults to
             '<% _pattern_ = bytes(currency.pattern, 'utf-8').decode('unicode_escape') %>${_pattern_}'.
     """
@@ -44,8 +49,8 @@ docstring_start = '\n'.join(_lines_)
 
     def __new__(  # pylint: disable=signature-differs
         cls: Self,
-        amount: Union[str, float, Decimal],
-        pattern: Optional[str] = '${currency.pattern}',
+        amount: str | float | Decimal,
+        pattern: str | None = '${currency.pattern}',
     ) -> Self:
         """Class creator.
 
@@ -66,15 +71,15 @@ docstring_start = '\n'.join(_lines_)
 
     def __recreate__(
             self: Self,
-            amount: Union[str, float, Decimal],
+            amount: str | float | Decimal,
     ) -> Self:
         """Recreates self with a different `amount`.
 
         Args:
-            amount (Union[str, int, float, Decimal]): Represented value.
+            amount (str | int | float | Decimal): Represented value.
 
         Returns:
-            Currency: new opbject.
+            ${currency.class_name}: new opbject.
         """
         return self.__class__(amount, self._info[5])
 % endfor
